@@ -6,11 +6,32 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ContentView: View {
+    
+    // MARK: - Modal Control 設定画面遷移
+    @State var isSettingActive:Bool = false
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack(spacing:0){
+            
+            // MARK: - Header Contents
+            HeaderView(isSettingActive: $isSettingActive)
+            
+            #if DEBUG
+            // MARK: - 現在登録されている通知をすべて表示するコマンド
+//            Button {
+//                NotificationRequestManager().confirmNotificationRequest()
+//            } label: {
+//                Text("全登録済み通知を表示")
+//            }
+            #endif
+            
+            // MARK: - Main Contents
+            ListUserView(isSettingActive: $isSettingActive)
+       
+        }.background(ColorAsset.foundationColorLight.thisColor)
     }
 }
 
