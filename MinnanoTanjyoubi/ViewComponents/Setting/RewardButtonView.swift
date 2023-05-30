@@ -46,8 +46,6 @@ struct RewardButtonView: View {
             HStack{
                 Image(systemName:"bag.badge.plus").settingIcon()
                 Text("広告を視聴して容量を追加する")
-                Spacer()
-                Text("容量:\(limitCapacity)人")
             }
         }
         .onAppear() {
@@ -62,7 +60,7 @@ struct RewardButtonView: View {
                 Text("OK")
             })
         }, message: {
-            Text("広告を視聴できるのは1日に1回までです")
+            Text("広告を視聴できるのは1日に1回までです。")
         })
     }
 }

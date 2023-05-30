@@ -30,10 +30,12 @@ struct EntryUserView: View {
     @State var date:Date = Date()
     @State var memo:String = ""
     @State var selectedRelation:Relation = .other
+    @State var isON:Bool = false
+    
     
     // MARK: - View  Control
     @Binding var isModal:Bool            // 自信の表示モーダルフラグ
-    @State var isWheel:Bool = false      // カレンダーON/OFF
+    @State var isWheel:Bool = true      // カレンダーON/OFF
     @FocusState var isFocusActive:Bool   // TextField/TextEditor ActiveFlag
     
     // MARK: - バリデーション
@@ -91,6 +93,14 @@ struct EntryUserView: View {
                 }.padding(5)
                 
                 // Input Relation
+                
+                if user == nil{
+                    // MARK: - 通知ビュー
+                    Toggle(isOn: $isON, label: {
+                        Text("通知")
+                    }).toggleStyle(SwitchToggleStyle(tint:ColorAsset.themaColor1.thisColor))
+                }
+                
                 Group{
                     
                     Text("MEMO").foregroundColor(ColorAsset.foundationColorDark.thisColor).fontWeight(.bold).opacity(0.8)
@@ -99,8 +109,8 @@ struct EntryUserView: View {
                         .background(ColorAsset.foundationColorLight.thisColor)
                         .padding(5)
                         .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 3)
-                        .frame(maxHeight: 90)
-                        .frame(minHeight: 70)
+                        .frame(maxHeight: isSESize ? 45 : 90)
+                        .frame(minHeight: isSESize ? 45 : 70 )
                         .focused($isFocusActive)
                         .scrollContentBackground(.hidden)
                 }
@@ -115,7 +125,15 @@ struct EntryUserView: View {
                     
                     if user == nil { // Update??
                         // NO
-                        realmCrudManager.createUser(name: name, ruby: ruby, date: date, relation: selectedRelation, memo: memo)
+                        realmCrudManager.createUser(name: name, ruby: ruby, date: date, relation: selectedRelation, memo: memo,alert: isON)
+                        if isON {
+                            let df = DateFormatter()
+                            df.dateFormat = "yyyy-MM-dd-H-m"
+                            let dateString = df.string(from: date)
+                            if realmCrudManager.addUserId != nil{
+                                NotificationRequestManager().sendNotificationRequest(realmCrudManager.addUserId!,name,dateString)
+                            }
+                        }
                     }else{
                         // Yes
                         realmCrudManager.updateUser(user: user!, name: name, ruby: ruby, date: date, relation: selectedRelation, memo: memo)
@@ -153,6 +171,7 @@ struct EntryUserView: View {
                     }
                 }
             }
+            .ignoresSafeArea(.keyboard)
     }
 }
 

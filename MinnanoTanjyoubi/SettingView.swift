@@ -12,6 +12,7 @@ import UIKit
 
 struct SettingView: View {
 
+    @AppStorage("LimitCapacity") var limitCapacity = 5 // 初期値
     
     var body: some View {
         
@@ -46,9 +47,13 @@ struct SettingView: View {
                 }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
                 
                 // MARK: - (2)
-                Section(header: Text("広告"), footer: Text("容量の追加は1日に1回までです。")) {
-                    RewardButtonView().listRowBackground(ColorAsset.foundationColorDark.thisColor)
-                }
+                Section(header: Text("広告"), footer: Text("・追加される容量は5個です。\n・容量の追加は1日に1回までです。")) {
+                    RewardButtonView()
+                    HStack{
+                        Image(systemName: "bag").settingIcon()
+                        Text("現在の容量:\(limitCapacity)人")
+                    }
+                }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
                 
                 // MARK: - (3)
                 Section(header: Text("Link"), footer: Text("")) {
@@ -82,12 +87,13 @@ struct SettingView: View {
                 .foregroundColor(.white)
             // List ここまで
             
-            // MARK: - AdMob
-            AdMobBannerView().frame(height: 50)
+
+//            AdMobBannerView().frame(height: 50)
             
         }.navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
             .background(ColorAsset.foundationColorLight.thisColor)
+            
     }
 }
 

@@ -12,12 +12,7 @@ import UIKit
 import GoogleMobileAds
 
 
-
-// MARK: - バナー
 private let bannerCode:String = "ca-app-pub-3940256099942544/2934735716"
-
-
-// MARK: - リワード
 private let rewardCode:String = "ca-app-pub-3940256099942544/1712485313"
 
 

@@ -12,18 +12,22 @@ class RealmCrudManager {
     
     private let realm = try! Realm()
     
+    public var addUserId:ObjectId? = nil
+    
     // MARK: - Create
-    public func createUser(name:String,ruby:String,date:Date,relation:Relation,memo:String){
+    public func createUser(name:String,ruby:String,date:Date,relation:Relation,memo:String,alert:Bool){
         let user = User()
         user.name = name
         user.ruby = ruby
         user.date = date
         user.relation = relation
         user.memo = memo
+        user.alert = alert
         
         try! realm.write{
             realm.add(user)
         }
+        addUserId = user.id
     }
     
     // MARK: - Update

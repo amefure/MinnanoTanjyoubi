@@ -30,8 +30,12 @@ struct ContentView: View {
             
             // MARK: - Main Contents
             ListUserView(isSettingActive: $isSettingActive)
+            
+            // MARK: - AdMob
+            AdMobBannerView().frame(height: 50)
        
         }.background(ColorAsset.foundationColorLight.thisColor)
+            .ignoresSafeArea(.keyboard)
     }
 }
 
