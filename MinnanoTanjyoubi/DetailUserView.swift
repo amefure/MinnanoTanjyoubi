@@ -53,19 +53,21 @@ struct DetailUserView: View {
             
             Spacer()
             
+            
             DownSideView(parentFunction: {
                 isModal = true
             }, imageString: "square.and.pencil")
             .sheet(isPresented: $isModal, content: {
                 EntryUserView(user:user,isModal: $isModal)
             })
-            
+            // ハーフモーダルだと閉じるボタンがでない？
             
         } .background(ColorAsset.foundationColorLight.thisColor)
             .foregroundColor(.white)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
-        
+            .toolbar(.hidden, for: .navigationBar)
+//            .navigationDestination(isPresented: $isModal) {
+//                EntryUserView(user:user,isModal: $isModal)
+//            }
     }
 }
 

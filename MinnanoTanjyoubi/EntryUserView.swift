@@ -103,20 +103,29 @@ struct EntryUserView: View {
                     }).toggleStyle(SwitchToggleStyle(tint:ColorAsset.themaColor1.thisColor))
                 }
                 
-                Group{
-                    
-                    Text("MEMO").foregroundColor(ColorAsset.foundationColorDark.thisColor).fontWeight(.bold).opacity(0.8)
-                    
+                
+                Text("MEMO").foregroundColor(ColorAsset.foundationColorDark.thisColor).fontWeight(.bold).opacity(0.8)
+                NavigationStack {
                     TextEditor(text: $memo)
-                        .background(ColorAsset.foundationColorLight.thisColor)
                         .padding(5)
-                        .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 3)
-                        .frame(maxHeight: isSESize ? 60 : 110)
-                        .frame(minHeight: isSESize ? 60 : 90)
+                        .background(ColorAsset.foundationColorLight.thisColor)
                         .focused($isFocusActive)
                         .scrollContentBackground(.hidden)
-                        
-                }
+                        .toolbar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()  // 右寄せにする
+                                Button {
+                                    isFocusActive = false
+                                } label: {
+                                    Text("閉じる")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        }
+                }.background(ColorAsset.foundationColorLight.thisColor)
+                    .frame(minHeight: isSESize ? 60 : 90)
+                    .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 3)
+
                 
             }
             
@@ -147,7 +156,6 @@ struct EntryUserView: View {
                 } // validationInput
             }, imageString: "checkmark")
             
-            
         }.padding()
             .background(ColorAsset.foundationColorLight.thisColor)
             .foregroundColor(.white)
@@ -166,14 +174,7 @@ struct EntryUserView: View {
                     isWheel = true
                 }
             })
-            .toolbar {
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()  // 右寄せにする
-                    Button("閉じる") {
-                        isFocusActive = false
-                    }
-                }
-            }
+            .navigationBarBackButtonHidden(true)
     }
 }
 

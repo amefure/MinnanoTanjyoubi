@@ -50,7 +50,6 @@ struct ListUserView: View {
         }
         
     }
-    
     var body: some View {
         
         NavigationStack{
@@ -82,8 +81,7 @@ struct ListUserView: View {
                 .navigationDestination(isPresented: $isSettingActive) {
                     SettingView()
                 }
-            
-        }.navigationViewStyle(.stack)
+        }
     }
 }
 
