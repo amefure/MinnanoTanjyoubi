@@ -23,7 +23,7 @@ struct DownSideView: View {
     // MARK: - View
     private var viewSize:CGFloat {
         if isSESize{
-            return 45
+            return 35
         }else{
             return 50
         }

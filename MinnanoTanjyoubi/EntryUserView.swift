@@ -54,7 +54,9 @@ struct EntryUserView: View {
             // MARK: - ViewComponent
             UpSideView()
             
-            Spacer()
+            if !isSESize{
+                Spacer()
+            }
             
             VStack(spacing: isSESize ? 5 :20){
                 
@@ -109,10 +111,18 @@ struct EntryUserView: View {
                         .background(ColorAsset.foundationColorLight.thisColor)
                         .padding(5)
                         .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 3)
-                        .frame(maxHeight: isSESize ? 45 : 90)
-                        .frame(minHeight: isSESize ? 45 : 70 )
+                        .frame(maxHeight: isSESize ? 60 : 110)
+                        .frame(minHeight: isSESize ? 60 : 90)
                         .focused($isFocusActive)
                         .scrollContentBackground(.hidden)
+                        .toolbar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()  // 右寄せにする
+                                Button("閉じる") {
+                                    isFocusActive = false
+                                }
+                            }
+                        }
                 }
                 
             }
@@ -163,15 +173,6 @@ struct EntryUserView: View {
                     isWheel = true
                 }
             })
-            .toolbar {
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()         // 右寄せにする
-                    Button("閉じる") {
-                        isFocusActive = false  //  フォーカスを外す
-                    }
-                }
-            }
-            .ignoresSafeArea(.keyboard)
     }
 }
 

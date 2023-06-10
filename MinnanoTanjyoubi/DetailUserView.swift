@@ -39,7 +39,9 @@ struct DetailUserView: View {
                 // MARK: - Memo
                 ScrollView{
                     Text(user.memo).frame(width:deviceWidth - 40)
-                }.padding(isSESize ? 5 : 10).frame(width:deviceWidth - 40).frame(maxHeight:80)
+                }.padding(isSESize ? 5 : 10)
+                    .frame(width:deviceWidth - 40)
+                    .frame(maxHeight:isSESize ? 80 : 120)
                     .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 2)
                 
                 
