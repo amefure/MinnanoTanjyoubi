@@ -48,12 +48,12 @@ struct ListUserView: View {
         }else{
             return self.users.sorted(by: { $0.daysLater < $1.daysLater })
         }
-       
+        
     }
     
     var body: some View {
         
-        NavigationView{
+        NavigationStack{
             VStack(spacing:0){
                 
                 // MARK: - List Contents
@@ -74,15 +74,15 @@ struct ListUserView: View {
                     }
                 }.padding([.top,.trailing,.leading])
                 
-               
                 // MARK: - ControlPanel
                 ControlPanelView(isSorted: $isSorted, isDeleteMode: $isDeleteMode,deleteIdArray: $deleteIdArray,selectedRelation: $selectedRelation)
                 
-                // MARK: - Hidden Contents
-                NavigationLink(isActive: $isSettingActive, destination: {SettingView()}, label: { EmptyView() })
                 
             }.background(ColorAsset.foundationColorLight.thisColor)
-               
+                .navigationDestination(isPresented: $isSettingActive) {
+                    SettingView()
+                }
+            
         }.navigationViewStyle(.stack)
     }
 }

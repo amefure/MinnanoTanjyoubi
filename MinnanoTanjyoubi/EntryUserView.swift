@@ -115,14 +115,7 @@ struct EntryUserView: View {
                         .frame(minHeight: isSESize ? 60 : 90)
                         .focused($isFocusActive)
                         .scrollContentBackground(.hidden)
-                        .toolbar {
-                            ToolbarItemGroup(placement: .keyboard) {
-                                Spacer()  // 右寄せにする
-                                Button("閉じる") {
-                                    isFocusActive = false
-                                }
-                            }
-                        }
+                        
                 }
                 
             }
@@ -173,6 +166,14 @@ struct EntryUserView: View {
                     isWheel = true
                 }
             })
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()  // 右寄せにする
+                    Button("閉じる") {
+                        isFocusActive = false
+                    }
+                }
+            }
     }
 }
 
