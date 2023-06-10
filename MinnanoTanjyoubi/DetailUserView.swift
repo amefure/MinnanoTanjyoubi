@@ -58,8 +58,6 @@ struct DetailUserView: View {
                 EntryUserView(user:user,isModal: $isModal)
             })
             
-            // MARK: - AdMob
-            AdMobBannerView().frame(height: 50)
             
         } .background(ColorAsset.foundationColorLight.thisColor)
             .foregroundColor(.white)

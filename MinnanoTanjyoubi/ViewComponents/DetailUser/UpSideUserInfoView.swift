@@ -69,9 +69,10 @@ struct UpSideUserInfoView: View {
             
             Text(user.ruby).font(isSESize ? .caption : .none)
             Text(user.name).font(isSESize ? .title : .largeTitle)
-            Text(df.string(from: user.date)).font(isSESize ? .none : .title)
-            Text("（\(df_eraName.string(from: user.date))）")
-            
+            HStack{
+                Text(df.string(from: user.date)).font(isSESize ? .none : .title)
+                Text("（\(df_eraName.string(from: user.date))）")
+            }
         }
     }
 }
