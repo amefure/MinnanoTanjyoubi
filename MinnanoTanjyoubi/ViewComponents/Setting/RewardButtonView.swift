@@ -13,7 +13,7 @@ struct RewardButtonView: View {
     @ObservedObject var reward = Reward()
     
     // MARK: - Storage
-    @AppStorage("LimitCapacity") var limitCapacity = 5 // 初期値
+    @AppStorage("LimitCapacity") var limitCapacity = 10 // 初期値
     @AppStorage("LastAcquisitionDate") var lastAcquisitionDate = ""
     
     // MARK: - View
@@ -50,6 +50,9 @@ struct RewardButtonView: View {
         }
         .onAppear() {
             reward.loadReward()
+            if limitCapacity == 5{
+                limitCapacity = 10
+            }
         }
         .disabled(!reward.rewardLoaded)
         .alert(Text("お知らせ"),

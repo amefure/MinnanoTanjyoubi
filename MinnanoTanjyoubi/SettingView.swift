@@ -12,7 +12,7 @@ import UIKit
 
 struct SettingView: View {
 
-    @AppStorage("LimitCapacity") var limitCapacity = 5 // 初期値
+    @AppStorage("LimitCapacity") var limitCapacity = 10 // 初期値
     
     var body: some View {
         
@@ -87,8 +87,6 @@ struct SettingView: View {
                 .foregroundColor(.white)
             // List ここまで
             
-
-//            AdMobBannerView().frame(height: 50)
             
         }.navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
