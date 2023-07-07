@@ -45,13 +45,21 @@ class User: Object ,ObjectKeyIdentifiable{
     
     //MARK: - 今何歳
     public var currentAge:Int{
-        let seconds = date.timeIntervalSinceNow
-        if seconds > 0 {
-            return 0  // 未来の日付を渡されている場合は０歳にする
-        }
-        let late = seconds / (60 * 60 * 24 * 365)
-        let result = floor(abs(late))
-        return Int(result)
+//        let seconds = date.timeIntervalSinceNow
+//        if seconds > 0 {
+//            return 0  // 未来の日付を渡されている場合は０歳にする
+//        }
+//        let late = seconds / (60 * 60 * 24 * 365)
+//        let result = floor(abs(late))
+//        return Int(result)
+        
+        // ↓ ロジックを変更 2023/7/7
+        
+        let calendar = Calendar.current
+        let ageComponents = calendar.dateComponents([.year], from: date, to: Date())
+        let age = ageComponents.year ?? 0
+
+        return age
     }
     
     //MARK: - 文字列型生年月日
