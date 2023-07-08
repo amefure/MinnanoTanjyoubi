@@ -8,28 +8,25 @@
 import UIKit
 
 class DateManagerModel {
-    
     public let df = DateFormatter()
     public let today = Date()
-    
-    
-    init(){
+
+    init() {
         conversionSlash()
         df.locale = Locale(identifier: "ja_JP")
         df.calendar = Calendar(identifier: .gregorian)
     }
-    
-    public func conversionJapanese (){
+
+    public func conversionJapanese() {
         df.dateFormat = "yyyy年M月dd日"
     }
-    
-    public func conversionJapaneseEraName (){
+
+    public func conversionJapaneseEraName() {
         df.calendar = Calendar(identifier: .japanese)
         df.dateFormat = "Gy年"
     }
-    
-    public func conversionSlash (){
-        df.dateFormat =  "yyyy/MM/dd"
+
+    public func conversionSlash() {
+        df.dateFormat = "yyyy/MM/dd"
     }
-    
 }

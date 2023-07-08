@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct RewardButtonView: View {
-    
     // MARK: - AdMob
+
     @ObservedObject var reward = Reward()
-    
+
     // MARK: - Storage
+
     @AppStorage("LimitCapacity") var limitCapacity = 10 // 初期値
     @AppStorage("LastAcquisitionDate") var lastAcquisitionDate = ""
-    
+
     // MARK: - View
-    @State var isAlertReward:Bool = false      // リワード広告視聴回数制限アラート
-    
+
+    @State var isAlertReward: Bool = false // リワード広告視聴回数制限アラート
+
     // MARK: - Method
-    private func nowTime() -> String{
+
+    private func nowTime() -> String {
         let df = DateFormatter()
         df.calendar = Calendar(identifier: .gregorian)
         df.locale = Locale(identifier: "ja_JP")
@@ -29,28 +32,27 @@ struct RewardButtonView: View {
         df.timeStyle = .none
         return df.string(from: Date())
     }
-    
-    
+
     var body: some View {
         Button(action: {
             // 1日1回までしか視聴できないようにする
             if lastAcquisitionDate != nowTime() {
-                reward.showReward()          //  広告配信
+                reward.showReward() //  広告配信
                 limitCapacity = limitCapacity + 5
                 lastAcquisitionDate = nowTime() // 最終視聴日を格納
-                
-            }else{
+
+            } else {
                 isAlertReward = true
             }
         }) {
-            HStack{
-                Image(systemName:"bag.badge.plus").settingIcon()
+            HStack {
+                Image(systemName: "bag.badge.plus").settingIcon()
                 Text("広告を視聴して容量を追加する")
             }
         }
-        .onAppear() {
+        .onAppear {
             reward.loadReward()
-            if limitCapacity == 5{
+            if limitCapacity == 5 {
                 limitCapacity = 10
             }
         }
@@ -58,13 +60,12 @@ struct RewardButtonView: View {
         .alert(Text("お知らせ"),
                isPresented: $isAlertReward,
                actions: {
-            Button(action: {
-            }, label: {
-                Text("OK")
-            })
-        }, message: {
-            Text("広告を視聴できるのは1日に1回までです。")
-        })
+                   Button(action: {}, label: {
+                       Text("OK")
+                   })
+               }, message: {
+                   Text("広告を視聴できるのは1日に1回までです。")
+               })
     }
 }
 

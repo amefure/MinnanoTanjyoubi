@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct NoticeDateFlagView: View {
-    
-    @State var isOn:Bool = true
-    
+    @State var isOn: Bool = true
+
     // MARK: - Storage
-    @AppStorage("NoticeDate") var noticeTime:String = "0"
-    
+
+    @AppStorage("NoticeDate") var noticeTime: String = "0"
+
     var body: some View {
-        HStack{
+        HStack {
             Text("通知日")
             Spacer()
             Toggle(isOn: $isOn) {
@@ -27,7 +27,7 @@ struct NoticeDateFlagView: View {
                 .onChange(of: isOn) { newValue in
                     if newValue {
                         noticeTime = "0"
-                    }else{
+                    } else {
                         noticeTime = "1"
                     }
                 }

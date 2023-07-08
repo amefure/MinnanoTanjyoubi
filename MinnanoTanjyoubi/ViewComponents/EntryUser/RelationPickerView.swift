@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct RelationPickerView: View {
-    
-    @Binding var selectedRelation:Relation
-    
+    @Binding var selectedRelation: Relation
+
     var body: some View {
         Picker(selection: $selectedRelation, label: Text("関係")) {
-              ForEach(Relation.allCases, id: \.self) { item in
-                  Text(item.rawValue)
-              }
+            ForEach(Relation.allCases, id: \.self) { item in
+                Text(item.rawValue)
+            }
         }.pickerStyle(.menu)
             .frame(width: 100)
             .overlay(
-            RoundedRectangle(cornerRadius: 5)
-                .stroke(ColorAsset.foundationColorDark.thisColor.opacity(0.4), lineWidth: 2)
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(ColorAsset.foundationColorDark.thisColor.opacity(0.4), lineWidth: 2)
             ).tint(ColorAsset.foundationColorDark.thisColor)
     }
 }

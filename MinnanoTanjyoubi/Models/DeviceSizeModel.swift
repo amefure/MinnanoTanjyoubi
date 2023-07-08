@@ -8,25 +8,22 @@
 import UIKit
 
 class DeviceSizeModel {
-    
     static let deviceWidth = UIScreen.main.bounds.width
     static let deviceHeight = UIScreen.main.bounds.height
-    
-    static var isSESize:Bool {
-        if deviceWidth < 400{
+
+    static var isSESize: Bool {
+        if deviceWidth < 400 {
             return true
-        }else{
+        } else {
             return false
         }
     }
-    
-    static var isiPadSize:Bool {
+
+    static var isiPadSize: Bool {
         if UIDevice.current.userInterfaceIdiom == .pad {
             return true
-        }else{
+        } else {
             return false
         }
     }
-    
-    
 }
