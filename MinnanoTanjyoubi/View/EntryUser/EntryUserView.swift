@@ -15,13 +15,10 @@ import SwiftUI
 struct EntryUserView: View {
     // MARK: - Models
 
-    @ObservedResults(User.self) var users
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
+
     // Updateデータ受け取り用
     public var user: User?
-
-    // MARK: - Controller
-
-    private let realmCrudManager = RealmCrudManager()
 
     // MARK: - Setting
 
@@ -49,6 +46,17 @@ struct EntryUserView: View {
             return false
         }
         return true
+    }
+
+    private func getNewUser() -> User {
+        let newUser = User()
+        newUser.name = name
+        newUser.ruby = ruby
+        newUser.date = date
+        newUser.relation = selectedRelation
+        newUser.memo = memo
+        newUser.alert = isON
+        return newUser
     }
 
     var body: some View {
@@ -134,20 +142,23 @@ struct EntryUserView: View {
 
             DownSideView(parentFunction: {
                 if validationInput() {
-                    if user == nil { // Update??
-                        // NO
-                        realmCrudManager.createUser(name: name, ruby: ruby, date: date, relation: selectedRelation, memo: memo, alert: isON)
+                    if let user = user {
+                        // Update
+                        let newUser = getNewUser()
+                        repository.updateUser(id: user.id, newUser: newUser)
+
+                    } else {
+                        // Create
+
+                        let newUser = getNewUser()
+                        repository.createUser(newUser: newUser)
+
                         if isON {
                             let df = DateFormatter()
                             df.dateFormat = "yyyy-MM-dd-H-m"
                             let dateString = df.string(from: date)
-                            if realmCrudManager.addUserId != nil {
-                                NotificationRequestManager().sendNotificationRequest(realmCrudManager.addUserId!, name, dateString)
-                            }
+                            NotificationRequestManager().sendNotificationRequest(newUser.id, name, dateString)
                         }
-                    } else {
-                        // Yes
-                        realmCrudManager.updateUser(user: user!, name: name, ruby: ruby, date: date, relation: selectedRelation, memo: memo)
                     }
 
                     isModal = false
@@ -159,12 +170,12 @@ struct EntryUserView: View {
             .foregroundColor(.white)
             .onAppear {
                 // Update時なら初期値セット
-                if user != nil {
-                    name = user!.name
-                    ruby = user!.ruby
-                    date = user!.date
-                    selectedRelation = user!.relation
-                    memo = user!.memo
+                if let user = user {
+                    name = user.name
+                    ruby = user.ruby
+                    date = user.date
+                    selectedRelation = user.relation
+                    memo = user.memo
                 }
             }
             .onChange(of: isFocusActive, perform: { _ in

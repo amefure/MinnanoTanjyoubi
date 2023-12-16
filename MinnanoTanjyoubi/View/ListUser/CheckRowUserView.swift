@@ -42,7 +42,10 @@ struct CheckRowUserView: View {
     // MARK: - Models
 
     public var user: User
-    @Binding var deleteIdArray: [ObjectId]
+
+    // MARK: - Environment
+
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     // MARK: - View
 
@@ -60,7 +63,7 @@ struct CheckRowUserView: View {
             // チェックボタン
             Toggle(isOn: $isOn) {
                 EmptyView()
-            }.toggleStyle(CheckBoxToggleStyle(user: user, deleteIdArray: $deleteIdArray))
+            }.toggleStyle(CheckBoxToggleStyle(user: user, deleteIdArray: $rootEnvironment.deleteIdArray))
                 .tint(ColorAsset.themaColor1.thisColor)
                 .frame(width: itemWidth)
                 .zIndex(2).position(x: 15, y: 15)
@@ -68,9 +71,9 @@ struct CheckRowUserView: View {
             //
             Button {
                 if isOn {
-                    deleteIdArray.remove(at: deleteIdArray.firstIndex(of: user.id)!)
+                    rootEnvironment.removeDeleteIdArray(id: user.id)
                 } else {
-                    deleteIdArray.append(user.id)
+                    rootEnvironment.appendDeleteIdArray(id: user.id)
                 }
                 isOn.toggle()
             } label: {

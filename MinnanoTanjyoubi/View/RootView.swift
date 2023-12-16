@@ -8,16 +8,16 @@
 import RealmSwift
 import SwiftUI
 
-struct ContentView: View {
-    // MARK: - Modal Control 設定画面遷移
+struct RootView: View {
+    // MARK: - Environment
 
-    @State var isSettingActive: Bool = false
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         VStack(spacing: 0) {
             // MARK: - Header Contents
 
-            HeaderView(isSettingActive: $isSettingActive)
+            HeaderView()
 
             #if DEBUG
 
@@ -32,11 +32,13 @@ struct ContentView: View {
 
             // MARK: - Main Contents
 
-            ListUserView(isSettingActive: $isSettingActive)
+            ListUserView()
+                .environmentObject(rootEnvironment)
 
             // MARK: - AdMob
 
-            AdMobBannerView().frame(height: 50)
+            AdMobBannerView()
+                .frame(height: 50)
 
         }.background(ColorAsset.foundationColorLight.thisColor)
             .ignoresSafeArea(.keyboard)
@@ -47,6 +49,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        RootView()
     }
 }

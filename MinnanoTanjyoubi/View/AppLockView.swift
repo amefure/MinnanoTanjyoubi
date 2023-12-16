@@ -13,9 +13,13 @@ struct AppLockView: View {
     @State private var isShowProgress = false // プログレス表示
     @State private var isShowFailureAlert = false // パスワード失敗アラート
 
+    // MARK: - Environment
+
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView(isSettingActive: Binding.constant(false), isShowSettingIcon: false)
+            HeaderView(isShowSettingIcon: false)
 
             Spacer()
 
@@ -53,7 +57,8 @@ struct AppLockView: View {
             Button("OK") {}
         }
         .navigationDestination(isPresented: $isShowApp) {
-            ContentView()
+            RootView()
+                .environmentObject(rootEnvironment)
         }.background(ColorAsset.foundationColorLight.thisColor)
     }
 }

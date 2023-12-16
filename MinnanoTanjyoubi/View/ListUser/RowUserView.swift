@@ -17,13 +17,6 @@ struct RowUserView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeManager.deviceWidth
-    private let isSESize = DeviceSizeManager.isSESize
-
-    private var itemWidth: CGFloat {
-        return CGFloat(deviceWidth / 3)
-    }
-
     private func changeFontSizeByLemgth(_ name: String) -> CGFloat {
         if name.count > 8 {
             return 10
@@ -34,7 +27,7 @@ struct RowUserView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            Text("\(user.name)").lineLimit(1).font(.system(size: isSESize ? changeFontSizeByLemgth(user.name) : 16))
+            Text("\(user.name)").lineLimit(1).font(.system(size: DeviceSizeManager.isSESize ? changeFontSizeByLemgth(user.name) : 16))
             Text(user.dateOfBirthString).font(.caption)
 
             HStack(alignment: .bottom, spacing: 3) {
@@ -52,7 +45,7 @@ struct RowUserView: View {
 
         }.padding(5)
             .frame(height: 130)
-            .frame(maxWidth: itemWidth)
+            .frame(maxWidth: DeviceSizeManager.deviceWidth / 3)
             .background(ColorAsset.foundationColorDark.thisColor)
             .foregroundColor(.white)
             .cornerRadius(8)

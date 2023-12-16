@@ -13,7 +13,7 @@ import SwiftUI
 struct DetailUserView: View {
     // MARK: - Models
 
-    @ObservedRealmObject var user: User
+    var user: User
 
     // MARK: - View
 
@@ -67,8 +67,5 @@ struct DetailUserView: View {
         }.background(ColorAsset.foundationColorLight.thisColor)
             .foregroundColor(.white)
             .toolbar(.hidden, for: .navigationBar)
-//            .navigationDestination(isPresented: $isModal) {
-//                EntryUserView(user:user,isModal: $isModal)
-//            }
     }
 }

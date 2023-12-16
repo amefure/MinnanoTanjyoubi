@@ -11,16 +11,9 @@ import SwiftUI
 // MARK: - リスト画面下部に表示するコントロールパネルビュー
 
 struct ControlPanelView: View {
-    // MARK: - View
+    // MARK: - Environment
 
-    @Binding var isSorted: Bool
-    @Binding var isDeleteMode: Bool
-    @Binding var deleteIdArray: [ObjectId]
-    @Binding var selectedRelation: Relation
-
-    // MARK: - Setting
-
-    private let deviceWidth = DeviceSizeManager.deviceWidth
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         HStack {
@@ -28,13 +21,14 @@ struct ControlPanelView: View {
 
             // MARK: - RemoveButton
 
-            RemoveButtonView(isDeleteMode: $isDeleteMode, deleteIdArray: $deleteIdArray)
+            RemoveButtonView()
+                .environmentObject(rootEnvironment)
 
             Spacer()
 
             // MARK: - SortedButton
 
-            SortedButtonView(isSorted: $isSorted, selectedRelation: $selectedRelation)
+            SortedButtonView()
 
             Spacer()
 
@@ -44,7 +38,7 @@ struct ControlPanelView: View {
 
             Spacer()
 
-        }.frame(width: deviceWidth, height: 70)
+        }.frame(width: DeviceSizeManager.deviceWidth, height: 70)
             .foregroundColor(.white)
             .background(ColorAsset.foundationColorDark.thisColor)
     }

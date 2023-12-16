@@ -11,7 +11,7 @@ import SwiftUI
 struct EntryButtonView: View {
     // MARK: - Models
 
-    @ObservedResults(User.self) var users
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
     // Storage
     @AppStorage("LimitCapacity") var limitCapacity = 5 // 初期値
@@ -25,7 +25,7 @@ struct EntryButtonView: View {
     @State var isModal: Bool = false
 
     private func checkLimitCapacity() -> Bool {
-        if users.count >= limitCapacity {
+        if repository.users.count >= limitCapacity {
             isLimitAlert = true
             return false
         } else {

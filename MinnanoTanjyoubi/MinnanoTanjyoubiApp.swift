@@ -11,14 +11,20 @@ import SwiftUI
 struct MinnanoTanjyoubiApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
+    // MARK: - Environment
+
+    @ObservedObject private var rootEnvironment = RootEnvironment()
+
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 if KeyChainRepository.sheard.getData().count == 4 {
                     /// キーチェーンにパスワードが保存されている場合
                     AppLockView()
+                        .environmentObject(rootEnvironment)
                 } else {
-                    ContentView()
+                    RootView()
+                        .environmentObject(rootEnvironment)
                 }
             }
         }

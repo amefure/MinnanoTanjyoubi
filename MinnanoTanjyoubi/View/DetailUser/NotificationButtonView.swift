@@ -14,6 +14,8 @@ struct NotificationButtonView: View {
 
     @State var user: User
 
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
+
     // MARK: - Controller
 
     private let notificationRequestManager = NotificationRequestManager()
@@ -40,18 +42,12 @@ struct NotificationButtonView: View {
                     notificationRequestManager.sendNotificationRequest(user.id, user.name, dateString)
 
                     // データベース更新
-                    let thawUser = user.thaw()
-                    try! thawUser?.realm!.write {
-                        thawUser?.alert = true
-                    }
+                    repository.updateNotifyUser(id: user.id, notify: true)
                 } else {
                     // 通知を削除
                     notificationRequestManager.removeNotificationRequest(user.id, user.name)
                     // データベース更新
-                    let thawUser = user.thaw()
-                    try! thawUser?.realm!.write {
-                        thawUser?.alert = false
-                    }
+                    repository.updateNotifyUser(id: user.id, notify: false)
                 }
             }.frame(width: deviceWidth - 60).padding(isSESize ? 5 : 10)
             .onAppear {

@@ -10,7 +10,7 @@ import SwiftUI
 struct HeaderView: View {
     // MARK: - Modal Control 設定画面遷移
 
-    @Binding var isSettingActive: Bool
+    @State private var isSettingActive: Bool = false
 
     public var isShowSettingIcon: Bool = true
 
@@ -34,11 +34,14 @@ struct HeaderView: View {
                 }
             }
         }.frame(width: deviceWidth, height: isSESize ? 80 : 90).background(ColorAsset.foundationColorDark.thisColor)
+            .navigationDestination(isPresented: $isSettingActive) {
+                SettingView()
+            }
     }
 }
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView(isSettingActive: Binding.constant(true))
+        HeaderView()
     }
 }

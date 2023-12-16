@@ -9,39 +9,39 @@ import RealmSwift
 import SwiftUI
 
 struct RemoveButtonView: View {
-    // MARK: - Controller
-
-    private let realmCrudManager = RealmCrudManager()
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
     // MARK: - View
 
-    @State var isAlert: Bool = false
+    @State private var isAlert: Bool = false
 
-    @Binding var isDeleteMode: Bool
-    @Binding var deleteIdArray: [ObjectId]
+    // MARK: - Environment
+
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         Button(action: {
-            if deleteIdArray.count != 0 {
+            if rootEnvironment.deleteIdArray.count != 0 {
                 isAlert = true
             } else {
-                isDeleteMode.toggle()
+                if rootEnvironment.isDeleteMode {
+                    rootEnvironment.disableDeleteMode()
+                } else {
+                    rootEnvironment.enableDeleteMode()
+                }
             }
         }, label: {
-            Image(systemName: isDeleteMode ? "trash" : "app.badge.checkmark")
+            Image(systemName: rootEnvironment.isDeleteMode ? "trash" : "app.badge.checkmark")
         }).circleBorderView(width: 50, height: 50, color: ColorAsset.themaColor2.thisColor)
-
             .alert("選択したユーザーを\n削除しますか？", isPresented: $isAlert) {
                 Button(role: .destructive, action: {
-                    realmCrudManager.removeUser(removeIdArray: deleteIdArray)
-                    deleteIdArray = []
-                    isDeleteMode = false
+                    repository.removeUser(removeIdArray: rootEnvironment.deleteIdArray)
+                    rootEnvironment.resetDeleteMode()
                 }, label: {
                     Text("削除")
                 })
                 Button(role: .cancel, action: {
-                    deleteIdArray = []
-                    isDeleteMode = false
+                    rootEnvironment.resetDeleteMode()
                 }, label: {
                     Text("キャンセル")
                 })
