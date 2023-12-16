@@ -13,7 +13,14 @@ struct MinnanoTanjyoubiApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                if KeyChainRepository.sheard.getData().count == 4 {
+                    /// キーチェーンにパスワードが保存されている場合
+                    AppLockView()
+                } else {
+                    ContentView()
+                }
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ class User: Object, ObjectKeyIdentifiable {
     // MARK: - 誕生日まであとX日
 
     public var daysLater: Int {
-        let dm = DateManagerModel()
+        let dm = DateFormatManager()
         let df = dm.df
         let dateStr = df.string(from: date)
         let today = dm.today
@@ -48,16 +48,6 @@ class User: Object, ObjectKeyIdentifiable {
     // MARK: - 今何歳
 
     public var currentAge: Int {
-//        let seconds = date.timeIntervalSinceNow
-//        if seconds > 0 {
-//            return 0  // 未来の日付を渡されている場合は０歳にする
-//        }
-//        let late = seconds / (60 * 60 * 24 * 365)
-//        let result = floor(abs(late))
-//        return Int(result)
-
-        // ↓ ロジックを変更 2023/7/7
-
         let calendar = Calendar.current
         let ageComponents = calendar.dateComponents([.year], from: date, to: Date())
         let age = ageComponents.year ?? 0
@@ -68,7 +58,7 @@ class User: Object, ObjectKeyIdentifiable {
     // MARK: - 文字列型生年月日
 
     public var dateOfBirthString: String {
-        let dm = DateManagerModel()
+        let dm = DateFormatManager()
         dm.conversionJapanese()
         let df = dm.df
         return df.string(from: date)
@@ -79,7 +69,7 @@ struct calcDateOfBirth {
     // MARK: - 12星座
 
     public func signOfZodiac(_ date: Date) -> String {
-        let df = DateManagerModel().df
+        let df = DateFormatManager().df
         // 年数は指定日の年数を取得→範囲を識別するため
         let thisYear = df.string(from: date).prefix(4)
         let nowYear = "\(thisYear)/" // "2023/" 形式
@@ -120,7 +110,7 @@ struct calcDateOfBirth {
     // MARK: - 十二支
 
     public func zodiac(_ date: Date) -> String {
-        let df = DateManagerModel().df
+        let df = DateFormatManager().df
         let nowYear = df.string(from: date).prefix(4)
         guard Int(nowYear) != nil else {
             // 文字列の場合

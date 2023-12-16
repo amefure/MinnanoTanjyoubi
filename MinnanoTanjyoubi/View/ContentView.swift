@@ -40,6 +40,8 @@ struct ContentView: View {
 
         }.background(ColorAsset.foundationColorLight.thisColor)
             .ignoresSafeArea(.keyboard)
+            .navigationBarBackButtonHidden()
+            .navigationBarHidden(true)
     }
 }
 

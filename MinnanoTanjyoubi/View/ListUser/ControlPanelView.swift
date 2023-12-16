@@ -20,7 +20,7 @@ struct ControlPanelView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeModel.deviceWidth
+    private let deviceWidth = DeviceSizeManager.deviceWidth
 
     var body: some View {
         HStack {

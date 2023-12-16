@@ -24,8 +24,8 @@ struct NotificationButtonView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeModel.deviceWidth
-    private let isSESize = DeviceSizeModel.isSESize
+    private let deviceWidth = DeviceSizeManager.deviceWidth
+    private let isSESize = DeviceSizeManager.isSESize
 
     var body: some View {
         Toggle(isOn: $isON, label: {

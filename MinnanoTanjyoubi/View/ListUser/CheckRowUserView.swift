@@ -50,7 +50,7 @@ struct CheckRowUserView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeModel.deviceWidth
+    private let deviceWidth = DeviceSizeManager.deviceWidth
     private var itemWidth: CGFloat {
         return CGFloat(deviceWidth / 3)
     }

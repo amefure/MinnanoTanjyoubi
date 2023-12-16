@@ -12,10 +12,12 @@ struct HeaderView: View {
 
     @Binding var isSettingActive: Bool
 
+    public var isShowSettingIcon: Bool = true
+
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeModel.deviceWidth
-    private let isSESize = DeviceSizeModel.isSESize
+    private let deviceWidth = DeviceSizeManager.deviceWidth
+    private let isSESize = DeviceSizeManager.isSESize
 
     var body: some View {
         HStack(alignment: .center) {
@@ -23,11 +25,13 @@ struct HeaderView: View {
                 Image("Appicon-remove").resizable()
                     .frame(width: isSESize ? 55 : 70, height: isSESize ? 55 : 70)
 
-                Button(action: {
-                    isSettingActive = true
-                }, label: {
-                    Image(systemName: "gearshape.fill")
-                }).foregroundColor(.white).position(x: deviceWidth - 30, y: 30)
+                if isShowSettingIcon {
+                    Button(action: {
+                        isSettingActive = true
+                    }, label: {
+                        Image(systemName: "gearshape.fill")
+                    }).foregroundColor(.white).position(x: deviceWidth - 30, y: 30)
+                }
             }
         }.frame(width: deviceWidth, height: isSESize ? 80 : 90).background(ColorAsset.foundationColorDark.thisColor)
     }

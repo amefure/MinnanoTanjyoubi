@@ -25,7 +25,7 @@ struct EntryUserView: View {
 
     // MARK: - Setting
 
-    private let isSESize: Bool = DeviceSizeModel.isSESize
+    private let isSESize: Bool = DeviceSizeManager.isSESize
 
     // MARK: - Input View
 

@@ -16,7 +16,7 @@ struct NoticeMsgView: View {
     @State var isEdit: Bool = false
     @FocusState var isFocusActive: Bool
 
-    private let isSESize: Bool = DeviceSizeModel.isSESize
+    private let isSESize: Bool = DeviceSizeManager.isSESize
 
     private func getAttributedString(_ str: String) -> AttributedString {
         var attributedString = AttributedString(str)

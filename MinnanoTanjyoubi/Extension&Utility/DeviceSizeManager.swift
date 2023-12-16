@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DeviceSizeModel {
+class DeviceSizeManager {
     static let deviceWidth = UIScreen.main.bounds.width
     static let deviceHeight = UIScreen.main.bounds.height
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		121DEE012B198D4600964902 /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE002B198D4600964902 /* AppLockView.swift */; };
+		121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE042B1A200600964902 /* KeyChainRepository.swift */; };
+		121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE072B1A20BF00964902 /* ExCollection.swift */; };
+		121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE0A2B1A218F00964902 /* AppLockInputView.swift */; };
+		121DEE0D2B1A23E000964902 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE0C2B1A23E000964902 /* UserDefaultsRepository.swift */; };
 		123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485029A19A16001B91B3 /* CheckRowUserView.swift */; };
 		123F485429A1D9BF001B91B3 /* RealmCrudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485329A1D9BF001B91B3 /* RealmCrudManager.swift */; };
 		123F485629A23886001B91B3 /* ControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485529A23886001B91B3 /* ControlPanelView.swift */; };
@@ -21,11 +26,11 @@
 		12682BB729A7963200D0498F /* UpSideUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB629A7963200D0498F /* UpSideUserInfoView.swift */; };
 		12682BB929A80FFA00D0498F /* NoticeMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB829A80FFA00D0498F /* NoticeMsgView.swift */; };
 		12ACAD2529951A0E00273834 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12ACAD2429951A0E00273834 /* GoogleService-Info.plist */; };
-		12ACAD2729984D5400273834 /* DateManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateManagerModel.swift */; };
+		12ACAD2729984D5400273834 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateFormatManager.swift */; };
 		12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD292998C1E100273834 /* HeaderView.swift */; };
 		12ACAD2C299C36CB00273834 /* UpSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2B299C36CB00273834 /* UpSideView.swift */; };
 		12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2D299C36DB00273834 /* DownSideView.swift */; };
-		12ACAD32299EDD6200273834 /* DeviceSizeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD31299EDD6200273834 /* DeviceSizeModel.swift */; };
+		12ACAD32299EDD6200273834 /* DeviceSizeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */; };
 		12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD33299FAE8D00273834 /* RewardButtonView.swift */; };
 		12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */; };
 		12CB91FF28E5C6E1002BD7B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB91FE28E5C6E1002BD7B2 /* ContentView.swift */; };
@@ -49,6 +54,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		121DEE002B198D4600964902 /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
+		121DEE042B1A200600964902 /* KeyChainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepository.swift; sourceTree = "<group>"; };
+		121DEE072B1A20BF00964902 /* ExCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCollection.swift; sourceTree = "<group>"; };
+		121DEE0A2B1A218F00964902 /* AppLockInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockInputView.swift; sourceTree = "<group>"; };
+		121DEE0C2B1A23E000964902 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		123F485029A19A16001B91B3 /* CheckRowUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRowUserView.swift; sourceTree = "<group>"; };
 		123F485329A1D9BF001B91B3 /* RealmCrudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCrudManager.swift; sourceTree = "<group>"; };
 		123F485529A23886001B91B3 /* ControlPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelView.swift; sourceTree = "<group>"; };
@@ -63,11 +73,11 @@
 		12682BB629A7963200D0498F /* UpSideUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpSideUserInfoView.swift; sourceTree = "<group>"; };
 		12682BB829A80FFA00D0498F /* NoticeMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeMsgView.swift; sourceTree = "<group>"; };
 		12ACAD2429951A0E00273834 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		12ACAD2629984D5400273834 /* DateManagerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerModel.swift; sourceTree = "<group>"; };
+		12ACAD2629984D5400273834 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		12ACAD292998C1E100273834 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		12ACAD2B299C36CB00273834 /* UpSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpSideView.swift; sourceTree = "<group>"; };
 		12ACAD2D299C36DB00273834 /* DownSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownSideView.swift; sourceTree = "<group>"; };
-		12ACAD31299EDD6200273834 /* DeviceSizeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSizeModel.swift; sourceTree = "<group>"; };
+		12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSizeManager.swift; sourceTree = "<group>"; };
 		12ACAD33299FAE8D00273834 /* RewardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardButtonView.swift; sourceTree = "<group>"; };
 		12CB91F928E5C6E0002BD7B2 /* MinnanoTanjyoubi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinnanoTanjyoubi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinnanoTanjyoubiApp.swift; sourceTree = "<group>"; };
@@ -106,6 +116,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		121DEE022B1A1EFB00964902 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12CB91FE28E5C6E1002BD7B2 /* ContentView.swift */,
+				12CB921C28E8661F002BD7B2 /* ListUser */,
+				12CB922428E9A8F5002BD7B2 /* EntryUser */,
+				123F485929A2CC98001B91B3 /* DetailUser */,
+				121DEE092B1A218100964902 /* Setting */,
+				121DEE002B198D4600964902 /* AppLockView.swift */,
+				12682BA829A655B900D0498F /* ExtensionView */,
+				12CB921B28E865F4002BD7B2 /* Components */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		121DEE032B1A1FF500964902 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				121DEE042B1A200600964902 /* KeyChainRepository.swift */,
+				121DEE0C2B1A23E000964902 /* UserDefaultsRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		121DEE062B1A20AC00964902 /* Extension&Utility */ = {
+			isa = PBXGroup;
+			children = (
+				121DEE072B1A20BF00964902 /* ExCollection.swift */,
+				12682BAB29A6CC4F00D0498F /* ColorAsset.swift */,
+				12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */,
+				12ACAD2629984D5400273834 /* DateFormatManager.swift */,
+			);
+			path = "Extension&Utility";
+			sourceTree = "<group>";
+		};
+		121DEE092B1A218100964902 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				12CB921928E85952002BD7B2 /* SettingView.swift */,
+				121DEE0A2B1A218F00964902 /* AppLockInputView.swift */,
+				12CB925328EEC754002BD7B2 /* TimePickerView.swift */,
+				12682BB829A80FFA00D0498F /* NoticeMsgView.swift */,
+				123F485A29A42083001B91B3 /* NoticeDateFlagView.swift */,
+				12CB922128E9241D002BD7B2 /* ShareButtonView.swift */,
+				12ACAD33299FAE8D00273834 /* RewardButtonView.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		123F485229A1D967001B91B3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +177,7 @@
 		123F485929A2CC98001B91B3 /* DetailUser */ = {
 			isa = PBXGroup;
 			children = (
+				12CB921728E858DF002BD7B2 /* DetailUserView.swift */,
 				12682BB629A7963200D0498F /* UpSideUserInfoView.swift */,
 				12682BB429A7949000D0498F /* MiddleUserInfoView.swift */,
 				12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */,
@@ -141,16 +201,6 @@
 				12682BB229A788A200D0498F /* EntryButtonView.swift */,
 			);
 			path = ControlPanel;
-			sourceTree = "<group>";
-		};
-		12ACAD282998C1C500273834 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				12ACAD292998C1E100273834 /* HeaderView.swift */,
-				12ACAD2B299C36CB00273834 /* UpSideView.swift */,
-				12ACAD2D299C36DB00273834 /* DownSideView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		12CB91F028E5C6E0002BD7B2 = {
@@ -177,15 +227,11 @@
 				12CB920A28E5C7E3002BD7B2 /* Info.plist */,
 				12CB922528EB134D002BD7B2 /* AppDelegate.swift */,
 				12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */,
-				12CB91FE28E5C6E1002BD7B2 /* ContentView.swift */,
-				12CB921028E64ABC002BD7B2 /* ListUserView.swift */,
-				12CB921528E6FF26002BD7B2 /* EntryUserView.swift */,
-				12CB921728E858DF002BD7B2 /* DetailUserView.swift */,
-				12CB921928E85952002BD7B2 /* SettingView.swift */,
-				12682BA829A655B900D0498F /* ExtensionView */,
-				12CB921B28E865F4002BD7B2 /* ViewComponents */,
+				121DEE062B1A20AC00964902 /* Extension&Utility */,
+				121DEE022B1A1EFB00964902 /* View */,
 				123F485229A1D967001B91B3 /* Controller */,
 				12CB920D28E5C886002BD7B2 /* Models */,
+				121DEE032B1A1FF500964902 /* Repository */,
 				12CB920028E5C6E1002BD7B2 /* Assets.xcassets */,
 				12ACAD2429951A0E00273834 /* GoogleService-Info.plist */,
 				12CB920228E5C6E1002BD7B2 /* Preview Content */,
@@ -205,30 +251,26 @@
 			isa = PBXGroup;
 			children = (
 				12CB920B28E5C884002BD7B2 /* UserModels.swift */,
-				12682BAB29A6CC4F00D0498F /* ColorAsset.swift */,
 				123F485729A256DB001B91B3 /* RelationEnum.swift */,
-				12ACAD2629984D5400273834 /* DateManagerModel.swift */,
-				12CB920E28E5C89B002BD7B2 /* AdMobViewModels.swift */,
-				12ACAD31299EDD6200273834 /* DeviceSizeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		12CB921B28E865F4002BD7B2 /* ViewComponents */ = {
+		12CB921B28E865F4002BD7B2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				12ACAD282998C1C500273834 /* View */,
-				12CB921C28E8661F002BD7B2 /* ListUser */,
-				12CB922428E9A8F5002BD7B2 /* EntryUser */,
-				123F485929A2CC98001B91B3 /* DetailUser */,
-				12CB922328E9A872002BD7B2 /* Setting */,
+				12ACAD292998C1E100273834 /* HeaderView.swift */,
+				12ACAD2B299C36CB00273834 /* UpSideView.swift */,
+				12ACAD2D299C36DB00273834 /* DownSideView.swift */,
+				12CB920E28E5C89B002BD7B2 /* AdMobViewModels.swift */,
 			);
-			path = ViewComponents;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		12CB921C28E8661F002BD7B2 /* ListUser */ = {
 			isa = PBXGroup;
 			children = (
+				12CB921028E64ABC002BD7B2 /* ListUserView.swift */,
 				12CB921228E6FD43002BD7B2 /* RowUserView.swift */,
 				123F485529A23886001B91B3 /* ControlPanelView.swift */,
 				123F485029A19A16001B91B3 /* CheckRowUserView.swift */,
@@ -237,21 +279,10 @@
 			path = ListUser;
 			sourceTree = "<group>";
 		};
-		12CB922328E9A872002BD7B2 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				12CB925328EEC754002BD7B2 /* TimePickerView.swift */,
-				12682BB829A80FFA00D0498F /* NoticeMsgView.swift */,
-				123F485A29A42083001B91B3 /* NoticeDateFlagView.swift */,
-				12CB922128E9241D002BD7B2 /* ShareButtonView.swift */,
-				12ACAD33299FAE8D00273834 /* RewardButtonView.swift */,
-			);
-			path = Setting;
-			sourceTree = "<group>";
-		};
 		12CB922428E9A8F5002BD7B2 /* EntryUser */ = {
 			isa = PBXGroup;
 			children = (
+				12CB921528E6FF26002BD7B2 /* EntryUserView.swift */,
 				12CB921F28E92293002BD7B2 /* DatePickerView.swift */,
 				12CB921D28E9223C002BD7B2 /* RelationPickerView.swift */,
 			);
@@ -413,7 +444,7 @@
 				12682BAA29A655FF00D0498F /* ExtensionViewModifier.swift in Sources */,
 				12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */,
 				12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */,
-				12ACAD2729984D5400273834 /* DateManagerModel.swift in Sources */,
+				12ACAD2729984D5400273834 /* DateFormatManager.swift in Sources */,
 				12682BB729A7963200D0498F /* UpSideUserInfoView.swift in Sources */,
 				12CB91FF28E5C6E1002BD7B2 /* ContentView.swift in Sources */,
 				12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */,
@@ -431,17 +462,22 @@
 				123F485629A23886001B91B3 /* ControlPanelView.swift in Sources */,
 				12CB921328E6FD43002BD7B2 /* RowUserView.swift in Sources */,
 				12CB921A28E85952002BD7B2 /* SettingView.swift in Sources */,
+				121DEE0D2B1A23E000964902 /* UserDefaultsRepository.swift in Sources */,
 				12CB922228E9241D002BD7B2 /* ShareButtonView.swift in Sources */,
 				12CB920F28E5C89B002BD7B2 /* AdMobViewModels.swift in Sources */,
 				12682BB929A80FFA00D0498F /* NoticeMsgView.swift in Sources */,
+				121DEE012B198D4600964902 /* AppLockView.swift in Sources */,
 				12CB922628EB134D002BD7B2 /* AppDelegate.swift in Sources */,
 				12CB921828E858DF002BD7B2 /* DetailUserView.swift in Sources */,
 				12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */,
+				121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */,
 				12682BB529A7949000D0498F /* MiddleUserInfoView.swift in Sources */,
 				12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */,
 				12CB921128E64ABC002BD7B2 /* ListUserView.swift in Sources */,
+				121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */,
 				12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */,
-				12ACAD32299EDD6200273834 /* DeviceSizeModel.swift in Sources */,
+				121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */,
+				12ACAD32299EDD6200273834 /* DeviceSizeManager.swift in Sources */,
 				12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */,
 				12CB921628E6FF26002BD7B2 /* EntryUserView.swift in Sources */,
 			);
@@ -571,7 +607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -590,7 +626,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -606,7 +642,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -625,7 +661,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

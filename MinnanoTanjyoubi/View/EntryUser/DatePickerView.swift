@@ -11,7 +11,7 @@ struct DatePickerView: View {
     // MARK: - Models
 
     private var df: DateFormatter {
-        let dateManager = DateManagerModel()
+        let dateManager = DateFormatManager()
         dateManager.conversionJapanese()
         return dateManager.df
     }
@@ -21,13 +21,12 @@ struct DatePickerView: View {
     @Binding var date: Date
     @State var dateStr: String = ""
     @Binding var isWheel: Bool
-//    @State var isWheel:Bool = false
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeModel.deviceWidth
-    private let deviceHeight = DeviceSizeModel.deviceHeight
-    private let isSESize: Bool = DeviceSizeModel.isSESize
+    private let deviceWidth = DeviceSizeManager.deviceWidth
+    private let deviceHeight = DeviceSizeManager.deviceHeight
+    private let isSESize: Bool = DeviceSizeManager.isSESize
 
     var body: some View {
         HStack {
@@ -60,7 +59,7 @@ struct DatePickerView: View {
             }).padding([.leading, .top, .bottom])
         }
         .onAppear {
-            dateStr = df.string(from: Date())
+            dateStr = df.string(from: date)
         }
     }
 }

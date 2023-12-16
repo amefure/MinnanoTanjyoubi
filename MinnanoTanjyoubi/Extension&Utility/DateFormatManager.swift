@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DateManagerModel {
+class DateFormatManager {
     public let df = DateFormatter()
     public let today = Date()
 

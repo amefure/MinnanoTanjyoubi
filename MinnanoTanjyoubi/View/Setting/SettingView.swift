@@ -13,6 +13,9 @@ import UIKit
 struct SettingView: View {
     @AppStorage("LimitCapacity") var limitCapacity = 10 // 初期値
 
+    @State private var isLock: Bool = false
+    @State private var isShowPassInput: Bool = false
+
     var body: some View {
         VStack(spacing: 0) {
             // MARK: - ViewComponent
@@ -45,6 +48,25 @@ struct SettingView: View {
 
                 // MARK: - (2)
 
+                Section(header: Text("アプリ設定"), footer: Text("・アプリにロックをかけることができます。")) {
+                    HStack {
+                        Image(systemName: "lock.iphone").settingIcon()
+                        Toggle(isOn: $isLock) {
+                            Text("パスワードを登録")
+                        }.onChange(of: isLock) { newValue in
+                            if newValue {
+                                isShowPassInput = true
+                            } else {
+                                KeyChainRepository.sheard.delete()
+                            }
+                        }.tint(ColorAsset.themaColor1.thisColor)
+                    }.sheet(isPresented: $isShowPassInput, content: {
+                        AppLockInputView(isLock: $isLock)
+                    })
+                }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
+
+                // MARK: - (3)
+
                 Section(header: Text("広告"), footer: Text("・追加される容量は5個です。\n・容量の追加は1日に1回までです。")) {
                     RewardButtonView()
                     HStack {
@@ -53,7 +75,7 @@ struct SettingView: View {
                     }
                 }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
 
-                // MARK: - (3)
+                // MARK: - (4)
 
                 Section(header: Text("Link"), footer: Text("")) {
                     // 1:レビューページ
@@ -83,6 +105,12 @@ struct SettingView: View {
                 .foregroundColor(.white)
             // List ここまで
 
+            Spacer()
+
+            AdMobBannerView().frame(height: 50)
+
+        }.onAppear {
+            isLock = KeyChainRepository.sheard.getData().count == 4
         }.navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
             .background(ColorAsset.foundationColorLight.thisColor)

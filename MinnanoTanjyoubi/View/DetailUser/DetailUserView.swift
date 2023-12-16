@@ -21,8 +21,8 @@ struct DetailUserView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeModel.deviceWidth
-    private let isSESize = DeviceSizeModel.isSESize
+    private let deviceWidth = DeviceSizeManager.deviceWidth
+    private let isSESize = DeviceSizeManager.isSESize
 
     var body: some View {
         VStack {
@@ -43,7 +43,7 @@ struct DetailUserView: View {
                     Text(user.memo).frame(width: deviceWidth - 40)
                 }.padding(isSESize ? 5 : 10)
                     .frame(width: deviceWidth - 40)
-                    .frame(maxHeight: isSESize ? 80 : 120)
+                    .frame(maxHeight: isSESize ? 140 : 200)
                     .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 2)
 
             }.padding(isSESize ? 5 : 10)
@@ -61,6 +61,8 @@ struct DetailUserView: View {
                     EntryUserView(user: user, isModal: $isModal)
                 })
             // ハーフモーダルだと閉じるボタンがでない？
+
+            AdMobBannerView().frame(height: 50)
 
         }.background(ColorAsset.foundationColorLight.thisColor)
             .foregroundColor(.white)

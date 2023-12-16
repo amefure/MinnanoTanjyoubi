@@ -19,21 +19,21 @@ struct UpSideUserInfoView: View {
     private let caclDate = calcDateOfBirth()
 
     private var df: DateFormatter {
-        let dateManager = DateManagerModel()
+        let dateManager = DateFormatManager()
         dateManager.conversionJapanese()
         return dateManager.df
     }
 
     private var df_eraName: DateFormatter {
-        let dateManager = DateManagerModel()
+        let dateManager = DateFormatManager()
         dateManager.conversionJapaneseEraName()
         return dateManager.df
     }
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeModel.deviceWidth
-    private let isSESize = DeviceSizeModel.isSESize
+    private let deviceWidth = DeviceSizeManager.deviceWidth
+    private let isSESize = DeviceSizeManager.isSESize
 
     private var roundWidth: CGFloat {
         if deviceWidth < 400 {
