@@ -57,9 +57,18 @@ struct UpSideUserInfoView: View {
                 Spacer()
 
                 HStack(alignment: .bottom) {
-                    Text("あと")
-                    Text("\(user.daysLater)").foregroundColor(ColorAsset.themaColor1.thisColor)
-                    Text("日")
+                    if user.daysLater == 0 {
+                        Text("HAPPY BIRTHDAY")
+                            .foregroundStyle(ColorAsset.themaColor4.thisColor)
+                            .fontWeight(.bold)
+
+                    } else {
+                        Text("あと")
+                        Text("\(user.daysLater)")
+                            .foregroundColor(ColorAsset.themaColor1.thisColor)
+                        Text("日")
+                    }
+
                 }.padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: roundWidth, alignment: .center)

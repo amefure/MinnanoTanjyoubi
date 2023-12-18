@@ -125,6 +125,7 @@
 		121DEE022B1A1EFB00964902 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */,
 				12CB91FE28E5C6E1002BD7B2 /* RootView.swift */,
 				12CB921C28E8661F002BD7B2 /* ListUser */,
 				12CB922428E9A8F5002BD7B2 /* EntryUser */,
@@ -150,6 +151,7 @@
 		121DEE062B1A20AC00964902 /* Extension&Utility */ = {
 			isa = PBXGroup;
 			children = (
+				12CB922528EB134D002BD7B2 /* AppDelegate.swift */,
 				121DEE072B1A20BF00964902 /* ExCollection.swift */,
 				12682BAB29A6CC4F00D0498F /* ColorAsset.swift */,
 				12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */,
@@ -233,8 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				12CB920A28E5C7E3002BD7B2 /* Info.plist */,
-				12CB922528EB134D002BD7B2 /* AppDelegate.swift */,
-				12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */,
 				121DEE062B1A20AC00964902 /* Extension&Utility */,
 				121DEE022B1A1EFB00964902 /* View */,
 				123F485229A1D967001B91B3 /* ViewModel */,

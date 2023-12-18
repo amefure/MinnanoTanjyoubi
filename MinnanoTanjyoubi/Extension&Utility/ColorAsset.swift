@@ -11,9 +11,13 @@ import UIKit
 enum ColorAsset {
     case foundationColorLight
     case foundationColorDark
+    /// Orange
     case themaColor1
+    /// Red
     case themaColor2
+    /// Blue
     case themaColor3
+    /// Yellow
     case themaColor4
 
     public var thisColor: Color {

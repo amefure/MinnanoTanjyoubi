@@ -18,7 +18,7 @@ class DateFormatManager {
     }
 
     public func conversionJapanese() {
-        df.dateFormat = "yyyy年M月dd日"
+        df.dateFormat = "yyyy年M月d日"
     }
 
     public func conversionJapaneseEraName() {

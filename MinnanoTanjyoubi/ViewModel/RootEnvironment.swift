@@ -32,26 +32,29 @@ class RootEnvironment: ObservableObject {
 //    }
 //
 
-    // Deleteモード有効
+    /// Deleteモード有効
     public func enableDeleteMode() {
         isDeleteMode = true
     }
 
-    // Deleteモード無効
+    /// Deleteモード無効
     public func disableDeleteMode() {
         isDeleteMode = false
     }
 
+    /// 対象のUserIdを追加
     public func appendDeleteIdArray(id: ObjectId) {
         deleteIdArray.append(id)
     }
 
+    /// 対象のUserIdを削除
     public func removeDeleteIdArray(id: ObjectId) {
         if let index = deleteIdArray.firstIndex(of: id) {
             deleteIdArray.remove(at: index)
         }
     }
 
+    /// Deleteモードリセット
     public func resetDeleteMode() {
         isDeleteMode = false
         deleteIdArray.removeAll()

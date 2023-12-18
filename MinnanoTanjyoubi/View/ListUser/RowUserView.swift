@@ -17,7 +17,7 @@ struct RowUserView: View {
 
     // MARK: - Setting
 
-    private func changeFontSizeByLemgth(_ name: String) -> CGFloat {
+    private func changeFontSizeByLength(_ name: String) -> CGFloat {
         if name.count > 8 {
             return 10
         } else {
@@ -26,29 +26,110 @@ struct RowUserView: View {
     }
 
     var body: some View {
-        VStack(spacing: 10) {
-            Text("\(user.name)").lineLimit(1).font(.system(size: DeviceSizeManager.isSESize ? changeFontSizeByLemgth(user.name) : 16))
-            Text(user.dateOfBirthString).font(.caption)
+        ZStack(alignment: .top) {
+            VStack(spacing: 10) {
+                Text("\(user.name)")
+                    .lineLimit(1)
+                    .font(.system(size: DeviceSizeManager.isSESize ? changeFontSizeByLength(user.name) : 16))
 
-            HStack(alignment: .bottom, spacing: 3) {
-                Text("\(user.currentAge)")
-                Text("歳").font(.caption)
+                Text(user.dateOfBirthString)
+                    .font(.caption)
+
+                HStack(alignment: .bottom, spacing: 3) {
+                    Text("\(user.currentAge)")
+                    Text("歳")
+                        .font(.caption)
+                }
+
+                HStack(alignment: .bottom) {
+                    if user.daysLater == 0 {
+                        Text("HAPPY BIRTHDAY")
+                            .foregroundStyle(ColorAsset.themaColor4.thisColor)
+                            .fontWeight(.bold)
+
+                    } else {
+                        Text("あと")
+                        Text("\(user.daysLater)")
+                            .font(.title2)
+                            .foregroundColor(ColorAsset.themaColor4.thisColor)
+                        Text("日")
+                    }
+
+                }.multilineTextAlignment(.center)
+                    .font(.caption)
+
+            }.padding(5)
+                .frame(height: 130)
+                .frame(maxWidth: DeviceSizeManager.deviceWidth / 3)
+                .background(ColorAsset.foundationColorDark.thisColor)
+                .foregroundStyle(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .shadow(color: .gray, radius: 3, x: 4, y: 4)
+
+            if user.daysLater == 0 {
+                GarlandView()
             }
+        }
+    }
+}
 
-            HStack(alignment: .bottom) {
-                Text("あと")
-                Text("\(user.daysLater)").font(.title2).foregroundColor(ColorAsset.themaColor4.thisColor)
-                Text("日")
-            }.multilineTextAlignment(.center)
-                .lineLimit(1)
-                .font(.caption)
+// MARK: - ガーランド三角形
 
-        }.padding(5)
-            .frame(height: 130)
-            .frame(maxWidth: DeviceSizeManager.deviceWidth / 3)
-            .background(ColorAsset.foundationColorDark.thisColor)
-            .foregroundColor(.white)
-            .cornerRadius(8)
-            .shadow(color: .gray, radius: 3, x: 4, y: 4)
+struct GarlandView: View {
+    var body: some View {
+        HStack {
+            HStack(spacing: 0) {
+                FlattenedTriangle()
+                    .fill(ColorAsset.themaColor1.thisColor)
+                    .frame(width: 15, height: 1)
+
+                FlattenedTriangle()
+                    .fill(ColorAsset.themaColor2.thisColor)
+                    .frame(width: 15, height: 1)
+
+                FlattenedTriangle()
+                    .fill(ColorAsset.themaColor3.thisColor)
+                    .frame(width: 15, height: 1)
+            }.rotationEffect(Angle(degrees: 140.0))
+
+            Spacer()
+
+            HStack(spacing: 0) {
+                FlattenedTriangle()
+                    .fill(ColorAsset.themaColor3.thisColor)
+                    .frame(width: 15, height: 1)
+
+                FlattenedTriangle()
+                    .fill(ColorAsset.themaColor2.thisColor)
+                    .frame(width: 15, height: 1)
+
+                FlattenedTriangle()
+                    .fill(ColorAsset.themaColor1.thisColor)
+                    .frame(width: 15, height: 1)
+            }.rotationEffect(Angle(degrees: -140.0))
+
+        }.offset(y: 20)
+    }
+}
+
+// 三角形
+public struct FlattenedTriangle: Shape {
+    public func path(in rect: CGRect) -> Path {
+        var path = Path()
+
+        let centerX = rect.midX
+        let centerY = rect.midY
+        let sideLength = rect.width
+        let topShortening: CGFloat = 0.3 // トップの長さ調整用
+
+        // Top
+        path.move(to: CGPoint(x: centerX, y: centerY - 0.5 * sideLength + topShortening * sideLength))
+        // Bottom Right
+        path.addLine(to: CGPoint(x: centerX + 0.5 * sideLength, y: centerY + 0.5 * sideLength))
+        // Bottom left
+        path.addLine(to: CGPoint(x: centerX - 0.5 * sideLength, y: centerY + 0.5 * sideLength))
+        path.closeSubpath()
+
+        return path
     }
 }
