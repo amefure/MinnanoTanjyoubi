@@ -52,4 +52,11 @@ class DateFormatManager {
         df.dateFormat = "yyyy/MM/dd"
         return df.date(from: from)
     }
+
+    /// 日付をDate型で取得する
+    /// yyyy/MM/dd
+    public func getJpDate(from: String) -> Date {
+        df.dateFormat = "yyyy年M月d日"
+        return df.date(from: from) ?? Date()
+    }
 }

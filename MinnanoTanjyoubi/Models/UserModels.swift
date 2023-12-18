@@ -133,3 +133,82 @@ class User: Object, ObjectKeyIdentifiable {
         }
     }
 }
+
+extension User {
+    static var demoUsers: [User] {
+        let dfm = DateFormatManager()
+        var users: [User] = []
+
+        let user = User()
+        user.name = "吉田　真紘"
+        user.ruby = "よしだ　まひろ"
+        user.date = dfm.getJpDate(from: "1994年12月21日")
+        user.relation = .friend
+        users.append(user)
+
+        let user2 = User()
+        user2.name = "長谷　慎二"
+        user2.ruby = "はせ　しんじ"
+        user2.date = dfm.getJpDate(from: "1990年3月3日")
+        user2.relation = .work
+        users.append(user2)
+
+        let user3 = User()
+        user3.name = "森山　美沙子"
+        user3.ruby = "もりやま　みさこ"
+        user3.date = dfm.getJpDate(from: "1994年5月12日")
+        user3.relation = .friend
+        users.append(user3)
+
+        let user4 = User()
+        user4.name = "中川　健太"
+        user4.ruby = "なかがわ　けんた"
+        user4.date = dfm.getJpDate(from: "2008年6月29日")
+        user4.relation = .friend
+        users.append(user4)
+
+        let user5 = User()
+        user5.name = "お父さん"
+        user5.ruby = "おとうさん"
+        user5.date = dfm.getJpDate(from: "1969年7月7日")
+        user5.relation = .family
+        users.append(user5)
+
+        let user6 = User()
+        user6.name = "お母さん"
+        user6.ruby = "おかあさん"
+        user6.date = dfm.getJpDate(from: "1977年1月9日")
+        user6.relation = .family
+        users.append(user6)
+
+        let user7 = User()
+        user7.name = "吉田　葵"
+        user7.ruby = "よしだ　あおい"
+        user7.date = dfm.getJpDate(from: "2018年8月15日")
+        user7.relation = .friend
+        users.append(user7)
+
+        let user8 = User()
+        user8.name = "川本　依"
+        user8.ruby = "かわもと　より"
+        user8.date = dfm.getJpDate(from: "2009年9月3日")
+        user8.relation = .friend
+        users.append(user8)
+
+        let user9 = User()
+        user9.name = "三谷　なぎさ"
+        user9.ruby = "みたに　なぎさ"
+        user9.date = dfm.getJpDate(from: "1995年8月11日")
+        user9.relation = .friend
+        users.append(user9)
+
+        let user10 = User()
+        user10.name = "笹島先輩"
+        user10.ruby = "ささじませんぱい"
+        user10.date = dfm.getJpDate(from: "1989年2月2日")
+        user10.relation = .work
+        users.append(user10)
+
+        return users
+    }
+}

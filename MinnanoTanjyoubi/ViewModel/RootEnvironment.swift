@@ -15,12 +15,12 @@ class RootEnvironment: ObservableObject {
     // 削除対象のUserId
     @Published var deleteIdArray: [ObjectId] = []
 
-    // エラーダイアログ表示
-    @Published var isPresentError: Bool = false
-    // エラーダイアログタイトル
-    @Published private(set) var errorTitle: String = ""
-    // エラーダイアログメッセージ
-    @Published private(set) var errorMessage: String = ""
+//    // エラーダイアログ表示
+//    @Published var isPresentError: Bool = false
+//    // エラーダイアログタイトル
+//    @Published private(set) var errorTitle: String = ""
+//    // エラーダイアログメッセージ
+//    @Published private(set) var errorMessage: String = ""
 
     private var cancellables: Set<AnyCancellable> = []
 
