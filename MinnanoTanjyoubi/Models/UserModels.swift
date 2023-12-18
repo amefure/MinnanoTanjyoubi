@@ -16,27 +16,26 @@ class User: Object, ObjectKeyIdentifiable {
     @Persisted var memo: String = ""
     @Persisted var alert: Bool = false
 
-    // MARK: - 誕生日まであとX日
+    // MARK: - 計算プロパティ
 
+    /// 誕生日まであとX日
     public var daysLater: Int {
-        let dm = DateFormatManager()
-        let df = dm.df
-        let dateStr = df.string(from: date)
-        let today = dm.today
+        let dfm = DateFormatManager()
+        let dateStr = dfm.getSlashString(date: date)
         let pre = dateStr.prefix(4)
         let range = dateStr.range(of: pre)
-        let nowYear = df.string(for: today)?.prefix(4)
-        var replaceStr = dateStr.replacingCharacters(in: range!, with: nowYear!)
+        let nowYear = dfm.getSlashString(date: dfm.today).prefix(4)
+        var replaceStr = dateStr.replacingCharacters(in: range!, with: nowYear)
 
-        var targetDate = df.date(from: replaceStr)
+        var targetDate = dfm.getSlashDate(from: replaceStr)
         if targetDate == nil {
-            // MARK: - 日付変換失敗；閏年 →　3/1
+            // 日付変換失敗；閏年 →　3/1
 
-            replaceStr = "\(nowYear!)/3/1"
-            targetDate = df.date(from: replaceStr)!
+            replaceStr = "\(nowYear)/3/1"
+            targetDate = dfm.getSlashDate(from: replaceStr)
         }
 
-        let num = targetDate!.timeIntervalSince(today)
+        let num = targetDate!.timeIntervalSince(dfm.today)
 
         var result = ceil(num / (60 * 60 * 24))
         if result < 0 {
@@ -45,8 +44,7 @@ class User: Object, ObjectKeyIdentifiable {
         return Int(result)
     }
 
-    // MARK: - 今何歳
-
+    /// 今何歳
     public var currentAge: Int {
         let calendar = Calendar.current
         let ageComponents = calendar.dateComponents([.year], from: date, to: Date())
@@ -55,23 +53,12 @@ class User: Object, ObjectKeyIdentifiable {
         return age
     }
 
-    // MARK: - 文字列型生年月日
-
-    public var dateOfBirthString: String {
-        let dm = DateFormatManager()
-        dm.conversionJapanese()
-        let df = dm.df
-        return df.string(from: date)
-    }
-}
-
-struct calcDateOfBirth {
-    // MARK: - 12星座
-
-    public func signOfZodiac(_ date: Date) -> String {
-        let df = DateFormatManager().df
+    /// 12星座
+    public var signOfZodiac: String {
+        let dfm = DateFormatManager()
+        let df = dfm.df
         // 年数は指定日の年数を取得→範囲を識別するため
-        let thisYear = df.string(from: date).prefix(4)
+        let thisYear = dfm.getSlashString(date: date).prefix(4)
         let nowYear = "\(thisYear)/" // "2023/" 形式
         let lateYear = "\(Int(thisYear)! + 1)/" // "2024/" 翌年形式
 
@@ -107,16 +94,15 @@ struct calcDateOfBirth {
         }
     }
 
-    // MARK: - 十二支
-
-    public func zodiac(_ date: Date) -> String {
-        let df = DateFormatManager().df
-        let nowYear = df.string(from: date).prefix(4)
-        guard Int(nowYear) != nil else {
+    ///  十二支
+    public var zodiac: String {
+        let dfm = DateFormatManager()
+        let nowYear = dfm.getSlashString(date: date).prefix(4)
+        guard let nowYearInt = Int(nowYear) else {
             // 文字列の場合
             return "..."
         }
-        let num = Int(nowYear)! % 12
+        let num = nowYearInt % 12
         switch num {
         case 4:
             return "ねずみ年"

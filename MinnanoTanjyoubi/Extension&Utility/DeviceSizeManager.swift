@@ -8,8 +8,15 @@
 import UIKit
 
 class DeviceSizeManager {
-    static let deviceWidth = UIScreen.main.bounds.width
-    static let deviceHeight = UIScreen.main.bounds.height
+    static var deviceWidth: CGFloat {
+        guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0 }
+        return window.screen.bounds.width
+    }
+
+    static var deviceHeight: CGFloat {
+        guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0 }
+        return window.screen.bounds.height
+    }
 
     static var isSESize: Bool {
         if deviceWidth < 400 {

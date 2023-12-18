@@ -14,10 +14,6 @@ struct MiddleUserInfoView: View {
 
     let user: User
 
-    // MARK: - Controller
-
-    private let caclDate = calcDateOfBirth()
-
     // MARK: - Setting
 
     private let deviceWidth = DeviceSizeManager.deviceWidth
@@ -36,10 +32,10 @@ struct MiddleUserInfoView: View {
             Text("\(user.currentAge)歳")
                 .circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor2.thisColor)
 
-            Text(caclDate.signOfZodiac(user.date))
+            Text(user.signOfZodiac)
                 .circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor4.thisColor)
 
-            Text(caclDate.zodiac(user.date))
+            Text(user.zodiac)
                 .circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor3.thisColor)
 
         }.font(isSESize ? .caption : .none)

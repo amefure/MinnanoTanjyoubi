@@ -10,11 +10,7 @@ import SwiftUI
 struct DatePickerView: View {
     // MARK: - Models
 
-    private var df: DateFormatter {
-        let dateManager = DateFormatManager()
-        dateManager.conversionJapanese()
-        return dateManager.df
-    }
+    private let dfm = DateFormatManager()
 
     // MARK: - View
 
@@ -39,7 +35,7 @@ struct DatePickerView: View {
                            .environment(\.locale, Locale(identifier: "ja_JP"))
                            .environment(\.calendar, Calendar(identifier: .gregorian))
                            .onChange(of: date) { newValue in
-                               dateStr = df.string(from: newValue)
+                               dateStr = dfm.getJpString(date: newValue)
                            }
                            .frame(width: isSESize ? 170 : 220)
                            .datePickerStyle(.wheel)
@@ -59,7 +55,7 @@ struct DatePickerView: View {
             }).padding([.leading, .top, .bottom])
         }
         .onAppear {
-            dateStr = df.string(from: date)
+            dateStr = dfm.getJpString(date: date)
         }
     }
 }

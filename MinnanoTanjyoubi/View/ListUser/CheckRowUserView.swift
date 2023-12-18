@@ -53,9 +53,8 @@ struct CheckRowUserView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeManager.deviceWidth
     private var itemWidth: CGFloat {
-        return CGFloat(deviceWidth / 3)
+        return CGFloat(DeviceSizeManager.deviceWidth / 3)
     }
 
     var body: some View {
@@ -66,7 +65,8 @@ struct CheckRowUserView: View {
             }.toggleStyle(CheckBoxToggleStyle(user: user, deleteIdArray: $rootEnvironment.deleteIdArray))
                 .tint(ColorAsset.themaColor1.thisColor)
                 .frame(width: itemWidth)
-                .zIndex(2).position(x: 15, y: 15)
+                .zIndex(2)
+                .position(x: 15, y: 15)
 
             //
             Button {
@@ -77,7 +77,8 @@ struct CheckRowUserView: View {
                 }
                 isOn.toggle()
             } label: {
-                RowUserView(user: user).opacity(isOn ? 1 : 0.7)
+                RowUserView(user: user)
+                    .opacity(isOn ? 1 : 0.7)
                     .zIndex(1)
             }
         }

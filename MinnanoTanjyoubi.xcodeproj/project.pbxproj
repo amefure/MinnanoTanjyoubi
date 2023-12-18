@@ -156,6 +156,7 @@
 				12682BAB29A6CC4F00D0498F /* ColorAsset.swift */,
 				12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */,
 				12ACAD2629984D5400273834 /* DateFormatManager.swift */,
+				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
 			);
 			path = "Extension&Utility";
 			sourceTree = "<group>";
@@ -177,7 +178,6 @@
 		123F485229A1D967001B91B3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
 				12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */,
 				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
 			);

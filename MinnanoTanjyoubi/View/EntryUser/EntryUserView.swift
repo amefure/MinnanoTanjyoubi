@@ -154,9 +154,8 @@ struct EntryUserView: View {
                         repository.createUser(newUser: newUser)
 
                         if isON {
-                            let df = DateFormatter()
-                            df.dateFormat = "yyyy-MM-dd-H-m"
-                            let dateString = df.string(from: date)
+                            let dfm = DateFormatManager()
+                            let dateString = dfm.getNotifyString(date: date)
                             NotificationRequestManager().sendNotificationRequest(newUser.id, name, dateString)
                         }
                     }

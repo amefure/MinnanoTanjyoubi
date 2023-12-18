@@ -9,7 +9,7 @@ import RealmSwift
 import UIKit
 
 class NotificationRequestManager: NSObject {
-    func sendNotificationRequest(_ id: ObjectId, _ userName: String, _ dateStr: String) {
+    public func sendNotificationRequest(_ id: ObjectId, _ userName: String, _ dateStr: String) {
         let userDefaults = UserDefaults.standard
 
         let content = UNMutableNotificationContent()
@@ -46,7 +46,7 @@ class NotificationRequestManager: NSObject {
         UNUserNotificationCenter.current().add(request)
     }
 
-    func removeNotificationRequest(_ id: ObjectId, _: String) {
+    public func removeNotificationRequest(_ id: ObjectId, _: String) {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [id.stringValue])
     }

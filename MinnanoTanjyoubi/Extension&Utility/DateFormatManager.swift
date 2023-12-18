@@ -12,21 +12,44 @@ class DateFormatManager {
     public let today = Date()
 
     init() {
-        conversionSlash()
+        df.dateFormat = "yyyy/MM/dd"
         df.locale = Locale(identifier: "ja_JP")
         df.calendar = Calendar(identifier: .gregorian)
     }
 
-    public func conversionJapanese() {
-        df.dateFormat = "yyyy年M月d日"
+    /// 日付を文字列で取得する
+    /// yyyy/MM/dd
+    public func getSlashString(date: Date) -> String {
+        df.dateFormat = "yyyy/MM/dd"
+        return df.string(from: date)
     }
 
-    public func conversionJapaneseEraName() {
+    /// 日付を文字列で取得する
+    /// yyyy年M月d日
+    public func getJpString(date: Date) -> String {
+        df.dateFormat = "yyyy年M月d日"
+        return df.string(from: date)
+    }
+
+    /// 西暦：日付を文字列で取得する
+    /// Gy年
+    public func getJpEraString(date: Date) -> String {
         df.calendar = Calendar(identifier: .japanese)
         df.dateFormat = "Gy年"
+        return df.string(from: date)
     }
 
-    public func conversionSlash() {
+    /// 通知用：日付を文字列で取得する
+    /// yyyy-MM-dd-H-m
+    public func getNotifyString(date: Date) -> String {
+        df.dateFormat = "yyyy-MM-dd-H-m"
+        return df.string(from: date)
+    }
+
+    /// 日付をDate型で取得する
+    /// yyyy/MM/dd
+    public func getSlashDate(from: String) -> Date? {
         df.dateFormat = "yyyy/MM/dd"
+        return df.date(from: from)
     }
 }

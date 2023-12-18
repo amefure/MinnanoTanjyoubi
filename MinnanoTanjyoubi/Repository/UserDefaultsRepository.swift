@@ -8,7 +8,7 @@
 import UIKit
 
 class UserDefaultsKey {
-    static let APP_LOCK_KEY = "APP_LOCK_KEY"
+//    static let APP_LOCK_KEY = "APP_LOCK_KEY"
 }
 
 class UserDefaultsRepository {

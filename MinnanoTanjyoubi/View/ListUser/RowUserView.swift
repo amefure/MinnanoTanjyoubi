@@ -13,10 +13,9 @@ import SwiftUI
 struct RowUserView: View {
     // MARK: - Models
 
-    @ObservedRealmObject var user: User
+    public var user: User
 
-    // MARK: - Setting
-
+    /// 文字数でフォントサイズを調整
     private func changeFontSizeByLength(_ name: String) -> CGFloat {
         if name.count > 8 {
             return 10
@@ -32,7 +31,7 @@ struct RowUserView: View {
                     .lineLimit(1)
                     .font(.system(size: DeviceSizeManager.isSESize ? changeFontSizeByLength(user.name) : 16))
 
-                Text(user.dateOfBirthString)
+                Text(DateFormatManager().getJpString(date: user.date))
                     .font(.caption)
 
                 HStack(alignment: .bottom, spacing: 3) {

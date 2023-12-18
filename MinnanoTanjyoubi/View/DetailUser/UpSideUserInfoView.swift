@@ -16,19 +16,7 @@ struct UpSideUserInfoView: View {
 
     // MARK: - Controller
 
-    private let caclDate = calcDateOfBirth()
-
-    private var df: DateFormatter {
-        let dateManager = DateFormatManager()
-        dateManager.conversionJapanese()
-        return dateManager.df
-    }
-
-    private var df_eraName: DateFormatter {
-        let dateManager = DateFormatManager()
-        dateManager.conversionJapaneseEraName()
-        return dateManager.df
-    }
+    private let dfm = DateFormatManager()
 
     // MARK: - Setting
 
@@ -77,11 +65,13 @@ struct UpSideUserInfoView: View {
                     .font(isSESize ? .caption : .none)
             }
 
-            Text(user.ruby).font(isSESize ? .caption : .none)
-            Text(user.name).font(isSESize ? .title : .largeTitle)
+            Text(user.ruby)
+                .font(isSESize ? .caption : .none)
+            Text(user.name)
+                .font(isSESize ? .title : .largeTitle)
             HStack {
-                Text(df.string(from: user.date)).font(isSESize ? .none : .title)
-                Text("（\(df_eraName.string(from: user.date))）")
+                Text(dfm.getJpString(date: user.date))
+                Text("（\(dfm.getJpEraString(date: user.date))）")
             }
         }
     }

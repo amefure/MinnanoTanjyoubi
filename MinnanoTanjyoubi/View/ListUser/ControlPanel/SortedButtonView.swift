@@ -33,7 +33,6 @@ struct SortedButtonView: View {
                 .foregroundColor(isSorted ? ColorAsset.themaColor2.thisColor : .white)
         }
         .onChange(of: selectedRelation) { newValue in
-            print(newValue)
             repository.filteringUser(selectedRelation: newValue)
         }
         .sheet(isPresented: $isPicker) {
