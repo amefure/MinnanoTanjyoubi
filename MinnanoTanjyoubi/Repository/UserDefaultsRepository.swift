@@ -11,6 +11,7 @@ class UserDefaultsKey {
 //    static let APP_LOCK_KEY = "APP_LOCK_KEY"
 }
 
+// 現在未使用
 class UserDefaultsRepository {
     static let sheard = UserDefaultsRepository()
 

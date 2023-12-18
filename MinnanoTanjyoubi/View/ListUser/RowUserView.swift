@@ -42,9 +42,11 @@ struct RowUserView: View {
 
                 HStack(alignment: .bottom) {
                     if user.daysLater == 0 {
-                        Text("HAPPY BIRTHDAY")
+                        Text(DeviceSizeManager.isSESize ? "HAPPY\nBIRTHDAY" : "HAPPY BIRTHDAY")
                             .foregroundStyle(ColorAsset.themaColor4.thisColor)
                             .fontWeight(.bold)
+                            .frame(height: 25)
+                            .font(DeviceSizeManager.isSESize ? .system(size: 10) : .caption)
 
                     } else {
                         Text("あと")
