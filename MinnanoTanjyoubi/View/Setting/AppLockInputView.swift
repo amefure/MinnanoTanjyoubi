@@ -38,7 +38,7 @@ struct AppLockInputView: View {
                 if password.count == 4 {
                     entryFlag = true
                     let pass = password.joined(separator: "")
-                    KeyChainRepository.sheard.entry(value: pass)
+                    KeyChainRepository().entry(value: pass)
                     dismiss()
                 }
             } label: {

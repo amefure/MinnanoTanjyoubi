@@ -9,6 +9,7 @@ import Combine
 import RealmSwift
 import UIKit
 
+/// アプリ内で共通で利用される状態や環境値を保持する
 class RootEnvironment: ObservableObject {
     // Deleteモード
     @Published private(set) var isDeleteMode: Bool = false

@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct AppLockView: View {
+    @StateObject private var viewModel = AppLockViewModel()
+
     @State private var password: [String] = []
-    @State private var isShowApp = false // アプリメイン画面遷移
-    @State private var isShowProgress = false // プログレス表示
-    @State private var isShowFailureAlert = false // パスワード失敗アラート
 
     // MARK: - Environment
 
@@ -26,26 +25,35 @@ struct AppLockView: View {
             ZStack {
                 DisplayPasswordView(password: password)
                     .onChange(of: password) { newValue in
-                        if newValue.count == 4 {
-                            isShowProgress = true
-                            let pass = newValue.joined(separator: "")
-                            if pass == KeyChainRepository.sheard.getData() {
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-                                    isShowApp = true
-                                }
-                            } else {
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-                                    isShowProgress = false
-                                    isShowFailureAlert = true
-                                    password.removeAll()
-                                }
+                        viewModel.passwordLogin(password: newValue) { result in
+                            if result == false {
+                                password.removeAll()
                             }
                         }
                     }
 
-                if isShowProgress {
+                if viewModel.isShowProgress {
                     ProgressView()
                         .offset(y: 60)
+                } else {
+                    Button {
+                        viewModel.requestBiometricsLogin()
+                    } label: {
+                        VStack {
+                            if viewModel.type == .faceID {
+                                Image(systemName: "faceid")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                Text("Face IDでログインする")
+                            } else if viewModel.type == .touchID {
+                                Image(systemName: "touchid")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                Text("Touch IDでログインする")
+                            }
+                        }
+                    }.offset(y: 80)
+                        .foregroundStyle(.white)
                 }
             }
 
@@ -53,10 +61,11 @@ struct AppLockView: View {
 
             NumberKeyboardView(password: $password)
                 .ignoresSafeArea(.all)
-        }.alert("パスワードが違います。", isPresented: $isShowFailureAlert) {
+        }.alert("パスワードが違います。", isPresented: $viewModel.isShowFailureAlert) {
             Button("OK") {}
         }
-        .navigationDestination(isPresented: $isShowApp) {
+        .onAppear { viewModel.onAppear() }
+        .navigationDestination(isPresented: $viewModel.isShowApp) {
             RootView()
                 .environmentObject(rootEnvironment)
         }.background(ColorAsset.foundationColorLight.thisColor)

@@ -24,7 +24,7 @@ struct RootView: View {
                 // MARK: - 現在登録されている通知をすべて表示するコマンド
 
 //            Button {
-//                NotificationRequestManager().confirmNotificationRequest()
+//                AppManager.sharedNotificationRequestManager.confirmNotificationRequest()
 //            } label: {
 //                Text("全登録済み通知を表示")
 //            }

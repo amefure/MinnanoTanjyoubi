@@ -156,7 +156,7 @@ struct EntryUserView: View {
                         if isON {
                             let dfm = DateFormatManager()
                             let dateString = dfm.getNotifyString(date: date)
-                            NotificationRequestManager().sendNotificationRequest(newUser.id, name, dateString)
+                            AppManager.sharedNotificationRequestManager.sendNotificationRequest(newUser.id, name, dateString)
                         }
                     }
 

@@ -16,6 +16,10 @@
 		123F485629A23886001B91B3 /* ControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485529A23886001B91B3 /* ControlPanelView.swift */; };
 		123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
 		123F485B29A42083001B91B3 /* NoticeDateFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485A29A42083001B91B3 /* NoticeDateFlagView.swift */; };
+		1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */; };
+		1246023F2B36A23E00B6C32D /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246023E2B36A23E00B6C32D /* AppManager.swift */; };
+		124602432B36A92C00B6C32D /* AppLockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602422B36A92C00B6C32D /* AppLockViewModel.swift */; };
+		124602462B36B46300B6C32D /* RepositoryDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602452B36B46300B6C32D /* RepositoryDependency.swift */; };
 		12682BAA29A655FF00D0498F /* ExtensionViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BA929A655FF00D0498F /* ExtensionViewModifier.swift */; };
 		12682BAC29A6CC4F00D0498F /* ColorAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAB29A6CC4F00D0498F /* ColorAsset.swift */; };
 		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
@@ -66,6 +70,10 @@
 		123F485529A23886001B91B3 /* ControlPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelView.swift; sourceTree = "<group>"; };
 		123F485729A256DB001B91B3 /* RelationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationEnum.swift; sourceTree = "<group>"; };
 		123F485A29A42083001B91B3 /* NoticeDateFlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDateFlagView.swift; sourceTree = "<group>"; };
+		1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthRepository.swift; sourceTree = "<group>"; };
+		1246023E2B36A23E00B6C32D /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		124602422B36A92C00B6C32D /* AppLockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockViewModel.swift; sourceTree = "<group>"; };
+		124602452B36B46300B6C32D /* RepositoryDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDependency.swift; sourceTree = "<group>"; };
 		12682BA929A655FF00D0498F /* ExtensionViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewModifier.swift; sourceTree = "<group>"; };
 		12682BAB29A6CC4F00D0498F /* ColorAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAsset.swift; sourceTree = "<group>"; };
 		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
@@ -141,6 +149,8 @@
 		121DEE032B1A1FF500964902 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				124602442B36B45300B6C32D /* DI */,
+				1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */,
 				121DEE042B1A200600964902 /* KeyChainRepository.swift */,
 				12FE3A272B2DC1C600FA700E /* RealmRepository.swift */,
 				121DEE0C2B1A23E000964902 /* UserDefaultsRepository.swift */,
@@ -152,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				12CB922528EB134D002BD7B2 /* AppDelegate.swift */,
+				1246023E2B36A23E00B6C32D /* AppManager.swift */,
 				121DEE072B1A20BF00964902 /* ExCollection.swift */,
 				12682BAB29A6CC4F00D0498F /* ColorAsset.swift */,
 				12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */,
@@ -180,6 +191,7 @@
 			children = (
 				12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */,
 				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
+				124602422B36A92C00B6C32D /* AppLockViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -193,6 +205,14 @@
 				12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */,
 			);
 			path = DetailUser;
+			sourceTree = "<group>";
+		};
+		124602442B36B45300B6C32D /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				124602452B36B46300B6C32D /* RepositoryDependency.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		12682BA829A655B900D0498F /* ExtensionView */ = {
@@ -453,7 +473,9 @@
 				12682BAA29A655FF00D0498F /* ExtensionViewModifier.swift in Sources */,
 				12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */,
 				12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */,
+				1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */,
 				12ACAD2729984D5400273834 /* DateFormatManager.swift in Sources */,
+				1246023F2B36A23E00B6C32D /* AppManager.swift in Sources */,
 				12682BB729A7963200D0498F /* UpSideUserInfoView.swift in Sources */,
 				12CB91FF28E5C6E1002BD7B2 /* RootView.swift in Sources */,
 				12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */,
@@ -462,6 +484,7 @@
 				12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */,
 				12CB920C28E5C884002BD7B2 /* UserModels.swift in Sources */,
 				12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */,
+				124602432B36A92C00B6C32D /* AppLockViewModel.swift in Sources */,
 				12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */,
 				123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */,
 				12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */,
@@ -481,6 +504,7 @@
 				12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */,
 				12CB922628EB134D002BD7B2 /* AppDelegate.swift in Sources */,
 				12CB921828E858DF002BD7B2 /* DetailUserView.swift in Sources */,
+				124602462B36B46300B6C32D /* RepositoryDependency.swift in Sources */,
 				12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */,
 				121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */,
 				12682BB529A7949000D0498F /* MiddleUserInfoView.swift in Sources */,

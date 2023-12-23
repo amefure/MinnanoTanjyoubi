@@ -16,10 +16,6 @@ struct NotificationButtonView: View {
 
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
-    // MARK: - Controller
-
-    private let notificationRequestManager = NotificationRequestManager()
-
     // MARK: - View
 
     @State var isON: Bool = false
@@ -38,13 +34,13 @@ struct NotificationButtonView: View {
                     // 通知を登録
                     let dfm = DateFormatManager()
                     let dateString = dfm.getNotifyString(date: user.date)
-                    notificationRequestManager.sendNotificationRequest(user.id, user.name, dateString)
+                    AppManager.sharedNotificationRequestManager.sendNotificationRequest(user.id, user.name, dateString)
 
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: true)
                 } else {
                     // 通知を削除
-                    notificationRequestManager.removeNotificationRequest(user.id, user.name)
+                    AppManager.sharedNotificationRequestManager.removeNotificationRequest(user.id, user.name)
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: false)
                 }

@@ -18,7 +18,7 @@ struct MinnanoTanjyoubiApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if KeyChainRepository.sheard.getData().count == 4 {
+                if KeyChainRepository().getData().count == 4 {
                     /// キーチェーンにパスワードが保存されている場合
                     AppLockView()
                         .environmentObject(rootEnvironment)

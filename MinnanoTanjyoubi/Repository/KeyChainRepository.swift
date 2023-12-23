@@ -8,8 +8,6 @@
 import UIKit
 
 class KeyChainRepository {
-    static let sheard = KeyChainRepository()
-
     /// データ登録/更新
     public func entry(value: String) {
         guard let data = value.data(using: .utf8) else { print("NO")

@@ -57,7 +57,7 @@ struct SettingView: View {
                             if newValue {
                                 isShowPassInput = true
                             } else {
-                                KeyChainRepository.sheard.delete()
+                                KeyChainRepository().delete()
                             }
                         }.tint(ColorAsset.themaColor1.thisColor)
                     }.sheet(isPresented: $isShowPassInput, content: {
@@ -110,7 +110,7 @@ struct SettingView: View {
             AdMobBannerView().frame(height: 50)
 
         }.onAppear {
-            isLock = KeyChainRepository.sheard.getData().count == 4
+            isLock = KeyChainRepository().getData().count == 4
         }.navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
             .background(ColorAsset.foundationColorLight.thisColor)
