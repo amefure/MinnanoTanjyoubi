@@ -14,11 +14,12 @@ struct MinnanoTanjyoubiApp: App {
     // MARK: - Environment
 
     @ObservedObject private var rootEnvironment = RootEnvironment()
+    private let viewModel = RootViewModel()
 
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if KeyChainRepository().getData().count == 4 {
+                if viewModel.checkAppLock() {
                     /// キーチェーンにパスワードが保存されている場合
                     AppLockView()
                         .environmentObject(rootEnvironment)

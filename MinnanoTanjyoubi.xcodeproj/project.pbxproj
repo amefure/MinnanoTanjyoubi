@@ -20,6 +20,7 @@
 		1246023F2B36A23E00B6C32D /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246023E2B36A23E00B6C32D /* AppManager.swift */; };
 		124602432B36A92C00B6C32D /* AppLockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602422B36A92C00B6C32D /* AppLockViewModel.swift */; };
 		124602462B36B46300B6C32D /* RepositoryDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602452B36B46300B6C32D /* RepositoryDependency.swift */; };
+		124602482B36B62300B6C32D /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602472B36B62300B6C32D /* RootViewModel.swift */; };
 		12682BAA29A655FF00D0498F /* ExtensionViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BA929A655FF00D0498F /* ExtensionViewModifier.swift */; };
 		12682BAC29A6CC4F00D0498F /* ColorAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAB29A6CC4F00D0498F /* ColorAsset.swift */; };
 		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
@@ -74,6 +75,7 @@
 		1246023E2B36A23E00B6C32D /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		124602422B36A92C00B6C32D /* AppLockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockViewModel.swift; sourceTree = "<group>"; };
 		124602452B36B46300B6C32D /* RepositoryDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDependency.swift; sourceTree = "<group>"; };
+		124602472B36B62300B6C32D /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		12682BA929A655FF00D0498F /* ExtensionViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewModifier.swift; sourceTree = "<group>"; };
 		12682BAB29A6CC4F00D0498F /* ColorAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAsset.swift; sourceTree = "<group>"; };
 		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */,
 				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
+				124602472B36B62300B6C32D /* RootViewModel.swift */,
 				124602422B36A92C00B6C32D /* AppLockViewModel.swift */,
 			);
 			path = ViewModel;
@@ -515,6 +518,7 @@
 				121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */,
 				12ACAD32299EDD6200273834 /* DeviceSizeManager.swift in Sources */,
 				12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */,
+				124602482B36B62300B6C32D /* RootViewModel.swift in Sources */,
 				12CB921628E6FF26002BD7B2 /* EntryUserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,7 +647,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -662,7 +666,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.0;
+				MARKETING_VERSION = 3.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -678,7 +682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -697,7 +701,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.0;
+				MARKETING_VERSION = 3.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

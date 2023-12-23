@@ -19,17 +19,6 @@ struct RootView: View {
 
             HeaderView()
 
-            #if DEBUG
-
-                // MARK: - 現在登録されている通知をすべて表示するコマンド
-
-//            Button {
-//                AppManager.sharedNotificationRequestManager.confirmNotificationRequest()
-//            } label: {
-//                Text("全登録済み通知を表示")
-//            }
-            #endif
-
             // MARK: - Main Contents
 
             ListUserView()

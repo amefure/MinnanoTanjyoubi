@@ -18,7 +18,7 @@ class AppLockViewModel: ObservableObject {
 
     private let biometricAuthRepository: BiometricAuthRepository
     private let keyChainRepository: KeyChainRepository
-    
+
     private var cancellables: Set<AnyCancellable> = []
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
