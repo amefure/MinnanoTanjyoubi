@@ -24,6 +24,7 @@
 		1246024A2B36B7BA00B6C32D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602492B36B7BA00B6C32D /* SettingViewModel.swift */; };
 		1246024C2B36BCE500B6C32D /* AdsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246024B2B36BCE500B6C32D /* AdsConfig.swift */; };
 		1246024F2B381EEF00B6C32D /* NotifyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246024E2B381EEF00B6C32D /* NotifyConfig.swift */; };
+		124602532B38490A00B6C32D /* AppLockInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602522B38490A00B6C32D /* AppLockInputViewModel.swift */; };
 		12682BAA29A655FF00D0498F /* ExtensionViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BA929A655FF00D0498F /* ExtensionViewModifier.swift */; };
 		12682BAC29A6CC4F00D0498F /* ColorAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAB29A6CC4F00D0498F /* ColorAsset.swift */; };
 		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
@@ -81,6 +82,7 @@
 		124602492B36B7BA00B6C32D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		1246024B2B36BCE500B6C32D /* AdsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsConfig.swift; sourceTree = "<group>"; };
 		1246024E2B381EEF00B6C32D /* NotifyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyConfig.swift; sourceTree = "<group>"; };
+		124602522B38490A00B6C32D /* AppLockInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockInputViewModel.swift; sourceTree = "<group>"; };
 		12682BA929A655FF00D0498F /* ExtensionViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewModifier.swift; sourceTree = "<group>"; };
 		12682BAB29A6CC4F00D0498F /* ColorAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAsset.swift; sourceTree = "<group>"; };
 		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
@@ -145,7 +147,7 @@
 				12CB922428E9A8F5002BD7B2 /* EntryUser */,
 				123F485929A2CC98001B91B3 /* DetailUser */,
 				121DEE092B1A218100964902 /* Setting */,
-				121DEE002B198D4600964902 /* AppLockView.swift */,
+				124602502B3848C500B6C32D /* AppLock */,
 				12682BA829A655B900D0498F /* ExtensionView */,
 				12CB921B28E865F4002BD7B2 /* Components */,
 			);
@@ -182,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				12CB921928E85952002BD7B2 /* SettingView.swift */,
-				121DEE0A2B1A218F00964902 /* AppLockInputView.swift */,
 				12CB925328EEC754002BD7B2 /* TimePickerView.swift */,
 				12682BB829A80FFA00D0498F /* NoticeMsgView.swift */,
 				123F485A29A42083001B91B3 /* NoticeDateFlagView.swift */,
@@ -197,7 +198,7 @@
 				12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */,
 				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
 				124602472B36B62300B6C32D /* RootViewModel.swift */,
-				124602422B36A92C00B6C32D /* AppLockViewModel.swift */,
+				124602512B3848F200B6C32D /* AppLock */,
 				124602492B36B7BA00B6C32D /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
@@ -230,6 +231,24 @@
 				1246024B2B36BCE500B6C32D /* AdsConfig.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		124602502B3848C500B6C32D /* AppLock */ = {
+			isa = PBXGroup;
+			children = (
+				121DEE002B198D4600964902 /* AppLockView.swift */,
+				121DEE0A2B1A218F00964902 /* AppLockInputView.swift */,
+			);
+			path = AppLock;
+			sourceTree = "<group>";
+		};
+		124602512B3848F200B6C32D /* AppLock */ = {
+			isa = PBXGroup;
+			children = (
+				124602422B36A92C00B6C32D /* AppLockViewModel.swift */,
+				124602522B38490A00B6C32D /* AppLockInputViewModel.swift */,
+			);
+			path = AppLock;
 			sourceTree = "<group>";
 		};
 		12682BA829A655B900D0498F /* ExtensionView */ = {
@@ -526,6 +545,7 @@
 				12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */,
 				121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */,
 				12682BB529A7949000D0498F /* MiddleUserInfoView.swift in Sources */,
+				124602532B38490A00B6C32D /* AppLockInputViewModel.swift in Sources */,
 				12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */,
 				12CB921128E64ABC002BD7B2 /* ListUserView.swift in Sources */,
 				121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */,

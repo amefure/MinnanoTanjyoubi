@@ -16,9 +16,8 @@ struct AppLockInputView: View {
     // MARK: - View
 
     @State private var password: [String] = []
-    @State private var entryFlag: Bool = false
 
-    @StateObject var viewModel: SettingViewModel
+    @StateObject private var viewModel = AppLockInputViewModel()
 
     @Environment(\.dismiss) private var dismiss
 
@@ -38,9 +37,7 @@ struct AppLockInputView: View {
 
             Button {
                 if password.count == 4 {
-                    entryFlag = true
-                    let pass = password.joined(separator: "")
-                    KeyChainRepository().entry(value: pass)
+                    viewModel.entryPassword(password: password)
                     dismiss()
                 }
             } label: {
@@ -66,7 +63,7 @@ struct AppLockInputView: View {
             NumberKeyboardView(password: $password)
                 .ignoresSafeArea(.all)
         }.onDisappear {
-            if entryFlag {
+            if viewModel.entryFlag {
                 isLock = true
             } else {
                 isLock = false
@@ -76,5 +73,5 @@ struct AppLockInputView: View {
 }
 
 #Preview {
-    AppLockInputView(isLock: Binding.constant(true), viewModel: SettingViewModel())
+    AppLockInputView(isLock: Binding.constant(true))
 }

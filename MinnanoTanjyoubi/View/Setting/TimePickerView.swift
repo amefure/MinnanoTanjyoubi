@@ -15,7 +15,7 @@ struct TimePickerView: View {
 
     // MARK: - View
 
-    @State var time: Date = .init()
+    @State private var time: Date = .init()
 
     var body: some View {
         DatePicker(selection: $time,

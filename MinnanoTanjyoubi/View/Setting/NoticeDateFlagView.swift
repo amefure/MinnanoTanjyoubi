@@ -13,8 +13,8 @@ struct NoticeDateFlagView: View {
     @StateObject var viewModel: SettingViewModel
 
     // MARK: - View
-    @State private var isOn: Bool = true
 
+    @State private var isOn: Bool = true
 
     var body: some View {
         HStack {
