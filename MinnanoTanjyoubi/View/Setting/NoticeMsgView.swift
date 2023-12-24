@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct NoticeMsgView: View {
-    // MARK: - Storage
+    // MARK: - ViewModel
 
-    @AppStorage("NoticeMsg") var noticeMsg: String = "今日は{userName}さんの誕生日！"
+    @StateObject var viewModel: SettingViewModel
 
-    @State var text = ""
-    @State var isEdit: Bool = false
-    @FocusState var isFocusActive: Bool
+    // MARK: - View
 
-    private let isSESize: Bool = DeviceSizeManager.isSESize
+    @State private var text = ""
+    @State private var isEdit: Bool = false
+    @FocusState private var isFocusActive: Bool
 
+    /// 名前格納用の変数部分の色を変換するメソッド
     private func getAttributedString(_ str: String) -> AttributedString {
         var attributedString = AttributedString(str)
 
-        if let range = attributedString.range(of: "{userName}") {
+        if let range = attributedString.range(of: NotifyConfig.VARIABLE_USER_NAME) {
             attributedString[range].foregroundColor = ColorAsset.themaColor3.thisColor
         }
         return attributedString
@@ -32,7 +33,7 @@ struct NoticeMsgView: View {
             if isEdit {
                 TextField("Message...", text: $text)
                     .onChange(of: text) { newValue in
-                        noticeMsg = newValue
+                        viewModel.registerNotifyMsg(msg: newValue)
                     }.foregroundColor(ColorAsset.themaColor1.thisColor)
                     .focused($isFocusActive)
             } else {
@@ -47,17 +48,17 @@ struct NoticeMsgView: View {
             }.padding(5)
                 .frame(width: 55)
                 .background(isEdit ? ColorAsset.themaColor1.thisColor : ColorAsset.foundationColorLight.thisColor)
-                .cornerRadius(5)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
                 .opacity(0.7)
 
         }.onAppear {
-            text = noticeMsg
-        }.font(isSESize ? .caption : .none)
+            text = viewModel.getNotifyMsg()
+        }.font(DeviceSizeManager.isSESize ? .caption : .none)
     }
 }
 
 struct NoticeMsgView_Previews: PreviewProvider {
     static var previews: some View {
-        NoticeMsgView()
+        NoticeMsgView(viewModel: SettingViewModel())
     }
 }

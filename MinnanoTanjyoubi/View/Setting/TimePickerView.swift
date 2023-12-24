@@ -7,24 +7,15 @@
 
 import SwiftUI
 
-// MARK: - 通知時間設定タイムピッカービュー
-
-// 選択された時間を「6-0」形式でuserDefaultsに保存する
+// 通知時間設定タイムピッカービュー
 struct TimePickerView: View {
-    // MARK: - Storage
+    // MARK: - ViewModel
 
-    @AppStorage("NoticeTime") var noticeTime: String = "6-0"
+    @StateObject var viewModel: SettingViewModel
 
-    // MARK: - 初期値は「6:00」
+    // MARK: - View
 
-    @State var time: Date = {
-        let userDefaults = UserDefaults.standard
-        let timeStr = userDefaults.object(forKey: "NoticeTime") as? String ?? "6-0" as String
-        let timeArray: [Substring] = timeStr.split(separator: "-")
-        let hour = Int(timeArray[0])
-        let minute = Int(timeArray[1])
-        return Calendar.current.date(from: DateComponents(hour: hour, minute: minute))!
-    }()
+    @State var time: Date = .init()
 
     var body: some View {
         DatePicker(selection: $time,
@@ -35,15 +26,15 @@ struct TimePickerView: View {
             .colorInvert()
             .colorMultiply(.white)
             .onChange(of: time) { newValue in
-                let df = DateFormatter()
-                df.dateFormat = "H-mm"
-                noticeTime = df.string(from: newValue)
+                viewModel.registerNotifyTime(date: newValue)
+            }.onAppear {
+                time = viewModel.getNotifyTimeDate()
             }
     }
 }
 
 struct TimePickerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimePickerView()
+        TimePickerView(viewModel: SettingViewModel())
     }
 }

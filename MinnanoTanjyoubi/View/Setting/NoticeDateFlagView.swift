@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct NoticeDateFlagView: View {
-    @State var isOn: Bool = true
+    // MARK: - ViewModel
 
-    // MARK: - Storage
+    @StateObject var viewModel: SettingViewModel
 
-    @AppStorage("NoticeDate") var noticeTime: String = "0"
+    // MARK: - View
+    @State private var isOn: Bool = true
+
 
     var body: some View {
         HStack {
@@ -23,13 +25,16 @@ struct NoticeDateFlagView: View {
             }.toggleStyle(.button)
                 .background(isOn ? ColorAsset.themaColor2.thisColor : ColorAsset.themaColor3.thisColor)
                 .opacity(isOn ? 0.8 : 1)
-                .cornerRadius(5)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
                 .onChange(of: isOn) { newValue in
                     if newValue {
-                        noticeTime = "0"
+                        viewModel.registerNotifyDate(flag: "0")
                     } else {
-                        noticeTime = "1"
+                        viewModel.registerNotifyDate(flag: "1")
                     }
+                }.onAppear {
+                    let flag = viewModel.getNotifyDate()
+                    isOn = flag == "0"
                 }
         }
     }
@@ -37,6 +42,6 @@ struct NoticeDateFlagView: View {
 
 struct NoticeDateFlagView_Previews: PreviewProvider {
     static var previews: some View {
-        NoticeDateFlagView()
+        NoticeDateFlagView(viewModel: SettingViewModel())
     }
 }

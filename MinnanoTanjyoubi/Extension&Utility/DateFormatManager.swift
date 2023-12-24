@@ -15,6 +15,7 @@ class DateFormatManager {
         df.dateFormat = "yyyy/MM/dd"
         df.locale = Locale(identifier: "ja_JP")
         df.calendar = Calendar(identifier: .gregorian)
+        df.timeZone = TimeZone(identifier: "Asia/Tokyo")
     }
 
     /// 日付を文字列で取得する
@@ -58,5 +59,12 @@ class DateFormatManager {
     public func getJpDate(from: String) -> Date {
         df.dateFormat = "yyyy年M月d日"
         return df.date(from: from) ?? Date()
+    }
+
+    /// 時間をString型で取得する
+    /// H-mm
+    public func getTimeString(date: Date) -> String {
+        df.dateFormat = "H-mm"
+        return df.string(from: date)
     }
 }

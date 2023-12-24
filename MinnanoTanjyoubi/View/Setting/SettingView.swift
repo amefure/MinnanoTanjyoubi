@@ -11,10 +11,9 @@ import UIKit
 // MARK: - 設定ビュー
 
 struct SettingView: View {
-    @AppStorage("LimitCapacity") var limitCapacity = 10 // 初期値
+    @StateObject private var viewModel = SettingViewModel()
 
     @State private var isLock: Bool = false
-    @State private var isShowPassInput: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -30,18 +29,18 @@ struct SettingView: View {
                     // 通知時間
                     HStack {
                         Image(systemName: "clock").settingIcon()
-                        TimePickerView()
+                        TimePickerView(viewModel: viewModel)
                     }
                     // 通知日時
                     HStack {
                         Image(systemName: "calendar").settingIcon()
-                        NoticeDateFlagView()
+                        NoticeDateFlagView(viewModel: viewModel)
                     }
 
                     // 通知メッセージ
                     HStack {
                         Image(systemName: "text.bubble").settingIcon()
-                        NoticeMsgView()
+                        NoticeMsgView(viewModel: viewModel)
                     }
 
                 }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
@@ -50,28 +49,30 @@ struct SettingView: View {
 
                 Section(header: Text("アプリ設定"), footer: Text("・アプリにロックをかけることができます。")) {
                     HStack {
-                        Image(systemName: "lock.iphone").settingIcon()
+                        Image(systemName: "lock.iphone")
+                            .settingIcon()
                         Toggle(isOn: $isLock) {
                             Text("パスワードを登録")
-                        }.onChange(of: isLock) { newValue in
+                        }.onChange(of: isLock, perform: { newValue in
                             if newValue {
-                                isShowPassInput = true
+                                viewModel.showPassInput()
                             } else {
-                                KeyChainRepository().delete()
+                                viewModel.deletePassword()
                             }
-                        }.tint(ColorAsset.themaColor1.thisColor)
-                    }.sheet(isPresented: $isShowPassInput, content: {
-                        AppLockInputView(isLock: $isLock)
+                        })
+                        .tint(ColorAsset.themaColor1.thisColor)
+                    }.sheet(isPresented: $viewModel.isShowPassInput, content: {
+                        AppLockInputView(isLock: $isLock, viewModel: viewModel)
                     })
                 }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
 
                 // MARK: - (3)
 
-                Section(header: Text("広告"), footer: Text("・追加される容量は5個です。\n・容量の追加は1日に1回までです。")) {
-                    RewardButtonView()
+                Section(header: Text("広告"), footer: Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)個です。\n・容量の追加は1日に1回までです。")) {
+                    RewardButtonView(viewModel: viewModel)
                     HStack {
                         Image(systemName: "bag").settingIcon()
-                        Text("現在の容量:\(limitCapacity)人")
+                        Text("現在の容量:\(viewModel.getCapacity())人")
                     }
                 }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
 
@@ -87,7 +88,18 @@ struct SettingView: View {
                     }).listRowBackground(ColorAsset.foundationColorDark.thisColor)
 
                     // 2:シェアボタン
-                    ShareButtonView().listRowBackground(ColorAsset.foundationColorDark.thisColor)
+                    Button(action: {
+                        viewModel.shareApp(
+                            shareText: "友達の誕生日をメモできるアプリ「みんなの誕生日」を使ってみてね♪",
+                            shareLink: "https://apps.apple.com/jp/app/%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E8%AA%95%E7%94%9F%E6%97%A5/id1673431227"
+                        )
+                    }) {
+                        HStack {
+                            Image(systemName: "star.bubble")
+                                .settingIcon()
+                            Text("「みんなの誕生日」をオススメする")
+                        }
+                    }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
 
                     // 3:利用規約とプライバシーポリシー
                     Link(destination: URL(string: "https://tech.amefure.com/app-terms-of-service")!, label: {
@@ -108,12 +120,14 @@ struct SettingView: View {
             Spacer()
 
             AdMobBannerView().frame(height: 50)
-
-        }.onAppear {
-            isLock = KeyChainRepository().getData().count == 4
-        }.navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
-            .background(ColorAsset.foundationColorLight.thisColor)
+        }
+        .onAppear {
+            viewModel.onAppear()
+            isLock = viewModel.isLock
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        .background(ColorAsset.foundationColorLight.thisColor)
     }
 }
 

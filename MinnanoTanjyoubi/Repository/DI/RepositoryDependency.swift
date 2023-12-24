@@ -10,4 +10,5 @@ import UIKit
 class RepositoryDependency {
     public let biometricAuthRepository = BiometricAuthRepository()
     public let keyChainRepository = KeyChainRepository()
+    public let userDefaultsRepository = UserDefaultsRepository()
 }

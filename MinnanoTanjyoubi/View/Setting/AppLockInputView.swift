@@ -18,6 +18,8 @@ struct AppLockInputView: View {
     @State private var password: [String] = []
     @State private var entryFlag: Bool = false
 
+    @StateObject var viewModel: SettingViewModel
+
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -74,5 +76,5 @@ struct AppLockInputView: View {
 }
 
 #Preview {
-    AppLockInputView(isLock: Binding.constant(true))
+    AppLockInputView(isLock: Binding.constant(true), viewModel: SettingViewModel())
 }

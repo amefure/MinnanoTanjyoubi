@@ -8,10 +8,19 @@
 import UIKit
 
 class UserDefaultsKey {
-//    static let APP_LOCK_KEY = "APP_LOCK_KEY"
+    /// 容量制限
+    static let LIMIT_CAPACITY = "LimitCapacity"
+    /// 最終視聴日
+    static let LAST_ACQUISITION_DATE = "LastAcquisitionDate"
+    /// 通知時間「H-mm」形式
+    static let NOTICE_TIME = "NoticeTime"
+    /// 通知日付フラグ  String型  "0"(当日) or "1"(前日)
+    static let NOTICE_DATE_FLAG = "NoticeDate"
+    /// 通知MSG
+    static let NOTICE_MSG = "NoticeMsg"
 }
 
-// 現在未使用
+/// UserDefaultsの基底クラス
 class UserDefaultsRepository {
     static let sheard = UserDefaultsRepository()
 
@@ -35,5 +44,15 @@ class UserDefaultsRepository {
     /// Int：取得
     public func getIntData(key: String) -> Int {
         return userDefaults.integer(forKey: key)
+    }
+
+    /// String：保存
+    public func setStringData(key: String, value: String) {
+        userDefaults.set(value, forKey: key)
+    }
+
+    /// String：取得
+    public func getStringData(key: String) -> String {
+        return userDefaults.string(forKey: key) ?? ""
     }
 }
