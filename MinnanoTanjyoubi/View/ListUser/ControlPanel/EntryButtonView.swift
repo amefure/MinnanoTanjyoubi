@@ -14,7 +14,7 @@ struct EntryButtonView: View {
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
     // Storage
-    @AppStorage("LimitCapacity") var limitCapacity = 5 // 初期値
+    @AppStorage("LimitCapacity") var limitCapacity = AdsConfig.INITIAL_CAPACITY // 初期値
 
     // MARK: - View  Control
 

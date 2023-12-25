@@ -30,7 +30,7 @@ struct SettingView: View {
                 // MARK: - (1)
 
                 Section(header: Text("通知設定"),
-                        footer: Text("・通知設定を変更以降にONにした通知を設定します。\n・通知メッセージは{userName}部分が名前に自動で置き換わります。")
+                        footer: Text("・通知設定を変更以降にONにした通知を設定します。\n・通知メッセージは" + NotifyConfig.VARIABLE_USER_NAME + "部分が名前に自動で置き換わります。")
                             .textSelection(.enabled))
                 {
                     // 通知時間
@@ -55,13 +55,13 @@ struct SettingView: View {
                 // MARK: - (2)
 
                 Section(header: Text("アプリ設定"),
-                        footer: Text("・アプリにロックをかけることができます。"))
+                        footer: Text("・アプリにパスワードを設定してロックをかけることができます。"))
                 {
                     HStack {
                         Image(systemName: "lock.iphone")
                             .settingIcon()
                         Toggle(isOn: $isLock) {
-                            Text("パスワードを登録")
+                            Text("アプリをロックする")
                         }.onChange(of: isLock, perform: { newValue in
                             if newValue {
                                 viewModel.showPassInput()

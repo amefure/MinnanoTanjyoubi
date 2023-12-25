@@ -154,9 +154,7 @@ struct EntryUserView: View {
                         repository.createUser(newUser: newUser)
 
                         if isON {
-                            let dfm = DateFormatManager()
-                            let dateString = dfm.getNotifyString(date: date)
-                            AppManager.sharedNotificationRequestManager.sendNotificationRequest(newUser.id, name, dateString)
+                            AppManager.sharedNotificationRequestManager.sendNotificationRequest(newUser.id, name, date)
                         }
                     }
 

@@ -52,7 +52,7 @@ class UserDefaultsRepository {
     }
 
     /// String：取得
-    public func getStringData(key: String) -> String {
-        return userDefaults.string(forKey: key) ?? ""
+    public func getStringData(key: String, initialValue: String = "") -> String {
+        return userDefaults.string(forKey: key) ?? initialValue
     }
 }

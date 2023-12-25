@@ -9,36 +9,56 @@ import RealmSwift
 import UIKit
 
 class NotificationRequestManager: NSObject {
-    public func sendNotificationRequest(_ id: ObjectId, _ userName: String, _ dateStr: String) {
-        let userDefaults = UserDefaults.standard
+    private let userDefaultsRepository: UserDefaultsRepository
 
+    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
+        userDefaultsRepository = repositoryDependency.userDefaultsRepository
+    }
+
+    public func sendNotificationRequest(_ id: ObjectId, _ userName: String, _ date: Date) {
         let content = UNMutableNotificationContent()
         content.title = "みんなの誕生日"
-        let msg = userDefaults.object(forKey: "NoticeMsg") as? String ?? "今日は{userName}さんの誕生日！" as String
-        let replaceMsg = msg.replacingOccurrences(of: "{userName}", with: userName)
+
+        let msg = userDefaultsRepository.getStringData(key: UserDefaultsKey.NOTICE_MSG, initialValue: NotifyConfig.INITIAL_MSG)
+
+        let replaceMsg = msg.replacingOccurrences(of: NotifyConfig.VARIABLE_USER_NAME, with: userName)
         content.body = replaceMsg
 
         // Setting > TimePickerView.swift
-        let timeStr = userDefaults.object(forKey: "NoticeTime") as? String ?? "6-0" as String
+        let timeStr = userDefaultsRepository.getStringData(key: UserDefaultsKey.NOTICE_TIME, initialValue: NotifyConfig.INITIAL_TIME)
         // Setting > NotiveDateFlagView.swift
-        let dateFlag = userDefaults.object(forKey: "NoticeDate") as? String ?? "0" as String
+        let dateFlag = userDefaultsRepository.getStringData(key: UserDefaultsKey.NOTICE_DATE_FLAG, initialValue: NotifyConfig.INITIAL_DATE_FLAG)
 
-        // "yyyy-MM-dd-H-m"形式で取得した文字列を配列に変換
+        var dateStr = ""
+
+        // 前日フラグなら日付を1日前とする
+        if dateFlag == "1" {
+            let calendar = Calendar.current
+            let modifiedDate = calendar.date(byAdding: .day, value: -1, to: date) ?? Date()
+            dateStr = DateFormatManager().getNotifyString(date: modifiedDate)
+        } else {
+            dateStr = DateFormatManager().getNotifyString(date: date)
+        }
+
+        // "yyyy-MM-dd"形式で取得した文字列を配列に変換
         let dateArray = dateStr.split(separator: "-")
+        // "H-m"形式で取得した文字列を配列に変換
         let timeArray = timeStr.split(separator: "-")
 
-        // 当日/前日フラグの値を適応
-        let calcDate = Int(dateArray[2])! - Int(dateFlag)!
+        let month = Int(dateArray[safe: 1] ?? "1") ?? 1
+        let day = Int(dateArray[safe: 2] ?? "1") ?? 1
+        let hour = Int(timeArray[safe: 0] ?? "6") ?? 6
+        let minute = Int(timeArray[safe: 1] ?? "0") ?? 0
 
         // 毎年通知を送るため年は不要
 //        let nowDate = Calendar.current.dateComponents([.year], from: Date())
 //        dateComponent.year = nowDate.year
 
         let dateComponent = DateComponents(
-            month: Int(dateArray[1]),
-            day: calcDate,
-            hour: Int(timeArray[0]),
-            minute: Int(timeArray[1])
+            month: month,
+            day: day,
+            hour: hour,
+            minute: minute
         )
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)

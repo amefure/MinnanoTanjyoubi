@@ -47,6 +47,13 @@ class DateFormatManager {
         return df.string(from: date)
     }
 
+    /// 通知用：日付を文字列で取得する
+    /// yyyy-MM-dd-H-m
+    public func getNotifyDate(from: String) -> Date {
+        df.dateFormat = "yyyy-MM-dd-H-m"
+        return df.date(from: from) ?? Date()
+    }
+
     /// 日付をDate型で取得する
     /// yyyy/MM/dd
     public func getSlashDate(from: String) -> Date? {

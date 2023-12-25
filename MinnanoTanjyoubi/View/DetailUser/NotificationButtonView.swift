@@ -32,9 +32,7 @@ struct NotificationButtonView: View {
             .onChange(of: isON) { newValue in
                 if newValue {
                     // 通知を登録
-                    let dfm = DateFormatManager()
-                    let dateString = dfm.getNotifyString(date: user.date)
-                    AppManager.sharedNotificationRequestManager.sendNotificationRequest(user.id, user.name, dateString)
+                    AppManager.sharedNotificationRequestManager.sendNotificationRequest(user.id, user.name, user.date)
 
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: true)
