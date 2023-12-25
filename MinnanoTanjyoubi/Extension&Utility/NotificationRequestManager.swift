@@ -66,7 +66,7 @@ class NotificationRequestManager: NSObject {
         UNUserNotificationCenter.current().add(request)
     }
 
-    public func removeNotificationRequest(_ id: ObjectId, _: String) {
+    public func removeNotificationRequest(_ id: ObjectId) {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [id.stringValue])
     }

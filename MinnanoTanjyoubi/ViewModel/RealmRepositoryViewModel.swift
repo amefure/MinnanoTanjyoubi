@@ -46,6 +46,10 @@ class RealmRepositoryViewModel: ObservableObject {
     }
 
     public func removeUser(removeIdArray: [ObjectId]) {
+        for id in removeIdArray {
+            /// 削除対象の通知を全てOFFにする
+            AppManager.sharedNotificationRequestManager.removeNotificationRequest(id)
+        }
         repository.removeUser(removeIdArray: removeIdArray)
         readAllUsers()
     }

@@ -38,7 +38,7 @@ struct NotificationButtonView: View {
                     repository.updateNotifyUser(id: user.id, notify: true)
                 } else {
                     // 通知を削除
-                    AppManager.sharedNotificationRequestManager.removeNotificationRequest(user.id, user.name)
+                    AppManager.sharedNotificationRequestManager.removeNotificationRequest(user.id)
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: false)
                 }
