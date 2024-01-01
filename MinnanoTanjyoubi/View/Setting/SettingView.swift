@@ -89,7 +89,7 @@ struct SettingView: View {
 
                 // MARK: - (4)
 
-                Section(header: Text("Link"), footer: Text("")) {
+                Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。")) {
                     if let url = URL(string: "https://apps.apple.com/jp/app/%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E8%AA%95%E7%94%9F%E6%97%A5/id1673431227?action=write-review") {
                         // 1:レビューページ
                         Link(destination: url, label: {
@@ -114,8 +114,19 @@ struct SettingView: View {
                         }
                     }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
 
+                    if let url = URL(string: "https://tech.amefure.com/contact") {
+                        // 3:お問い合わせフォーム
+                        Link(destination: url, label: {
+                            HStack {
+                                Image(systemName: "paperplane").settingIcon()
+                                Text("アプリの不具合はこちら")
+                                Image(systemName: "link").font(.caption)
+                            }
+                        }).listRowBackground(ColorAsset.foundationColorDark.thisColor)
+                    }
+
                     if let url = URL(string: "https://tech.amefure.com/app-terms-of-service") {
-                        // 3:利用規約とプライバシーポリシー
+                        // 4:利用規約とプライバシーポリシー
                         Link(destination: url, label: {
                             HStack {
                                 Image(systemName: "note.text").settingIcon()
