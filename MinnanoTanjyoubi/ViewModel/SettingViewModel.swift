@@ -139,6 +139,16 @@ class SettingViewModel: ObservableObject {
         }
     }
 
+    ///  誕生日までの単位フラグ登録
+    public func registerDisplayDaysLater(flag: Bool) {
+        userDefaultsRepository.setBoolData(key: UserDefaultsKey.DISPLAY_DAYS_LATER, isOn: flag)
+    }
+
+    /// 誕生日までの単位フラグ取得
+    public func getDisplayDaysLater() -> Bool {
+        return userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_DAYS_LATER)
+    }
+
     // MARK: - Share Logic
 
     /// アプリシェアロジック

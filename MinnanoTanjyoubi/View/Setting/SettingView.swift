@@ -18,6 +18,7 @@ struct SettingView: View {
     // MARK: - View
 
     @State private var isLock: Bool = false
+    @State private var isDaysLaterFlag: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -57,6 +58,21 @@ struct SettingView: View {
                 Section(header: Text("アプリ設定"),
                         footer: Text("・アプリにパスワードを設定してロックをかけることができます。"))
                 {
+                    // 誕生日までの単位
+                    HStack {
+                        Image(systemName: "switch.2").settingIcon()
+                        Text("誕生日までの単位を切り替える")
+                        Spacer()
+                        Toggle(isOn: $isDaysLaterFlag) {
+                            Text(isDaysLaterFlag ? "月" : "日")
+                        }.onChange(of: isDaysLaterFlag, perform: { newValue in
+                            viewModel.registerDisplayDaysLater(flag: newValue)
+                        }).toggleStyle(.button)
+                            .opacity(0.9)
+                            .background(isDaysLaterFlag ? ColorAsset.themaColor3.thisColor : ColorAsset.themaColor2.thisColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                    }
+
                     HStack {
                         Image(systemName: "lock.iphone")
                             .settingIcon()
@@ -150,6 +166,7 @@ struct SettingView: View {
         .onAppear {
             viewModel.onAppear()
             isLock = viewModel.isLock
+            isDaysLaterFlag = viewModel.getDisplayDaysLater()
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)

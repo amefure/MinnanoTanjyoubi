@@ -44,6 +44,17 @@ class User: Object, ObjectKeyIdentifiable {
         return Int(result)
     }
 
+    /// 誕生日まであとXヶ月
+    public var monthLater: Int? {
+        let day = daysLater
+        if day < 30 {
+            return nil
+        } else {
+            let month = day / 30
+            return month
+        }
+    }
+
     /// 今何歳
     public var currentAge: Int {
         let calendar = Calendar.current

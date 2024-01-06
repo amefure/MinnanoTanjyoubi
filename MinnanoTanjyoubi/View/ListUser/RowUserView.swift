@@ -15,6 +15,8 @@ struct RowUserView: View {
 
     public var user: User
 
+    @State private var isDisplayDateLater = false
+
     /// 文字数でフォントサイズを調整
     private func changeFontSizeByLength(_ name: String) -> CGFloat {
         if name.count > 8 {
@@ -49,16 +51,28 @@ struct RowUserView: View {
                             .font(DeviceSizeManager.isSESize ? .system(size: 10) : .caption)
 
                     } else {
-                        Text("あと")
-                        Text("\(user.daysLater)")
-                            .font(.title2)
-                            .foregroundColor(ColorAsset.themaColor4.thisColor)
-                        Text("日")
+                        if isDisplayDateLater,
+                           let month = user.monthLater
+                        {
+                            Text("あと")
+                            Text("\(month)")
+                                .font(.title2)
+                                .foregroundColor(ColorAsset.themaColor4.thisColor)
+                            Text("ヶ月")
+                        } else {
+                            Text("あと")
+                            Text("\(user.daysLater)")
+                                .font(.title2)
+                                .foregroundColor(ColorAsset.themaColor4.thisColor)
+                            Text("日")
+                        }
                     }
 
                 }.multilineTextAlignment(.center)
                     .font(.caption)
-
+                    .onAppear {
+                        isDisplayDateLater = UserDefaultsRepository.sheard.getBoolData(key: UserDefaultsKey.DISPLAY_DAYS_LATER)
+                    }
             }.padding(5)
                 .frame(height: 130)
                 .frame(maxWidth: DeviceSizeManager.deviceWidth / 3)

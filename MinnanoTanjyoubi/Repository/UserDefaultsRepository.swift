@@ -18,6 +18,8 @@ class UserDefaultsKey {
     static let NOTICE_DATE_FLAG = "NoticeDate"
     /// 通知MSG
     static let NOTICE_MSG = "NoticeMsg"
+    ///  後何日かフラグ
+    static let DISPLAY_DAYS_LATER = "DISPLAY_DAYS_LATER"
 }
 
 /// UserDefaultsの基底クラス

@@ -23,8 +23,8 @@ struct NoticeDateFlagView: View {
             Toggle(isOn: $isOn) {
                 Text(isOn ? "当日" : "前日")
             }.toggleStyle(.button)
+                .opacity(isOn ? 0.9 : 1)
                 .background(isOn ? ColorAsset.themaColor2.thisColor : ColorAsset.themaColor3.thisColor)
-                .opacity(isOn ? 0.8 : 1)
                 .clipShape(RoundedRectangle(cornerRadius: 5))
                 .onChange(of: isOn) { newValue in
                     if newValue {
