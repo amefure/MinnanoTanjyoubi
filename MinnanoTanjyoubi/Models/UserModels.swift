@@ -64,6 +64,14 @@ class User: Object, ObjectKeyIdentifiable {
         return age
     }
 
+    /// 今何ヶ月
+    public var currentAgeMonth: Int {
+        let calendar = Calendar.current
+        let ageComponents = calendar.dateComponents([.year, .month, .day], from: date, to: Date())
+        let ageMonths = ageComponents.month ?? 0
+        return ageMonths
+    }
+
     /// 12星座
     public var signOfZodiac: String {
         let dfm = DateFormatManager()

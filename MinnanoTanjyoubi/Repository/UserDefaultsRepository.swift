@@ -20,6 +20,8 @@ class UserDefaultsKey {
     static let NOTICE_MSG = "NoticeMsg"
     ///  後何日かフラグ
     static let DISPLAY_DAYS_LATER = "DISPLAY_DAYS_LATER"
+    ///  年齢に何ヶ月を表示するかどうか
+    static let DISPLAY_AGE_MONTH = "DISPLAY_AGE_MONTH"
 }
 
 /// UserDefaultsの基底クラス

@@ -16,6 +16,7 @@ struct RowUserView: View {
     public var user: User
 
     @State private var isDisplayDateLater = false
+    @State private var isDisplayAgeMonth = false
 
     /// 文字数でフォントサイズを調整
     private func changeFontSizeByLength(_ name: String) -> CGFloat {
@@ -40,6 +41,11 @@ struct RowUserView: View {
                     Text("\(user.currentAge)")
                     Text("歳")
                         .font(.caption)
+                    if isDisplayAgeMonth {
+                        Text("\(user.currentAgeMonth)")
+                        Text("ヶ月")
+                            .font(.caption)
+                    }
                 }
 
                 HStack(alignment: .bottom) {
@@ -72,6 +78,7 @@ struct RowUserView: View {
                     .font(.caption)
                     .onAppear {
                         isDisplayDateLater = UserDefaultsRepository.sheard.getBoolData(key: UserDefaultsKey.DISPLAY_DAYS_LATER)
+                        isDisplayAgeMonth = UserDefaultsRepository.sheard.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
                     }
             }.padding(5)
                 .frame(height: 130)

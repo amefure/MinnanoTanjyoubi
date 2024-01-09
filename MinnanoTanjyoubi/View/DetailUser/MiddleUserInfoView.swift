@@ -18,6 +18,7 @@ struct MiddleUserInfoView: View {
 
     private let deviceWidth = DeviceSizeManager.deviceWidth
     private let isSESize = DeviceSizeManager.isSESize
+    @State private var isDisplayAgeMonth = false
 
     private var roundWidth: CGFloat {
         if deviceWidth < 400 {
@@ -29,8 +30,12 @@ struct MiddleUserInfoView: View {
 
     var body: some View {
         HStack(spacing: 20) {
-            Text("\(user.currentAge)歳")
-                .circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor2.thisColor)
+            VStack {
+                Text("\(user.currentAge)歳")
+                if isDisplayAgeMonth {
+                    Text("\(user.currentAgeMonth)ヶ月")
+                }
+            }.circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor2.thisColor)
 
             Text(user.signOfZodiac)
                 .circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor4.thisColor)
@@ -39,5 +44,8 @@ struct MiddleUserInfoView: View {
                 .circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor3.thisColor)
 
         }.font(isSESize ? .caption : .none)
+            .onAppear {
+                isDisplayAgeMonth = UserDefaultsRepository.sheard.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
+            }
     }
 }

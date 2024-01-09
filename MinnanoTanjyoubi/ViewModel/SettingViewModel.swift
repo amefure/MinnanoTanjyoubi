@@ -149,6 +149,16 @@ class SettingViewModel: ObservableObject {
         return userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_DAYS_LATER)
     }
 
+    /// 年齢に月を含めるかフラグ登録
+    public func registerDisplayAgeMonth(flag: Bool) {
+        userDefaultsRepository.setBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH, isOn: flag)
+    }
+
+    /// 年齢に月を含めるかフラグ取得
+    public func getDisplayAgeMonth() -> Bool {
+        return userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
+    }
+
     // MARK: - Share Logic
 
     /// アプリシェアロジック

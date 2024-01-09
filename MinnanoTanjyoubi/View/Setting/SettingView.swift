@@ -19,6 +19,7 @@ struct SettingView: View {
 
     @State private var isLock: Bool = false
     @State private var isDaysLaterFlag: Bool = false
+    @State private var isAgeMonthFlag: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -73,6 +74,16 @@ struct SettingView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                     }
 
+                    // 誕生日までの単位
+                    HStack {
+                        Image(systemName: "switch.2").settingIcon()
+                        Toggle(isOn: $isAgeMonthFlag) {
+                            Text("年齢の⚪︎ヶ月を表示する")
+                        }.onChange(of: isAgeMonthFlag, perform: { newValue in
+                            viewModel.registerDisplayAgeMonth(flag: newValue)
+                        }).tint(ColorAsset.themaColor1.thisColor)
+                    }
+
                     HStack {
                         Image(systemName: "lock.iphone")
                             .settingIcon()
@@ -84,8 +95,7 @@ struct SettingView: View {
                             } else {
                                 viewModel.deletePassword()
                             }
-                        })
-                        .tint(ColorAsset.themaColor1.thisColor)
+                        }).tint(ColorAsset.themaColor1.thisColor)
                     }.sheet(isPresented: $viewModel.isShowPassInput, content: {
                         AppLockInputView(isLock: $isLock)
                     })
@@ -167,6 +177,7 @@ struct SettingView: View {
             viewModel.onAppear()
             isLock = viewModel.isLock
             isDaysLaterFlag = viewModel.getDisplayDaysLater()
+            isAgeMonthFlag = viewModel.getDisplayAgeMonth()
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
