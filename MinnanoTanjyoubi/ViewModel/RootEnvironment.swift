@@ -91,4 +91,12 @@ extension RootEnvironment {
 
         relationNameList = results
     }
+
+    public func getDisplayDaysLater() -> Bool {
+        userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_DAYS_LATER)
+    }
+
+    public func getDisplayAgeMonth() -> Bool {
+        userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
+    }
 }

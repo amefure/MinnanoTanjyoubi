@@ -18,6 +18,8 @@ struct RowUserView: View {
     @State private var isDisplayDateLater = false
     @State private var isDisplayAgeMonth = false
 
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+
     /// 文字数でフォントサイズを調整
     private func changeFontSizeByLength(_ name: String) -> CGFloat {
         if name.count > 8 {
@@ -77,8 +79,8 @@ struct RowUserView: View {
                 }.multilineTextAlignment(.center)
                     .font(.caption)
                     .onAppear {
-                        isDisplayDateLater = UserDefaultsRepository.sheard.getBoolData(key: UserDefaultsKey.DISPLAY_DAYS_LATER)
-                        isDisplayAgeMonth = UserDefaultsRepository.sheard.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
+                        isDisplayDateLater = rootEnvironment.getDisplayDaysLater()
+                        isDisplayAgeMonth = rootEnvironment.getDisplayAgeMonth()
                     }
             }.padding(5)
                 .frame(height: 130)
