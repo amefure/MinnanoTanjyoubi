@@ -13,7 +13,7 @@ import SwiftUI
 struct ControlPanelView: View {
     // MARK: - Environment
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     var body: some View {
         HStack {
@@ -22,7 +22,6 @@ struct ControlPanelView: View {
             // MARK: - RemoveButton
 
             RemoveButtonView()
-                .environmentObject(rootEnvironment)
 
             Spacer()
 

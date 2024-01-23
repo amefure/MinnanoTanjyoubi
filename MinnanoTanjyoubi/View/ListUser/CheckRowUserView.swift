@@ -45,7 +45,7 @@ struct CheckRowUserView: View {
 
     // MARK: - Environment
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     // MARK: - View
 

@@ -31,13 +31,17 @@ struct UpSideUserInfoView: View {
         }
     }
 
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text(user.relation.rawValue)
+                Text(rootEnvironment.relationNameList[safe: user.relation.relationIndex] ?? "その他")
                     .padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: roundWidth, alignment: .center)
+                    .frame(maxWidth: roundWidth * 1.5)
+                    .lineLimit(1)
                     .background(ColorAsset.foundationColorDark.thisColor)
                     .cornerRadius(5)
                     .font(isSESize ? .caption : .none)

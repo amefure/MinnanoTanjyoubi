@@ -18,7 +18,7 @@ struct ListUserView: View {
 
     // MARK: - Environment
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     // MARK: - Glid Layout
 
@@ -40,12 +40,10 @@ struct ListUserView: View {
                         if rootEnvironment.isDeleteMode {
                             // DeleteMode
                             CheckRowUserView(user: user)
-                                .environmentObject(rootEnvironment)
                         } else {
                             // NormalMode
                             NavigationLink {
                                 DetailUserView(user: user)
-                                    .environmentObject(rootEnvironment)
                             } label: {
                                 RowUserView(user: user)
                             }
@@ -57,7 +55,6 @@ struct ListUserView: View {
             // MARK: - ControlPanel
 
             ControlPanelView()
-                .environmentObject(rootEnvironment)
 
         }.background(ColorAsset.foundationColorLight.thisColor)
     }

@@ -13,7 +13,7 @@ struct MinnanoTanjyoubiApp: App {
 
     // MARK: - Environment
 
-    @ObservedObject private var rootEnvironment = RootEnvironment()
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
     private let viewModel = RootViewModel()
 
     var body: some Scene {
@@ -22,10 +22,8 @@ struct MinnanoTanjyoubiApp: App {
                 if viewModel.checkAppLock() {
                     /// キーチェーンにパスワードが保存されている場合
                     AppLockView()
-                        .environmentObject(rootEnvironment)
                 } else {
                     RootView()
-                        .environmentObject(rootEnvironment)
                 }
             }
         }

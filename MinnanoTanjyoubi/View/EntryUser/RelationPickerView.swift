@@ -9,14 +9,14 @@ import SwiftUI
 
 struct RelationPickerView: View {
     @Binding var selectedRelation: Relation
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     var body: some View {
         Picker(selection: $selectedRelation, label: Text("関係")) {
-            ForEach(Relation.allCases, id: \.self) { item in
-                Text(item.rawValue)
+            ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
+                Text(item).tag(Relation.getIndexbyRelation(index))
             }
         }.pickerStyle(.menu)
-            .frame(width: 100)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(ColorAsset.foundationColorDark.thisColor.opacity(0.4), lineWidth: 2)

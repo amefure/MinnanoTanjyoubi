@@ -17,6 +17,7 @@ struct SortedButtonView: View {
     // MARK: - ViewModel
 
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     var body: some View {
         Button {
@@ -38,8 +39,8 @@ struct SortedButtonView: View {
         .sheet(isPresented: $isPicker) {
             VStack {
                 Picker(selection: $selectedRelation) {
-                    ForEach(Relation.allCases, id: \.self) { item in
-                        Text(item.rawValue)
+                    ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
+                        Text(item).tag(Relation.getIndexbyRelation(index))
                     }
                 } label: {}.pickerStyle(.segmented)
                     .presentationDetents([.height(100)])

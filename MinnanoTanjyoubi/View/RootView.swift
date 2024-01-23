@@ -11,7 +11,7 @@ import SwiftUI
 struct RootView: View {
     // MARK: - Environment
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     var body: some View {
         VStack(spacing: 0) {
@@ -22,7 +22,6 @@ struct RootView: View {
             // MARK: - Main Contents
 
             ListUserView()
-                .environmentObject(rootEnvironment)
 
             // MARK: - AdMob
 

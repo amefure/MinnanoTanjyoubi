@@ -84,6 +84,16 @@ struct SettingView: View {
                         }).tint(ColorAsset.themaColor1.thisColor)
                     }
 
+                    // 誕生日までの単位
+                    NavigationLink {
+                        UpdateRelationNameView()
+                    } label: {
+                        HStack {
+                            Image(systemName: "switch.2").settingIcon()
+                            Text("関係をカスタマイズする")
+                        }
+                    }
+
                     HStack {
                         Image(systemName: "lock.iphone")
                             .settingIcon()

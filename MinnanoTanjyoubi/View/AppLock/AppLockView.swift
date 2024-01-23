@@ -12,9 +12,7 @@ struct AppLockView: View {
 
     @State private var password: [String] = []
 
-    // MARK: - Environment
-
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     var body: some View {
         VStack(spacing: 0) {

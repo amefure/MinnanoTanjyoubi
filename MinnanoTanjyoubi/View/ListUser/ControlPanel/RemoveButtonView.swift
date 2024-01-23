@@ -17,7 +17,7 @@ struct RemoveButtonView: View {
 
     // MARK: - Environment
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     var body: some View {
         Button(action: {

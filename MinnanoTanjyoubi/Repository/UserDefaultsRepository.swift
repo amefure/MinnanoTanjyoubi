@@ -22,6 +22,13 @@ class UserDefaultsKey {
     static let DISPLAY_DAYS_LATER = "DISPLAY_DAYS_LATER"
     ///  年齢に何ヶ月を表示するかどうか
     static let DISPLAY_AGE_MONTH = "DISPLAY_AGE_MONTH"
+
+    ///  関係名をカスタム登録
+    static let DISPLAY_RELATION_FRIEND = "DISPLAY_RELATION_FRIEND"
+    static let DISPLAY_RELATION_FAMILY = "DISPLAY_RELATION_FAMILY"
+    static let DISPLAY_RELATION_SCHOOL = "DISPLAY_RELATION_SCHOOL"
+    static let DISPLAY_RELATION_WORK = "DISPLAY_RELATION_WORK"
+    static let DISPLAY_RELATION_OTHER = "DISPLAY_RELATION_OTHER"
 }
 
 /// UserDefaultsの基底クラス

@@ -11,28 +11,28 @@ import UIKit
 
 /// アプリ内で共通で利用される状態や環境値を保持する
 class RootEnvironment: ObservableObject {
-    // Deleteモード
-    @Published private(set) var isDeleteMode: Bool = false
+    static let shared = RootEnvironment()
+
     // 削除対象のUserId
     @Published var deleteIdArray: [ObjectId] = []
-
-//    // エラーダイアログ表示
-//    @Published var isPresentError: Bool = false
-//    // エラーダイアログタイトル
-//    @Published private(set) var errorTitle: String = ""
-//    // エラーダイアログメッセージ
-//    @Published private(set) var errorMessage: String = ""
+    // Deleteモード
+    @Published private(set) var isDeleteMode: Bool = false
+    // 関係の名称
+    @Published private(set) var relationNameList: [String] = []
 
     private var cancellables: Set<AnyCancellable> = []
 
-    // エラービュー表示
-//    public func presentErrorView(error: AliveError) {
-//        isPresentError = true
-//        errorTitle = error.title
-//        errorMessage = error.message
-//    }
-//
+    private let userDefaultsRepository: UserDefaultsRepository
 
+    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
+        userDefaultsRepository = repositoryDependency.userDefaultsRepository
+
+        getRelationName()
+    }
+}
+
+// プロパティ操作
+extension RootEnvironment {
     /// Deleteモード有効
     public func enableDeleteMode() {
         isDeleteMode = true
@@ -59,5 +59,36 @@ class RootEnvironment: ObservableObject {
     public func resetDeleteMode() {
         isDeleteMode = false
         deleteIdArray.removeAll()
+    }
+}
+
+extension RootEnvironment {
+    private func setRelationName(key: String, newName: String) {
+        userDefaultsRepository.setStringData(key: key, value: newName)
+    }
+
+    public func saveRelationName(friend: String, family: String, school: String, work: String, other: String) {
+        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, value: friend)
+        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_FAMILY, value: family)
+        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_SCHOOL, value: school)
+        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_WORK, value: work)
+        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_OTHER, value: other)
+        getRelationName()
+    }
+
+    public func getRelationName() {
+        var results: [String] = []
+        let friend = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, initialValue: RelationConfig.FRIEND_NAME)
+        results.append(friend)
+        let famiry = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FAMILY, initialValue: RelationConfig.FAMILY_NAME)
+        results.append(famiry)
+        let school = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_SCHOOL, initialValue: RelationConfig.SCHOOL_NAME)
+        results.append(school)
+        let work = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_WORK, initialValue: RelationConfig.WORK_NAME)
+        results.append(work)
+        let other = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_OTHER, initialValue: RelationConfig.OTHER_NAME)
+        results.append(other)
+
+        relationNameList = results
     }
 }
