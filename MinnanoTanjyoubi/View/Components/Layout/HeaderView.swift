@@ -22,8 +22,9 @@ struct HeaderView: View {
     var body: some View {
         HStack(alignment: .center) {
             ZStack {
-                Image("Appicon-remove").resizable()
-                    .frame(width: isSESize ? 55 : 70, height: isSESize ? 55 : 70)
+                Image("Appicon-remove")
+                    .resizable()
+                    .frame(width: isSESize ? 50 : 60, height: isSESize ? 50 : 60)
 
                 if isShowSettingIcon {
                     Button(action: {
@@ -33,7 +34,7 @@ struct HeaderView: View {
                     }).foregroundColor(.white).position(x: deviceWidth - 30, y: 30)
                 }
             }
-        }.frame(width: deviceWidth, height: isSESize ? 80 : 90).background(ColorAsset.foundationColorDark.thisColor)
+        }.frame(width: deviceWidth, height: isSESize ? 60 : 70).background(ColorAsset.foundationColorDark.thisColor)
             .navigationDestination(isPresented: $isSettingActive) {
                 SettingView()
             }

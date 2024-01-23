@@ -89,7 +89,7 @@ struct SettingView: View {
                         UpdateRelationNameView()
                     } label: {
                         HStack {
-                            Image(systemName: "switch.2").settingIcon()
+                            Image(systemName: "pencil.line").settingIcon()
                             Text("関係をカスタマイズする")
                         }
                     }

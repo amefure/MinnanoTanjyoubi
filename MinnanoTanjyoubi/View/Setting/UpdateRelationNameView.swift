@@ -14,6 +14,9 @@ struct UpdateRelationNameView: View {
     @State private var work = ""
     @State private var other = ""
 
+    @State private var isAlert = false
+    @State private var isValidationAlert = false
+
     private func validationInput() -> Bool {
         if friend.isEmpty || family.isEmpty || school.isEmpty || work.isEmpty || other.isEmpty {
             return false
@@ -44,7 +47,10 @@ struct UpdateRelationNameView: View {
             Spacer()
 
             DownSideView(parentFunction: {
-                guard validationInput() else { return }
+                guard validationInput() else {
+                    isValidationAlert = true
+                    return
+                }
                 rootEnvironment.saveRelationName(
                     friend: friend,
                     family: family,
@@ -52,7 +58,7 @@ struct UpdateRelationNameView: View {
                     work: work,
                     other: other
                 )
-                dismiss()
+                isAlert = true
             }, imageString: "checkmark")
 
             AdMobBannerView()
@@ -67,7 +73,28 @@ struct UpdateRelationNameView: View {
                 school = list[safe: 2] ?? RelationConfig.SCHOOL_NAME
                 work = list[safe: 3] ?? RelationConfig.WORK_NAME
                 other = list[safe: 4] ?? RelationConfig.OTHER_NAME
-            }
+            }.dialog(
+                isPresented: $isAlert,
+                title: "お知らせ",
+                message: "関係名を更新しました。",
+                positiveButtonTitle: "OK",
+                negativeButtonTitle: "",
+                positiveAction: {
+                    dismiss()
+                },
+                negativeAction: {}
+            )
+            .dialog(
+                isPresented: $isValidationAlert,
+                title: "お知らせ",
+                message: "関係名を全て入力してください。",
+                positiveButtonTitle: "OK",
+                negativeButtonTitle: "",
+                positiveAction: {
+                    isValidationAlert = false
+                },
+                negativeAction: {}
+            )
     }
 }
 
