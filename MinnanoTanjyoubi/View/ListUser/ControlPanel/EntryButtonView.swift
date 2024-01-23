@@ -16,13 +16,11 @@ struct EntryButtonView: View {
     // Storage
     @AppStorage("LimitCapacity") var limitCapacity = AdsConfig.INITIAL_CAPACITY // 初期値
 
-    // MARK: - View  Control
-
-    @State var isLimitAlert: Bool = false // 上限に達した場合のアラート
-
     // MARK: - View
 
-    @State var isModal: Bool = false
+    // 上限に達した場合のアラート
+    @Binding var isLimitAlert: Bool
+    @State private var isModal: Bool = false
 
     private func checkLimitCapacity() -> Bool {
         if repository.users.count >= limitCapacity {
@@ -46,20 +44,11 @@ struct EntryButtonView: View {
         .sheet(isPresented: $isModal, content: {
             EntryUserView(user: nil, isModal: $isModal)
         })
-        .alert(Text("保存容量が上限に達しました..."),
-               isPresented: $isLimitAlert,
-               actions: {
-                   Button(action: {}, label: {
-                       Text("OK")
-                   })
-               }, message: {
-                   Text("設定から広告を視聴すると\n保存容量を増やすことができます。")
-               })
     }
 }
 
 struct EntryButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        EntryButtonView()
+        EntryButtonView(isLimitAlert: Binding.constant(false))
     }
 }

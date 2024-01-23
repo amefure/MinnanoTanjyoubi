@@ -14,6 +14,8 @@ struct ControlPanelView: View {
     // MARK: - Environment
 
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    @Binding var isDeleteAlert: Bool
+    @Binding var isLimitAlert: Bool
 
     var body: some View {
         HStack {
@@ -21,7 +23,7 @@ struct ControlPanelView: View {
 
             // MARK: - RemoveButton
 
-            RemoveButtonView()
+            RemoveButtonView(isDeleteAlert: $isDeleteAlert)
 
             Spacer()
 
@@ -33,7 +35,7 @@ struct ControlPanelView: View {
 
             // MARK: - EntryButton
 
-            EntryButtonView()
+            EntryButtonView(isLimitAlert: $isLimitAlert)
 
             Spacer()
 

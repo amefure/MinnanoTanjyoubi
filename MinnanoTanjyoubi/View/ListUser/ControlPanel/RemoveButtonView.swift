@@ -13,7 +13,7 @@ struct RemoveButtonView: View {
 
     // MARK: - View
 
-    @State private var isAlert: Bool = false
+    @Binding var isDeleteAlert: Bool
 
     // MARK: - Environment
 
@@ -22,7 +22,7 @@ struct RemoveButtonView: View {
     var body: some View {
         Button(action: {
             if rootEnvironment.deleteIdArray.count != 0 {
-                isAlert = true
+                isDeleteAlert = true
             } else {
                 if rootEnvironment.isDeleteMode {
                     rootEnvironment.disableDeleteMode()
@@ -33,20 +33,5 @@ struct RemoveButtonView: View {
         }, label: {
             Image(systemName: rootEnvironment.isDeleteMode ? "trash" : "app.badge.checkmark")
         }).circleBorderView(width: 50, height: 50, color: ColorAsset.themaColor2.thisColor)
-            .alert("選択したユーザーを\n削除しますか？", isPresented: $isAlert) {
-                Button(role: .destructive, action: {
-                    repository.removeUser(removeIdArray: rootEnvironment.deleteIdArray)
-                    rootEnvironment.resetDeleteMode()
-                }, label: {
-                    Text("削除")
-                })
-                Button(role: .cancel, action: {
-                    rootEnvironment.resetDeleteMode()
-                }, label: {
-                    Text("キャンセル")
-                })
-            } message: {
-                Text("")
-            }
     }
 }

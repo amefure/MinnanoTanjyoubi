@@ -192,6 +192,17 @@ struct SettingView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
         .background(ColorAsset.foundationColorLight.thisColor)
+        .dialog(
+            isPresented: $viewModel.isAlertReward,
+            title: "お知らせ",
+            message: "広告を視聴できるのは1日に1回までです。",
+            positiveButtonTitle: "OK",
+            negativeButtonTitle: "",
+            positiveAction: {
+                viewModel.isAlertReward = false
+            },
+            negativeAction: {}
+        )
     }
 }
 

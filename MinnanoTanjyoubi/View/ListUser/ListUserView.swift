@@ -20,6 +20,9 @@ struct ListUserView: View {
 
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
+    @State private var isDeleteAlert = false
+    @State private var isLimitAlert = false
+
     // MARK: - Glid Layout
 
     private var gridItemWidth: CGFloat {
@@ -54,8 +57,33 @@ struct ListUserView: View {
 
             // MARK: - ControlPanel
 
-            ControlPanelView()
+            ControlPanelView(isDeleteAlert: $isDeleteAlert, isLimitAlert: $isLimitAlert)
 
         }.background(ColorAsset.foundationColorLight.thisColor)
+            .dialog(
+                isPresented: $isDeleteAlert,
+                title: "お知らせ",
+                message: "選択したユーザーを\n削除しますか？",
+                positiveButtonTitle: "削除",
+                negativeButtonTitle: "キャンセル",
+                positiveAction: {
+                    repository.removeUser(removeIdArray: rootEnvironment.deleteIdArray)
+                    rootEnvironment.resetDeleteMode()
+                },
+                negativeAction: {
+                    rootEnvironment.resetDeleteMode()
+                }
+            )
+            .dialog(
+                isPresented: $isLimitAlert,
+                title: "お知らせ",
+                message: "保存容量が上限に達しました...\n設定から広告を視聴すると\n保存容量を増やすことができます。",
+                positiveButtonTitle: "OK",
+                negativeButtonTitle: "",
+                positiveAction: {
+                    isLimitAlert = false
+                },
+                negativeAction: {}
+            )
     }
 }
