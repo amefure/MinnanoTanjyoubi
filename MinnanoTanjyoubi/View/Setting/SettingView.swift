@@ -15,11 +15,16 @@ struct SettingView: View {
 
     @StateObject private var viewModel = SettingViewModel()
 
+    // MARK: - Environment
+
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+
     // MARK: - View
 
     @State private var isLock: Bool = false
     @State private var isDaysLaterFlag: Bool = false
     @State private var isAgeMonthFlag: Bool = false
+    @State private var isSectionLayoutFlag: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -84,7 +89,20 @@ struct SettingView: View {
                         }).tint(ColorAsset.themaColor1.thisColor)
                     }
 
-                    // 誕生日までの単位
+                    // レイアウト変更
+                    HStack {
+                        Image(systemName: "switch.2").settingIcon()
+                        Toggle(isOn: $isSectionLayoutFlag) {
+                            HStack {
+                                Text("レイアウトを切り替える：")
+                                Text(!isSectionLayoutFlag ? "All" : "カテゴリ")
+                            }
+                        }.onChange(of: isSectionLayoutFlag, perform: { newValue in
+                            rootEnvironment.registerDisplaySectionLayout(flag: newValue)
+                        }).tint(ColorAsset.themaColor1.thisColor)
+                    }
+
+                    // 関係をカスタマイズ
                     NavigationLink {
                         UpdateRelationNameView()
                     } label: {
@@ -188,6 +206,7 @@ struct SettingView: View {
             isLock = viewModel.isLock
             isDaysLaterFlag = viewModel.getDisplayDaysLater()
             isAgeMonthFlag = viewModel.getDisplayAgeMonth()
+            isSectionLayoutFlag = rootEnvironment.sectionLayoutFlag
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)

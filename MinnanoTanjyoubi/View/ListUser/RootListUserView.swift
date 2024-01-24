@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - データをリスト表示するビュー
 
-struct ListUserView: View {
+struct RootListUserView: View {
     // MARK: - Models
 
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
@@ -23,35 +23,17 @@ struct ListUserView: View {
     @State private var isDeleteAlert = false
     @State private var isLimitAlert = false
 
-    // MARK: - Glid Layout
-
-    private var gridItemWidth: CGFloat {
-        return CGFloat(DeviceSizeManager.deviceWidth / 3) - 10
-    }
-
-    private var gridColumns: [GridItem] {
-        Array(repeating: GridItem(.fixed(gridItemWidth)), count: 3)
-    }
-
     var body: some View {
         VStack(spacing: 0) {
             // MARK: - List Contents
 
             ScrollView {
-                LazyVGrid(columns: gridColumns) {
-                    ForEach(repository.users) { user in
-                        if rootEnvironment.isDeleteMode {
-                            // DeleteMode
-                            CheckRowUserView(user: user)
-                        } else {
-                            // NormalMode
-                            NavigationLink {
-                                DetailUserView(user: user)
-                            } label: {
-                                RowUserView(user: user)
-                            }
-                        }
-                    }
+                if rootEnvironment.sectionLayoutFlag {
+                    // カテゴリセクショングリッドレイアウト
+                    SectionGridListView()
+                } else {
+                    // 単体のグリッドレイアウト
+                    SingleGridListView(users: repository.users)
                 }
             }.padding([.top, .trailing, .leading])
 
@@ -60,6 +42,9 @@ struct ListUserView: View {
             ControlPanelView(isDeleteAlert: $isDeleteAlert, isLimitAlert: $isLimitAlert)
 
         }.background(ColorAsset.foundationColorLight.thisColor)
+            .onAppear {
+                rootEnvironment.getDisplaySectionLayout()
+            }
             .dialog(
                 isPresented: $isDeleteAlert,
                 title: "お知らせ",

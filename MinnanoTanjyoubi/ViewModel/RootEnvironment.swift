@@ -19,6 +19,8 @@ class RootEnvironment: ObservableObject {
     @Published private(set) var isDeleteMode: Bool = false
     // 関係の名称
     @Published private(set) var relationNameList: [String] = []
+    // レイアウトフラグ表示
+    @Published private(set) var sectionLayoutFlag: Bool = false
 
     private var cancellables: Set<AnyCancellable> = []
 
@@ -28,6 +30,7 @@ class RootEnvironment: ObservableObject {
         userDefaultsRepository = repositoryDependency.userDefaultsRepository
 
         getRelationName()
+        getDisplaySectionLayout()
     }
 }
 
@@ -98,5 +101,15 @@ extension RootEnvironment {
 
     public func getDisplayAgeMonth() -> Bool {
         userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
+    }
+
+    // RootListのonAppearで呼び出さないとビューが強制破棄されてしまう
+    public func getDisplaySectionLayout() {
+        sectionLayoutFlag = userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_SECTION_LAYOUT)
+    }
+
+    /// セクショングリッドレイアウト変更フラグ登録
+    public func registerDisplaySectionLayout(flag: Bool) {
+        userDefaultsRepository.setBoolData(key: UserDefaultsKey.DISPLAY_SECTION_LAYOUT, isOn: flag)
     }
 }

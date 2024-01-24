@@ -22,6 +22,8 @@ class UserDefaultsKey {
     static let DISPLAY_DAYS_LATER = "DISPLAY_DAYS_LATER"
     ///  年齢に何ヶ月を表示するかどうか
     static let DISPLAY_AGE_MONTH = "DISPLAY_AGE_MONTH"
+    ///  セクションレイアウト表示フラグ
+    static let DISPLAY_SECTION_LAYOUT = "DISPLAY_SECTION_LAYOUT"
 
     ///  関係名をカスタム登録
     static let DISPLAY_RELATION_FRIEND = "DISPLAY_RELATION_FRIEND"

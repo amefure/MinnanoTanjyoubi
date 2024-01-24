@@ -21,7 +21,7 @@ struct RootView: View {
 
             // MARK: - Main Contents
 
-            ListUserView()
+            RootListUserView()
 
             // MARK: - AdMob
 
