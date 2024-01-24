@@ -36,6 +36,7 @@
 		128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */; };
 		128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */; };
 		128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */; };
+		128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */; };
 		12ACAD2529951A0E00273834 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12ACAD2429951A0E00273834 /* GoogleService-Info.plist */; };
 		12ACAD2729984D5400273834 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateFormatManager.swift */; };
 		12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD292998C1E100273834 /* HeaderView.swift */; };
@@ -97,6 +98,7 @@
 		128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRelationNameView.swift; sourceTree = "<group>"; };
 		128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifyDialogView.swift; sourceTree = "<group>"; };
+		128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIApplication.swift; sourceTree = "<group>"; };
 		12ACAD2429951A0E00273834 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		12ACAD2629984D5400273834 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		12ACAD292998C1E100273834 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				12CB922528EB134D002BD7B2 /* AppDelegate.swift */,
 				1246023E2B36A23E00B6C32D /* AppManager.swift */,
+				128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */,
 				121DEE072B1A20BF00964902 /* ExCollection.swift */,
 				12682BAB29A6CC4F00D0498F /* ColorAsset.swift */,
 				12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */,
@@ -552,6 +555,7 @@
 				123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */,
 				128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */,
 				12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */,
+				128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */,
 				128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */,
 				12CB921E28E9223C002BD7B2 /* RelationPickerView.swift in Sources */,
 				12CB922028E92293002BD7B2 /* DatePickerView.swift in Sources */,
@@ -711,7 +715,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -730,7 +734,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 4.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -746,7 +750,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -765,7 +769,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 4.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

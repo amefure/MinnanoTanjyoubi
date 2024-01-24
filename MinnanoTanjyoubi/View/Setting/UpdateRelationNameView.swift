@@ -47,6 +47,8 @@ struct UpdateRelationNameView: View {
             Spacer()
 
             DownSideView(parentFunction: {
+                UIApplication.shared.closeKeyboard()
+
                 guard validationInput() else {
                     isValidationAlert = true
                     return
