@@ -5,7 +5,6 @@
 //  Created by t&a on 2023/12/16.
 //
 
-import Combine
 import RealmSwift
 import UIKit
 
@@ -13,6 +12,8 @@ import UIKit
 class RootEnvironment: ObservableObject {
     static let shared = RootEnvironment()
 
+    // アプリロック
+    @Published var appLocked: Bool = false
     // 削除対象のUserId
     @Published var deleteIdArray: [ObjectId] = []
     // Deleteモード
@@ -22,13 +23,14 @@ class RootEnvironment: ObservableObject {
     // レイアウトフラグ表示
     @Published private(set) var sectionLayoutFlag: Bool = false
 
-    private var cancellables: Set<AnyCancellable> = []
-
+    private let keyChainRepository: KeyChainRepository
     private let userDefaultsRepository: UserDefaultsRepository
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         userDefaultsRepository = repositoryDependency.userDefaultsRepository
+        keyChainRepository = repositoryDependency.keyChainRepository
 
+        getAppLockFlag()
         getRelationName()
         getDisplaySectionLayout()
     }
@@ -103,13 +105,18 @@ extension RootEnvironment {
         userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
     }
 
-    // RootListのonAppearで呼び出さないとビューが強制破棄されてしまう
-    public func getDisplaySectionLayout() {
+    private func getDisplaySectionLayout() {
         sectionLayoutFlag = userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_SECTION_LAYOUT)
     }
 
     /// セクショングリッドレイアウト変更フラグ登録
     public func registerDisplaySectionLayout(flag: Bool) {
         userDefaultsRepository.setBoolData(key: UserDefaultsKey.DISPLAY_SECTION_LAYOUT, isOn: flag)
+        getDisplaySectionLayout()
+    }
+
+    /// アプリにロックがかけてあるかをチェック
+    private func getAppLockFlag() {
+        appLocked = keyChainRepository.getData().count == 4
     }
 }

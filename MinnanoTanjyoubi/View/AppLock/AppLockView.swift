@@ -16,7 +16,7 @@ struct AppLockView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView(isShowSettingIcon: false)
+            HeaderView(isShowIcon: false)
 
             Spacer()
 
@@ -62,11 +62,11 @@ struct AppLockView: View {
         }.alert("パスワードが違います。", isPresented: $viewModel.isShowFailureAlert) {
             Button("OK") {}
         }
-        .onAppear { viewModel.onAppear() }
         .navigationDestination(isPresented: $viewModel.isShowApp) {
             RootView()
-                .environmentObject(rootEnvironment)
-        }.background(ColorAsset.foundationColorLight.thisColor)
+        }
+        .onAppear { viewModel.onAppear() }
+        .background(ColorAsset.foundationColorLight.thisColor)
     }
 }
 

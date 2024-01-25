@@ -9,10 +9,6 @@ import RealmSwift
 import SwiftUI
 
 struct RootView: View {
-    // MARK: - Environment
-
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
-
     var body: some View {
         VStack(spacing: 0) {
             // MARK: - Header Contents

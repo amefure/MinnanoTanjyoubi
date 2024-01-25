@@ -7,15 +7,18 @@
 
 import UIKit
 
-class RootViewModel {
+class RootViewModel: ObservableObject {
+    @Published var appLocked: Bool = false
+
     private let keyChainRepository: KeyChainRepository
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         keyChainRepository = repositoryDependency.keyChainRepository
+        checkAppLock()
     }
 
     /// アプリにロックがかけてあるかをチェック
-    public func checkAppLock() -> Bool {
-        keyChainRepository.getData().count == 4
+    private func checkAppLock() {
+        appLocked = keyChainRepository.getData().count == 4
     }
 }

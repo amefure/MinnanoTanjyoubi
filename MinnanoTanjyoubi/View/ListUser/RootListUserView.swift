@@ -42,9 +42,6 @@ struct RootListUserView: View {
             ControlPanelView(isDeleteAlert: $isDeleteAlert, isLimitAlert: $isLimitAlert)
 
         }.background(ColorAsset.foundationColorLight.thisColor)
-            .onAppear {
-                rootEnvironment.getDisplaySectionLayout()
-            }
             .dialog(
                 isPresented: $isDeleteAlert,
                 title: "お知らせ",

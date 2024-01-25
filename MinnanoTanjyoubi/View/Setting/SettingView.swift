@@ -24,7 +24,6 @@ struct SettingView: View {
     @State private var isLock: Bool = false
     @State private var isDaysLaterFlag: Bool = false
     @State private var isAgeMonthFlag: Bool = false
-    @State private var isSectionLayoutFlag: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -86,19 +85,6 @@ struct SettingView: View {
                             Text("年齢の⚪︎ヶ月を表示する")
                         }.onChange(of: isAgeMonthFlag, perform: { newValue in
                             viewModel.registerDisplayAgeMonth(flag: newValue)
-                        }).tint(ColorAsset.themaColor1.thisColor)
-                    }
-
-                    // レイアウト変更
-                    HStack {
-                        Image(systemName: "switch.2").settingIcon()
-                        Toggle(isOn: $isSectionLayoutFlag) {
-                            HStack {
-                                Text("レイアウトを切り替える：")
-                                Text(!isSectionLayoutFlag ? "All" : "カテゴリ")
-                            }
-                        }.onChange(of: isSectionLayoutFlag, perform: { newValue in
-                            rootEnvironment.registerDisplaySectionLayout(flag: newValue)
                         }).tint(ColorAsset.themaColor1.thisColor)
                     }
 
@@ -206,7 +192,6 @@ struct SettingView: View {
             isLock = viewModel.isLock
             isDaysLaterFlag = viewModel.getDisplayDaysLater()
             isAgeMonthFlag = viewModel.getDisplayAgeMonth()
-            isSectionLayoutFlag = rootEnvironment.sectionLayoutFlag
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
