@@ -72,12 +72,13 @@ extension RootEnvironment {
         userDefaultsRepository.setStringData(key: key, value: newName)
     }
 
-    public func saveRelationName(friend: String, family: String, school: String, work: String, other: String) {
+    public func saveRelationName(friend: String, family: String, school: String, work: String, other: String, sns: String) {
         userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, value: friend)
         userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_FAMILY, value: family)
         userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_SCHOOL, value: school)
         userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_WORK, value: work)
         userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_OTHER, value: other)
+        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_SNS, value: sns)
         getRelationName()
     }
 
@@ -93,6 +94,8 @@ extension RootEnvironment {
         results.append(work)
         let other = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_OTHER, initialValue: RelationConfig.OTHER_NAME)
         results.append(other)
+        let sns = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_SNS, initialValue: RelationConfig.SNS_NAME)
+        results.append(sns)
 
         relationNameList = results
     }

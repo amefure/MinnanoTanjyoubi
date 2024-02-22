@@ -15,6 +15,7 @@ enum Relation: String, PersistableEnum, Identifiable, CaseIterable {
     case school = "学校"
     case work = "仕事"
     case other = "その他"
+    case sns = "SNS"
 
     public var relationIndex: Int {
         return switch self {
@@ -28,6 +29,8 @@ enum Relation: String, PersistableEnum, Identifiable, CaseIterable {
             3
         case .other:
             4
+        case .sns:
+            5
         }
     }
 
@@ -41,6 +44,10 @@ enum Relation: String, PersistableEnum, Identifiable, CaseIterable {
             Relation.school
         case 3:
             Relation.work
+        case 4:
+            Relation.other
+        case 5:
+            Relation.sns
         default:
             Relation.other
         }
@@ -53,4 +60,5 @@ enum RelationConfig {
     static let SCHOOL_NAME = Relation.school.rawValue
     static let WORK_NAME = Relation.work.rawValue
     static let OTHER_NAME = Relation.other.rawValue
+    static let SNS_NAME = Relation.sns.rawValue
 }

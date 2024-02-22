@@ -13,12 +13,13 @@ struct UpdateRelationNameView: View {
     @State private var school = ""
     @State private var work = ""
     @State private var other = ""
+    @State private var sns = ""
 
     @State private var isAlert = false
     @State private var isValidationAlert = false
 
     private func validationInput() -> Bool {
-        if friend.isEmpty || family.isEmpty || school.isEmpty || work.isEmpty || other.isEmpty {
+        if friend.isEmpty || family.isEmpty || school.isEmpty || work.isEmpty || other.isEmpty || sns.isEmpty {
             return false
         }
         return true
@@ -44,6 +45,8 @@ struct UpdateRelationNameView: View {
 
             CustomInputView(title: "カテゴリ5", placeholder: RelationConfig.OTHER_NAME, text: $other)
 
+            CustomInputView(title: "カテゴリ6", placeholder: RelationConfig.SNS_NAME, text: $sns)
+
             Spacer()
 
             DownSideView(parentFunction: {
@@ -58,7 +61,8 @@ struct UpdateRelationNameView: View {
                     family: family,
                     school: school,
                     work: work,
-                    other: other
+                    other: other,
+                    sns: sns
                 )
                 isAlert = true
             }, imageString: "checkmark")
@@ -75,6 +79,7 @@ struct UpdateRelationNameView: View {
                 school = list[safe: 2] ?? RelationConfig.SCHOOL_NAME
                 work = list[safe: 3] ?? RelationConfig.WORK_NAME
                 other = list[safe: 4] ?? RelationConfig.OTHER_NAME
+                sns = list[safe: 5] ?? RelationConfig.SNS_NAME
             }.dialog(
                 isPresented: $isAlert,
                 title: "お知らせ",
