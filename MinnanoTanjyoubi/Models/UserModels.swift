@@ -15,6 +15,7 @@ class User: Object, ObjectKeyIdentifiable {
     @Persisted var relation: Relation
     @Persisted var memo: String = ""
     @Persisted var alert: Bool = false
+    @Persisted var imagePaths: RealmSwift.List<String>
 
     // MARK: - 計算プロパティ
 

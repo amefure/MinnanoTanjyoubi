@@ -10,8 +10,8 @@ import UIKit
 
 class RealmRepository {
     init() {
-//       let config = Realm.Configuration(schemaVersion: RealmConfig.MIGRATION_VERSION)
-//       Realm.Configuration.defaultConfiguration = config
+        let config = Realm.Configuration(schemaVersion: RealmConfig.MIGRATION_VERSION)
+        Realm.Configuration.defaultConfiguration = config
         realm = try! Realm()
     }
 
