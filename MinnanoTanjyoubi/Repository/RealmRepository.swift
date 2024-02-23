@@ -64,6 +64,17 @@ class RealmRepository {
         }
     }
 
+    public func updateImagePathsUser(id: ObjectId, imagePathsArray: [String]) {
+        try! realm.write {
+            guard let result = realm.objects(User.self).where({ $0.id == id }).first else {
+                return
+            }
+            let imagePaths = RealmSwift.List<String>()
+            imagePaths.append(objectsIn: imagePathsArray)
+            result.imagePaths = imagePaths
+        }
+    }
+
     // MARK: - Remove
 
     public func removeUser(removeIdArray: [ObjectId]) {

@@ -45,6 +45,11 @@ class RealmRepositoryViewModel: ObservableObject {
         readAllUsers()
     }
 
+    public func updateImagePathsUser(id: ObjectId, imagePathsArray: [String]) {
+        repository.updateImagePathsUser(id: id, imagePathsArray: imagePathsArray)
+        readAllUsers()
+    }
+
     public func removeUser(removeIdArray: [ObjectId]) {
         for id in removeIdArray {
             /// 削除対象の通知を全てOFFにする

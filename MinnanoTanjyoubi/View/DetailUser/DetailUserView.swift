@@ -11,18 +11,30 @@ import SwiftUI
 // MARK: - リストページからの詳細ページビュー
 
 struct DetailUserView: View {
+    // MARK: - Utility
+
+    private let imageFileManager = ImageFileManager()
+
     // MARK: - Models
 
     var user: User
 
     // MARK: - View
 
-    @State var isModal: Bool = false
+    @State private var isShowUpdateView: Bool = false
 
     // MARK: - Setting
 
     private let deviceWidth = DeviceSizeManager.deviceWidth
     private let isSESize = DeviceSizeManager.isSESize
+
+    // MARK: - ViewModel
+
+    @ObservedObject private var viewModel = DetailViewModel.shared
+
+    // MARK: - Repository
+
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
     var body: some View {
         VStack {
@@ -40,10 +52,12 @@ struct DetailUserView: View {
                 // MARK: - Memo
 
                 ScrollView {
-                    Text(user.memo).frame(width: deviceWidth - 40)
+                    Text(user.memo)
+                        .frame(width: deviceWidth - 40)
                 }.padding(isSESize ? 5 : 10)
                     .frame(width: deviceWidth - 40)
-                    .frame(maxHeight: isSESize ? 140 : 200)
+                    .frame(minHeight: isSESize ? 130 : 200)
+                    .frame(maxHeight: isSESize ? 130 : 200)
                     .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 2)
 
             }.padding(isSESize ? 5 : 10)
@@ -52,20 +66,66 @@ struct DetailUserView: View {
 
             NotificationButtonView(user: user)
 
+            // 追加しても更新されないので明示的にidを指定する
+            ImageContainerView(user: user)
+                .id(viewModel.isUpdateView)
+
             Spacer()
 
             DownSideView(parentFunction: {
-                isModal = true
+                isShowUpdateView = true
             }, imageString: "square.and.pencil")
-                .sheet(isPresented: $isModal, content: {
-                    EntryUserView(user: user, isModal: $isModal)
+                .sheet(isPresented: $isShowUpdateView, content: {
+                    EntryUserView(user: user, isModal: $isShowUpdateView)
                 })
-            // ハーフモーダルだと閉じるボタンがでない？
-
-            AdMobBannerView().frame(height: 50)
 
         }.background(ColorAsset.foundationColorLight.thisColor)
             .foregroundColor(.white)
             .toolbar(.hidden, for: .navigationBar)
+            .dialog(
+                isPresented: $viewModel.isDeleteConfirmAlert,
+                title: "お知らせ",
+                message: "この画像を削除しますか？",
+                positiveButtonTitle: "削除",
+                negativeButtonTitle: "キャンセル",
+                positiveAction: {
+                    var imagePaths = Array(user.imagePaths)
+                    imagePaths.removeAll(where: { $0 == viewModel.selectPath })
+                    // ここのエラーは握り潰す
+                    _ = imageFileManager.deleteImage(name: viewModel.selectPath)
+                    repository.updateImagePathsUser(id: user.id, imagePathsArray: imagePaths)
+                    viewModel.isDeleteSuccessAlert = true
+                }, negativeAction: {
+                    viewModel.selectPath = ""
+                }
+            )
+            .dialog(
+                isPresented: $viewModel.isSaveSuccessAlert,
+                title: "お知らせ",
+                message: "画像を追加しました。",
+                positiveButtonTitle: "OK",
+                positiveAction: {
+                    viewModel.updateView()
+                }
+            )
+            .dialog(
+                isPresented: $viewModel.isDeleteSuccessAlert,
+                title: "お知らせ",
+                message: "画像を削除しました。",
+                positiveButtonTitle: "OK",
+                positiveAction: {
+                    viewModel.selectPath = ""
+                    viewModel.updateView()
+                }
+            )
+            .dialog(
+                isPresented: $viewModel.isImageErrorAlert,
+                title: viewModel.imageError?.title ?? "エラー",
+                message: viewModel.imageError?.message ?? "予期せぬエラーが発生し、画像の保存に失敗しました。\n時間をあけてから再度お試してください。",
+                positiveButtonTitle: "OK"
+            ).dialogImageView(
+                isPresented: $viewModel.isImageShowAlert,
+                image: viewModel.selectImage
+            )
     }
 }

@@ -14,6 +14,8 @@ struct NotificationButtonView: View {
 
     @State var user: User
 
+    // MARK: - Repository
+
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
     // MARK: - View

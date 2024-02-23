@@ -13,6 +13,11 @@
 		121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE0A2B1A218F00964902 /* AppLockInputView.swift */; };
 		121DEE0D2B1A23E000964902 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE0C2B1A23E000964902 /* UserDefaultsRepository.swift */; };
 		1224013E2B8720FA0099BE8D /* ImagePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1224013D2B8720FA0099BE8D /* ImagePickerDialog.swift */; };
+		122401402B8721EE0099BE8D /* ImageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1224013F2B8721EE0099BE8D /* ImageContainerView.swift */; };
+		122401442B87691E0099BE8D /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122401432B87691E0099BE8D /* ImageFileManager.swift */; };
+		122401462B8769480099BE8D /* ImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122401452B8769480099BE8D /* ImageError.swift */; };
+		122401482B87738D0099BE8D /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122401472B87738D0099BE8D /* DetailViewModel.swift */; };
+		1224014A2B8819200099BE8D /* ImagePreviewDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122401492B8819200099BE8D /* ImagePreviewDialog.swift */; };
 		123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485029A19A16001B91B3 /* CheckRowUserView.swift */; };
 		123F485629A23886001B91B3 /* ControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485529A23886001B91B3 /* ControlPanelView.swift */; };
 		123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
@@ -79,6 +84,11 @@
 		121DEE0A2B1A218F00964902 /* AppLockInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockInputView.swift; sourceTree = "<group>"; };
 		121DEE0C2B1A23E000964902 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		1224013D2B8720FA0099BE8D /* ImagePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDialog.swift; sourceTree = "<group>"; };
+		1224013F2B8721EE0099BE8D /* ImageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContainerView.swift; sourceTree = "<group>"; };
+		122401432B87691E0099BE8D /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
+		122401452B8769480099BE8D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageError.swift; sourceTree = "<group>"; };
+		122401472B87738D0099BE8D /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		122401492B8819200099BE8D /* ImagePreviewDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewDialog.swift; sourceTree = "<group>"; };
 		123F485029A19A16001B91B3 /* CheckRowUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRowUserView.swift; sourceTree = "<group>"; };
 		123F485529A23886001B91B3 /* ControlPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelView.swift; sourceTree = "<group>"; };
 		123F485729A256DB001B91B3 /* RelationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationEnum.swift; sourceTree = "<group>"; };
@@ -187,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				12CB922528EB134D002BD7B2 /* AppDelegate.swift */,
+				122401432B87691E0099BE8D /* ImageFileManager.swift */,
 				1246023E2B36A23E00B6C32D /* AppManager.swift */,
 				128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */,
 				121DEE072B1A20BF00964902 /* ExCollection.swift */,
@@ -217,8 +228,9 @@
 				12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */,
 				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
 				124602472B36B62300B6C32D /* RootViewModel.swift */,
-				124602512B3848F200B6C32D /* AppLock */,
+				122401472B87738D0099BE8D /* DetailViewModel.swift */,
 				124602492B36B7BA00B6C32D /* SettingViewModel.swift */,
+				124602512B3848F200B6C32D /* AppLock */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -230,6 +242,7 @@
 				12682BB629A7963200D0498F /* UpSideUserInfoView.swift */,
 				12682BB429A7949000D0498F /* MiddleUserInfoView.swift */,
 				12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */,
+				1224013F2B8721EE0099BE8D /* ImageContainerView.swift */,
 			);
 			path = DetailUser;
 			sourceTree = "<group>";
@@ -312,6 +325,7 @@
 			children = (
 				128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */,
 				1224013D2B8720FA0099BE8D /* ImagePickerDialog.swift */,
+				122401492B8819200099BE8D /* ImagePreviewDialog.swift */,
 			);
 			path = Dialog;
 			sourceTree = "<group>";
@@ -363,6 +377,7 @@
 			children = (
 				12CB920B28E5C884002BD7B2 /* UserModels.swift */,
 				123F485729A256DB001B91B3 /* RelationEnum.swift */,
+				122401452B8769480099BE8D /* ImageError.swift */,
 				1246024D2B381ED600B6C32D /* Config */,
 			);
 			path = Models;
@@ -561,6 +576,7 @@
 				128BB9732B61500800B20172 /* SectionRowView.swift in Sources */,
 				12ACAD2729984D5400273834 /* DateFormatManager.swift in Sources */,
 				1246023F2B36A23E00B6C32D /* AppManager.swift in Sources */,
+				1224014A2B8819200099BE8D /* ImagePreviewDialog.swift in Sources */,
 				12682BB729A7963200D0498F /* UpSideUserInfoView.swift in Sources */,
 				12CB91FF28E5C6E1002BD7B2 /* RootView.swift in Sources */,
 				12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */,
@@ -574,6 +590,7 @@
 				128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */,
 				12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */,
 				123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */,
+				122401442B87691E0099BE8D /* ImageFileManager.swift in Sources */,
 				128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */,
 				128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */,
 				128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */,
@@ -589,6 +606,7 @@
 				12CB921A28E85952002BD7B2 /* SettingView.swift in Sources */,
 				121DEE0D2B1A23E000964902 /* UserDefaultsRepository.swift in Sources */,
 				12CB920F28E5C89B002BD7B2 /* AdMobViewModels.swift in Sources */,
+				122401402B8721EE0099BE8D /* ImageContainerView.swift in Sources */,
 				12682BB929A80FFA00D0498F /* NoticeMsgView.swift in Sources */,
 				121DEE012B198D4600964902 /* AppLockView.swift in Sources */,
 				12FE3A2C2B2DCC7100FA700E /* RootEnvironment.swift in Sources */,
@@ -604,10 +622,12 @@
 				124602532B38490A00B6C32D /* AppLockInputViewModel.swift in Sources */,
 				12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */,
 				12CB921128E64ABC002BD7B2 /* RootListUserView.swift in Sources */,
+				122401462B8769480099BE8D /* ImageError.swift in Sources */,
 				121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */,
 				12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */,
 				1246024A2B36B7BA00B6C32D /* SettingViewModel.swift in Sources */,
 				121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */,
+				122401482B87738D0099BE8D /* DetailViewModel.swift in Sources */,
 				12ACAD32299EDD6200273834 /* DeviceSizeManager.swift in Sources */,
 				12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */,
 				124602482B36B62300B6C32D /* RootViewModel.swift in Sources */,
@@ -747,6 +767,7 @@
 				INFOPLIST_FILE = MinnanoTanjyoubi/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "みんなの誕生日";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "写真をアプリに保存するため";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -782,6 +803,7 @@
 				INFOPLIST_FILE = MinnanoTanjyoubi/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "みんなの誕生日";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "写真をアプリに保存するため";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

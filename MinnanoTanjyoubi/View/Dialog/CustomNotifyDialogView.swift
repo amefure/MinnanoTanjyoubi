@@ -89,7 +89,13 @@ struct CustomNotifyDialogView: View {
 }
 
 extension View {
-    func dialog(isPresented: Binding<Bool>, title: String, message: String, positiveButtonTitle: String, negativeButtonTitle: String, positiveAction: @escaping () -> Void, negativeAction: @escaping () -> Void) -> some View
+    func dialog(isPresented: Binding<Bool>,
+                title: String,
+                message: String,
+                positiveButtonTitle: String = "",
+                negativeButtonTitle: String = "",
+                positiveAction: @escaping () -> Void = {},
+                negativeAction: @escaping () -> Void = {}) -> some View
     {
         overlay(
             CustomNotifyDialogView(
