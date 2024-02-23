@@ -56,8 +56,8 @@ struct DetailUserView: View {
                         .frame(width: deviceWidth - 40)
                 }.padding(isSESize ? 5 : 10)
                     .frame(width: deviceWidth - 40)
-                    .frame(minHeight: isSESize ? 130 : 200)
-                    .frame(maxHeight: isSESize ? 130 : 200)
+                    .frame(minHeight: isSESize ? 130 : 180)
+                    .frame(maxHeight: isSESize ? 130 : 180)
                     .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 2)
 
             }.padding(isSESize ? 5 : 10)
@@ -78,6 +78,11 @@ struct DetailUserView: View {
                 .sheet(isPresented: $isShowUpdateView, content: {
                     EntryUserView(user: user, isModal: $isShowUpdateView)
                 })
+
+            if !isSESize {
+                AdMobBannerView()
+                    .frame(height: 50)
+            }
 
         }.background(ColorAsset.foundationColorLight.thisColor)
             .foregroundColor(.white)

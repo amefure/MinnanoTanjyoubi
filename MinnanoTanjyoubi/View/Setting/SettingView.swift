@@ -154,7 +154,7 @@ struct SettingView: View {
                         }
                     }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
 
-                    if let url = URL(string: "https://tech.amefure.com/contact") {
+                    if let url = URL(string: "https://appdev-room.com/contact") {
                         // 3:お問い合わせフォーム
                         Link(destination: url, label: {
                             HStack {
@@ -165,7 +165,7 @@ struct SettingView: View {
                         }).listRowBackground(ColorAsset.foundationColorDark.thisColor)
                     }
 
-                    if let url = URL(string: "https://tech.amefure.com/app-terms-of-service") {
+                    if let url = URL(string: "https://appdev-room.com/app-terms-of-service") {
                         // 4:利用規約とプライバシーポリシー
                         Link(destination: url, label: {
                             HStack {
