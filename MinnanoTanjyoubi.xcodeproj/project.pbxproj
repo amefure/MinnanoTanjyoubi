@@ -18,6 +18,7 @@
 		122401462B8769480099BE8D /* ImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122401452B8769480099BE8D /* ImageError.swift */; };
 		122401482B87738D0099BE8D /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122401472B87738D0099BE8D /* DetailViewModel.swift */; };
 		1224014A2B8819200099BE8D /* ImagePreviewDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122401492B8819200099BE8D /* ImagePreviewDialog.swift */; };
+		122FF36E2B97561300EF4680 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 122FF36D2B97561300EF4680 /* PrivacyInfo.xcprivacy */; };
 		123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485029A19A16001B91B3 /* CheckRowUserView.swift */; };
 		123F485629A23886001B91B3 /* ControlPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485529A23886001B91B3 /* ControlPanelView.swift */; };
 		123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
@@ -89,6 +90,7 @@
 		122401452B8769480099BE8D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageError.swift; sourceTree = "<group>"; };
 		122401472B87738D0099BE8D /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		122401492B8819200099BE8D /* ImagePreviewDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewDialog.swift; sourceTree = "<group>"; };
+		122FF36D2B97561300EF4680 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		123F485029A19A16001B91B3 /* CheckRowUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRowUserView.swift; sourceTree = "<group>"; };
 		123F485529A23886001B91B3 /* ControlPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelView.swift; sourceTree = "<group>"; };
 		123F485729A256DB001B91B3 /* RelationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationEnum.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				12CB920A28E5C7E3002BD7B2 /* Info.plist */,
+				122FF36D2B97561300EF4680 /* PrivacyInfo.xcprivacy */,
 				121DEE062B1A20AC00964902 /* Extension&Utility */,
 				12CB920D28E5C886002BD7B2 /* Models */,
 				121DEE022B1A1EFB00964902 /* View */,
@@ -497,6 +500,7 @@
 			files = (
 				12CB920428E5C6E1002BD7B2 /* Preview Assets.xcassets in Resources */,
 				12CB920128E5C6E1002BD7B2 /* Assets.xcassets in Resources */,
+				122FF36E2B97561300EF4680 /* PrivacyInfo.xcprivacy in Resources */,
 				12ACAD2529951A0E00273834 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,7 +763,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -779,7 +783,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -795,7 +799,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -815,7 +819,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
