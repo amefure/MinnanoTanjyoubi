@@ -97,7 +97,7 @@ struct DetailUserView: View {
                     var imagePaths = Array(user.imagePaths)
                     imagePaths.removeAll(where: { $0 == viewModel.selectPath })
                     // ここのエラーは握り潰す
-                    _ = imageFileManager.deleteImage(name: viewModel.selectPath)
+                    _ = imageFileManager.deleteImage(name: viewModel.selectPath).sink(receiveCompletion: { _ in }, receiveValue: { _ in })
                     repository.updateImagePathsUser(id: user.id, imagePathsArray: imagePaths)
                     viewModel.isDeleteSuccessAlert = true
                 }, negativeAction: {
