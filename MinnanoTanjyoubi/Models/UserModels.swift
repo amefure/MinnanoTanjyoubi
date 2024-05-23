@@ -58,8 +58,10 @@ class User: Object, ObjectKeyIdentifiable {
 
     /// 今何歳
     public var currentAge: Int {
-        let calendar = Calendar.current
-        let ageComponents = calendar.dateComponents([.year], from: date, to: Date())
+        let calendar = Calendar(identifier: .gregorian)
+        let startDate = calendar.startOfDay(for: date)
+        let startToday = calendar.startOfDay(for: Date())
+        let ageComponents = calendar.dateComponents([.year], from: startDate, to: startToday)
         let age = ageComponents.year ?? 0
 
         return age
@@ -67,8 +69,10 @@ class User: Object, ObjectKeyIdentifiable {
 
     /// 今何ヶ月
     public var currentAgeMonth: Int {
-        let calendar = Calendar.current
-        let ageComponents = calendar.dateComponents([.year, .month, .day], from: date, to: Date())
+        let calendar = Calendar(identifier: .gregorian)
+        let startDate = calendar.startOfDay(for: date)
+        let startToday = calendar.startOfDay(for: Date())
+        let ageComponents = calendar.dateComponents([.year, .month, .day], from: startDate, to: startToday)
         let ageMonths = ageComponents.month ?? 0
         return ageMonths
     }

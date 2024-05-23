@@ -89,12 +89,12 @@
 			<string>NSPrivacyAccessedAPICategoryUserDefaults</string>
 		</dict>
 		<dict>
-			<key>NSPrivacyAccessedAPIType</key>
-			<string>NSPrivacyAccessedAPICategoryDiskSpace</string>
 			<key>NSPrivacyAccessedAPITypeReasons</key>
 			<array>
-				<string>CA92.1</string>
+				<string>E174.1</string>
 			</array>
+			<key>NSPrivacyAccessedAPIType</key>
+			<string>NSPrivacyAccessedAPICategoryDiskSpace</string>
 		</dict>
 	</array>
 </dict>

@@ -27,15 +27,27 @@ struct RootListUserView: View {
         VStack(spacing: 0) {
             // MARK: - List Contents
 
-            ScrollView {
-                if rootEnvironment.sectionLayoutFlag {
-                    // カテゴリセクショングリッドレイアウト
-                    SectionGridListView()
-                } else {
-                    // 単体のグリッドレイアウト
-                    SingleGridListView(users: repository.users)
-                }
-            }.padding([.top, .trailing, .leading])
+            if repository.users.count == 0 {
+                
+                Spacer()
+
+                Text("登録されている情報がありません。")
+                    .fontWeight(.bold)
+                    .foregroundStyle(.white)
+
+                Spacer()
+                
+            } else {
+                ScrollView {
+                    if rootEnvironment.sectionLayoutFlag {
+                        // カテゴリセクショングリッドレイアウト
+                        SectionGridListView()
+                    } else {
+                        // 単体のグリッドレイアウト
+                        SingleGridListView(users: repository.users)
+                    }
+                }.padding([.top, .trailing, .leading])
+            }
 
             // MARK: - ControlPanel
 
