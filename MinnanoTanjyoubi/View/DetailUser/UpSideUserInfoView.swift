@@ -16,7 +16,7 @@ struct UpSideUserInfoView: View {
 
     // MARK: - Controller
 
-    private let dfm = DateFormatManager()
+    private let dfm = DateFormatUtility()
 
     // MARK: - Setting
 

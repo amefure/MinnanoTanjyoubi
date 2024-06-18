@@ -10,7 +10,7 @@ import SwiftUI
 struct DatePickerView: View {
     // MARK: - Models
 
-    private let dfm = DateFormatManager()
+    private let dfm = DateFormatUtility()
 
     // MARK: - View
 

@@ -1,5 +1,5 @@
 //
-//  DateManagerModel.swift
+//  DateFormatUtility.swift
 //  MinnanoTanjyoubi
 //
 //  Created by t&a on 2023/02/12.
@@ -7,14 +7,15 @@
 
 import UIKit
 
-class DateFormatManager {
+class DateFormatUtility {
     public let df = DateFormatter()
     public let today = Date()
+    private let c = Calendar(identifier: .gregorian)
 
     init() {
         df.dateFormat = "yyyy/MM/dd"
         df.locale = Locale(identifier: "ja_JP")
-        df.calendar = Calendar(identifier: .gregorian)
+        df.calendar = c
         df.timeZone = TimeZone(identifier: "Asia/Tokyo")
     }
 
@@ -73,5 +74,40 @@ class DateFormatManager {
     public func getTimeString(date: Date) -> String {
         df.dateFormat = "H-mm"
         return df.string(from: date)
+    }
+}
+
+// MARK: - 　Calendar
+
+extension DateFormatUtility {
+    /// `Date`型を受け取り`DateComponents`型を返す
+    /// - Parameters:
+    ///   - date: 変換対象の`Date`型
+    ///   - components: `DateComponents`で取得したい`Calendar.Component`
+    /// - Returns: `DateComponents`
+    public func convertDateComponents(date: Date, components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]) -> DateComponents {
+        c.dateComponents(components, from: date)
+    }
+
+    /// 指定した年数にしたDateオブジェクトを返す
+    public func setYearDate(year: Int) -> Date {
+        let now = Date()
+        // 現在の時間、分、秒を取得
+        let currentMonth = c.component(.month, from: now)
+        let currentDay = c.component(.day, from: now)
+        let currentHour = c.component(.hour, from: now)
+        let currentMinute = c.component(.minute, from: now)
+        let currentSecond = c.component(.second, from: now)
+
+        // 指定された年月日と現在の時刻で日付を構成する
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = currentMonth
+        dateComponents.day = currentDay
+        dateComponents.hour = currentHour
+        dateComponents.minute = currentMinute
+        dateComponents.second = currentSecond
+
+        return c.date(from: dateComponents) ?? now
     }
 }

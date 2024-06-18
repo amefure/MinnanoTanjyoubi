@@ -14,9 +14,12 @@ class SettingViewModel: ObservableObject {
     @Published private(set) var isLock: Bool = false
     /// リワードボタン用
     @Published var isAlertReward: Bool = false
+    @Published private(set) var yearArray: [Int] = []
 
     private let keyChainRepository: KeyChainRepository
     private let userDefaultsRepository: UserDefaultsRepository
+
+    private let dfm = DateFormatUtility()
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         keyChainRepository = repositoryDependency.keyChainRepository
@@ -25,6 +28,12 @@ class SettingViewModel: ObservableObject {
 
     public func onAppear() {
         checkAppLock()
+
+        guard let year = dfm.convertDateComponents(date: Date()).year else { return }
+        for value in 1900 ... year {
+            yearArray.append(value)
+        }
+        yearArray.sort(by: { $0 > $1 })
     }
 
     // MARK: - App Lock
@@ -82,7 +91,6 @@ class SettingViewModel: ObservableObject {
 
     /// 登録する視聴日
     private func nowTime() -> String {
-        let dfm = DateFormatManager()
         return dfm.getSlashString(date: Date())
     }
 
@@ -90,7 +98,6 @@ class SettingViewModel: ObservableObject {
 
     /// 通知時間登録
     public func registerNotifyTime(date: Date) {
-        let dfm = DateFormatManager()
         let time = dfm.getTimeString(date: date)
         userDefaultsRepository.setStringData(key: UserDefaultsKey.NOTICE_TIME, value: time)
     }
@@ -105,6 +112,21 @@ class SettingViewModel: ObservableObject {
         let hour = Int(timeArray[safe: 0] ?? "6")
         let minute = Int(timeArray[safe: 1] ?? "0")
         return Calendar.current.date(from: DateComponents(hour: hour, minute: minute)) ?? Date()
+    }
+
+    /// 年数初期値登録
+    public func registerEntryInitYear(year: Int) {
+        userDefaultsRepository.setIntData(key: UserDefaultsKey.ENTRY_INTI_YEAR, value: year)
+    }
+
+    /// 年数初期値取得
+    public func getEntryInitYear() -> Int {
+        var year = userDefaultsRepository.getIntData(key: UserDefaultsKey.ENTRY_INTI_YEAR)
+        if year == 0 {
+            guard let nowYear = dfm.convertDateComponents(date: Date()).year else { return 2024 }
+            year = nowYear
+        }
+        return year
     }
 
     /// 通知日付フラグ登録

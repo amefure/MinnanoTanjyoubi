@@ -21,7 +21,7 @@ class User: Object, ObjectKeyIdentifiable {
 
     /// 誕生日まであとX日
     public var daysLater: Int {
-        let dfm = DateFormatManager()
+        let dfm = DateFormatUtility()
         let dateStr = dfm.getSlashString(date: date)
         let pre = dateStr.prefix(4)
         let range = dateStr.range(of: pre)
@@ -79,7 +79,7 @@ class User: Object, ObjectKeyIdentifiable {
 
     /// 12星座
     public var signOfZodiac: String {
-        let dfm = DateFormatManager()
+        let dfm = DateFormatUtility()
         let df = dfm.df
         // 年数は指定日の年数を取得→範囲を識別するため
         let thisYear = dfm.getSlashString(date: date).prefix(4)
@@ -120,7 +120,7 @@ class User: Object, ObjectKeyIdentifiable {
 
     ///  十二支
     public var zodiac: String {
-        let dfm = DateFormatManager()
+        let dfm = DateFormatUtility()
         let nowYear = dfm.getSlashString(date: date).prefix(4)
         guard let nowYearInt = Int(nowYear) else {
             // 文字列の場合
@@ -160,7 +160,7 @@ class User: Object, ObjectKeyIdentifiable {
 
 extension User {
     static var demoUsers: [User] {
-        let dfm = DateFormatManager()
+        let dfm = DateFormatUtility()
         var users: [User] = []
 
         let user = User()

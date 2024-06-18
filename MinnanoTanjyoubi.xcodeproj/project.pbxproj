@@ -48,7 +48,7 @@
 		128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */; };
 		128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */; };
 		12ACAD2529951A0E00273834 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12ACAD2429951A0E00273834 /* GoogleService-Info.plist */; };
-		12ACAD2729984D5400273834 /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateFormatManager.swift */; };
+		12ACAD2729984D5400273834 /* DateFormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateFormatUtility.swift */; };
 		12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD292998C1E100273834 /* HeaderView.swift */; };
 		12ACAD2C299C36CB00273834 /* UpSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2B299C36CB00273834 /* UpSideView.swift */; };
 		12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2D299C36DB00273834 /* DownSideView.swift */; };
@@ -71,6 +71,9 @@
 		12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */; };
 		12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB925328EEC754002BD7B2 /* TimePickerView.swift */; };
 		12D0C7FF2953B7CD002C9C4E /* NotificationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */; };
+		12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29BA2C21695800A1293D /* StaticUrls.swift */; };
+		12ED29BF2C216CA900A1293D /* YearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29BE2C216CA900A1293D /* YearPickerView.swift */; };
+		12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29C02C21958700A1293D /* EntryUserViewModel.swift */; };
 		12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */; };
 		12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A272B2DC1C600FA700E /* RealmRepository.swift */; };
 		12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A292B2DC29500FA700E /* RealmConfig.swift */; };
@@ -120,7 +123,7 @@
 		128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifyDialogView.swift; sourceTree = "<group>"; };
 		128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIApplication.swift; sourceTree = "<group>"; };
 		12ACAD2429951A0E00273834 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		12ACAD2629984D5400273834 /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
+		12ACAD2629984D5400273834 /* DateFormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatUtility.swift; sourceTree = "<group>"; };
 		12ACAD292998C1E100273834 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		12ACAD2B299C36CB00273834 /* UpSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpSideView.swift; sourceTree = "<group>"; };
 		12ACAD2D299C36DB00273834 /* DownSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownSideView.swift; sourceTree = "<group>"; };
@@ -145,6 +148,9 @@
 		12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequestManager.swift; sourceTree = "<group>"; };
 		12CB925328EEC754002BD7B2 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButtonView.swift; sourceTree = "<group>"; };
+		12ED29BA2C21695800A1293D /* StaticUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticUrls.swift; sourceTree = "<group>"; };
+		12ED29BE2C216CA900A1293D /* YearPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearPickerView.swift; sourceTree = "<group>"; };
+		12ED29C02C21958700A1293D /* EntryUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserViewModel.swift; sourceTree = "<group>"; };
 		12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryViewModel.swift; sourceTree = "<group>"; };
 		12FE3A272B2DC1C600FA700E /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		12FE3A292B2DC29500FA700E /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
@@ -205,7 +211,7 @@
 				121DEE072B1A20BF00964902 /* ExCollection.swift */,
 				12682BAB29A6CC4F00D0498F /* ColorAsset.swift */,
 				12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */,
-				12ACAD2629984D5400273834 /* DateFormatManager.swift */,
+				12ACAD2629984D5400273834 /* DateFormatUtility.swift */,
 				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
 			);
 			path = "Extension&Utility";
@@ -216,6 +222,7 @@
 			children = (
 				12CB921928E85952002BD7B2 /* SettingView.swift */,
 				12CB925328EEC754002BD7B2 /* TimePickerView.swift */,
+				12ED29BE2C216CA900A1293D /* YearPickerView.swift */,
 				12682BB829A80FFA00D0498F /* NoticeMsgView.swift */,
 				123F485A29A42083001B91B3 /* NoticeDateFlagView.swift */,
 				12ACAD33299FAE8D00273834 /* RewardButtonView.swift */,
@@ -229,6 +236,7 @@
 			children = (
 				12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */,
 				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
+				12ED29C02C21958700A1293D /* EntryUserViewModel.swift */,
 				124602472B36B62300B6C32D /* RootViewModel.swift */,
 				122401472B87738D0099BE8D /* DetailViewModel.swift */,
 				124602492B36B7BA00B6C32D /* SettingViewModel.swift */,
@@ -379,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				12CB920B28E5C884002BD7B2 /* UserModels.swift */,
+				12ED29BA2C21695800A1293D /* StaticUrls.swift */,
 				123F485729A256DB001B91B3 /* RelationEnum.swift */,
 				122401452B8769480099BE8D /* ImageError.swift */,
 				1246024D2B381ED600B6C32D /* Config */,
@@ -573,12 +582,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				12ACAD2C299C36CB00273834 /* UpSideView.swift in Sources */,
+				12ED29BF2C216CA900A1293D /* YearPickerView.swift in Sources */,
 				12682BAA29A655FF00D0498F /* ExtensionViewModifier.swift in Sources */,
 				12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */,
+				12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */,
 				12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */,
 				1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */,
+				12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */,
 				128BB9732B61500800B20172 /* SectionRowView.swift in Sources */,
-				12ACAD2729984D5400273834 /* DateFormatManager.swift in Sources */,
+				12ACAD2729984D5400273834 /* DateFormatUtility.swift in Sources */,
 				1246023F2B36A23E00B6C32D /* AppManager.swift in Sources */,
 				1224014A2B8819200099BE8D /* ImagePreviewDialog.swift in Sources */,
 				12682BB729A7963200D0498F /* UpSideUserInfoView.swift in Sources */,
@@ -763,7 +775,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -783,7 +795,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.4;
+				MARKETING_VERSION = 4.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -799,7 +811,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -819,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.4;
+				MARKETING_VERSION = 4.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

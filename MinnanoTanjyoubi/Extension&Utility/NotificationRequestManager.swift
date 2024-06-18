@@ -35,9 +35,9 @@ class NotificationRequestManager: NSObject {
         if dateFlag == "1" {
             let calendar = Calendar.current
             let modifiedDate = calendar.date(byAdding: .day, value: -1, to: date) ?? Date()
-            dateStr = DateFormatManager().getNotifyString(date: modifiedDate)
+            dateStr = DateFormatUtility().getNotifyString(date: modifiedDate)
         } else {
-            dateStr = DateFormatManager().getNotifyString(date: date)
+            dateStr = DateFormatUtility().getNotifyString(date: date)
         }
 
         // "yyyy-MM-dd"形式で取得した文字列を配列に変換

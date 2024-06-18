@@ -36,7 +36,7 @@ struct RowUserView: View {
                     .lineLimit(1)
                     .font(.system(size: DeviceSizeManager.isSESize ? changeFontSizeByLength(user.name) : 16))
 
-                Text(DateFormatManager().getJpString(date: user.date))
+                Text(DateFormatUtility().getJpString(date: user.date))
                     .font(.caption)
 
                 HStack(alignment: .bottom, spacing: 3) {

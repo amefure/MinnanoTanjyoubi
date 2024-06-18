@@ -18,14 +18,16 @@ class UserDefaultsKey {
     static let NOTICE_DATE_FLAG = "NoticeDate"
     /// 通知MSG
     static let NOTICE_MSG = "NoticeMsg"
-    ///  後何日かフラグ
+    /// 後何日かフラグ
     static let DISPLAY_DAYS_LATER = "DISPLAY_DAYS_LATER"
-    ///  年齢に何ヶ月を表示するかどうか
+    /// 年齢に何ヶ月を表示するかどうか
     static let DISPLAY_AGE_MONTH = "DISPLAY_AGE_MONTH"
-    ///  セクションレイアウト表示フラグ
+    /// セクションレイアウト表示フラグ
     static let DISPLAY_SECTION_LAYOUT = "DISPLAY_SECTION_LAYOUT"
+    /// 登録年数初期値
+    static let ENTRY_INTI_YEAR = "ENTRY_INTI_YEAR"
 
-    ///  関係名をカスタム登録
+    /// 関係名をカスタム登録
     static let DISPLAY_RELATION_FRIEND = "DISPLAY_RELATION_FRIEND"
     static let DISPLAY_RELATION_FAMILY = "DISPLAY_RELATION_FAMILY"
     static let DISPLAY_RELATION_SCHOOL = "DISPLAY_RELATION_SCHOOL"

@@ -88,6 +88,12 @@ struct SettingView: View {
                         }).tint(ColorAsset.themaColor1.thisColor)
                     }
 
+                    // 登録初期年数
+                    HStack {
+                        Image(systemName: "clock").settingIcon()
+                        YearPickerView(viewModel: viewModel)
+                    }
+
                     // 関係をカスタマイズ
                     NavigationLink {
                         UpdateRelationNameView()
@@ -130,7 +136,7 @@ struct SettingView: View {
                 // MARK: - (4)
 
                 Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。")) {
-                    if let url = URL(string: "https://apps.apple.com/jp/app/%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E8%AA%95%E7%94%9F%E6%97%A5/id1673431227?action=write-review") {
+                    if let url = URL(string: StaticUrls.APP_REVIEW_URL) {
                         // 1:レビューページ
                         Link(destination: url, label: {
                             HStack {
@@ -144,7 +150,7 @@ struct SettingView: View {
                     Button(action: {
                         viewModel.shareApp(
                             shareText: "友達の誕生日をメモできるアプリ「みんなの誕生日」を使ってみてね♪",
-                            shareLink: "https://apps.apple.com/jp/app/%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E8%AA%95%E7%94%9F%E6%97%A5/id1673431227"
+                            shareLink: StaticUrls.APP_URL
                         )
                     }) {
                         HStack {
@@ -154,7 +160,7 @@ struct SettingView: View {
                         }
                     }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
 
-                    if let url = URL(string: "https://appdev-room.com/contact") {
+                    if let url = URL(string: StaticUrls.APP_CONTACT_URL) {
                         // 3:お問い合わせフォーム
                         Link(destination: url, label: {
                             HStack {
@@ -165,7 +171,7 @@ struct SettingView: View {
                         }).listRowBackground(ColorAsset.foundationColorDark.thisColor)
                     }
 
-                    if let url = URL(string: "https://appdev-room.com/app-terms-of-service") {
+                    if let url = URL(string: StaticUrls.APP_TERMS_OF_SERVICE_URL) {
                         // 4:利用規約とプライバシーポリシー
                         Link(destination: url, label: {
                             HStack {

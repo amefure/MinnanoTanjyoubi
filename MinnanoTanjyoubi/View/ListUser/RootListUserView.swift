@@ -28,7 +28,6 @@ struct RootListUserView: View {
             // MARK: - List Contents
 
             if repository.users.count == 0 {
-                
                 Spacer()
 
                 Text("登録されている情報がありません。")
@@ -36,7 +35,7 @@ struct RootListUserView: View {
                     .foregroundStyle(.white)
 
                 Spacer()
-                
+
             } else {
                 ScrollView {
                     if rootEnvironment.sectionLayoutFlag {

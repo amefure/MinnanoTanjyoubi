@@ -8,56 +8,32 @@
 import RealmSwift
 import SwiftUI
 
-// MARK: - モーダル表示されるデータ登録ビュー
-
-// データ更新時も呼び出される
-
+/// モーダル表示されるデータ登録ビュー
+/// データ更新時も呼び出される
 struct EntryUserView: View {
-    // MARK: - Models
-
+    // ViewModel
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
+    private let viewModel = EntryUserViewModel()
 
     // Updateデータ受け取り用
     public var user: User?
 
-    // MARK: - Setting
+    // InputView
+    @State private var name = ""
+    @State private var ruby = ""
+    @State private var date = Date()
+    @State private var memo = ""
+    @State private var selectedRelation: Relation = .other
+    @State private var isAlert = true
 
-    private let isSESize: Bool = DeviceSizeManager.isSESize
-
-    // MARK: - Input View
-
-    @State var name: String = ""
-    @State var ruby: String = ""
-    @State var date: Date = .init()
-    @State var memo: String = ""
-    @State var selectedRelation: Relation = .other
-    @State var isON: Bool = false
-
-    // MARK: - View  Control
-
-    @Binding var isModal: Bool // 自信の表示モーダルフラグ
-    @State var isWheel: Bool = true // カレンダーON/OFF
-    @FocusState var isFocusActive: Bool // TextField/TextEditor ActiveFlag
-
-    // MARK: - バリデーション
-
-    private func validationInput() -> Bool {
-        if name == "" {
-            return false
-        }
-        return true
-    }
-
-    private func getNewUser() -> User {
-        let newUser = User()
-        newUser.name = name
-        newUser.ruby = ruby
-        newUser.date = date
-        newUser.relation = selectedRelation
-        newUser.memo = memo
-        newUser.alert = isON
-        return newUser
-    }
+    // 自身の表示モーダルフラグ
+    @Binding var isModal: Bool
+    // カレンダーON/OFF
+    @State private var isWheel = true
+    // バリデーションダイアログ
+    @State private var showValidationDialog = false
+    // TextField/TextEditor ActiveFlag
+    @FocusState private var isFocusActive: Bool
 
     var body: some View {
         VStack(alignment: .center) {
@@ -65,11 +41,11 @@ struct EntryUserView: View {
 
             UpSideView()
 
-            if !isSESize {
+            if !DeviceSizeManager.isSESize {
                 Spacer()
             }
 
-            VStack(spacing: isSESize ? 5 : 20) {
+            VStack(spacing: DeviceSizeManager.isSESize ? 5 : 20) {
                 // Input Name
                 HStack {
                     Text("名　　前").frame(width: 80)
@@ -108,7 +84,7 @@ struct EntryUserView: View {
                 if user == nil {
                     // MARK: - 通知ビュー
 
-                    Toggle(isOn: $isON, label: {
+                    Toggle(isOn: $isAlert, label: {
                         Text("通知")
                     }).toggleStyle(SwitchToggleStyle(tint: ColorAsset.themaColor1.thisColor))
                 }
@@ -132,7 +108,7 @@ struct EntryUserView: View {
                             }
                         }
                 }.background(ColorAsset.foundationColorLight.thisColor)
-                    .frame(minHeight: isSESize ? 60 : 90)
+                    .frame(minHeight: DeviceSizeManager.isSESize ? 60 : 90)
                     .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 3)
             }
 
@@ -141,38 +117,56 @@ struct EntryUserView: View {
             // MARK: - ViewComponent
 
             DownSideView(parentFunction: {
-                if validationInput() {
-                    if let user = user {
-                        // Update
-                        let newUser = getNewUser()
-                        repository.updateUser(id: user.id, newUser: newUser)
+                guard viewModel.validationInput(name) else {
+                    showValidationDialog = true
+                    return
+                }
+                if let user = user {
+                    // Update
+                    let newUser = viewModel.getNewUser(
+                        name: name,
+                        ruby: ruby,
+                        date: date,
+                        selectedRelation: selectedRelation,
+                        memo: memo,
+                        alert: isAlert
+                    )
+                    repository.updateUser(id: user.id, newUser: newUser)
 
-                    } else {
-                        // Create
+                } else {
+                    // Create
+                    let newUser = viewModel.getNewUser(
+                        name: name,
+                        ruby: ruby,
+                        date: date,
+                        selectedRelation: selectedRelation,
+                        memo: memo,
+                        alert: isAlert
+                    )
+                    repository.createUser(newUser: newUser)
 
-                        let newUser = getNewUser()
-                        repository.createUser(newUser: newUser)
-
-                        if isON {
-                            AppManager.sharedNotificationRequestManager.sendNotificationRequest(newUser.id, name, date)
-                        }
+                    if isAlert {
+                        AppManager.sharedNotificationRequestManager.sendNotificationRequest(newUser.id, name, date)
                     }
+                }
 
-                    isModal = false
-                } // validationInput
+                isModal = false
             }, imageString: "checkmark")
 
         }.padding()
             .background(ColorAsset.foundationColorLight.thisColor)
             .foregroundColor(.white)
             .onAppear {
-                // Update時なら初期値セット
                 if let user = user {
+                    // Update時なら初期値セット
                     name = user.name
                     ruby = user.ruby
                     date = user.date
                     selectedRelation = user.relation
                     memo = user.memo
+                } else {
+                    // 新規登録なら初期値年数を反映
+                    date = viewModel.getInitYearDate()
                 }
             }
             .onChange(of: isFocusActive, perform: { _ in
@@ -181,5 +175,14 @@ struct EntryUserView: View {
                 }
             })
             .navigationBarBackButtonHidden(true)
+            .dialog(
+                isPresented: $showValidationDialog,
+                title: "エラー",
+                message: "名前を入力してください。",
+                positiveButtonTitle: "OK",
+                positiveAction: {
+                    showValidationDialog = false
+                }
+            )
     }
 }
