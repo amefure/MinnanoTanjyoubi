@@ -1,0 +1,18 @@
+# ローカリゼーション(多言語対応)用Stringファイル
+strings:
+  inputs:
+      - MinnanoTanjyoubi/Resources/Localizable.strings
+  # テンプレート指定と保存先
+  outputs:
+    - templateName: structured-swift5
+      output: MinnanoTanjyoubi/Generated/Strings.swift
+# 画像やカラーコードなどのAssetsリソース
+xcassets:
+  # 画像やカラーなど
+  inputs:
+    - MinnanoTanjyoubi/Resources/Images.xcassets
+    - MinnanoTanjyoubi/Resources/Colors.xcassets
+  # テンプレート指定と保存先
+  outputs:
+    - templateName: swift5
+      output: MinnanoTanjyoubi/Generated/Assets.swift

@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct DownSideView: View {
-    // MARK: - Setting
-
     private let deviceWidth = DeviceSizeManager.deviceWidth
     private let isiPadSize = DeviceSizeManager.isiPadSize
     private let isSESize = DeviceSizeManager.isiPadSize
@@ -33,7 +31,7 @@ struct DownSideView: View {
     var body: some View {
         HStack {
             Rectangle()
-                .foregroundColor(ColorAsset.foundationColorDark.thisColor)
+                .foregroundColor(Asset.Colors.foundationColorDark.swiftUIColor)
                 .frame(width: isiPadSize ? deviceWidth * 0.6 : deviceWidth * 0.8, height: viewSize)
                 .cornerRadius(50)
                 .offset(x: isiPadSize ? -110 : -30)
@@ -47,7 +45,7 @@ struct DownSideView: View {
                     .font(isSESize ? .caption : .none)
 
             }).frame(width: viewSize, height: viewSize)
-                .background(ColorAsset.foundationColorDark.thisColor)
+                .background(Asset.Colors.foundationColorDark.swiftUIColor)
                 .cornerRadius(50)
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
 

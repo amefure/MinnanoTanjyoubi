@@ -27,7 +27,7 @@ struct AppLockInputView: View {
 
             Text("パスワード登録")
                 .fontWeight(.bold)
-                .foregroundStyle(ColorAsset.foundationColorDark.thisColor)
+                .foregroundStyle(Asset.Colors.foundationColorDark.swiftUIColor)
 
             Spacer()
 
@@ -45,14 +45,14 @@ struct AppLockInputView: View {
                     .fontWeight(.bold)
                     .padding(10)
                     .frame(width: 100)
-                    .background(password.count != 4 ? ColorAsset.foundationColorLight.thisColor : ColorAsset.themaColor3.thisColor)
+                    .background(password.count != 4 ? Asset.Colors.foundationColorLight.swiftUIColor : Asset.Colors.themaColor3.swiftUIColor)
                     .foregroundStyle(password.count != 4 ? .gray : .white)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(style: StrokeStyle(lineWidth: 2))
                             .frame(width: 100)
-                            .foregroundStyle(password.count != 4 ? .gray : ColorAsset.themaColor3.thisColor)
+                            .foregroundStyle(password.count != 4 ? .gray : Asset.Colors.themaColor3.swiftUIColor)
                     }.padding(.vertical, 20)
                     .shadow(color: password.count != 4 ? .clear : .gray, radius: 3, x: 4, y: 4)
 
@@ -68,7 +68,7 @@ struct AppLockInputView: View {
             } else {
                 isLock = false
             }
-        }.background(ColorAsset.foundationColorLight.thisColor)
+        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
     }
 }
 

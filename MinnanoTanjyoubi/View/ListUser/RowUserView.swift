@@ -8,11 +8,8 @@
 import RealmSwift
 import SwiftUI
 
-// MARK: - リスト表示させる1行単位のビュー
-
+/// リスト表示させる1行単位のビュー
 struct RowUserView: View {
-    // MARK: - Models
-
     public var user: User
 
     @State private var isDisplayDateLater = false
@@ -53,7 +50,7 @@ struct RowUserView: View {
                 HStack(alignment: .bottom) {
                     if user.daysLater == 0 {
                         Text(DeviceSizeManager.isSESize ? "HAPPY\nBIRTHDAY" : "HAPPY BIRTHDAY")
-                            .foregroundStyle(ColorAsset.themaColor4.thisColor)
+                            .foregroundStyle(Asset.Colors.themaColor4.swiftUIColor)
                             .fontWeight(.bold)
                             .frame(height: 25)
                             .font(DeviceSizeManager.isSESize ? .system(size: 10) : .caption)
@@ -65,13 +62,13 @@ struct RowUserView: View {
                             Text("あと")
                             Text("\(month)")
                                 .font(.title2)
-                                .foregroundColor(ColorAsset.themaColor4.thisColor)
+                                .foregroundColor(Asset.Colors.themaColor4.swiftUIColor)
                             Text("ヶ月")
                         } else {
                             Text("あと")
                             Text("\(user.daysLater)")
                                 .font(.title2)
-                                .foregroundColor(ColorAsset.themaColor4.thisColor)
+                                .foregroundColor(Asset.Colors.themaColor4.swiftUIColor)
                             Text("日")
                         }
                     }
@@ -85,7 +82,7 @@ struct RowUserView: View {
             }.padding(5)
                 .frame(height: 130)
                 .frame(maxWidth: DeviceSizeManager.deviceWidth / 3)
-                .background(ColorAsset.foundationColorDark.thisColor)
+                .background(Asset.Colors.foundationColorDark.swiftUIColor)
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
@@ -104,15 +101,15 @@ struct GarlandView: View {
         HStack {
             HStack(spacing: 0) {
                 FlattenedTriangle()
-                    .fill(ColorAsset.themaColor1.thisColor)
+                    .fill(Asset.Colors.themaColor1.swiftUIColor)
                     .frame(width: 15, height: 1)
 
                 FlattenedTriangle()
-                    .fill(ColorAsset.themaColor2.thisColor)
+                    .fill(Asset.Colors.themaColor2.swiftUIColor)
                     .frame(width: 15, height: 1)
 
                 FlattenedTriangle()
-                    .fill(ColorAsset.themaColor3.thisColor)
+                    .fill(Asset.Colors.themaColor3.swiftUIColor)
                     .frame(width: 15, height: 1)
             }.rotationEffect(Angle(degrees: 140.0))
 
@@ -120,15 +117,15 @@ struct GarlandView: View {
 
             HStack(spacing: 0) {
                 FlattenedTriangle()
-                    .fill(ColorAsset.themaColor3.thisColor)
+                    .fill(Asset.Colors.themaColor3.swiftUIColor)
                     .frame(width: 15, height: 1)
 
                 FlattenedTriangle()
-                    .fill(ColorAsset.themaColor2.thisColor)
+                    .fill(Asset.Colors.themaColor2.swiftUIColor)
                     .frame(width: 15, height: 1)
 
                 FlattenedTriangle()
-                    .fill(ColorAsset.themaColor1.thisColor)
+                    .fill(Asset.Colors.themaColor1.swiftUIColor)
                     .frame(width: 15, height: 1)
             }.rotationEffect(Angle(degrees: -140.0))
 

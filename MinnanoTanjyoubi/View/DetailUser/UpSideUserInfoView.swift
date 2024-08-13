@@ -42,7 +42,7 @@ struct UpSideUserInfoView: View {
                     .frame(minWidth: roundWidth, alignment: .center)
                     .frame(maxWidth: roundWidth * 1.5)
                     .lineLimit(1)
-                    .background(ColorAsset.foundationColorDark.thisColor)
+                    .background(Asset.Colors.foundationColorDark.swiftUIColor)
                     .cornerRadius(5)
                     .font(isSESize ? .caption : .none)
 
@@ -51,20 +51,20 @@ struct UpSideUserInfoView: View {
                 HStack(alignment: .bottom) {
                     if user.daysLater == 0 {
                         Text("HAPPY BIRTHDAY")
-                            .foregroundStyle(ColorAsset.themaColor4.thisColor)
+                            .foregroundStyle(Asset.Colors.themaColor4.swiftUIColor)
                             .fontWeight(.bold)
 
                     } else {
                         Text("あと")
                         Text("\(user.daysLater)")
-                            .foregroundColor(ColorAsset.themaColor1.thisColor)
+                            .foregroundColor(Asset.Colors.themaColor1.swiftUIColor)
                         Text("日")
                     }
 
                 }.padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: roundWidth, alignment: .center)
-                    .background(ColorAsset.foundationColorDark.thisColor)
+                    .background(Asset.Colors.foundationColorDark.swiftUIColor)
                     .cornerRadius(5)
                     .font(isSESize ? .caption : .none)
             }

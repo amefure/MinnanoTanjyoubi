@@ -30,8 +30,8 @@ struct SortedButtonView: View {
             }
         } label: {
             Image(systemName: "person.2.crop.square.stack")
-                .circleBorderView(width: 50, height: 50, color: ColorAsset.themaColor4.thisColor)
-                .foregroundColor(isSorted ? ColorAsset.themaColor2.thisColor : .white)
+                .circleBorderView(width: 50, height: 50, color: Asset.Colors.themaColor4.swiftUIColor)
+                .foregroundColor(isSorted ? Asset.Colors.themaColor2.swiftUIColor : .white)
         }
         .onChange(of: selectedRelation) { newValue in
             repository.filteringUser(selectedRelation: newValue)

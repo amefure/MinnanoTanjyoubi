@@ -66,7 +66,7 @@ struct AppLockView: View {
             RootView()
         }
         .onAppear { viewModel.onAppear() }
-        .background(ColorAsset.foundationColorLight.thisColor)
+        .background(Asset.Colors.foundationColorLight.swiftUIColor)
     }
 }
 
@@ -146,7 +146,7 @@ struct NumberKeyboardView: View {
                 } label: {
                     Image(systemName: "delete.backward")
                         .frame(width: DeviceSizeManager.deviceWidth / 3, height: height)
-                        .background(ColorAsset.foundationColorDark.thisColor)
+                        .background(Asset.Colors.foundationColorDark.swiftUIColor)
                 }
             }
         }.foregroundStyle(.white)
@@ -186,7 +186,7 @@ struct NumberButton: View {
         } label: {
             Text(number)
                 .frame(width: DeviceSizeManager.deviceWidth / 3, height: height)
-                .background(ColorAsset.foundationColorDark.thisColor)
+                .background(Asset.Colors.foundationColorDark.swiftUIColor)
         }
     }
 }

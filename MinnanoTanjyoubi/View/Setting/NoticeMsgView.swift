@@ -23,7 +23,7 @@ struct NoticeMsgView: View {
         var attributedString = AttributedString(str)
 
         if let range = attributedString.range(of: NotifyConfig.VARIABLE_USER_NAME) {
-            attributedString[range].foregroundColor = ColorAsset.themaColor3.thisColor
+            attributedString[range].foregroundColor = Asset.Colors.themaColor3.swiftUIColor
         }
         return attributedString
     }
@@ -34,7 +34,7 @@ struct NoticeMsgView: View {
                 TextField("Message...", text: $text)
                     .onChange(of: text) { newValue in
                         viewModel.registerNotifyMsg(msg: newValue)
-                    }.foregroundColor(ColorAsset.themaColor1.thisColor)
+                    }.foregroundColor(Asset.Colors.themaColor1.swiftUIColor)
                     .focused($isFocusActive)
             } else {
                 Text(getAttributedString(text))
@@ -47,7 +47,7 @@ struct NoticeMsgView: View {
                 Text(isEdit ? "更新" : "編集").font(.none)
             }.padding(5)
                 .frame(width: 55)
-                .background(isEdit ? ColorAsset.themaColor1.thisColor : ColorAsset.foundationColorLight.thisColor)
+                .background(isEdit ? Asset.Colors.themaColor1.swiftUIColor : Asset.Colors.foundationColorLight.swiftUIColor)
                 .clipShape(RoundedRectangle(cornerRadius: 5))
                 .opacity(0.7)
 

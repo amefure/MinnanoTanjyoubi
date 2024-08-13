@@ -35,13 +35,13 @@ struct MiddleUserInfoView: View {
                 if isDisplayAgeMonth {
                     Text("\(user.currentAgeMonth)ヶ月")
                 }
-            }.circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor2.thisColor)
+            }.circleBorderView(width: roundWidth, height: roundWidth, color: Asset.Colors.themaColor2.swiftUIColor)
 
             Text(user.signOfZodiac)
-                .circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor4.thisColor)
+                .circleBorderView(width: roundWidth, height: roundWidth, color: Asset.Colors.themaColor4.swiftUIColor)
 
             Text(user.zodiac)
-                .circleBorderView(width: roundWidth, height: roundWidth, color: ColorAsset.themaColor3.thisColor)
+                .circleBorderView(width: roundWidth, height: roundWidth, color: Asset.Colors.themaColor3.swiftUIColor)
 
         }.font(isSESize ? .caption : .none)
             .onAppear {

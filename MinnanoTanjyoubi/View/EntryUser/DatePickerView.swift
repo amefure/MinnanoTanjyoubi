@@ -50,7 +50,7 @@ struct DatePickerView: View {
             }, label: {
                 Text(isWheel ? "変更" : "決定")
                     .padding(3)
-                    .background(isWheel ? ColorAsset.themaColor2.thisColor : ColorAsset.themaColor3.thisColor).opacity(0.8)
+                    .background(isWheel ? Asset.Colors.themaColor2.swiftUIColor : Asset.Colors.themaColor3.swiftUIColor).opacity(0.8)
                     .cornerRadius(5)
             }).padding([.leading, .top, .bottom])
         }

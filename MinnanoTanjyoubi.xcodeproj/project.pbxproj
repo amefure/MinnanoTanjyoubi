@@ -54,9 +54,13 @@
 		12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2D299C36DB00273834 /* DownSideView.swift */; };
 		12ACAD32299EDD6200273834 /* DeviceSizeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */; };
 		12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD33299FAE8D00273834 /* RewardButtonView.swift */; };
+		12BA5F0F2C6BA03800E1DDF2 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12BA5F0E2C6BA03800E1DDF2 /* Colors.xcassets */; };
+		12BA5F112C6BA08A00E1DDF2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12BA5F102C6BA08A00E1DDF2 /* Localizable.strings */; };
+		12BA5F142C6BA0A600E1DDF2 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA5F122C6BA0A600E1DDF2 /* Assets.swift */; };
+		12BA5F152C6BA0A600E1DDF2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA5F132C6BA0A600E1DDF2 /* Strings.swift */; };
 		12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */; };
 		12CB91FF28E5C6E1002BD7B2 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB91FE28E5C6E1002BD7B2 /* RootView.swift */; };
-		12CB920128E5C6E1002BD7B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CB920028E5C6E1002BD7B2 /* Assets.xcassets */; };
+		12CB920128E5C6E1002BD7B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CB920028E5C6E1002BD7B2 /* Images.xcassets */; };
 		12CB920428E5C6E1002BD7B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CB920328E5C6E1002BD7B2 /* Preview Assets.xcassets */; };
 		12CB920C28E5C884002BD7B2 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB920B28E5C884002BD7B2 /* UserModels.swift */; };
 		12CB920F28E5C89B002BD7B2 /* AdMobViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB920E28E5C89B002BD7B2 /* AdMobViewModels.swift */; };
@@ -129,10 +133,14 @@
 		12ACAD2D299C36DB00273834 /* DownSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownSideView.swift; sourceTree = "<group>"; };
 		12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSizeManager.swift; sourceTree = "<group>"; };
 		12ACAD33299FAE8D00273834 /* RewardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardButtonView.swift; sourceTree = "<group>"; };
+		12BA5F0E2C6BA03800E1DDF2 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		12BA5F102C6BA08A00E1DDF2 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		12BA5F122C6BA0A600E1DDF2 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		12BA5F132C6BA0A600E1DDF2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		12CB91F928E5C6E0002BD7B2 /* MinnanoTanjyoubi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinnanoTanjyoubi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinnanoTanjyoubiApp.swift; sourceTree = "<group>"; };
 		12CB91FE28E5C6E1002BD7B2 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		12CB920028E5C6E1002BD7B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		12CB920028E5C6E1002BD7B2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		12CB920328E5C6E1002BD7B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12CB920A28E5C7E3002BD7B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		12CB920B28E5C884002BD7B2 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
@@ -340,6 +348,25 @@
 			path = Dialog;
 			sourceTree = "<group>";
 		};
+		12BA5F0C2C6BA01300E1DDF2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				12BA5F102C6BA08A00E1DDF2 /* Localizable.strings */,
+				12CB920028E5C6E1002BD7B2 /* Images.xcassets */,
+				12BA5F0E2C6BA03800E1DDF2 /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		12BA5F0D2C6BA01A00E1DDF2 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				12BA5F132C6BA0A600E1DDF2 /* Strings.swift */,
+				12BA5F122C6BA0A600E1DDF2 /* Assets.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		12CB91F028E5C6E0002BD7B2 = {
 			isa = PBXGroup;
 			children = (
@@ -362,14 +389,15 @@
 			isa = PBXGroup;
 			children = (
 				12CB920A28E5C7E3002BD7B2 /* Info.plist */,
+				12ACAD2429951A0E00273834 /* GoogleService-Info.plist */,
 				122FF36D2B97561300EF4680 /* PrivacyInfo.xcprivacy */,
+				12BA5F0D2C6BA01A00E1DDF2 /* Generated */,
+				12BA5F0C2C6BA01300E1DDF2 /* Resources */,
 				121DEE062B1A20AC00964902 /* Extension&Utility */,
 				12CB920D28E5C886002BD7B2 /* Models */,
 				121DEE022B1A1EFB00964902 /* View */,
 				123F485229A1D967001B91B3 /* ViewModel */,
 				121DEE032B1A1FF500964902 /* Repository */,
-				12CB920028E5C6E1002BD7B2 /* Assets.xcassets */,
-				12ACAD2429951A0E00273834 /* GoogleService-Info.plist */,
 				12CB920228E5C6E1002BD7B2 /* Preview Content */,
 			);
 			path = MinnanoTanjyoubi;
@@ -507,8 +535,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12BA5F0F2C6BA03800E1DDF2 /* Colors.xcassets in Resources */,
+				12BA5F112C6BA08A00E1DDF2 /* Localizable.strings in Resources */,
 				12CB920428E5C6E1002BD7B2 /* Preview Assets.xcassets in Resources */,
-				12CB920128E5C6E1002BD7B2 /* Assets.xcassets in Resources */,
+				12CB920128E5C6E1002BD7B2 /* Images.xcassets in Resources */,
 				122FF36E2B97561300EF4680 /* PrivacyInfo.xcprivacy in Resources */,
 				12ACAD2529951A0E00273834 /* GoogleService-Info.plist in Resources */,
 			);
@@ -587,6 +617,7 @@
 				12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */,
 				12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */,
 				12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */,
+				12BA5F142C6BA0A600E1DDF2 /* Assets.swift in Sources */,
 				1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */,
 				12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */,
 				128BB9732B61500800B20172 /* SectionRowView.swift in Sources */,
@@ -602,6 +633,7 @@
 				12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */,
 				12CB920C28E5C884002BD7B2 /* UserModels.swift in Sources */,
 				12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */,
+				12BA5F152C6BA0A600E1DDF2 /* Strings.swift in Sources */,
 				124602432B36A92C00B6C32D /* AppLockViewModel.swift in Sources */,
 				128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */,
 				12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */,

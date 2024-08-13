@@ -19,8 +19,8 @@ struct RelationPickerView: View {
         }.pickerStyle(.menu)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(ColorAsset.foundationColorDark.thisColor.opacity(0.4), lineWidth: 2)
-            ).tint(ColorAsset.foundationColorDark.thisColor)
+                    .stroke(Asset.Colors.foundationColorDark.swiftUIColor.opacity(0.4), lineWidth: 2)
+            ).tint(Asset.Colors.foundationColorDark.swiftUIColor)
     }
 }
 

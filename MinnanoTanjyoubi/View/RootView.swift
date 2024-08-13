@@ -11,20 +11,16 @@ import SwiftUI
 struct RootView: View {
     var body: some View {
         VStack(spacing: 0) {
-            // MARK: - Header Contents
-
+            // Header Contents
             HeaderView()
 
-            // MARK: - Main Contents
-
+            // Main Contents
             RootListUserView()
-
-            // MARK: - AdMob
 
             AdMobBannerView()
                 .frame(height: 50)
 
-        }.background(ColorAsset.foundationColorLight.thisColor)
+        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
             .ignoresSafeArea(.keyboard)
             .navigationBarBackButtonHidden()
             .navigationBarHidden(true)

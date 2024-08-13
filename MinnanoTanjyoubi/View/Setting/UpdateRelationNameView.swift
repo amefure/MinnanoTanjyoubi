@@ -70,7 +70,7 @@ struct UpdateRelationNameView: View {
             AdMobBannerView()
                 .frame(height: 60)
 
-        }.background(ColorAsset.foundationColorLight.thisColor)
+        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
             .navigationBarBackButtonHidden()
             .onAppear {
                 let list = rootEnvironment.relationNameList

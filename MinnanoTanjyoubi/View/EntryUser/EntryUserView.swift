@@ -86,14 +86,18 @@ struct EntryUserView: View {
 
                     Toggle(isOn: $isAlert, label: {
                         Text("通知")
-                    }).toggleStyle(SwitchToggleStyle(tint: ColorAsset.themaColor1.thisColor))
+                    }).toggleStyle(SwitchToggleStyle(tint: Asset.Colors.themaColor1.swiftUIColor))
                 }
 
-                Text("MEMO").foregroundColor(ColorAsset.foundationColorDark.thisColor).fontWeight(.bold).opacity(0.8)
+                Text("MEMO")
+                    .foregroundColor(Asset.Colors.foundationColorDark.swiftUIColor)
+                    .fontWeight(.bold)
+                    .opacity(0.8)
+
                 NavigationStack {
                     TextEditor(text: $memo)
                         .padding(5)
-                        .background(ColorAsset.foundationColorLight.thisColor)
+                        .background(Asset.Colors.foundationColorLight.swiftUIColor)
                         .focused($isFocusActive)
                         .scrollContentBackground(.hidden)
                         .toolbar {
@@ -107,9 +111,9 @@ struct EntryUserView: View {
                                 }
                             }
                         }
-                }.background(ColorAsset.foundationColorLight.thisColor)
+                }.background(Asset.Colors.foundationColorLight.swiftUIColor)
                     .frame(minHeight: DeviceSizeManager.isSESize ? 60 : 90)
-                    .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 3)
+                    .overBorder(radius: 5, color: Asset.Colors.foundationColorDark.swiftUIColor, opacity: 0.4, lineWidth: 3)
             }
 
             Spacer()
@@ -154,7 +158,7 @@ struct EntryUserView: View {
             }, imageString: "checkmark")
 
         }.padding()
-            .background(ColorAsset.foundationColorLight.thisColor)
+            .background(Asset.Colors.foundationColorLight.swiftUIColor)
             .foregroundColor(.white)
             .onAppear {
                 if let user = user {

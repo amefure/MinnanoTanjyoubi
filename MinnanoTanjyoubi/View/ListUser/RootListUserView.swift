@@ -9,15 +9,12 @@ import RealmSwift
 import SwiftUI
 import UIKit
 
-// MARK: - データをリスト表示するビュー
-
+/// データをリスト表示するビュー
 struct RootListUserView: View {
-    // MARK: - Models
-
+    // Models
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
-    // MARK: - Environment
-
+    // Environment
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     @State private var isDeleteAlert = false
@@ -25,12 +22,11 @@ struct RootListUserView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // MARK: - List Contents
-
+            // List Contents
             if repository.users.count == 0 {
                 Spacer()
 
-                Text("登録されている情報がありません。")
+                Text("登録されている誕生日情報がありません。")
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
 
@@ -48,15 +44,14 @@ struct RootListUserView: View {
                 }.padding([.top, .trailing, .leading])
             }
 
-            // MARK: - ControlPanel
-
+            // ControlPanel
             ControlPanelView(isDeleteAlert: $isDeleteAlert, isLimitAlert: $isLimitAlert)
 
-        }.background(ColorAsset.foundationColorLight.thisColor)
+        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
             .dialog(
                 isPresented: $isDeleteAlert,
                 title: "お知らせ",
-                message: "選択したユーザーを\n削除しますか？",
+                message: "選択した誕生日情報を\n削除しますか？",
                 positiveButtonTitle: "削除",
                 negativeButtonTitle: "キャンセル",
                 positiveAction: {

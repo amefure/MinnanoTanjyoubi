@@ -56,7 +56,7 @@ struct SettingView: View {
                         NoticeMsgView(viewModel: viewModel)
                     }
 
-                }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
+                }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
 
                 // MARK: - (2)
 
@@ -74,7 +74,7 @@ struct SettingView: View {
                             viewModel.registerDisplayDaysLater(flag: newValue)
                         }).toggleStyle(.button)
                             .opacity(0.9)
-                            .background(isDaysLaterFlag ? ColorAsset.themaColor3.thisColor : ColorAsset.themaColor2.thisColor)
+                            .background(isDaysLaterFlag ? Asset.Colors.themaColor3.swiftUIColor : Asset.Colors.themaColor2.swiftUIColor)
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                     }
 
@@ -85,7 +85,7 @@ struct SettingView: View {
                             Text("年齢の⚪︎ヶ月を表示する")
                         }.onChange(of: isAgeMonthFlag, perform: { newValue in
                             viewModel.registerDisplayAgeMonth(flag: newValue)
-                        }).tint(ColorAsset.themaColor1.thisColor)
+                        }).tint(Asset.Colors.themaColor1.swiftUIColor)
                     }
 
                     // 登録初期年数
@@ -115,11 +115,11 @@ struct SettingView: View {
                             } else {
                                 viewModel.deletePassword()
                             }
-                        }).tint(ColorAsset.themaColor1.thisColor)
+                        }).tint(Asset.Colors.themaColor1.swiftUIColor)
                     }.sheet(isPresented: $viewModel.isShowPassInput, content: {
                         AppLockInputView(isLock: $isLock)
                     })
-                }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
+                }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
 
                 // MARK: - (3)
 
@@ -131,7 +131,7 @@ struct SettingView: View {
                         Image(systemName: "bag").settingIcon()
                         Text("現在の容量:\(viewModel.getCapacity())人")
                     }
-                }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
+                }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
 
                 // MARK: - (4)
 
@@ -143,7 +143,7 @@ struct SettingView: View {
                                 Image(systemName: "hand.thumbsup").settingIcon()
                                 Text("アプリをレビューする")
                             }
-                        }).listRowBackground(ColorAsset.foundationColorDark.thisColor)
+                        }).listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
                     }
 
                     // 2:シェアボタン
@@ -158,7 +158,7 @@ struct SettingView: View {
                                 .settingIcon()
                             Text("「みんなの誕生日」をオススメする")
                         }
-                    }.listRowBackground(ColorAsset.foundationColorDark.thisColor)
+                    }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
 
                     if let url = URL(string: StaticUrls.APP_CONTACT_URL) {
                         // 3:お問い合わせフォーム
@@ -168,7 +168,7 @@ struct SettingView: View {
                                 Text("アプリの不具合はこちら")
                                 Image(systemName: "link").font(.caption)
                             }
-                        }).listRowBackground(ColorAsset.foundationColorDark.thisColor)
+                        }).listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
                     }
 
                     if let url = URL(string: StaticUrls.APP_TERMS_OF_SERVICE_URL) {
@@ -179,13 +179,13 @@ struct SettingView: View {
                                 Text("利用規約とプライバシーポリシー")
                                 Image(systemName: "link").font(.caption)
                             }
-                        }).listRowBackground(ColorAsset.foundationColorDark.thisColor)
+                        }).listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
                     }
                 }
 
             }.listStyle(GroupedListStyle())
                 .scrollContentBackground(.hidden)
-                .background(ColorAsset.foundationColorLight.thisColor)
+                .background(Asset.Colors.foundationColorLight.swiftUIColor)
                 .foregroundColor(.white)
             // List ここまで
 
@@ -201,7 +201,7 @@ struct SettingView: View {
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        .background(ColorAsset.foundationColorLight.thisColor)
+        .background(Asset.Colors.foundationColorLight.swiftUIColor)
         .dialog(
             isPresented: $viewModel.isAlertReward,
             title: "お知らせ",

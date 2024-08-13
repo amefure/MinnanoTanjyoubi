@@ -7,22 +7,16 @@
 
 import SwiftUI
 
-// MARK: - 通知登録ビュー
-
+/// 通知登録ビュー
 struct NotificationButtonView: View {
-    // MARK: - Models
 
     @State var user: User
 
-    // MARK: - Repository
-
+    // Repository
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
-    // MARK: - View
-
-    @State var isON: Bool = false
-
-    // MARK: - Setting
+    // View
+    @State private var isON = false
 
     private let deviceWidth = DeviceSizeManager.deviceWidth
     private let isSESize = DeviceSizeManager.isSESize
@@ -30,7 +24,7 @@ struct NotificationButtonView: View {
     var body: some View {
         Toggle(isOn: $isON, label: {
             Text("通知")
-        }).toggleStyle(SwitchToggleStyle(tint: ColorAsset.themaColor1.thisColor))
+        }).toggleStyle(SwitchToggleStyle(tint: Asset.Colors.themaColor1.swiftUIColor))
             .onChange(of: isON) { newValue in
                 if newValue {
                     // 通知を登録
@@ -44,7 +38,9 @@ struct NotificationButtonView: View {
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: false)
                 }
-            }.frame(width: deviceWidth - 60).padding(isSESize ? 5 : 10)
+            }
+            .frame(width: deviceWidth - 60)
+            .padding(isSESize ? 5 : 10)
             .onAppear {
                 // 初期値セット
                 isON = user.alert

@@ -58,7 +58,7 @@ struct DetailUserView: View {
                     .frame(width: deviceWidth - 40)
                     .frame(minHeight: isSESize ? 130 : 180)
                     .frame(maxHeight: isSESize ? 130 : 180)
-                    .overBorder(radius: 5, color: ColorAsset.foundationColorDark.thisColor, opacity: 0.4, lineWidth: 2)
+                    .overBorder(radius: 5, color: Asset.Colors.foundationColorDark.swiftUIColor, opacity: 0.4, lineWidth: 2)
 
             }.padding(isSESize ? 5 : 10)
 
@@ -84,7 +84,7 @@ struct DetailUserView: View {
                     .frame(height: 50)
             }
 
-        }.background(ColorAsset.foundationColorLight.thisColor)
+        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
             .foregroundColor(.white)
             .toolbar(.hidden, for: .navigationBar)
             .dialog(

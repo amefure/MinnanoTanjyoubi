@@ -29,7 +29,7 @@ struct SettingIcon: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(width: 30)
-            .foregroundColor(ColorAsset.themaColor1.thisColor)
+            .foregroundColor(Asset.Colors.themaColor1.swiftUIColor)
     }
 }
 

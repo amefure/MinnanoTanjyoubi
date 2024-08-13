@@ -32,6 +32,6 @@ struct RemoveButtonView: View {
             }
         }, label: {
             Image(systemName: rootEnvironment.isDeleteMode ? "trash" : "app.badge.checkmark")
-        }).circleBorderView(width: 50, height: 50, color: ColorAsset.themaColor2.thisColor)
+        }).circleBorderView(width: 50, height: 50, color: Asset.Colors.themaColor2.swiftUIColor)
     }
 }
