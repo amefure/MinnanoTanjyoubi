@@ -9,7 +9,6 @@ import SwiftUI
 
 /// 通知登録ビュー
 struct NotificationButtonView: View {
-
     @State var user: User
 
     // Repository

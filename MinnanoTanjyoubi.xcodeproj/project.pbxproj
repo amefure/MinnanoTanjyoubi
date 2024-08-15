@@ -33,7 +33,6 @@
 		1246024F2B381EEF00B6C32D /* NotifyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246024E2B381EEF00B6C32D /* NotifyConfig.swift */; };
 		124602532B38490A00B6C32D /* AppLockInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602522B38490A00B6C32D /* AppLockInputViewModel.swift */; };
 		12682BAA29A655FF00D0498F /* ExtensionViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BA929A655FF00D0498F /* ExtensionViewModifier.swift */; };
-		12682BAC29A6CC4F00D0498F /* ColorAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAB29A6CC4F00D0498F /* ColorAsset.swift */; };
 		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
 		12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB029A785EE00D0498F /* SortedButtonView.swift */; };
 		12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB229A788A200D0498F /* EntryButtonView.swift */; };
@@ -71,7 +70,6 @@
 		12CB921A28E85952002BD7B2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921928E85952002BD7B2 /* SettingView.swift */; };
 		12CB921E28E9223C002BD7B2 /* RelationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921D28E9223C002BD7B2 /* RelationPickerView.swift */; };
 		12CB922028E92293002BD7B2 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921F28E92293002BD7B2 /* DatePickerView.swift */; };
-		12CB922628EB134D002BD7B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB922528EB134D002BD7B2 /* AppDelegate.swift */; };
 		12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */; };
 		12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB925328EEC754002BD7B2 /* TimePickerView.swift */; };
 		12D0C7FF2953B7CD002C9C4E /* NotificationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */; };
@@ -112,7 +110,6 @@
 		1246024E2B381EEF00B6C32D /* NotifyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyConfig.swift; sourceTree = "<group>"; };
 		124602522B38490A00B6C32D /* AppLockInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockInputViewModel.swift; sourceTree = "<group>"; };
 		12682BA929A655FF00D0498F /* ExtensionViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewModifier.swift; sourceTree = "<group>"; };
-		12682BAB29A6CC4F00D0498F /* ColorAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAsset.swift; sourceTree = "<group>"; };
 		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
 		12682BB029A785EE00D0498F /* SortedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedButtonView.swift; sourceTree = "<group>"; };
 		12682BB229A788A200D0498F /* EntryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryButtonView.swift; sourceTree = "<group>"; };
@@ -152,7 +149,6 @@
 		12CB921928E85952002BD7B2 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		12CB921D28E9223C002BD7B2 /* RelationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationPickerView.swift; sourceTree = "<group>"; };
 		12CB921F28E92293002BD7B2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
-		12CB922528EB134D002BD7B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequestManager.swift; sourceTree = "<group>"; };
 		12CB925328EEC754002BD7B2 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButtonView.swift; sourceTree = "<group>"; };
@@ -212,15 +208,10 @@
 		121DEE062B1A20AC00964902 /* Extension&Utility */ = {
 			isa = PBXGroup;
 			children = (
-				12CB922528EB134D002BD7B2 /* AppDelegate.swift */,
-				122401432B87691E0099BE8D /* ImageFileManager.swift */,
-				1246023E2B36A23E00B6C32D /* AppManager.swift */,
 				128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */,
 				121DEE072B1A20BF00964902 /* ExCollection.swift */,
-				12682BAB29A6CC4F00D0498F /* ColorAsset.swift */,
 				12ACAD31299EDD6200273834 /* DeviceSizeManager.swift */,
 				12ACAD2629984D5400273834 /* DateFormatUtility.swift */,
-				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
 			);
 			path = "Extension&Utility";
 			sourceTree = "<group>";
@@ -367,6 +358,16 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		12BA5F162C6BA3E500E1DDF2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1246023E2B36A23E00B6C32D /* AppManager.swift */,
+				122401432B87691E0099BE8D /* ImageFileManager.swift */,
+				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		12CB91F028E5C6E0002BD7B2 = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +398,7 @@
 				12CB920D28E5C886002BD7B2 /* Models */,
 				121DEE022B1A1EFB00964902 /* View */,
 				123F485229A1D967001B91B3 /* ViewModel */,
+				12BA5F162C6BA3E500E1DDF2 /* Managers */,
 				121DEE032B1A1FF500964902 /* Repository */,
 				12CB920228E5C6E1002BD7B2 /* Preview Content */,
 			);
@@ -627,7 +629,6 @@
 				12682BB729A7963200D0498F /* UpSideUserInfoView.swift in Sources */,
 				12CB91FF28E5C6E1002BD7B2 /* RootView.swift in Sources */,
 				12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */,
-				12682BAC29A6CC4F00D0498F /* ColorAsset.swift in Sources */,
 				123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */,
 				1246024F2B381EEF00B6C32D /* NotifyConfig.swift in Sources */,
 				12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */,
@@ -659,7 +660,6 @@
 				121DEE012B198D4600964902 /* AppLockView.swift in Sources */,
 				12FE3A2C2B2DCC7100FA700E /* RootEnvironment.swift in Sources */,
 				12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */,
-				12CB922628EB134D002BD7B2 /* AppDelegate.swift in Sources */,
 				12CB921828E858DF002BD7B2 /* DetailUserView.swift in Sources */,
 				1224013E2B8720FA0099BE8D /* ImagePickerDialog.swift in Sources */,
 				1246024C2B36BCE500B6C32D /* AdsConfig.swift in Sources */,
