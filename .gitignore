@@ -61,7 +61,7 @@ fastlane/test_output
 fastlane/AppFile
 fastlane/Deliverfile
 fastlane/Deliverfile
-fastlane/review_information/*
+fastlane/metadata/review_information/*
 
 
 # Code Injection
