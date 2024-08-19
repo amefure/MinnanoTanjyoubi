@@ -52,10 +52,17 @@ Dependencies/
 .accio/
 
 # fastlane
+AuthKey*
+fastlane/.env
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+fastlane/AppFile
+fastlane/Deliverfile
+fastlane/Deliverfile
+fastlane/review_information/*
+
 
 # Code Injection
 iOSInjectionProject/

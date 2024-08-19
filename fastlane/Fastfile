@@ -1,0 +1,58 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "App Store Connectにアップロード"
+  lane :release do
+    # 1.ビルド番号インクリメント
+    increment_build_number
+    # 2.自動署名
+    automatic_code_signing(
+      use_automatic_signing: true,
+      team_id: ENV['TEAM_ID']
+    )
+    # 3.ビルド(ipaファイル生成)
+    gym(
+      scheme: "MinnanoTanjyoubi",
+      output_directory: "./build",       # 出力先ディレクトリ
+      output_name: "MinnanoTanjyoubi.ipa",   # 出力ファイル名
+      export_xcargs: "-allowProvisioningUpdates"  # プロビジョニングプロファイルを自動的に更新
+    )
+    # 4.認証(JWTの生成)
+    api_key = app_store_connect_api_key(
+      key_id: ENV['KEY_ID'],
+      issuer_id: ENV['ISSUER_ID'],
+      key_filepath: ENV['KEY_FILE_PATH']
+    )
+    # 5.App Store Connectにアップロード
+    deliver(
+      api_key: api_key,
+      submit_for_review: false,  # 審査に提出するかどうか
+      force: true,               # アップロード前に確認が必要かどうか
+      submission_information: {
+      export_compliance_uses_encryption: false,    # 輸出コンプライアンスの暗号化を使用するか
+        export_compliance_encryption_updated: false, # 輸出コンプライアンスの暗号化を更新するか
+        add_id_info_limits_tracking: false, # アプリが広告トラッキングを制限するかどうか
+        add_id_info_uses_idfa: false,       # 広告ID情報 idfaを使用するか
+        add_id_info_serves_ads: false,      # 広告ID情報 広告を配信するか
+        add_id_info_tracks_action: false,   # 広告ID情報 アクションの追跡を行うか
+        add_id_info_tracks_install: false,  # 広告ID情報 インストールの追跡を行うか
+      },
+      precheck_include_in_app_purchases: false # アプリ内課金のチェックを除外
+    )
+  end
+end
