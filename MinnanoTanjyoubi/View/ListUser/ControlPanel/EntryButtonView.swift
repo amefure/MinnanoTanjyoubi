@@ -39,6 +39,7 @@ struct EntryButtonView: View {
 
         }, label: {
             Image(systemName: "plus")
+                .font(.system(size: 17))
         })
         .circleBorderView(width: 50, height: 50, color: Asset.Colors.themaColor3.swiftUIColor)
         .sheet(isPresented: $isModal, content: {

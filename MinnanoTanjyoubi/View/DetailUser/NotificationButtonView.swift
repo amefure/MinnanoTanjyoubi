@@ -38,6 +38,7 @@ struct NotificationButtonView: View {
                     repository.updateNotifyUser(id: user.id, notify: false)
                 }
             }
+            .font(.system(size: 17))
             .frame(width: deviceWidth - 60)
             .padding(isSESize ? 5 : 10)
             .onAppear {

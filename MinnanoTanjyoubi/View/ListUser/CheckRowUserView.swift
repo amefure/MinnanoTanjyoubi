@@ -67,6 +67,7 @@ struct CheckRowUserView: View {
                 .frame(width: itemWidth)
                 .zIndex(2)
                 .position(x: 15, y: 15)
+                .font(.system(size: 17))
 
             //
             Button {

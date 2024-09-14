@@ -83,7 +83,8 @@ struct CustomNotifyDialogView: View {
                     .background(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                 // 画面一杯にViewを広げる
-            }.ignoresSafeArea()
+            }.font(.system(size: 17))
+                .ignoresSafeArea()
         }
     }
 }

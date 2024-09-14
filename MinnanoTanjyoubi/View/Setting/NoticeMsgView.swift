@@ -44,7 +44,8 @@ struct NoticeMsgView: View {
                 isEdit.toggle()
                 isFocusActive = true
             } label: {
-                Text(isEdit ? "更新" : "編集").font(.none)
+                Text(isEdit ? "更新" : "編集")
+                    .font(.system(size: 17))
             }.padding(5)
                 .frame(width: 55)
                 .background(isEdit ? Asset.Colors.themaColor1.swiftUIColor : Asset.Colors.foundationColorLight.swiftUIColor)
@@ -53,7 +54,7 @@ struct NoticeMsgView: View {
 
         }.onAppear {
             text = viewModel.getNotifyMsg()
-        }.font(DeviceSizeManager.isSESize ? .caption : .none)
+        }.font(DeviceSizeManager.isSESize ? .system(size: 12) : .system(size: 17))
     }
 }
 

@@ -72,6 +72,7 @@ struct ImageContainerView: View {
 
                 } label: {
                     Image(systemName: "plus")
+                        .font(.system(size: 17))
                         .frame(width: 80, height: 80)
                         .overBorder(radius: 5, color: Asset.Colors.foundationColorDark.swiftUIColor, opacity: 0.4, lineWidth: 2)
                 }

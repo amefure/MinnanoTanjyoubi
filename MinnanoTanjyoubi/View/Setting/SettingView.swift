@@ -166,7 +166,7 @@ struct SettingView: View {
                             HStack {
                                 Image(systemName: "paperplane").settingIcon()
                                 Text("アプリの不具合はこちら")
-                                Image(systemName: "link").font(.caption)
+                                Image(systemName: "link")
                             }
                         }).listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
                     }
@@ -177,7 +177,7 @@ struct SettingView: View {
                             HStack {
                                 Image(systemName: "note.text").settingIcon()
                                 Text("利用規約とプライバシーポリシー")
-                                Image(systemName: "link").font(.caption)
+                                Image(systemName: "link")
                             }
                         }).listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
                     }
@@ -192,27 +192,27 @@ struct SettingView: View {
             Spacer()
 
             AdMobBannerView().frame(height: 50)
-        }
-        .onAppear {
-            viewModel.onAppear()
-            isLock = viewModel.isLock
-            isDaysLaterFlag = viewModel.getDisplayDaysLater()
-            isAgeMonthFlag = viewModel.getDisplayAgeMonth()
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
-        .background(Asset.Colors.foundationColorLight.swiftUIColor)
-        .dialog(
-            isPresented: $viewModel.isAlertReward,
-            title: "お知らせ",
-            message: "広告を視聴できるのは1日に1回までです。",
-            positiveButtonTitle: "OK",
-            negativeButtonTitle: "",
-            positiveAction: {
-                viewModel.isAlertReward = false
-            },
-            negativeAction: {}
-        )
+        }.font(.system(size: 17))
+            .onAppear {
+                viewModel.onAppear()
+                isLock = viewModel.isLock
+                isDaysLaterFlag = viewModel.getDisplayDaysLater()
+                isAgeMonthFlag = viewModel.getDisplayAgeMonth()
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .background(Asset.Colors.foundationColorLight.swiftUIColor)
+            .dialog(
+                isPresented: $viewModel.isAlertReward,
+                title: "お知らせ",
+                message: "広告を視聴できるのは1日に1回までです。",
+                positiveButtonTitle: "OK",
+                negativeButtonTitle: "",
+                positiveAction: {
+                    viewModel.isAlertReward = false
+                },
+                negativeAction: {}
+            )
     }
 }
 

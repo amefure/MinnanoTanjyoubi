@@ -42,7 +42,7 @@ struct DownSideView: View {
             }, label: {
                 Image(systemName: imageString)
                     .foregroundColor(.white)
-                    .font(isSESize ? .caption : .none)
+                    .font(isSESize ? .system(size: 12) : .system(size: 17))
 
             }).frame(width: viewSize, height: viewSize)
                 .background(Asset.Colors.foundationColorDark.swiftUIColor)

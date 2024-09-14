@@ -27,6 +27,7 @@ struct RootListUserView: View {
                 Spacer()
 
                 Text("登録されている誕生日情報がありません。")
+                    .font(.system(size: 17))
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
 

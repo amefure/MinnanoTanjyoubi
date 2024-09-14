@@ -34,16 +34,18 @@ struct RowUserView: View {
                     .font(.system(size: DeviceSizeManager.isSESize ? changeFontSizeByLength(user.name) : 16))
 
                 Text(DateFormatUtility().getJpString(date: user.date))
-                    .font(.caption)
+                    .font(.system(size: 12))
 
                 HStack(alignment: .bottom, spacing: 3) {
                     Text("\(user.currentAge)")
+                        .font(.system(size: 17))
                     Text("歳")
-                        .font(.caption)
+                        .font(.system(size: 12))
                     if isDisplayAgeMonth {
                         Text("\(user.currentAgeMonth)")
+                            .font(.system(size: 17))
                         Text("ヶ月")
-                            .font(.caption)
+                            .font(.system(size: 12))
                     }
                 }
 
@@ -53,7 +55,7 @@ struct RowUserView: View {
                             .foregroundStyle(Asset.Colors.themaColor4.swiftUIColor)
                             .fontWeight(.bold)
                             .frame(height: 25)
-                            .font(DeviceSizeManager.isSESize ? .system(size: 10) : .caption)
+                            .font(DeviceSizeManager.isSESize ? .system(size: 10) : .system(size: 12))
 
                     } else {
                         if isDisplayDateLater,
@@ -61,20 +63,20 @@ struct RowUserView: View {
                         {
                             Text("あと")
                             Text("\(month)")
-                                .font(.title2)
+                                .font(.system(size: 17))
                                 .foregroundColor(Asset.Colors.themaColor4.swiftUIColor)
                             Text("ヶ月")
                         } else {
                             Text("あと")
                             Text("\(user.daysLater)")
-                                .font(.title2)
+                                .font(.system(size: 17))
                                 .foregroundColor(Asset.Colors.themaColor4.swiftUIColor)
                             Text("日")
                         }
                     }
 
                 }.multilineTextAlignment(.center)
-                    .font(.caption)
+                    .font(.system(size: 12))
                     .onAppear {
                         isDisplayDateLater = rootEnvironment.getDisplayDaysLater()
                         isDisplayAgeMonth = rootEnvironment.getDisplayAgeMonth()

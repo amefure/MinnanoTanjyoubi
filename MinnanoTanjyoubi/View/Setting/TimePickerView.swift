@@ -18,11 +18,16 @@ struct TimePickerView: View {
     @State private var time: Date = .init()
 
     var body: some View {
-        DatePicker(selection: $time,
-                   displayedComponents: DatePickerComponents.hourAndMinute,
-                   label: {
-                       Text("通知時間").foregroundColor(.black)
-                   }).environment(\.locale, Locale(identifier: "ja_JP"))
+        DatePicker(
+            selection: $time,
+            displayedComponents: DatePickerComponents.hourAndMinute,
+            label: {
+                Text("通知時間")
+                    .foregroundColor(.black)
+                    .font(.system(size: 17))
+            }
+        ).environment(\.locale, Locale(identifier: "ja_JP"))
+            .font(.system(size: 17))
             .colorInvert()
             .colorMultiply(.white)
             .onChange(of: time) { newValue in

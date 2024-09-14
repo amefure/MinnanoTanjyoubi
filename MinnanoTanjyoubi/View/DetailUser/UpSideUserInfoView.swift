@@ -44,7 +44,7 @@ struct UpSideUserInfoView: View {
                     .lineLimit(1)
                     .background(Asset.Colors.foundationColorDark.swiftUIColor)
                     .cornerRadius(5)
-                    .font(isSESize ? .caption : .none)
+                    .font(isSESize ? .system(size: 12) : .system(size: 17))
 
                 Spacer()
 
@@ -66,16 +66,18 @@ struct UpSideUserInfoView: View {
                     .frame(minWidth: roundWidth, alignment: .center)
                     .background(Asset.Colors.foundationColorDark.swiftUIColor)
                     .cornerRadius(5)
-                    .font(isSESize ? .caption : .none)
+                    .font(isSESize ? .system(size: 12) : .system(size: 17))
             }
 
             Text(user.ruby)
-                .font(isSESize ? .caption : .none)
+                .font(isSESize ? .system(size: 12) : .system(size: 17))
             Text(user.name)
-                .font(isSESize ? .title : .largeTitle)
+                .font(isSESize ? .system(size: 17) : .system(size: 20))
             HStack {
                 Text(dfm.getJpString(date: user.date))
+                    .font(.system(size: 17))
                 Text("（\(dfm.getJpEraString(date: user.date))）")
+                    .font(.system(size: 17))
             }
         }
     }

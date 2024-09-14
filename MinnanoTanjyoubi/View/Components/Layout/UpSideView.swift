@@ -37,7 +37,7 @@ struct UpSideView: View {
             } label: {
                 Image(systemName: "arrow.uturn.left")
                     .foregroundColor(.white)
-                    .font(isSESize ? .caption : .none)
+                    .font(isSESize ? .system(size: 12) : .system(size: 17))
 
             }.frame(width: viewSize, height: viewSize)
                 .background(Asset.Colors.foundationColorDark.swiftUIColor)

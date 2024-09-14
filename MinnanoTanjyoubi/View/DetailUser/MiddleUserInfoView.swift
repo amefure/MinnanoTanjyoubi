@@ -43,7 +43,7 @@ struct MiddleUserInfoView: View {
             Text(user.zodiac)
                 .circleBorderView(width: roundWidth, height: roundWidth, color: Asset.Colors.themaColor3.swiftUIColor)
 
-        }.font(isSESize ? .caption : .none)
+        }.font(isSESize ? .system(size: 12) : .system(size: 17))
             .onAppear {
                 isDisplayAgeMonth = UserDefaultsRepository.sheard.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
             }

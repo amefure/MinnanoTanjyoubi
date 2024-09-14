@@ -158,6 +158,7 @@ struct EntryUserView: View {
             }, imageString: "checkmark")
 
         }.padding()
+            .font(.system(size: 17))
             .background(Asset.Colors.foundationColorLight.swiftUIColor)
             .foregroundColor(.white)
             .onAppear {

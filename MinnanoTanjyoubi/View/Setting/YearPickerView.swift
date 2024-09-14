@@ -16,8 +16,10 @@ struct YearPickerView: View {
         Picker("登録年数初期値", selection: $year) {
             ForEach(viewModel.yearArray, id: \.self) { year in
                 Text("\(String(year))年")
+                    .font(.system(size: 17))
             }
         }.tint(.white)
+            .font(.system(size: 17))
             .onChange(of: year) { _ in
                 viewModel.registerEntryInitYear(year: year)
             }.onAppear {

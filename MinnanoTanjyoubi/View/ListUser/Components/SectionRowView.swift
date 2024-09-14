@@ -19,6 +19,7 @@ struct SectionRowView: View {
                     .foregroundStyle(.white)
                     .fontWeight(.bold)
                     .padding(.horizontal)
+                    .font(.system(size: 17))
 
                 HStack {
                     Spacer()
@@ -27,9 +28,7 @@ struct SectionRowView: View {
                         .frame(width: DeviceSizeManager.deviceWidth - 40, height: 2)
 
                     Spacer()
-                }
-
-                .foregroundColor(.white)
+                }.foregroundColor(.white)
 
                 SingleGridListView(users: users)
             }.padding()

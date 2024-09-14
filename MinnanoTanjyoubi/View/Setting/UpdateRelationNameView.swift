@@ -71,6 +71,7 @@ struct UpdateRelationNameView: View {
                 .frame(height: 60)
 
         }.background(Asset.Colors.foundationColorLight.swiftUIColor)
+            .font(.system(size: 17))
             .navigationBarBackButtonHidden()
             .onAppear {
                 let list = rootEnvironment.relationNameList

@@ -54,6 +54,7 @@ struct DetailUserView: View {
                 ScrollView {
                     Text(user.memo)
                         .frame(width: deviceWidth - 40)
+                        .font(.system(size: 17))
                 }.padding(isSESize ? 5 : 10)
                     .frame(width: deviceWidth - 40)
                     .frame(minHeight: isSESize ? 130 : 180)
