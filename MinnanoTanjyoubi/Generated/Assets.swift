@@ -35,6 +35,7 @@ internal enum Asset {
 
     internal enum Images {
         internal static let appiconRemove = ImageAsset(name: "Appicon-remove")
+        internal static let appLogo = ImageAsset(name: "app_logo")
     }
 }
 
