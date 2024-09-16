@@ -25,7 +25,7 @@ struct SectionRowView: View {
                     Spacer()
 
                     Rectangle()
-                        .frame(width: DeviceSizeManager.deviceWidth - 40, height: 2)
+                        .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 2)
 
                     Spacer()
                 }.foregroundColor(.white)

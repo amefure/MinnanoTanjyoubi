@@ -41,11 +41,11 @@ struct EntryUserView: View {
 
             UpSideView()
 
-            if !DeviceSizeManager.isSESize {
+            if !DeviceSizeUtility.isSESize {
                 Spacer()
             }
 
-            VStack(spacing: DeviceSizeManager.isSESize ? 5 : 20) {
+            VStack(spacing: DeviceSizeUtility.isSESize ? 5 : 20) {
                 // Input Name
                 HStack {
                     Text("名　　前").frame(width: 80)
@@ -112,7 +112,7 @@ struct EntryUserView: View {
                             }
                         }
                 }.background(Asset.Colors.foundationColorLight.swiftUIColor)
-                    .frame(minHeight: DeviceSizeManager.isSESize ? 60 : 90)
+                    .frame(minHeight: DeviceSizeUtility.isSESize ? 60 : 90)
                     .overBorder(radius: 5, color: Asset.Colors.foundationColorDark.swiftUIColor, opacity: 0.4, lineWidth: 3)
             }
 

@@ -54,7 +54,7 @@ struct CheckRowUserView: View {
     // MARK: - Setting
 
     private var itemWidth: CGFloat {
-        return CGFloat(DeviceSizeManager.deviceWidth / 3)
+        return CGFloat(DeviceSizeUtility.deviceWidth / 3)
     }
 
     var body: some View {

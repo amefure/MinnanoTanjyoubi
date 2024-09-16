@@ -17,7 +17,7 @@ struct SingleGridListView: View {
     // MARK: - Glid Layout
 
     private var gridItemWidth: CGFloat {
-        return CGFloat(DeviceSizeManager.deviceWidth / 3) - 10
+        return CGFloat(DeviceSizeUtility.deviceWidth / 3) - 10
     }
 
     private var gridColumns: [GridItem] {

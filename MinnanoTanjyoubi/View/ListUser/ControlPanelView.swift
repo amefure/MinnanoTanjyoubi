@@ -39,7 +39,7 @@ struct ControlPanelView: View {
 
             Spacer()
 
-        }.frame(width: DeviceSizeManager.deviceWidth, height: 70)
+        }.frame(width: DeviceSizeUtility.deviceWidth, height: 70)
             .foregroundColor(.white)
             .background(Asset.Colors.foundationColorDark.swiftUIColor)
     }

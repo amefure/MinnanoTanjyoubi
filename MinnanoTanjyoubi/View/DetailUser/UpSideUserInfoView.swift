@@ -20,8 +20,8 @@ struct UpSideUserInfoView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeManager.deviceWidth
-    private let isSESize = DeviceSizeManager.isSESize
+    private let deviceWidth = DeviceSizeUtility.deviceWidth
+    private let isSESize = DeviceSizeUtility.isSESize
 
     private var roundWidth: CGFloat {
         if deviceWidth < 400 {

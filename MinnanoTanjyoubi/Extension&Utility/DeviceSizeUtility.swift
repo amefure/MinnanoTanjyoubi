@@ -1,5 +1,5 @@
 //
-//  DeviceSizeModel.swift
+//  DeviceSizeUtility.swift
 //  MinnanoTanjyoubi
 //
 //  Created by t&a on 2023/02/17.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DeviceSizeManager {
+class DeviceSizeUtility {
     static var deviceWidth: CGFloat {
         guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0 }
         return window.screen.bounds.width

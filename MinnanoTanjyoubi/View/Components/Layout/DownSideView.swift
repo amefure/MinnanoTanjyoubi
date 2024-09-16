@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct DownSideView: View {
-    private let deviceWidth = DeviceSizeManager.deviceWidth
-    private let isiPadSize = DeviceSizeManager.isiPadSize
-    private let isSESize = DeviceSizeManager.isiPadSize
+    private let deviceWidth = DeviceSizeUtility.deviceWidth
+    private let isiPadSize = DeviceSizeUtility.isiPadSize
+    private let isSESize = DeviceSizeUtility.isiPadSize
 
     // MARK: - LINK: EntryView
 

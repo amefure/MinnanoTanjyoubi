@@ -20,9 +20,9 @@ struct DatePickerView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeManager.deviceWidth
-    private let deviceHeight = DeviceSizeManager.deviceHeight
-    private let isSESize: Bool = DeviceSizeManager.isSESize
+    private let deviceWidth = DeviceSizeUtility.deviceWidth
+    private let deviceHeight = DeviceSizeUtility.deviceHeight
+    private let isSESize: Bool = DeviceSizeUtility.isSESize
 
     var body: some View {
         HStack {

@@ -16,8 +16,8 @@ struct HeaderView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeManager.deviceWidth
-    private let isSESize = DeviceSizeManager.isSESize
+    private let deviceWidth = DeviceSizeUtility.deviceWidth
+    private let isSESize = DeviceSizeUtility.isSESize
 
     // MARK: - Environment
 

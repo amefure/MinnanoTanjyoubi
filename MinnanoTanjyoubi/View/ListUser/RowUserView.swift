@@ -31,7 +31,7 @@ struct RowUserView: View {
             VStack(spacing: 10) {
                 Text("\(user.name)")
                     .lineLimit(1)
-                    .font(.system(size: DeviceSizeManager.isSESize ? changeFontSizeByLength(user.name) : 16))
+                    .font(.system(size: DeviceSizeUtility.isSESize ? changeFontSizeByLength(user.name) : 16))
 
                 Text(DateFormatUtility().getJpString(date: user.date))
                     .font(.system(size: 12))
@@ -51,11 +51,11 @@ struct RowUserView: View {
 
                 HStack(alignment: .bottom) {
                     if user.daysLater == 0 {
-                        Text(DeviceSizeManager.isSESize ? "HAPPY\nBIRTHDAY" : "HAPPY BIRTHDAY")
+                        Text(DeviceSizeUtility.isSESize ? "HAPPY\nBIRTHDAY" : "HAPPY BIRTHDAY")
                             .foregroundStyle(Asset.Colors.themaColor4.swiftUIColor)
                             .fontWeight(.bold)
                             .frame(height: 25)
-                            .font(DeviceSizeManager.isSESize ? .system(size: 10) : .system(size: 12))
+                            .font(DeviceSizeUtility.isSESize ? .system(size: 10) : .system(size: 12))
 
                     } else {
                         if isDisplayDateLater,
@@ -83,7 +83,7 @@ struct RowUserView: View {
                     }
             }.padding(5)
                 .frame(height: 130)
-                .frame(maxWidth: DeviceSizeManager.deviceWidth / 3)
+                .frame(maxWidth: DeviceSizeUtility.deviceWidth / 3)
                 .background(Asset.Colors.foundationColorDark.swiftUIColor)
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))

@@ -16,8 +16,8 @@ struct MiddleUserInfoView: View {
 
     // MARK: - Setting
 
-    private let deviceWidth = DeviceSizeManager.deviceWidth
-    private let isSESize = DeviceSizeManager.isSESize
+    private let deviceWidth = DeviceSizeUtility.deviceWidth
+    private let isSESize = DeviceSizeUtility.isSESize
     @State private var isDisplayAgeMonth = false
 
     private var roundWidth: CGFloat {

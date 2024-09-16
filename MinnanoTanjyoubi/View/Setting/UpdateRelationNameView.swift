@@ -33,7 +33,12 @@ struct UpdateRelationNameView: View {
     var body: some View {
         VStack {
             UpSideView()
-                .padding(.bottom)
+
+            Text("関係カテゴリ名編集")
+                .font(.system(size: 20))
+                .foregroundStyle(.white)
+                .fontWeight(.bold)
+                .padding(.vertical)
 
             CustomInputView(title: "カテゴリ1", placeholder: RelationConfig.FRIEND_NAME, text: $friend)
 
@@ -86,22 +91,18 @@ struct UpdateRelationNameView: View {
                 title: "お知らせ",
                 message: "関係名を更新しました。",
                 positiveButtonTitle: "OK",
-                negativeButtonTitle: "",
                 positiveAction: {
                     dismiss()
-                },
-                negativeAction: {}
+                }
             )
             .dialog(
                 isPresented: $isValidationAlert,
                 title: "お知らせ",
                 message: "関係名を全て入力してください。",
                 positiveButtonTitle: "OK",
-                negativeButtonTitle: "",
                 positiveAction: {
                     isValidationAlert = false
-                },
-                negativeAction: {}
+                }
             )
     }
 }

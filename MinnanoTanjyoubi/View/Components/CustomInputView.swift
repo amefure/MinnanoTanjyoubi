@@ -16,10 +16,13 @@ struct CustomInputView: View {
         HStack {
             Text(title)
                 .frame(width: 80)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
             TextField(placeholder, text: $text)
                 .textFieldStyle(.roundedBorder)
                 .foregroundColor(.primary)
         }.padding(5)
+            .font(.system(size: 16))
     }
 }
 
