@@ -8,18 +8,11 @@
 import SwiftUI
 import UIKit
 
-// MARK: - 設定ビュー
-
+/// 設定画面
 struct SettingView: View {
-    // MARK: - ViewModel
-
     @StateObject private var viewModel = SettingViewModel()
 
-    // MARK: - Environment
-
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
-
-    // MARK: - View
 
     @State private var isLock: Bool = false
     @State private var isDaysLaterFlag: Bool = false
@@ -27,8 +20,6 @@ struct SettingView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // MARK: - ViewComponent
-
             UpSideView()
 
             // List ここから
@@ -36,8 +27,10 @@ struct SettingView: View {
                 // MARK: - (1)
 
                 Section(header: Text("通知設定"),
-                        footer: Text("・通知設定を変更以降にONにした通知を設定します。\n・通知メッセージは" + NotifyConfig.VARIABLE_USER_NAME + "部分が名前に自動で置き換わります。")
-                            .textSelection(.enabled))
+                        footer:
+                        Text("・通知設定を変更した場合はこれより後に通知登録した通知に反映されます。\n既にONになっている場合はON→OFF→ONと操作してください。")
+                            .font(.system(size: 14))
+                            .fontWeight(.bold))
                 {
                     // 通知時間
                     HStack {
@@ -50,18 +43,20 @@ struct SettingView: View {
                         NoticeDateFlagView(viewModel: viewModel)
                     }
 
-                    // 通知メッセージ
-                    HStack {
-                        Image(systemName: "text.bubble").settingIcon()
-                        NoticeMsgView(viewModel: viewModel)
+                    // 関係をカスタマイズ
+                    NavigationLink {
+                        EditNotifyMessageView(viewModel: viewModel)
+                    } label: {
+                        HStack {
+                            Image(systemName: "text.bubble").settingIcon()
+                            Text("通知メッセージを変更する")
+                        }
                     }
 
                 }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
 
-                // MARK: - (2)
-
                 Section(header: Text("アプリ設定"),
-                        footer: Text("・アプリにパスワードを設定してロックをかけることができます。"))
+                        footer: Text("・アプリにパスワードを設定してロックをかけることができます。").font(.system(size: 14)).fontWeight(.bold))
                 {
                     // 誕生日までの単位
                     HStack {
@@ -124,7 +119,7 @@ struct SettingView: View {
                 // MARK: - (3)
 
                 Section(header: Text("広告"),
-                        footer: Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)個です。\n・容量の追加は1日に1回までです。"))
+                        footer: Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)個です。\n・容量の追加は1日に1回までです。").font(.system(size: 14)).fontWeight(.bold))
                 {
                     RewardButtonView(viewModel: viewModel)
                     HStack {
@@ -135,7 +130,7 @@ struct SettingView: View {
 
                 // MARK: - (4)
 
-                Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。")) {
+                Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。").font(.system(size: 14)).fontWeight(.bold)) {
                     if let url = URL(string: StaticUrls.APP_REVIEW_URL) {
                         // 1:レビューページ
                         Link(destination: url, label: {
