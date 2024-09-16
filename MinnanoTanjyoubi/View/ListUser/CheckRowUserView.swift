@@ -8,8 +8,7 @@
 import RealmSwift
 import SwiftUI
 
-// MARK: - Toggleボタンのカスタマイズ構造体
-
+/// Toggleボタンのカスタマイズ構造体
 struct CheckBoxToggleStyle: ToggleStyle {
     public var user: User
     @Binding var deleteIdArray: [ObjectId]
@@ -36,22 +35,13 @@ struct CheckBoxToggleStyle: ToggleStyle {
     }
 }
 
-// MARK: - 削除時のリスト選択ボタン
-
+/// 削除時のリスト選択ボタン
 struct CheckRowUserView: View {
-    // MARK: - Models
-
     public var user: User
-
-    // MARK: - Environment
 
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
-    // MARK: - View
-
-    @State var isOn: Bool = false
-
-    // MARK: - Setting
+    @State private  var isOn = false
 
     private var itemWidth: CGFloat {
         return CGFloat(DeviceSizeUtility.deviceWidth / 3)
@@ -69,7 +59,6 @@ struct CheckRowUserView: View {
                 .position(x: 15, y: 15)
                 .font(.system(size: 17))
 
-            //
             Button {
                 if isOn {
                     rootEnvironment.removeDeleteIdArray(id: user.id)

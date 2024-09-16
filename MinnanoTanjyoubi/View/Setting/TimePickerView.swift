@@ -9,11 +9,7 @@ import SwiftUI
 
 // 通知時間設定タイムピッカービュー
 struct TimePickerView: View {
-    // MARK: - ViewModel
-
     @StateObject var viewModel: SettingViewModel
-
-    // MARK: - View
 
     @State private var time: Date = .init()
 

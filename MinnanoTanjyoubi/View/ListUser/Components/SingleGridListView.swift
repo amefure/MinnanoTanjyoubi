@@ -10,11 +10,7 @@ import SwiftUI
 struct SingleGridListView: View {
     public var users: [User]
 
-    // MARK: - Environment
-
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
-
-    // MARK: - Glid Layout
 
     private var gridItemWidth: CGFloat {
         return CGFloat(DeviceSizeUtility.deviceWidth / 3) - 10

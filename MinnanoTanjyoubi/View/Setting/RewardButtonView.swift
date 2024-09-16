@@ -8,12 +8,7 @@
 import SwiftUI
 
 struct RewardButtonView: View {
-    // MARK: - AdMob
-
     @StateObject var reward = Reward()
-
-    // MARK: - Method
-
     @StateObject var viewModel: SettingViewModel
 
     var body: some View {

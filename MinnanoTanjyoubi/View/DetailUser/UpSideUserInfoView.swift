@@ -10,15 +10,9 @@ import SwiftUI
 // MARK: - Relation/あと何日../名前/ふりがな/生年月日/和暦
 
 struct UpSideUserInfoView: View {
-    // MARK: - Models
-
     var user: User
 
-    // MARK: - Controller
-
     private let dfm = DateFormatUtility()
-
-    // MARK: - Setting
 
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isSESize = DeviceSizeUtility.isSESize

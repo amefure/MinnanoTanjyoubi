@@ -24,8 +24,6 @@ struct SettingView: View {
 
             // List ここから
             List {
-                // MARK: - (1)
-
                 Section(header: Text("通知設定"),
                         footer:
                         Text("・通知設定を変更した場合はこれより後に通知登録した通知に反映されます。\n既にONになっている場合はON→OFF→ONと操作してください。")
@@ -65,6 +63,7 @@ struct SettingView: View {
                         Spacer()
                         Toggle(isOn: $isDaysLaterFlag) {
                             Text(isDaysLaterFlag ? "月" : "日")
+                                .fontWeight(.bold)
                         }.onChange(of: isDaysLaterFlag, perform: { newValue in
                             viewModel.registerDisplayDaysLater(flag: newValue)
                         }).toggleStyle(.button)
@@ -116,8 +115,6 @@ struct SettingView: View {
                     })
                 }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
 
-                // MARK: - (3)
-
                 Section(header: Text("広告"),
                         footer: Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)個です。\n・容量の追加は1日に1回までです。").font(.system(size: 14)).fontWeight(.bold))
                 {
@@ -127,8 +124,6 @@ struct SettingView: View {
                         Text("現在の容量:\(viewModel.getCapacity())人")
                     }
                 }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
-
-                // MARK: - (4)
 
                 Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。").font(.system(size: 14)).fontWeight(.bold)) {
                     if let url = URL(string: StaticUrls.APP_REVIEW_URL) {

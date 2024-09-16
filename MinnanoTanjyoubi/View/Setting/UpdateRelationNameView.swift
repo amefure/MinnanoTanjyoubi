@@ -25,8 +25,6 @@ struct UpdateRelationNameView: View {
         return true
     }
 
-    // MARK: - Environment
-
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
     @Environment(\.dismiss) var dismiss
 

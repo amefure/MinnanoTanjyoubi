@@ -11,11 +11,7 @@ import SwiftUI
 struct RemoveButtonView: View {
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
-    // MARK: - View
-
     @Binding var isDeleteAlert: Bool
-
-    // MARK: - Environment
 
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
 

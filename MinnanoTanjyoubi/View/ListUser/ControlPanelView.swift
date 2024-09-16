@@ -8,10 +8,8 @@
 import RealmSwift
 import SwiftUI
 
-// MARK: - リスト画面下部に表示するコントロールパネルビュー
-
+/// リスト画面下部に表示するコントロールパネルビュー
 struct ControlPanelView: View {
-    // MARK: - Environment
 
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
     @Binding var isDeleteAlert: Bool
@@ -21,19 +19,14 @@ struct ControlPanelView: View {
         HStack {
             Spacer()
 
-            // MARK: - RemoveButton
 
             RemoveButtonView(isDeleteAlert: $isDeleteAlert)
 
             Spacer()
 
-            // MARK: - SortedButton
-
             SortedButtonView()
 
             Spacer()
-
-            // MARK: - EntryButton
 
             EntryButtonView(isLimitAlert: $isLimitAlert)
 

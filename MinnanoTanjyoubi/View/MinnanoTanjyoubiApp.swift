@@ -46,8 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 struct MinnanoTanjyoubiApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    // MARK: - Environment
-
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     var body: some Scene {

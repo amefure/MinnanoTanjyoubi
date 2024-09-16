@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct SortedButtonView: View {
-    // MARK: - View
 
-    @State private var isPicker: Bool = false
-    @State private var isSorted: Bool = false
+    @State private var isPicker = false
+    @State private var isSorted = false
     @State private var selectedRelation: Relation = .other
-
-    // MARK: - ViewModel
 
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @ObservedObject private var rootEnvironment = RootEnvironment.shared

@@ -8,17 +8,12 @@
 import SwiftUI
 
 struct DatePickerView: View {
-    // MARK: - Models
 
     private let dfm = DateFormatUtility()
-
-    // MARK: - View
 
     @Binding var date: Date
     @State var dateStr: String = ""
     @Binding var isWheel: Bool
-
-    // MARK: - Setting
 
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let deviceHeight = DeviceSizeUtility.deviceHeight

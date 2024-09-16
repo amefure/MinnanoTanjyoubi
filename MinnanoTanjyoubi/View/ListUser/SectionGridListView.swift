@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct SectionGridListView: View {
-    // MARK: - Models
 
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
-
-    // MARK: - Environment
-
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     var body: some View {

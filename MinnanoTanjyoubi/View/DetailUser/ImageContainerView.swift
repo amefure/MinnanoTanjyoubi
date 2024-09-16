@@ -10,27 +10,16 @@ import SwiftUI
 import UIKit
 
 struct ImageContainerView: View {
-    // MARK: - Utility
-
     private let imageFileManager = ImageFileManager()
-
-    // MARK: - Receives
 
     @State var user: User
 
-    // MARK: - Environment
-
     @State var image: UIImage? = nil
-
-    // MARK: - ViewModel
 
     @ObservedObject private var viewModel = DetailViewModel.shared
 
-    // MARK: - Repository
-
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
-    // Show
     @State private var isShowImagePicker: Bool = false // 画像ピッカー表示
 
     @State private var cancellables: Set<AnyCancellable> = Set()

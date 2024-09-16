@@ -7,14 +7,9 @@
 
 import SwiftUI
 
-// MARK: - 年齢/星座/干支
-
+/// 年齢/星座/干支
 struct MiddleUserInfoView: View {
-    // MARK: - Models
-
     let user: User
-
-    // MARK: - Setting
 
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isSESize = DeviceSizeUtility.isSESize

@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct NoticeDateFlagView: View {
-    // MARK: - ViewModel
-
     @StateObject var viewModel: SettingViewModel
-
-    // MARK: - View
 
     @State private var isOn: Bool = true
 
@@ -22,6 +18,7 @@ struct NoticeDateFlagView: View {
             Spacer()
             Toggle(isOn: $isOn) {
                 Text(isOn ? "当日" : "前日")
+                    .fontWeight(.bold)
             }.toggleStyle(.button)
                 .opacity(isOn ? 0.9 : 1)
                 .background(isOn ? Asset.Colors.themaColor2.swiftUIColor : Asset.Colors.themaColor3.swiftUIColor)

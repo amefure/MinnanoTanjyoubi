@@ -8,31 +8,18 @@
 import RealmSwift
 import SwiftUI
 
-// MARK: - リストページからの詳細ページビュー
-
+/// リストページからの詳細ページビュー
 struct DetailUserView: View {
-    // MARK: - Utility
-
     private let imageFileManager = ImageFileManager()
-
-    // MARK: - Models
 
     var user: User
 
-    // MARK: - View
-
     @State private var isShowUpdateView: Bool = false
-
-    // MARK: - Setting
 
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isSESize = DeviceSizeUtility.isSESize
 
-    // MARK: - ViewModel
-
     @ObservedObject private var viewModel = DetailViewModel.shared
-
-    // MARK: - Repository
 
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
