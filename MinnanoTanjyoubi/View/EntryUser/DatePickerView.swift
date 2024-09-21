@@ -44,7 +44,7 @@ struct DatePickerView: View {
             }, label: {
                 Text(isWheel ? "変更" : "決定")
                     .padding(3)
-                    .background(isWheel ? Asset.Colors.themaColor2.swiftUIColor : Asset.Colors.themaColor3.swiftUIColor).opacity(0.8)
+                    .background(isWheel ? Asset.Colors.themaColor2.swiftUIColor : AppColorScheme.getThema3()).opacity(0.8)
                     .cornerRadius(5)
             }).padding([.leading, .top, .bottom])
         }

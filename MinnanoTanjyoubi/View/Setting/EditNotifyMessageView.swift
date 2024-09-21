@@ -124,7 +124,7 @@ struct DemoNotifyView: View {
         // 置換した文字列「お名前」の範囲を取得
         if let range = attributedString.range(of: "「お名前」") {
             // その部分の文字色を変更
-            attributedString[range].foregroundColor = Asset.Colors.themaColor3.swiftUIColor
+            attributedString[range].foregroundColor = AppColorScheme.getThema3()
             attributedString[range].font = .boldSystemFont(ofSize: 13) // サイズは任意で調整
         }
 

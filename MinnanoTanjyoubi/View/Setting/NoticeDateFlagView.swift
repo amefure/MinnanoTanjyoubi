@@ -21,7 +21,7 @@ struct NoticeDateFlagView: View {
                     .fontWeight(.bold)
             }.toggleStyle(.button)
                 .opacity(isOn ? 0.9 : 1)
-                .background(isOn ? Asset.Colors.themaColor2.swiftUIColor : Asset.Colors.themaColor3.swiftUIColor)
+                .background(isOn ? Asset.Colors.themaColor2.swiftUIColor : AppColorScheme.getThema3())
                 .clipShape(RoundedRectangle(cornerRadius: 5))
                 .onChange(of: isOn) { newValue in
                     if newValue {

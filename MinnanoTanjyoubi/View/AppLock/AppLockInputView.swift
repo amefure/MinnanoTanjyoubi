@@ -45,14 +45,14 @@ struct AppLockInputView: View {
                     .fontWeight(.bold)
                     .padding(10)
                     .frame(width: 100)
-                    .background(password.count != 4 ? AppColorScheme.getFoundationSub() : Asset.Colors.themaColor3.swiftUIColor)
+                    .background(password.count != 4 ? AppColorScheme.getFoundationSub() : AppColorScheme.getThema3())
                     .foregroundStyle(password.count != 4 ? .gray : .white)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(style: StrokeStyle(lineWidth: 2))
                             .frame(width: 100)
-                            .foregroundStyle(password.count != 4 ? .gray : Asset.Colors.themaColor3.swiftUIColor)
+                            .foregroundStyle(password.count != 4 ? .gray : AppColorScheme.getThema3())
                     }.padding(.vertical, 20)
                     .shadow(color: password.count != 4 ? .clear : .gray, radius: 3, x: 4, y: 4)
 
