@@ -18,7 +18,7 @@ struct YearPickerView: View {
                 Text("\(String(year))年")
                     .font(.system(size: 17))
             }
-        }.tint(.white)
+        }.tint(AppColorScheme.getText())
             .font(.system(size: 17))
             .onChange(of: year) { _ in
                 viewModel.registerEntryInitYear(year: year)

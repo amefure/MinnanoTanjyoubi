@@ -46,7 +46,7 @@ struct AppLockInputView: View {
                     .padding(10)
                     .frame(width: 100)
                     .background(password.count != 4 ? AppColorScheme.getFoundationSub() : AppColorScheme.getThema3())
-                    .foregroundStyle(password.count != 4 ? .gray : .white)
+                    .foregroundStyle(password.count != 4 ? .gray : AppColorScheme.getText())
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)

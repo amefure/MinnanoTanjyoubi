@@ -176,7 +176,7 @@ struct SettingView: View {
             }.listStyle(GroupedListStyle())
                 .scrollContentBackground(.hidden)
                 .background(AppColorScheme.getFoundationSub())
-                .foregroundColor(.white)
+                .foregroundColor(AppColorScheme.getText())
             // List ここまで
 
             Spacer()

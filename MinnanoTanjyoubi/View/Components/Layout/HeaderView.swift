@@ -36,7 +36,8 @@ struct HeaderView: View {
                     }, label: {
                         Image(systemName: "gearshape.fill")
                             .font(.system(size: 17))
-                    }).foregroundColor(.white).position(x: deviceWidth - 30, y: 30)
+                    }).foregroundColor(AppColorScheme.getText())
+                        .position(x: deviceWidth - 30, y: 30)
                 }
 
                 if isShowIcon {
@@ -49,7 +50,8 @@ struct HeaderView: View {
                     }, label: {
                         Image(systemName: rootEnvironment.sectionLayoutFlag ? "square.grid.3x3.fill" : "square.grid.3x1.below.line.grid.1x2.fill")
                             .font(.system(size: 17))
-                    }).foregroundColor(.white).position(x: 0 + 30, y: 30)
+                    }).foregroundColor(AppColorScheme.getText())
+                        .position(x: 0 + 30, y: 30)
                 }
             }
         }.frame(width: deviceWidth, height: isSESize ? 60 : 70).background(AppColorScheme.getFoundationPrimary())

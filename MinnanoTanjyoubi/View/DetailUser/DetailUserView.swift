@@ -50,8 +50,7 @@ struct DetailUserView: View {
 
             }.padding(isSESize ? 5 : 10)
 
-            // MARK: - 通知ビュー
-
+            // 通知ビュー
             NotificationButtonView(user: user)
 
             // 追加しても更新されないので明示的にidを指定する
@@ -73,7 +72,8 @@ struct DetailUserView: View {
             }
 
         }.background(AppColorScheme.getFoundationSub())
-            .foregroundColor(.white)
+            .foregroundStyle(AppColorScheme.getText())
+            .fontWeight(.bold)
             .toolbar(.hidden, for: .navigationBar)
             .dialog(
                 isPresented: $viewModel.isDeleteConfirmAlert,

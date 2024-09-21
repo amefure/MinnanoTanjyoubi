@@ -36,7 +36,7 @@ struct UpSideView: View {
                 dismiss()
             } label: {
                 Image(systemName: "arrow.uturn.left")
-                    .foregroundColor(.white)
+                    .foregroundColor(AppColorScheme.getText())
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
 
             }.frame(width: viewSize, height: viewSize)

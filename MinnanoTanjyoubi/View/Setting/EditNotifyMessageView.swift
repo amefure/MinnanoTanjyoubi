@@ -23,13 +23,13 @@ struct EditNotifyMessageView: View {
 
             Text("通知メッセージ編集")
                 .font(.system(size: 20))
-                .foregroundStyle(.white)
+                .foregroundStyle(AppColorScheme.getText())
                 .fontWeight(.bold)
                 .padding(.vertical)
 
             Text("通知プレビュー")
                 .font(.system(size: 14))
-                .foregroundStyle(.white)
+                .foregroundStyle(AppColorScheme.getText())
                 .fontWeight(.bold)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
@@ -42,7 +42,7 @@ struct EditNotifyMessageView: View {
 
             Text("通知メッセージ入力")
                 .font(.system(size: 14))
-                .foregroundStyle(.white)
+                .foregroundStyle(AppColorScheme.getText())
                 .fontWeight(.bold)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
@@ -58,7 +58,7 @@ struct EditNotifyMessageView: View {
 
             Text("・通知メッセージは" + NotifyConfig.VARIABLE_USER_NAME + "部分が名前に自動で置き換わります。")
                 .font(.system(size: 14))
-                .foregroundStyle(.white)
+                .foregroundStyle(AppColorScheme.getText())
                 .fontWeight(.bold)
                 .padding(.vertical)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)

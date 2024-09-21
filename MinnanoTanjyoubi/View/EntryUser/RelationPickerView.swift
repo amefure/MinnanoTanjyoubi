@@ -14,13 +14,14 @@ struct RelationPickerView: View {
     var body: some View {
         Picker(selection: $selectedRelation, label: Text("関係")) {
             ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
-                Text(item).tag(Relation.getIndexbyRelation(index))
+                Text(item)
+                    .tag(Relation.getIndexbyRelation(index))
             }
         }.pickerStyle(.menu)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(AppColorScheme.getFoundationPrimary().opacity(0.4), lineWidth: 2)
-            ).tint(AppColorScheme.getFoundationPrimary())
+                    .stroke(AppColorScheme.getText().opacity(0.4), lineWidth: 2)
+            ).tint(AppColorScheme.getText())
     }
 }
 

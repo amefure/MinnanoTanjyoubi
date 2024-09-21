@@ -51,7 +51,7 @@ struct AppLockView: View {
                             }
                         }
                     }.offset(y: 80)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppColorScheme.getText())
                 }
             }
 
@@ -146,10 +146,10 @@ struct NumberKeyboardView: View {
                 } label: {
                     Image(systemName: "delete.backward")
                         .frame(width: DeviceSizeUtility.deviceWidth / 3, height: height)
-                        .background(AAppColorScheme.getFoundationPrimary())
+                        .background(AppColorScheme.getFoundationPrimary())
                 }
             }
-        }.foregroundStyle(.white)
+        }.foregroundStyle(AppColorScheme.getText())
             .fontWeight(.bold)
     }
 }
@@ -164,7 +164,7 @@ struct DisplayPasswordView: View {
             Text(password[safe: 1] == nil ? "ー" : "⚫︎")
             Text(password[safe: 2] == nil ? "ー" : "⚫︎")
             Text(password[safe: 3] == nil ? "ー" : "⚫︎")
-        }.foregroundStyle(.white)
+        }.foregroundStyle(AppColorScheme.getText())
             .fontWeight(.bold)
     }
 }

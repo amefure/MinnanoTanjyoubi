@@ -85,7 +85,7 @@ struct RowUserView: View {
                 .frame(height: 130)
                 .frame(maxWidth: DeviceSizeUtility.deviceWidth / 3)
                 .background(AppColorScheme.getFoundationPrimary())
-                .foregroundStyle(.white)
+                .foregroundStyle(AppColorScheme.getText())
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
 

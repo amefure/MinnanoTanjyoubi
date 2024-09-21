@@ -34,7 +34,7 @@ struct UpdateRelationNameView: View {
 
             Text("関係カテゴリ名編集")
                 .font(.system(size: 20))
-                .foregroundStyle(.white)
+                .foregroundStyle(AppColorScheme.getText())
                 .fontWeight(.bold)
                 .padding(.vertical)
 

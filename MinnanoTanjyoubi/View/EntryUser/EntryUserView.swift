@@ -48,7 +48,8 @@ struct EntryUserView: View {
             VStack(spacing: DeviceSizeUtility.isSESize ? 5 : 20) {
                 // Input Name
                 HStack {
-                    Text("名　　前").frame(width: 80)
+                    Text("名　　前")
+                        .frame(width: 80)
                     TextField("名前", text: $name)
                         .textFieldStyle(.roundedBorder)
                         .foregroundColor(.primary)
@@ -57,7 +58,8 @@ struct EntryUserView: View {
 
                 // Input Ruby
                 HStack {
-                    Text("ふりがな").frame(width: 80)
+                    Text("ふりがな")
+                        .frame(width: 80)
                     TextField("ふりがな", text: $ruby)
                         .textFieldStyle(.roundedBorder)
                         .foregroundColor(.primary)
@@ -66,14 +68,16 @@ struct EntryUserView: View {
 
                 // Input Date
                 HStack {
-                    Text("生年月日").frame(width: 80)
+                    Text("生年月日")
+                        .frame(width: 80)
                     Spacer()
                     DatePickerView(date: $date, isWheel: $isWheel)
                 }.padding(5)
 
                 // Input Relation
                 HStack {
-                    Text("関　　係").frame(width: 80)
+                    Text("関　　係")
+                        .frame(width: 80)
                     Spacer()
                     RelationPickerView(selectedRelation: $selectedRelation)
                     Spacer()
@@ -82,15 +86,13 @@ struct EntryUserView: View {
                 // Input Relation
 
                 if user == nil {
-                    // MARK: - 通知ビュー
-
                     Toggle(isOn: $isAlert, label: {
                         Text("通知")
                     }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1()))
                 }
 
                 Text("MEMO")
-                    .foregroundColor(AppColorScheme.getFoundationPrimary())
+                    .foregroundStyle(AppColorScheme.getText())
                     .fontWeight(.bold)
                     .opacity(0.8)
 
@@ -160,7 +162,7 @@ struct EntryUserView: View {
         }.padding()
             .font(.system(size: 17))
             .background(AppColorScheme.getFoundationSub())
-            .foregroundColor(.white)
+            .foregroundColor(AppColorScheme.getText())
             .onAppear {
                 if let user = user {
                     // Update時なら初期値セット
