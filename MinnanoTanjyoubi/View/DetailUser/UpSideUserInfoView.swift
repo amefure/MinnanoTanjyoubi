@@ -36,7 +36,7 @@ struct UpSideUserInfoView: View {
                     .frame(minWidth: roundWidth, alignment: .center)
                     .frame(maxWidth: roundWidth * 1.5)
                     .lineLimit(1)
-                    .background(Asset.Colors.foundationColorDark.swiftUIColor)
+                    .background(AppColorScheme.getFoundationPrimary())
                     .cornerRadius(5)
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
 
@@ -58,7 +58,7 @@ struct UpSideUserInfoView: View {
                 }.padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: roundWidth, alignment: .center)
-                    .background(Asset.Colors.foundationColorDark.swiftUIColor)
+                    .background(AppColorScheme.getFoundationPrimary())
                     .cornerRadius(5)
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
             }

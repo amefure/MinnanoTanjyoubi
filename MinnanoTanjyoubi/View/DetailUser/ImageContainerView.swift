@@ -63,7 +63,7 @@ struct ImageContainerView: View {
                     Image(systemName: "plus")
                         .font(.system(size: 17))
                         .frame(width: 80, height: 80)
-                        .overBorder(radius: 5, color: Asset.Colors.foundationColorDark.swiftUIColor, opacity: 0.4, lineWidth: 2)
+                        .overBorder(radius: 5, color: AppColorScheme.getFoundationPrimary(), opacity: 0.4, lineWidth: 2)
                 }
             }.padding(.horizontal)
         }

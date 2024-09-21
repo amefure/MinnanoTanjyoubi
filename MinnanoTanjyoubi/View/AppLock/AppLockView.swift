@@ -146,7 +146,7 @@ struct NumberKeyboardView: View {
                 } label: {
                     Image(systemName: "delete.backward")
                         .frame(width: DeviceSizeUtility.deviceWidth / 3, height: height)
-                        .background(Asset.Colors.foundationColorDark.swiftUIColor)
+                        .background(AAppColorScheme.getFoundationPrimary())
                 }
             }
         }.foregroundStyle(.white)
@@ -186,7 +186,7 @@ struct NumberButton: View {
         } label: {
             Text(number)
                 .frame(width: DeviceSizeUtility.deviceWidth / 3, height: height)
-                .background(Asset.Colors.foundationColorDark.swiftUIColor)
+                .background(AppColorScheme.getFoundationPrimary())
         }
     }
 }

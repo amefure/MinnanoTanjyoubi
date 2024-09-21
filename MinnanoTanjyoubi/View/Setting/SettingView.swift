@@ -51,7 +51,7 @@ struct SettingView: View {
                         }
                     }
 
-                }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
+                }.listRowBackground(AppColorScheme.getFoundationPrimary())
 
                 Section(header: Text("アプリ設定"),
                         footer: Text("・アプリにパスワードを設定してロックをかけることができます。").font(.system(size: 14)).fontWeight(.bold))
@@ -113,7 +113,7 @@ struct SettingView: View {
                     }.sheet(isPresented: $viewModel.isShowPassInput, content: {
                         AppLockInputView(isLock: $isLock)
                     })
-                }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
+                }.listRowBackground(AppColorScheme.getFoundationPrimary())
 
                 Section(header: Text("広告"),
                         footer: Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)個です。\n・容量の追加は1日に1回までです。").font(.system(size: 14)).fontWeight(.bold))
@@ -123,7 +123,7 @@ struct SettingView: View {
                         Image(systemName: "bag").settingIcon()
                         Text("現在の容量:\(viewModel.getCapacity())人")
                     }
-                }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
+                }.listRowBackground(AppColorScheme.getFoundationPrimary())
 
                 Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。").font(.system(size: 14)).fontWeight(.bold)) {
                     if let url = URL(string: StaticUrls.APP_REVIEW_URL) {
@@ -133,7 +133,7 @@ struct SettingView: View {
                                 Image(systemName: "hand.thumbsup").settingIcon()
                                 Text("アプリをレビューする")
                             }
-                        }).listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
+                        }).listRowBackground(AppColorScheme.getFoundationPrimary())
                     }
 
                     // 2:シェアボタン
@@ -148,7 +148,7 @@ struct SettingView: View {
                                 .settingIcon()
                             Text("「みんなの誕生日」をオススメする")
                         }
-                    }.listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
+                    }.listRowBackground(AppColorScheme.getFoundationPrimary())
 
                     if let url = URL(string: StaticUrls.APP_CONTACT_URL) {
                         // 3:お問い合わせフォーム
@@ -158,7 +158,7 @@ struct SettingView: View {
                                 Text("アプリの不具合はこちら")
                                 Image(systemName: "link")
                             }
-                        }).listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
+                        }).listRowBackground(AppColorScheme.getFoundationPrimary())
                     }
 
                     if let url = URL(string: StaticUrls.APP_TERMS_OF_SERVICE_URL) {
@@ -169,7 +169,7 @@ struct SettingView: View {
                                 Text("利用規約とプライバシーポリシー")
                                 Image(systemName: "link")
                             }
-                        }).listRowBackground(Asset.Colors.foundationColorDark.swiftUIColor)
+                        }).listRowBackground(AppColorScheme.getFoundationPrimary())
                     }
                 }
 

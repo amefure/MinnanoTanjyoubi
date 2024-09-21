@@ -32,6 +32,6 @@ struct ControlPanelView: View {
 
         }.frame(width: DeviceSizeUtility.deviceWidth, height: 70)
             .foregroundColor(.white)
-            .background(Asset.Colors.foundationColorDark.swiftUIColor)
+            .background(AppColorScheme.getFoundationPrimary())
     }
 }

@@ -36,7 +36,7 @@ struct CustomNotifyDialogView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(.white)
                         .padding(.vertical, 20)
-                        .background(Asset.Colors.foundationColorDark.swiftUIColor)
+                        .background(AppColorScheme.getFoundationPrimary())
 
                     Spacer()
 

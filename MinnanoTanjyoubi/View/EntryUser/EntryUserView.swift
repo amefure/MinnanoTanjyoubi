@@ -90,7 +90,7 @@ struct EntryUserView: View {
                 }
 
                 Text("MEMO")
-                    .foregroundColor(Asset.Colors.foundationColorDark.swiftUIColor)
+                    .foregroundColor(AppColorScheme.getFoundationPrimary())
                     .fontWeight(.bold)
                     .opacity(0.8)
 
@@ -113,7 +113,7 @@ struct EntryUserView: View {
                         }
                 }.background(AppColorScheme.getFoundationSub())
                     .frame(minHeight: DeviceSizeUtility.isSESize ? 60 : 90)
-                    .overBorder(radius: 5, color: Asset.Colors.foundationColorDark.swiftUIColor, opacity: 0.4, lineWidth: 3)
+                    .overBorder(radius: 5, color: AppColorScheme.getFoundationPrimary(), opacity: 0.4, lineWidth: 3)
             }
 
             Spacer()

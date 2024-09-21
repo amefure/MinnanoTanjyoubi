@@ -84,7 +84,7 @@ struct RowUserView: View {
             }.padding(5)
                 .frame(height: 130)
                 .frame(maxWidth: DeviceSizeUtility.deviceWidth / 3)
-                .background(Asset.Colors.foundationColorDark.swiftUIColor)
+                .background(AppColorScheme.getFoundationPrimary())
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)

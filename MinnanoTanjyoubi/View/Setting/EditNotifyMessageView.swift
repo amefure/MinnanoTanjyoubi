@@ -51,7 +51,7 @@ struct EditNotifyMessageView: View {
                 .padding(20)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 65)
                 .fontWeight(.bold)
-                .foregroundStyle(Asset.Colors.foundationColorDark.swiftUIColor)
+                .foregroundStyle(AppColorScheme.getFoundationPrimary())
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 3, y: 3)

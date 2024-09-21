@@ -52,7 +52,7 @@ struct HeaderView: View {
                     }).foregroundColor(.white).position(x: 0 + 30, y: 30)
                 }
             }
-        }.frame(width: deviceWidth, height: isSESize ? 60 : 70).background(Asset.Colors.foundationColorDark.swiftUIColor)
+        }.frame(width: deviceWidth, height: isSESize ? 60 : 70).background(AppColorScheme.getFoundationPrimary())
             .navigationDestination(isPresented: $isSettingActive) {
                 SettingView()
             }

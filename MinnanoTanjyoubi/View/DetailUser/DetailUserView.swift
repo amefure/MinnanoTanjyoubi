@@ -46,7 +46,7 @@ struct DetailUserView: View {
                     .frame(width: deviceWidth - 40)
                     .frame(minHeight: isSESize ? 130 : 180)
                     .frame(maxHeight: isSESize ? 130 : 180)
-                    .overBorder(radius: 5, color: Asset.Colors.foundationColorDark.swiftUIColor, opacity: 0.4, lineWidth: 2)
+                    .overBorder(radius: 5, color: AppColorScheme.getFoundationPrimary(), opacity: 0.4, lineWidth: 2)
 
             }.padding(isSESize ? 5 : 10)
 
