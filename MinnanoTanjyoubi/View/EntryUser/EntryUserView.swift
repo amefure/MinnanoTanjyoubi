@@ -86,7 +86,7 @@ struct EntryUserView: View {
 
                     Toggle(isOn: $isAlert, label: {
                         Text("通知")
-                    }).toggleStyle(SwitchToggleStyle(tint: Asset.Colors.themaColor1.swiftUIColor))
+                    }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1()))
                 }
 
                 Text("MEMO")

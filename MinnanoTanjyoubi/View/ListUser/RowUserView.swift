@@ -103,15 +103,15 @@ struct GarlandView: View {
         HStack {
             HStack(spacing: 0) {
                 FlattenedTriangle()
-                    .fill(Asset.Colors.themaColor1.swiftUIColor)
+                    .fill(Asset.Colors.scheme1Thema1.swiftUIColor)
                     .frame(width: 15, height: 1)
 
                 FlattenedTriangle()
-                    .fill(Asset.Colors.themaColor2.swiftUIColor)
+                    .fill(Asset.Colors.scheme1Thema2.swiftUIColor)
                     .frame(width: 15, height: 1)
 
                 FlattenedTriangle()
-                    .fill(Asset.Colors.themaColor3.swiftUIColor)
+                    .fill(Asset.Colors.scheme1Thema3.swiftUIColor)
                     .frame(width: 15, height: 1)
             }.rotationEffect(Angle(degrees: 140.0))
 
@@ -119,15 +119,15 @@ struct GarlandView: View {
 
             HStack(spacing: 0) {
                 FlattenedTriangle()
-                    .fill(Asset.Colors.themaColor3.swiftUIColor)
+                    .fill(Asset.Colors.scheme1Thema3.swiftUIColor)
                     .frame(width: 15, height: 1)
 
                 FlattenedTriangle()
-                    .fill(Asset.Colors.themaColor2.swiftUIColor)
+                    .fill(Asset.Colors.scheme1Thema2.swiftUIColor)
                     .frame(width: 15, height: 1)
 
                 FlattenedTriangle()
-                    .fill(Asset.Colors.themaColor1.swiftUIColor)
+                    .fill(Asset.Colors.scheme1Thema1.swiftUIColor)
                     .frame(width: 15, height: 1)
             }.rotationEffect(Angle(degrees: -140.0))
 

@@ -23,7 +23,7 @@ struct NotificationButtonView: View {
     var body: some View {
         Toggle(isOn: $isON, label: {
             Text("通知")
-        }).toggleStyle(SwitchToggleStyle(tint: Asset.Colors.themaColor1.swiftUIColor))
+        }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1()))
             .onChange(of: isON) { newValue in
                 if newValue {
                     // 通知を登録

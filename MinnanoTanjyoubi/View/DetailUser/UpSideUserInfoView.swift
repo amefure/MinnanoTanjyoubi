@@ -51,7 +51,7 @@ struct UpSideUserInfoView: View {
                     } else {
                         Text("あと")
                         Text("\(user.daysLater)")
-                            .foregroundColor(Asset.Colors.themaColor1.swiftUIColor)
+                            .foregroundColor(AppColorScheme.getThema1())
                         Text("日")
                     }
 

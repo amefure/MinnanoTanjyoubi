@@ -79,7 +79,7 @@ struct SettingView: View {
                             Text("年齢の⚪︎ヶ月を表示する")
                         }.onChange(of: isAgeMonthFlag, perform: { newValue in
                             viewModel.registerDisplayAgeMonth(flag: newValue)
-                        }).tint(Asset.Colors.themaColor1.swiftUIColor)
+                        }).tint(AppColorScheme.getThema1())
                     }
 
                     // 登録初期年数
@@ -109,7 +109,7 @@ struct SettingView: View {
                             } else {
                                 viewModel.deletePassword()
                             }
-                        }).tint(Asset.Colors.themaColor1.swiftUIColor)
+                        }).tint(AppColorScheme.getThema1())
                     }.sheet(isPresented: $viewModel.isShowPassInput, content: {
                         AppLockInputView(isLock: $isLock)
                     })
