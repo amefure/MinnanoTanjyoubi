@@ -30,7 +30,7 @@ struct MiddleUserInfoView: View {
                 if isDisplayAgeMonth {
                     Text("\(user.currentAgeMonth)ヶ月")
                 }
-            }.circleBorderView(width: roundWidth, height: roundWidth, color: Asset.Colors.themaColor2.swiftUIColor)
+            }.circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema2())
 
             Text(user.signOfZodiac)
                 .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema4())

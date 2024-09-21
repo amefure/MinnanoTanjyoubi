@@ -68,7 +68,7 @@ struct SettingView: View {
                             viewModel.registerDisplayDaysLater(flag: newValue)
                         }).toggleStyle(.button)
                             .opacity(0.9)
-                            .background(isDaysLaterFlag ? AppColorScheme.getThema3() : Asset.Colors.themaColor2.swiftUIColor)
+                            .background(isDaysLaterFlag ? AppColorScheme.getThema3() : AppColorScheme.getThema2())
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                     }
 
