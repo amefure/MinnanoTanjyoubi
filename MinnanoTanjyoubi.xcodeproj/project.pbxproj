@@ -76,6 +76,7 @@
 		12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29BA2C21695800A1293D /* StaticUrls.swift */; };
 		12ED29BF2C216CA900A1293D /* YearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29BE2C216CA900A1293D /* YearPickerView.swift */; };
 		12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29C02C21958700A1293D /* EntryUserViewModel.swift */; };
+		12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */; };
 		12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */; };
 		12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A272B2DC1C600FA700E /* RealmRepository.swift */; };
 		12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A292B2DC29500FA700E /* RealmConfig.swift */; };
@@ -155,6 +156,7 @@
 		12ED29BA2C21695800A1293D /* StaticUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticUrls.swift; sourceTree = "<group>"; };
 		12ED29BE2C216CA900A1293D /* YearPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearPickerView.swift; sourceTree = "<group>"; };
 		12ED29C02C21958700A1293D /* EntryUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserViewModel.swift; sourceTree = "<group>"; };
+		12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
 		12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryViewModel.swift; sourceTree = "<group>"; };
 		12FE3A272B2DC1C600FA700E /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		12FE3A292B2DC29500FA700E /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				12ED29BA2C21695800A1293D /* StaticUrls.swift */,
 				123F485729A256DB001B91B3 /* RelationEnum.swift */,
 				122401452B8769480099BE8D /* ImageError.swift */,
+				12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */,
 				1246024D2B381ED600B6C32D /* Config */,
 			);
 			path = Models;
@@ -671,6 +674,7 @@
 				12682BB529A7949000D0498F /* MiddleUserInfoView.swift in Sources */,
 				124602532B38490A00B6C32D /* AppLockInputViewModel.swift in Sources */,
 				12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */,
+				12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */,
 				12CB921128E64ABC002BD7B2 /* RootListUserView.swift in Sources */,
 				122401462B8769480099BE8D /* ImageError.swift in Sources */,
 				121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */,
