@@ -175,7 +175,7 @@ struct SettingView: View {
 
             }.listStyle(GroupedListStyle())
                 .scrollContentBackground(.hidden)
-                .background(Asset.Colors.foundationColorLight.swiftUIColor)
+                .background(AppColorScheme.getFoundationSub())
                 .foregroundColor(.white)
             // List ここまで
 
@@ -191,7 +191,7 @@ struct SettingView: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-            .background(Asset.Colors.foundationColorLight.swiftUIColor)
+            .background(AppColorScheme.getFoundationSub())
             .dialog(
                 isPresented: $viewModel.isAlertReward,
                 title: "お知らせ",

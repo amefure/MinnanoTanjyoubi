@@ -66,7 +66,7 @@ struct AppLockView: View {
             RootView()
         }
         .onAppear { viewModel.onAppear() }
-        .background(Asset.Colors.foundationColorLight.swiftUIColor)
+        .background(AppColorScheme.getFoundationSub())
     }
 }
 

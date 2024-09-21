@@ -73,7 +73,7 @@ struct UpdateRelationNameView: View {
             AdMobBannerView()
                 .frame(height: 60)
 
-        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
+        }.background(AppColorScheme.getFoundationSub())
             .font(.system(size: 17))
             .navigationBarBackButtonHidden()
             .onAppear {

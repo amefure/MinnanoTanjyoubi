@@ -45,7 +45,7 @@ struct AppLockInputView: View {
                     .fontWeight(.bold)
                     .padding(10)
                     .frame(width: 100)
-                    .background(password.count != 4 ? Asset.Colors.foundationColorLight.swiftUIColor : Asset.Colors.themaColor3.swiftUIColor)
+                    .background(password.count != 4 ? AppColorScheme.getFoundationSub() : Asset.Colors.themaColor3.swiftUIColor)
                     .foregroundStyle(password.count != 4 ? .gray : .white)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay {
@@ -68,7 +68,7 @@ struct AppLockInputView: View {
             } else {
                 isLock = false
             }
-        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
+        }.background(AppColorScheme.getFoundationSub())
     }
 }
 

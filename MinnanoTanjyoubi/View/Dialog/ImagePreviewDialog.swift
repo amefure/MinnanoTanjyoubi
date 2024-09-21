@@ -26,7 +26,7 @@ struct ImagePreviewDialog: View {
                         .scaledToFit()
                         .padding(5)
                         .frame(maxWidth: 300)
-                        .background(Asset.Colors.foundationColorLight.swiftUIColor)
+                        .background(AppColorScheme.getFoundationSub())
                         .shadow(radius: 10)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                     // 画面一杯にViewを広げる

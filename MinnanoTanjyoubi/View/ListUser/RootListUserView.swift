@@ -48,7 +48,7 @@ struct RootListUserView: View {
             // ControlPanel
             ControlPanelView(isDeleteAlert: $isDeleteAlert, isLimitAlert: $isLimitAlert)
 
-        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
+        }.background(AppColorScheme.getFoundationSub())
             .dialog(
                 isPresented: $isDeleteAlert,
                 title: "お知らせ",

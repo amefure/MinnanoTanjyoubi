@@ -72,7 +72,7 @@ struct DetailUserView: View {
                     .frame(height: 50)
             }
 
-        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
+        }.background(AppColorScheme.getFoundationSub())
             .foregroundColor(.white)
             .toolbar(.hidden, for: .navigationBar)
             .dialog(

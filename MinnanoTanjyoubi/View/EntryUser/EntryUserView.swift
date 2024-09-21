@@ -97,7 +97,7 @@ struct EntryUserView: View {
                 NavigationStack {
                     TextEditor(text: $memo)
                         .padding(5)
-                        .background(Asset.Colors.foundationColorLight.swiftUIColor)
+                        .background(AppColorScheme.getFoundationSub())
                         .focused($isFocusActive)
                         .scrollContentBackground(.hidden)
                         .toolbar {
@@ -111,7 +111,7 @@ struct EntryUserView: View {
                                 }
                             }
                         }
-                }.background(Asset.Colors.foundationColorLight.swiftUIColor)
+                }.background(AppColorScheme.getFoundationSub())
                     .frame(minHeight: DeviceSizeUtility.isSESize ? 60 : 90)
                     .overBorder(radius: 5, color: Asset.Colors.foundationColorDark.swiftUIColor, opacity: 0.4, lineWidth: 3)
             }
@@ -159,7 +159,7 @@ struct EntryUserView: View {
 
         }.padding()
             .font(.system(size: 17))
-            .background(Asset.Colors.foundationColorLight.swiftUIColor)
+            .background(AppColorScheme.getFoundationSub())
             .foregroundColor(.white)
             .onAppear {
                 if let user = user {

@@ -20,7 +20,7 @@ struct RootView: View {
             AdMobBannerView()
                 .frame(height: 50)
 
-        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
+        }.background(AppColorScheme.getFoundationSub())
             .ignoresSafeArea(.keyboard)
             .navigationBarBackButtonHidden()
             .navigationBarHidden(true)

@@ -83,7 +83,7 @@ struct EditNotifyMessageView: View {
             DispatchQueue.main.async {
                 isFocus = true
             }
-        }.background(Asset.Colors.foundationColorLight.swiftUIColor)
+        }.background(AppColorScheme.getFoundationSub())
             .ignoresSafeArea(.keyboard)
             .font(.system(size: 17))
             .navigationBarBackButtonHidden()
