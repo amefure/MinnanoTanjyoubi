@@ -45,7 +45,7 @@ struct UpSideUserInfoView: View {
                 HStack(alignment: .bottom) {
                     if user.daysLater == 0 {
                         Text("HAPPY BIRTHDAY")
-                            .foregroundStyle(Asset.Colors.themaColor4.swiftUIColor)
+                            .foregroundStyle(AppColorScheme.getThema4())
                             .fontWeight(.bold)
 
                     } else {

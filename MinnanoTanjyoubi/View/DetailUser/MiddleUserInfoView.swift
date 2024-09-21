@@ -33,7 +33,7 @@ struct MiddleUserInfoView: View {
             }.circleBorderView(width: roundWidth, height: roundWidth, color: Asset.Colors.themaColor2.swiftUIColor)
 
             Text(user.signOfZodiac)
-                .circleBorderView(width: roundWidth, height: roundWidth, color: Asset.Colors.themaColor4.swiftUIColor)
+                .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema4())
 
             Text(user.zodiac)
                 .circleBorderView(width: roundWidth, height: roundWidth, color: Asset.Colors.themaColor3.swiftUIColor)

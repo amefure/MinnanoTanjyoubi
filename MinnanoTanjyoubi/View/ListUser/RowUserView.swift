@@ -52,7 +52,7 @@ struct RowUserView: View {
                 HStack(alignment: .bottom) {
                     if user.daysLater == 0 {
                         Text(DeviceSizeUtility.isSESize ? "HAPPY\nBIRTHDAY" : "HAPPY BIRTHDAY")
-                            .foregroundStyle(Asset.Colors.themaColor4.swiftUIColor)
+                            .foregroundStyle(AppColorScheme.getThema4())
                             .fontWeight(.bold)
                             .frame(height: 25)
                             .font(DeviceSizeUtility.isSESize ? .system(size: 10) : .system(size: 12))
@@ -64,13 +64,13 @@ struct RowUserView: View {
                             Text("あと")
                             Text("\(month)")
                                 .font(.system(size: 17))
-                                .foregroundColor(Asset.Colors.themaColor4.swiftUIColor)
+                                .foregroundColor(AppColorScheme.getThema4())
                             Text("ヶ月")
                         } else {
                             Text("あと")
                             Text("\(user.daysLater)")
                                 .font(.system(size: 17))
-                                .foregroundColor(Asset.Colors.themaColor4.swiftUIColor)
+                                .foregroundColor(AppColorScheme.getThema4())
                             Text("日")
                         }
                     }
