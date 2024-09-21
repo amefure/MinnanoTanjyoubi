@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SortedButtonView: View {
-
     @State private var isPicker = false
     @State private var isSorted = false
     @State private var selectedRelation: Relation = .other

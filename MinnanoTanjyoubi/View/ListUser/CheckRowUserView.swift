@@ -41,7 +41,7 @@ struct CheckRowUserView: View {
 
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
-    @State private  var isOn = false
+    @State private var isOn = false
 
     private var itemWidth: CGFloat {
         return CGFloat(DeviceSizeUtility.deviceWidth / 3)

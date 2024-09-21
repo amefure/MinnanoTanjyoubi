@@ -10,7 +10,6 @@ import SwiftUI
 
 /// リスト画面下部に表示するコントロールパネルビュー
 struct ControlPanelView: View {
-
     @ObservedObject private var rootEnvironment = RootEnvironment.shared
     @Binding var isDeleteAlert: Bool
     @Binding var isLimitAlert: Bool
@@ -18,7 +17,6 @@ struct ControlPanelView: View {
     var body: some View {
         HStack {
             Spacer()
-
 
             RemoveButtonView(isDeleteAlert: $isDeleteAlert)
 

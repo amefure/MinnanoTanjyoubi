@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DatePickerView: View {
-
     private let dfm = DateFormatUtility()
 
     @Binding var date: Date
