@@ -31,26 +31,26 @@ struct HeaderView: View {
                     .frame(width: isSESize ? 50 : 60, height: isSESize ? 50 : 60)
 
                 if isShowIcon {
-                    Button(action: {
+                    Button {
                         isSettingActive = true
-                    }, label: {
+                    } label: {
                         Image(systemName: "gearshape.fill")
                             .font(.system(size: 17))
-                    }).foregroundColor(AppColorScheme.getText())
+                    }.foregroundColor(AppColorScheme.getText())
                         .position(x: deviceWidth - 30, y: 30)
                 }
 
                 if isShowIcon {
-                    Button(action: {
+                    Button {
                         if rootEnvironment.sectionLayoutFlag {
                             rootEnvironment.registerDisplaySectionLayout(flag: false)
                         } else {
                             rootEnvironment.registerDisplaySectionLayout(flag: true)
                         }
-                    }, label: {
+                    } label: {
                         Image(systemName: rootEnvironment.sectionLayoutFlag ? "square.grid.3x3.fill" : "square.grid.3x1.below.line.grid.1x2.fill")
                             .font(.system(size: 17))
-                    }).foregroundColor(AppColorScheme.getText())
+                    }.foregroundColor(AppColorScheme.getText())
                         .position(x: 0 + 30, y: 30)
                 }
             }

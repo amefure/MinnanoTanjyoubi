@@ -19,13 +19,13 @@ struct TimePickerView: View {
             displayedComponents: DatePickerComponents.hourAndMinute,
             label: {
                 Text("通知時間")
-                    .foregroundColor(.black)
+                    .foregroundStyle(AppColorScheme.getText())
                     .font(.system(size: 17))
             }
         ).environment(\.locale, Locale(identifier: "ja_JP"))
             .font(.system(size: 17))
             .colorInvert()
-            .colorMultiply(.white)
+            .colorMultiply(AppColorScheme.getText())
             .onChange(of: time) { newValue in
                 viewModel.registerNotifyTime(date: newValue)
             }.onAppear {
