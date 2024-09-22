@@ -10,7 +10,8 @@ import SwiftUI
 
 /// リスト画面下部に表示するコントロールパネルビュー
 struct ControlPanelView: View {
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    // Environment
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
     @Binding var isDeleteAlert: Bool
     @Binding var isLimitAlert: Bool
 
@@ -19,19 +20,22 @@ struct ControlPanelView: View {
             Spacer()
 
             RemoveButtonView(isDeleteAlert: $isDeleteAlert)
+                .environmentObject(rootEnvironment)
 
             Spacer()
 
             SortedButtonView()
+                .environmentObject(rootEnvironment)
 
             Spacer()
 
             EntryButtonView(isLimitAlert: $isLimitAlert)
+                .environmentObject(rootEnvironment)
 
             Spacer()
 
         }.frame(width: DeviceSizeUtility.deviceWidth, height: 70)
-            .foregroundColor(AppColorScheme.getText())
-            .background(AppColorScheme.getFoundationPrimary())
+            .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
+            .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
     }
 }

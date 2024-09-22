@@ -15,6 +15,8 @@ struct EntryUserView: View {
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
     private let viewModel = EntryUserViewModel()
 
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     // Updateデータ受け取り用
     public var user: User?
 
@@ -40,6 +42,7 @@ struct EntryUserView: View {
             // MARK: - ViewComponent
 
             UpSideView()
+                .environmentObject(rootEnvironment)
 
             if !DeviceSizeUtility.isSESize {
                 Spacer()
@@ -72,6 +75,7 @@ struct EntryUserView: View {
                         .frame(width: 80)
                     Spacer()
                     DatePickerView(date: $date, isWheel: $isWheel)
+                        .environmentObject(rootEnvironment)
                 }.padding(5)
 
                 // Input Relation
@@ -80,6 +84,7 @@ struct EntryUserView: View {
                         .frame(width: 80)
                     Spacer()
                     RelationPickerView(selectedRelation: $selectedRelation)
+                        .environmentObject(rootEnvironment)
                     Spacer()
                 }.padding(5)
 
@@ -88,18 +93,18 @@ struct EntryUserView: View {
                 if user == nil {
                     Toggle(isOn: $isAlert, label: {
                         Text("通知")
-                    }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1()))
+                    }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1(rootEnvironment.scheme)))
                 }
 
                 Text("MEMO")
-                    .foregroundStyle(AppColorScheme.getText())
+                    .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                     .fontWeight(.bold)
                     .opacity(0.8)
 
                 NavigationStack {
                     TextEditor(text: $memo)
                         .padding(5)
-                        .background(AppColorScheme.getFoundationSub())
+                        .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
                         .focused($isFocusActive)
                         .scrollContentBackground(.hidden)
                         .toolbar {
@@ -113,9 +118,9 @@ struct EntryUserView: View {
                                 }
                             }
                         }
-                }.background(AppColorScheme.getFoundationSub())
+                }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
                     .frame(minHeight: DeviceSizeUtility.isSESize ? 60 : 90)
-                    .overBorder(radius: 5, color: AppColorScheme.getFoundationPrimary(), opacity: 0.4, lineWidth: 3)
+                    .overBorder(radius: 5, color: AppColorScheme.getFoundationPrimary(rootEnvironment.scheme), opacity: 0.4, lineWidth: 3)
             }
 
             Spacer()
@@ -158,11 +163,12 @@ struct EntryUserView: View {
 
                 isModal = false
             }, imageString: "checkmark")
+                .environmentObject(rootEnvironment)
 
         }.padding()
             .font(.system(size: 17))
-            .background(AppColorScheme.getFoundationSub())
-            .foregroundColor(AppColorScheme.getText())
+            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
             .onAppear {
                 if let user = user {
                     // Update時なら初期値セット

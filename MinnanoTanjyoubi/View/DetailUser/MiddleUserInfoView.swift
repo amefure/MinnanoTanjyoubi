@@ -15,6 +15,8 @@ struct MiddleUserInfoView: View {
     private let isSESize = DeviceSizeUtility.isSESize
     @State private var isDisplayAgeMonth = false
 
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     private var roundWidth: CGFloat {
         if deviceWidth < 400 {
             return 50
@@ -30,13 +32,13 @@ struct MiddleUserInfoView: View {
                 if isDisplayAgeMonth {
                     Text("\(user.currentAgeMonth)ヶ月")
                 }
-            }.circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema2())
+            }.circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema2(rootEnvironment.scheme))
 
             Text(user.signOfZodiac)
-                .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema4())
+                .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema4(rootEnvironment.scheme))
 
             Text(user.zodiac)
-                .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3())
+                .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3(rootEnvironment.scheme))
 
         }.font(isSESize ? .system(size: 12) : .system(size: 17))
             .onAppear {

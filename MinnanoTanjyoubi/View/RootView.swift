@@ -9,18 +9,20 @@ import RealmSwift
 import SwiftUI
 
 struct RootView: View {
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     var body: some View {
         VStack(spacing: 0) {
-            // Header Contents
             HeaderView()
+                .environmentObject(rootEnvironment)
 
-            // Main Contents
             RootListUserView()
+                .environmentObject(rootEnvironment)
 
             AdMobBannerView()
                 .frame(height: 50)
 
-        }.background(AppColorScheme.getFoundationSub())
+        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .ignoresSafeArea(.keyboard)
             .navigationBarBackButtonHidden()
             .navigationBarHidden(true)

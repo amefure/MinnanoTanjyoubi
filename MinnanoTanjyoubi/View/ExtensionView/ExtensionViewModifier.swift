@@ -26,10 +26,11 @@ struct OverBorder: ViewModifier {
 
 // SettingView
 struct SettingIcon: ViewModifier {
+    let scheme: AppColorScheme
     func body(content: Content) -> some View {
         content
             .frame(width: 30)
-            .foregroundColor(AppColorScheme.getThema1())
+            .foregroundColor(AppColorScheme.getThema1(scheme))
     }
 }
 
@@ -56,8 +57,8 @@ extension View {
     }
 
     // SettingView
-    func settingIcon() -> some View {
-        modifier(SettingIcon())
+    func settingIcon(_ scheme: AppColorScheme) -> some View {
+        modifier(SettingIcon(scheme: scheme))
     }
 
     // ListUserView > ControlPanelView && DetailUserView

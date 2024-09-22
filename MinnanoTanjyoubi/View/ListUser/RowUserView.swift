@@ -15,7 +15,8 @@ struct RowUserView: View {
     @State private var isDisplayDateLater = false
     @State private var isDisplayAgeMonth = false
 
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    // Environment
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     /// 文字数でフォントサイズを調整
     private func changeFontSizeByLength(_ name: String) -> CGFloat {
@@ -52,7 +53,7 @@ struct RowUserView: View {
                 HStack(alignment: .bottom) {
                     if user.daysLater == 0 {
                         Text(DeviceSizeUtility.isSESize ? "HAPPY\nBIRTHDAY" : "HAPPY BIRTHDAY")
-                            .foregroundStyle(AppColorScheme.getThema1())
+                            .foregroundStyle(AppColorScheme.getThema1(rootEnvironment.scheme))
                             .fontWeight(.bold)
                             .frame(height: 25)
                             .font(DeviceSizeUtility.isSESize ? .system(size: 10) : .system(size: 12))
@@ -64,13 +65,13 @@ struct RowUserView: View {
                             Text("あと")
                             Text("\(month)")
                                 .font(.system(size: 17))
-                                .foregroundColor(AppColorScheme.getThema1())
+                                .foregroundColor(AppColorScheme.getThema1(rootEnvironment.scheme))
                             Text("ヶ月")
                         } else {
                             Text("あと")
                             Text("\(user.daysLater)")
                                 .font(.system(size: 17))
-                                .foregroundColor(AppColorScheme.getThema1())
+                                .foregroundColor(AppColorScheme.getThema1(rootEnvironment.scheme))
                             Text("日")
                         }
                     }
@@ -84,13 +85,14 @@ struct RowUserView: View {
             }.padding(5)
                 .frame(height: 130)
                 .frame(maxWidth: DeviceSizeUtility.deviceWidth / 3)
-                .background(AppColorScheme.getFoundationPrimary())
-                .foregroundStyle(AppColorScheme.getText())
+                .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
 
             if user.daysLater == 0 {
                 GarlandView()
+                    .environmentObject(rootEnvironment)
             }
         }
     }
@@ -99,6 +101,8 @@ struct RowUserView: View {
 // MARK: - ガーランド三角形
 
 struct GarlandView: View {
+    // Environment
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
     var body: some View {
         HStack {
             HStack(spacing: 0) {

@@ -26,6 +26,8 @@ class UserDefaultsKey {
     static let DISPLAY_SECTION_LAYOUT = "DISPLAY_SECTION_LAYOUT"
     /// 登録年数初期値
     static let ENTRY_INTI_YEAR = "ENTRY_INTI_YEAR"
+    /// アプリカラースキーム
+    static let APP_COLOR_SCHEME = "APP_COLOR_SCHEME"
 
     /// 関係名をカスタム登録
     static let DISPLAY_RELATION_FRIEND = "DISPLAY_RELATION_FRIEND"

@@ -10,6 +10,7 @@ import SwiftUI
 struct RewardButtonView: View {
     @StateObject var reward = Reward()
     @StateObject var viewModel: SettingViewModel
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         Button(action: {
@@ -25,7 +26,7 @@ struct RewardButtonView: View {
         }) {
             HStack {
                 Image(systemName: "bag.badge.plus")
-                    .settingIcon()
+                    .settingIcon(rootEnvironment.scheme)
                 Text(reward.rewardLoaded ? "広告を視聴して容量を追加する" : "広告を読み込んでいます")
             }
         }

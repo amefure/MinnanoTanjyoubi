@@ -9,15 +9,12 @@ import SwiftUI
 
 /// 設定ページからモーダルとして呼び出される
 struct AppLockInputView: View {
-    // MARK: - Receive
-
     @Binding var isLock: Bool
-
-    // MARK: - View
 
     @State private var password: [String] = []
 
     @StateObject private var viewModel = AppLockInputViewModel()
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @Environment(\.dismiss) private var dismiss
 
@@ -27,7 +24,7 @@ struct AppLockInputView: View {
 
             Text("パスワード登録")
                 .fontWeight(.bold)
-                .foregroundStyle(AppColorScheme.getFoundationPrimary())
+                .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
             Spacer()
 
@@ -45,14 +42,14 @@ struct AppLockInputView: View {
                     .fontWeight(.bold)
                     .padding(10)
                     .frame(width: 100)
-                    .background(password.count != 4 ? AppColorScheme.getFoundationSub() : AppColorScheme.getThema3())
-                    .foregroundStyle(password.count != 4 ? .gray : AppColorScheme.getText())
+                    .background(password.count != 4 ? AppColorScheme.getFoundationSub(rootEnvironment.scheme) : AppColorScheme.getThema3(rootEnvironment.scheme))
+                    .foregroundStyle(password.count != 4 ? .gray : AppColorScheme.getText(rootEnvironment.scheme))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(style: StrokeStyle(lineWidth: 2))
                             .frame(width: 100)
-                            .foregroundStyle(password.count != 4 ? .gray : AppColorScheme.getThema3())
+                            .foregroundStyle(password.count != 4 ? .gray : AppColorScheme.getThema3(rootEnvironment.scheme))
                     }.padding(.vertical, 20)
                     .shadow(color: password.count != 4 ? .clear : .gray, radius: 3, x: 4, y: 4)
 
@@ -68,7 +65,7 @@ struct AppLockInputView: View {
             } else {
                 isLock = false
             }
-        }.background(AppColorScheme.getFoundationSub())
+        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
     }
 }
 

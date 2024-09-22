@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NoticeDateFlagView: View {
     @StateObject var viewModel: SettingViewModel
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @State private var isOn: Bool = true
 
@@ -21,7 +22,7 @@ struct NoticeDateFlagView: View {
                     .fontWeight(.bold)
             }.toggleStyle(.button)
                 .opacity(isOn ? 0.9 : 1)
-                .background(isOn ? AppColorScheme.getThema2() : AppColorScheme.getThema3())
+                .background(isOn ? AppColorScheme.getThema2(rootEnvironment.scheme) : AppColorScheme.getThema3(rootEnvironment.scheme))
                 .clipShape(RoundedRectangle(cornerRadius: 5))
                 .onChange(of: isOn) { newValue in
                     if newValue {

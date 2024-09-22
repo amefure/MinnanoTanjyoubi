@@ -15,7 +15,7 @@ struct RootListUserView: View {
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
     // Environment
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @State private var isDeleteAlert = false
     @State private var isLimitAlert = false
@@ -29,7 +29,7 @@ struct RootListUserView: View {
                 Text("登録されている誕生日情報がありません。")
                     .font(.system(size: 17))
                     .fontWeight(.bold)
-                    .foregroundStyle(AppColorScheme.getText())
+                    .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
 
                 Spacer()
 
@@ -38,17 +38,20 @@ struct RootListUserView: View {
                     if rootEnvironment.sectionLayoutFlag {
                         // カテゴリセクショングリッドレイアウト
                         SectionGridListView()
+                            .environmentObject(rootEnvironment)
                     } else {
                         // 単体のグリッドレイアウト
                         SingleGridListView(users: repository.users)
+                            .environmentObject(rootEnvironment)
                     }
                 }.padding([.top, .trailing, .leading])
             }
 
             // ControlPanel
             ControlPanelView(isDeleteAlert: $isDeleteAlert, isLimitAlert: $isLimitAlert)
+                .environmentObject(rootEnvironment)
 
-        }.background(AppColorScheme.getFoundationSub())
+        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .dialog(
                 isPresented: $isDeleteAlert,
                 title: "お知らせ",

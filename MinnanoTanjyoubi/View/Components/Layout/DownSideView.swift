@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct DownSideView: View {
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isiPadSize = DeviceSizeUtility.isiPadSize
     private let isSESize = DeviceSizeUtility.isiPadSize
 
-    // MARK: - LINK: EntryView
-
+    // EntryView
     public var parentFunction: () -> Void
     // 表示させたい画像名を受け取る
     public var imageString: String
-
-    // MARK: - View
 
     private var viewSize: CGFloat {
         if isSESize {
@@ -31,7 +30,7 @@ struct DownSideView: View {
     var body: some View {
         HStack {
             Rectangle()
-                .foregroundColor(AppColorScheme.getFoundationPrimary())
+                .foregroundColor(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                 .frame(width: isiPadSize ? deviceWidth * 0.6 : deviceWidth * 0.8, height: viewSize)
                 .cornerRadius(50)
                 .offset(x: isiPadSize ? -110 : -30)
@@ -41,11 +40,11 @@ struct DownSideView: View {
 
             }, label: {
                 Image(systemName: imageString)
-                    .foregroundColor(AppColorScheme.getText())
+                    .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
 
             }).frame(width: viewSize, height: viewSize)
-                .background(AppColorScheme.getFoundationPrimary())
+                .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                 .cornerRadius(50)
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
 

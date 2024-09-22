@@ -17,6 +17,8 @@ struct UpSideUserInfoView: View {
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isSESize = DeviceSizeUtility.isSESize
 
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     private var roundWidth: CGFloat {
         if deviceWidth < 400 {
             return 50
@@ -24,8 +26,6 @@ struct UpSideUserInfoView: View {
             return 65
         }
     }
-
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
 
     var body: some View {
         VStack(spacing: 0) {
@@ -36,7 +36,7 @@ struct UpSideUserInfoView: View {
                     .frame(minWidth: roundWidth, alignment: .center)
                     .frame(maxWidth: roundWidth * 1.5)
                     .lineLimit(1)
-                    .background(AppColorScheme.getFoundationPrimary())
+                    .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                     .cornerRadius(5)
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
 
@@ -45,20 +45,20 @@ struct UpSideUserInfoView: View {
                 HStack(alignment: .bottom) {
                     if user.daysLater == 0 {
                         Text("HAPPY BIRTHDAY")
-                            .foregroundStyle(AppColorScheme.getThema1())
+                            .foregroundStyle(AppColorScheme.getThema1(rootEnvironment.scheme))
                             .fontWeight(.bold)
 
                     } else {
                         Text("あと")
                         Text("\(user.daysLater)")
-                            .foregroundColor(AppColorScheme.getThema1())
+                            .foregroundColor(AppColorScheme.getThema1(rootEnvironment.scheme))
                         Text("日")
                     }
 
                 }.padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: roundWidth, alignment: .center)
-                    .background(AppColorScheme.getFoundationPrimary())
+                    .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                     .cornerRadius(5)
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
             }

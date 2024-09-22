@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CustomNotifyDialogView: View {
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+
     @Binding var isPresented: Bool
 
     public let title: String
@@ -34,9 +36,9 @@ struct CustomNotifyDialogView: View {
                         .frame(width: 300)
                         .font(.system(size: 20))
                         .fontWeight(.bold)
-                        .foregroundStyle(AppColorScheme.getText())
+                        .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                         .padding(.vertical, 20)
-                        .background(AppColorScheme.getFoundationPrimary())
+                        .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
                     Spacer()
 

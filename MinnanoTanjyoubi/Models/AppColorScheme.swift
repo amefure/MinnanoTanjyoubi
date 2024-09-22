@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-enum AppColorScheme {
+enum AppColorScheme: String {
     case original
     case dark
     case light
     case pretty
 
-    static func getFoundationPrimary(scheme: AppColorScheme = .light) -> Color {
+    static func getFoundationPrimary(_ scheme: AppColorScheme = .light) -> Color {
         switch scheme {
         case .original:
             return Asset.Colors.scheme1FoundationPrimary.swiftUIColor
@@ -26,7 +26,7 @@ enum AppColorScheme {
         }
     }
 
-    static func getFoundationSub(scheme: AppColorScheme = .light) -> Color {
+    static func getFoundationSub(_ scheme: AppColorScheme = .light) -> Color {
         switch scheme {
         case .original:
             return Asset.Colors.scheme1FoundationSub.swiftUIColor
@@ -39,7 +39,7 @@ enum AppColorScheme {
         }
     }
 
-    static func getThema1(scheme: AppColorScheme = .light) -> Color {
+    static func getThema1(_ scheme: AppColorScheme = .light) -> Color {
         switch scheme {
         case .original:
             return Asset.Colors.scheme1Thema1.swiftUIColor
@@ -52,7 +52,7 @@ enum AppColorScheme {
         }
     }
 
-    static func getThema2(scheme: AppColorScheme = .light) -> Color {
+    static func getThema2(_ scheme: AppColorScheme = .light) -> Color {
         switch scheme {
         case .original:
             return Asset.Colors.scheme1Thema2.swiftUIColor
@@ -65,7 +65,7 @@ enum AppColorScheme {
         }
     }
 
-    static func getThema3(scheme: AppColorScheme = .light) -> Color {
+    static func getThema3(_ scheme: AppColorScheme = .light) -> Color {
         switch scheme {
         case .original:
             return Asset.Colors.scheme1Thema3.swiftUIColor
@@ -78,7 +78,7 @@ enum AppColorScheme {
         }
     }
 
-    static func getThema4(scheme: AppColorScheme = .light) -> Color {
+    static func getThema4(_ scheme: AppColorScheme = .light) -> Color {
         switch scheme {
         case .original:
             return Asset.Colors.scheme1Thema4.swiftUIColor
@@ -91,7 +91,7 @@ enum AppColorScheme {
         }
     }
 
-    static func getText(scheme: AppColorScheme = .light) -> Color {
+    static func getText(_ scheme: AppColorScheme = .light) -> Color {
         switch scheme {
         case .original:
             return Asset.Colors.scheme1Text.swiftUIColor

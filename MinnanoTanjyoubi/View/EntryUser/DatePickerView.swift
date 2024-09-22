@@ -18,6 +18,8 @@ struct DatePickerView: View {
     private let deviceHeight = DeviceSizeUtility.deviceHeight
     private let isSESize: Bool = DeviceSizeUtility.isSESize
 
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     var body: some View {
         HStack {
             if !isWheel {
@@ -44,7 +46,7 @@ struct DatePickerView: View {
             }, label: {
                 Text(isWheel ? "変更" : "決定")
                     .padding(3)
-                    .background(isWheel ? AppColorScheme.getThema2() : AppColorScheme.getThema3()).opacity(0.8)
+                    .background(isWheel ? AppColorScheme.getThema2(rootEnvironment.scheme) : AppColorScheme.getThema3(rootEnvironment.scheme)).opacity(0.8)
                     .cornerRadius(5)
             }).padding([.leading, .top, .bottom])
         }

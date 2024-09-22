@@ -13,17 +13,14 @@ struct ImageContainerView: View {
     private let imageFileManager = ImageFileManager()
 
     @State var user: User
-
     @State var image: UIImage? = nil
 
     @ObservedObject private var viewModel = DetailViewModel.shared
-
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @State private var isShowImagePicker: Bool = false // 画像ピッカー表示
-
     @State private var cancellables: Set<AnyCancellable> = Set()
-
     @State var images: [String] = []
 
     var body: some View {
@@ -58,12 +55,16 @@ struct ImageContainerView: View {
 
                 Button {
                     isShowImagePicker = true
-
                 } label: {
                     Image(systemName: "plus")
                         .font(.system(size: 17))
                         .frame(width: 80, height: 80)
-                        .overBorder(radius: 5, color: AppColorScheme.getFoundationPrimary(), opacity: 0.4, lineWidth: 2)
+                        .overBorder(
+                            radius: 5,
+                            color: AppColorScheme.getFoundationPrimary(rootEnvironment.scheme),
+                            opacity: 0.4,
+                            lineWidth: 2
+                        )
                 }
             }.padding(.horizontal)
         }

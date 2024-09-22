@@ -20,8 +20,8 @@ struct RelationPickerView: View {
         }.pickerStyle(.menu)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(AppColorScheme.getText().opacity(0.4), lineWidth: 2)
-            ).tint(AppColorScheme.getText())
+                    .stroke(AppColorScheme.getText(rootEnvironment.scheme).opacity(0.4), lineWidth: 2)
+            ).tint(AppColorScheme.getText(rootEnvironment.scheme))
     }
 }
 

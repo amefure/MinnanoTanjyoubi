@@ -8,20 +8,15 @@
 import SwiftUI
 
 struct HeaderView: View {
-    // MARK: - Modal Control 設定画面遷移
-
+    /// Modal Control 設定画面遷移
     @State private var isSettingActive: Bool = false
 
     public var isShowIcon: Bool = true
 
-    // MARK: - Setting
-
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isSESize = DeviceSizeUtility.isSESize
 
-    // MARK: - Environment
-
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         HStack(alignment: .center) {
@@ -36,7 +31,7 @@ struct HeaderView: View {
                     } label: {
                         Image(systemName: "gearshape.fill")
                             .font(.system(size: 17))
-                    }.foregroundColor(AppColorScheme.getText())
+                    }.foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
                         .position(x: deviceWidth - 30, y: 30)
                 }
 
@@ -50,13 +45,14 @@ struct HeaderView: View {
                     } label: {
                         Image(systemName: rootEnvironment.sectionLayoutFlag ? "square.grid.3x3.fill" : "square.grid.3x1.below.line.grid.1x2.fill")
                             .font(.system(size: 17))
-                    }.foregroundColor(AppColorScheme.getText())
+                    }.foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
                         .position(x: 0 + 30, y: 30)
                 }
             }
-        }.frame(width: deviceWidth, height: isSESize ? 60 : 70).background(AppColorScheme.getFoundationPrimary())
+        }.frame(width: deviceWidth, height: isSESize ? 60 : 70).background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
             .navigationDestination(isPresented: $isSettingActive) {
                 SettingView()
+                    .environmentObject(rootEnvironment)
             }
     }
 }
@@ -64,5 +60,6 @@ struct HeaderView: View {
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
         HeaderView()
+            .environmentObject(RootEnvironment.shared)
     }
 }

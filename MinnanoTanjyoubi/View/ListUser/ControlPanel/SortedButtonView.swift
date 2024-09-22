@@ -13,7 +13,7 @@ struct SortedButtonView: View {
     @State private var selectedRelation: Relation = .other
 
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         Button {
@@ -26,8 +26,8 @@ struct SortedButtonView: View {
             }
         } label: {
             Image(systemName: "person.2.crop.square.stack")
-                .circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema4())
-                .foregroundColor(isSorted ? AppColorScheme.getFoundationPrimary() : AppColorScheme.getText())
+                .circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema4(rootEnvironment.scheme))
+                .foregroundColor(isSorted ? AppColorScheme.getFoundationPrimary(rootEnvironment.scheme) : AppColorScheme.getText(rootEnvironment.scheme))
                 .font(.system(size: 17))
         }
         .onChange(of: selectedRelation) { newValue in

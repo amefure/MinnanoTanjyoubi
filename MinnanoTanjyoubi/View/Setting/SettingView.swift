@@ -12,7 +12,7 @@ import UIKit
 struct SettingView: View {
     @StateObject private var viewModel = SettingViewModel()
 
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @State private var isLock: Bool = false
     @State private var isDaysLaterFlag: Bool = false
@@ -21,6 +21,7 @@ struct SettingView: View {
     var body: some View {
         VStack(spacing: 0) {
             UpSideView()
+                .environmentObject(rootEnvironment)
 
             // List ここから
             List {
@@ -32,33 +33,47 @@ struct SettingView: View {
                 {
                     // 通知時間
                     HStack {
-                        Image(systemName: "clock").settingIcon()
+                        Image(systemName: "clock")
+                            .settingIcon(rootEnvironment.scheme)
+
+                        Text("通知時間")
+                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                            .font(.system(size: 17))
+
+                        Spacer()
+
                         TimePickerView(viewModel: viewModel)
+                            .environmentObject(rootEnvironment)
                     }
                     // 通知日時
                     HStack {
-                        Image(systemName: "calendar").settingIcon()
+                        Image(systemName: "calendar")
+                            .settingIcon(rootEnvironment.scheme)
                         NoticeDateFlagView(viewModel: viewModel)
+                            .environmentObject(rootEnvironment)
                     }
 
                     // 関係をカスタマイズ
                     NavigationLink {
                         EditNotifyMessageView(viewModel: viewModel)
+                            .environmentObject(rootEnvironment)
                     } label: {
                         HStack {
-                            Image(systemName: "text.bubble").settingIcon()
+                            Image(systemName: "text.bubble")
+                                .settingIcon(rootEnvironment.scheme)
                             Text("通知メッセージを変更する")
                         }
                     }
 
-                }.listRowBackground(AppColorScheme.getFoundationPrimary())
+                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
                 Section(header: Text("アプリ設定"),
                         footer: Text("・アプリにパスワードを設定してロックをかけることができます。").font(.system(size: 14)).fontWeight(.bold))
                 {
                     // 誕生日までの単位
                     HStack {
-                        Image(systemName: "switch.2").settingIcon()
+                        Image(systemName: "switch.2")
+                            .settingIcon(rootEnvironment.scheme)
                         Text("誕生日までの単位を切り替える")
                         Spacer()
                         Toggle(isOn: $isDaysLaterFlag) {
@@ -68,39 +83,44 @@ struct SettingView: View {
                             viewModel.registerDisplayDaysLater(flag: newValue)
                         }).toggleStyle(.button)
                             .opacity(0.9)
-                            .background(isDaysLaterFlag ? AppColorScheme.getThema3() : AppColorScheme.getThema2())
+                            .background(isDaysLaterFlag ? AppColorScheme.getThema3(rootEnvironment.scheme) : AppColorScheme.getThema2(rootEnvironment.scheme))
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                     }
 
                     // 誕生日までの単位
                     HStack {
-                        Image(systemName: "switch.2").settingIcon()
+                        Image(systemName: "switch.2")
+                            .settingIcon(rootEnvironment.scheme)
                         Toggle(isOn: $isAgeMonthFlag) {
                             Text("年齢の⚪︎ヶ月を表示する")
                         }.onChange(of: isAgeMonthFlag, perform: { newValue in
                             viewModel.registerDisplayAgeMonth(flag: newValue)
-                        }).tint(AppColorScheme.getThema1())
+                        }).tint(AppColorScheme.getThema1(rootEnvironment.scheme))
                     }
 
                     // 登録初期年数
                     HStack {
-                        Image(systemName: "clock").settingIcon()
+                        Image(systemName: "clock")
+                            .settingIcon(rootEnvironment.scheme)
                         YearPickerView(viewModel: viewModel)
+                            .environmentObject(rootEnvironment)
                     }
 
                     // 関係をカスタマイズ
                     NavigationLink {
                         UpdateRelationNameView()
+                            .environmentObject(rootEnvironment)
                     } label: {
                         HStack {
-                            Image(systemName: "pencil.line").settingIcon()
+                            Image(systemName: "pencil.line")
+                                .settingIcon(rootEnvironment.scheme)
                             Text("関係をカスタマイズする")
                         }
                     }
 
                     HStack {
                         Image(systemName: "lock.iphone")
-                            .settingIcon()
+                            .settingIcon(rootEnvironment.scheme)
                         Toggle(isOn: $isLock) {
                             Text("アプリをロックする")
                         }.onChange(of: isLock, perform: { newValue in
@@ -109,31 +129,35 @@ struct SettingView: View {
                             } else {
                                 viewModel.deletePassword()
                             }
-                        }).tint(AppColorScheme.getThema1())
+                        }).tint(AppColorScheme.getThema1(rootEnvironment.scheme))
                     }.sheet(isPresented: $viewModel.isShowPassInput, content: {
                         AppLockInputView(isLock: $isLock)
+                            .environmentObject(rootEnvironment)
                     })
-                }.listRowBackground(AppColorScheme.getFoundationPrimary())
+                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
                 Section(header: Text("広告"),
                         footer: Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)個です。\n・容量の追加は1日に1回までです。").font(.system(size: 14)).fontWeight(.bold))
                 {
                     RewardButtonView(viewModel: viewModel)
+                        .environmentObject(rootEnvironment)
                     HStack {
-                        Image(systemName: "bag").settingIcon()
+                        Image(systemName: "bag")
+                            .settingIcon(rootEnvironment.scheme)
                         Text("現在の容量:\(viewModel.getCapacity())人")
                     }
-                }.listRowBackground(AppColorScheme.getFoundationPrimary())
+                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
                 Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。").font(.system(size: 14)).fontWeight(.bold)) {
                     if let url = URL(string: StaticUrls.APP_REVIEW_URL) {
                         // 1:レビューページ
                         Link(destination: url, label: {
                             HStack {
-                                Image(systemName: "hand.thumbsup").settingIcon()
+                                Image(systemName: "hand.thumbsup")
+                                    .settingIcon(rootEnvironment.scheme)
                                 Text("アプリをレビューする")
                             }
-                        }).listRowBackground(AppColorScheme.getFoundationPrimary())
+                        }).listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                     }
 
                     // 2:シェアボタン
@@ -145,43 +169,47 @@ struct SettingView: View {
                     }) {
                         HStack {
                             Image(systemName: "star.bubble")
-                                .settingIcon()
+                                .settingIcon(rootEnvironment.scheme)
                             Text("「みんなの誕生日」をオススメする")
                         }
-                    }.listRowBackground(AppColorScheme.getFoundationPrimary())
+                    }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
                     if let url = URL(string: StaticUrls.APP_CONTACT_URL) {
                         // 3:お問い合わせフォーム
                         Link(destination: url, label: {
                             HStack {
-                                Image(systemName: "paperplane").settingIcon()
+                                Image(systemName: "paperplane")
+                                    .settingIcon(rootEnvironment.scheme)
                                 Text("アプリの不具合はこちら")
                                 Image(systemName: "link")
                             }
-                        }).listRowBackground(AppColorScheme.getFoundationPrimary())
+                        }).listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                     }
 
                     if let url = URL(string: StaticUrls.APP_TERMS_OF_SERVICE_URL) {
                         // 4:利用規約とプライバシーポリシー
                         Link(destination: url, label: {
                             HStack {
-                                Image(systemName: "note.text").settingIcon()
+                                Image(systemName: "note.text")
+                                    .settingIcon(rootEnvironment.scheme)
                                 Text("利用規約とプライバシーポリシー")
                                 Image(systemName: "link")
                             }
-                        }).listRowBackground(AppColorScheme.getFoundationPrimary())
+                        }).listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                     }
                 }
 
             }.listStyle(GroupedListStyle())
                 .scrollContentBackground(.hidden)
-                .background(AppColorScheme.getFoundationSub())
-                .foregroundColor(AppColorScheme.getText())
+                .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
             // List ここまで
 
             Spacer()
 
-            AdMobBannerView().frame(height: 50)
+            AdMobBannerView()
+                .frame(height: 50)
+
         }.font(.system(size: 17))
             .onAppear {
                 viewModel.onAppear()
@@ -191,7 +219,7 @@ struct SettingView: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-            .background(AppColorScheme.getFoundationSub())
+            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .dialog(
                 isPresented: $viewModel.isAlertReward,
                 title: "お知らせ",
@@ -209,5 +237,6 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
+            .environmentObject(RootEnvironment())
     }
 }

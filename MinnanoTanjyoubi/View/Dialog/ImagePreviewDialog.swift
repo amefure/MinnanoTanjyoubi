@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ImagePreviewDialog: View {
+    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+
     @Binding var isPresented: Bool
 
     public let image: Image?
@@ -26,7 +28,7 @@ struct ImagePreviewDialog: View {
                         .scaledToFit()
                         .padding(5)
                         .frame(maxWidth: 300)
-                        .background(AppColorScheme.getFoundationSub())
+                        .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
                         .shadow(radius: 10)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                     // 画面一杯にViewを広げる

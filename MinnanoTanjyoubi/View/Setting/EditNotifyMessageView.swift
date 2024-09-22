@@ -9,31 +9,34 @@ import SwiftUI
 
 struct EditNotifyMessageView: View {
     @StateObject var viewModel: SettingViewModel
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @State private var notifyMsg = ""
     @State private var isSuccessAlert = false
     @State private var isValidationAlert = false
     @FocusState private var isFocus: Bool
 
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
+                .environmentObject(rootEnvironment)
 
             Text("通知メッセージ編集")
                 .font(.system(size: 20))
-                .foregroundStyle(AppColorScheme.getText())
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                 .fontWeight(.bold)
                 .padding(.vertical)
 
             Text("通知プレビュー")
                 .font(.system(size: 14))
-                .foregroundStyle(AppColorScheme.getText())
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                 .fontWeight(.bold)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             DemoNotifyView(title: "みんなの誕生日", msg: notifyMsg)
+                .environmentObject(rootEnvironment)
 
             Rectangle()
                 .fill(.white)
@@ -42,7 +45,7 @@ struct EditNotifyMessageView: View {
 
             Text("通知メッセージ入力")
                 .font(.system(size: 14))
-                .foregroundStyle(AppColorScheme.getText())
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                 .fontWeight(.bold)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
@@ -51,29 +54,31 @@ struct EditNotifyMessageView: View {
                 .padding(20)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 65)
                 .fontWeight(.bold)
-                .foregroundStyle(AppColorScheme.getFoundationPrimary())
+                .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 3, y: 3)
 
             Text("・通知メッセージは" + NotifyConfig.VARIABLE_USER_NAME + "部分が名前に自動で置き換わります。")
                 .font(.system(size: 14))
-                .foregroundStyle(AppColorScheme.getText())
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                 .fontWeight(.bold)
                 .padding(.vertical)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             Spacer()
 
-            DownSideView(parentFunction: {
-                UIApplication.shared.closeKeyboard()
-                guard !notifyMsg.isEmpty else {
-                    isValidationAlert = true
-                    return
-                }
-                viewModel.registerNotifyMsg(msg: notifyMsg)
-                isSuccessAlert = true
-            }, imageString: "checkmark")
+            DownSideView(
+                parentFunction: {
+                    UIApplication.shared.closeKeyboard()
+                    guard !notifyMsg.isEmpty else {
+                        isValidationAlert = true
+                        return
+                    }
+                    viewModel.registerNotifyMsg(msg: notifyMsg)
+                    isSuccessAlert = true
+                }, imageString: "checkmark"
+            ).environmentObject(rootEnvironment)
 
             AdMobBannerView()
                 .frame(height: 60)
@@ -83,7 +88,7 @@ struct EditNotifyMessageView: View {
             DispatchQueue.main.async {
                 isFocus = true
             }
-        }.background(AppColorScheme.getFoundationSub())
+        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .ignoresSafeArea(.keyboard)
             .font(.system(size: 17))
             .navigationBarBackButtonHidden()
@@ -109,6 +114,8 @@ struct EditNotifyMessageView: View {
 }
 
 struct DemoNotifyView: View {
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     public let title: String
     public let msg: String
     public var time: String = "now"
@@ -124,7 +131,7 @@ struct DemoNotifyView: View {
         // 置換した文字列「お名前」の範囲を取得
         if let range = attributedString.range(of: "「お名前」") {
             // その部分の文字色を変更
-            attributedString[range].foregroundColor = AppColorScheme.getThema3()
+            attributedString[range].foregroundColor = AppColorScheme.getThema3(rootEnvironment.scheme)
             attributedString[range].font = .boldSystemFont(ofSize: 13) // サイズは任意で調整
         }
 

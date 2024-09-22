@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CustomInputView: View {
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     public var title: String
     public var placeholder: String
     @Binding var text: String
@@ -16,7 +18,7 @@ struct CustomInputView: View {
         HStack {
             Text(title)
                 .frame(width: 80)
-                .foregroundColor(AppColorScheme.getText())
+                .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
                 .fontWeight(.bold)
             TextField(placeholder, text: $text)
                 .textFieldStyle(.roundedBorder)

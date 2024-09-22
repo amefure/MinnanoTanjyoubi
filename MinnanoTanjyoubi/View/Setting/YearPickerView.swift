@@ -9,6 +9,7 @@ import SwiftUI
 
 struct YearPickerView: View {
     @StateObject var viewModel: SettingViewModel
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @State private var year: Int = 0
 
@@ -18,7 +19,7 @@ struct YearPickerView: View {
                 Text("\(String(year))年")
                     .font(.system(size: 17))
             }
-        }.tint(AppColorScheme.getText())
+        }.tint(AppColorScheme.getText(rootEnvironment.scheme))
             .font(.system(size: 17))
             .onChange(of: year) { _ in
                 viewModel.registerEntryInitYear(year: year)

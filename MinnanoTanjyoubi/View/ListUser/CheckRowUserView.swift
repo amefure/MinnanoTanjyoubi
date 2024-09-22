@@ -39,7 +39,8 @@ struct CheckBoxToggleStyle: ToggleStyle {
 struct CheckRowUserView: View {
     public var user: User
 
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    // Environment
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @State private var isOn = false
 
@@ -53,7 +54,7 @@ struct CheckRowUserView: View {
             Toggle(isOn: $isOn) {
                 EmptyView()
             }.toggleStyle(CheckBoxToggleStyle(user: user, deleteIdArray: $rootEnvironment.deleteIdArray))
-                .tint(AppColorScheme.getThema1())
+                .tint(AppColorScheme.getThema1(rootEnvironment.scheme))
                 .frame(width: itemWidth)
                 .zIndex(2)
                 .position(x: 15, y: 15)
@@ -70,6 +71,7 @@ struct CheckRowUserView: View {
                 RowUserView(user: user)
                     .opacity(isOn ? 1 : 0.7)
                     .zIndex(1)
+                    .environmentObject(rootEnvironment)
             }
         }
     }

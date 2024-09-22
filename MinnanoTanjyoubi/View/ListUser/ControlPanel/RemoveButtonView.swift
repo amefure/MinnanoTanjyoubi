@@ -13,7 +13,7 @@ struct RemoveButtonView: View {
 
     @Binding var isDeleteAlert: Bool
 
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         Button(action: {
@@ -29,6 +29,6 @@ struct RemoveButtonView: View {
         }, label: {
             Image(systemName: rootEnvironment.isDeleteMode ? "trash" : "app.badge.checkmark")
                 .font(.system(size: 17))
-        }).circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema2())
+        }).circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema2(rootEnvironment.scheme))
     }
 }

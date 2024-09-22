@@ -10,7 +10,8 @@ import SwiftUI
 struct SingleGridListView: View {
     public var users: [User]
 
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    // Environment
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     private var gridItemWidth: CGFloat {
         return CGFloat(DeviceSizeUtility.deviceWidth / 3) - 10
@@ -26,12 +27,15 @@ struct SingleGridListView: View {
                 if rootEnvironment.isDeleteMode {
                     // DeleteMode
                     CheckRowUserView(user: user)
+                        .environmentObject(rootEnvironment)
                 } else {
                     // NormalMode
                     NavigationLink {
                         DetailUserView(user: user)
+                            .environmentObject(rootEnvironment)
                     } label: {
                         RowUserView(user: user)
+                            .environmentObject(rootEnvironment)
                     }
                 }
             }

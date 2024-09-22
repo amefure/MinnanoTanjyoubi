@@ -25,30 +25,37 @@ struct UpdateRelationNameView: View {
         return true
     }
 
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
+                .environmentObject(rootEnvironment)
 
             Text("関係カテゴリ名編集")
                 .font(.system(size: 20))
-                .foregroundStyle(AppColorScheme.getText())
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                 .fontWeight(.bold)
                 .padding(.vertical)
 
             CustomInputView(title: "カテゴリ1", placeholder: RelationConfig.FRIEND_NAME, text: $friend)
+                .environmentObject(rootEnvironment)
 
             CustomInputView(title: "カテゴリ2", placeholder: RelationConfig.FAMILY_NAME, text: $family)
+                .environmentObject(rootEnvironment)
 
             CustomInputView(title: "カテゴリ3", placeholder: RelationConfig.SCHOOL_NAME, text: $school)
+                .environmentObject(rootEnvironment)
 
             CustomInputView(title: "カテゴリ4", placeholder: RelationConfig.WORK_NAME, text: $work)
+                .environmentObject(rootEnvironment)
 
             CustomInputView(title: "カテゴリ5", placeholder: RelationConfig.OTHER_NAME, text: $other)
+                .environmentObject(rootEnvironment)
 
             CustomInputView(title: "カテゴリ6", placeholder: RelationConfig.SNS_NAME, text: $sns)
+                .environmentObject(rootEnvironment)
 
             Spacer()
 
@@ -69,11 +76,12 @@ struct UpdateRelationNameView: View {
                 )
                 isAlert = true
             }, imageString: "checkmark")
+                .environmentObject(rootEnvironment)
 
             AdMobBannerView()
                 .frame(height: 60)
 
-        }.background(AppColorScheme.getFoundationSub())
+        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .font(.system(size: 17))
             .navigationBarBackButtonHidden()
             .onAppear {

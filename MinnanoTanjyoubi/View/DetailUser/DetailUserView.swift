@@ -22,19 +22,23 @@ struct DetailUserView: View {
     @ObservedObject private var viewModel = DetailViewModel.shared
 
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         VStack {
             UpSideView()
+                .environmentObject(rootEnvironment)
 
             Group {
                 // MARK: - Relation/あと何日../名前/ふりがな/生年月日/和暦
 
                 UpSideUserInfoView(user: user)
+                    .environmentObject(rootEnvironment)
 
                 // MARK: - 年齢/星座/干支
 
                 MiddleUserInfoView(user: user)
+                    .environmentObject(rootEnvironment)
 
                 // MARK: - Memo
 
@@ -46,16 +50,23 @@ struct DetailUserView: View {
                     .frame(width: deviceWidth - 40)
                     .frame(minHeight: isSESize ? 130 : 180)
                     .frame(maxHeight: isSESize ? 130 : 180)
-                    .overBorder(radius: 5, color: AppColorScheme.getFoundationPrimary(), opacity: 0.4, lineWidth: 2)
+                    .overBorder(
+                        radius: 5,
+                        color: AppColorScheme.getFoundationPrimary(rootEnvironment.scheme),
+                        opacity: 0.4,
+                        lineWidth: 2
+                    )
 
             }.padding(isSESize ? 5 : 10)
 
             // 通知ビュー
             NotificationButtonView(user: user)
+                .environmentObject(rootEnvironment)
 
             // 追加しても更新されないので明示的にidを指定する
             ImageContainerView(user: user)
                 .id(viewModel.isUpdateView)
+                .environmentObject(rootEnvironment)
 
             Spacer()
 
@@ -64,15 +75,15 @@ struct DetailUserView: View {
             }, imageString: "square.and.pencil")
                 .sheet(isPresented: $isShowUpdateView, content: {
                     EntryUserView(user: user, isModal: $isShowUpdateView)
-                })
+                }).environmentObject(rootEnvironment)
 
             if !isSESize {
                 AdMobBannerView()
                     .frame(height: 50)
             }
 
-        }.background(AppColorScheme.getFoundationSub())
-            .foregroundStyle(AppColorScheme.getText())
+        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
             .fontWeight(.bold)
             .toolbar(.hidden, for: .navigationBar)
             .dialog(

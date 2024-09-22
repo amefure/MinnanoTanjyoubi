@@ -53,8 +53,10 @@ struct MinnanoTanjyoubiApp: App {
             NavigationStack {
                 if rootEnvironment.appLocked {
                     AppLockView()
+                        .environmentObject(rootEnvironment)
                 } else {
                     RootView()
+                        .environmentObject(rootEnvironment)
                 }
             }
         }

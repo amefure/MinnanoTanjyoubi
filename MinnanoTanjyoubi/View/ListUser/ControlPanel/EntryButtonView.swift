@@ -14,6 +14,8 @@ struct EntryButtonView: View {
     // Storage
     @AppStorage("LimitCapacity") var limitCapacity = AdsConfig.INITIAL_CAPACITY // 初期値
 
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     // 上限に達した場合のアラート
     @Binding var isLimitAlert: Bool
     @State private var isModal: Bool = false
@@ -37,9 +39,10 @@ struct EntryButtonView: View {
             Image(systemName: "plus")
                 .font(.system(size: 17))
         })
-        .circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema3())
+        .circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema3(rootEnvironment.scheme))
         .sheet(isPresented: $isModal, content: {
             EntryUserView(user: nil, isModal: $isModal)
+                .environmentObject(rootEnvironment)
         })
     }
 }

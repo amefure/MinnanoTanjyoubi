@@ -12,6 +12,8 @@ import UIKit
 class RootEnvironment: ObservableObject {
     static let shared = RootEnvironment()
 
+    // カラースキーム
+    @Published private(set) var scheme: AppColorScheme = .original
     // アプリロック
     @Published var appLocked: Bool = false
     // 削除対象のUserId
@@ -31,6 +33,7 @@ class RootEnvironment: ObservableObject {
         keyChainRepository = repositoryDependency.keyChainRepository
 
         getAppLockFlag()
+        getColorScheme()
         getRelationName()
         getDisplaySectionLayout()
     }
@@ -116,6 +119,17 @@ extension RootEnvironment {
     public func registerDisplaySectionLayout(flag: Bool) {
         userDefaultsRepository.setBoolData(key: UserDefaultsKey.DISPLAY_SECTION_LAYOUT, isOn: flag)
         getDisplaySectionLayout()
+    }
+
+    private func getColorScheme() {
+        let color = userDefaultsRepository.getStringData(key: UserDefaultsKey.APP_COLOR_SCHEME, initialValue: AppColorScheme.original.rawValue)
+        scheme = AppColorScheme(rawValue: color) ?? .original
+    }
+
+    /// アプリカラースキーム登録
+    public func registerColorScheme(_ scheme: AppColorScheme) {
+        userDefaultsRepository.setStringData(key: UserDefaultsKey.APP_COLOR_SCHEME, value: scheme.rawValue)
+        getColorScheme()
     }
 
     /// アプリにロックがかけてあるかをチェック
