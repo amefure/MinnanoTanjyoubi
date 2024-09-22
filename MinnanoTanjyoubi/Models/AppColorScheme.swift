@@ -7,11 +7,24 @@
 
 import SwiftUI
 
-enum AppColorScheme: String {
+enum AppColorScheme: String, CaseIterable {
     case original
     case dark
     case light
     case pretty
+
+    public var name: String {
+        switch self {
+        case .original:
+            return "オリジナル"
+        case .dark:
+            return "ダーク"
+        case .light:
+            return "ライト"
+        case .pretty:
+            return "プリティー"
+        }
+    }
 
     static func getFoundationPrimary(_ scheme: AppColorScheme = .light) -> Color {
         switch scheme {

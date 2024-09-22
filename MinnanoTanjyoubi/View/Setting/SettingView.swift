@@ -118,6 +118,18 @@ struct SettingView: View {
                         }
                     }
 
+                    // 関係をカスタマイズ
+                    NavigationLink {
+                        SelectColorScheme()
+                            .environmentObject(rootEnvironment)
+                    } label: {
+                        HStack {
+                            Image(systemName: "paintpalette")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("テーマカラーを変更する")
+                        }
+                    }
+
                     HStack {
                         Image(systemName: "lock.iphone")
                             .settingIcon(rootEnvironment.scheme)
