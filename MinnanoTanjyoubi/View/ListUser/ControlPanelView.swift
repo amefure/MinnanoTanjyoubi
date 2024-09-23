@@ -35,7 +35,8 @@ struct ControlPanelView: View {
             Spacer()
 
         }.frame(width: DeviceSizeUtility.deviceWidth, height: 70)
-            .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
+            // .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
+            .foregroundStyle(.white)
             .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
     }
 }

@@ -27,22 +27,38 @@ struct SelectColorScheme: View {
 
             List {
                 ForEach(AppColorScheme.allCases, id: \.self) { scheme in
-                    Button {
-                        self.scheme = scheme
-                    } label: {
-                        HStack {
-                            Text(scheme.name)
-                                .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                    if scheme != AppColorScheme.pretty {
+                        Button {
+                            self.scheme = scheme
+                        } label: {
+                            HStack {
+                                ColorSchemePreView(
+                                    color1: AppColorScheme.getFoundationPrimary(scheme),
+                                    color2: AppColorScheme.getThema2(scheme),
+                                    color3: AppColorScheme.getThema3(scheme),
+                                    color4: AppColorScheme.getThema4(scheme)
+                                )
 
-                            Spacer()
+                                Text(scheme.name)
+                                    .foregroundStyle(.black)
+                                    .fontWeight(.bold)
+                                    .font(.system(size: 17))
 
-                            if self.scheme == scheme {
-                                Image(systemName: "checkmark")
-                                    .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                                Spacer()
+
+                                if self.scheme == scheme {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                                }
                             }
                         }
                     }
                 }
+
+                Text("他のテーマカラーも工事中・・・")
+                    .foregroundStyle(.gray)
+                    .font(.system(size: 17))
+
             }.scrollContentBackground(.hidden)
                 .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
 
@@ -73,6 +89,30 @@ struct SelectColorScheme: View {
                     dismiss()
                 }
             )
+    }
+}
+
+struct ColorSchemePreView: View {
+    var color1: Color
+    var color2: Color
+    var color3: Color
+    var color4: Color
+
+    var body: some View {
+        HStack(spacing: 0) {
+            Rectangle()
+                .fill(color1)
+                .frame(width: 20, height: 30)
+            Rectangle()
+                .fill(color2)
+                .frame(width: 20, height: 30)
+            Rectangle()
+                .fill(color3)
+                .frame(width: 20, height: 30)
+            Rectangle()
+                .fill(color4)
+                .frame(width: 20, height: 30)
+        }
     }
 }
 

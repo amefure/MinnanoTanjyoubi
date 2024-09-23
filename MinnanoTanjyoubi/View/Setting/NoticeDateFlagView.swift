@@ -20,6 +20,7 @@ struct NoticeDateFlagView: View {
             Toggle(isOn: $isOn) {
                 Text(isOn ? "当日" : "前日")
                     .fontWeight(.bold)
+                    .foregroundStyle(.white)
             }.toggleStyle(.button)
                 .opacity(isOn ? 0.9 : 1)
                 .background(isOn ? AppColorScheme.getThema2(rootEnvironment.scheme) : AppColorScheme.getThema3(rootEnvironment.scheme))

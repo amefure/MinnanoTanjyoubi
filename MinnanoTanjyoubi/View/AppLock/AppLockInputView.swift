@@ -24,7 +24,7 @@ struct AppLockInputView: View {
 
             Text("パスワード登録")
                 .fontWeight(.bold)
-                .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
 
             Spacer()
 

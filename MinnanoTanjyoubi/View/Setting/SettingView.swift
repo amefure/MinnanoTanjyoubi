@@ -79,6 +79,7 @@ struct SettingView: View {
                         Toggle(isOn: $isDaysLaterFlag) {
                             Text(isDaysLaterFlag ? "月" : "日")
                                 .fontWeight(.bold)
+                                .foregroundStyle(.white)
                         }.onChange(of: isDaysLaterFlag, perform: { newValue in
                             viewModel.registerDisplayDaysLater(flag: newValue)
                         }).toggleStyle(.button)

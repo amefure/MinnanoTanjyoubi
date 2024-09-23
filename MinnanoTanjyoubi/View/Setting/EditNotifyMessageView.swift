@@ -54,7 +54,6 @@ struct EditNotifyMessageView: View {
                 .padding(20)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 65)
                 .fontWeight(.bold)
-                .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 3, y: 3)

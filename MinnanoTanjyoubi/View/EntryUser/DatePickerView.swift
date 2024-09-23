@@ -33,6 +33,8 @@ struct DatePickerView: View {
                            .onChange(of: date) { newValue in
                                dateStr = dfm.getJpString(date: newValue)
                            }
+                           .colorInvert()
+                           .colorMultiply(AppColorScheme.getText(rootEnvironment.scheme))
                            .frame(width: isSESize ? 170 : 220)
                            .datePickerStyle(.wheel)
                            .labelsHidden()
@@ -45,6 +47,7 @@ struct DatePickerView: View {
                 isWheel.toggle()
             }, label: {
                 Text(isWheel ? "変更" : "決定")
+                    .foregroundStyle(.white)
                     .padding(3)
                     .background(isWheel ? AppColorScheme.getThema2(rootEnvironment.scheme) : AppColorScheme.getThema3(rootEnvironment.scheme)).opacity(0.8)
                     .cornerRadius(5)

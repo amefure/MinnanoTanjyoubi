@@ -27,7 +27,7 @@ struct SortedButtonView: View {
         } label: {
             Image(systemName: "person.2.crop.square.stack")
                 .circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema4(rootEnvironment.scheme))
-                .foregroundColor(isSorted ? AppColorScheme.getFoundationPrimary(rootEnvironment.scheme) : AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundColor(isSorted ? AppColorScheme.getThema2(rootEnvironment.scheme) : .white)
                 .font(.system(size: 17))
         }
         .onChange(of: selectedRelation) { newValue in
