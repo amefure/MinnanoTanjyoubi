@@ -12,6 +12,7 @@ enum AppColorScheme: String, CaseIterable {
     case dark
     case light
     case pretty
+    case modern
 
     public var name: String {
         switch self {
@@ -23,6 +24,8 @@ enum AppColorScheme: String, CaseIterable {
             return "ライト"
         case .pretty:
             return "プリティー"
+        case .modern:
+            return "モダンブラック"
         }
     }
 
@@ -36,6 +39,8 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme3FoundationPrimary.swiftUIColor
         case .pretty:
             return Asset.Colors.scheme4FoundationPrimary.swiftUIColor
+        case .modern:
+            return Asset.Colors.scheme5FoundationPrimary.swiftUIColor
         }
     }
 
@@ -49,6 +54,8 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme3FoundationSub.swiftUIColor
         case .pretty:
             return Asset.Colors.scheme4FoundationSub.swiftUIColor
+        case .modern:
+            return Asset.Colors.scheme5FoundationSub.swiftUIColor
         }
     }
 
@@ -62,6 +69,8 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme3Thema1.swiftUIColor
         case .pretty:
             return Asset.Colors.scheme4Thema1.swiftUIColor
+        case .modern:
+            return Asset.Colors.scheme5Thema1.swiftUIColor
         }
     }
 
@@ -75,6 +84,8 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme3Thema2.swiftUIColor
         case .pretty:
             return Asset.Colors.scheme4Thema2.swiftUIColor
+        case .modern:
+            return Asset.Colors.scheme5Thema2.swiftUIColor
         }
     }
 
@@ -88,6 +99,8 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme3Thema3.swiftUIColor
         case .pretty:
             return Asset.Colors.scheme4Thema3.swiftUIColor
+        case .modern:
+            return Asset.Colors.scheme5Thema3.swiftUIColor
         }
     }
 
@@ -101,6 +114,8 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme3Thema4.swiftUIColor
         case .pretty:
             return Asset.Colors.scheme4Thema4.swiftUIColor
+        case .modern:
+            return Asset.Colors.scheme5Thema4.swiftUIColor
         }
     }
 
@@ -114,6 +129,8 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme3Text.swiftUIColor
         case .pretty:
             return Asset.Colors.scheme4Text.swiftUIColor
+        case .modern:
+            return Asset.Colors.scheme5Text.swiftUIColor
         }
     }
 }

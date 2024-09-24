@@ -41,6 +41,7 @@ struct MiddleUserInfoView: View {
                 .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3(rootEnvironment.scheme))
 
         }.font(isSESize ? .system(size: 12) : .system(size: 17))
+            .foregroundStyle(.white)
             .onAppear {
                 isDisplayAgeMonth = UserDefaultsRepository.sheard.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
             }

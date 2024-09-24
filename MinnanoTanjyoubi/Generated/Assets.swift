@@ -53,6 +53,13 @@ internal enum Asset {
         internal static let scheme4Thema2 = ColorAsset(name: "scheme_4_thema2")
         internal static let scheme4Thema3 = ColorAsset(name: "scheme_4_thema3")
         internal static let scheme4Thema4 = ColorAsset(name: "scheme_4_thema4")
+        internal static let scheme5FoundationPrimary = ColorAsset(name: "scheme_5_foundation_primary")
+        internal static let scheme5FoundationSub = ColorAsset(name: "scheme_5_foundation_sub")
+        internal static let scheme5Text = ColorAsset(name: "scheme_5_text")
+        internal static let scheme5Thema1 = ColorAsset(name: "scheme_5_thema1")
+        internal static let scheme5Thema2 = ColorAsset(name: "scheme_5_thema2")
+        internal static let scheme5Thema3 = ColorAsset(name: "scheme_5_thema3")
+        internal static let scheme5Thema4 = ColorAsset(name: "scheme_5_thema4")
     }
 
     internal enum Images {

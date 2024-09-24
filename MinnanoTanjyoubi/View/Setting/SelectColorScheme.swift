@@ -27,32 +27,32 @@ struct SelectColorScheme: View {
 
             List {
                 ForEach(AppColorScheme.allCases, id: \.self) { scheme in
-                    if scheme != AppColorScheme.pretty {
-                        Button {
-                            self.scheme = scheme
-                        } label: {
-                            HStack {
-                                ColorSchemePreView(
-                                    color1: AppColorScheme.getFoundationPrimary(scheme),
-                                    color2: AppColorScheme.getThema2(scheme),
-                                    color3: AppColorScheme.getThema3(scheme),
-                                    color4: AppColorScheme.getThema4(scheme)
-                                )
 
-                                Text(scheme.name)
-                                    .foregroundStyle(.black)
-                                    .fontWeight(.bold)
-                                    .font(.system(size: 17))
+                    Button {
+                        self.scheme = scheme
+                    } label: {
+                        HStack {
+                            ColorSchemePreView(
+                                color1: AppColorScheme.getFoundationPrimary(scheme),
+                                color2: AppColorScheme.getThema2(scheme),
+                                color3: AppColorScheme.getThema3(scheme),
+                                color4: AppColorScheme.getThema4(scheme)
+                            )
 
-                                Spacer()
+                            Text(scheme.name)
+                                .foregroundStyle(.black)
+                                .fontWeight(.bold)
+                                .font(.system(size: 17))
 
-                                if self.scheme == scheme {
-                                    Image(systemName: "checkmark")
-                                        .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
-                                }
+                            Spacer()
+
+                            if self.scheme == scheme {
+                                Image(systemName: "checkmark")
+                                    .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                             }
                         }
                     }
+                    // }
                 }
 
                 Text("他のテーマカラーも工事中・・・")
