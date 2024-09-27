@@ -24,7 +24,7 @@ enum AppColorScheme: String, CaseIterable {
         case .light:
             return "ライト"
         case .pretty:
-            return "プリティー"
+            return "パステルピンク"
         case .lemon:
             return "レモンイエロー"
         case .modern:
