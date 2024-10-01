@@ -12,11 +12,10 @@ struct RemoveButtonView: View {
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
     @Binding var isDeleteAlert: Bool
-
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
-        Button(action: {
+        Button {
             if rootEnvironment.deleteIdArray.count != 0 {
                 isDeleteAlert = true
             } else {
@@ -26,9 +25,9 @@ struct RemoveButtonView: View {
                     rootEnvironment.enableDeleteMode()
                 }
             }
-        }, label: {
+        } label: {
             Image(systemName: rootEnvironment.isDeleteMode ? "trash" : "app.badge.checkmark")
                 .font(.system(size: 17))
-        }).circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema2(rootEnvironment.scheme))
+        }.circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema2(rootEnvironment.scheme))
     }
 }

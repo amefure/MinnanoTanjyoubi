@@ -14,28 +14,35 @@ struct ControlPanelView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @Binding var isDeleteAlert: Bool
     @Binding var isLimitAlert: Bool
+    @Binding var isScrollingDown: Bool
 
     var body: some View {
+        let tapGesture = TapGesture()
+            .onEnded {
+                isScrollingDown = false
+            }
         HStack {
             Spacer()
 
             RemoveButtonView(isDeleteAlert: $isDeleteAlert)
                 .environmentObject(rootEnvironment)
+                .simultaneousGesture(tapGesture)
 
             Spacer()
 
             SortedButtonView()
                 .environmentObject(rootEnvironment)
+                .simultaneousGesture(tapGesture)
 
             Spacer()
 
             EntryButtonView(isLimitAlert: $isLimitAlert)
                 .environmentObject(rootEnvironment)
+                .simultaneousGesture(tapGesture)
 
             Spacer()
 
         }.frame(width: DeviceSizeUtility.deviceWidth, height: 70)
-            // .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
             .foregroundStyle(.white)
             .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
     }

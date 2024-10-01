@@ -20,38 +20,77 @@ struct RootListUserView: View {
     @State private var isDeleteAlert = false
     @State private var isLimitAlert = false
 
+    @State private var isScrollingDown = false
+    @GestureState private var dragOffset = CGSize.zero
+    @State private var opacity: Double = 1
+
     var body: some View {
-        VStack(spacing: 0) {
-            // List Contents
-            if repository.users.count == 0 {
-                Spacer()
-
-                Text("登録されている誕生日情報がありません。")
-                    .font(.system(size: 17))
-                    .fontWeight(.bold)
-                    .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-
-                Spacer()
-
-            } else {
-                ScrollView {
-                    if rootEnvironment.sectionLayoutFlag {
-                        // カテゴリセクショングリッドレイアウト
-                        SectionGridListView()
-                            .environmentObject(rootEnvironment)
-                    } else {
-                        // 単体のグリッドレイアウト
-                        SingleGridListView(users: repository.users)
-                            .environmentObject(rootEnvironment)
-                    }
-                }.padding([.top, .trailing, .leading])
+        let drag = DragGesture(minimumDistance: 0.0)
+            .updating($dragOffset, body: { value, _, _ in
+                if value.translation.height < 0 {
+                    isScrollingDown = true
+                } else if value.translation.height > 0 {
+                    isScrollingDown = false
+                }
+            })
+            .onEnded { value in
+                if value.translation.height < 0 {
+                    isScrollingDown = true
+                } else {
+                    isScrollingDown = false
+                }
             }
 
-            // ControlPanel
-            ControlPanelView(isDeleteAlert: $isDeleteAlert, isLimitAlert: $isLimitAlert)
-                .environmentObject(rootEnvironment)
+        VStack(spacing: 0) {
+            ZStack {
+                // List Contents
+                if repository.users.count == 0 {
+                    Spacer()
+
+                    Text("登録されている誕生日情報がありません。")
+                        .font(.system(size: 17))
+                        .fontWeight(.bold)
+                        .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+
+                    Spacer()
+
+                } else {
+                    ScrollView {
+                        Group {
+                            if rootEnvironment.sectionLayoutFlag {
+                                // カテゴリセクショングリッドレイアウト
+                                SectionGridListView()
+                                    .environmentObject(rootEnvironment)
+                            } else {
+                                // 単体のグリッドレイアウト
+                                SingleGridListView(users: repository.users)
+                                    .environmentObject(rootEnvironment)
+                            }
+                        }.padding(.bottom, 75)
+                            .simultaneousGesture(drag)
+                    }.padding([.top, .trailing, .leading])
+                        .simultaneousGesture(drag)
+                }
+
+                VStack {
+                    Spacer()
+
+                    ControlPanelView(
+                        isDeleteAlert: $isDeleteAlert,
+                        isLimitAlert: $isLimitAlert,
+                        isScrollingDown: $isScrollingDown
+                    ).environmentObject(rootEnvironment)
+                        .opacity(opacity)
+                }.onTapGesture {
+                    opacity = 1
+                }
+            }
 
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .onChange(of: isScrollingDown) { _ in
+                // 下方向にスクロール中のみ半透明にする
+                opacity = isScrollingDown ? 0.5 : 1
+            }
             .dialog(
                 isPresented: $isDeleteAlert,
                 title: "お知らせ",

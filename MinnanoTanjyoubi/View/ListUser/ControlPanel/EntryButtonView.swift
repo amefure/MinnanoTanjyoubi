@@ -18,7 +18,7 @@ struct EntryButtonView: View {
 
     // 上限に達した場合のアラート
     @Binding var isLimitAlert: Bool
-    @State private var isModal: Bool = false
+    @State private var isModal = false
 
     private func checkLimitCapacity() -> Bool {
         if repository.users.count >= limitCapacity {
@@ -30,20 +30,19 @@ struct EntryButtonView: View {
     }
 
     var body: some View {
-        Button(action: {
+        Button {
             if checkLimitCapacity() {
                 isModal.toggle()
             }
 
-        }, label: {
+        } label: {
             Image(systemName: "plus")
                 .font(.system(size: 17))
-        })
-        .circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema3(rootEnvironment.scheme))
-        .sheet(isPresented: $isModal, content: {
-            EntryUserView(user: nil, isModal: $isModal)
-                .environmentObject(rootEnvironment)
-        })
+        }.circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema3(rootEnvironment.scheme))
+            .sheet(isPresented: $isModal) {
+                EntryUserView(user: nil, isModal: $isModal)
+                    .environmentObject(rootEnvironment)
+            }
     }
 }
 
