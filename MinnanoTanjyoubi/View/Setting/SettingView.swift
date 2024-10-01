@@ -162,6 +162,18 @@ struct SettingView: View {
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
                 Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。").font(.system(size: 14)).fontWeight(.bold)) {
+                    // よくある質問
+                    NavigationLink {
+                        FaqListView()
+                            .environmentObject(rootEnvironment)
+                    } label: {
+                        HStack {
+                            Image(systemName: "questionmark.app")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("よくある質問")
+                        }
+                    }
+
                     if let url = URL(string: StaticUrls.APP_REVIEW_URL) {
                         // 1:レビューページ
                         Link(destination: url, label: {
@@ -170,22 +182,22 @@ struct SettingView: View {
                                     .settingIcon(rootEnvironment.scheme)
                                 Text("アプリをレビューする")
                             }
-                        }).listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                        })
                     }
 
                     // 2:シェアボタン
-                    Button(action: {
+                    Button {
                         viewModel.shareApp(
                             shareText: "友達の誕生日をメモできるアプリ「みんなの誕生日」を使ってみてね♪",
                             shareLink: StaticUrls.APP_URL
                         )
-                    }) {
+                    } label: {
                         HStack {
                             Image(systemName: "star.bubble")
                                 .settingIcon(rootEnvironment.scheme)
                             Text("「みんなの誕生日」をオススメする")
                         }
-                    }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                    }
 
                     if let url = URL(string: StaticUrls.APP_CONTACT_URL) {
                         // 3:お問い合わせフォーム
@@ -208,9 +220,9 @@ struct SettingView: View {
                                 Text("利用規約とプライバシーポリシー")
                                 Image(systemName: "link")
                             }
-                        }).listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                        })
                     }
-                }
+                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
             }.listStyle(GroupedListStyle())
                 .scrollContentBackground(.hidden)

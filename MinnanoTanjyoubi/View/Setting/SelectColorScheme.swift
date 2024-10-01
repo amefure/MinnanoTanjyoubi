@@ -27,7 +27,6 @@ struct SelectColorScheme: View {
 
             List {
                 ForEach(AppColorScheme.allCases, id: \.self) { scheme in
-
                     Button {
                         self.scheme = scheme
                     } label: {
@@ -52,10 +51,9 @@ struct SelectColorScheme: View {
                             }
                         }
                     }
-                    // }
                 }
 
-                Text("他のテーマカラーも工事中・・・")
+                Text("他のテーマカラーも工事中・・・\n希望はレビューから教えてね。")
                     .foregroundStyle(.gray)
                     .font(.system(size: 17))
 

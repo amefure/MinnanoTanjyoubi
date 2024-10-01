@@ -46,6 +46,7 @@
 		128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */; };
 		128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */; };
 		128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */; };
+		129A0DEC2CAC260F006C6ED2 /* FaqListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */; };
 		12ACAD2529951A0E00273834 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12ACAD2429951A0E00273834 /* GoogleService-Info.plist */; };
 		12ACAD2729984D5400273834 /* DateFormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateFormatUtility.swift */; };
 		12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD292998C1E100273834 /* HeaderView.swift */; };
@@ -125,6 +126,7 @@
 		128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifyDialogView.swift; sourceTree = "<group>"; };
 		128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIApplication.swift; sourceTree = "<group>"; };
+		129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqListView.swift; sourceTree = "<group>"; };
 		12ACAD2429951A0E00273834 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		12ACAD2629984D5400273834 /* DateFormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatUtility.swift; sourceTree = "<group>"; };
 		12ACAD292998C1E100273834 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				12ACAD33299FAE8D00273834 /* RewardButtonView.swift */,
 				128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */,
 				12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */,
+				129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */,
 				1246024F2B381EEF00B6C32D /* NotifyConfig.swift in Sources */,
 				12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */,
+				129A0DEC2CAC260F006C6ED2 /* FaqListView.swift in Sources */,
 				12CB920C28E5C884002BD7B2 /* UserModels.swift in Sources */,
 				12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */,
 				12BA5F152C6BA0A600E1DDF2 /* Strings.swift in Sources */,
