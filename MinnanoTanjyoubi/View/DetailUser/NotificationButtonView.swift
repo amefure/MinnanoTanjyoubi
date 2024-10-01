@@ -25,17 +25,33 @@ struct NotificationButtonView: View {
         }).toggleStyle(
             SwitchToggleStyle(tint: AppColorScheme.getThema1(rootEnvironment.scheme))
         ).onChange(of: isON) { newValue in
-            if newValue {
-                // 通知を登録
-                AppManager.sharedNotificationRequestManager.sendNotificationRequest(user.id, user.name, user.date)
 
-                // データベース更新
-                repository.updateNotifyUser(id: user.id, notify: true)
-            } else {
-                // 通知を削除
-                AppManager.sharedNotificationRequestManager.removeNotificationRequest(user.id)
-                // データベース更新
-                repository.updateNotifyUser(id: user.id, notify: false)
+            AppManager.sharedNotificationRequestManager.requestAuthorization { granted in
+                if !granted {
+                    DispatchQueue.main.async {
+                        // 通知許可アラート
+                        AppManager.sharedNotificationRequestManager.showSettingsAlert()
+
+                        isON = false
+                        // データベース更新
+                        repository.updateNotifyUser(id: user.id, notify: false)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        if newValue {
+                            // 通知を登録
+                            AppManager.sharedNotificationRequestManager.sendNotificationRequest(user.id, user.name, user.date)
+
+                            // データベース更新
+                            repository.updateNotifyUser(id: user.id, notify: true)
+                        } else {
+                            // 通知を削除
+                            AppManager.sharedNotificationRequestManager.removeNotificationRequest(user.id)
+                            // データベース更新
+                            repository.updateNotifyUser(id: user.id, notify: false)
+                        }
+                    }
+                }
             }
         }
         .font(.system(size: 17))

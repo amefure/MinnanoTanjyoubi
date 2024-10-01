@@ -8,7 +8,39 @@
 import RealmSwift
 import UIKit
 
-class NotificationRequestManager: NSObject {
+class NotificationRequestManager {
+    /// 通知許可申請リクエスト
+    public func requestAuthorization(completion: @escaping (Bool) -> Void) {
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter
+            .current()
+            .requestAuthorization(options: authOptions) { [weak self] granted, _ in
+                guard self != nil else { return }
+                completion(granted)
+            }
+    }
+
+    /// 通知が許可されていない場合にアラートで通知許可を促す
+    public func showSettingsAlert() {
+        let alertController = UIAlertController(title: "通知が許可されていません。",
+                                                message: "誕生日のお知らせ通知を受け取ることができないため\n設定アプリから通知を有効にしてください。",
+                                                preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "設定を開く", style: .default) { _ in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+            if UIApplication.shared.canOpenURL(settingsURL) {
+                UIApplication.shared.open(settingsURL)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+
+        alertController.addAction(settingsAction)
+        alertController.addAction(cancelAction)
+
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let rootVC = windowScene?.windows.first?.rootViewController
+        rootVC?.present(alertController, animated: true, completion: {})
+    }
+
     private let userDefaultsRepository: UserDefaultsRepository
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
