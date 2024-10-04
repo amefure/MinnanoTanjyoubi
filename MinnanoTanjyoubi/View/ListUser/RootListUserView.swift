@@ -24,10 +24,13 @@ struct RootListUserView: View {
     @GestureState private var dragOffset = CGSize.zero
     @State private var opacity: Double = 1
 
-    var body: some View {
-        let drag = DragGesture(minimumDistance: 0.0)
-            .updating($dragOffset, body: { value, _, _ in
+    private var drag: some Gesture {
+        DragGesture(minimumDistance: 0.0)
+            .updating($dragOffset, body: { value, state, _ in
+                state = value.translation
                 if value.translation.height < 0 {
+                    /// iOS17以前で
+                    /// ‘Modifying state during view update, this will cause undefined behavior‘
                     isScrollingDown = true
                 } else if value.translation.height > 0 {
                     isScrollingDown = false
@@ -40,49 +43,89 @@ struct RootListUserView: View {
                     isScrollingDown = false
                 }
             }
+    }
 
+    var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                // List Contents
-                if repository.users.count == 0 {
-                    Spacer()
+            if #available(iOS 18, *) {
+                ZStack {
+                    // List Contents
+                    if repository.users.count == 0 {
+                        Spacer()
 
-                    Text("登録されている誕生日情報がありません。")
-                        .font(.system(size: 17))
-                        .fontWeight(.bold)
-                        .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                        Text("登録されている誕生日情報がありません。")
+                            .font(.system(size: 17))
+                            .fontWeight(.bold)
+                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
 
-                    Spacer()
+                        Spacer()
 
-                } else {
-                    ScrollView {
-                        Group {
-                            if rootEnvironment.sectionLayoutFlag {
-                                // カテゴリセクショングリッドレイアウト
-                                SectionGridListView()
-                                    .environmentObject(rootEnvironment)
-                            } else {
-                                // 単体のグリッドレイアウト
-                                SingleGridListView(users: repository.users)
-                                    .environmentObject(rootEnvironment)
-                            }
-                        }.padding(.bottom, 75)
+                    } else {
+                        ScrollView {
+                            Group {
+                                if rootEnvironment.sectionLayoutFlag {
+                                    // カテゴリセクショングリッドレイアウト
+                                    SectionGridListView()
+                                        .environmentObject(rootEnvironment)
+                                } else {
+                                    // 単体のグリッドレイアウト
+                                    SingleGridListView(users: repository.users)
+                                        .environmentObject(rootEnvironment)
+                                }
+                            }.padding(.bottom, 75)
+                                .simultaneousGesture(drag)
+                        }.padding([.top, .trailing, .leading])
                             .simultaneousGesture(drag)
-                    }.padding([.top, .trailing, .leading])
-                        .simultaneousGesture(drag)
-                }
+                    }
 
+                    VStack {
+                        Spacer()
+
+                        ControlPanelView(
+                            isDeleteAlert: $isDeleteAlert,
+                            isLimitAlert: $isLimitAlert,
+                            isScrollingDown: $isScrollingDown
+                        ).environmentObject(rootEnvironment)
+                            .opacity(opacity)
+                    }.onTapGesture {
+                        opacity = 1
+                    }
+                }
+            } else {
+                // FIXME: - iOS17以前ではスクロールが動作しないため暫定対応
                 VStack {
-                    Spacer()
+                    // List Contents
+                    if repository.users.count == 0 {
+                        Spacer()
+
+                        Text("登録されている誕生日情報がありません。")
+                            .font(.system(size: 17))
+                            .fontWeight(.bold)
+                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+
+                        Spacer()
+
+                    } else {
+                        ScrollView {
+                            Group {
+                                if rootEnvironment.sectionLayoutFlag {
+                                    // カテゴリセクショングリッドレイアウト
+                                    SectionGridListView()
+                                        .environmentObject(rootEnvironment)
+                                } else {
+                                    // 単体のグリッドレイアウト
+                                    SingleGridListView(users: repository.users)
+                                        .environmentObject(rootEnvironment)
+                                }
+                            }.padding(.bottom, 75)
+                        }.padding([.top, .trailing, .leading])
+                    }
 
                     ControlPanelView(
                         isDeleteAlert: $isDeleteAlert,
                         isLimitAlert: $isLimitAlert,
                         isScrollingDown: $isScrollingDown
                     ).environmentObject(rootEnvironment)
-                        .opacity(opacity)
-                }.onTapGesture {
-                    opacity = 1
                 }
             }
 
