@@ -28,6 +28,14 @@ struct RewardButtonView: View {
                 Image(systemName: "bag.badge.plus")
                     .settingIcon(rootEnvironment.scheme)
                 Text(reward.rewardLoaded ? "広告を視聴して容量を追加する" : "広告を読み込んでいます")
+                // 読み込み中のプログレス表示
+                if reward.rewardLoaded {
+                    Image(systemName: "hand.point.up.left.fill")
+                } else {
+                    ProgressView()
+                        .tint(AppColorScheme.getText(rootEnvironment.scheme))
+                        .padding(.leading, 8)
+                }
             }
         }
         .onAppear { reward.loadReward() }

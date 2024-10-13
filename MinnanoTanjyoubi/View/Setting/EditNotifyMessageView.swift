@@ -79,9 +79,6 @@ struct EditNotifyMessageView: View {
                 }, imageString: "checkmark"
             ).environmentObject(rootEnvironment)
 
-            AdMobBannerView()
-                .frame(height: 60)
-
         }.onAppear {
             notifyMsg = viewModel.getNotifyMsg()
             DispatchQueue.main.async {

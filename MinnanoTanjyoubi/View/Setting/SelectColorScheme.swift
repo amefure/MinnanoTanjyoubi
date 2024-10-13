@@ -70,9 +70,6 @@ struct SelectColorScheme: View {
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)
 
-            AdMobBannerView()
-                .frame(height: 60)
-
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .font(.system(size: 17))
             .navigationBarBackButtonHidden()

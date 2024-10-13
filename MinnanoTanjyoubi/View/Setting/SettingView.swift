@@ -12,6 +12,7 @@ import UIKit
 struct SettingView: View {
     @StateObject private var viewModel = SettingViewModel()
 
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @State private var isLock: Bool = false
@@ -150,14 +151,22 @@ struct SettingView: View {
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
                 Section(header: Text("広告"),
-                        footer: Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)個です。\n・容量の追加は1日に1回までです。").font(.system(size: 14)).fontWeight(.bold))
+                        footer: Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)人です。\n・容量の追加は1日に1回までです。").font(.system(size: 14)).fontWeight(.bold))
                 {
                     RewardButtonView(viewModel: viewModel)
                         .environmentObject(rootEnvironment)
                     HStack {
                         Image(systemName: "bag")
                             .settingIcon(rootEnvironment.scheme)
-                        Text("現在の容量:\(viewModel.getCapacity())人")
+                        Text("現在 / 容量 ： ")
+                        Text("\(repository.users.count)")
+                            .fontWeight(.bold)
+                            .foregroundStyle(repository.users.count == viewModel.getCapacity() ? AppColorScheme.getThema1(rootEnvironment.scheme) : AppColorScheme.getText(rootEnvironment.scheme))
+                        Text("人 / ")
+                        Text("\(viewModel.getCapacity())")
+                            .fontWeight(.bold)
+                            .foregroundStyle(AppColorScheme.getThema1(rootEnvironment.scheme))
+                        Text("人")
                     }
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
