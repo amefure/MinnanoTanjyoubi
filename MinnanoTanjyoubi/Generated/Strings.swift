@@ -18,9 +18,9 @@ internal enum L10n {
     ///
     ///   Created by t&a on 2024/08/13.
     internal static let howToUseQ1Title = L10n.tr("Localizable", "how_to_use_q1_title", fallback: "通知が届かないのですがなぜですか？")
-    /// 通知設定を変更した場合は設定を変更後に通知登録した通知に反映されます。
+    /// 通知設定の変更内容は設定を変更後に通知登録した通知に反映されます。
     /// 既にONになっている場合はお手数ですがON→OFF→ONと操作してください。
-    internal static let howToUseQ2Text = L10n.tr("Localizable", "how_to_use_q2_text", fallback: "通知設定を変更した場合は設定を変更後に通知登録した通知に反映されます。\n既にONになっている場合はお手数ですがON→OFF→ONと操作してください。")
+    internal static let howToUseQ2Text = L10n.tr("Localizable", "how_to_use_q2_text", fallback: "通知設定の変更内容は設定を変更後に通知登録した通知に反映されます。\n既にONになっている場合はお手数ですがON→OFF→ONと操作してください。")
     /// 通知時間やメッセージを変更したのに反映されません。
     internal static let howToUseQ2Title = L10n.tr("Localizable", "how_to_use_q2_title", fallback: "通知時間やメッセージを変更したのに反映されません。")
     /// 登録できる人数は制限されています。
