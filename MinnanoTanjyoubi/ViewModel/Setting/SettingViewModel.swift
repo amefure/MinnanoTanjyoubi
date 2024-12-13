@@ -12,8 +12,6 @@ import UIKit
 class SettingViewModel: ObservableObject {
     @Published var isShowPassInput: Bool = false
     @Published private(set) var isLock: Bool = false
-    /// リワードボタン用
-    @Published var isAlertReward: Bool = false
     @Published private(set) var yearArray: [Int] = []
 
     private let keyChainRepository: KeyChainRepository
@@ -55,13 +53,6 @@ class SettingViewModel: ObservableObject {
 
     // MARK: - Reward Logic
 
-    // 容量追加
-    public func addCapacity() {
-        let current = getCapacity()
-        let capacity = current + AdsConfig.ADD_CAPACITY
-        userDefaultsRepository.setIntData(key: UserDefaultsKey.LIMIT_CAPACITY, value: capacity)
-    }
-
     // 容量取得
     public func getCapacity() -> Int {
         let capacity = userDefaultsRepository.getIntData(key: UserDefaultsKey.LIMIT_CAPACITY)
@@ -71,27 +62,6 @@ class SettingViewModel: ObservableObject {
         } else {
             return capacity
         }
-    }
-
-    /// 最終視聴日登録
-    public func registerAcquisitionDate() {
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.LAST_ACQUISITION_DATE, value: nowTime())
-    }
-
-    /// 最終視聴日取得
-    public func getAcquisitionDate() -> String {
-        userDefaultsRepository.getStringData(key: UserDefaultsKey.LAST_ACQUISITION_DATE)
-    }
-
-    /// 最終視聴日チェック
-    public func checkAcquisitionDate() -> Bool {
-        // 格納してある日付と違えばtrue
-        getAcquisitionDate() != nowTime()
-    }
-
-    /// 登録する視聴日
-    private func nowTime() -> String {
-        return dfm.getSlashString(date: Date())
     }
 
     // MARK: - Notify Logic
@@ -181,21 +151,8 @@ class SettingViewModel: ObservableObject {
         return userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
     }
 
-    // MARK: - Share Logic
-
     /// アプリシェアロジック
     public func shareApp(shareText: String, shareLink: String) {
-        let items = [shareText, URL(string: shareLink)!] as [Any]
-        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            if let popPC = activityVC.popoverPresentationController {
-                popPC.sourceView = activityVC.view
-                popPC.barButtonItem = .none
-                popPC.sourceRect = activityVC.accessibilityFrame
-            }
-        }
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let rootVC = windowScene?.windows.first?.rootViewController
-        rootVC?.present(activityVC, animated: true, completion: {})
+        ShareInfoUtillity.shareApp(shareText: shareText, shareLink: shareLink)
     }
 }

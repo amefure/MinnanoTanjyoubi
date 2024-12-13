@@ -73,7 +73,14 @@
 		12CB922028E92293002BD7B2 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921F28E92293002BD7B2 /* DatePickerView.swift */; };
 		12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */; };
 		12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB925328EEC754002BD7B2 /* TimePickerView.swift */; };
+		12CFB0A92D0C53CA00407CEA /* ExView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0A82D0C53C500407CEA /* ExView.swift */; };
+		12CFB0C52D0C7BEE00407CEA /* ExModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0C42D0C7BED00407CEA /* ExModifier.swift */; };
+		12CFB0C92D0C7D8300407CEA /* RewardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */; };
+		12CFB0CB2D0C7DB400407CEA /* ShareInfoUtillity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */; };
 		12D0C7FF2953B7CD002C9C4E /* NotificationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */; };
+		12E9C8902D0B23E500C0A20B /* ShareUserLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */; };
+		12E9C8952D0B2B7700C0A20B /* JsonConvertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */; };
+		12E9C8972D0C258600C0A20B /* CryptoUtillity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */; };
 		12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29BA2C21695800A1293D /* StaticUrls.swift */; };
 		12ED29BF2C216CA900A1293D /* YearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29BE2C216CA900A1293D /* YearPickerView.swift */; };
 		12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29C02C21958700A1293D /* EntryUserViewModel.swift */; };
@@ -155,7 +162,14 @@
 		12CB921F28E92293002BD7B2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequestManager.swift; sourceTree = "<group>"; };
 		12CB925328EEC754002BD7B2 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		12CFB0A82D0C53C500407CEA /* ExView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExView.swift; sourceTree = "<group>"; };
+		12CFB0C42D0C7BED00407CEA /* ExModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExModifier.swift; sourceTree = "<group>"; };
+		12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewModel.swift; sourceTree = "<group>"; };
+		12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInfoUtillity.swift; sourceTree = "<group>"; };
 		12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButtonView.swift; sourceTree = "<group>"; };
+		12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareUserLinkView.swift; sourceTree = "<group>"; };
+		12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConvertUtility.swift; sourceTree = "<group>"; };
+		12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUtillity.swift; sourceTree = "<group>"; };
 		12ED29BA2C21695800A1293D /* StaticUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticUrls.swift; sourceTree = "<group>"; };
 		12ED29BE2C216CA900A1293D /* YearPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearPickerView.swift; sourceTree = "<group>"; };
 		12ED29C02C21958700A1293D /* EntryUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserViewModel.swift; sourceTree = "<group>"; };
@@ -214,10 +228,8 @@
 		121DEE062B1A20AC00964902 /* Extension&Utility */ = {
 			isa = PBXGroup;
 			children = (
-				128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */,
-				121DEE072B1A20BF00964902 /* ExCollection.swift */,
-				12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */,
-				12ACAD2629984D5400273834 /* DateFormatUtility.swift */,
+				12CFB0A42D0C53A700407CEA /* Extenstion */,
+				12CFB0A52D0C53B200407CEA /* Utility */,
 			);
 			path = "Extension&Utility";
 			sourceTree = "<group>";
@@ -233,6 +245,7 @@
 				12ACAD33299FAE8D00273834 /* RewardButtonView.swift */,
 				128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */,
 				12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */,
+				12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */,
 				129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */,
 			);
 			path = Setting;
@@ -241,12 +254,12 @@
 		123F485229A1D967001B91B3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				124602472B36B62300B6C32D /* RootViewModel.swift */,
 				12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */,
 				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
 				12ED29C02C21958700A1293D /* EntryUserViewModel.swift */,
-				124602472B36B62300B6C32D /* RootViewModel.swift */,
 				122401472B87738D0099BE8D /* DetailViewModel.swift */,
-				124602492B36B7BA00B6C32D /* SettingViewModel.swift */,
+				12CFB0C72D0C7D6200407CEA /* Setting */,
 				124602512B3848F200B6C32D /* AppLock */,
 			);
 			path = ViewModel;
@@ -468,6 +481,38 @@
 			path = EntryUser;
 			sourceTree = "<group>";
 		};
+		12CFB0A42D0C53A700407CEA /* Extenstion */ = {
+			isa = PBXGroup;
+			children = (
+				128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */,
+				12CFB0C42D0C7BED00407CEA /* ExModifier.swift */,
+				12CFB0A82D0C53C500407CEA /* ExView.swift */,
+				121DEE072B1A20BF00964902 /* ExCollection.swift */,
+			);
+			path = Extenstion;
+			sourceTree = "<group>";
+		};
+		12CFB0A52D0C53B200407CEA /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */,
+				12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */,
+				12ACAD2629984D5400273834 /* DateFormatUtility.swift */,
+				12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */,
+				12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		12CFB0C72D0C7D6200407CEA /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				124602492B36B7BA00B6C32D /* SettingViewModel.swift */,
+				12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		7CD4A05B51935857807E8CC5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -625,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12ACAD2C299C36CB00273834 /* UpSideView.swift in Sources */,
+				12CFB0A92D0C53CA00407CEA /* ExView.swift in Sources */,
 				12ED29BF2C216CA900A1293D /* YearPickerView.swift in Sources */,
 				12682BAA29A655FF00D0498F /* ExtensionViewModifier.swift in Sources */,
 				12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */,
@@ -651,12 +697,14 @@
 				128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */,
 				12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */,
 				123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */,
+				12CFB0CB2D0C7DB400407CEA /* ShareInfoUtillity.swift in Sources */,
 				122401442B87691E0099BE8D /* ImageFileManager.swift in Sources */,
 				128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */,
 				128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */,
 				128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */,
 				12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */,
 				128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */,
+				12CFB0C52D0C7BEE00407CEA /* ExModifier.swift in Sources */,
 				128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */,
 				12CB921E28E9223C002BD7B2 /* RelationPickerView.swift in Sources */,
 				12CB922028E92293002BD7B2 /* DatePickerView.swift in Sources */,
@@ -685,15 +733,19 @@
 				12CB921128E64ABC002BD7B2 /* RootListUserView.swift in Sources */,
 				122401462B8769480099BE8D /* ImageError.swift in Sources */,
 				121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */,
+				12E9C8902D0B23E500C0A20B /* ShareUserLinkView.swift in Sources */,
 				12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */,
+				12E9C8972D0C258600C0A20B /* CryptoUtillity.swift in Sources */,
 				1246024A2B36B7BA00B6C32D /* SettingViewModel.swift in Sources */,
 				121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */,
 				122401482B87738D0099BE8D /* DetailViewModel.swift in Sources */,
+				12E9C8952D0B2B7700C0A20B /* JsonConvertUtility.swift in Sources */,
 				12ACAD32299EDD6200273834 /* DeviceSizeUtility.swift in Sources */,
 				12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */,
 				124602482B36B62300B6C32D /* RootViewModel.swift in Sources */,
 				12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */,
 				12CB921628E6FF26002BD7B2 /* EntryUserView.swift in Sources */,
+				12CFB0C92D0C7D8300407CEA /* RewardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
