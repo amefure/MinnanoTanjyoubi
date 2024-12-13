@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-enum Relation: String, PersistableEnum, Identifiable, CaseIterable {
+enum Relation: String, PersistableEnum, Identifiable, CaseIterable, Codable {
     var id: String { rawValue }
 
     case friend = "友達"

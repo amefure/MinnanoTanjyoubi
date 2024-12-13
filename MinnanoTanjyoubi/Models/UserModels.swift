@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class User: Object, ObjectKeyIdentifiable {
+class User: Object, ObjectKeyIdentifiable, Codable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String = ""
     @Persisted var ruby: String = ""
@@ -17,8 +17,62 @@ class User: Object, ObjectKeyIdentifiable {
     @Persisted var alert: Bool = false
     @Persisted var imagePaths: RealmSwift.List<String>
 
-    // MARK: - 計算プロパティ
+    enum CodingKeys: String, CodingKey {
+        case id, name, ruby, date, relation, memo, alert, imagePaths
+    }
 
+    convenience init(
+        id: ObjectId,
+        name: String,
+        ruby: String,
+        date: Date,
+        relation: Relation,
+        memo: String,
+        alert: Bool,
+        imagePaths: [String]
+    ) {
+        self.init()
+        self.id = id
+        self.name = name
+        self.ruby = ruby
+        self.date = date
+        self.relation = relation
+        self.memo = memo
+        self.alert = alert
+        self.imagePaths.append(objectsIn: imagePaths)
+    }
+
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        id = try container.decode(ObjectId.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        ruby = try container.decode(String.self, forKey: .ruby)
+        date = try container.decode(Date.self, forKey: .date)
+        relation = try container.decode(Relation.self, forKey: .relation)
+        memo = try container.decode(String.self, forKey: .memo)
+        alert = try container.decode(Bool.self, forKey: .alert)
+        // ImagePathはデコード対象に含めない
+        // let paths = try container.decode([String].self, forKey: .imagePaths)
+        // imagePaths.append(objectsIn: paths)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(ruby, forKey: .ruby)
+        try container.encode(date, forKey: .date)
+        try container.encode(relation, forKey: .relation)
+        try container.encode(memo, forKey: .memo)
+        try container.encode(alert, forKey: .alert)
+        // ImagePathはエンコード対象に含めない
+        // try container.encode(Array(imagePaths), forKey: .imagePaths)
+    }
+}
+
+extension User {
     /// 誕生日まであとX日
     public var daysLater: Int {
         let dfm = DateFormatUtility()
