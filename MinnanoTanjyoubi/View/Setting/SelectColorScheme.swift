@@ -39,7 +39,7 @@ struct SelectColorScheme: View {
                             )
 
                             Text(scheme.name)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Asset.Colors.exText.swiftUIColor)
                                 .fontWeight(.bold)
                                 .font(.system(size: 17))
 
@@ -54,7 +54,7 @@ struct SelectColorScheme: View {
                 }
 
                 Text("他のテーマカラーも工事中・・・\n希望はレビューから教えてね。")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(Asset.Colors.exText.swiftUIColor)
                     .font(.system(size: 17))
 
             }.scrollContentBackground(.hidden)

@@ -26,6 +26,12 @@ struct SettingView: View {
 
             // List ここから
             List {
+                CapacityParametersView(
+                    now: Double(repository.users.count),
+                    max: Double(viewModel.getCapacity())
+                ).foregroundStyle(Asset.Colors.exText.swiftUIColor)
+                    .environmentObject(rootEnvironment)
+
                 Section(header: Text("通知設定"),
                         footer:
                         Text("・通知設定を変更した場合はこれより後に通知登録した通知に反映されます。\n既にONになっている場合はON→OFF→ONと操作してください。")
@@ -45,16 +51,16 @@ struct SettingView: View {
 
                         TimePickerView(viewModel: viewModel)
                             .environmentObject(rootEnvironment)
-                    }
+                    }.listRowHeight()
                     // 通知日時
                     HStack {
                         Image(systemName: "calendar")
                             .settingIcon(rootEnvironment.scheme)
                         NoticeDateFlagView(viewModel: viewModel)
                             .environmentObject(rootEnvironment)
-                    }
+                    }.listRowHeight()
 
-                    // 関係をカスタマイズ
+                    // 通知メッセージを変更する
                     NavigationLink {
                         EditNotifyMessageView(viewModel: viewModel)
                             .environmentObject(rootEnvironment)
@@ -64,7 +70,7 @@ struct SettingView: View {
                                 .settingIcon(rootEnvironment.scheme)
                             Text("通知メッセージを変更する")
                         }
-                    }
+                    }.listRowHeight()
 
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
@@ -87,7 +93,7 @@ struct SettingView: View {
                             .opacity(0.9)
                             .background(isDaysLaterFlag ? AppColorScheme.getThema3(rootEnvironment.scheme) : AppColorScheme.getThema2(rootEnvironment.scheme))
                             .clipShape(RoundedRectangle(cornerRadius: 5))
-                    }
+                    }.listRowHeight()
 
                     // 誕生日までの単位
                     HStack {
@@ -98,7 +104,7 @@ struct SettingView: View {
                         }.onChange(of: isAgeMonthFlag, perform: { newValue in
                             viewModel.registerDisplayAgeMonth(flag: newValue)
                         }).tint(AppColorScheme.getThema1(rootEnvironment.scheme))
-                    }
+                    }.listRowHeight()
 
                     // 登録初期年数
                     HStack {
@@ -106,7 +112,7 @@ struct SettingView: View {
                             .settingIcon(rootEnvironment.scheme)
                         YearPickerView(viewModel: viewModel)
                             .environmentObject(rootEnvironment)
-                    }
+                    }.listRowHeight()
 
                     // 関係をカスタマイズ
                     NavigationLink {
@@ -118,9 +124,9 @@ struct SettingView: View {
                                 .settingIcon(rootEnvironment.scheme)
                             Text("関係をカスタマイズする")
                         }
-                    }
+                    }.listRowHeight()
 
-                    // 関係をカスタマイズ
+                    // テーマカラーを変更する
                     NavigationLink {
                         SelectColorScheme()
                             .environmentObject(rootEnvironment)
@@ -130,7 +136,19 @@ struct SettingView: View {
                                 .settingIcon(rootEnvironment.scheme)
                             Text("テーマカラーを変更する")
                         }
-                    }
+                    }.listRowHeight()
+
+                    // 誕生日情報を共有する
+                    NavigationLink {
+                        ShareUserLinkView()
+                            .environmentObject(rootEnvironment)
+                    } label: {
+                        HStack {
+                            Image(systemName: "paintpalette")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("誕生日情報を共有する")
+                        }
+                    }.listRowHeight()
 
                     HStack {
                         Image(systemName: "lock.iphone")
@@ -144,30 +162,11 @@ struct SettingView: View {
                                 viewModel.deletePassword()
                             }
                         }).tint(AppColorScheme.getThema1(rootEnvironment.scheme))
-                    }.sheet(isPresented: $viewModel.isShowPassInput, content: {
-                        AppLockInputView(isLock: $isLock)
-                            .environmentObject(rootEnvironment)
-                    })
-                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
-
-                Section(header: Text("広告"),
-                        footer: Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)人です。\n・容量の追加は1日に1回までです。").font(.system(size: 14)).fontWeight(.bold))
-                {
-                    RewardButtonView(viewModel: viewModel)
-                        .environmentObject(rootEnvironment)
-                    HStack {
-                        Image(systemName: "bag")
-                            .settingIcon(rootEnvironment.scheme)
-                        Text("現在 / 容量 ： ")
-                        Text("\(repository.users.count)")
-                            .fontWeight(.bold)
-                            .foregroundStyle(repository.users.count == viewModel.getCapacity() ? AppColorScheme.getThema1(rootEnvironment.scheme) : AppColorScheme.getText(rootEnvironment.scheme))
-                        Text("人 / ")
-                        Text("\(viewModel.getCapacity())")
-                            .fontWeight(.bold)
-                            .foregroundStyle(AppColorScheme.getThema1(rootEnvironment.scheme))
-                        Text("人")
-                    }
+                    }.listRowHeight()
+                        .sheet(isPresented: $viewModel.isShowPassInput, content: {
+                            AppLockInputView(isLock: $isLock)
+                                .environmentObject(rootEnvironment)
+                        })
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
                 Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。").font(.system(size: 14)).fontWeight(.bold)) {
@@ -181,7 +180,7 @@ struct SettingView: View {
                                 .settingIcon(rootEnvironment.scheme)
                             Text("よくある質問")
                         }
-                    }
+                    }.listRowHeight()
 
                     if let url = URL(string: StaticUrls.APP_REVIEW_URL) {
                         // 1:レビューページ
@@ -191,7 +190,7 @@ struct SettingView: View {
                                     .settingIcon(rootEnvironment.scheme)
                                 Text("アプリをレビューする")
                             }
-                        })
+                        }).listRowHeight()
                     }
 
                     // 2:シェアボタン
@@ -206,7 +205,7 @@ struct SettingView: View {
                                 .settingIcon(rootEnvironment.scheme)
                             Text("「みんなの誕生日」をオススメする")
                         }
-                    }
+                    }.listRowHeight()
 
                     if let url = URL(string: StaticUrls.APP_CONTACT_URL) {
                         // 3:お問い合わせフォーム
@@ -215,9 +214,8 @@ struct SettingView: View {
                                 Image(systemName: "paperplane")
                                     .settingIcon(rootEnvironment.scheme)
                                 Text("アプリの不具合はこちら")
-                                Image(systemName: "link")
                             }
-                        }).listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                        }).listRowHeight()
                     }
 
                     if let url = URL(string: StaticUrls.APP_TERMS_OF_SERVICE_URL) {
@@ -227,14 +225,12 @@ struct SettingView: View {
                                 Image(systemName: "note.text")
                                     .settingIcon(rootEnvironment.scheme)
                                 Text("利用規約とプライバシーポリシー")
-                                Image(systemName: "link")
                             }
-                        })
+                        }).listRowHeight()
                     }
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
-            }.listStyle(GroupedListStyle())
-                .scrollContentBackground(.hidden)
+            }.scrollContentBackground(.hidden)
                 .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
                 .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
             // List ここまで
@@ -254,17 +250,104 @@ struct SettingView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
             .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
-            .dialog(
-                isPresented: $viewModel.isAlertReward,
-                title: "お知らせ",
-                message: "広告を視聴できるのは1日に1回までです。",
-                positiveButtonTitle: "OK",
-                negativeButtonTitle: "",
-                positiveAction: {
-                    viewModel.isAlertReward = false
-                },
-                negativeAction: {}
-            )
+    }
+}
+
+private extension View {
+    func listRowHeight(height: CGFloat = 37) -> some View {
+        frame(height: height)
+    }
+}
+
+struct CapacityParametersView: View {
+    public let now: Double
+    public let max: Double
+    public let color: Color = .green
+    public let fullColor: Color = .red
+    public let width: CGFloat = DeviceSizeUtility.deviceWidth - 80
+    public let height: CGFloat = 40
+    public let radius: CGFloat = 8
+
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
+    @State private var target: Double = 0
+    @State private var timer: Timer? = nil
+
+    private func startCounting() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
+            withAnimation {
+                if target < now {
+                    target += 1
+                } else if now > target {
+                    target -= 1
+                } else {
+                    timer?.invalidate()
+                }
+            }
+        }
+    }
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Text("アプリ容量")
+                .frame(width: width, alignment: .leading)
+            Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)人です。\n・容量の追加は1日に1回までです。")
+                .frame(width: width, alignment: .leading)
+            HStack {
+                Text(target == max ? "FULL" : "\(Int(target))人")
+                    .frame(
+                        width: Swift.max(30, width * (target / max) + 20),
+                        alignment: target == 0 ? .leading : .trailing
+                    )
+                    .foregroundStyle(target == max ? fullColor : .black)
+                    .fontWeight(.bold)
+                Spacer()
+            }.frame(width: width + 20)
+
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: radius)
+                    .stroke()
+
+                Rectangle()
+                    .fill(.gray)
+                    .opacity(0.5)
+                    .frame(width: 1, height: height - 10)
+                    .offset(x: width * 0.25)
+
+                Rectangle()
+                    .fill(.gray)
+                    .opacity(0.5)
+                    .frame(width: 1, height: height - 10)
+                    .offset(x: width * 0.5)
+
+                Rectangle()
+                    .fill(.gray)
+                    .opacity(0.5)
+                    .frame(width: 1, height: height - 10)
+                    .offset(x: width * 0.75)
+
+                Rectangle()
+                    .fill(target == max ? fullColor : color)
+                    .frame(width: width * (target / max), height: height)
+
+            }.frame(width: width, height: height)
+                .clipShape(RoundedRectangle(cornerRadius: radius))
+
+            HStack {
+                Text("0人")
+
+                Spacer()
+
+                Text("\(Int(max))人")
+            }.frame(width: width + 20, alignment: .leading)
+
+            RewardButtonView()
+                .environmentObject(rootEnvironment)
+
+        }.onAppear {
+            startCounting()
+        }
     }
 }
 
