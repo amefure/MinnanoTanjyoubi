@@ -19,3 +19,19 @@ class StaticUrls {
     /// 利用規約
     static let APP_TERMS_OF_SERVICE_URL = APP_WEB_URL + "app-terms-of-service"
 }
+
+// Custom URL Scheme
+extension StaticUrls {
+    /// Scheme
+    static let CUSTOM_URL_SCHEME = "minnanotanjyoubi-app://"
+
+    /// 誕生日情報登録パラメータ
+    static let PARAM_CREATE_USER = "create"
+    /// クエリ接頭辞
+    static let QUERY_PREFIX = "?"
+    /// 誕生日情報登録クエリ
+    static let QUERY_CREATE_USER = "birthday="
+
+    /// 誕生日情報登録リンク
+    static let CREATE_USER_SCHEME_LINK = CUSTOM_URL_SCHEME + PARAM_CREATE_USER + QUERY_PREFIX + QUERY_CREATE_USER
+}

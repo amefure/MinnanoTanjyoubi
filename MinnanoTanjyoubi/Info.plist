@@ -6,6 +6,19 @@
 	<array>
 		<string>ja</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.ame.MinnanoTanjyoubi</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>minnanotanjyoubi-app</string>
+			</array>
+		</dict>
+	</array>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-3940256099942544~1458002511</string>
 	<key>SKAdNetworkIdentifier</key>
