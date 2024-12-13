@@ -1,4 +1,5 @@
 PODS:
+  - CryptoSwift (1.8.3)
   - FirebaseAnalytics (10.11.0):
     - FirebaseAnalytics/AdIdSupport (= 10.11.0)
     - FirebaseCore (~> 10.0)
@@ -85,6 +86,7 @@ PODS:
   - SwiftFormat/CLI (0.51.12)
 
 DEPENDENCIES:
+  - CryptoSwift
   - FirebaseAnalytics
   - Google-Mobile-Ads-SDK
   - RealmSwift (= 10.37.2)
@@ -92,6 +94,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - CryptoSwift
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreInternal
@@ -107,6 +110,7 @@ SPEC REPOS:
     - SwiftFormat
 
 SPEC CHECKSUMS:
+  CryptoSwift: 967f37cea5a3294d9cce358f78861652155be483
   FirebaseAnalytics: 6c6bf99e8854475bf1fa342028841be8ecd236da
   FirebaseCore: 62fd4d549f5e3f3bd52b7998721c5fa0557fb355
   FirebaseCoreInternal: 9e46c82a14a3b3a25be4e1e151ce6d21536b89c0
@@ -121,6 +125,6 @@ SPEC CHECKSUMS:
   RealmSwift: adaf8f6fd925b41447089fcfab71b9b7cdc3982d
   SwiftFormat: a5bbe21e2794b5a914f548ec651f28f2ab8be099
 
-PODFILE CHECKSUM: ff01502aae0eab4ec752c8b9d4bfae6905ca6ae4
+PODFILE CHECKSUM: 387d8cfba688b2c1bb050d8a536ce859a332d864
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.16.2
