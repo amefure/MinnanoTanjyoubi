@@ -64,15 +64,15 @@ struct UpSideUserInfoView: View {
             }
 
             Text(user.ruby)
-                .font(isSESize ? .system(size: 12) : .system(size: 17))
+                .font(isSESize ? .system(size: 12) : .system(size: 14))
             Text(user.name)
                 .font(isSESize ? .system(size: 17) : .system(size: 20))
             HStack {
                 Text(dfm.getJpString(date: user.date))
-                    .font(.system(size: 17))
                 Text("（\(dfm.getJpEraString(date: user.date))）")
-                    .font(.system(size: 17))
-            }
+
+            }.padding(.top, 8)
+                .fontM()
         }
     }
 }

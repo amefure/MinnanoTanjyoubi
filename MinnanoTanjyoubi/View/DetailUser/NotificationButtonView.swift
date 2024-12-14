@@ -54,7 +54,7 @@ struct NotificationButtonView: View {
                 }
             }
         }
-        .font(.system(size: 17))
+        .fontM()
         .frame(width: DeviceSizeUtility.deviceWidth - 60)
         .padding(DeviceSizeUtility.isSESize ? 5 : 10)
         .onAppear {

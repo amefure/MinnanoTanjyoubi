@@ -30,6 +30,28 @@ class RealmRepositoryViewModel: ObservableObject {
         readAllUsers()
     }
 
+    public func shareCreateUser(shareUser: User) -> Bool {
+        guard !(users.contains { $0.name == shareUser.name }) else {
+            print("同姓同名の誕生日が既に登録されています")
+            return false
+        }
+        let copy = copyUser(shareUser)
+        print("createUser", copy)
+        repository.createUser(user: copy)
+        return true
+    }
+
+    private func copyUser(_ user: User) -> User {
+        let copy = User()
+        copy.name = user.name
+        copy.ruby = user.ruby
+        copy.date = user.date
+        copy.relation = user.relation
+        copy.memo = user.memo
+        // alertとimagePathはコピーしなし
+        return copy
+    }
+
     public func filteringUser(selectedRelation: Relation) {
         readAllUsers()
         users = users.filter { $0.relation == selectedRelation }

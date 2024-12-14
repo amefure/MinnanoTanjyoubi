@@ -30,22 +30,33 @@ struct DetailUserView: View {
                 .environmentObject(rootEnvironment)
 
             Group {
-                // MARK: - Relation/あと何日../名前/ふりがな/生年月日/和暦
-
+                // Relation/あと何日../名前/ふりがな/生年月日/和暦
                 UpSideUserInfoView(user: user)
                     .environmentObject(rootEnvironment)
 
-                // MARK: - 年齢/星座/干支
+                ZStack(alignment: .bottom) {
+                    // 年齢/星座/干支
+                    MiddleUserInfoView(user: user)
+                        .environmentObject(rootEnvironment)
 
-                MiddleUserInfoView(user: user)
-                    .environmentObject(rootEnvironment)
+                    // 共有ボタン
+                    HStack {
+                        Spacer()
 
-                // MARK: - Memo
+                        Button {
+                            ShareInfoUtillity.shareBirthday([user])
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                                .fontM()
+                        }.padding(.trailing)
+                    }
+                }
 
+                // Memo
                 ScrollView {
                     Text(user.memo)
                         .frame(width: deviceWidth - 40)
-                        .font(.system(size: 17))
+                        .fontM()
                 }.padding(isSESize ? 5 : 10)
                     .frame(width: deviceWidth - 40)
                     .frame(minHeight: isSESize ? 130 : 180)

@@ -144,7 +144,7 @@ struct SettingView: View {
                             .environmentObject(rootEnvironment)
                     } label: {
                         HStack {
-                            Image(systemName: "paintpalette")
+                            Image(systemName: "person.line.dotted.person")
                                 .settingIcon(rootEnvironment.scheme)
                             Text("誕生日情報を共有する")
                         }
@@ -262,8 +262,8 @@ private extension View {
 struct CapacityParametersView: View {
     public let now: Double
     public let max: Double
-    public let color: Color = .green
-    public let fullColor: Color = .red
+    public let color: Color = Asset.Colors.exThemaYellow.swiftUIColor
+    public let fullColor: Color = Asset.Colors.exThemaRed.swiftUIColor
     public let width: CGFloat = DeviceSizeUtility.deviceWidth - 80
     public let height: CGFloat = 40
     public let radius: CGFloat = 8
@@ -291,17 +291,19 @@ struct CapacityParametersView: View {
     var body: some View {
         VStack(spacing: 8) {
             Text("アプリ容量")
+                .fontM(bold: true)
                 .frame(width: width, alignment: .leading)
             Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)人です。\n・容量の追加は1日に1回までです。")
+                .fontS()
                 .frame(width: width, alignment: .leading)
             HStack {
                 Text(target == max ? "FULL" : "\(Int(target))人")
+                    .fontM(bold: true)
                     .frame(
                         width: Swift.max(30, width * (target / max) + 20),
                         alignment: target == 0 ? .leading : .trailing
                     )
-                    .foregroundStyle(target == max ? fullColor : .black)
-                    .fontWeight(.bold)
+                    .foregroundStyle(target == max ? fullColor : Asset.Colors.exText.swiftUIColor)
                 Spacer()
             }.frame(width: width + 20)
 
@@ -336,10 +338,12 @@ struct CapacityParametersView: View {
 
             HStack {
                 Text("0人")
+                    .fontS()
 
                 Spacer()
 
                 Text("\(Int(max))人")
+                    .fontS()
             }.frame(width: width + 20, alignment: .leading)
 
             RewardButtonView()

@@ -31,7 +31,7 @@ struct EntryUserView: View {
     // 自身の表示モーダルフラグ
     @Binding var isModal: Bool
     // カレンダーON/OFF
-    @State private var isWheel = true
+    @State private var showWheel: Bool = false
     // バリデーションダイアログ
     @State private var showValidationDialog = false
     // TextField/TextEditor ActiveFlag
@@ -74,7 +74,7 @@ struct EntryUserView: View {
                     Text("生年月日")
                         .frame(width: 80)
                     Spacer()
-                    DatePickerView(date: $date, isWheel: $isWheel)
+                    DatePickerView(date: $date, showWheel: $showWheel)
                         .environmentObject(rootEnvironment)
                 }.padding(5)
 
@@ -94,6 +94,7 @@ struct EntryUserView: View {
                     Toggle(isOn: $isAlert, label: {
                         Text("通知")
                     }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1(rootEnvironment.scheme)))
+                        .frame(width: DeviceSizeUtility.deviceWidth - 50)
                 }
 
                 Text("MEMO")
@@ -166,7 +167,7 @@ struct EntryUserView: View {
                 .environmentObject(rootEnvironment)
 
         }.padding()
-            .font(.system(size: 17))
+            .fontM()
             .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
             .onAppear {
@@ -184,7 +185,7 @@ struct EntryUserView: View {
             }
             .onChange(of: isFocusActive, perform: { _ in
                 if isFocusActive {
-                    isWheel = true
+                    showWheel = false
                 }
             })
             .navigationBarBackButtonHidden(true)
