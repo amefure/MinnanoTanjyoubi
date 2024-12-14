@@ -11,7 +11,7 @@ import SwiftUI
 struct RemoveButtonView: View {
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
-    @Binding var isDeleteAlert: Bool
+    @State private var isDeleteAlert: Bool = false
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
@@ -29,5 +29,25 @@ struct RemoveButtonView: View {
             Image(systemName: rootEnvironment.isDeleteMode ? "trash" : "app.badge.checkmark")
                 .font(.system(size: 17))
         }.circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema2(rootEnvironment.scheme))
+            .alert(
+                isPresented: $isDeleteAlert,
+                title: "お知らせ",
+                message: "選択した誕生日情報を\n削除しますか？",
+                positiveButtonTitle: "削除",
+                negativeButtonTitle: "キャンセル",
+                positiveButtonRole: .destructive,
+                positiveAction: {
+                    repository.removeUser(removeIdArray: rootEnvironment.deleteIdArray)
+                    rootEnvironment.resetDeleteMode()
+                },
+                negativeAction: {
+                    rootEnvironment.resetDeleteMode()
+                }
+            )
     }
+}
+
+#Preview {
+    RemoveButtonView()
+        .environmentObject(RootEnvironment())
 }

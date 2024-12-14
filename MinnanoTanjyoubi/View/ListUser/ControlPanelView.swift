@@ -12,8 +12,6 @@ import SwiftUI
 struct ControlPanelView: View {
     // Environment
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-    @Binding var isDeleteAlert: Bool
-    @Binding var isLimitAlert: Bool
     @Binding var isScrollingDown: Bool
 
     var body: some View {
@@ -24,7 +22,7 @@ struct ControlPanelView: View {
         HStack {
             Spacer()
 
-            RemoveButtonView(isDeleteAlert: $isDeleteAlert)
+            RemoveButtonView()
                 .environmentObject(rootEnvironment)
                 .simultaneousGesture(tapGesture)
 
@@ -36,7 +34,7 @@ struct ControlPanelView: View {
 
             Spacer()
 
-            EntryButtonView(isLimitAlert: $isLimitAlert)
+            EntryButtonView()
                 .environmentObject(rootEnvironment)
                 .simultaneousGesture(tapGesture)
 

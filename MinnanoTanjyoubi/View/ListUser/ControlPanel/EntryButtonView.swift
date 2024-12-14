@@ -17,7 +17,7 @@ struct EntryButtonView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     // 上限に達した場合のアラート
-    @Binding var isLimitAlert: Bool
+    @State private var isLimitAlert: Bool = false
     @State private var isModal = false
 
     private func checkLimitCapacity() -> Bool {
@@ -42,12 +42,21 @@ struct EntryButtonView: View {
             .sheet(isPresented: $isModal) {
                 EntryUserView(user: nil, isModal: $isModal)
                     .environmentObject(rootEnvironment)
-            }
+            }.alert(
+                isPresented: $isLimitAlert,
+                title: "お知らせ",
+                message: "保存容量が上限に達しました...\n設定から広告を視聴すると\n保存容量を増やすことができます。",
+                positiveButtonTitle: "OK",
+                negativeButtonTitle: "",
+                positiveAction: {
+                    isLimitAlert = false
+                },
+                negativeAction: {}
+            )
     }
 }
 
-struct EntryButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        EntryButtonView(isLimitAlert: Binding.constant(false))
-    }
+#Preview {
+    EntryButtonView()
+        .environmentObject(RootEnvironment())
 }

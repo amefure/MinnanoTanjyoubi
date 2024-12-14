@@ -268,25 +268,10 @@ struct CapacityParametersView: View {
     public let height: CGFloat = 40
     public let radius: CGFloat = 8
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
-
     @State private var target: Double = 0
-    @State private var timer: Timer? = nil
+    @State private var showCapacity: CGFloat = 0
 
-    private func startCounting() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
-            withAnimation {
-                if target < now {
-                    target += 1
-                } else if now > target {
-                    target -= 1
-                } else {
-                    timer?.invalidate()
-                }
-            }
-        }
-    }
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         VStack(spacing: 8) {
@@ -297,15 +282,16 @@ struct CapacityParametersView: View {
                 .fontS()
                 .frame(width: width, alignment: .leading)
             HStack {
-                Text(target == max ? "FULL" : "\(Int(target))人")
+                Text(now == max ? "FULL" : "\(Int(now))人")
                     .fontM(bold: true)
                     .frame(
-                        width: Swift.max(30, width * (target / max) + 20),
+                        width: Swift.max(30, width * (now / max) + 25),
                         alignment: target == 0 ? .leading : .trailing
                     )
                     .foregroundStyle(target == max ? fullColor : Asset.Colors.exText.swiftUIColor)
+                    .opacity(showCapacity)
                 Spacer()
-            }.frame(width: width + 20)
+            }.frame(width: width + 20, height: 20)
 
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: radius)
@@ -348,9 +334,11 @@ struct CapacityParametersView: View {
 
             RewardButtonView()
                 .environmentObject(rootEnvironment)
-
         }.onAppear {
-            startCounting()
+            withAnimation(Animation.linear(duration: 2)) {
+                target = now
+                showCapacity = 1
+            }
         }
     }
 }

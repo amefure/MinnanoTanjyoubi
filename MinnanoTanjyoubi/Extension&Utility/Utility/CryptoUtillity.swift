@@ -10,17 +10,13 @@ import UIKit
 
 /// 暗号化/複合化クラス
 class CryptoUtillity {
-    private let key = "-------------"
-    private let iv = "-------------"
-
     /// 文字列を暗号化して返却
     /// - Parameter targetText: 暗号化対象の文字列
     /// - Returns: 暗号化文字列
     public func encryption(_ targetText: String) -> String? {
         do {
             // AESキーと初期ベクトルを使用してAESインスタンスを生成
-            let aes = try AES(key: key, iv: iv)
-
+            let aes = try AES(key: SecretCryptoKey.KEY, iv: SecretCryptoKey.IV)
             // 渡された文字列をUTF-8のバイト配列に変換し、AESで暗号化
             let encrypted = try aes.encrypt(Array(targetText.utf8))
 
@@ -45,7 +41,7 @@ class CryptoUtillity {
     public func decryption(_ cipherText: String) -> String? {
         do {
             // AESキーと初期ベクトルを使用してAESインスタンスを生成
-            let aes = try AES(key: key, iv: iv)
+            let aes = try AES(key: SecretCryptoKey.KEY, iv: SecretCryptoKey.IV)
             // 文字列をUTF-8エンコーディングしてバイトデータに変換
             guard let byteData = cipherText.data(using: String.Encoding.utf8) else { return nil }
             // Base64データをデコードして元のデータに戻す

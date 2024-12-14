@@ -28,15 +28,17 @@ internal enum L10n {
     internal static let howToUseQ3Text = L10n.tr("Localizable", "how_to_use_q3_text", fallback: "登録できる人数は制限されています。\nですが広告を視聴していただくことで追加することも可能です。")
     /// 登録できる人数は何人ですか？
     internal static let howToUseQ3Title = L10n.tr("Localizable", "how_to_use_q3_title", fallback: "登録できる人数は何人ですか？")
+    /// 共有されたリンクをクリックしてもアプリが起動しない場合はアプリが最新であることを確認した上で、リンクをコピー後、「Safari」を立ち上げて検索欄長押しして「ペーストして開く」を実行してみてください。
+    ///
+    /// また複数の誕生日情報を一度に送信した場合にうまく動作しない場合はお手数ですが1つずつ共有してください。
+    internal static let howToUseQ4Text = L10n.tr("Localizable", "how_to_use_q4_text", fallback: "共有されたリンクをクリックしてもアプリが起動しない場合はアプリが最新であることを確認した上で、リンクをコピー後、「Safari」を立ち上げて検索欄長押しして「ペーストして開く」を実行してみてください。\n\nまた複数の誕生日情報を一度に送信した場合にうまく動作しない場合はお手数ですが1つずつ共有してください。")
+    /// 誕生日共有機能が使えない。
+    internal static let howToUseQ4Title = L10n.tr("Localizable", "how_to_use_q4_title", fallback: "誕生日共有機能が使えない。")
     /// アプリのレビューもしくは「利用規約」のWebサイトのお問い合わせフォームからフィードバックをいただけるとできる限り対処いたします。
     /// しかしご要望に添えない可能性があることをご了承ください。
-    internal static let howToUseQ4Text = L10n.tr("Localizable", "how_to_use_q4_text", fallback: "アプリのレビューもしくは「利用規約」のWebサイトのお問い合わせフォームからフィードバックをいただけるとできる限り対処いたします。\nしかしご要望に添えない可能性があることをご了承ください。")
+    internal static let howToUseQ5Text = L10n.tr("Localizable", "how_to_use_q5_text", fallback: "アプリのレビューもしくは「利用規約」のWebサイトのお問い合わせフォームからフィードバックをいただけるとできる限り対処いたします。\nしかしご要望に添えない可能性があることをご了承ください。")
     /// ○○な機能を追加してほしい
-    internal static let howToUseQ4Title = L10n.tr("Localizable", "how_to_use_q4_title", fallback: "○○な機能を追加してほしい")
-    ///
-    internal static let howToUseQ5Text = L10n.tr("Localizable", "how_to_use_q5_text", fallback: "")
-    ///
-    internal static let howToUseQ5Title = L10n.tr("Localizable", "how_to_use_q5_title", fallback: "")
+    internal static let howToUseQ5Title = L10n.tr("Localizable", "how_to_use_q5_title", fallback: "○○な機能を追加してほしい")
     ///
     internal static let howToUseQ6Text = L10n.tr("Localizable", "how_to_use_q6_text", fallback: "")
     ///

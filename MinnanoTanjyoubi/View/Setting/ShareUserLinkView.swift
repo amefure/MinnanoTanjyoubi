@@ -16,7 +16,7 @@ struct ShareUserLinkView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             UpSideView()
                 .environmentObject(rootEnvironment)
 
@@ -62,7 +62,7 @@ struct ShareUserLinkView: View {
             } label: {
                 Text("共有する")
                     .fontM()
-            }.frame(width: DeviceSizeUtility.deviceWidth - 80, height: 60)
+            }.frame(width: DeviceSizeUtility.deviceWidth - 80, height: 50)
                 .background(shareUsers.count != 0 ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))

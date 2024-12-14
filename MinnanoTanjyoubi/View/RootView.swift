@@ -32,12 +32,10 @@ struct RootView: View {
                 /// Custom URL Schemeでアプリを起動した場合のハンドリング
                 guard let query = url.query() else { return }
                 guard let users = viewModel.decryptAndInitializeUsers(query) else { return }
-                print("users", users.count)
                 for user in users {
                     if repository.shareCreateUser(shareUser: user) {
                         viewModel.createUsers.append(user)
                         if user == users.last {
-                            print("---ebd")
                             repository.readAllUsers()
                             viewModel.showSuccessCreateUser = true
                         }

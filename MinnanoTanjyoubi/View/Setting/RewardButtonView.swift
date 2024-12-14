@@ -37,7 +37,7 @@ struct RewardButtonView: View {
                         .padding(.leading, 8)
                 }
             }
-        }.frame(width: DeviceSizeUtility.deviceWidth - 80, height: 60)
+        }.frame(width: DeviceSizeUtility.deviceWidth - 80, height: 50)
             .background(reward.rewardLoaded ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .shadow(color: .gray, radius: 3, x: 4, y: 4)

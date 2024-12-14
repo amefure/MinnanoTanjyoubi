@@ -27,6 +27,7 @@ struct FaqListView: View {
                     AccordionBoxView(question: L10n.howToUseQ2Title, answer: L10n.howToUseQ2Text)
                     AccordionBoxView(question: L10n.howToUseQ3Title, answer: L10n.howToUseQ3Text)
                     AccordionBoxView(question: L10n.howToUseQ4Title, answer: L10n.howToUseQ4Text)
+                    AccordionBoxView(question: L10n.howToUseQ5Title, answer: L10n.howToUseQ5Text)
                 }
             }.scrollContentBackground(.hidden)
                 .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
@@ -59,7 +60,9 @@ struct AccordionBoxView: View {
             Spacer()
 
             Button {
-                isClick.toggle()
+                withAnimation {
+                    isClick.toggle()
+                }
             } label: {
                 Image(systemName: isClick ? "minus" : "plus")
                     .foregroundColor(.gray)

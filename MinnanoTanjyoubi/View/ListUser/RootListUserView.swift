@@ -17,9 +17,6 @@ struct RootListUserView: View {
     // Environment
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    @State private var isDeleteAlert = false
-    @State private var isLimitAlert = false
-
     @State private var isScrollingDown = false
     @GestureState private var dragOffset = CGSize.zero
     @State private var opacity: Double = 1
@@ -82,8 +79,6 @@ struct RootListUserView: View {
                         Spacer()
 
                         ControlPanelView(
-                            isDeleteAlert: $isDeleteAlert,
-                            isLimitAlert: $isLimitAlert,
                             isScrollingDown: $isScrollingDown
                         ).environmentObject(rootEnvironment)
                             .opacity(opacity)
@@ -122,8 +117,6 @@ struct RootListUserView: View {
                     }
 
                     ControlPanelView(
-                        isDeleteAlert: $isDeleteAlert,
-                        isLimitAlert: $isLimitAlert,
                         isScrollingDown: $isScrollingDown
                     ).environmentObject(rootEnvironment)
                 }
@@ -134,30 +127,5 @@ struct RootListUserView: View {
                 // 下方向にスクロール中のみ半透明にする
                 opacity = isScrollingDown ? 0.5 : 1
             }
-            .dialog(
-                isPresented: $isDeleteAlert,
-                title: "お知らせ",
-                message: "選択した誕生日情報を\n削除しますか？",
-                positiveButtonTitle: "削除",
-                negativeButtonTitle: "キャンセル",
-                positiveAction: {
-                    repository.removeUser(removeIdArray: rootEnvironment.deleteIdArray)
-                    rootEnvironment.resetDeleteMode()
-                },
-                negativeAction: {
-                    rootEnvironment.resetDeleteMode()
-                }
-            )
-            .dialog(
-                isPresented: $isLimitAlert,
-                title: "お知らせ",
-                message: "保存容量が上限に達しました...\n設定から広告を視聴すると\n保存容量を増やすことができます。",
-                positiveButtonTitle: "OK",
-                negativeButtonTitle: "",
-                positiveAction: {
-                    isLimitAlert = false
-                },
-                negativeAction: {}
-            )
     }
 }
