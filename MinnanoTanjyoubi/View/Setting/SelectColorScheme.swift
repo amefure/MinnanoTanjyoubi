@@ -75,7 +75,7 @@ struct SelectColorScheme: View {
             .navigationBarBackButtonHidden()
             .onAppear {
                 scheme = rootEnvironment.scheme
-            }.dialog(
+            }.alert(
                 isPresented: $isAlert,
                 title: "お知らせ",
                 message: "テーマカラーを変更しました。",

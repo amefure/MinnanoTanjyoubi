@@ -55,6 +55,8 @@
 		12ACAD32299EDD6200273834 /* DeviceSizeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */; };
 		12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD33299FAE8D00273834 /* RewardButtonView.swift */; };
 		12B76E832D0D90600021A018 /* SecretCryptoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B76E822D0D905F0021A018 /* SecretCryptoKey.swift */; };
+		12B76E862D0D93D40021A018 /* UICustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B76E852D0D93D30021A018 /* UICustomWebView.swift */; };
+		12B76E882D0D940B0021A018 /* ControlWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B76E872D0D940A0021A018 /* ControlWebView.swift */; };
 		12BA5F0F2C6BA03800E1DDF2 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12BA5F0E2C6BA03800E1DDF2 /* Colors.xcassets */; };
 		12BA5F112C6BA08A00E1DDF2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12BA5F102C6BA08A00E1DDF2 /* Localizable.strings */; };
 		12BA5F142C6BA0A600E1DDF2 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA5F122C6BA0A600E1DDF2 /* Assets.swift */; };
@@ -143,6 +145,8 @@
 		12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSizeUtility.swift; sourceTree = "<group>"; };
 		12ACAD33299FAE8D00273834 /* RewardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardButtonView.swift; sourceTree = "<group>"; };
 		12B76E822D0D905F0021A018 /* SecretCryptoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretCryptoKey.swift; sourceTree = "<group>"; };
+		12B76E852D0D93D30021A018 /* UICustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomWebView.swift; sourceTree = "<group>"; };
+		12B76E872D0D940A0021A018 /* ControlWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlWebView.swift; sourceTree = "<group>"; };
 		12BA5F0E2C6BA03800E1DDF2 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		12BA5F102C6BA08A00E1DDF2 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		12BA5F122C6BA0A600E1DDF2 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 			children = (
 				12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */,
 				12CB91FE28E5C6E1002BD7B2 /* RootView.swift */,
+				12B76E842D0D93720021A018 /* WebView */,
 				12CB921C28E8661F002BD7B2 /* ListUser */,
 				12CB922428E9A8F5002BD7B2 /* EntryUser */,
 				123F485929A2CC98001B91B3 /* DetailUser */,
@@ -360,6 +365,15 @@
 				122401492B8819200099BE8D /* ImagePreviewDialog.swift */,
 			);
 			path = Dialog;
+			sourceTree = "<group>";
+		};
+		12B76E842D0D93720021A018 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				12B76E852D0D93D30021A018 /* UICustomWebView.swift */,
+				12B76E872D0D940A0021A018 /* ControlWebView.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		12BA5F0C2C6BA01300E1DDF2 /* Resources */ = {
@@ -727,7 +741,9 @@
 				12CB921828E858DF002BD7B2 /* DetailUserView.swift in Sources */,
 				1224013E2B8720FA0099BE8D /* ImagePickerDialog.swift in Sources */,
 				1246024C2B36BCE500B6C32D /* AdsConfig.swift in Sources */,
+				12B76E862D0D93D40021A018 /* UICustomWebView.swift in Sources */,
 				124602462B36B46300B6C32D /* RepositoryDependency.swift in Sources */,
+				12B76E882D0D940B0021A018 /* ControlWebView.swift in Sources */,
 				12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */,
 				121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */,
 				12682BB529A7949000D0498F /* MiddleUserInfoView.swift in Sources */,

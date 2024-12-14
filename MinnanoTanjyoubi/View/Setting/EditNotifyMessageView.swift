@@ -86,9 +86,9 @@ struct EditNotifyMessageView: View {
             }
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .ignoresSafeArea(.keyboard)
-            .font(.system(size: 17))
+            .fontM()
             .navigationBarBackButtonHidden()
-            .dialog(
+            .alert(
                 isPresented: $isSuccessAlert,
                 title: "お知らせ",
                 message: "通知メッセージを更新しました。",
@@ -97,7 +97,7 @@ struct EditNotifyMessageView: View {
                     dismiss()
                 }
             )
-            .dialog(
+            .alert(
                 isPresented: $isValidationAlert,
                 title: "お知らせ",
                 message: "通知メッセージを入力してください。",

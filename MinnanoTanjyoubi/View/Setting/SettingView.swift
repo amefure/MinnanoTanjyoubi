@@ -209,24 +209,30 @@ struct SettingView: View {
 
                     if let url = URL(string: StaticUrls.APP_CONTACT_URL) {
                         // 3:お問い合わせフォーム
-                        Link(destination: url, label: {
+                        NavigationLink {
+                            ControlWebView(url: url)
+                                .environmentObject(rootEnvironment)
+                        } label: {
                             HStack {
                                 Image(systemName: "paperplane")
                                     .settingIcon(rootEnvironment.scheme)
                                 Text("アプリの不具合はこちら")
                             }
-                        }).listRowHeight()
+                        }.listRowHeight()
                     }
 
                     if let url = URL(string: StaticUrls.APP_TERMS_OF_SERVICE_URL) {
                         // 4:利用規約とプライバシーポリシー
-                        Link(destination: url, label: {
+                        NavigationLink {
+                            ControlWebView(url: url)
+                                .environmentObject(rootEnvironment)
+                        } label: {
                             HStack {
                                 Image(systemName: "note.text")
                                     .settingIcon(rootEnvironment.scheme)
                                 Text("利用規約とプライバシーポリシー")
                             }
-                        }).listRowHeight()
+                        }.listRowHeight()
                     }
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 

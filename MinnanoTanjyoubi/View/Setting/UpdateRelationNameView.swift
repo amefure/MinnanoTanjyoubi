@@ -89,7 +89,7 @@ struct UpdateRelationNameView: View {
                 work = list[safe: 3] ?? RelationConfig.WORK_NAME
                 other = list[safe: 4] ?? RelationConfig.OTHER_NAME
                 sns = list[safe: 5] ?? RelationConfig.SNS_NAME
-            }.dialog(
+            }.alert(
                 isPresented: $isAlert,
                 title: "お知らせ",
                 message: "関係名を更新しました。",
@@ -98,7 +98,7 @@ struct UpdateRelationNameView: View {
                     dismiss()
                 }
             )
-            .dialog(
+            .alert(
                 isPresented: $isValidationAlert,
                 title: "お知らせ",
                 message: "関係名を全て入力してください。",
