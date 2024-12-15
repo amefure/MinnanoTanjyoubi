@@ -14,7 +14,10 @@ class RealmRepositoryViewModel: ObservableObject {
 
     @Published var users: [User] = []
 
-    init() {
+    private let userDefaultsRepository: UserDefaultsRepository
+
+    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
+        userDefaultsRepository = repositoryDependency.userDefaultsRepository
         readAllUsers()
     }
 
@@ -30,15 +33,31 @@ class RealmRepositoryViewModel: ObservableObject {
         readAllUsers()
     }
 
-    public func shareCreateUser(shareUser: User) -> Bool {
-        guard !(users.contains { $0.name == shareUser.name }) else {
-            print("同姓同名の誕生日が既に登録されています")
-            return false
+    public func shareCreateUsers(shareUsers: [User]) -> ShareCreateError? {
+        guard !isOverCapacity(shareUsers.count) else { return ShareCreateError.overCapacity }
+        for user in shareUsers {
+            // エラーが発生したら登録シーケンスを終了
+            guard !(users.contains { $0.name == user.name }) else { return ShareCreateError.existUser }
+            let copy = copyUser(user)
+            repository.createUser(user: copy)
         }
-        let copy = copyUser(shareUser)
-        print("createUser", copy)
-        repository.createUser(user: copy)
-        return true
+        return nil
+    }
+
+    private func isOverCapacity(_ size: Int) -> Bool {
+        let size = users.count + size
+        return size > getMaxCapacity()
+    }
+
+    // 最大容量取得
+    private func getMaxCapacity() -> Int {
+        let capacity = userDefaultsRepository.getIntData(key: UserDefaultsKey.LIMIT_CAPACITY)
+        if capacity < AdsConfig.INITIAL_CAPACITY {
+            userDefaultsRepository.setIntData(key: UserDefaultsKey.LIMIT_CAPACITY, value: AdsConfig.INITIAL_CAPACITY)
+            return AdsConfig.INITIAL_CAPACITY
+        } else {
+            return capacity
+        }
     }
 
     private func copyUser(_ user: User) -> User {
@@ -48,7 +67,7 @@ class RealmRepositoryViewModel: ObservableObject {
         copy.date = user.date
         copy.relation = user.relation
         copy.memo = user.memo
-        // alertとimagePathはコピーしなし
+        // alertとimagePathはコピーしない
         return copy
     }
 

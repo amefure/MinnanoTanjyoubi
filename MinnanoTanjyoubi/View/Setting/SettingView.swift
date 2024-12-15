@@ -146,7 +146,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "person.line.dotted.person")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("誕生日情報を共有する")
+                            Text("誕生日情報を転送(共有)する")
                         }
                     }.listRowHeight()
 
@@ -288,13 +288,13 @@ struct CapacityParametersView: View {
                 .fontS()
                 .frame(width: width, alignment: .leading)
             HStack {
-                Text(now == max ? "FULL" : "\(Int(now))人")
+                Text(now >= max ? "FULL" : "\(Int(now))人")
                     .fontM(bold: true)
                     .frame(
-                        width: Swift.max(30, width * (now / max) + 25),
+                        width: Swift.max(30, width * (min(now, max) / max) + 25),
                         alignment: target == 0 ? .leading : .trailing
                     )
-                    .foregroundStyle(target == max ? fullColor : Asset.Colors.exText.swiftUIColor)
+                    .foregroundStyle(target >= max ? fullColor : Asset.Colors.exText.swiftUIColor)
                     .opacity(showCapacity)
                 Spacer()
             }.frame(width: width + 20, height: 20)
@@ -322,8 +322,8 @@ struct CapacityParametersView: View {
                     .offset(x: width * 0.75)
 
                 Rectangle()
-                    .fill(target == max ? fullColor : color)
-                    .frame(width: width * (target / max), height: height)
+                    .fill(target >= max ? fullColor : color)
+                    .frame(width: width * (min(target, max) / max), height: height)
 
             }.frame(width: width, height: height)
                 .clipShape(RoundedRectangle(cornerRadius: radius))

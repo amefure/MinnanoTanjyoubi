@@ -9,9 +9,10 @@ import UIKit
 
 class RootViewModel: ObservableObject {
     @Published private(set) var showCreateFailedError: Bool = false
-    @Published var showExistUserError: Bool = false
+    @Published var showCreateShareUserError: Bool = false
     @Published var showSuccessCreateUser: Bool = false
 
+    @Published private(set) var error: ShareCreateError? = nil
     @Published var createUsers: [User] = []
 
     /// 共有された暗号化された文字列から`User`オブジェクトを生成する
@@ -32,7 +33,11 @@ class RootViewModel: ObservableObject {
             showCreateFailedError = true
             return nil
         }
-        print("--", users)
         return users
+    }
+
+    public func showErrorAlert(_ error: ShareCreateError) {
+        self.error = error
+        showCreateShareUserError = true
     }
 }

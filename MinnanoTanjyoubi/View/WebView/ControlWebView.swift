@@ -37,7 +37,7 @@ struct ControlWebView: View {
                 }.frame(width: 40)
 
                 Spacer()
-            }.padding()
+            }.padding(8)
 
             uICustomWebView
 

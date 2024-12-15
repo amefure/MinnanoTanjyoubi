@@ -53,7 +53,7 @@ class SettingViewModel: ObservableObject {
 
     // MARK: - Reward Logic
 
-    // 容量取得
+    // 最大容量取得
     public func getCapacity() -> Int {
         let capacity = userDefaultsRepository.getIntData(key: UserDefaultsKey.LIMIT_CAPACITY)
         if capacity < AdsConfig.INITIAL_CAPACITY {

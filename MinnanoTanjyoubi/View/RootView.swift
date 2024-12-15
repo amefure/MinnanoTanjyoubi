@@ -32,28 +32,21 @@ struct RootView: View {
                 /// Custom URL Schemeでアプリを起動した場合のハンドリング
                 guard let query = url.query() else { return }
                 guard let users = viewModel.decryptAndInitializeUsers(query) else { return }
-                for user in users {
-                    if repository.shareCreateUser(shareUser: user) {
-                        viewModel.createUsers.append(user)
-                        if user == users.last {
-                            repository.readAllUsers()
-                            viewModel.showSuccessCreateUser = true
-                        }
-                    } else {
-                        // 失敗したら終了する
-                        viewModel.showExistUserError = true
-                        break
-                    }
+                if let error = repository.shareCreateUsers(shareUsers: users) {
+                    viewModel.showErrorAlert(error)
+                } else {
+                    viewModel.createUsers = users
+                    repository.readAllUsers()
+                    viewModel.showSuccessCreateUser = true
                 }
-
             }.alert(
                 isPresented: $viewModel.showSuccessCreateUser,
                 title: "登録成功",
                 message: viewModel.createUsers.count == 1 ? "「\(viewModel.createUsers.first!.name)」さんの誕生日情報を登録しました。" : "共有された誕生日情報を登録しました。"
             ).alert(
-                isPresented: $viewModel.showExistUserError,
+                isPresented: $viewModel.showCreateShareUserError,
                 title: "Error...",
-                message: "共有された誕生日情報の登録に失敗しました。\nすでに同姓同名の誕生日情報が存在します。"
+                message: viewModel.error?.message ?? "共有された誕生日情報の登録に失敗しました。"
             )
     }
 }

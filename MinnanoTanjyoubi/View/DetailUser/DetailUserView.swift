@@ -97,7 +97,7 @@ struct DetailUserView: View {
             .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
             .fontWeight(.bold)
             .toolbar(.hidden, for: .navigationBar)
-            .dialog(
+            .alert(
                 isPresented: $viewModel.isDeleteConfirmAlert,
                 title: "お知らせ",
                 message: "この画像を削除しますか？",
@@ -114,7 +114,7 @@ struct DetailUserView: View {
                     viewModel.selectPath = ""
                 }
             )
-            .dialog(
+            .alert(
                 isPresented: $viewModel.isSaveSuccessAlert,
                 title: "お知らせ",
                 message: "画像を追加しました。",
@@ -123,7 +123,7 @@ struct DetailUserView: View {
                     viewModel.updateView()
                 }
             )
-            .dialog(
+            .alert(
                 isPresented: $viewModel.isDeleteSuccessAlert,
                 title: "お知らせ",
                 message: "画像を削除しました。",
@@ -133,7 +133,7 @@ struct DetailUserView: View {
                     viewModel.updateView()
                 }
             )
-            .dialog(
+            .alert(
                 isPresented: $viewModel.isImageErrorAlert,
                 title: viewModel.imageError?.title ?? "エラー",
                 message: viewModel.imageError?.message ?? "予期せぬエラーが発生し、画像の保存に失敗しました。\n時間をあけてから再度お試してください。",
