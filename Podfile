@@ -8,6 +8,7 @@ target 'MinnanoTanjyoubi' do
   # Pods for MinnanoTanjyoubi
   pod 'Google-Mobile-Ads-SDK'
   pod 'RealmSwift' , '10.37.2'
+  pod 'FirebaseCrashlytics'
   pod 'FirebaseAnalytics'
   pod 'CryptoSwift'
   pod 'SwiftFormat/CLI', :configurations => ['Debug']
