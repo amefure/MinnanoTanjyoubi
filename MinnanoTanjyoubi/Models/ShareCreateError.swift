@@ -17,9 +17,9 @@ enum ShareCreateError: Error {
     public var message: String {
         return switch self {
         case .existUser:
-            "共有された誕生日情報の登録に失敗しました。\nすでに同姓同名の誕生日情報が存在します。"
+            "共有された誕生日情報の登録に失敗しました。\nすでに同姓同名の誕生日情報が存在するため登録を中断しました。"
         case .overCapacity:
-            "保存容量が上限に達しました...\n設定から広告を視聴すると\n保存容量を増やすことができます。"
+            "共有された誕生日情報の登録に失敗しました。\n保存容量が上限に達っするため登録を中断しました。"
         }
     }
 }
