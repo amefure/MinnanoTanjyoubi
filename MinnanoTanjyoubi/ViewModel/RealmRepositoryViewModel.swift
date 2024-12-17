@@ -44,7 +44,7 @@ class RealmRepositoryViewModel: ObservableObject {
         return nil
     }
 
-    private func isOverCapacity(_ size: Int) -> Bool {
+    public func isOverCapacity(_ size: Int) -> Bool {
         let size = users.count + size
         return size > getMaxCapacity()
     }

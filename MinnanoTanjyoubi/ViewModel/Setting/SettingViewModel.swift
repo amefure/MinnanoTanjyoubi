@@ -22,11 +22,16 @@ class SettingViewModel: ObservableObject {
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         keyChainRepository = repositoryDependency.keyChainRepository
         userDefaultsRepository = repositoryDependency.userDefaultsRepository
+
+        setUpYears()
     }
 
     public func onAppear() {
         checkAppLock()
+    }
 
+    private func setUpYears() {
+        yearArray = []
         guard let year = dfm.convertDateComponents(date: Date()).year else { return }
         for value in 1900 ... year {
             yearArray.append(value)

@@ -57,4 +57,5 @@ extension View {
 
 #Preview {
     ImagePreviewDialog(isPresented: Binding.constant(true), image: Image(systemName: "iphone"))
+        .environmentObject(RootEnvironment())
 }
