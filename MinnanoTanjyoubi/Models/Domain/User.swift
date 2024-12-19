@@ -1,5 +1,5 @@
 //
-//  UserModels.swift
+//  User.swift
 //  MinnanoTanjyoubi
 //
 //  Created by t&a on 2022/09/29.

@@ -43,7 +43,7 @@ Pods
 # Firebase
 GoogleService-Info.plist
 MinnanoTanjyoubi/View/Components/AdMobViewModels.swift
-MinnanoTanjyoubi/Models/SecretCryptoKey.swift
+MinnanoTanjyoubi/Models/Common/SecretCryptoKey.swift
 
 # Carthage
 Carthage/Build/
