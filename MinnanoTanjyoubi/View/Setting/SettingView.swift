@@ -19,6 +19,8 @@ struct SettingView: View {
     @State private var isDaysLaterFlag: Bool = false
     @State private var isAgeMonthFlag: Bool = false
 
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
         VStack(spacing: 0) {
             UpSideView()
@@ -179,6 +181,18 @@ struct SettingView: View {
                             Image(systemName: "questionmark.app")
                                 .settingIcon(rootEnvironment.scheme)
                             Text("よくある質問")
+                        }
+                    }.listRowHeight()
+
+                    // アプリの使い方
+                    Button {
+                        viewModel.setTutorialReShowFlag()
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: "rectangle.and.hand.point.up.left")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("アプリの使い方(チュートリアル)")
                         }
                     }.listRowHeight()
 

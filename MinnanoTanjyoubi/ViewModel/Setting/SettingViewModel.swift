@@ -156,6 +156,11 @@ class SettingViewModel: ObservableObject {
         return userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
     }
 
+    /// チュートリアル再表示フラグセット
+    public func setTutorialReShowFlag() {
+        userDefaultsRepository.setBoolData(key: UserDefaultsKey.TUTORIAL_RE_SHOW_FLAG, isOn: true)
+    }
+
     /// アプリシェアロジック
     public func shareApp(shareText: String, shareLink: String) {
         ShareInfoUtillity.shareApp(shareText: shareText, shareLink: shareLink)

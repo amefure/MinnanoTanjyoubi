@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @ObservedObject private var popUpViewModel = TutorialPopUpViewModel()
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @ObservedObject private var viewModel = RootViewModel()
 
@@ -28,6 +29,7 @@ struct RootView: View {
             .ignoresSafeArea(.keyboard)
             .navigationBarBackButtonHidden()
             .navigationBarHidden(true)
+            .onAppear { popUpViewModel.onAppear() }
             .onOpenURL { url in
                 /// Custom URL Schemeでアプリを起動した場合のハンドリング
                 guard let query = url.query() else { return }
@@ -47,6 +49,16 @@ struct RootView: View {
                 isPresented: $viewModel.showCreateShareUserError,
                 title: "Error...",
                 message: viewModel.error?.message ?? "共有された誕生日情報の登録に失敗しました。"
+            ).tutorialPopupView(
+                isPresented: $popUpViewModel.show,
+                title: popUpViewModel.title,
+                message: popUpViewModel.message,
+                buttonTitle: popUpViewModel.buttonTitle,
+                buttonAction: popUpViewModel.popupButtonAction,
+                popupWidth: DeviceSizeUtility.deviceWidth,
+                headerHeight: DeviceSizeUtility.isSESize ? 10 : 50,
+                footerHeight: DeviceSizeUtility.isSESize ? 120 : 140,
+                position: popUpViewModel.position
             )
     }
 }

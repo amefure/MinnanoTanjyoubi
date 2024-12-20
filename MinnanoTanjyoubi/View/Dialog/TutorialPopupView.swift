@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TutorialPopupView: View {
-
     @Binding var isPresented: Bool
 
     public let title: String
@@ -26,65 +25,73 @@ struct TutorialPopupView: View {
                 // 画面全体を覆う黒い背景
                 Color.black
                     .opacity(0.3)
-                
+
                 VStack(spacing: 0) {
-                    
                     Spacer()
                         .frame(height: headerHeight)
-                    
-                    if position == .bottomLeft ||
-                        position == .bottomMiddle ||
-                        position == .bottomRight {
+
+                    if position == .bottomLeft || position == .bottomMiddle || position == .bottomRight {
                         Spacer()
                     }
-                    
+
+                    // MARK: ポップアップ上部矢印
+
                     HStack {
                         switch position {
                         case .topLeft:
                             Triangle()
                                 .fill(.white)
-                                .frame(width: 50, height: 50)
-                                .rotationEffect(Angle(degrees: 180))
+                                .frame(width: 70, height: 100)
+                                .rotationEffect(Angle(degrees: 135))
                             Spacer()
                         case .topRight:
                             Spacer()
                             Triangle()
                                 .fill(.white)
-                                .frame(width: 50, height: 50)
-                                .rotationEffect(Angle(degrees: 180))
+                                .frame(width: 70, height: 100)
+                                .rotationEffect(Angle(degrees: -135))
                         default:
                             Spacer()
                         }
                     }.padding(.horizontal)
-                        .frame(width: popupWidth)
-                   
+                        .frame(width: popupWidth - 90)
+                        .offset(y: 40) // ポップアップにめり込ませる
+
+                    // MARK: ポップアップコンテンツ
+
                     VStack {
                         Text(title)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.exText)
-                        
+                            .fontL(bold: true)
+                            .frame(width: popupWidth - 130, alignment: .leading)
+                            .foregroundStyle(Asset.Colors.exText.swiftUIColor)
+
                         Spacer()
-                        
+
                         Text(message)
-                            .foregroundStyle(.exText)
-                        
+                            .fontM()
+                            .frame(width: popupWidth - 130, alignment: .leading)
+                            .foregroundStyle(Asset.Colors.exText.swiftUIColor)
+
                         Spacer()
-                        
+
                         Button {
                             isPresented = false
                             buttonAction()
                         } label: {
                             Text(buttonTitle)
+                                .fontM(bold: true)
                                 .foregroundStyle(.white)
-                                .frame(width: popupWidth - 60, height: 50)
-                                .background(.red)
+                                .frame(width: popupWidth - 130, height: 50)
+                                .background(Asset.Colors.exThemaRed.swiftUIColor)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                     }.padding(20)
-                        .frame(width: popupWidth, height: 300)
+                        .frame(width: popupWidth - 90, height: 300)
                         .background(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                    
+
+                    // MARK: ポップアップ下部矢印
+
                     HStack {
                         switch position {
                         case .bottomLeft:
@@ -94,12 +101,13 @@ struct TutorialPopupView: View {
                             Spacer()
                         case .bottomMiddle:
                             Spacer()
+
                             Triangle()
                                 .fill(.white)
                                 .frame(width: 50, height: 50)
-                            
+
                             Spacer()
-                            
+
                         case .bottomRight:
                             Spacer()
                             Triangle()
@@ -109,29 +117,24 @@ struct TutorialPopupView: View {
                             Spacer()
                         }
                     }.padding(.horizontal)
-                        .frame(width: popupWidth)
-                    
+                        .frame(width: popupWidth - 110)
+
                     Spacer()
                         .frame(height: footerHeight)
-                    
-                    if position == .topLeft ||
-                        position == .topRight {
+
+                    if position == .topLeft || position == .topRight {
                         Spacer()
                     }
-                    
+
                 }.padding(.vertical)
-                
+
                 // 画面一杯にViewを広げる
             }.font(.system(size: 17))
                 .ignoresSafeArea()
         }
     }
 }
-    
 
-
-
-    
 private struct Triangle: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -145,16 +148,17 @@ private struct Triangle: Shape {
 }
 
 extension View {
-    func tutorialPopupView(isPresented: Binding<Bool>,
-                title: String,
-                message: String,
-                buttonTitle: String = "",
-                buttonAction: @escaping () -> Void = {},
-                popupWidth: CGFloat = 300,
-                headerHeight: CGFloat = 100,
-                footerHeight: CGFloat = 100,
-                position: PopUpPosition = .bottomRight) -> some View
-    {
+    func tutorialPopupView(
+        isPresented: Binding<Bool>,
+        title: String,
+        message: String,
+        buttonTitle: String = "",
+        buttonAction: @escaping () -> Void = {},
+        popupWidth: CGFloat = 300,
+        headerHeight: CGFloat = 100,
+        footerHeight: CGFloat = 100,
+        position: PopUpPosition = .bottomRight
+    ) -> some View {
         overlay(
             TutorialPopupView(
                 isPresented: isPresented,
@@ -171,7 +175,6 @@ extension View {
     }
 }
 
-
 #Preview {
     TutorialPopupView(
         isPresented: Binding.constant(true),
@@ -185,4 +188,3 @@ extension View {
         position: .topRight
     )
 }
-

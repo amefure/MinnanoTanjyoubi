@@ -28,6 +28,10 @@ class UserDefaultsKey {
     static let ENTRY_INTI_YEAR = "ENTRY_INTI_YEAR"
     /// アプリカラースキーム
     static let APP_COLOR_SCHEME = "APP_COLOR_SCHEME"
+    /// チュートリアル表示フラグ
+    static let TUTORIAL_SHOW_FLAG = "TUTORIAL_SHOW_FLAG"
+    /// チュートリアル再表示フラグ
+    static let TUTORIAL_RE_SHOW_FLAG = "TUTORIAL_RE_SHOW_FLAG"
 
     /// 関係名をカスタム登録
     static let DISPLAY_RELATION_FRIEND = "DISPLAY_RELATION_FRIEND"

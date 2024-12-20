@@ -8,14 +8,13 @@
 import SwiftUI
 
 enum PopUpPosition {
-    
     case topLeft
     case topRight
-    
+
     case bottomLeft
     case bottomMiddle
     case bottomRight
-    
+
     public var next: PopUpPosition? {
         switch self {
         case .topLeft:
