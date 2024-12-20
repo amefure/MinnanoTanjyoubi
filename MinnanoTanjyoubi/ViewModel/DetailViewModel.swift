@@ -9,8 +9,6 @@ import SwiftUI
 import UIKit
 
 class DetailViewModel: ObservableObject {
-    static var shared = DetailViewModel()
-
     /// 保存成功ダイアログ
     @Published var isSaveSuccessAlert: Bool = false
     /// 削除確認ダイアログ

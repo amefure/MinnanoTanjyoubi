@@ -14,12 +14,13 @@ struct DetailUserView: View {
 
     var user: User
 
+    @State private var isShowPopUpMemo: Bool = false
     @State private var isShowUpdateView: Bool = false
 
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isSESize = DeviceSizeUtility.isSESize
 
-    @ObservedObject private var viewModel = DetailViewModel.shared
+    @StateObject private var viewModel = DetailViewModel()
 
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @EnvironmentObject private var rootEnvironment: RootEnvironment
@@ -52,21 +53,28 @@ struct DetailUserView: View {
                     }
                 }
 
-                // Memo
-                ScrollView {
+                ZStack(alignment: .topTrailing) {
+                    // Memo
                     Text(user.memo)
-                        .frame(width: deviceWidth - 40)
                         .fontM()
-                }.padding(isSESize ? 5 : 10)
-                    .frame(width: deviceWidth - 40)
-                    .frame(minHeight: isSESize ? 130 : 180)
-                    .frame(maxHeight: isSESize ? 130 : 180)
-                    .overBorder(
-                        radius: 5,
-                        color: AppColorScheme.getFoundationPrimary(rootEnvironment.scheme),
-                        opacity: 0.4,
-                        lineWidth: 2
-                    )
+                        .truncationMode(.tail) // 文字溢れを「....」にする
+                        .padding()
+                        .frame(width: deviceWidth - 40, height: 130, alignment: .topLeading)
+                        .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                        .onTapGesture {
+                            isShowPopUpMemo = true
+                        }.overBorder(
+                            radius: 5,
+                            color: AppColorScheme.getFoundationPrimary(rootEnvironment.scheme),
+                            opacity: 0.4,
+                            lineWidth: 2
+                        )
+
+                    Image(systemName: "hand.rays")
+                        .fontL()
+                        .padding(.trailing)
+                        .padding(.top, 5)
+                }
 
             }.padding(isSESize ? 5 : 10)
 
@@ -75,8 +83,10 @@ struct DetailUserView: View {
                 .environmentObject(rootEnvironment)
 
             // 追加しても更新されないので明示的にidを指定する
-            ImageContainerView(user: user)
-                .id(viewModel.isUpdateView)
+            ImageContainerView(
+                user: user,
+                viewModel: viewModel
+            ).id(viewModel.isUpdateView)
                 .environmentObject(rootEnvironment)
 
             Spacer()
@@ -103,6 +113,7 @@ struct DetailUserView: View {
                 message: "この画像を削除しますか？",
                 positiveButtonTitle: "削除",
                 negativeButtonTitle: "キャンセル",
+                positiveButtonRole: .destructive,
                 positiveAction: {
                     var imagePaths = Array(user.imagePaths)
                     imagePaths.removeAll(where: { $0 == viewModel.selectPath })
@@ -141,6 +152,10 @@ struct DetailUserView: View {
             ).dialogImageView(
                 isPresented: $viewModel.isImageShowAlert,
                 image: viewModel.selectImage
+            ).popup(
+                isPresented: $isShowPopUpMemo,
+                title: "MEMO",
+                message: user.memo
             )
     }
 }

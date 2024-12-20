@@ -30,7 +30,7 @@ struct ImagePreviewDialog: View {
                         .frame(maxWidth: 300)
                         .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
                         .shadow(radius: 10)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                     // 画面一杯にViewを広げる
                 }
             }.ignoresSafeArea()

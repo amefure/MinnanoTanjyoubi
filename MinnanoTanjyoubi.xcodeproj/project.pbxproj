@@ -41,6 +41,7 @@
 		12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB229A788A200D0498F /* EntryButtonView.swift */; };
 		12682BB529A7949000D0498F /* MiddleUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB429A7949000D0498F /* MiddleUserInfoView.swift */; };
 		12682BB729A7963200D0498F /* UpSideUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB629A7963200D0498F /* UpSideUserInfoView.swift */; };
+		1268B3EC2D15742D00E1F8F7 /* CustomPopUpDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */; };
 		128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB96D2B614B4200B20172 /* SectionGridListView.swift */; };
 		128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB96F2B614BF500B20172 /* SingleGridListView.swift */; };
 		128BB9732B61500800B20172 /* SectionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB9722B61500800B20172 /* SectionRowView.swift */; };
@@ -134,6 +135,7 @@
 		12682BB229A788A200D0498F /* EntryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryButtonView.swift; sourceTree = "<group>"; };
 		12682BB429A7949000D0498F /* MiddleUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleUserInfoView.swift; sourceTree = "<group>"; };
 		12682BB629A7963200D0498F /* UpSideUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpSideUserInfoView.swift; sourceTree = "<group>"; };
+		1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopUpDialogView.swift; sourceTree = "<group>"; };
 		128BB96D2B614B4200B20172 /* SectionGridListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionGridListView.swift; sourceTree = "<group>"; };
 		128BB96F2B614BF500B20172 /* SingleGridListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGridListView.swift; sourceTree = "<group>"; };
 		128BB9722B61500800B20172 /* SectionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRowView.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			children = (
 				128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */,
 				122B346B2D14603200204703 /* TutorialPopupView.swift */,
+				1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */,
 				1224013D2B8720FA0099BE8D /* ImagePickerDialog.swift */,
 				122401492B8819200099BE8D /* ImagePreviewDialog.swift */,
 			);
@@ -789,6 +792,7 @@
 				1258FD722C97D0480065A081 /* EditNotifyMessageView.swift in Sources */,
 				12CB920F28E5C89B002BD7B2 /* AdMobViewModels.swift in Sources */,
 				122401402B8721EE0099BE8D /* ImageContainerView.swift in Sources */,
+				1268B3EC2D15742D00E1F8F7 /* CustomPopUpDialogView.swift in Sources */,
 				121DEE012B198D4600964902 /* AppLockView.swift in Sources */,
 				12FE3A2C2B2DCC7100FA700E /* RootEnvironment.swift in Sources */,
 				12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */,
@@ -947,7 +951,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
@@ -968,7 +972,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.3;
+				MARKETING_VERSION = 4.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -984,7 +988,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -1004,7 +1008,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.3;
+				MARKETING_VERSION = 4.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -13,14 +13,14 @@ struct ImageContainerView: View {
     private let imageFileManager = ImageFileManager()
 
     @State var user: User
-    @State var image: UIImage? = nil
+    @StateObject var viewModel: DetailViewModel
 
-    @ObservedObject private var viewModel = DetailViewModel.shared
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @State private var isShowImagePicker: Bool = false // 画像ピッカー表示
     @State private var cancellables: Set<AnyCancellable> = Set()
+    @State private var image: UIImage? = nil
     @State var images: [String] = []
 
     var body: some View {
@@ -99,5 +99,5 @@ struct ImageContainerView: View {
 }
 
 #Preview {
-    ImageContainerView(user: User.demoUsers.first!)
+    ImageContainerView(user: User.demoUsers.first!, viewModel: DetailViewModel())
 }

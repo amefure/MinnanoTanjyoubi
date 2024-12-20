@@ -19,7 +19,8 @@ struct SettingView: View {
     @State private var isDaysLaterFlag: Bool = false
     @State private var isAgeMonthFlag: Bool = false
 
-    @Environment(\.dismiss) private var dismiss
+    // dismissで実装するとCPUがオーバーフローする
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack(spacing: 0) {
@@ -187,7 +188,7 @@ struct SettingView: View {
                     // アプリの使い方
                     Button {
                         viewModel.setTutorialReShowFlag()
-                        dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         HStack {
                             Image(systemName: "rectangle.and.hand.point.up.left")
@@ -249,6 +250,9 @@ struct SettingView: View {
                         }.listRowHeight()
                     }
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+//
+//                Text("Created by ")
+//                    .listRowBackground(Color.clear)
 
             }.scrollContentBackground(.hidden)
                 .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
