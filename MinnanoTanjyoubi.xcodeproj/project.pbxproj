@@ -257,15 +257,12 @@
 			children = (
 				12CB921928E85952002BD7B2 /* SettingView.swift */,
 				1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */,
-				12CB925328EEC754002BD7B2 /* TimePickerView.swift */,
-				12ED29BE2C216CA900A1293D /* YearPickerView.swift */,
-				123F485A29A42083001B91B3 /* NoticeDateFlagView.swift */,
-				12ACAD33299FAE8D00273834 /* RewardButtonView.swift */,
 				128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */,
 				12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */,
 				12CA5D892D19947900A4C1F6 /* SelectSortView.swift */,
 				12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */,
 				129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */,
+				12CA5D912D19A68C00A4C1F6 /* Components */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -440,6 +437,17 @@
 				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		12CA5D912D19A68C00A4C1F6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				12ACAD33299FAE8D00273834 /* RewardButtonView.swift */,
+				123F485A29A42083001B91B3 /* NoticeDateFlagView.swift */,
+				12ED29BE2C216CA900A1293D /* YearPickerView.swift */,
+				12CB925328EEC754002BD7B2 /* TimePickerView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		12CB91F028E5C6E0002BD7B2 = {
