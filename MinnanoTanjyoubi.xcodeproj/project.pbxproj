@@ -65,6 +65,8 @@
 		12BA5F112C6BA08A00E1DDF2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12BA5F102C6BA08A00E1DDF2 /* Localizable.strings */; };
 		12BA5F142C6BA0A600E1DDF2 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA5F122C6BA0A600E1DDF2 /* Assets.swift */; };
 		12BA5F152C6BA0A600E1DDF2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA5F132C6BA0A600E1DDF2 /* Strings.swift */; };
+		12CA5D8A2D19947900A4C1F6 /* SelectSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D892D19947900A4C1F6 /* SelectSortView.swift */; };
+		12CA5D8C2D19949E00A4C1F6 /* AppSortItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D8B2D19949600A4C1F6 /* AppSortItem.swift */; };
 		12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */; };
 		12CB91FF28E5C6E1002BD7B2 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB91FE28E5C6E1002BD7B2 /* RootView.swift */; };
 		12CB920128E5C6E1002BD7B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CB920028E5C6E1002BD7B2 /* Images.xcassets */; };
@@ -159,6 +161,8 @@
 		12BA5F102C6BA08A00E1DDF2 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		12BA5F122C6BA0A600E1DDF2 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		12BA5F132C6BA0A600E1DDF2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		12CA5D892D19947900A4C1F6 /* SelectSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSortView.swift; sourceTree = "<group>"; };
+		12CA5D8B2D19949600A4C1F6 /* AppSortItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSortItem.swift; sourceTree = "<group>"; };
 		12CB91F928E5C6E0002BD7B2 /* MinnanoTanjyoubi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinnanoTanjyoubi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinnanoTanjyoubiApp.swift; sourceTree = "<group>"; };
 		12CB91FE28E5C6E1002BD7B2 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				12ACAD33299FAE8D00273834 /* RewardButtonView.swift */,
 				128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */,
 				12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */,
+				12CA5D892D19947900A4C1F6 /* SelectSortView.swift */,
 				12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */,
 				129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */,
 			);
@@ -289,6 +294,7 @@
 				12ED29BA2C21695800A1293D /* StaticUrls.swift */,
 				12B76E822D0D905F0021A018 /* SecretCryptoKey.swift */,
 				12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */,
+				12CA5D8B2D19949600A4C1F6 /* AppSortItem.swift */,
 				122B346D2D14604500204703 /* PopUpPosition.swift */,
 			);
 			path = Common;
@@ -746,6 +752,7 @@
 				12ED29BF2C216CA900A1293D /* YearPickerView.swift in Sources */,
 				12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */,
 				12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */,
+				12CA5D8A2D19947900A4C1F6 /* SelectSortView.swift in Sources */,
 				12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */,
 				12BA5F142C6BA0A600E1DDF2 /* Assets.swift in Sources */,
 				1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */,
@@ -809,6 +816,7 @@
 				12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */,
 				12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */,
 				12CB921128E64ABC002BD7B2 /* RootListUserView.swift in Sources */,
+				12CA5D8C2D19949E00A4C1F6 /* AppSortItem.swift in Sources */,
 				122401462B8769480099BE8D /* ImageError.swift in Sources */,
 				121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */,
 				12E9C8902D0B23E500C0A20B /* ShareUserLinkView.swift in Sources */,
@@ -951,7 +959,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
@@ -972,7 +980,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.4;
+				MARKETING_VERSION = 4.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -988,7 +996,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_PREVIEWS = YES;
@@ -1008,7 +1016,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.4;
+				MARKETING_VERSION = 4.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

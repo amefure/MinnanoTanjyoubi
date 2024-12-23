@@ -165,4 +165,9 @@ class SettingViewModel: ObservableObject {
     public func shareApp(shareText: String, shareLink: String) {
         ShareInfoUtillity.shareApp(shareText: shareText, shareLink: shareLink)
     }
+
+    /// バージョン番号取得
+    public func getVersion() -> String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.0"
+    }
 }

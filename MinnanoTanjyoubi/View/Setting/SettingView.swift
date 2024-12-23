@@ -141,6 +141,18 @@ struct SettingView: View {
                         }
                     }.listRowHeight()
 
+                    // 並び順を変更する
+                    NavigationLink {
+                        SelectSortView()
+                            .environmentObject(rootEnvironment)
+                    } label: {
+                        HStack {
+                            Image(systemName: "arrow.up.arrow.down")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("並び順を変更する")
+                        }
+                    }.listRowHeight()
+
                     // 誕生日情報を共有する
                     NavigationLink {
                         ShareUserLinkView()
@@ -250,9 +262,16 @@ struct SettingView: View {
                         }.listRowHeight()
                     }
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
-//
-//                Text("Created by ")
-//                    .listRowBackground(Color.clear)
+
+                HStack {
+                    Spacer()
+                    VStack(alignment: .center) {
+                        Text("Created by Shibuya")
+                        Text("App Ver \(viewModel.getVersion())")
+                        Text("Thanks for installing...")
+                    }.fontS()
+                    Spacer()
+                }.listRowBackground(Color.clear)
 
             }.scrollContentBackground(.hidden)
                 .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))

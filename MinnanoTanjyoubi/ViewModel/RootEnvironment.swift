@@ -14,6 +14,8 @@ class RootEnvironment: ObservableObject {
 
     // カラースキーム
     @Published private(set) var scheme: AppColorScheme = .original
+    // 並び順
+    @Published private(set) var sort: AppSortItem = .daysLater
     // アプリロック
     @Published var appLocked: Bool = false
     // 削除対象のUserId
@@ -34,6 +36,7 @@ class RootEnvironment: ObservableObject {
 
         getAppLockFlag()
         getColorScheme()
+        getSortItem()
         getRelationName()
         getDisplaySectionLayout()
     }
@@ -130,6 +133,18 @@ extension RootEnvironment {
     public func registerColorScheme(_ scheme: AppColorScheme) {
         userDefaultsRepository.setStringData(key: UserDefaultsKey.APP_COLOR_SCHEME, value: scheme.rawValue)
         getColorScheme()
+    }
+
+    /// 並び順
+    private func getSortItem() {
+        let item = userDefaultsRepository.getStringData(key: UserDefaultsKey.APP_SORT_ITEM, initialValue: AppSortItem.daysLater.rawValue)
+        sort = AppSortItem(rawValue: item) ?? .daysLater
+    }
+
+    /// 並び順登録
+    public func registerSortItem(_ sort: AppSortItem) {
+        userDefaultsRepository.setStringData(key: UserDefaultsKey.APP_SORT_ITEM, value: sort.rawValue)
+        getSortItem()
     }
 
     /// アプリにロックがかけてあるかをチェック

@@ -10,6 +10,7 @@ import UIKit
 
 class RealmRepositoryViewModel: ObservableObject {
     static let shared = RealmRepositoryViewModel()
+    private let df = DateFormatUtility()
     private let repository = RealmRepository()
 
     @Published var users: [User] = []
@@ -21,11 +22,47 @@ class RealmRepositoryViewModel: ObservableObject {
         readAllUsers()
     }
 
-    public func readAllUsers() {
+    public func readAllUsers(sort: AppSortItem? = nil) {
+        var sort: AppSortItem? = sort
         users.removeAll()
         let result = repository.readAllUsers()
-        // 誕生日までの日付が近い順にソート
-        users = Array(result).sorted(by: { $0.daysLater < $1.daysLater })
+        if sort == nil {
+            sort = getSortItem()
+        }
+        switch sort {
+        case .daysLater:
+            // 誕生日までの日付が近い順にソート
+            users = Array(result).sorted(by: { $0.daysLater < $1.daysLater })
+        case .nameAsce:
+            // 名前(昇順)
+            users = Array(result).sorted(by: { $0.ruby < $1.ruby })
+        case .nameDesc:
+            // 名前(降順)
+            users = Array(result).sorted(by: { $0.ruby > $1.ruby })
+        case .ageAsce:
+            // 年齢(昇順)
+            users = Array(result).sorted(by: { $0.currentAge < $1.currentAge })
+        case .ageeDesc:
+            // 年齢(降順)
+            users = Array(result).sorted(by: { $0.currentAge > $1.currentAge })
+        case .montheAsce:
+            // 生まれ月(昇順)
+            users = Array(result).sorted(by: {
+                let pre = df.getMonthInt(date: $0.date)
+                let late = df.getMonthInt(date: $1.date)
+                return pre < late
+            })
+        case .montheDesc:
+            // 生まれ月(降順)
+            users = Array(result).sorted(by: {
+                let pre = df.getMonthInt(date: $0.date)
+                let late = df.getMonthInt(date: $1.date)
+                return pre > late
+            })
+        case .none:
+            // 誕生日までの日付が近い順にソート
+            users = Array(result).sorted(by: { $0.daysLater < $1.daysLater })
+        }
     }
 
     public func createUser(newUser: User) {
@@ -98,5 +135,14 @@ class RealmRepositoryViewModel: ObservableObject {
         }
         repository.removeUser(removeIdArray: removeIdArray)
         readAllUsers()
+    }
+}
+
+// User Defaults
+extension RealmRepositoryViewModel {
+    /// 並び順
+    private func getSortItem() -> AppSortItem {
+        let item = userDefaultsRepository.getStringData(key: UserDefaultsKey.APP_SORT_ITEM, initialValue: AppSortItem.daysLater.rawValue)
+        return AppSortItem(rawValue: item) ?? .daysLater
     }
 }

@@ -28,6 +28,8 @@ class UserDefaultsKey {
     static let ENTRY_INTI_YEAR = "ENTRY_INTI_YEAR"
     /// アプリカラースキーム
     static let APP_COLOR_SCHEME = "APP_COLOR_SCHEME"
+    /// 並び順
+    static let APP_SORT_ITEM = "APP_SORT_ITEM"
     /// チュートリアル表示フラグ
     static let TUTORIAL_SHOW_FLAG = "TUTORIAL_SHOW_FLAG"
     /// チュートリアル再表示フラグ

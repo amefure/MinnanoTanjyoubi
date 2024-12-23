@@ -75,6 +75,13 @@ class DateFormatUtility {
         df.dateFormat = "H-mm"
         return df.string(from: date)
     }
+
+    /// 月をInt型で取得する
+    public func getMonthInt(date: Date) -> Int {
+        df.dateFormat = "M"
+        let month = df.string(from: date)
+        return Int(month) ?? 0
+    }
 }
 
 // MARK: - 　Calendar
