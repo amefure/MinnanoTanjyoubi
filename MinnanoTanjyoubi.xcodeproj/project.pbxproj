@@ -67,6 +67,9 @@
 		12BA5F152C6BA0A600E1DDF2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BA5F132C6BA0A600E1DDF2 /* Strings.swift */; };
 		12CA5D8A2D19947900A4C1F6 /* SelectSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D892D19947900A4C1F6 /* SelectSortView.swift */; };
 		12CA5D8C2D19949E00A4C1F6 /* AppSortItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D8B2D19949600A4C1F6 /* AppSortItem.swift */; };
+		12CA5D8E2D19A59F00A4C1F6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12CA5D8D2D19A59F00A4C1F6 /* StoreKit.framework */; };
+		12CA5D902D19A62A00A4C1F6 /* InAppPurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D8F2D19A62A00A4C1F6 /* InAppPurchaseView.swift */; };
+		12CA5D932D19A7FB00A4C1F6 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D922D19A7E600A4C1F6 /* InAppPurchaseManager.swift */; };
 		12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */; };
 		12CB91FF28E5C6E1002BD7B2 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB91FE28E5C6E1002BD7B2 /* RootView.swift */; };
 		12CB920128E5C6E1002BD7B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CB920028E5C6E1002BD7B2 /* Images.xcassets */; };
@@ -163,6 +166,9 @@
 		12BA5F132C6BA0A600E1DDF2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		12CA5D892D19947900A4C1F6 /* SelectSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSortView.swift; sourceTree = "<group>"; };
 		12CA5D8B2D19949600A4C1F6 /* AppSortItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSortItem.swift; sourceTree = "<group>"; };
+		12CA5D8D2D19A59F00A4C1F6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		12CA5D8F2D19A62A00A4C1F6 /* InAppPurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseView.swift; sourceTree = "<group>"; };
+		12CA5D922D19A7E600A4C1F6 /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		12CB91F928E5C6E0002BD7B2 /* MinnanoTanjyoubi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinnanoTanjyoubi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinnanoTanjyoubiApp.swift; sourceTree = "<group>"; };
 		12CB91FE28E5C6E1002BD7B2 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -208,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC61592AD699FD872A6E3487 /* Pods_MinnanoTanjyoubi.framework in Frameworks */,
+				12CA5D8E2D19A59F00A4C1F6 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +268,7 @@
 				12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */,
 				12CA5D892D19947900A4C1F6 /* SelectSortView.swift */,
 				12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */,
+				12CA5D8F2D19A62A00A4C1F6 /* InAppPurchaseView.swift */,
 				129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */,
 				12CA5D912D19A68C00A4C1F6 /* Components */,
 			);
@@ -435,6 +443,7 @@
 				1246023E2B36A23E00B6C32D /* AppManager.swift */,
 				122401432B87691E0099BE8D /* ImageFileManager.swift */,
 				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
+				12CA5D922D19A7E600A4C1F6 /* InAppPurchaseManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -584,6 +593,7 @@
 		83A9CF5E2394ECC189F1B684 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				12CA5D8D2D19A59F00A4C1F6 /* StoreKit.framework */,
 				748C37ED1DB63AF9B33A268C /* Pods_MinnanoTanjyoubi.framework */,
 			);
 			name = Frameworks;
@@ -765,8 +775,10 @@
 				12BA5F142C6BA0A600E1DDF2 /* Assets.swift in Sources */,
 				1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */,
 				12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */,
+				12CA5D932D19A7FB00A4C1F6 /* InAppPurchaseManager.swift in Sources */,
 				128BB9732B61500800B20172 /* SectionRowView.swift in Sources */,
 				12ACAD2729984D5400273834 /* DateFormatUtility.swift in Sources */,
+				12CA5D902D19A62A00A4C1F6 /* InAppPurchaseView.swift in Sources */,
 				1246023F2B36A23E00B6C32D /* AppManager.swift in Sources */,
 				1224014A2B8819200099BE8D /* ImagePreviewDialog.swift in Sources */,
 				122B346C2D14603200204703 /* TutorialPopupView.swift in Sources */,

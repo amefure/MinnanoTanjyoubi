@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // 通知デリゲートの登録
         UNUserNotificationCenter.current().delegate = self
 
+        InAppPurchaseManager().fetchProducts()
+
         return true
     }
 

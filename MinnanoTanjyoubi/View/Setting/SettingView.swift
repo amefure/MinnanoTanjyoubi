@@ -209,6 +209,18 @@ struct SettingView: View {
                         }
                     }.listRowHeight()
 
+                    // アプリ内課金
+                    NavigationLink {
+                        InAppPurchaseView()
+                            .environmentObject(rootEnvironment)
+                    } label: {
+                        HStack {
+                            Image(systemName: "app.gift.fill")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("広告削除&容量解放")
+                        }
+                    }.listRowHeight()
+
                     if let url = URL(string: StaticUrls.APP_REVIEW_URL) {
                         // 1:レビューページ
                         Link(destination: url, label: {
