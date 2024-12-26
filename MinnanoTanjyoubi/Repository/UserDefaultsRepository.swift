@@ -34,6 +34,10 @@ class UserDefaultsKey {
     static let TUTORIAL_SHOW_FLAG = "TUTORIAL_SHOW_FLAG"
     /// チュートリアル再表示フラグ
     static let TUTORIAL_RE_SHOW_FLAG = "TUTORIAL_RE_SHOW_FLAG"
+    /// レビューポップアップフラグ表示
+    static let SHOW_REVIEW_POPUP = "SHOW_REVIEW_POPUP"
+    /// アプリ起動回数
+    static let LAUNCH_APP_COUNT = "LAUNCH_APP_COUNT"
 
     /// 関係名をカスタム登録
     static let DISPLAY_RELATION_FRIEND = "DISPLAY_RELATION_FRIEND"

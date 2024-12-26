@@ -6,6 +6,7 @@
 //
 
 import RealmSwift
+import StoreKit
 import UIKit
 
 /// アプリ内で共通で利用される状態や環境値を保持する
@@ -29,6 +30,7 @@ class RootEnvironment: ObservableObject {
 
     private let keyChainRepository: KeyChainRepository
     private let userDefaultsRepository: UserDefaultsRepository
+    private let repository = RealmRepository()
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         userDefaultsRepository = repositoryDependency.userDefaultsRepository
@@ -39,6 +41,13 @@ class RootEnvironment: ObservableObject {
         getSortItem()
         getRelationName()
         getDisplaySectionLayout()
+    }
+
+    public func onAppear() {
+        // アプリ起動回数カウント
+        setLaunchAppCount()
+        // レビューポップアップ表示
+        showReviewPopup()
     }
 }
 
@@ -70,6 +79,21 @@ extension RootEnvironment {
     public func resetDeleteMode() {
         isDeleteMode = false
         deleteIdArray.removeAll()
+    }
+
+    /// レビューポップアップ表示
+    public func showReviewPopup() {
+        // 1度表示していれば表示しない
+        guard !getShowReviewPopupFlag() else { return }
+        // アプリを5回以上起動していない場合は表示しない
+        guard getLaunchAppCount() >= 5 else { return }
+        // 登録されている誕生日情報が30以下なら表示しない
+        let count = repository.readAllUsers().count
+        guard count >= 30 else { return }
+        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        // レビューリクエストポップアップを表示する
+        SKStoreReviewController.requestReview(in: scene)
+        registerShowReviewPopupFlag(true)
     }
 }
 
@@ -145,6 +169,31 @@ extension RootEnvironment {
     public func registerSortItem(_ sort: AppSortItem) {
         userDefaultsRepository.setStringData(key: UserDefaultsKey.APP_SORT_ITEM, value: sort.rawValue)
         getSortItem()
+    }
+
+    /// レビューポップアップ表示フラグ取得
+    private func getShowReviewPopupFlag() -> Bool {
+        userDefaultsRepository.getBoolData(key: UserDefaultsKey.SHOW_REVIEW_POPUP)
+    }
+
+    /// レビューポップアップ表示フラグ登録
+    private func registerShowReviewPopupFlag(_ flag: Bool) {
+        userDefaultsRepository.setBoolData(key: UserDefaultsKey.SHOW_REVIEW_POPUP, isOn: flag)
+    }
+
+    /// アプリ起動回数取得
+    private func getLaunchAppCount() -> Int {
+        userDefaultsRepository.getIntData(key: UserDefaultsKey.LAUNCH_APP_COUNT)
+    }
+
+    /// アプリ起動回数登録
+    private func setLaunchAppCount(reset: Bool = false) {
+        if reset {
+            userDefaultsRepository.setIntData(key: UserDefaultsKey.LAUNCH_APP_COUNT, value: 0)
+        } else {
+            let addCount = getLaunchAppCount() + 1
+            userDefaultsRepository.setIntData(key: UserDefaultsKey.LAUNCH_APP_COUNT, value: addCount)
+        }
     }
 
     /// アプリにロックがかけてあるかをチェック
