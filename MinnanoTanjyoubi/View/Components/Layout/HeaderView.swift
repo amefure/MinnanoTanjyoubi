@@ -21,7 +21,7 @@ struct HeaderView: View {
     var body: some View {
         HStack(alignment: .center) {
             ZStack {
-                Image("Appicon-remove")
+                Asset.Images.appiconRemove.swiftUIImage
                     .resizable()
                     .frame(width: isSESize ? 50 : 60, height: isSESize ? 50 : 60)
 

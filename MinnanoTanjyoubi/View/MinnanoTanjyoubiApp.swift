@@ -58,7 +58,7 @@ struct MinnanoTanjyoubiApp: App {
                     RootView()
                         .environmentObject(rootEnvironment)
                 }
-            }
+            }.onAppear { rootEnvironment.onAppear() }
         }
     }
 }

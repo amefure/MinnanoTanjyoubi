@@ -277,11 +277,19 @@ struct SettingView: View {
 
                 HStack {
                     Spacer()
-                    VStack(alignment: .center) {
+                    VStack(alignment: .center, spacing: 4) {
+                        Asset.Images.appiconRemove.swiftUIImage
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .padding(5)
+                            .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                            .clipShape(RoundedRectangle(cornerRadius: 50))
+                            .padding(.bottom, 8)
+
+                        Text("『大切な人の大切な日を忘れずにお祝いするためのアプリ』")
+                        Text("みんなの誕生日 Ver \(viewModel.getVersion())")
                         Text("Created by Shibuya")
-                        Text("App Ver \(viewModel.getVersion())")
-                        Text("Thanks for installing...")
-                    }.fontS()
+                    }.fontSS()
                     Spacer()
                 }.listRowBackground(Color.clear)
 
