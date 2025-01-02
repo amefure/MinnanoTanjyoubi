@@ -43,6 +43,11 @@ extension View {
     func fontL(bold: Bool = false) -> some View {
         modifier(FontSize(size: 20, bold: bold))
     }
+
+    /// 文字サイズ カスタム
+    func fontCustom(size: CGFloat, bold: Bool = false) -> some View {
+        modifier(FontSize(size: size, bold: bold))
+    }
 }
 
 struct OverBorder: ViewModifier {

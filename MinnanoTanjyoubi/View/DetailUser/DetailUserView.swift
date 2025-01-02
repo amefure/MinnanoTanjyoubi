@@ -98,7 +98,7 @@ struct DetailUserView: View {
                     EntryUserView(user: user, isModal: $isShowUpdateView)
                 }).environmentObject(rootEnvironment)
 
-            if !isSESize {
+            if !isSESize && !rootEnvironment.removeAds {
                 AdMobBannerView()
                     .frame(height: 50)
             }

@@ -18,16 +18,18 @@ struct EntryButtonView: View {
 
     var body: some View {
         Button {
-            // 新規登録画面表示前に容量チェック
-            if !repository.isOverCapacity(1) {
+            // 容量がオーバーしていないか または 容量解放されている
+            if !repository.isOverCapacity(1) || rootEnvironment.unlockStorage {
+                // 登録モーダル表示
                 isModal.toggle()
             } else {
+                // 容量オーバーアラート表示
                 isLimitAlert = true
             }
 
         } label: {
             Image(systemName: "plus")
-                .font(.system(size: 17))
+                .fontM()
         }.circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema3(rootEnvironment.scheme))
             .sheet(isPresented: $isModal) {
                 EntryUserView(user: nil, isModal: $isModal)

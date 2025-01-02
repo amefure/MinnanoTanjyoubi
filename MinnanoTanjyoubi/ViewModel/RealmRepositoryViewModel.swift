@@ -11,13 +11,14 @@ import UIKit
 class RealmRepositoryViewModel: ObservableObject {
     static let shared = RealmRepositoryViewModel()
     private let df = DateFormatUtility()
-    private let repository = RealmRepository()
 
     @Published var users: [User] = []
 
+    private let repository: RealmRepository
     private let userDefaultsRepository: UserDefaultsRepository
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
+        repository = repositoryDependency.realmRepository
         userDefaultsRepository = repositoryDependency.userDefaultsRepository
         readAllUsers()
     }
@@ -70,8 +71,9 @@ class RealmRepositoryViewModel: ObservableObject {
         readAllUsers()
     }
 
-    public func shareCreateUsers(shareUsers: [User]) -> ShareCreateError? {
-        guard !isOverCapacity(shareUsers.count) else { return ShareCreateError.overCapacity }
+    public func shareCreateUsers(shareUsers: [User], unlockStorage: Bool) -> ShareCreateError? {
+        // 容量チェック && 容量解放されていないか
+        guard !isOverCapacity(shareUsers.count) || unlockStorage else { return ShareCreateError.overCapacity }
         for user in shareUsers {
             // エラーが発生したら登録シーケンスを終了
             guard !(users.contains { $0.name == user.name }) else { return ShareCreateError.existUser }

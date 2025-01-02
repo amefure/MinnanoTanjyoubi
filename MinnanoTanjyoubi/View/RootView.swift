@@ -22,8 +22,10 @@ struct RootView: View {
             RootListUserView()
                 .environmentObject(rootEnvironment)
 
-            AdMobBannerView()
-                .frame(height: 50)
+            if !rootEnvironment.removeAds {
+                AdMobBannerView()
+                    .frame(height: 50)
+            }
 
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .ignoresSafeArea(.keyboard)
@@ -34,7 +36,7 @@ struct RootView: View {
                 /// Custom URL Schemeでアプリを起動した場合のハンドリング
                 guard let query = url.query() else { return }
                 guard let users = viewModel.decryptAndInitializeUsers(query) else { return }
-                if let error = repository.shareCreateUsers(shareUsers: users) {
+                if let error = repository.shareCreateUsers(shareUsers: users, unlockStorage: rootEnvironment.unlockStorage) {
                     viewModel.showErrorAlert(error)
                 } else {
                     viewModel.createUsers = users

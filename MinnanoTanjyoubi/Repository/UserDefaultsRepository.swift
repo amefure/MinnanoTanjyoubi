@@ -38,6 +38,10 @@ class UserDefaultsKey {
     static let SHOW_REVIEW_POPUP = "SHOW_REVIEW_POPUP"
     /// アプリ起動回数
     static let LAUNCH_APP_COUNT = "LAUNCH_APP_COUNT"
+    /// アプリ内課金：広告削除
+    static let PURCHASED_REMOVE_ADS = "PURCHASE_REMOVE_ADS"
+    /// アプリ内課金：容量解放
+    static let PURCHASED_UNLOCK_STORAGE = "PURCHASED_UNLOCK_STORAGE"
 
     /// 関係名をカスタム登録
     static let DISPLAY_RELATION_FRIEND = "DISPLAY_RELATION_FRIEND"
@@ -50,8 +54,6 @@ class UserDefaultsKey {
 
 /// UserDefaultsの基底クラス
 class UserDefaultsRepository {
-    static let sheard = UserDefaultsRepository()
-
     private let userDefaults = UserDefaults.standard
 
     /// Bool：保存

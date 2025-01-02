@@ -43,7 +43,7 @@ struct MiddleUserInfoView: View {
         }.font(isSESize ? .system(size: 12) : .system(size: 17))
             .foregroundStyle(.white)
             .onAppear {
-                isDisplayAgeMonth = UserDefaultsRepository.sheard.getBoolData(key: UserDefaultsKey.DISPLAY_AGE_MONTH)
+                isDisplayAgeMonth = rootEnvironment.getDisplayAgeMonth()
             }
     }
 }

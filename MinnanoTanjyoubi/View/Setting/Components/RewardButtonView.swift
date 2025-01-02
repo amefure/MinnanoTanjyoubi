@@ -36,11 +36,11 @@ struct RewardButtonView: View {
                         .tint(.white)
                         .padding(.leading, 8)
                 }
-            }
-        }.frame(width: DeviceSizeUtility.deviceWidth - 80, height: 50)
-            .background(reward.rewardLoaded ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .shadow(color: .gray, radius: 3, x: 4, y: 4)
+            }.frame(width: DeviceSizeUtility.deviceWidth - 80, height: 50)
+                .background(Asset.Colors.exThemaRed.swiftUIColor)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .shadow(color: .gray, radius: 3, x: 4, y: 4)
+        }.buttonStyle(.plain)
             .onAppear { reward.loadReward() }
             .disabled(!reward.rewardLoaded)
             .alert(

@@ -29,11 +29,63 @@ struct SettingView: View {
 
             // List ここから
             List {
-                CapacityParametersView(
-                    now: Double(repository.users.count),
-                    max: Double(viewModel.getCapacity())
-                ).foregroundStyle(Asset.Colors.exText.swiftUIColor)
-                    .environmentObject(rootEnvironment)
+                if rootEnvironment.unlockStorage {
+                    HStack {
+                        VStack {
+                            Text("アプリ容量")
+                                .fontM(bold: true)
+                                .frame(width: DeviceSizeUtility.deviceWidth - 80, alignment: .leading)
+
+                            HStack {
+                                Image(systemName: "lock.open")
+                                    .fontL()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 40, height: 40)
+                                    .background(Asset.Colors.exThemaYellow.swiftUIColor)
+                                    .clipShape(RoundedRectangle(cornerRadius: 40))
+
+                                Text("UNLOCK STORAGE")
+                                    .opacity(0.1)
+
+                                Spacer()
+
+                                Rectangle()
+                                    .fill(Asset.Colors.exText.swiftUIColor)
+                                    .frame(width: 1)
+                                    .opacity(0.1)
+
+                                Spacer()
+
+                                VStack {
+                                    Text("登録数")
+                                        .fontS()
+                                        .opacity(0.5)
+                                        .padding(.bottom, 8)
+                                    HStack(alignment: .bottom) {
+                                        Text("\(repository.users.count)")
+                                            .foregroundStyle(Asset.Colors.exThemaRed.swiftUIColor)
+                                            .fontCustom(size: 30, bold: true)
+                                        Text("人")
+                                            .fontM()
+                                            .offset(y: -3)
+                                    }.padding(.leading, 8)
+                                }
+
+                                Spacer()
+                            }.fontCustom(size: 35, bold: true)
+
+                            Spacer()
+                        }
+
+                    }.foregroundStyle(Asset.Colors.exText.swiftUIColor)
+
+                } else {
+                    CapacityParametersView(
+                        now: Double(repository.users.count),
+                        max: Double(viewModel.getCapacity())
+                    ).foregroundStyle(Asset.Colors.exText.swiftUIColor)
+                        .environmentObject(rootEnvironment)
+                }
 
                 Section(header: Text("通知設定"),
                         footer:
@@ -217,7 +269,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "app.gift.fill")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("広告削除&容量解放")
+                            Text("広告削除 & 容量解放")
                         }
                     }.listRowHeight()
 
@@ -300,8 +352,10 @@ struct SettingView: View {
 
             Spacer()
 
-            AdMobBannerView()
-                .frame(height: 50)
+            if !rootEnvironment.removeAds {
+                AdMobBannerView()
+                    .frame(height: 50)
+            }
 
         }.font(.system(size: 17))
             .onAppear {
@@ -333,17 +387,41 @@ struct CapacityParametersView: View {
 
     @State private var target: Double = 0
     @State private var showCapacity: CGFloat = 0
+    @State private var presentInAppPurchaseView: Bool = false
 
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         VStack(spacing: 8) {
-            Text("アプリ容量")
-                .fontM(bold: true)
-                .frame(width: width, alignment: .leading)
-            Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)人です。\n・容量の追加は1日に1回までです。")
-                .fontS()
-                .frame(width: width, alignment: .leading)
+            HStack {
+                VStack(spacing: 8) {
+                    Text("アプリ容量")
+                        .fontM(bold: true)
+                        .frame(width: width - 40, alignment: .leading)
+                    Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)人です。\n・容量の追加は1日に1回までです。")
+                        .fontS()
+                        .frame(width: width - 40, alignment: .leading)
+                }
+
+                Spacer()
+
+                Button {
+                    presentInAppPurchaseView = true
+                } label: {
+                    Image(systemName: "lock.open")
+                        .fontL()
+                        .foregroundStyle(.white)
+                        .frame(width: 40, height: 40)
+                        .background(Asset.Colors.exThemaYellow.swiftUIColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 40))
+                        .shadow(color: .gray, radius: 1, x: 2, y: 2)
+                }.buttonStyle(.plain)
+                    .navigationDestination(isPresented: $presentInAppPurchaseView) {
+                        InAppPurchaseView()
+                            .environmentObject(rootEnvironment)
+                    }
+            }
+
             HStack {
                 Text(now >= max ? "FULL" : "\(Int(now))人")
                     .fontM(bold: true)

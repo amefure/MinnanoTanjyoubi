@@ -43,7 +43,9 @@ Pods
 # Firebase
 GoogleService-Info.plist
 MinnanoTanjyoubi/View/Components/AdMobViewModels.swift
+MinnanoTanjyoubi/Models/InAppPurchase/SecretProductIdKey.swift
 MinnanoTanjyoubi/Models/Common/SecretCryptoKey.swift
+
 
 # Carthage
 Carthage/Build/
