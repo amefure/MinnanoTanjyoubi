@@ -8,14 +8,6 @@
 import UIKit
 
 class EntryUserViewModel {
-    private let userDefaultsRepository: UserDefaultsRepository
-
-    private let dateFormatUtility = DateFormatUtility()
-
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        userDefaultsRepository = repositoryDependency.userDefaultsRepository
-    }
-
     /// バリデーション
     public func validationInput(_ name: String) -> Bool {
         return name != ""
@@ -41,18 +33,9 @@ class EntryUserViewModel {
 
     /// 保存された年数のDateオブジェクトを取得
     public func getInitYearDate() -> Date {
-        let year = getEntryInitYear()
-        let yearDate = dateFormatUtility.setYearDate(year: year)
+        let dfm = DateFormatUtility()
+        let year = AppManager.sharedUserDefaultManager.getEntryInitYear()
+        let yearDate = dfm.setYearDate(year: year)
         return yearDate
-    }
-
-    /// 年数初期値取得
-    private func getEntryInitYear() -> Int {
-        var year = userDefaultsRepository.getIntData(key: UserDefaultsKey.ENTRY_INTI_YEAR)
-        if year == 0 {
-            guard let nowYear = dateFormatUtility.convertDateComponents(date: Date()).year else { return 2024 }
-            year = nowYear
-        }
-        return year
     }
 }

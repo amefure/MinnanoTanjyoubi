@@ -8,40 +8,26 @@
 import SwiftUI
 
 class RewardViewModel {
-    private let userDefaultsRepository: UserDefaultsRepository
-
     private let dfm = DateFormatUtility()
-
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        userDefaultsRepository = repositoryDependency.userDefaultsRepository
-    }
 
     // 容量追加
     public func addCapacity() {
-        let current = getCapacity()
-        let capacity = current + AdsConfig.ADD_CAPACITY
-        userDefaultsRepository.setIntData(key: UserDefaultsKey.LIMIT_CAPACITY, value: capacity)
+        AppManager.sharedUserDefaultManager.addCapacity()
     }
 
     // 容量取得
     public func getCapacity() -> Int {
-        let capacity = userDefaultsRepository.getIntData(key: UserDefaultsKey.LIMIT_CAPACITY)
-        if capacity < AdsConfig.INITIAL_CAPACITY {
-            userDefaultsRepository.setIntData(key: UserDefaultsKey.LIMIT_CAPACITY, value: AdsConfig.INITIAL_CAPACITY)
-            return AdsConfig.INITIAL_CAPACITY
-        } else {
-            return capacity
-        }
+        AppManager.sharedUserDefaultManager.getCapacity()
     }
 
     /// 最終視聴日登録
     public func registerAcquisitionDate() {
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.LAST_ACQUISITION_DATE, value: nowTime())
+        AppManager.sharedUserDefaultManager.setAcquisitionDate(nowTime())
     }
 
     /// 最終視聴日取得
     public func getAcquisitionDate() -> String {
-        userDefaultsRepository.getStringData(key: UserDefaultsKey.LAST_ACQUISITION_DATE)
+        AppManager.sharedUserDefaultManager.getAcquisitionDate()
     }
 
     /// 最終視聴日チェック

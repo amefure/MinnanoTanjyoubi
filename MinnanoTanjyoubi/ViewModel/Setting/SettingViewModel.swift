@@ -15,13 +15,11 @@ class SettingViewModel: ObservableObject {
     @Published private(set) var yearArray: [Int] = []
 
     private let keyChainRepository: KeyChainRepository
-    private let userDefaultsRepository: UserDefaultsRepository
 
     private let dfm = DateFormatUtility()
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         keyChainRepository = repositoryDependency.keyChainRepository
-        userDefaultsRepository = repositoryDependency.userDefaultsRepository
 
         setUpYears()
     }
@@ -60,80 +58,49 @@ class SettingViewModel: ObservableObject {
 
     // 最大容量取得
     public func getCapacity() -> Int {
-        let capacity = userDefaultsRepository.getIntData(key: UserDefaultsKey.LIMIT_CAPACITY)
-        if capacity < AdsConfig.INITIAL_CAPACITY {
-            userDefaultsRepository.setIntData(key: UserDefaultsKey.LIMIT_CAPACITY, value: AdsConfig.INITIAL_CAPACITY)
-            return AdsConfig.INITIAL_CAPACITY
-        } else {
-            return capacity
-        }
+        AppManager.sharedUserDefaultManager.getCapacity()
     }
 
     // MARK: - Notify Logic
 
-    /// 通知時間登録
-    public func registerNotifyTime(date: Date) {
-        let time = dfm.getTimeString(date: date)
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.NOTICE_TIME, value: time)
-    }
-
     /// 通知時間取得
     public func getNotifyTimeDate() -> Date {
-        var timeStr = userDefaultsRepository.getStringData(key: UserDefaultsKey.NOTICE_TIME)
-        if timeStr.isEmpty {
-            timeStr = NotifyConfig.INITIAL_TIME
-        }
-        let timeArray: [Substring] = timeStr.split(separator: "-")
-        let hour = Int(timeArray[safe: 0] ?? "6")
-        let minute = Int(timeArray[safe: 1] ?? "0")
-        return Calendar.current.date(from: DateComponents(hour: hour, minute: minute)) ?? Date()
+        AppManager.sharedUserDefaultManager.getNotifyTimeDate()
     }
 
-    /// 年数初期値登録
-    public func registerEntryInitYear(year: Int) {
-        userDefaultsRepository.setIntData(key: UserDefaultsKey.ENTRY_INTI_YEAR, value: year)
+    /// 通知時間登録
+    public func registerNotifyTime(date: Date) {
+        AppManager.sharedUserDefaultManager.setNotifyTimeDate(date)
     }
 
     /// 年数初期値取得
     public func getEntryInitYear() -> Int {
-        var year = userDefaultsRepository.getIntData(key: UserDefaultsKey.ENTRY_INTI_YEAR)
-        if year == 0 {
-            guard let nowYear = dfm.convertDateComponents(date: Date()).year else { return 2024 }
-            year = nowYear
-        }
-        return year
+        AppManager.sharedUserDefaultManager.getEntryInitYear()
+    }
+
+    /// 年数初期値登録
+    public func registerEntryInitYear(year: Int) {
+        AppManager.sharedUserDefaultManager.setEntryInitYear(year)
+    }
+
+    ///  通知日付フラグ取得
+    public func getNotifyDate() -> String {
+        AppManager.sharedUserDefaultManager.getNotifyDate()
     }
 
     /// 通知日付フラグ登録
     public func registerNotifyDate(flag: String) {
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.NOTICE_DATE_FLAG, value: flag)
-    }
-
-    /// 通知日付フラグ取得
-    public func getNotifyDate() -> String {
-        let flag = userDefaultsRepository.getStringData(key: UserDefaultsKey.NOTICE_DATE_FLAG)
-        if flag.isEmpty {
-            registerNotifyDate(flag: NotifyConfig.INITIAL_DATE_FLAG)
-            return NotifyConfig.INITIAL_DATE_FLAG
-        } else {
-            return flag
-        }
-    }
-
-    /// 通知Msg登録
-    public func registerNotifyMsg(msg: String) {
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.NOTICE_MSG, value: msg)
+        AppManager.sharedUserDefaultManager.setNotifyDate(flag)
     }
 
     /// 通知Msg取得
     public func getNotifyMsg() -> String {
-        let msg = userDefaultsRepository.getStringData(key: UserDefaultsKey.NOTICE_MSG)
-        if msg.isEmpty {
-            registerNotifyMsg(msg: NotifyConfig.INITIAL_MSG)
-            return NotifyConfig.INITIAL_MSG
-        } else {
-            return msg
-        }
+        AppManager.sharedUserDefaultManager.getNotifyMsg()
+    }
+
+    /// 通知Msg登録
+    public func registerNotifyMsg(msg: String) {
+        AppManager.sharedUserDefaultManager.setNotifyMsg(msg)
     }
 
     ///  誕生日までの単位フラグ登録
@@ -158,7 +125,7 @@ class SettingViewModel: ObservableObject {
 
     /// チュートリアル再表示フラグセット
     public func setTutorialReShowFlag() {
-        userDefaultsRepository.setBoolData(key: UserDefaultsKey.TUTORIAL_RE_SHOW_FLAG, isOn: true)
+        AppManager.sharedUserDefaultManager.setTutorialReShowFlag(true)
     }
 
     /// アプリシェアロジック

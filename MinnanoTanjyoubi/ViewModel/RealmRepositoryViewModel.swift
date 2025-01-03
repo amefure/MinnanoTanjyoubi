@@ -15,11 +15,9 @@ class RealmRepositoryViewModel: ObservableObject {
     @Published var users: [User] = []
 
     private let repository: RealmRepository
-    private let userDefaultsRepository: UserDefaultsRepository
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         repository = repositoryDependency.realmRepository
-        userDefaultsRepository = repositoryDependency.userDefaultsRepository
         readAllUsers()
     }
 
@@ -90,13 +88,7 @@ class RealmRepositoryViewModel: ObservableObject {
 
     // 最大容量取得
     private func getMaxCapacity() -> Int {
-        let capacity = userDefaultsRepository.getIntData(key: UserDefaultsKey.LIMIT_CAPACITY)
-        if capacity < AdsConfig.INITIAL_CAPACITY {
-            userDefaultsRepository.setIntData(key: UserDefaultsKey.LIMIT_CAPACITY, value: AdsConfig.INITIAL_CAPACITY)
-            return AdsConfig.INITIAL_CAPACITY
-        } else {
-            return capacity
-        }
+        AppManager.sharedUserDefaultManager.getCapacity()
     }
 
     private func copyUser(_ user: User) -> User {
@@ -144,7 +136,6 @@ class RealmRepositoryViewModel: ObservableObject {
 extension RealmRepositoryViewModel {
     /// 並び順
     private func getSortItem() -> AppSortItem {
-        let item = userDefaultsRepository.getStringData(key: UserDefaultsKey.APP_SORT_ITEM, initialValue: AppSortItem.daysLater.rawValue)
-        return AppSortItem(rawValue: item) ?? .daysLater
+        AppManager.sharedUserDefaultManager.getSortItem()
     }
 }
