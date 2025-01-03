@@ -12,9 +12,21 @@ enum ProductItem {
     public var id: String {
         return switch self {
         case .removeAds:
-            SecretProductIdKey.REMOVE_ADS
+            #if DEBUG
+                // テスト
+                SecretProductIdKey.TEST_REMOVE_ADS
+            #else
+                // 本番
+                SecretProductIdKey.REMOVE_ADS
+            #endif
         case .unlockStorage:
-            SecretProductIdKey.UNLOCK_STORAGE
+            #if DEBUG
+                // テスト
+                SecretProductIdKey.TEST_UNLOCK_STORAGE
+            #else
+                // 本番
+                SecretProductIdKey.UNLOCK_STORAGE
+            #endif
         }
     }
 

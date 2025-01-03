@@ -50,13 +50,13 @@ struct InAppPurchaseView: View {
                             VStack(spacing: 8) {
                                 Text(product.displayName)
                                     .fontM(bold: true)
-                                    .frame(width: DeviceSizeUtility.deviceWidth - 80, alignment: .leading)
+                                    .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
 
                                 Text("・\(product.description)")
                                     .fontS()
-                                    .frame(width: DeviceSizeUtility.deviceWidth - 80, alignment: .leading)
+                                    .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
 
-                                Text("￥\(product.price)")
+                                Text(product.displayPrice)
                                     .fontM(bold: true)
 
                                 Button {
@@ -64,7 +64,7 @@ struct InAppPurchaseView: View {
                                 } label: {
                                     Text(viewModel.isPurchased(product.id) ? "購入済み" : "購入する")
                                         .foregroundStyle(.white)
-                                        .frame(width: DeviceSizeUtility.deviceWidth - 80, height: 50)
+                                        .frame(width: DeviceSizeUtility.deviceWidth - 60, height: 50)
                                         .background(Asset.Colors.exThemaRed.swiftUIColor)
                                         .clipShape(RoundedRectangle(cornerRadius: 8))
                                         .shadow(color: .gray, radius: 3, x: 4, y: 4)
@@ -77,18 +77,18 @@ struct InAppPurchaseView: View {
                     VStack(spacing: 8) {
                         Text("購入アイテムを復元する")
                             .fontM(bold: true)
-                            .frame(width: DeviceSizeUtility.deviceWidth - 80, alignment: .leading)
+                            .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
 
                         Text("・一度ご購入いただけますと、\nアプリ再インストール時に「復元する」ボタンから\n復元が可能となっています。")
                             .fontS()
-                            .frame(width: DeviceSizeUtility.deviceWidth - 80, alignment: .leading)
+                            .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
 
                         Button {
                             viewModel.restore()
                         } label: {
                             Text("復元する")
                                 .foregroundStyle(.white)
-                                .frame(width: DeviceSizeUtility.deviceWidth - 80, height: 50)
+                                .frame(width: DeviceSizeUtility.deviceWidth - 60, height: 50)
                                 .background(Asset.Colors.exThemaRed.swiftUIColor)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                                 .shadow(color: .gray, radius: 3, x: 4, y: 4)

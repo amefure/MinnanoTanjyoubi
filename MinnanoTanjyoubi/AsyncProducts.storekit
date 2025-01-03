@@ -26,7 +26,7 @@
         },
         {
           "description" : "アプリ内に表示されているバナー広告が非表示になります。",
-          "displayName" : "広告削除",
+          "displayName" : "TEST_広告削除",
           "locale" : "ja"
         }
       ],
@@ -46,7 +46,7 @@
         },
         {
           "description" : "誕生日情報の登録上限数が解放され、制限なく誕生日情報を登録できるようになります。",
-          "displayName" : "容量解放",
+          "displayName" : "TEST_容量解放",
           "locale" : "ja"
         }
       ],
