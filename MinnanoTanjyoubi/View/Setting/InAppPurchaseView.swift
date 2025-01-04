@@ -22,6 +22,11 @@ struct InAppPurchaseView: View {
                 .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                 .padding(.vertical)
 
+            Text("購入後のキャンセルは致しかねますのでご了承ください。")
+                .fontS()
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .padding(.horizontal)
+
             if viewModel.fetchError {
                 Spacer()
 
