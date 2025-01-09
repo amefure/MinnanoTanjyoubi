@@ -28,6 +28,13 @@ class InAppPurchaseRepository {
 
     private let _purchasedProducts = CurrentValueSubject<[Product], Never>([])
 
+    /// 購入中
+    public var isPurchasing: AnyPublisher<Bool, Never> {
+        _isPurchasing.eraseToAnyPublisher()
+    }
+
+    private let _isPurchasing = PassthroughSubject<Bool, Never>()
+
     /// 購入エラー
     public var fetchError: AnyPublisher<Bool, Never> {
         _fetchError.eraseToAnyPublisher()
@@ -81,6 +88,7 @@ class InAppPurchaseRepository {
     /// 購入処理
     @MainActor
     public func purchase(product: Product) async {
+        _isPurchasing.send(true)
         do {
             // 購入
             let result = try await product.purchase()
@@ -96,17 +104,21 @@ class InAppPurchaseRepository {
                     await updateCustomerProductStatus()
                     // トランザクションを明示的に終了
                     await transaction.finish()
+                    _isPurchasing.send(false)
                 case .unverified:
                     // 検証失敗エラー
                     handlePurchaseError()
+                    _isPurchasing.send(false)
                 }
             // 購入中 , ユーザーキャンセル
             case .pending, .userCancelled:
+                _isPurchasing.send(false)
                 break
             @unknown default:
-                break
+                _isPurchasing.send(false)
             }
         } catch {
+            _isPurchasing.send(false)
             // エラー
             handlePurchaseError()
         }

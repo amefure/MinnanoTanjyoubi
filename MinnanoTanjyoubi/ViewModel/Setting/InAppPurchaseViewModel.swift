@@ -14,12 +14,16 @@ class InAppPurchaseViewModel: ObservableObject {
     @Published var fetchError: Bool = false
     /// 購入エラー
     @Published var purchaseError: Bool = false
+    /// 購入中アイテムID
+    @Published private(set) var isPurchasingId: String = ""
     /// 課金アイテム
     @Published private(set) var products: [Product] = []
 
     private var cancellables: Set<AnyCancellable> = []
 
     private let inAppPurchaseRepository: InAppPurchaseRepository
+
+    private var purchaseTask: Task<Void, Never>? = nil
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         inAppPurchaseRepository = repositoryDependency.inAppPurchaseRepository
@@ -45,6 +49,15 @@ class InAppPurchaseViewModel: ObservableObject {
                 AppManager.sharedUserDefaultManager.setPurchasedUnlockStorage(unlockStorage)
             }.store(in: &cancellables)
 
+        // 購入中
+        inAppPurchaseRepository.isPurchasing.sink { [weak self] flag in
+            guard let self else { return }
+            // 購入中ではなくなったらIDをリセット
+            if !flag {
+                self.isPurchasingId = ""
+            }
+        }.store(in: &cancellables)
+
         // 取得エラー
         inAppPurchaseRepository.fetchError.sink { [weak self] flag in
             guard let self else { return }
@@ -61,6 +74,7 @@ class InAppPurchaseViewModel: ObservableObject {
     public func onDisappear() {
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
+        purchaseTask?.cancel()
     }
 
     /// 購入済みプロダクトかどうか
@@ -68,12 +82,15 @@ class InAppPurchaseViewModel: ObservableObject {
         inAppPurchaseRepository.isPurchased(productId)
     }
 
+    /// 購入開始
     public func purchase(product: Product) {
-        Task {
+        isPurchasingId = product.id
+        purchaseTask = Task {
             await inAppPurchaseRepository.purchase(product: product)
         }
     }
 
+    /// 復帰処理
     public func restore() {
         inAppPurchaseRepository.restore()
     }

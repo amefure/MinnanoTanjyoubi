@@ -67,14 +67,26 @@ struct InAppPurchaseView: View {
                                 Button {
                                     viewModel.purchase(product: product)
                                 } label: {
-                                    Text(viewModel.isPurchased(product.id) ? "購入済み" : "購入する")
-                                        .foregroundStyle(.white)
-                                        .frame(width: DeviceSizeUtility.deviceWidth - 60, height: 50)
-                                        .background(Asset.Colors.exThemaRed.swiftUIColor)
-                                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                                        .shadow(color: .gray, radius: 3, x: 4, y: 4)
+                                    if viewModel.isPurchasingId == product.id {
+                                        ProgressView()
+                                            .tint(.white)
+                                            .foregroundStyle(.white)
+                                            .frame(width: DeviceSizeUtility.deviceWidth - 60, height: 50)
+                                            .background(Asset.Colors.exThemaRed.swiftUIColor)
+                                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                                            .shadow(color: .gray, radius: 3, x: 4, y: 4)
+                                    } else {
+                                        Text(viewModel.isPurchased(product.id) ? "購入済み" : "購入する")
+                                            .foregroundStyle(.white)
+                                            .frame(width: DeviceSizeUtility.deviceWidth - 60, height: 50)
+                                            .background(Asset.Colors.exThemaRed.swiftUIColor)
+                                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                                            .shadow(color: .gray, radius: 3, x: 4, y: 4)
+                                    }
+
                                 }.buttonStyle(.plain)
                                     .disabled(viewModel.isPurchased(product.id))
+                                    .disabled(viewModel.isPurchasingId == product.id)
                             }
                         }
                     }
