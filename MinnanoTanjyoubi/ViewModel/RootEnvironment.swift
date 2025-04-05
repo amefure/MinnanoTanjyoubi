@@ -54,7 +54,6 @@ class RootEnvironment: ObservableObject {
         setUpUserDefaultsFlag()
 
         // 購入済み課金アイテム観測
-        // `getPurchasedFlag`より後に観測する
         inAppPurchaseRepository.purchasedProducts
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in

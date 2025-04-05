@@ -36,7 +36,7 @@ struct SingleGridListView: View {
                     } label: {
                         RowUserView(user: user)
                             .environmentObject(rootEnvironment)
-                    }
+                    }.buttonStyle(.plain)
                 }
             }
         }

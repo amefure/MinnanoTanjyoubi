@@ -7,7 +7,6 @@
 
 import UIKit
 
-import UIKit
 /// `Repository` クラスのDIクラス
 class RepositoryDependency {
     /// `Repository`
