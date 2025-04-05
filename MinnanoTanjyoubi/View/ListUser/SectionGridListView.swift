@@ -1,5 +1,5 @@
 //
-//  SectionListView.swift
+//  SectionGridListView.swift
 //  MinnanoTanjyoubi
 //
 //  Created by t&a on 2024/01/24.

@@ -107,7 +107,6 @@ struct TutorialPopupView: View {
                                 .frame(width: 50, height: 50)
 
                             Spacer()
-
                         case .bottomRight:
                             Spacer()
                             Triangle()

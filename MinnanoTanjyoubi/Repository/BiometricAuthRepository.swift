@@ -1,5 +1,5 @@
 //
-//  BiometricAuthManager.swift
+//  BiometricAuthRepository.swift
 //  MinnanoTanjyoubi
 //
 //  Created by t&a on 2023/12/23.
