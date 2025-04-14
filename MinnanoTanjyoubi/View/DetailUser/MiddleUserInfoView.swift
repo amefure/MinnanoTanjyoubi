@@ -28,17 +28,26 @@ struct MiddleUserInfoView: View {
     var body: some View {
         HStack(spacing: 20) {
             VStack {
-                Text("\(user.currentAge)歳")
-                if isDisplayAgeMonth {
-                    Text("\(user.currentAgeMonth)ヶ月")
+                if user.isYearsUnknown {
+                    Text("- 歳")
+                } else {
+                    Text("\(user.currentAge)歳")
+                    if isDisplayAgeMonth {
+                        Text("\(user.currentAgeMonth)ヶ月")
+                    }
                 }
             }.circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema2(rootEnvironment.scheme))
 
             Text(user.signOfZodiac)
                 .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema4(rootEnvironment.scheme))
 
-            Text(user.zodiac)
-                .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3(rootEnvironment.scheme))
+            if user.isYearsUnknown {
+                Text("- 年")
+                    .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3(rootEnvironment.scheme))
+            } else {
+                Text(user.zodiac)
+                    .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3(rootEnvironment.scheme))
+            }
 
         }.font(isSESize ? .system(size: 12) : .system(size: 17))
             .foregroundStyle(.white)

@@ -68,9 +68,13 @@ struct UpSideUserInfoView: View {
             Text(user.name)
                 .font(isSESize ? .system(size: 17) : .system(size: 20))
             HStack {
-                Text(dfm.getJpString(date: user.date))
-                Text("（\(dfm.getJpEraString(date: user.date))）")
-
+                if user.isYearsUnknown {
+                    Text(dfm.getJpStringOnlyDate(date: user.date))
+                    Text("（年数未設定）")
+                } else {
+                    Text(dfm.getJpString(date: user.date))
+                    Text("（\(dfm.getJpEraString(date: user.date))）")
+                }
             }.padding(.top, 8)
                 .fontM()
         }

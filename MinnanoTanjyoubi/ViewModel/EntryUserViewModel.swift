@@ -19,7 +19,8 @@ class EntryUserViewModel {
         date: Date,
         selectedRelation: Relation,
         memo: String,
-        alert: Bool
+        alert: Bool,
+        isYearsUnknown: Bool
     ) -> User {
         let newUser = User()
         newUser.name = name
@@ -28,6 +29,7 @@ class EntryUserViewModel {
         newUser.relation = selectedRelation
         newUser.memo = memo
         newUser.alert = alert
+        newUser.isYearsUnknown = isYearsUnknown
         return newUser
     }
 

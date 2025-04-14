@@ -52,6 +52,7 @@ class RealmRepository {
             result.date = newUser.date
             result.relation = newUser.relation
             result.memo = newUser.memo
+            result.isYearsUnknown = newUser.isYearsUnknown
         }
     }
 

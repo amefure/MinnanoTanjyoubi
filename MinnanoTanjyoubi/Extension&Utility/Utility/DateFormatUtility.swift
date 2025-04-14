@@ -33,6 +33,13 @@ class DateFormatUtility {
         return df.string(from: date)
     }
 
+    /// 日付のみを文字列で取得する
+    /// M月d日
+    public func getJpStringOnlyDate(date: Date) -> String {
+        df.dateFormat = "M月d日"
+        return df.string(from: date)
+    }
+
     /// 西暦：日付を文字列で取得する
     /// Gy年
     public func getJpEraString(date: Date) -> String {

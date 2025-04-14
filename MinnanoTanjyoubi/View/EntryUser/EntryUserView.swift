@@ -27,6 +27,7 @@ struct EntryUserView: View {
     @State private var memo = ""
     @State private var selectedRelation: Relation = .other
     @State private var isAlert = true
+    @State private var isYearsUnknown = false
 
     // 自身の表示モーダルフラグ
     @Binding var isModal: Bool
@@ -74,7 +75,7 @@ struct EntryUserView: View {
                     Text("生年月日")
                         .frame(width: 80)
                     Spacer()
-                    DatePickerView(date: $date, showWheel: $showWheel)
+                    DatePickerView(date: $date, showWheel: $showWheel, isYearsUnknown: $isYearsUnknown)
                         .environmentObject(rootEnvironment)
                 }.padding(5)
 
@@ -96,6 +97,11 @@ struct EntryUserView: View {
                     }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1(rootEnvironment.scheme)))
                         .frame(width: DeviceSizeUtility.deviceWidth - 50)
                 }
+
+                Toggle(isOn: $isYearsUnknown, label: {
+                    Text("年数の指定を未設定にする")
+                }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1(rootEnvironment.scheme)))
+                    .frame(width: DeviceSizeUtility.deviceWidth - 50)
 
                 Text("MEMO")
                     .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
@@ -141,7 +147,8 @@ struct EntryUserView: View {
                         date: date,
                         selectedRelation: selectedRelation,
                         memo: memo,
-                        alert: isAlert
+                        alert: isAlert,
+                        isYearsUnknown: isYearsUnknown
                     )
                     repository.updateUser(id: user.id, newUser: newUser)
 
@@ -153,7 +160,8 @@ struct EntryUserView: View {
                         date: date,
                         selectedRelation: selectedRelation,
                         memo: memo,
-                        alert: isAlert
+                        alert: isAlert,
+                        isYearsUnknown: isYearsUnknown
                     )
                     repository.createUser(newUser: newUser)
 
@@ -178,6 +186,7 @@ struct EntryUserView: View {
                     date = user.date
                     selectedRelation = user.relation
                     memo = user.memo
+                    isYearsUnknown = user.isYearsUnknown
                 } else {
                     // 新規登録なら初期値年数を反映
                     date = viewModel.getInitYearDate()

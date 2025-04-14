@@ -40,10 +40,20 @@ class RealmRepositoryViewModel: ObservableObject {
             users = Array(result).sorted(by: { $0.ruby > $1.ruby })
         case .ageAsce:
             // 年齢(昇順)
-            users = Array(result).sorted(by: { $0.currentAge < $1.currentAge })
+            users = Array(result).sorted(by: {
+                if $0.isYearsUnknown != $1.isYearsUnknown {
+                    return !$0.isYearsUnknown && $1.isYearsUnknown
+                }
+                return $0.currentAge < $1.currentAge
+            })
         case .ageeDesc:
             // 年齢(降順)
-            users = Array(result).sorted(by: { $0.currentAge > $1.currentAge })
+            users = Array(result).sorted(by: {
+                if $0.isYearsUnknown != $1.isYearsUnknown {
+                    return !$0.isYearsUnknown && $1.isYearsUnknown
+                }
+                return $0.currentAge > $1.currentAge
+            })
         case .montheAsce:
             // 生まれ月(昇順)
             users = Array(result).sorted(by: {

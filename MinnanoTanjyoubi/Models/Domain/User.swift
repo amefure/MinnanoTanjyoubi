@@ -16,9 +16,10 @@ class User: Object, ObjectKeyIdentifiable, Codable {
     @Persisted var memo: String = ""
     @Persisted var alert: Bool = false
     @Persisted var imagePaths: RealmSwift.List<String>
+    @Persisted var isYearsUnknown: Bool = false
 
     enum CodingKeys: String, CodingKey {
-        case id, name, ruby, date, relation, memo, alert, imagePaths
+        case id, name, ruby, date, relation, memo, alert, imagePaths, isYearsUnknown
     }
 
     convenience init(
@@ -29,7 +30,8 @@ class User: Object, ObjectKeyIdentifiable, Codable {
         relation: Relation,
         memo: String,
         alert: Bool,
-        imagePaths: [String]
+        imagePaths: [String],
+        isYearsUnknown: Bool
     ) {
         self.init()
         self.id = id
@@ -40,6 +42,7 @@ class User: Object, ObjectKeyIdentifiable, Codable {
         self.memo = memo
         self.alert = alert
         self.imagePaths.append(objectsIn: imagePaths)
+        self.isYearsUnknown = isYearsUnknown
     }
 
     required convenience init(from decoder: Decoder) throws {
@@ -56,6 +59,7 @@ class User: Object, ObjectKeyIdentifiable, Codable {
         // ImagePathはデコード対象に含めない
         // let paths = try container.decode([String].self, forKey: .imagePaths)
         // imagePaths.append(objectsIn: paths)
+        isYearsUnknown = try container.decode(Bool.self, forKey: .isYearsUnknown)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -69,6 +73,7 @@ class User: Object, ObjectKeyIdentifiable, Codable {
         try container.encode(alert, forKey: .alert)
         // ImagePathはエンコード対象に含めない
         // try container.encode(Array(imagePaths), forKey: .imagePaths)
+        try container.encode(isYearsUnknown, forKey: .isYearsUnknown)
     }
 }
 
@@ -214,7 +219,7 @@ extension User {
 
 extension User {
     /// 転送リンク
-    /// `minnanotanjyoubi-app://create?birthday=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`
+    /// `minnanotanjyoubi-app://create?birthday=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`
     static var demoUsers: [User] {
         let dfm = DateFormatUtility()
         var users: [User] = []

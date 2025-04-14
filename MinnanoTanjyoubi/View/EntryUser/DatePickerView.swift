@@ -13,6 +13,7 @@ struct DatePickerView: View {
     @Binding var date: Date
     @State private var dateStr: String = ""
     @Binding var showWheel: Bool
+    @Binding var isYearsUnknown: Bool
     private let isSESize: Bool = DeviceSizeUtility.isSESize
 
     @EnvironmentObject private var rootEnvironment: RootEnvironment
@@ -27,7 +28,11 @@ struct DatePickerView: View {
                 ).environment(\.locale, Locale(identifier: "ja_JP"))
                     .environment(\.calendar, Calendar(identifier: .gregorian))
                     .onChange(of: date) { newValue in
-                        dateStr = dfm.getJpString(date: newValue)
+                        if isYearsUnknown {
+                            dateStr = dfm.getJpStringOnlyDate(date: newValue)
+                        } else {
+                            dateStr = dfm.getJpString(date: newValue)
+                        }
                     }
                     .colorInvert()
                     .colorMultiply(AppColorScheme.getText(rootEnvironment.scheme))
@@ -52,15 +57,25 @@ struct DatePickerView: View {
                     .frame(width: DeviceSizeUtility.deviceWidth - 120)
                     .onTapGesture {
                         showWheel = true
+                    }.onChange(of: isYearsUnknown) { _ in
+                        if isYearsUnknown {
+                            dateStr = dfm.getJpStringOnlyDate(date: date)
+                        } else {
+                            dateStr = dfm.getJpString(date: date)
+                        }
                     }
             }
         }.onAppear {
-            dateStr = dfm.getJpString(date: date)
+            if isYearsUnknown {
+                dateStr = dfm.getJpStringOnlyDate(date: date)
+            } else {
+                dateStr = dfm.getJpString(date: date)
+            }
         }
     }
 }
 
 #Preview {
-    DatePickerView(date: Binding.constant(Date()), showWheel: Binding.constant(true))
+    DatePickerView(date: Binding.constant(Date()), showWheel: Binding.constant(true), isYearsUnknown: Binding.constant(true))
         .environmentObject(RootEnvironment())
 }

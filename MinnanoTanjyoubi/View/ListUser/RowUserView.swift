@@ -34,19 +34,30 @@ struct RowUserView: View {
                     .lineLimit(1)
                     .font(.system(size: DeviceSizeUtility.isSESize ? changeFontSizeByLength(user.name) : 16))
 
-                Text(DateFormatUtility().getJpString(date: user.date))
-                    .font(.system(size: 12))
+                if user.isYearsUnknown {
+                    Text(DateFormatUtility().getJpStringOnlyDate(date: user.date))
+                        .fontSS()
+                } else {
+                    Text(DateFormatUtility().getJpString(date: user.date))
+                        .fontSS()
+                }
 
                 HStack(alignment: .bottom, spacing: 3) {
-                    Text("\(user.currentAge)")
-                        .font(.system(size: 17))
+                    if user.isYearsUnknown {
+                        Text("-")
+                            .fontM()
+                    } else {
+                        Text("\(user.currentAge)")
+                            .fontM()
+                    }
                     Text("歳")
-                        .font(.system(size: 12))
-                    if isDisplayAgeMonth {
+                        .fontSS()
+
+                    if isDisplayAgeMonth && !user.isYearsUnknown {
                         Text("\(user.currentAgeMonth)")
-                            .font(.system(size: 17))
+                            .fontM()
                         Text("ヶ月")
-                            .font(.system(size: 12))
+                            .fontSS()
                     }
                 }
 
@@ -64,13 +75,13 @@ struct RowUserView: View {
                         {
                             Text("あと")
                             Text("\(month)")
-                                .font(.system(size: 17))
+                                .fontM()
                                 .foregroundColor(AppColorScheme.getThema1(rootEnvironment.scheme))
                             Text("ヶ月")
                         } else {
                             Text("あと")
                             Text("\(user.daysLater)")
-                                .font(.system(size: 17))
+                                .fontM()
                                 .foregroundColor(AppColorScheme.getThema1(rootEnvironment.scheme))
                             Text("日")
                         }

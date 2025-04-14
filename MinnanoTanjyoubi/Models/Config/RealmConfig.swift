@@ -9,11 +9,11 @@ import UIKit
 
 class RealmConfig {
     // Relam マイグレーション番号
-    static let MIGRATION_VERSION: UInt64 = 1
+    static let MIGRATION_VERSION: UInt64 = 2
 
     /* マイグレーション履歴
      1：imagePathsプロパティの追加 2024/2/22
-     2：------
+     2：isYearsUnknownプロパティの追加 2025/4/14
      3：------
      4：------
      5：------
