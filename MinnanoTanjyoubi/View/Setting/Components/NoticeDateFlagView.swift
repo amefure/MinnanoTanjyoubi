@@ -10,32 +10,24 @@ import SwiftUI
 struct NoticeDateFlagView: View {
     @StateObject var viewModel: SettingViewModel
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-
-    @State private var isOn: Bool = true
+    @State private var notifyDate: NotifyDate = .onTheDay
 
     var body: some View {
-        HStack {
-            Text("通知日")
-            Spacer()
-            Toggle(isOn: $isOn) {
-                Text(isOn ? "当日" : "前日")
-                    .fontWeight(.bold)
-                    .foregroundStyle(.white)
-            }.toggleStyle(.button)
-                .opacity(isOn ? 0.9 : 1)
-                .background(isOn ? AppColorScheme.getThema2(rootEnvironment.scheme) : AppColorScheme.getThema3(rootEnvironment.scheme))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .onChange(of: isOn) { newValue in
-                    if newValue {
-                        viewModel.registerNotifyDate(flag: "0")
-                    } else {
-                        viewModel.registerNotifyDate(flag: "1")
-                    }
-                }.onAppear {
-                    let flag = viewModel.getNotifyDate()
-                    isOn = flag == "0"
+        Picker("通知日", selection: $notifyDate) {
+            ForEach(NotifyDate.allCases, id: \.self) { notifyDate in
+                if notifyDate == .onTheDay {
+                    Text("当日")
+                } else {
+                    Text("\(notifyDate.dayNum)日前")
                 }
-        }
+            }
+        }.tint(AppColorScheme.getText(rootEnvironment.scheme))
+            .fontM()
+            .onChange(of: notifyDate) { _ in
+                viewModel.registerNotifyDate(flag: notifyDate.rawValue)
+            }.onAppear {
+                notifyDate = NotifyDate(rawValue: viewModel.getNotifyDate()) ?? .onTheDay
+            }
     }
 }
 

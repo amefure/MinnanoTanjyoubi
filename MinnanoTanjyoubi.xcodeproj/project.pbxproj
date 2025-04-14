@@ -12,6 +12,7 @@
 		121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE072B1A20BF00964902 /* ExCollection.swift */; };
 		121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE0A2B1A218F00964902 /* AppLockInputView.swift */; };
 		121DEE0D2B1A23E000964902 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE0C2B1A23E000964902 /* UserDefaultsRepository.swift */; };
+		121E5B742DAD3DEE0032D66C /* NotifyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121E5B732DAD3DEC0032D66C /* NotifyDate.swift */; };
 		1224013E2B8720FA0099BE8D /* ImagePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1224013D2B8720FA0099BE8D /* ImagePickerDialog.swift */; };
 		122401402B8721EE0099BE8D /* ImageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1224013F2B8721EE0099BE8D /* ImageContainerView.swift */; };
 		122401442B87691E0099BE8D /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122401432B87691E0099BE8D /* ImageFileManager.swift */; };
@@ -116,6 +117,7 @@
 		121DEE072B1A20BF00964902 /* ExCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCollection.swift; sourceTree = "<group>"; };
 		121DEE0A2B1A218F00964902 /* AppLockInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockInputView.swift; sourceTree = "<group>"; };
 		121DEE0C2B1A23E000964902 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
+		121E5B732DAD3DEC0032D66C /* NotifyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDate.swift; sourceTree = "<group>"; };
 		1224013D2B8720FA0099BE8D /* ImagePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDialog.swift; sourceTree = "<group>"; };
 		1224013F2B8721EE0099BE8D /* ImageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContainerView.swift; sourceTree = "<group>"; };
 		122401432B87691E0099BE8D /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 			children = (
 				12CB920B28E5C884002BD7B2 /* User.swift */,
 				123F485729A256DB001B91B3 /* RelationEnum.swift */,
+				121E5B732DAD3DEC0032D66C /* NotifyDate.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				12CB921328E6FD43002BD7B2 /* RowUserView.swift in Sources */,
 				12CB921A28E85952002BD7B2 /* SettingView.swift in Sources */,
 				122B346A2D14600100204703 /* TutorialPopUpViewModel.swift in Sources */,
+				121E5B742DAD3DEE0032D66C /* NotifyDate.swift in Sources */,
 				12CA5D9E2D266E8B00A4C1F6 /* InAppPurchaseRepository.swift in Sources */,
 				121DEE0D2B1A23E000964902 /* UserDefaultsRepository.swift in Sources */,
 				1258FD722C97D0480065A081 /* EditNotifyMessageView.swift in Sources */,

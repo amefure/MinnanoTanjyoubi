@@ -22,9 +22,11 @@ class NotificationRequestManager {
 
     /// 通知が許可されていない場合にアラートで通知許可を促す
     public func showSettingsAlert() {
-        let alertController = UIAlertController(title: "通知が許可されていません。",
-                                                message: "誕生日のお知らせ通知を受け取ることができないため\n設定アプリから通知を有効にしてください。",
-                                                preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: "通知が許可されていません。",
+            message: "誕生日のお知らせ通知を受け取ることができないため\n設定アプリから通知を有効にしてください。",
+            preferredStyle: .alert
+        )
         let settingsAction = UIAlertAction(title: "設定を開く", style: .default) { _ in
             guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
             if UIApplication.shared.canOpenURL(settingsURL) {
@@ -64,12 +66,15 @@ class NotificationRequestManager {
         var dateStr = ""
 
         // 前日フラグなら日付を1日前とする
-        if dateFlag == "1" {
-            let calendar = Calendar.current
-            let modifiedDate = calendar.date(byAdding: .day, value: -1, to: date) ?? Date()
-            dateStr = DateFormatUtility().getNotifyString(date: modifiedDate)
-        } else {
+        if dateFlag == "0" {
+            // 0 なら当日
             dateStr = DateFormatUtility().getNotifyString(date: date)
+        } else {
+            let dayNum = Int(dateFlag) ?? 1
+            // 0以外なら日数前にする
+            let calendar = Calendar.current
+            let modifiedDate = calendar.date(byAdding: .day, value: -dayNum, to: date) ?? Date()
+            dateStr = DateFormatUtility().getNotifyString(date: modifiedDate)
         }
 
         // "yyyy-MM-dd"形式で取得した文字列を配列に変換
