@@ -55,7 +55,7 @@ class ImageFileManager {
         guard let path = getDocmentsUrl("\(name + suffix)")?.path else { return nil }
 
         if fileManager.fileExists(atPath: path) {
-            if let image = UIImage(contentsOfFile: path) {
+            if UIImage(contentsOfFile: path) != nil {
                 return path
             } else {
                 return nil

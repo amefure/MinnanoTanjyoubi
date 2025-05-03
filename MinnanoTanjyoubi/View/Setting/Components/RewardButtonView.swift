@@ -19,6 +19,8 @@ struct RewardButtonView: View {
             // 1日1回までしか視聴できないようにする
             if viewModel.checkAcquisitionDate() {
                 reward.showReward() //  広告配信
+                // 計測
+                FBAnalyticsManager.loggingAddCapacityEvent()
                 viewModel.addCapacity()
                 viewModel.registerAcquisitionDate()
 

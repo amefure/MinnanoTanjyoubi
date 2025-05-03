@@ -59,6 +59,8 @@ struct AppLockInputView: View {
 
             NumberKeyboardView(password: $password)
                 .ignoresSafeArea(.all)
+        }.onAppear {
+            viewModel.onAppear()
         }.onDisappear {
             if viewModel.entryFlag {
                 isLock = true

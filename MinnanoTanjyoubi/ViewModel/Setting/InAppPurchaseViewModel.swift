@@ -30,6 +30,8 @@ class InAppPurchaseViewModel: ObservableObject {
     }
 
     public func onAppear() {
+        FBAnalyticsManager.loggingScreen(screen: .InAppPurchaseScreen)
+
         // 課金アイテム取得
         inAppPurchaseRepository.products.sink { [weak self] products in
             guard let self else { return }

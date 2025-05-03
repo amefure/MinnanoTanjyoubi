@@ -72,6 +72,7 @@ struct ShareUserLinkView: View {
             Spacer()
 
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .onAppear { FBAnalyticsManager.loggingScreen(screen: .ShareUserLinkScreen) }
             .navigationBarBackButtonHidden()
     }
 }

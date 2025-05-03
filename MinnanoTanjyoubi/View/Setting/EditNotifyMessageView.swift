@@ -159,7 +159,8 @@ struct DemoNotifyView: View {
                         .font(.system(size: 13))
                 }
             }
-        }.padding()
+        }.onAppear { FBAnalyticsManager.loggingScreen(screen: .EditNotifyMessageScreen) }
+            .padding()
             .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 65)
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 8))

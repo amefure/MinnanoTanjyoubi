@@ -79,6 +79,7 @@ struct UpdateRelationNameView: View {
                 .environmentObject(rootEnvironment)
 
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .onAppear { FBAnalyticsManager.loggingScreen(screen: .UpdateRelationScreen) }
             .font(.system(size: 17))
             .navigationBarBackButtonHidden()
             .onAppear {

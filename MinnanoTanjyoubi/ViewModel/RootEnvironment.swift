@@ -190,6 +190,8 @@ extension RootEnvironment {
 
     /// アプリカラースキーム登録
     public func registerColorScheme(_ scheme: AppColorScheme) {
+        // カスタムイベント計測
+        FBAnalyticsManager.loggingSelectColorEvent(color: scheme)
         AppManager.sharedUserDefaultManager.setColorScheme(scheme)
         getColorScheme()
     }
@@ -201,6 +203,8 @@ extension RootEnvironment {
 
     /// 並び順登録
     public func registerSortItem(_ sort: AppSortItem) {
+        // カスタムイベント計測
+        FBAnalyticsManager.loggingSelectSortEvent(sort: sort)
         AppManager.sharedUserDefaultManager.setSortItem(sort)
         getSortItem()
     }

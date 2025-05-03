@@ -58,6 +58,7 @@
 		12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2D299C36DB00273834 /* DownSideView.swift */; };
 		12ACAD32299EDD6200273834 /* DeviceSizeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */; };
 		12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD33299FAE8D00273834 /* RewardButtonView.swift */; };
+		12B5A7B72DC649B500B1D809 /* FBAnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B5A7B62DC649A300B1D809 /* FBAnalyticsManager.swift */; };
 		12B76E832D0D90600021A018 /* SecretCryptoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B76E822D0D905F0021A018 /* SecretCryptoKey.swift */; };
 		12B76E862D0D93D40021A018 /* UICustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B76E852D0D93D30021A018 /* UICustomWebView.swift */; };
 		12B76E882D0D940B0021A018 /* ControlWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B76E872D0D940A0021A018 /* ControlWebView.swift */; };
@@ -163,6 +164,7 @@
 		12ACAD2D299C36DB00273834 /* DownSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownSideView.swift; sourceTree = "<group>"; };
 		12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSizeUtility.swift; sourceTree = "<group>"; };
 		12ACAD33299FAE8D00273834 /* RewardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardButtonView.swift; sourceTree = "<group>"; };
+		12B5A7B62DC649A300B1D809 /* FBAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnalyticsManager.swift; sourceTree = "<group>"; };
 		12B76E822D0D905F0021A018 /* SecretCryptoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretCryptoKey.swift; sourceTree = "<group>"; };
 		12B76E852D0D93D30021A018 /* UICustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomWebView.swift; sourceTree = "<group>"; };
 		12B76E872D0D940A0021A018 /* ControlWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlWebView.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				12CA5D962D21887E00A4C1F6 /* UserDefaultManager.swift */,
 				122401432B87691E0099BE8D /* ImageFileManager.swift */,
 				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
+				12B5A7B62DC649A300B1D809 /* FBAnalyticsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -834,6 +837,7 @@
 				12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */,
 				123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */,
 				1246024F2B381EEF00B6C32D /* NotifyConfig.swift in Sources */,
+				12B5A7B72DC649B500B1D809 /* FBAnalyticsManager.swift in Sources */,
 				12B76E8B2D0E62A70021A018 /* ShareCreateError.swift in Sources */,
 				12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */,
 				129A0DEC2CAC260F006C6ED2 /* FaqListView.swift in Sources */,
