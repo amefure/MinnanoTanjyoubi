@@ -10,6 +10,7 @@ target 'MinnanoTanjyoubi' do
   pod 'RealmSwift' , '10.37.2'
   pod 'FirebaseCrashlytics'
   pod 'FirebaseAnalytics'
+  pod 'FirebasePerformance'
   pod 'CryptoSwift'
   pod 'FirebaseCore'
   pod 'SwiftFormat/CLI', :configurations => ['Debug']
