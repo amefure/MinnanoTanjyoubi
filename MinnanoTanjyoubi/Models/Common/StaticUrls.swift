@@ -18,6 +18,9 @@ class StaticUrls {
     static let APP_CONTACT_URL = APP_WEB_URL + "contact"
     /// 利用規約
     static let APP_TERMS_OF_SERVICE_URL = APP_WEB_URL + "app-terms-of-service"
+
+    /// `みんなの出産祝い`アプリURL
+    static let APP_OIWAI_URL = "https://apps.apple.com/jp/app/%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E5%87%BA%E7%94%A3%E7%A5%9D%E3%81%84/id6742353345"
 }
 
 // Custom URL Scheme

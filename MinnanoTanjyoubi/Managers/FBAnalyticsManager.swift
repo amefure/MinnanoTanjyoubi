@@ -19,6 +19,17 @@ class FBAnalyticsManager {
         )
     }
 
+    /// みんなの出産祝い広告タップイベント
+    static func loggingTapOiwaiAdsEvent() {
+        Analytics.logEvent(
+            AppEvent.tapOiwaiAds.rawValue,
+            parameters: [
+                AnalyticsParameterItemID: "tapOiwaiAds",
+                AnalyticsParameterItemName: "みんなの出産祝い広告タップ",
+            ]
+        )
+    }
+    
     /// 広告視聴容量追加イベント
     static func loggingAddCapacityEvent() {
         Analytics.logEvent(
@@ -82,4 +93,5 @@ enum AppEvent: String {
     case selectThemaColor = "select_thema_color"
     case selectSortItem = "select_sort_item"
     case addCapacity = "add_capacity"
+    case tapOiwaiAds = "tap_oiwai_ads"
 }

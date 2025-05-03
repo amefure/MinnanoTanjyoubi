@@ -82,6 +82,7 @@ enum Asset {
     enum Images {
         static let appiconRemove = ImageAsset(name: "Appicon-remove")
         static let appLogo = ImageAsset(name: "app_logo")
+        static let appMinnanoOiwai = ImageAsset(name: "app_minnano_oiwai")
     }
 }
 

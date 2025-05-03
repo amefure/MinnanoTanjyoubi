@@ -353,11 +353,39 @@ struct SettingView: View {
             Spacer()
 
             if !rootEnvironment.removeAds {
-                AdMobBannerView()
-                    .frame(height: 50)
+                if let url = URL(string: StaticUrls.APP_OIWAI_URL) {
+                    Link(destination: url) {
+                        HStack {
+                            Asset.Images.appMinnanoOiwai.swiftUIImage
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Spacer()
+                            VStack {
+                                Text("「みんなの出産祝い」がリリース！！")
+                                    .fontS(bold: true)
+                                Spacer()
+                                Text("＼出産祝いを登録・検索できるアプリ／")
+                                    .fontSS(bold: true)
+                            }
+
+                            Spacer()
+                        }.padding()
+                            .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 60)
+                            .background(.white.opacity(0.7))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }.foregroundStyle(Asset.Colors.exText.swiftUIColor)
+                        .simultaneousGesture(TapGesture().onEnded {
+                            // 計測
+                            FBAnalyticsManager.loggingTapOiwaiAdsEvent()
+                        })
+                } else {
+                    AdMobBannerView()
+                        .frame(height: 50)
+                }
             }
 
-        }.font(.system(size: 17))
+        }.fontM()
             .onAppear {
                 viewModel.onAppear()
                 isLock = viewModel.isLock
