@@ -11,6 +11,7 @@ target 'MinnanoTanjyoubi' do
   pod 'FirebaseCrashlytics'
   pod 'FirebaseAnalytics'
   pod 'FirebasePerformance'
+  pod 'FirebaseRemoteConfig'
   pod 'CryptoSwift'
   pod 'FirebaseCore'
   pod 'SwiftFormat/CLI', :configurations => ['Debug']

@@ -145,6 +145,7 @@ DEPENDENCIES:
   - FirebaseCore
   - FirebaseCrashlytics
   - FirebasePerformance
+  - FirebaseRemoteConfig
   - Google-Mobile-Ads-SDK
   - RealmSwift (= 10.37.2)
   - SwiftFormat/CLI
@@ -202,6 +203,6 @@ SPEC CHECKSUMS:
   RealmSwift: adaf8f6fd925b41447089fcfab71b9b7cdc3982d
   SwiftFormat: 548c7b221429101546d3caeeeb672f11578df0ad
 
-PODFILE CHECKSUM: a38bac1273d59bf9d34e68f0414dcadba1084656
+PODFILE CHECKSUM: 30a8ef2886018e8b2db0592e337427a7459b0298
 
 COCOAPODS: 1.16.2
