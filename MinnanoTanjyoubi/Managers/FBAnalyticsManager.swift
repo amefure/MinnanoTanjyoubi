@@ -9,6 +9,7 @@ import FirebaseAnalytics
 
 class FBAnalyticsManager {
     /// `screen_view`イベント計測
+    /// デフォルトイベント：`AnalyticsEventScreenView`
     static func loggingScreen(screen: AppSreenClassName) {
         Analytics.logEvent(
             AnalyticsEventScreenView,
@@ -20,45 +21,47 @@ class FBAnalyticsManager {
     }
 
     /// みんなの出産祝い広告タップイベント
+    /// デフォルトイベント：`AnalyticsEventSelectContent`
     static func loggingTapOiwaiAdsEvent() {
         Analytics.logEvent(
-            AppEvent.tapOiwaiAds.rawValue,
+            AnalyticsEventSelectContent,
             parameters: [
-                AnalyticsParameterItemID: "tapOiwaiAds",
+                AnalyticsParameterItemID: AppEvent.tapOiwaiAds.rawValue,
                 AnalyticsParameterItemName: "みんなの出産祝い広告タップ",
             ]
         )
     }
-    
+
     /// 広告視聴容量追加イベント
+    /// デフォルトイベント：`AnalyticsEventSelectContent`
     static func loggingAddCapacityEvent() {
         Analytics.logEvent(
-            AppEvent.addCapacity.rawValue,
+            AnalyticsEventSelectContent,
             parameters: [
-                AnalyticsParameterItemID: "addCapacity",
+                AnalyticsParameterItemID: AppEvent.addCapacity.rawValue,
                 AnalyticsParameterItemName: "容量追加",
             ]
         )
     }
 
-    /// アプリ内テーマーカラー選択イベント
+    /// アプリ内テーマーカラー選択イベント(カスタムイベント)
+    /// カスタムディメンションから登録 -> 探索などでレポートしないと表示されない
     static func loggingSelectColorEvent(color: AppColorScheme) {
         Analytics.logEvent(
             AppEvent.selectThemaColor.rawValue,
             parameters: [
-                AnalyticsParameterItemID: color.rawValue,
-                AnalyticsParameterItemName: color.name,
+                "color_scheme": color.name,
             ]
         )
     }
 
-    /// アプリ内ソート機能選択イベント
+    /// アプリ内ソート機能選択イベント(カスタムイベント)
+    /// カスタムディメンションから登録 -> 探索などでレポートしないと表示されない
     static func loggingSelectSortEvent(sort: AppSortItem) {
         Analytics.logEvent(
-            AppEvent.selectSortItem.rawValue,
+            AnalyticsEventSelectContent,
             parameters: [
-                AnalyticsParameterItemID: sort.rawValue,
-                AnalyticsParameterItemName: sort.name,
+                "sort_type": sort.name,
             ]
         )
     }
