@@ -207,6 +207,17 @@ class UserDefaultManager {
         userDefaultsRepository.setBoolData(key: UserDefaultsKey.SHOW_REVIEW_POPUP, isOn: flag)
     }
 
+    /// `SHOW_REVIEW_POPUP_MIGRATE_VERSION`
+    /// 取得：レビューポップアップ表示マイグレーションフラグ
+    public func getShowReviewPopupMigrateVersion() -> Int {
+        userDefaultsRepository.getIntData(key: UserDefaultsKey.SHOW_REVIEW_POPUP_MIGRATE_VERSION)
+    }
+
+    /// 登録：レビューポップアップ表示マイグレーションフラグ
+    public func setShowReviewPopupMigrateVersion(_ value: Int) {
+        userDefaultsRepository.setIntData(key: UserDefaultsKey.SHOW_REVIEW_POPUP_MIGRATE_VERSION, value: value)
+    }
+
     /// `LAUNCH_APP_COUNT`
     /// 取得：アプリ起動回数
     public func getLaunchAppCount() -> Int {
@@ -217,8 +228,9 @@ class UserDefaultManager {
     public func setLaunchAppCount(reset: Bool = false) {
         if reset {
             userDefaultsRepository.setIntData(key: UserDefaultsKey.LAUNCH_APP_COUNT, value: 0)
-        } else {
-            let addCount = getLaunchAppCount() + 1
+        } else if getLaunchAppCount() <= 10 {
+            // 無限に回数を更新しないように10回で打ち止めにする
+            let addCount: Int = getLaunchAppCount() + 1
             userDefaultsRepository.setIntData(key: UserDefaultsKey.LAUNCH_APP_COUNT, value: addCount)
         }
     }

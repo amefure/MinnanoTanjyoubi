@@ -36,6 +36,8 @@ class UserDefaultsKey {
     static let TUTORIAL_RE_SHOW_FLAG = "TUTORIAL_RE_SHOW_FLAG"
     /// レビューポップアップフラグ表示
     static let SHOW_REVIEW_POPUP = "SHOW_REVIEW_POPUP"
+    /// レビューポップアップマイグレーションフラグ表示
+    static let SHOW_REVIEW_POPUP_MIGRATE_VERSION = "SHOW_REVIEW_POPUP_MIGRATE_VERSION"
     /// アプリ起動回数
     static let LAUNCH_APP_COUNT = "LAUNCH_APP_COUNT"
     /// アプリ内課金：広告削除

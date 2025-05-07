@@ -35,6 +35,14 @@ class RootEnvironment: ObservableObject {
     /// レイアウトフラグ表示
     @Published private(set) var sectionLayoutFlag: Bool = false
 
+    /// ポップアップ表示定数
+    /// Ver4.7.2：0
+    private let popupShowVersion: Int = 0
+    /// ポップアップ表示起動回数定数
+    private let popupShowLaunchCount: Int = 5
+    /// ポップアップ表示登録数定数
+    private let popupShowUserCount: Int = 30
+
     /// `Combine`
     private var cancellables: Set<AnyCancellable> = []
 
@@ -80,6 +88,8 @@ class RootEnvironment: ObservableObject {
     public func onAppear() {
         // アプリ起動回数カウント
         setLaunchAppCount()
+        // レビューポップアップ表示マイグレーション
+        migrationShowPopUpVersion()
         // レビューポップアップ表示
         showReviewPopup()
     }
@@ -120,15 +130,29 @@ extension RootEnvironment {
         // 1度表示していれば表示しない
         guard !getShowReviewPopupFlag() else { return }
         // アプリを5回以上起動していない場合は表示しない
-        guard getLaunchAppCount() >= 5 else { return }
+        guard getLaunchAppCount() >= popupShowLaunchCount else { return }
         // 登録されている誕生日情報が30以下なら表示しない
         let count = repository.readAllUsers().count
-        guard count >= 30 else { return }
+        guard count >= popupShowUserCount else { return }
         guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         // レビューリクエストポップアップを表示する
         SKStoreReviewController.requestReview(in: scene)
         // iOS18以降：AppStore.requestReview(in: scene)
         registerShowReviewPopupFlag(true)
+    }
+
+    /// レビューポップアップ表示マイグレーション
+    private func migrationShowPopUpVersion() {
+        // バージョンが一致しているなら更新する
+        guard AppManager.sharedUserDefaultManager.getShowReviewPopupMigrateVersion() == popupShowVersion else {
+            return
+        }
+        // バージョン+1で更新する
+        AppManager.sharedUserDefaultManager.setShowReviewPopupMigrateVersion(popupShowVersion + 1)
+        // 表示フラグをリセット
+        registerShowReviewPopupFlag(false)
+        // アプリ起動回数もリセット
+        setLaunchAppCount(reset: true)
     }
 }
 
