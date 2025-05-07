@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // 通知の許可申請
         AppManager.sharedNotificationRequestManager.requestAuthorization { _ in }
 
+        // Remote Config 初期設定
+        AppManager.sharedRemoteConfigManager.initialize()
+
         // 通知デリゲートの登録
         UNUserNotificationCenter.current().delegate = self
 

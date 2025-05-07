@@ -32,6 +32,18 @@ class FBAnalyticsManager {
         )
     }
 
+    /// レビューポップアップ表示イベント
+    /// デフォルトイベント：`AnalyticsEventSelectContent`
+    static func loggingShowReviewPopupEvent() {
+        Analytics.logEvent(
+            AnalyticsEventSelectContent,
+            parameters: [
+                AnalyticsParameterItemID: AppEvent.showReviewPopup.rawValue,
+                AnalyticsParameterItemName: "レビューポップアップ表示",
+            ]
+        )
+    }
+
     /// 広告視聴容量追加イベント
     /// デフォルトイベント：`AnalyticsEventSelectContent`
     static func loggingAddCapacityEvent() {
@@ -97,4 +109,5 @@ enum AppEvent: String {
     case selectSortItem = "select_sort_item"
     case addCapacity = "add_capacity"
     case tapOiwaiAds = "tap_oiwai_ads"
+    case showReviewPopup = "show_review_popup"
 }

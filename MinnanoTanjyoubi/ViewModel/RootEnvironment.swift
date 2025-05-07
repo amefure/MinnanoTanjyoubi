@@ -35,9 +35,6 @@ class RootEnvironment: ObservableObject {
     /// レイアウトフラグ表示
     @Published private(set) var sectionLayoutFlag: Bool = false
 
-    /// ポップアップ表示定数
-    /// Ver4.7.2：0
-    private let popupShowVersion: Int = 0
     /// ポップアップ表示起動回数定数
     private let popupShowLaunchCount: Int = 5
     /// ポップアップ表示登録数定数
@@ -85,11 +82,26 @@ class RootEnvironment: ObservableObject {
         getPurchasedFlag()
     }
 
+    /// アプリ起動時に1回だけ呼ばれる設計
     public func onAppear() {
         // アプリ起動回数カウント
         setLaunchAppCount()
-        // レビューポップアップ表示マイグレーション
-        migrationShowPopUpVersion()
+
+        // Remoto Config　レビューポップアップ表示バージョン
+        // initで呼ぶとdidFinishLaunchingWithOptionsより先に実行されてしまい
+        // FirebaseApp.configure()前の呼び出しエラーになってしまうため
+        AppManager.sharedRemoteConfigManager.showReviewPopupVersion
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] version in
+                guard let self else { return }
+                // Versionが初期値(0)なら流さない
+                if version != 0 {
+                    // レビューポップアップ表示マイグレーション
+                    resetShowPopUp(version)
+                }
+
+            }.store(in: &cancellables)
+
         // レビューポップアップ表示
         showReviewPopup()
     }
@@ -138,21 +150,27 @@ extension RootEnvironment {
         // レビューリクエストポップアップを表示する
         SKStoreReviewController.requestReview(in: scene)
         // iOS18以降：AppStore.requestReview(in: scene)
+        // 計測
+        FBAnalyticsManager.loggingShowReviewPopupEvent()
         registerShowReviewPopupFlag(true)
     }
 
     /// レビューポップアップ表示マイグレーション
-    private func migrationShowPopUpVersion() {
-        // バージョンが一致しているなら更新する
-        guard AppManager.sharedUserDefaultManager.getShowReviewPopupMigrateVersion() == popupShowVersion else {
+    private func resetShowPopUp(_ configVersion: Int) {
+        // バージョンが一致またはRemoto Config以下なら更新する
+        // アプリ内 0 : Remoto Config 0 => 更新
+        // アプリ内 0 : Remoto Config 1 => 更新
+        // アプリ内 2 : Remoto Config 1 => 更新しない
+        guard AppManager.sharedUserDefaultManager.getShowReviewPopupMigrateVersion() <= configVersion else {
             return
         }
         // バージョン+1で更新する
-        AppManager.sharedUserDefaultManager.setShowReviewPopupMigrateVersion(popupShowVersion + 1)
+        AppManager.sharedUserDefaultManager.setShowReviewPopupMigrateVersion(configVersion + 1)
         // 表示フラグをリセット
         registerShowReviewPopupFlag(false)
         // アプリ起動回数もリセット
         setLaunchAppCount(reset: true)
+        // 次回起動時から回数カウントが始まりレビューポップアップが表示される
     }
 }
 

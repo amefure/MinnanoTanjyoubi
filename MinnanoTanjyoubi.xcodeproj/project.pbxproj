@@ -36,6 +36,7 @@
 		1246024C2B36BCE500B6C32D /* AdsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246024B2B36BCE500B6C32D /* AdsConfig.swift */; };
 		1246024F2B381EEF00B6C32D /* NotifyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246024E2B381EEF00B6C32D /* NotifyConfig.swift */; };
 		124602532B38490A00B6C32D /* AppLockInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602522B38490A00B6C32D /* AppLockInputViewModel.swift */; };
+		124BBC3A2DCB872000E78A71 /* FBRemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124BBC392DCB871A00E78A71 /* FBRemoteConfigManager.swift */; };
 		1258FD722C97D0480065A081 /* EditNotifyMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */; };
 		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
 		12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB029A785EE00D0498F /* SortedButtonView.swift */; };
@@ -142,6 +143,7 @@
 		1246024B2B36BCE500B6C32D /* AdsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsConfig.swift; sourceTree = "<group>"; };
 		1246024E2B381EEF00B6C32D /* NotifyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyConfig.swift; sourceTree = "<group>"; };
 		124602522B38490A00B6C32D /* AppLockInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockInputViewModel.swift; sourceTree = "<group>"; };
+		124BBC392DCB871A00E78A71 /* FBRemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBRemoteConfigManager.swift; sourceTree = "<group>"; };
 		1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotifyMessageView.swift; sourceTree = "<group>"; };
 		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
 		12682BB029A785EE00D0498F /* SortedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedButtonView.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				122401432B87691E0099BE8D /* ImageFileManager.swift */,
 				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
 				12B5A7B62DC649A300B1D809 /* FBAnalyticsManager.swift */,
+				124BBC392DCB871A00E78A71 /* FBRemoteConfigManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */,
 				128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */,
 				128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */,
+				124BBC3A2DCB872000E78A71 /* FBRemoteConfigManager.swift in Sources */,
 				12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */,
 				128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */,
 				12CFB0C52D0C7BEE00407CEA /* ExModifier.swift in Sources */,

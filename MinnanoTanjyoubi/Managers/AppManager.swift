@@ -10,4 +10,5 @@ import UIKit
 class AppManager: NSObject {
     static let sharedNotificationRequestManager = NotificationRequestManager()
     static let sharedUserDefaultManager = UserDefaultManager()
+    static let sharedRemoteConfigManager = RemoteConfigManager()
 }
