@@ -31,36 +31,46 @@
 - 広告削除機能
 - 容量制限解放(無料でも広告を視聴いただくことで容量は増加させることが可能です。)
 
-# 開発環境
+## 開発環境
 
 - Xcode：16.3
 - Swift：5.9
 - Mac M1：Sequoia 15.4
 
+### 機能一覧
+
+- 誕生日情報保存・取得機能
+- プッシュ通知
+- アプリ内課金
+- 生体認証
+- データ転送
+- 画像添付
+- リワード広告
+
 ## ライブラリ
 
 ライブラリ管理ツール：Cocoa Pods
 
-## Google-Mobile-Ads-SDK
+### Google-Mobile-Ads-SDK
 AdMob 広告表示 
 
-## RealmSwift
+### RealmSwift
 アプリ内DB
 
-## FirebaseCrashlytics
+### FirebaseCrashlytics
 クラッシュ解析
 
-## FirebaseAnalytics
+### FirebaseAnalytics
 解析
 
-## FirebasePerformance
+### FirebasePerformance
 パフォーマンス解析
 
-## FirebaseRemoteConfig
+### FirebaseRemoteConfig
 レビューポップアップ表示管理
 
-## CryptoSwift
+### CryptoSwift
 暗号化・複合化 データ送信機能
 
-## SwiftFormat/CLI
+### SwiftFormat/CLI
 フォーマット
