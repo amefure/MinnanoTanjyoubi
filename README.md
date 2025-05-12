@@ -51,26 +51,21 @@
 
 ライブラリ管理ツール：Cocoa Pods
 
-### Google-Mobile-Ads-SDK
-AdMob 広告表示 
+### Storage
 
-### RealmSwift
-アプリ内DB
+- RealmSwift・・・アプリ内DB
 
-### FirebaseCrashlytics
-クラッシュ解析
+### Analyze
 
-### FirebaseAnalytics
-解析
+- FirebaseCrashlytics・・・クラッシュ解析
+- FirebaseAnalytics・・・イベント解析
+- FirebasePerformance・・・パフォーマンス解析
 
-### FirebasePerformance
-パフォーマンス解析
+### Utility
 
-### FirebaseRemoteConfig
-レビューポップアップ表示管理
+- Google-Mobile-Ads-SDK・・・AdMob 広告表示
+- FirebaseRemoteConfig・・・レビューポップアップ表示管理
+- CryptoSwift・・・暗号化・複合化 データ送信機能
 
-### CryptoSwift
-暗号化・複合化 データ送信機能
-
-### SwiftFormat/CLI
-フォーマット
+### Debug
+- SwiftFormat/CLI・・・フォーマット
