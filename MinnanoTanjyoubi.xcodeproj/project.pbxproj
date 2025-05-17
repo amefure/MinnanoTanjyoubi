@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -113,6 +113,16 @@
 		FC61592AD699FD872A6E3487 /* Pods_MinnanoTanjyoubi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748C37ED1DB63AF9B33A268C /* Pods_MinnanoTanjyoubi.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		121EADBA2DD835A70026B49D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12CB91F128E5C6E0002BD7B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12CB91F828E5C6E0002BD7B2;
+			remoteInfo = MinnanoTanjyoubi;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		121DEE002B198D4600964902 /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		121DEE042B1A200600964902 /* KeyChainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepository.swift; sourceTree = "<group>"; };
@@ -120,6 +130,7 @@
 		121DEE0A2B1A218F00964902 /* AppLockInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockInputView.swift; sourceTree = "<group>"; };
 		121DEE0C2B1A23E000964902 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		121E5B732DAD3DEC0032D66C /* NotifyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDate.swift; sourceTree = "<group>"; };
+		121EADB62DD835A70026B49D /* MinnanoTanjyoubiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MinnanoTanjyoubiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1224013D2B8720FA0099BE8D /* ImagePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDialog.swift; sourceTree = "<group>"; };
 		1224013F2B8721EE0099BE8D /* ImageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContainerView.swift; sourceTree = "<group>"; };
 		122401432B87691E0099BE8D /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
@@ -224,7 +235,24 @@
 		748C37ED1DB63AF9B33A268C /* Pods_MinnanoTanjyoubi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MinnanoTanjyoubi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		121EADB72DD835A70026B49D /* MinnanoTanjyoubiTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = MinnanoTanjyoubiTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		121EADB32DD835A70026B49D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12CB91F628E5C6E0002BD7B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				12CB91FB28E5C6E1002BD7B2 /* MinnanoTanjyoubi */,
+				121EADB72DD835A70026B49D /* MinnanoTanjyoubiTests */,
 				12CB91FA28E5C6E0002BD7B2 /* Products */,
 				7CD4A05B51935857807E8CC5 /* Pods */,
 				83A9CF5E2394ECC189F1B684 /* Frameworks */,
@@ -502,6 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				12CB91F928E5C6E0002BD7B2 /* MinnanoTanjyoubi.app */,
+				121EADB62DD835A70026B49D /* MinnanoTanjyoubiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -634,6 +664,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		121EADB52DD835A70026B49D /* MinnanoTanjyoubiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 121EADBE2DD835A70026B49D /* Build configuration list for PBXNativeTarget "MinnanoTanjyoubiTests" */;
+			buildPhases = (
+				121EADB22DD835A70026B49D /* Sources */,
+				121EADB32DD835A70026B49D /* Frameworks */,
+				121EADB42DD835A70026B49D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				121EADBB2DD835A70026B49D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				121EADB72DD835A70026B49D /* MinnanoTanjyoubiTests */,
+			);
+			name = MinnanoTanjyoubiTests;
+			productName = MinnanoTanjyoubiTests;
+			productReference = 121EADB62DD835A70026B49D /* MinnanoTanjyoubiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		12CB91F828E5C6E0002BD7B2 /* MinnanoTanjyoubi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12CB920728E5C6E1002BD7B2 /* Build configuration list for PBXNativeTarget "MinnanoTanjyoubi" */;
@@ -663,9 +714,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					121EADB52DD835A70026B49D = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 12CB91F828E5C6E0002BD7B2;
+					};
 					12CB91F828E5C6E0002BD7B2 = {
 						CreatedOnToolsVersion = 13.4.1;
 						DevelopmentTeam = CGD79LB65H;
@@ -674,7 +729,6 @@
 				};
 			};
 			buildConfigurationList = 12CB91F428E5C6E0002BD7B2 /* Build configuration list for PBXProject "MinnanoTanjyoubi" */;
-			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -683,16 +737,25 @@
 				ja,
 			);
 			mainGroup = 12CB91F028E5C6E0002BD7B2;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 12CB91FA28E5C6E0002BD7B2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				12CB91F828E5C6E0002BD7B2 /* MinnanoTanjyoubi */,
+				121EADB52DD835A70026B49D /* MinnanoTanjyoubiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		121EADB42DD835A70026B49D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12CB91F728E5C6E0002BD7B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -812,6 +875,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		121EADB22DD835A70026B49D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12CB91F528E5C6E0002BD7B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -916,7 +986,64 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		121EADBB2DD835A70026B49D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12CB91F828E5C6E0002BD7B2 /* MinnanoTanjyoubi */;
+			targetProxy = 121EADBA2DD835A70026B49D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		121EADBC2DD835A70026B49D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CGD79LB65H;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MinnanoTanjyoubi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MinnanoTanjyoubi";
+			};
+			name = Debug;
+		};
+		121EADBD2DD835A70026B49D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CGD79LB65H;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MinnanoTanjyoubi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MinnanoTanjyoubi";
+			};
+			name = Release;
+		};
 		12CB920528E5C6E1002BD7B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1107,6 +1234,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		121EADBE2DD835A70026B49D /* Build configuration list for PBXNativeTarget "MinnanoTanjyoubiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				121EADBC2DD835A70026B49D /* Debug */,
+				121EADBD2DD835A70026B49D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		12CB91F428E5C6E0002BD7B2 /* Build configuration list for PBXProject "MinnanoTanjyoubi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
