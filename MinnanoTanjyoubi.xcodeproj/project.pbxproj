@@ -111,6 +111,7 @@
 		12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A292B2DC29500FA700E /* RealmConfig.swift */; };
 		12FE3A2C2B2DCC7100FA700E /* RootEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */; };
 		FC61592AD699FD872A6E3487 /* Pods_MinnanoTanjyoubi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748C37ED1DB63AF9B33A268C /* Pods_MinnanoTanjyoubi.framework */; };
+		FD427E14A9C9D487FB63255F /* Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C0CB22528FE95D10803FCC6 /* Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,7 +233,10 @@
 		12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootEnvironment.swift; sourceTree = "<group>"; };
 		13F3BE9ECF2FEC3AE4EF77C2 /* Pods-MinnanoTanjyoubi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi.debug.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi.debug.xcconfig"; sourceTree = "<group>"; };
 		2D32FE4F74F4E74D9B1C5240 /* Pods-MinnanoTanjyoubi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi.release.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi.release.xcconfig"; sourceTree = "<group>"; };
+		6C0CB22528FE95D10803FCC6 /* Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		748C37ED1DB63AF9B33A268C /* Pods_MinnanoTanjyoubi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MinnanoTanjyoubi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E130CCE94C4DB3BB640438B /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig"; sourceTree = "<group>"; };
+		E0138471AD6F6257451B6EC5 /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -250,6 +254,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD427E14A9C9D487FB63255F /* Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +653,8 @@
 			children = (
 				13F3BE9ECF2FEC3AE4EF77C2 /* Pods-MinnanoTanjyoubi.debug.xcconfig */,
 				2D32FE4F74F4E74D9B1C5240 /* Pods-MinnanoTanjyoubi.release.xcconfig */,
+				E0138471AD6F6257451B6EC5 /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig */,
+				7E130CCE94C4DB3BB640438B /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -657,6 +664,7 @@
 			children = (
 				12CA5D8D2D19A59F00A4C1F6 /* StoreKit.framework */,
 				748C37ED1DB63AF9B33A268C /* Pods_MinnanoTanjyoubi.framework */,
+				6C0CB22528FE95D10803FCC6 /* Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -668,9 +676,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 121EADBE2DD835A70026B49D /* Build configuration list for PBXNativeTarget "MinnanoTanjyoubiTests" */;
 			buildPhases = (
+				C1A46E09624C0B29DE4E017D /* [CP] Check Pods Manifest.lock */,
 				121EADB22DD835A70026B49D /* Sources */,
 				121EADB32DD835A70026B49D /* Frameworks */,
 				121EADB42DD835A70026B49D /* Resources */,
+				B0CCB3F52204EB7AA640B06A /* [CP] Embed Pods Frameworks */,
+				D9EF11A99D8B714E7B44714C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -838,6 +849,62 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B0CCB3F52204EB7AA640B06A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1A46E09624C0B29DE4E017D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9EF11A99D8B714E7B44714C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F014A423D9D1F42E9E895ED9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -997,6 +1064,7 @@
 /* Begin XCBuildConfiguration section */
 		121EADBC2DD835A70026B49D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0138471AD6F6257451B6EC5 /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1022,6 +1090,7 @@
 		};
 		121EADBD2DD835A70026B49D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E130CCE94C4DB3BB640438B /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

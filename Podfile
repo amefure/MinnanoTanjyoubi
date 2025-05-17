@@ -16,4 +16,11 @@ target 'MinnanoTanjyoubi' do
   pod 'FirebaseCore'
   pod 'SwiftFormat/CLI', :configurations => ['Debug']
 
+  target 'MinnanoTanjyoubiTests' do 
+    use_frameworks!
+
+    pod 'RealmSwift' , '10.37.2'
+    pod 'CryptoSwift'
+  end
+
 end
