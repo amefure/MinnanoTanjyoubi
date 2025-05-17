@@ -224,11 +224,12 @@ extension User {
         let dfm = DateFormatUtility()
         var users: [User] = []
 
-        let user = User()
-        user.name = "吉田　真紘"
-        user.ruby = "よしだ　まひろ"
-        user.date = dfm.getJpDate(from: "1994年12月21日")
-        user.relation = .friend
+        let user = User.createDemoUser(
+            name: "吉田　真紘",
+            ruby: "よしだ　まひろ",
+            dateStr: "1994年12月21日",
+            relation: .friend
+        )
         users.append(user)
 
         let user2 = User()
@@ -295,5 +296,21 @@ extension User {
         users.append(user10)
 
         return users
+    }
+
+    /// デモユーザー作成
+    static func createDemoUser(
+        name: String,
+        ruby: String,
+        dateStr: String,
+        relation: Relation
+    ) -> User {
+        let dfm = DateFormatUtility()
+        let user = User()
+        user.name = name
+        user.ruby = ruby
+        user.date = dfm.getJpDate(from: dateStr)
+        user.relation = relation
+        return user
     }
 }
