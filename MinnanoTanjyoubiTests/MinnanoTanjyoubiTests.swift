@@ -7,8 +7,9 @@
 
 import Testing
 
+@Suite
 struct MinnanoTanjyoubiTests {
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-    }
+    static let allTests = [
+        UserTest.self,
+    ]
 }
