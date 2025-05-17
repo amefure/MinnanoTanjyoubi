@@ -37,6 +37,10 @@
 - Swift：5.9
 - Mac M1：Sequoia 15.4
 
+### アーキテクチャ
+
+- MVVM + Repository + Manager
+
 ### 機能一覧
 
 - 誕生日情報保存・取得機能
@@ -46,6 +50,13 @@
 - データ転送
 - 画像添付
 - リワード広告
+
+### 自動化
+fastlaneを使用してビルドアップロードを自動化しています。
+
+```
+$ bundle exec fastlane release
+```
 
 ## ライブラリ
 
