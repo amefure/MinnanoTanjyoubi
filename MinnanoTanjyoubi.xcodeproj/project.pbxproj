@@ -62,6 +62,8 @@
 		12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2D299C36DB00273834 /* DownSideView.swift */; };
 		12ACAD32299EDD6200273834 /* DeviceSizeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */; };
 		12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD33299FAE8D00273834 /* RewardButtonView.swift */; };
+		12B0DC592DE884F700BDA78C /* MinnanoTanjyoubiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0DC562DE884F700BDA78C /* MinnanoTanjyoubiTests.swift */; };
+		12B0DC5A2DE884F700BDA78C /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0DC572DE884F700BDA78C /* UserTest.swift */; };
 		12B5A7B72DC649B500B1D809 /* FBAnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B5A7B62DC649A300B1D809 /* FBAnalyticsManager.swift */; };
 		12B76E832D0D90600021A018 /* SecretCryptoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B76E822D0D905F0021A018 /* SecretCryptoKey.swift */; };
 		12B76E862D0D93D40021A018 /* UICustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B76E852D0D93D30021A018 /* UICustomWebView.swift */; };
@@ -181,6 +183,8 @@
 		12ACAD2D299C36DB00273834 /* DownSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownSideView.swift; sourceTree = "<group>"; };
 		12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSizeUtility.swift; sourceTree = "<group>"; };
 		12ACAD33299FAE8D00273834 /* RewardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardButtonView.swift; sourceTree = "<group>"; };
+		12B0DC562DE884F700BDA78C /* MinnanoTanjyoubiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinnanoTanjyoubiTests.swift; sourceTree = "<group>"; };
+		12B0DC572DE884F700BDA78C /* UserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTest.swift; sourceTree = "<group>"; };
 		12B5A7B62DC649A300B1D809 /* FBAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnalyticsManager.swift; sourceTree = "<group>"; };
 		12B76E822D0D905F0021A018 /* SecretCryptoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretCryptoKey.swift; sourceTree = "<group>"; };
 		12B76E852D0D93D30021A018 /* UICustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomWebView.swift; sourceTree = "<group>"; };
@@ -241,14 +245,6 @@
 		7E130CCE94C4DB3BB640438B /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig"; sourceTree = "<group>"; };
 		E0138471AD6F6257451B6EC5 /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		121EADB72DD835A70026B49D /* MinnanoTanjyoubiTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MinnanoTanjyoubiTests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		121EADB32DD835A70026B49D /* Frameworks */ = {
@@ -461,6 +457,15 @@
 			path = Dialog;
 			sourceTree = "<group>";
 		};
+		12B0DC582DE884F700BDA78C /* MinnanoTanjyoubiTests */ = {
+			isa = PBXGroup;
+			children = (
+				12B0DC562DE884F700BDA78C /* MinnanoTanjyoubiTests.swift */,
+				12B0DC572DE884F700BDA78C /* UserTest.swift */,
+			);
+			path = MinnanoTanjyoubiTests;
+			sourceTree = "<group>";
+		};
 		12B76E842D0D93720021A018 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,7 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				12CB91FB28E5C6E1002BD7B2 /* MinnanoTanjyoubi */,
-				121EADB72DD835A70026B49D /* MinnanoTanjyoubiTests */,
+				12B0DC582DE884F700BDA78C /* MinnanoTanjyoubiTests */,
 				12CB91FA28E5C6E0002BD7B2 /* Products */,
 				7CD4A05B51935857807E8CC5 /* Pods */,
 				83A9CF5E2394ECC189F1B684 /* Frameworks */,
@@ -689,9 +694,6 @@
 			dependencies = (
 				121EADBB2DD835A70026B49D /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				121EADB72DD835A70026B49D /* MinnanoTanjyoubiTests */,
-			);
 			name = MinnanoTanjyoubiTests;
 			productName = MinnanoTanjyoubiTests;
 			productReference = 121EADB62DD835A70026B49D /* MinnanoTanjyoubiTests.xctest */;
@@ -731,6 +733,8 @@
 				TargetAttributes = {
 					121EADB52DD835A70026B49D = {
 						CreatedOnToolsVersion = 16.3;
+						DevelopmentTeam = CGD79LB65H;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 12CB91F828E5C6E0002BD7B2;
 					};
 					12CB91F828E5C6E0002BD7B2 = {
@@ -749,7 +753,6 @@
 				ja,
 			);
 			mainGroup = 12CB91F028E5C6E0002BD7B2;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 12CB91FA28E5C6E0002BD7B2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -965,6 +968,8 @@
 			files = (
 				1276A7992DD8C9100023067D /* DateFormatUtility.swift in Sources */,
 				1276A7982DD8C8F50023067D /* RelationEnum.swift in Sources */,
+				12B0DC592DE884F700BDA78C /* MinnanoTanjyoubiTests.swift in Sources */,
+				12B0DC5A2DE884F700BDA78C /* UserTest.swift in Sources */,
 				1276A7972DD8C8F00023067D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
