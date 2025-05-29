@@ -1,8 +1,8 @@
-# Uncomment the next line to define a global platform for your project
+# プロジェクト全体の最小対応 iOS バージョン
 platform :ios, '16.0'
 
 target 'MinnanoTanjyoubi' do
-  # Comment the next line if you don't want to use dynamic frameworks
+  # ダイナミックフレームワーク (.framework) でビルド
   use_frameworks!
 
   # Pods for MinnanoTanjyoubi
@@ -15,5 +15,12 @@ target 'MinnanoTanjyoubi' do
   pod 'CryptoSwift'
   pod 'FirebaseCore'
   pod 'SwiftFormat/CLI', :configurations => ['Debug']
+
+  target 'MinnanoTanjyoubiTests' do 
+    use_frameworks!
+
+    pod 'RealmSwift' , '10.37.2'
+    pod 'CryptoSwift'
+  end
 
 end
