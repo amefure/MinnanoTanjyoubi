@@ -58,9 +58,17 @@ fastlaneを使用してビルドアップロードを自動化しています。
 $ bundle exec fastlane release
 ```
 
+Test Flightへのアップロードも自動化しています。
+
+```
+$ bundle exec fastlane upload_test_flight
+```
+
+
 ## ライブラリ
 
-ライブラリ管理ツール：Cocoa Pods
+### ライブラリ管理ツール
+Cocoa Pods：1.16.2
 
 ### Storage
 
@@ -82,5 +90,7 @@ $ bundle exec fastlane release
 - SwiftFormat/CLI・・・フォーマット
 
 ## ドキュメント
+
 DeepWikiを使用したドキュメント
+
 https://deepwiki.com/amefure/MinnanoTanjyoubi
