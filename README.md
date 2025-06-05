@@ -80,3 +80,7 @@ $ bundle exec fastlane release
 
 ### Debug
 - SwiftFormat/CLI・・・フォーマット
+
+## ドキュメント
+DeepWikiを使用したドキュメント
+https://deepwiki.com/amefure/MinnanoTanjyoubi
