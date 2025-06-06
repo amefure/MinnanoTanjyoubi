@@ -30,7 +30,8 @@ class UserCalcUtility {
         let calendar = Calendar(identifier: .gregorian)
         let startDate = calendar.startOfDay(for: from)
         let startToday = calendar.startOfDay(for: today)
-        let ageComponents = calendar.dateComponents([.month], from: startDate, to: startToday)
+        // yearやdayを指定しないとmonthで取得できる値がズレるので注意
+        let ageComponents = calendar.dateComponents([.year, .month, .day], from: startDate, to: startToday)
         let ageMonths: Int = ageComponents.month ?? 0
         return ageMonths
     }
