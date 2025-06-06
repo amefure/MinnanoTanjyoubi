@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import MinnanoTanjyoubi
 import Testing
 
 struct UserTest {
@@ -16,33 +17,11 @@ struct UserTest {
             dateStr: "1994年12月21日",
             relation: .friend
         )
-        let daysLater = fetchDaysLater(date: user.date)
-        #expect(daysLater == user.daysLater)
-    }
 
-    /// 誕生日まであとX日
-    public func fetchDaysLater(date: Date) -> Int {
         let dfm = DateFormatUtility()
-        let dateStr = dfm.getSlashString(date: date)
-        let pre = dateStr.prefix(4)
-        let range = dateStr.range(of: pre)
-        let nowYear = dfm.getSlashString(date: dfm.today).prefix(4)
-        var replaceStr = dateStr.replacingCharacters(in: range!, with: nowYear)
+        let date: Date = dfm.getSlashDate(from: "2000/3/12") ?? Date()
 
-        var targetDate = dfm.getSlashDate(from: replaceStr)
-        if targetDate == nil {
-            // 日付変換失敗；閏年 →　3/1
-
-            replaceStr = "\(nowYear)/3/1"
-            targetDate = dfm.getSlashDate(from: replaceStr)
-        }
-
-        let num = targetDate!.timeIntervalSince(dfm.today)
-
-        var result = ceil(num / (60 * 60 * 24))
-        if result < 0 {
-            result = result + 365
-        }
-        return Int(result)
+        let daysLater = UserCalcUtility.daysLater(from: user.date, today: date)
+        #expect(daysLater == 284)
     }
 }

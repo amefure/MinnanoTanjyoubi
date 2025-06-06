@@ -29,6 +29,8 @@ struct RowUserView: View {
 
     var body: some View {
         ZStack(alignment: .top) {
+            let daysLater = UserCalcUtility.daysLater(from: user.date)
+
             VStack(spacing: 10) {
                 Text("\(user.name)")
                     .lineLimit(1)
@@ -47,14 +49,14 @@ struct RowUserView: View {
                         Text("-")
                             .fontM()
                     } else {
-                        Text("\(user.currentAge)")
+                        Text("\(UserCalcUtility.currentAge(from: user.date))")
                             .fontM()
                     }
                     Text("歳")
                         .fontSS()
 
                     if isDisplayAgeMonth && !user.isYearsUnknown {
-                        Text("\(user.currentAgeMonth)")
+                        Text("\(UserCalcUtility.currentAgeMonth(from: user.date))")
                             .fontM()
                         Text("ヶ月")
                             .fontSS()
@@ -62,7 +64,7 @@ struct RowUserView: View {
                 }
 
                 HStack(alignment: .bottom) {
-                    if user.daysLater == 0 {
+                    if daysLater == 0 {
                         Text(DeviceSizeUtility.isSESize ? "HAPPY\nBIRTHDAY" : "HAPPY BIRTHDAY")
                             .foregroundStyle(AppColorScheme.getThema1(rootEnvironment.scheme))
                             .fontWeight(.bold)
@@ -71,7 +73,7 @@ struct RowUserView: View {
 
                     } else {
                         if isDisplayDateLater,
-                           let month = user.monthLater
+                           let month = UserCalcUtility.monthLater(from: user.date)
                         {
                             Text("あと")
                             Text("\(month)")
@@ -80,7 +82,7 @@ struct RowUserView: View {
                             Text("ヶ月")
                         } else {
                             Text("あと")
-                            Text("\(user.daysLater)")
+                            Text("\(daysLater)")
                                 .fontM()
                                 .foregroundColor(AppColorScheme.getThema1(rootEnvironment.scheme))
                             Text("日")
@@ -101,7 +103,7 @@ struct RowUserView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
 
-            if user.daysLater == 0 {
+            if daysLater == 0 {
                 GarlandView()
                     .environmentObject(rootEnvironment)
             }

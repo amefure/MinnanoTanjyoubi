@@ -43,14 +43,15 @@ struct UpSideUserInfoView: View {
                 Spacer()
 
                 HStack(alignment: .bottom) {
-                    if user.daysLater == 0 {
+                    let daysLater = UserCalcUtility.daysLater(from: user.date)
+                    if daysLater == 0 {
                         Text("HAPPY BIRTHDAY")
                             .foregroundStyle(AppColorScheme.getThema1(rootEnvironment.scheme))
                             .fontWeight(.bold)
 
                     } else {
                         Text("あと")
-                        Text("\(user.daysLater)")
+                        Text("\(daysLater)")
                             .foregroundColor(AppColorScheme.getThema1(rootEnvironment.scheme))
                         Text("日")
                     }

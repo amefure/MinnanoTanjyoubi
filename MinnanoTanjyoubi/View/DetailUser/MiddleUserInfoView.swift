@@ -31,21 +31,21 @@ struct MiddleUserInfoView: View {
                 if user.isYearsUnknown {
                     Text("- 歳")
                 } else {
-                    Text("\(user.currentAge)歳")
+                    Text("\(UserCalcUtility.currentAge(from: user.date))歳")
                     if isDisplayAgeMonth {
-                        Text("\(user.currentAgeMonth)ヶ月")
+                        Text("\(UserCalcUtility.currentAgeMonth(from: user.date))ヶ月")
                     }
                 }
             }.circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema2(rootEnvironment.scheme))
 
-            Text(user.signOfZodiac)
+            Text(UserCalcUtility.signOfZodiac(from: user.date))
                 .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema4(rootEnvironment.scheme))
 
             if user.isYearsUnknown {
                 Text("- 年")
                     .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3(rootEnvironment.scheme))
             } else {
-                Text(user.zodiac)
+                Text(UserCalcUtility.zodiac(from: user.date))
                     .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3(rootEnvironment.scheme))
             }
 

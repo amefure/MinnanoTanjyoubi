@@ -38,15 +38,14 @@
 		124602532B38490A00B6C32D /* AppLockInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602522B38490A00B6C32D /* AppLockInputViewModel.swift */; };
 		124BBC3A2DCB872000E78A71 /* FBRemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124BBC392DCB871A00E78A71 /* FBRemoteConfigManager.swift */; };
 		1258FD722C97D0480065A081 /* EditNotifyMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */; };
+		126236092DF30D2F00A5F1AE /* UserCalcUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236082DF30D2800A5F1AE /* UserCalcUtility.swift */; };
 		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
 		12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB029A785EE00D0498F /* SortedButtonView.swift */; };
 		12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB229A788A200D0498F /* EntryButtonView.swift */; };
 		12682BB529A7949000D0498F /* MiddleUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB429A7949000D0498F /* MiddleUserInfoView.swift */; };
 		12682BB729A7963200D0498F /* UpSideUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB629A7963200D0498F /* UpSideUserInfoView.swift */; };
 		1268B3EC2D15742D00E1F8F7 /* CustomPopUpDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */; };
-		1276A7972DD8C8F00023067D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB920B28E5C884002BD7B2 /* User.swift */; };
 		1276A7982DD8C8F50023067D /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
-		1276A7992DD8C9100023067D /* DateFormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateFormatUtility.swift */; };
 		128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB96D2B614B4200B20172 /* SectionGridListView.swift */; };
 		128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB96F2B614BF500B20172 /* SingleGridListView.swift */; };
 		128BB9732B61500800B20172 /* SectionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB9722B61500800B20172 /* SectionRowView.swift */; };
@@ -162,6 +161,7 @@
 		124602522B38490A00B6C32D /* AppLockInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockInputViewModel.swift; sourceTree = "<group>"; };
 		124BBC392DCB871A00E78A71 /* FBRemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBRemoteConfigManager.swift; sourceTree = "<group>"; };
 		1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotifyMessageView.swift; sourceTree = "<group>"; };
+		126236082DF30D2800A5F1AE /* UserCalcUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCalcUtility.swift; sourceTree = "<group>"; };
 		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
 		12682BB029A785EE00D0498F /* SortedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedButtonView.swift; sourceTree = "<group>"; };
 		12682BB229A788A200D0498F /* EntryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryButtonView.swift; sourceTree = "<group>"; };
@@ -640,6 +640,7 @@
 				12ACAD2629984D5400273834 /* DateFormatUtility.swift */,
 				12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */,
 				12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */,
+				126236082DF30D2800A5F1AE /* UserCalcUtility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -753,6 +754,7 @@
 				ja,
 			);
 			mainGroup = 12CB91F028E5C6E0002BD7B2;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 12CB91FA28E5C6E0002BD7B2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -966,11 +968,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1276A7992DD8C9100023067D /* DateFormatUtility.swift in Sources */,
 				1276A7982DD8C8F50023067D /* RelationEnum.swift in Sources */,
 				12B0DC592DE884F700BDA78C /* MinnanoTanjyoubiTests.swift in Sources */,
 				12B0DC5A2DE884F700BDA78C /* UserTest.swift in Sources */,
-				1276A7972DD8C8F00023067D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1032,6 +1032,7 @@
 				123F485B29A42083001B91B3 /* NoticeDateFlagView.swift in Sources */,
 				123F485629A23886001B91B3 /* ControlPanelView.swift in Sources */,
 				12CB921328E6FD43002BD7B2 /* RowUserView.swift in Sources */,
+				126236092DF30D2F00A5F1AE /* UserCalcUtility.swift in Sources */,
 				12CB921A28E85952002BD7B2 /* SettingView.swift in Sources */,
 				122B346A2D14600100204703 /* TutorialPopUpViewModel.swift in Sources */,
 				121E5B742DAD3DEE0032D66C /* NotifyDate.swift in Sources */,
@@ -1100,7 +1101,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubiTests;
@@ -1126,7 +1127,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubiTests;

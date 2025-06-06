@@ -31,7 +31,9 @@ class RealmRepositoryViewModel: ObservableObject {
         switch sort {
         case .daysLater:
             // 誕生日までの日付が近い順にソート
-            users = Array(result).sorted(by: { $0.daysLater < $1.daysLater })
+            users = Array(result).sorted(by: {
+                UserCalcUtility.daysLater(from: $0.date) < UserCalcUtility.daysLater(from: $1.date)
+            })
         case .nameAsce:
             // 名前(昇順)
             users = Array(result).sorted(by: { $0.ruby < $1.ruby })
@@ -44,7 +46,7 @@ class RealmRepositoryViewModel: ObservableObject {
                 if $0.isYearsUnknown != $1.isYearsUnknown {
                     return !$0.isYearsUnknown && $1.isYearsUnknown
                 }
-                return $0.currentAge < $1.currentAge
+                return UserCalcUtility.currentAge(from: $0.date) < UserCalcUtility.currentAge(from: $1.date)
             })
         case .ageeDesc:
             // 年齢(降順)
@@ -52,7 +54,7 @@ class RealmRepositoryViewModel: ObservableObject {
                 if $0.isYearsUnknown != $1.isYearsUnknown {
                     return !$0.isYearsUnknown && $1.isYearsUnknown
                 }
-                return $0.currentAge > $1.currentAge
+                return UserCalcUtility.currentAge(from: $0.date) > UserCalcUtility.currentAge(from: $1.date)
             })
         case .montheAsce:
             // 生まれ月(昇順)
@@ -70,7 +72,9 @@ class RealmRepositoryViewModel: ObservableObject {
             })
         case .none:
             // 誕生日までの日付が近い順にソート
-            users = Array(result).sorted(by: { $0.daysLater < $1.daysLater })
+            users = Array(result).sorted(by: {
+                UserCalcUtility.daysLater(from: $0.date) < UserCalcUtility.daysLater(from: $1.date)
+            })
         }
     }
 
