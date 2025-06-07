@@ -11,5 +11,6 @@ import Testing
 struct MinnanoTanjyoubiTests {
     static let allTests = [
         UserTest.self,
-    ]
+        DateFormatUtilityTests.self,
+    ] as [Any]
 }

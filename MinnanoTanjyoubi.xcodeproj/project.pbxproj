@@ -39,6 +39,7 @@
 		124BBC3A2DCB872000E78A71 /* FBRemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124BBC392DCB871A00E78A71 /* FBRemoteConfigManager.swift */; };
 		1258FD722C97D0480065A081 /* EditNotifyMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */; };
 		126236092DF30D2F00A5F1AE /* UserCalcUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236082DF30D2800A5F1AE /* UserCalcUtility.swift */; };
+		1262360C2DF3B86A00A5F1AE /* DateFormatUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262360B2DF3B86900A5F1AE /* DateFormatUtilityTests.swift */; };
 		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
 		12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB029A785EE00D0498F /* SortedButtonView.swift */; };
 		12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB229A788A200D0498F /* EntryButtonView.swift */; };
@@ -162,6 +163,7 @@
 		124BBC392DCB871A00E78A71 /* FBRemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBRemoteConfigManager.swift; sourceTree = "<group>"; };
 		1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotifyMessageView.swift; sourceTree = "<group>"; };
 		126236082DF30D2800A5F1AE /* UserCalcUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCalcUtility.swift; sourceTree = "<group>"; };
+		1262360B2DF3B86900A5F1AE /* DateFormatUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatUtilityTests.swift; sourceTree = "<group>"; };
 		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
 		12682BB029A785EE00D0498F /* SortedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedButtonView.swift; sourceTree = "<group>"; };
 		12682BB229A788A200D0498F /* EntryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryButtonView.swift; sourceTree = "<group>"; };
@@ -416,6 +418,14 @@
 			path = AppLock;
 			sourceTree = "<group>";
 		};
+		1262360A2DF3B85F00A5F1AE /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1262360B2DF3B86900A5F1AE /* DateFormatUtilityTests.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		12682BAD29A784C800D0498F /* ControlPanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +472,7 @@
 			children = (
 				12B0DC562DE884F700BDA78C /* MinnanoTanjyoubiTests.swift */,
 				12B0DC572DE884F700BDA78C /* UserTest.swift */,
+				1262360A2DF3B85F00A5F1AE /* Utility */,
 			);
 			path = MinnanoTanjyoubiTests;
 			sourceTree = "<group>";
@@ -969,6 +980,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1276A7982DD8C8F50023067D /* RelationEnum.swift in Sources */,
+				1262360C2DF3B86A00A5F1AE /* DateFormatUtilityTests.swift in Sources */,
 				12B0DC592DE884F700BDA78C /* MinnanoTanjyoubiTests.swift in Sources */,
 				12B0DC5A2DE884F700BDA78C /* UserTest.swift in Sources */,
 			);
