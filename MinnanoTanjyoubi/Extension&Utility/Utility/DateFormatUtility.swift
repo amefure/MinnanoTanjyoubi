@@ -124,4 +124,20 @@ extension DateFormatUtility {
 
         return c.date(from: dateComponents) ?? now
     }
+
+    /// 指定した日付の年月をタプルで取得
+    public func getDateYearAndMonth(date: Date = Date()) -> (year: Int, month: Int) {
+        let today = convertDateComponents(date: date)
+        guard let year = today.year,
+              let month = today.month else { return (2024, 8) }
+        return (year, month)
+    }
+
+    /// 受け取った日付が指定した日と同じかどうか
+    public func checkInSameDayAs(date: Date, sameDay: Date = Date()) -> Bool {
+        // 時間をリセットしておく
+        let resetDate = c.startOfDay(for: date)
+        let resetToDay = c.startOfDay(for: sameDay)
+        return c.isDate(resetDate, inSameDayAs: resetToDay)
+    }
 }

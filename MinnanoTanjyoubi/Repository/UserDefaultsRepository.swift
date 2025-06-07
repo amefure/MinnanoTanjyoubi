@@ -44,6 +44,8 @@ class UserDefaultsKey {
     static let PURCHASED_REMOVE_ADS = "PURCHASE_REMOVE_ADS"
     /// アプリ内課金：容量解放
     static let PURCHASED_UNLOCK_STORAGE = "PURCHASED_UNLOCK_STORAGE"
+    /// 曜日始まり
+    static let INIT_WEEK = "INIT_WEEK"
 
     /// 関係名をカスタム登録
     static let DISPLAY_RELATION_FRIEND = "DISPLAY_RELATION_FRIEND"

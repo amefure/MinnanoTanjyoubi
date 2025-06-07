@@ -58,9 +58,7 @@ struct HeaderView: View {
     }
 }
 
-struct HeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        HeaderView()
-            .environmentObject(RootEnvironment.shared)
-    }
+#Preview {
+    HeaderView()
+        .environmentObject(RootEnvironment.shared)
 }

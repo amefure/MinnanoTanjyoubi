@@ -18,6 +18,8 @@ struct RowUserView: View {
     // Environment
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
+    private let dfm = DateFormatUtility()
+
     /// 文字数でフォントサイズを調整
     private func changeFontSizeByLength(_ name: String) -> CGFloat {
         if name.count > 8 {
@@ -37,10 +39,10 @@ struct RowUserView: View {
                     .font(.system(size: DeviceSizeUtility.isSESize ? changeFontSizeByLength(user.name) : 16))
 
                 if user.isYearsUnknown {
-                    Text(DateFormatUtility().getJpStringOnlyDate(date: user.date))
+                    Text(dfm.getJpStringOnlyDate(date: user.date))
                         .fontSS()
                 } else {
-                    Text(DateFormatUtility().getJpString(date: user.date))
+                    Text(dfm.getJpString(date: user.date))
                         .fontSS()
                 }
 
