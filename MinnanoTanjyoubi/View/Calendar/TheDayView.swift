@@ -26,7 +26,7 @@ struct TheDayView: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("\(theDay.day)")
                         .frame(width: 18, height: 18)
-                        .background(theDay.isToday ? AppColorScheme.getThema1(rootEnvironment.scheme) : Color.clear)
+                        .background(theDay.isToday ? Asset.Colors.exThemaRed.swiftUIColor : Color.clear)
                         .fontSS(bold: true)
                         .clipShape(RoundedRectangle(cornerRadius: 18))
                         .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor(defaultColor: AppColorScheme.getText(rootEnvironment.scheme)))
@@ -35,10 +35,10 @@ struct TheDayView: View {
                         Text(user.name)
                             .lineLimit(1)
                             .fontSSS(bold: true)
-                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                            .foregroundStyle(.white)
                             .frame(height: 15)
                             .frame(maxWidth: .infinity)
-                            .background(AppColorScheme.getThema1(rootEnvironment.scheme))
+                            .background(theDay.isToday ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exThemaYellow.swiftUIColor)
                             .clipShape(RoundedRectangle(cornerRadius: 2))
                     }
                     // スペーサー用(スワイプタップ判定領域確保のため)

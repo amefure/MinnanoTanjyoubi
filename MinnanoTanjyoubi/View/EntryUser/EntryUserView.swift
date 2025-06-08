@@ -19,7 +19,7 @@ struct EntryUserView: View {
 
     /// Updateデータ受け取り用
     public var user: User?
-    
+
     /// 新規登録時にカレンダーから遷移した場合に月と日だけ該当のものにする
     public var isCalendarMonth: Int? = nil
     public var isCalendarDay: Int? = nil
