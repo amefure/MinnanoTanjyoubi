@@ -39,8 +39,15 @@ class CalendarViewModel: ObservableObject {
         setFirstWeek(week: initWeek)
     }
 
-    public func onAppear() {
-        scCalenderRepository.initialize()
+    public func onAppear(users: [User]) {
+        scCalenderRepository.initialize(users: users)
+
+        scCalenderRepository.displayCalendarIndex
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] index in
+                guard let self else { return }
+                self.displayCalendarIndex = CGFloat(index)
+            }.store(in: &cancellables)
 
         scCalenderRepository.currentDates
             .receive(on: DispatchQueue.main)
@@ -61,13 +68,6 @@ class CalendarViewModel: ObservableObject {
             .sink { [weak self] list in
                 guard let self else { return }
                 self.dayOfWeekList = list
-            }.store(in: &cancellables)
-
-        scCalenderRepository.displayCalendarIndex
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] index in
-                guard let self else { return }
-                self.displayCalendarIndex = CGFloat(index)
             }.store(in: &cancellables)
     }
 

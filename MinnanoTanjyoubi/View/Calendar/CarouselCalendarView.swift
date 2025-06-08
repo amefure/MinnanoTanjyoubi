@@ -32,6 +32,7 @@ struct CarouselCalendarView: View {
                                         if dataIndex < dates.count {
                                             let theDay = dates[dataIndex]
                                             TheDayView(theDay: theDay)
+                                                .environmentObject(viewModel)
                                         }
                                     }
                                 }
@@ -79,11 +80,7 @@ struct CarouselCalendarView: View {
                         viewModel.forwardMonthPage()
                     }
                 }
-        ).onAppear {
-            viewModel.onAppear()
-        }.onDisappear {
-            viewModel.onDisappear()
-        }
+        )
     }
 }
 

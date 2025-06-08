@@ -14,8 +14,6 @@ struct YearAndMonthSelectionView: View {
     var body: some View {
         HStack {
             Spacer()
-                .frame(width: 30)
-                .padding(.horizontal, 10)
 
             Button {
                 viewModel.backMonthPage()
@@ -23,15 +21,14 @@ struct YearAndMonthSelectionView: View {
                 Image(systemName: "chevron.backward")
             }.frame(width: 10)
 
-            Spacer()
-
-            NavigationLink {} label: {
+            Button {
+                viewModel.moveTodayCalendar()
+            } label: {
                 Text(viewModel.getCurrentYearAndMonth().yearAndMonth)
+                    .fontM(bold: true)
                     .frame(width: 100)
-                    .fontWeight(.bold)
             }.frame(width: 100)
-
-            Spacer()
+                .padding()
 
             Button {
                 viewModel.forwardMonthPage()
@@ -39,19 +36,13 @@ struct YearAndMonthSelectionView: View {
                 Image(systemName: "chevron.forward")
             }.frame(width: 10)
 
-            Button {
-                viewModel.moveTodayCalendar()
-            } label: {
-                Image("back_today")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 30)
-            }.padding(.horizontal, 10)
-                .frame(width: 30)
+            Spacer()
+
         }.foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
     }
 }
 
 #Preview {
     YearAndMonthSelectionView()
+        .environmentObject(RootEnvironment.shared)
 }

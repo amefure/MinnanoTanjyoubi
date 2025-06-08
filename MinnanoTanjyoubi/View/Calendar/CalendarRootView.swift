@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CalendarRootView: View {
+    public var users: [User]
     @ObservedObject private var viewModel = CalendarViewModel.shared
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
@@ -15,28 +16,45 @@ struct CalendarRootView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            YearAndMonthSelectionView()
-                .environmentObject(viewModel)
-                .environmentObject(rootEnvironment)
+            // Viewの読み込みが完了するまで待機する
+            if viewModel.currentDates.count == 0 {
+                Spacer()
 
-            LazyVGrid(columns: columns, spacing: 0) {
-                ForEach(viewModel.dayOfWeekList, id: \.self) { week in
-                    Text(week.shortSymbols)
-                        .foregroundStyle(week.color ?? AppColorScheme.getText(rootEnvironment.scheme))
-                }
-            }.padding(.vertical, 8)
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: AppColorScheme.getText(rootEnvironment.scheme)))
+                    .scaleEffect(3)
 
-            CarouselCalendarView()
-                .environmentObject(viewModel)
+                Spacer()
+            } else {
+                YearAndMonthSelectionView()
+                    .environmentObject(viewModel)
+                    .environmentObject(rootEnvironment)
 
-            Spacer()
+                LazyVGrid(columns: columns, spacing: 0) {
+                    ForEach(viewModel.dayOfWeekList, id: \.self) { week in
+                        Text(week.shortSymbols)
+                            .foregroundStyle(week.color ?? AppColorScheme.getText(rootEnvironment.scheme))
+                    }
+                }.padding(.vertical, 8)
+
+                CarouselCalendarView()
+                    .environmentObject(viewModel)
+
+                Spacer()
+            }
+
         }.navigationBarBackButtonHidden()
+            .onAppear {
+                viewModel.onAppear(users: users)
+            }.onDisappear {
+                viewModel.onDisappear()
+            }
             .frame(width: DeviceSizeUtility.deviceWidth)
             .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
     }
 }
 
 #Preview {
-    CalendarRootView()
+    CalendarRootView(users: [])
         .environmentObject(RootEnvironment.shared)
 }

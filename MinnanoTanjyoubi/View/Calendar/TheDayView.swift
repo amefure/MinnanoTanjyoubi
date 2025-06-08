@@ -8,34 +8,59 @@
 import SwiftUI
 
 struct TheDayView: View {
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    @ObservedObject private var repository = RealmRepositoryViewModel.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
+
     public let theDay: SCDate
 
     @State private var isShowDetailView: Bool = false
+    // 上限に達した場合のアラート
+    @State private var isLimitAlert: Bool = false
+    @State private var isShowEntryModal: Bool = false
 
     var body: some View {
         VStack {
             if theDay.day == -1 {
                 AppColorScheme.getFoundationPrimary(rootEnvironment.scheme)
             } else {
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading, spacing: 3) {
                     Text("\(theDay.day)")
                         .frame(width: 18, height: 18)
-                        .background(theDay.isToday ? Color.black : Color.clear)
+                        .background(theDay.isToday ? AppColorScheme.getThema1(rootEnvironment.scheme) : Color.clear)
                         .fontSS(bold: true)
                         .clipShape(RoundedRectangle(cornerRadius: 18))
                         .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor(defaultColor: AppColorScheme.getText(rootEnvironment.scheme)))
 
-                    Spacer()
-
+                    if let user = theDay.users.first {
+                        Text(user.name)
+                            .lineLimit(1)
+                            .fontSSS(bold: true)
+                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                            .frame(height: 15)
+                            .frame(maxWidth: .infinity)
+                            .background(AppColorScheme.getThema1(rootEnvironment.scheme))
+                            .clipShape(RoundedRectangle(cornerRadius: 2))
+                    }
+                    // スペーサー用(スワイプタップ判定領域確保のため)
                     AppColorScheme.getFoundationSub(rootEnvironment.scheme)
-                        .frame(height: DeviceSizeUtility.isSESize ? 35 : 40)
                 }
-                .padding(6)
+                .padding(.vertical, 6)
+                .padding(.horizontal, 3)
                 .simultaneousGesture(
                     TapGesture()
                         .onEnded { _ in
-                            isShowDetailView = true
+                            if theDay.users.isEmpty {
+                                // 容量がオーバーしていないか または 容量解放されている
+                                if !repository.isOverCapacity(1) || rootEnvironment.unlockStorage {
+                                    // 登録モーダル表示
+                                    isShowEntryModal.toggle()
+                                } else {
+                                    // 容量オーバーアラート表示
+                                    isLimitAlert = true
+                                }
+                            } else {
+                                isShowDetailView = true
+                            }
                         }
                 )
             }
@@ -45,9 +70,26 @@ struct TheDayView: View {
         .overlay {
             Rectangle()
                 .stroke(AppColorScheme.getText(rootEnvironment.scheme), lineWidth: 2)
-        }.navigationDestination(isPresented: $isShowDetailView) {
-            Text("")
-        }
+        }.if(!theDay.users.isEmpty) { view in
+            view
+                .navigationDestination(isPresented: $isShowDetailView) {
+                    DetailUserView(user: theDay.users.first!)
+                        .environmentObject(rootEnvironment)
+                }
+        }.sheet(isPresented: $isShowEntryModal) {
+            EntryUserView(user: nil, isModal: $isShowEntryModal)
+                .environmentObject(rootEnvironment)
+        }.alert(
+            isPresented: $isLimitAlert,
+            title: "Error...",
+            message: "保存容量が上限に達しました。\n設定から広告を視聴すると\n保存容量を増やすことができます。",
+            positiveButtonTitle: "OK",
+            negativeButtonTitle: "",
+            positiveAction: {
+                isLimitAlert = false
+            },
+            negativeAction: {}
+        )
     }
 }
 

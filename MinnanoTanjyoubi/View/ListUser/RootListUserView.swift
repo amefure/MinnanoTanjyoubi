@@ -68,13 +68,9 @@ struct RootListUserView: View {
             switch rootEnvironment.sectionLayoutFlag {
             case .calendar:
                 // 単体のグリッドレイアウト
-                CalendarRootView()
+                CalendarRootView(users: repository.users)
                     .environmentObject(rootEnvironment)
 
-                ControlPanelView(
-                    isScrollingDown: $isScrollingDown
-                ).environmentObject(rootEnvironment)
-                    .opacity(opacity)
             default:
                 ZStack {
                     // List Contents

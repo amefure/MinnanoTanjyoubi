@@ -56,12 +56,21 @@ class SCCalenderRepository {
     /// カレンダー
     private let calendar = Calendar(identifier: .gregorian)
 
+    /// 当日の日付情報
+    private var users: [User] = []
+
     init() {
         today = calendar.dateComponents([.year, .month, .day], from: Date())
     }
 
-    public func initialize(startYear: Int = START_YEAR, startMonth: Int = START_MONTH, initWeek: SCWeek = .sunday) {
+    public func initialize(
+        startYear: Int = START_YEAR,
+        startMonth: Int = START_MONTH,
+        initWeek: SCWeek = .sunday,
+        users: [User]
+    ) {
         self.initWeek = initWeek
+        self.users = users
 
         let nowYear: Int = today.year ?? startYear
         let nowMonth: Int = today.month ?? startMonth
@@ -148,19 +157,20 @@ extension SCCalenderRepository {
                     continue
                 }
                 let dayOfWeek = calendar.component(.weekday, from: date)
-                let week = SCWeek(rawValue: dayOfWeek - 1)!
+                let week = SCWeek(rawValue: dayOfWeek - 1) ?? SCWeek.sunday
                 let isToday: Bool = df.checkInSameDayAs(date: date, sameDay: Date())
-                let holidayName = "" // ここに祝日名を取得する処理を追加する
-                // 表示するカウントを取得
-                let count = 0
+                // 対象の日付に紐づく誕生日情報だけを格納する
+                let theDayUsers: [User] = users.filter {
+                    let userComponents = calendar.dateComponents([.month, .day], from: $0.date)
+                    return day == userComponents.day && month == userComponents.month
+                }
                 let scDate = SCDate(
                     year: year,
                     month: month,
                     day: day,
                     date: date,
                     week: week,
-                    holidayName: holidayName,
-                    users: [],
+                    users: theDayUsers,
                     isToday: isToday
                 )
                 dates.append(scDate)
@@ -172,6 +182,7 @@ extension SCCalenderRepository {
             let initWeek: Int = _dayOfWeekList.value.firstIndex(of: initWeek) ?? 0
             let subun: Int = abs(firstWeek - initWeek)
 
+            // 月始まりの曜日より前にブランクを追加
             if subun != 0 {
                 for _ in 0 ..< subun {
                     let blankScDate = SCDate(year: -1, month: -1, day: -1)
@@ -179,6 +190,7 @@ extension SCCalenderRepository {
                 }
             }
 
+            // 月終わりの曜日より後にブランクを追加
             if dates.count % 7 != 0 {
                 let space = 7 - dates.count % 7
                 for _ in 0 ..< space {
@@ -186,6 +198,15 @@ extension SCCalenderRepository {
                     dates.append(blankScDate)
                 }
             }
+
+            // 35より小さい(5段しかない)なら6段になるように追加
+            if dates.count <= 35 {
+                for _ in 0 ..< 7 {
+                    let blankScDate = SCDate(year: -1, month: -1, day: -1)
+                    dates.append(blankScDate)
+                }
+            }
+
             datesList.append(dates)
         }
         _currentDates.send(datesList)
