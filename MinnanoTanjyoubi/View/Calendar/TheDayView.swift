@@ -16,32 +16,23 @@ struct TheDayView: View {
     var body: some View {
         VStack {
             if theDay.day == -1 {
-                Color.gray
-                    .opacity(0.2)
+                AppColorScheme.getFoundationPrimary(rootEnvironment.scheme)
             } else {
-                VStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
                     Text("\(theDay.day)")
-                        .frame(width: 25, height: 25)
+                        .frame(width: 18, height: 18)
                         .background(theDay.isToday ? Color.black : Color.clear)
-                        .font(.system(size: DeviceSizeUtility.isSESize ? 14 : 18))
-                        .clipShape(RoundedRectangle(cornerRadius: 25))
-                        .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor())
-                        .padding(.top, 3)
+                        .fontSS(bold: true)
+                        .clipShape(RoundedRectangle(cornerRadius: 18))
+                        .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor(defaultColor: AppColorScheme.getText(rootEnvironment.scheme)))
 
                     Spacer()
 
-                    if theDay.count != 0 {
-                        ZStack {
-                            Text("\(theDay.count)")
-                                .font(.system(size: DeviceSizeUtility.isSESize ? 14 : 18))
-                                .fontWeight(.bold)
-                                .foregroundStyle(.white)
-                        }
-                    } else {
-                        Color.white
-                            .frame(height: DeviceSizeUtility.isSESize ? 35 : 40)
-                    }
-                }.simultaneousGesture(
+                    AppColorScheme.getFoundationSub(rootEnvironment.scheme)
+                        .frame(height: DeviceSizeUtility.isSESize ? 35 : 40)
+                }
+                .padding(6)
+                .simultaneousGesture(
                     TapGesture()
                         .onEnded { _ in
                             isShowDetailView = true
@@ -53,7 +44,7 @@ struct TheDayView: View {
         .frame(height: DeviceSizeUtility.isSESize ? 68 : 80)
         .overlay {
             Rectangle()
-                .stroke(.gray, lineWidth: 0.5)
+                .stroke(AppColorScheme.getText(rootEnvironment.scheme), lineWidth: 2)
         }.navigationDestination(isPresented: $isShowDetailView) {
             Text("")
         }

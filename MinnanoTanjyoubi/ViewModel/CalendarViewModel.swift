@@ -9,6 +9,8 @@ import Combine
 import UIKit
 
 class CalendarViewModel: ObservableObject {
+    static let shared = CalendarViewModel()
+
     private let dateFormatUtility = DateFormatUtility()
 
     // MARK: Calendar ロジック
@@ -23,7 +25,6 @@ class CalendarViewModel: ObservableObject {
 
     @Published private(set) var initWeek: SCWeek = .sunday
 
-
     private let userDefaultsRepository: UserDefaultsRepository
     private let scCalenderRepository: SCCalenderRepository
 
@@ -35,6 +36,12 @@ class CalendarViewModel: ObservableObject {
 
         getInitWeek()
 
+        setFirstWeek(week: initWeek)
+    }
+
+    public func onAppear() {
+        scCalenderRepository.initialize()
+
         scCalenderRepository.currentDates
             .receive(on: DispatchQueue.main)
             .sink { [weak self] dates in
@@ -43,24 +50,29 @@ class CalendarViewModel: ObservableObject {
             }.store(in: &cancellables)
 
         scCalenderRepository.currentYearAndMonth
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] currentYearAndMonth in
                 guard let self else { return }
                 self.currentYearAndMonth = currentYearAndMonth
             }.store(in: &cancellables)
 
         scCalenderRepository.dayOfWeekList
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] list in
                 guard let self else { return }
                 self.dayOfWeekList = list
             }.store(in: &cancellables)
 
         scCalenderRepository.displayCalendarIndex
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] index in
                 guard let self else { return }
                 self.displayCalendarIndex = CGFloat(index)
             }.store(in: &cancellables)
+    }
 
-        setFirstWeek(week: initWeek)
+    public func onDisappear() {
+        cancellables.forEach { $0.cancel() }
     }
 }
 
@@ -96,12 +108,12 @@ extension CalendarViewModel {
 
     /// 格納済みの最新月の翌月を追加する
     private func addNextMonth() {
-        let _ = scCalenderRepository.addNextMonth()
+        _ = scCalenderRepository.addNextMonth()
     }
 
     /// 格納済みの最古月の前月を12ヶ月分追加する
     private func addPreMonth() {
-        let _ = scCalenderRepository.addPreMonth()
+        _ = scCalenderRepository.addPreMonth()
     }
 
     /// 週始まりを設定
@@ -121,21 +133,21 @@ extension CalendarViewModel {
         displayCalendarIndex = CGFloat(todayIndex)
     }
 
-    /// Poopが追加された際にカレンダー構成用のデータも更新
-    public func addPoopUpdateCalender(createdAt: Date) {
-        let (year, date) = getUpdateCurrentDateIndex(createdAt: createdAt)
-        if year != -1, date != -1 {
-            currentDates[year][date].count += 1
-        }
-    }
-
-    /// Poopが削除された際にカレンダー構成用のデータも更新
-    public func deletePoopUpdateCalender(createdAt: Date) {
-        let (year, date) = getUpdateCurrentDateIndex(createdAt: createdAt)
-        if year != -1, date != -1 {
-            currentDates[year][date].count -= 1
-        }
-    }
+//    /// Poopが追加された際にカレンダー構成用のデータも更新
+//    public func addPoopUpdateCalender(createdAt: Date) {
+//        let (year, date) = getUpdateCurrentDateIndex(createdAt: createdAt)
+//        if year != -1, date != -1 {
+//            currentDates[year][date].count += 1
+//        }
+//    }
+//
+//    /// Poopが削除された際にカレンダー構成用のデータも更新
+//    public func deletePoopUpdateCalender(createdAt: Date) {
+//        let (year, date) = getUpdateCurrentDateIndex(createdAt: createdAt)
+//        if year != -1, date != -1 {
+//            currentDates[year][date].count -= 1
+//        }
+//    }
 
     // 更新対象のインデックス番号を取得する
     private func getUpdateCurrentDateIndex(createdAt: Date) -> (Int, Int) {

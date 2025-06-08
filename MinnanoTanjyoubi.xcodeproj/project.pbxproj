@@ -49,6 +49,7 @@
 		1262361D2DF3BFCE00A5F1AE /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262361C2DF3BFCA00A5F1AE /* CalendarViewModel.swift */; };
 		1262361F2DF3C72700A5F1AE /* CarouselCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */; };
 		126236212DF3C78F00A5F1AE /* TheDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236202DF3C78E00A5F1AE /* TheDayView.swift */; };
+		126236232DF45DFF00A5F1AE /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236222DF45DEB00A5F1AE /* LayoutItem.swift */; };
 		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
 		12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB029A785EE00D0498F /* SortedButtonView.swift */; };
 		12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB229A788A200D0498F /* EntryButtonView.swift */; };
@@ -182,6 +183,7 @@
 		1262361C2DF3BFCA00A5F1AE /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCalendarView.swift; sourceTree = "<group>"; };
 		126236202DF3C78E00A5F1AE /* TheDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDayView.swift; sourceTree = "<group>"; };
+		126236222DF45DEB00A5F1AE /* LayoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
 		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
 		12682BB029A785EE00D0498F /* SortedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedButtonView.swift; sourceTree = "<group>"; };
 		12682BB229A788A200D0498F /* EntryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryButtonView.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */,
 				12CA5D8B2D19949600A4C1F6 /* AppSortItem.swift */,
 				122B346D2D14604500204703 /* PopUpPosition.swift */,
+				126236222DF45DEB00A5F1AE /* LayoutItem.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1139,6 +1142,7 @@
 				1246024A2B36B7BA00B6C32D /* SettingViewModel.swift in Sources */,
 				121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */,
 				122401482B87738D0099BE8D /* DetailViewModel.swift in Sources */,
+				126236232DF45DFF00A5F1AE /* LayoutItem.swift in Sources */,
 				12E9C8952D0B2B7700C0A20B /* JsonConvertUtility.swift in Sources */,
 				12ACAD32299EDD6200273834 /* DeviceSizeUtility.swift in Sources */,
 				12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */,

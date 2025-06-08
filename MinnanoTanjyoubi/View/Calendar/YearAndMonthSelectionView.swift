@@ -8,18 +8,11 @@
 import SwiftUI
 
 struct YearAndMonthSelectionView: View {
-    public var showBackButton = false
-
     @EnvironmentObject private var viewModel: CalendarViewModel
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    @State private var showChart = false
-    @State private var showSetting = false
-
-    // MARK: - Environment
-
-    @Environment(\.dismiss) var dismiss
     var body: some View {
-        VStack {
+        HStack {
             Spacer()
                 .frame(width: 30)
                 .padding(.horizontal, 10)
@@ -55,7 +48,7 @@ struct YearAndMonthSelectionView: View {
                     .frame(width: 30)
             }.padding(.horizontal, 10)
                 .frame(width: 30)
-        }
+        }.foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
     }
 }
 

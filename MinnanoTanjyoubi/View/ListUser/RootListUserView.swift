@@ -42,36 +42,68 @@ struct RootListUserView: View {
             }
     }
 
+    private func noDataView() -> some View {
+        VStack {
+            Spacer()
+
+            Text("登録されている誕生日情報がありません。")
+                .fontM(bold: true)
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+
+            Spacer()
+        }
+    }
+
+    /// iOS18かどうか
+    private var isIos18: Bool {
+        if #available(iOS 18, *) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     var body: some View {
         VStack(spacing: 0) {
-            if #available(iOS 18, *) {
+            switch rootEnvironment.sectionLayoutFlag {
+            case .calendar:
+                // 単体のグリッドレイアウト
+                CalendarRootView()
+                    .environmentObject(rootEnvironment)
+
+                ControlPanelView(
+                    isScrollingDown: $isScrollingDown
+                ).environmentObject(rootEnvironment)
+                    .opacity(opacity)
+            default:
                 ZStack {
                     // List Contents
                     if repository.users.count == 0 {
-                        Spacer()
-
-                        Text("登録されている誕生日情報がありません。")
-                            .fontM(bold: true)
-                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-
-                        Spacer()
-
+                        noDataView()
                     } else {
                         ScrollView {
                             Group {
-                                if rootEnvironment.sectionLayoutFlag {
-                                    // カテゴリセクショングリッドレイアウト
-                                    SectionGridListView()
-                                        .environmentObject(rootEnvironment)
-                                } else {
+                                switch rootEnvironment.sectionLayoutFlag {
+                                case .grid:
                                     // 単体のグリッドレイアウト
                                     SingleGridListView(users: repository.users)
                                         .environmentObject(rootEnvironment)
+                                case .group:
+                                    // カテゴリセクショングリッドレイアウト
+                                    SectionGridListView()
+                                        .environmentObject(rootEnvironment)
+                                case .calendar:
+                                    // ここは呼ばれない
+                                    EmptyView()
                                 }
                             }.padding(.bottom, 75)
                                 .simultaneousGesture(drag)
                         }.padding([.top, .trailing, .leading])
-                            .simultaneousGesture(drag)
+                            .if(isIos18) { view in
+                                // FIXME: - iOS17以前ではスクロールが動作しないため暫定対応としてiOS18以降のみ
+                                view
+                                    .simultaneousGesture(drag)
+                            }
                     }
 
                     VStack {
@@ -84,40 +116,6 @@ struct RootListUserView: View {
                     }.onTapGesture {
                         opacity = 1
                     }
-                }
-            } else {
-                // FIXME: - iOS17以前ではスクロールが動作しないため暫定対応
-                VStack {
-                    // List Contents
-                    if repository.users.count == 0 {
-                        Spacer()
-
-                        Text("登録されている誕生日情報がありません。")
-                            .font(.system(size: 17))
-                            .fontWeight(.bold)
-                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-
-                        Spacer()
-
-                    } else {
-                        ScrollView {
-                            Group {
-                                if rootEnvironment.sectionLayoutFlag {
-                                    // カテゴリセクショングリッドレイアウト
-                                    SectionGridListView()
-                                        .environmentObject(rootEnvironment)
-                                } else {
-                                    // 単体のグリッドレイアウト
-                                    SingleGridListView(users: repository.users)
-                                        .environmentObject(rootEnvironment)
-                                }
-                            }.padding(.bottom, 75)
-                        }.padding([.top, .trailing, .leading])
-                    }
-
-                    ControlPanelView(
-                        isScrollingDown: $isScrollingDown
-                    ).environmentObject(rootEnvironment)
                 }
             }
 

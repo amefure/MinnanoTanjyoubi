@@ -8,31 +8,35 @@
 import SwiftUI
 
 struct CalendarRootView: View {
-    @ObservedObject private var viewModel = CalendarViewModel()
+    @ObservedObject private var viewModel = CalendarViewModel.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     private let columns = Array(repeating: GridItem(spacing: 0), count: 7)
-
-    @State private var msg = ""
 
     var body: some View {
         VStack(spacing: 0) {
             YearAndMonthSelectionView()
+                .environmentObject(viewModel)
+                .environmentObject(rootEnvironment)
 
             LazyVGrid(columns: columns, spacing: 0) {
                 ForEach(viewModel.dayOfWeekList, id: \.self) { week in
                     Text(week.shortSymbols)
-                        .foregroundStyle(AppColorScheme.getThema1(.dark))
-                        .opacity(0.8)
+                        .foregroundStyle(week.color ?? AppColorScheme.getText(rootEnvironment.scheme))
                 }
-            }
+            }.padding(.vertical, 8)
 
             CarouselCalendarView()
+                .environmentObject(viewModel)
 
             Spacer()
-        }
+        }.navigationBarBackButtonHidden()
+            .frame(width: DeviceSizeUtility.deviceWidth)
+            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
     }
 }
 
 #Preview {
     CalendarRootView()
+        .environmentObject(RootEnvironment.shared)
 }

@@ -56,10 +56,13 @@ class SCCalenderRepository {
     /// カレンダー
     private let calendar = Calendar(identifier: .gregorian)
 
-    init(startYear: Int = START_YEAR, startMonth: Int = START_MONTH, initWeek: SCWeek = .sunday) {
+    init() {
+        today = calendar.dateComponents([.year, .month, .day], from: Date())
+    }
+
+    public func initialize(startYear: Int = START_YEAR, startMonth: Int = START_MONTH, initWeek: SCWeek = .sunday) {
         self.initWeek = initWeek
 
-        today = calendar.dateComponents([.year, .month, .day], from: Date())
         let nowYear: Int = today.year ?? startYear
         let nowMonth: Int = today.month ?? startMonth
 
@@ -100,7 +103,6 @@ extension SCCalenderRepository {
         _displayCalendarIndex.send(index)
 
         _currentYearAndMonth.send(yearAndMonths)
-        updateCalendar()
     }
 }
 
@@ -158,7 +160,7 @@ extension SCCalenderRepository {
                     date: date,
                     week: week,
                     holidayName: holidayName,
-                    count: count,
+                    users: [],
                     isToday: isToday
                 )
                 dates.append(scDate)

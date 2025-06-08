@@ -5,6 +5,7 @@
 //  Created by t&a on 2025/06/07.
 //
 
+import SwiftUI
 import UIKit
 
 enum SCWeek: Int, CaseIterable {
@@ -37,6 +38,14 @@ enum SCWeek: Int, CaseIterable {
         case .thursday: return "木"
         case .friday: return "金"
         case .saturday: return "土"
+        }
+    }
+
+    public var color: Color? {
+        switch self {
+        case .sunday: return .red
+        case .saturday: return .blue
+        default: return nil
         }
     }
 }

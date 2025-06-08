@@ -79,7 +79,11 @@ struct CarouselCalendarView: View {
                         viewModel.forwardMonthPage()
                     }
                 }
-        )
+        ).onAppear {
+            viewModel.onAppear()
+        }.onDisappear {
+            viewModel.onDisappear()
+        }
     }
 }
 

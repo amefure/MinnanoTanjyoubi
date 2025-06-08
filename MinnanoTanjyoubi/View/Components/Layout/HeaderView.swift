@@ -37,15 +37,11 @@ struct HeaderView: View {
 
                 if isShowIcon {
                     Button {
-                        if rootEnvironment.sectionLayoutFlag {
-                            rootEnvironment.registerDisplaySectionLayout(flag: false)
-                        } else {
-                            rootEnvironment.registerDisplaySectionLayout(flag: true)
-                        }
+                        rootEnvironment.switchDisplaySectionLayout()
                     } label: {
-                        Image(systemName: rootEnvironment.sectionLayoutFlag ? "square.grid.3x3.fill" : "square.grid.3x1.below.line.grid.1x2.fill")
+                        Image(systemName: rootEnvironment.sectionLayoutFlag.next.imageName)
                             .fontM()
-                    }.foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
+                    }.foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                         .position(x: 0 + 30, y: 30)
                 }
             }

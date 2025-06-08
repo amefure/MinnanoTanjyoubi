@@ -107,3 +107,26 @@ extension View {
         modifier(CircleBorderView(width: width, height: height, color: color))
     }
 }
+
+extension View {
+    /// モディファイアをif文で分岐して有効/無効を切り替えることができる拡張
+    ///
+    /// - Parameters:
+    ///   - condition: 有効/無効の条件
+    ///   - apply: 有効時に適応させたいモディファイア
+
+    /// Example:
+    /// ```
+    /// .if(condition) { view in
+    ///     view.foregroundStyle(.green)
+    /// }
+    /// ```
+    @ViewBuilder
+    func `if`<Content: View>(_ condition: Bool, apply: (Self) -> Content) -> some View {
+        if condition {
+            apply(self)
+        } else {
+            self
+        }
+    }
+}
