@@ -33,11 +33,11 @@ class EntryUserViewModel {
         return newUser
     }
 
-    /// 保存された年数のDateオブジェクトを取得
-    public func getInitYearDate() -> Date {
+    /// 保存された年数&カレンダーから渡された日付があればそのDateオブジェクトを取得
+    public func getInitDate(month: Int?, day: Int?) -> Date {
         let dfm = DateFormatUtility()
         let year = AppManager.sharedUserDefaultManager.getEntryInitYear()
-        let yearDate = dfm.setYearDate(year: year)
+        let yearDate = dfm.setDate(year: year, month: month, day: day)
         return yearDate
     }
 }

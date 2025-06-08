@@ -77,8 +77,13 @@ struct TheDayView: View {
                         .environmentObject(rootEnvironment)
                 }
         }.sheet(isPresented: $isShowEntryModal) {
-            EntryUserView(user: nil, isModal: $isShowEntryModal)
-                .environmentObject(rootEnvironment)
+            EntryUserView(
+                user: nil,
+                isCalendarMonth: theDay.month,
+                isCalendarDay: theDay.day,
+                isModal: $isShowEntryModal
+            )
+            .environmentObject(rootEnvironment)
         }.alert(
             isPresented: $isLimitAlert,
             title: "Error...",

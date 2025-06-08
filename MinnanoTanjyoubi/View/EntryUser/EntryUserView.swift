@@ -17,8 +17,12 @@ struct EntryUserView: View {
 
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    // Updateデータ受け取り用
+    /// Updateデータ受け取り用
     public var user: User?
+    
+    /// 新規登録時にカレンダーから遷移した場合に月と日だけ該当のものにする
+    public var isCalendarMonth: Int? = nil
+    public var isCalendarDay: Int? = nil
 
     // InputView
     @State private var name = ""
@@ -189,7 +193,8 @@ struct EntryUserView: View {
                     isYearsUnknown = user.isYearsUnknown
                 } else {
                     // 新規登録なら初期値年数を反映
-                    date = viewModel.getInitYearDate()
+                    // カレンダーからの遷移なら日付まで指定する
+                    date = viewModel.getInitDate(month: isCalendarMonth, day: isCalendarDay)
                 }
             }
             .onChange(of: isFocusActive, perform: { _ in

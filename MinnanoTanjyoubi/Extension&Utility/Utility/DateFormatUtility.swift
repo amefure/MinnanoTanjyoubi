@@ -104,14 +104,14 @@ extension DateFormatUtility {
     }
 
     /// 指定した年数にしたDateオブジェクトを返す
-    public func setYearDate(year: Int) -> Date {
+    public func setDate(year: Int, month: Int? = nil, day: Int? = nil) -> Date {
         let now = Date()
         // 現在の時間、分、秒を取得
-        let currentMonth = c.component(.month, from: now)
-        let currentDay = c.component(.day, from: now)
-        let currentHour = c.component(.hour, from: now)
-        let currentMinute = c.component(.minute, from: now)
-        let currentSecond = c.component(.second, from: now)
+        let currentMonth: Int = month ?? c.component(.month, from: now)
+        let currentDay: Int = day ?? c.component(.day, from: now)
+        let currentHour: Int = c.component(.hour, from: now)
+        let currentMinute: Int = c.component(.minute, from: now)
+        let currentSecond: Int = c.component(.second, from: now)
 
         // 指定された年月日と現在の時刻で日付を構成する
         var dateComponents = DateComponents()
