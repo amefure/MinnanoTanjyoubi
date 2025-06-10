@@ -472,9 +472,9 @@
 			isa = PBXGroup;
 			children = (
 				126236182DF3BF6600A5F1AE /* CalendarRootView.swift */,
+				1262361A2DF3BFA400A5F1AE /* YearAndMonthSelectionView.swift */,
 				1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */,
 				126236202DF3C78E00A5F1AE /* TheDayView.swift */,
-				1262361A2DF3BFA400A5F1AE /* YearAndMonthSelectionView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";

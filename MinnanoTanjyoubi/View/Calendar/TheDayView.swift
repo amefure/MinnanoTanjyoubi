@@ -13,10 +13,16 @@ struct TheDayView: View {
 
     public let theDay: SCDate
 
-    @State private var isShowDetailView: Bool = false
-    // 上限に達した場合のアラート
+    /// 上限に達した場合のアラート
     @State private var isLimitAlert: Bool = false
+    /// 新規登録モーダル表示
     @State private var isShowEntryModal: Bool = false
+    /// 複数誕生日リストモーダル表示
+    @State private var isShowMulchModal: Bool = false
+    /// 詳細画面表示
+    @State private var isShowDetailView: Bool = false
+    /// 複数存在時に詳細画面に遷移するUser情報を保持する
+    @State private var user: User? = nil
 
     var body: some View {
         VStack {
@@ -49,7 +55,9 @@ struct TheDayView: View {
                 .simultaneousGesture(
                     TapGesture()
                         .onEnded { _ in
-                            if theDay.users.isEmpty {
+
+                            if theDay.users.count == 0 {
+                                // 0なら新規登録
                                 // 容量がオーバーしていないか または 容量解放されている
                                 if !repository.isOverCapacity(1) || rootEnvironment.unlockStorage {
                                     // 登録モーダル表示
@@ -58,8 +66,12 @@ struct TheDayView: View {
                                     // 容量オーバーアラート表示
                                     isLimitAlert = true
                                 }
-                            } else {
+                            } else if theDay.users.count == 1 {
+                                // 1なら詳細画面へ遷移
                                 isShowDetailView = true
+                            } else if theDay.users.count >= 2 {
+                                // 2以上ならリスト表示
+                                isShowMulchModal = true
                             }
                         }
                 )
@@ -70,31 +82,64 @@ struct TheDayView: View {
         .overlay {
             Rectangle()
                 .stroke(AppColorScheme.getText(rootEnvironment.scheme), lineWidth: 2)
-        }.if(!theDay.users.isEmpty) { view in
+        }.if(theDay.users.count == 0) { view in
+            view
+                .sheet(isPresented: $isShowEntryModal) {
+                    EntryUserView(
+                        user: nil,
+                        isCalendarMonth: theDay.month,
+                        isCalendarDay: theDay.day,
+                        isModal: $isShowEntryModal
+                    )
+                    .environmentObject(rootEnvironment)
+                }.alert(
+                    isPresented: $isLimitAlert,
+                    title: "Error...",
+                    message: "保存容量が上限に達しました。\n設定から広告を視聴すると\n保存容量を増やすことができます。",
+                    positiveButtonTitle: "OK",
+                    negativeButtonTitle: "",
+                    positiveAction: {
+                        isLimitAlert = false
+                    },
+                    negativeAction: {}
+                )
+        }.if(theDay.users.count == 1) { view in
             view
                 .navigationDestination(isPresented: $isShowDetailView) {
                     DetailUserView(user: theDay.users.first!)
                         .environmentObject(rootEnvironment)
                 }
-        }.sheet(isPresented: $isShowEntryModal) {
-            EntryUserView(
-                user: nil,
-                isCalendarMonth: theDay.month,
-                isCalendarDay: theDay.day,
-                isModal: $isShowEntryModal
-            )
-            .environmentObject(rootEnvironment)
-        }.alert(
-            isPresented: $isLimitAlert,
-            title: "Error...",
-            message: "保存容量が上限に達しました。\n設定から広告を視聴すると\n保存容量を増やすことができます。",
-            positiveButtonTitle: "OK",
-            negativeButtonTitle: "",
-            positiveAction: {
-                isLimitAlert = false
-            },
-            negativeAction: {}
-        )
+        }.if(theDay.users.count >= 2) { view in
+            view
+                .sheet(isPresented: $isShowMulchModal) {
+                    VStack {
+                        Text(theDay.getDate())
+                            .fontM(bold: true)
+                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(theDay.users) { user in
+                                    Button {
+                                        isShowMulchModal = false
+                                        self.user = user
+                                        isShowDetailView = true
+                                    } label: {
+                                        RowUserView(user: user)
+                                            .environmentObject(rootEnvironment)
+                                    }.buttonStyle(.plain)
+                                }
+                            }
+                        }.padding()
+                    }.presentationDetents([.height(200)])
+                        .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                }.navigationDestination(isPresented: $isShowDetailView) {
+                    if let user = user {
+                        DetailUserView(user: user)
+                            .environmentObject(rootEnvironment)
+                    }
+                }
+        }
     }
 }
 
