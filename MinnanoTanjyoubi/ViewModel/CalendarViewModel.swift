@@ -40,6 +40,9 @@ class CalendarViewModel: ObservableObject {
     }
 
     public func onAppear(users: [User]) {
+        // ローディング開始
+        NotificationCenter.default.post(name: .loading, object: true)
+
         scCalenderRepository.initialize(users: users)
 
         scCalenderRepository.displayCalendarIndex
@@ -54,6 +57,10 @@ class CalendarViewModel: ObservableObject {
             .sink { [weak self] dates in
                 guard let self else { return }
                 self.currentDates = dates
+                if dates.count != 0 {
+                    // ローディング終了
+                    NotificationCenter.default.post(name: .loading, object: false)
+                }
             }.store(in: &cancellables)
 
         scCalenderRepository.currentYearAndMonth

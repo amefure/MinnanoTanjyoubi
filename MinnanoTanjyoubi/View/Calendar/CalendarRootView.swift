@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarRootView: View {
     public var users: [User]
-    @ObservedObject private var viewModel = CalendarViewModel.shared
+    @StateObject private var viewModel = CalendarViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     private let columns = Array(repeating: GridItem(spacing: 0), count: 7)
@@ -19,10 +19,9 @@ struct CalendarRootView: View {
             // Viewの読み込みが完了するまで待機する
             if viewModel.currentDates.count == 0 {
                 Spacer()
+                    .frame(width: DeviceSizeUtility.deviceWidth)
 
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: AppColorScheme.getText(rootEnvironment.scheme)))
-                    .scaleEffect(3)
+                // .overlayLoadingDialog()によりローディングビューが表示される
 
                 Spacer()
             } else {
@@ -44,6 +43,7 @@ struct CalendarRootView: View {
             }
 
         }.navigationBarBackButtonHidden()
+            .overlayLoadingDialog()
             .onAppear { viewModel.onAppear(users: users) }
             .onDisappear { viewModel.onDisappear() }
             .frame(width: DeviceSizeUtility.deviceWidth)

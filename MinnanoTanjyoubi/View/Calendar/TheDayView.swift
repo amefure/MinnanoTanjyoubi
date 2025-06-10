@@ -37,7 +37,8 @@ struct TheDayView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 18))
                         .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor(defaultColor: AppColorScheme.getText(rootEnvironment.scheme)))
 
-                    if let user = theDay.users.first {
+                    // 最大3人まで表示
+                    ForEach(theDay.users.prefix(3)) { user in
                         Text(user.name)
                             .lineLimit(1)
                             .fontSSS(bold: true)
@@ -47,6 +48,7 @@ struct TheDayView: View {
                             .background(theDay.isToday ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exThemaYellow.swiftUIColor)
                             .clipShape(RoundedRectangle(cornerRadius: 2))
                     }
+
                     // スペーサー用(スワイプタップ判定領域確保のため)
                     AppColorScheme.getFoundationSub(rootEnvironment.scheme)
                 }
@@ -112,27 +114,7 @@ struct TheDayView: View {
         }.if(theDay.users.count >= 2) { view in
             view
                 .sheet(isPresented: $isShowMulchModal) {
-                    VStack {
-                        Text(theDay.getDate())
-                            .fontM(bold: true)
-                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-
-                        ScrollView(.horizontal) {
-                            HStack {
-                                ForEach(theDay.users) { user in
-                                    Button {
-                                        isShowMulchModal = false
-                                        self.user = user
-                                        isShowDetailView = true
-                                    } label: {
-                                        RowUserView(user: user)
-                                            .environmentObject(rootEnvironment)
-                                    }.buttonStyle(.plain)
-                                }
-                            }
-                        }.padding()
-                    }.presentationDetents([.height(200)])
-                        .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                    mulchUserSelectListView()
                 }.navigationDestination(isPresented: $isShowDetailView) {
                     if let user = user {
                         DetailUserView(user: user)
@@ -140,6 +122,34 @@ struct TheDayView: View {
                     }
                 }
         }
+    }
+
+    /// 複数のユーザーが紐づいている場合専用のリスト表示ビュー
+    private func mulchUserSelectListView() -> some View {
+        VStack(spacing: 0) {
+            Text(theDay.getDate())
+                .fontM(bold: true)
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(theDay.users) { user in
+                        Button {
+                            isShowMulchModal = false
+                            self.user = user
+                            isShowDetailView = true
+                        } label: {
+                            RowUserView(user: user)
+                                .frame(width: CGFloat(DeviceSizeUtility.deviceWidth / 3) - 10)
+                                .environmentObject(rootEnvironment)
+                        }.buttonStyle(.plain)
+                    }
+                }
+            }.padding(.vertical)
+        }.presentationDetents([.height(200)])
+            .padding()
+            .ignoresSafeArea(.all)
+            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
     }
 }
 
