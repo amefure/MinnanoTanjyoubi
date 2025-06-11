@@ -129,9 +129,7 @@ struct SettingView: View {
 
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
-                Section(header: Text("アプリ設定"),
-                        footer: Text("・アプリにパスワードを設定してロックをかけることができます。").font(.system(size: 14)).fontWeight(.bold))
-                {
+                Section(header: Text("誕生日登録・表示設定")) {
                     // 誕生日までの単位
                     HStack {
                         Image(systemName: "switch.2")
@@ -150,7 +148,7 @@ struct SettingView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                     }.listRowHeight()
 
-                    // 誕生日までの単位
+                    // 年齢の⚪︎ヶ月を表示するかどうか
                     HStack {
                         Image(systemName: "switch.2")
                             .settingIcon(rootEnvironment.scheme)
@@ -167,30 +165,6 @@ struct SettingView: View {
                             .settingIcon(rootEnvironment.scheme)
                         YearPickerView(viewModel: viewModel)
                             .environmentObject(rootEnvironment)
-                    }.listRowHeight()
-
-                    // 関係をカスタマイズ
-                    NavigationLink {
-                        UpdateRelationNameView()
-                            .environmentObject(rootEnvironment)
-                    } label: {
-                        HStack {
-                            Image(systemName: "pencil.line")
-                                .settingIcon(rootEnvironment.scheme)
-                            Text("関係をカスタマイズする")
-                        }
-                    }.listRowHeight()
-
-                    // テーマカラーを変更する
-                    NavigationLink {
-                        SelectColorScheme()
-                            .environmentObject(rootEnvironment)
-                    } label: {
-                        HStack {
-                            Image(systemName: "paintpalette")
-                                .settingIcon(rootEnvironment.scheme)
-                            Text("テーマカラーを変更する")
-                        }
                     }.listRowHeight()
 
                     // 並び順を変更する
@@ -214,6 +188,48 @@ struct SettingView: View {
                             Image(systemName: "person.line.dotted.person")
                                 .settingIcon(rootEnvironment.scheme)
                             Text("誕生日情報を転送(共有)する")
+                        }
+                    }.listRowHeight()
+
+                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+
+                Section(
+                    header: Text("アプリ設定"),
+                    footer: Text("・アプリにパスワードを設定してロックをかけることができます。").fontS(bold: true)
+                ) {
+                    // テーマカラーを変更する
+                    NavigationLink {
+                        SelectColorScheme()
+                            .environmentObject(rootEnvironment)
+                    } label: {
+                        HStack {
+                            Image(systemName: "paintpalette")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("テーマカラーを変更する")
+                        }
+                    }.listRowHeight()
+
+                    // 関係をカスタマイズ
+                    NavigationLink {
+                        UpdateRelationNameView()
+                            .environmentObject(rootEnvironment)
+                    } label: {
+                        HStack {
+                            Image(systemName: "pencil.line")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("関係をカスタマイズする")
+                        }
+                    }.listRowHeight()
+
+                    // 週始まりを変更する
+                    NavigationLink {
+                        SelectInitWeekView()
+                            .environmentObject(rootEnvironment)
+                    } label: {
+                        HStack {
+                            Image(systemName: "calendar")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("週始まりを変更する")
                         }
                     }.listRowHeight()
 

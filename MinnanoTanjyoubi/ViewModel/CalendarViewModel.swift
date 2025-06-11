@@ -59,7 +59,7 @@ class CalendarViewModel: ObservableObject {
         if !isInitializeFlag {
             // リフレッシュしたいため都度取得する
             let users = Array(realmRepository.readAllUsers())
-            scCalenderRepository.initialize(users: users)
+            scCalenderRepository.initialize(initWeek: initWeek, users: users)
             isInitializeFlag = true
         }
 
@@ -98,9 +98,11 @@ class CalendarViewModel: ObservableObject {
                 guard let obj = notification.object as? Bool else { return }
                 // trueなら更新
                 if obj {
+                    // 週始まりを変更している可能性があるため再取得
+                    getInitWeek()
                     // リフレッシュしたいため都度取得する
                     let users = Array(realmRepository.readAllUsers())
-                    scCalenderRepository.initialize(users: users)
+                    scCalenderRepository.initialize(initWeek: initWeek, users: users)
                     // カレンダーを更新
                     NotificationCenter.default.post(name: .updateCalendar, object: false)
                 }
@@ -195,11 +197,5 @@ extension CalendarViewModel {
     private func getInitWeek() {
         let week = userDefaultsRepository.getIntData(key: UserDefaultsKey.INIT_WEEK)
         initWeek = SCWeek(rawValue: week) ?? SCWeek.sunday
-    }
-
-    /// 週始まりを登録
-    public func saveInitWeek(week: SCWeek) {
-        initWeek = week
-        userDefaultsRepository.setIntData(key: UserDefaultsKey.INIT_WEEK, value: week.rawValue)
     }
 }

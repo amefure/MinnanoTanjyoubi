@@ -281,4 +281,17 @@ extension RootEnvironment {
     private func getAppLockFlag() {
         appLocked = keyChainRepository.getData().count == 4
     }
+
+    /// 週始まりを取得
+    public func getInitWeek() -> SCWeek {
+        let week = userDefaultsRepository.getIntData(key: UserDefaultsKey.INIT_WEEK)
+        return SCWeek(rawValue: week) ?? SCWeek.sunday
+    }
+
+    /// 週始まりを登録
+    public func saveInitWeek(week: SCWeek) {
+        userDefaultsRepository.setIntData(key: UserDefaultsKey.INIT_WEEK, value: week.rawValue)
+        // カレンダーを更新
+        NotificationCenter.default.post(name: .updateCalendar, object: true)
+    }
 }

@@ -122,6 +122,7 @@
 		12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */; };
 		12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */; };
 		12F9F1702DF9B2C900B7A46C /* ExUpdateCalendarNotification.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F16F2DF9B2BC00B7A46C /* ExUpdateCalendarNotification.swift.swift */; };
+		12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */; };
 		12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */; };
 		12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A272B2DC1C600FA700E /* RealmRepository.swift */; };
 		12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A292B2DC29500FA700E /* RealmConfig.swift */; };
@@ -258,6 +259,7 @@
 		12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
 		12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorScheme.swift; sourceTree = "<group>"; };
 		12F9F16F2DF9B2BC00B7A46C /* ExUpdateCalendarNotification.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUpdateCalendarNotification.swift.swift; sourceTree = "<group>"; };
+		12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInitWeekView.swift; sourceTree = "<group>"; };
 		12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryViewModel.swift; sourceTree = "<group>"; };
 		12FE3A272B2DC1C600FA700E /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		12FE3A292B2DC29500FA700E /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */,
 				12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */,
 				12CA5D892D19947900A4C1F6 /* SelectSortView.swift */,
+				12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */,
 				12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */,
 				12CA5D8F2D19A62A00A4C1F6 /* InAppPurchaseView.swift */,
 				129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */,
@@ -1070,6 +1073,7 @@
 				122B346C2D14603200204703 /* TutorialPopupView.swift in Sources */,
 				12682BB729A7963200D0498F /* UpSideUserInfoView.swift in Sources */,
 				12CB91FF28E5C6E1002BD7B2 /* RootView.swift in Sources */,
+				12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */,
 				12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */,
 				123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */,
 				1246024F2B381EEF00B6C32D /* NotifyConfig.swift in Sources */,
