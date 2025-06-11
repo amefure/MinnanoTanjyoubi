@@ -141,13 +141,14 @@ class UserDefaultManager {
 
     /// `DISPLAY_AGE_MONTH`
     /// 取得：セクショングリッドレイアウト変更フラグ
-    public func getDisplaySectionLayout() -> Bool {
-        userDefaultsRepository.getBoolData(key: UserDefaultsKey.DISPLAY_SECTION_LAYOUT)
+    public func getDisplaySectionLayout() -> LayoutItem {
+        let layoutItemInt = userDefaultsRepository.getIntData(key: UserDefaultsKey.DISPLAY_SECTION_LAYOUT)
+        return LayoutItem(rawValue: layoutItemInt) ?? LayoutItem.grid
     }
 
     /// 登録：セクショングリッドレイアウト変更フラグ
-    public func setDisplaySectionLayout(_ flag: Bool) {
-        userDefaultsRepository.setBoolData(key: UserDefaultsKey.DISPLAY_SECTION_LAYOUT, isOn: flag)
+    public func setDisplaySectionLayout(_ layout: LayoutItem) {
+        userDefaultsRepository.setIntData(key: UserDefaultsKey.DISPLAY_SECTION_LAYOUT, value: layout.rawValue)
     }
 
     /// `APP_COLOR_SCHEME`

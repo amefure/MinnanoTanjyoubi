@@ -34,9 +34,8 @@ struct UpdateRelationNameView: View {
                 .environmentObject(rootEnvironment)
 
             Text("関係カテゴリ名編集")
-                .font(.system(size: 20))
+                .fontL(bold: true)
                 .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-                .fontWeight(.bold)
                 .padding(.vertical)
 
             CustomInputView(title: "カテゴリ1", placeholder: RelationConfig.FRIEND_NAME, text: $friend)
@@ -80,7 +79,7 @@ struct UpdateRelationNameView: View {
 
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .onAppear { FBAnalyticsManager.loggingScreen(screen: .UpdateRelationScreen) }
-            .font(.system(size: 17))
+            .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {
                 let list = rootEnvironment.relationNameList

@@ -33,7 +33,7 @@ class RootEnvironment: ObservableObject {
     /// 関係の名称
     @Published private(set) var relationNameList: [String] = []
     /// レイアウトフラグ表示
-    @Published private(set) var sectionLayoutFlag: Bool = false
+    @Published private(set) var sectionLayoutFlag: LayoutItem = .grid
 
     /// ポップアップ表示起動回数定数
     private let popupShowLaunchCount: Int = 5
@@ -220,8 +220,8 @@ extension RootEnvironment {
     }
 
     /// セクショングリッドレイアウト変更フラグ登録
-    public func registerDisplaySectionLayout(flag: Bool) {
-        AppManager.sharedUserDefaultManager.setDisplaySectionLayout(flag)
+    public func switchDisplaySectionLayout() {
+        AppManager.sharedUserDefaultManager.setDisplaySectionLayout(sectionLayoutFlag.next)
         getDisplaySectionLayout()
     }
 
@@ -280,5 +280,18 @@ extension RootEnvironment {
     /// アプリにロックがかけてあるかをチェック
     private func getAppLockFlag() {
         appLocked = keyChainRepository.getData().count == 4
+    }
+
+    /// 週始まりを取得
+    public func getInitWeek() -> SCWeek {
+        let week = userDefaultsRepository.getIntData(key: UserDefaultsKey.INIT_WEEK)
+        return SCWeek(rawValue: week) ?? SCWeek.sunday
+    }
+
+    /// 週始まりを登録
+    public func saveInitWeek(week: SCWeek) {
+        userDefaultsRepository.setIntData(key: UserDefaultsKey.INIT_WEEK, value: week.rawValue)
+        // カレンダーを更新
+        NotificationCenter.default.post(name: .updateCalendar, object: true)
     }
 }

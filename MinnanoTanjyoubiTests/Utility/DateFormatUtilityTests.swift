@@ -92,7 +92,7 @@ struct DateFormatUtilityTests {
 
     @Test
     func testSetYearDate() {
-        let newDate = formatter.setYearDate(year: 2030)
+        let newDate = formatter.setDate(year: 2030)
         let year = Calendar(identifier: .gregorian).component(.year, from: newDate)
         #expect(year == 2030)
     }

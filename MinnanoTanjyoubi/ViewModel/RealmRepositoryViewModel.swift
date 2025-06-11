@@ -76,6 +76,9 @@ class RealmRepositoryViewModel: ObservableObject {
                 UserCalcUtility.daysLater(from: $0.date) < UserCalcUtility.daysLater(from: $1.date)
             })
         }
+
+        // カレンダーを更新
+        NotificationCenter.default.post(name: .updateCalendar, object: true)
     }
 
     public func createUser(newUser: User) {

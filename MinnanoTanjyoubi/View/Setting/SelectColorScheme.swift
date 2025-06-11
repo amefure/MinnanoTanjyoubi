@@ -20,9 +20,8 @@ struct SelectColorScheme: View {
                 .environmentObject(rootEnvironment)
 
             Text("テーマカラー変更")
-                .font(.system(size: 20))
+                .fontL(bold: true)
                 .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-                .fontWeight(.bold)
                 .padding(.vertical)
 
             List {
@@ -40,8 +39,7 @@ struct SelectColorScheme: View {
 
                             Text(scheme.name)
                                 .foregroundStyle(Asset.Colors.exText.swiftUIColor)
-                                .fontWeight(.bold)
-                                .font(.system(size: 17))
+                                .fontM(bold: true)
 
                             Spacer()
 
@@ -55,7 +53,7 @@ struct SelectColorScheme: View {
 
                 Text("他のテーマカラーも工事中・・・\n希望はレビューから教えてね。")
                     .foregroundStyle(Asset.Colors.exText.swiftUIColor)
-                    .font(.system(size: 17))
+                    .fontM()
 
             }.scrollContentBackground(.hidden)
                 .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
@@ -71,7 +69,7 @@ struct SelectColorScheme: View {
                 .environmentObject(rootEnvironment)
 
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
-            .font(.system(size: 17))
+            .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {
                 scheme = rootEnvironment.scheme

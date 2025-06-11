@@ -104,14 +104,14 @@ extension DateFormatUtility {
     }
 
     /// 指定した年数にしたDateオブジェクトを返す
-    public func setYearDate(year: Int) -> Date {
+    public func setDate(year: Int, month: Int? = nil, day: Int? = nil) -> Date {
         let now = Date()
         // 現在の時間、分、秒を取得
-        let currentMonth = c.component(.month, from: now)
-        let currentDay = c.component(.day, from: now)
-        let currentHour = c.component(.hour, from: now)
-        let currentMinute = c.component(.minute, from: now)
-        let currentSecond = c.component(.second, from: now)
+        let currentMonth: Int = month ?? c.component(.month, from: now)
+        let currentDay: Int = day ?? c.component(.day, from: now)
+        let currentHour: Int = c.component(.hour, from: now)
+        let currentMinute: Int = c.component(.minute, from: now)
+        let currentSecond: Int = c.component(.second, from: now)
 
         // 指定された年月日と現在の時刻で日付を構成する
         var dateComponents = DateComponents()
@@ -123,5 +123,21 @@ extension DateFormatUtility {
         dateComponents.second = currentSecond
 
         return c.date(from: dateComponents) ?? now
+    }
+
+    /// 指定した日付の年月をタプルで取得
+    public func getDateYearAndMonth(date: Date = Date()) -> (year: Int, month: Int) {
+        let today = convertDateComponents(date: date)
+        guard let year = today.year,
+              let month = today.month else { return (2024, 8) }
+        return (year, month)
+    }
+
+    /// 受け取った日付が指定した日と同じかどうか
+    public func checkInSameDayAs(date: Date, sameDay: Date = Date()) -> Bool {
+        // 時間をリセットしておく
+        let resetDate = c.startOfDay(for: date)
+        let resetToDay = c.startOfDay(for: sameDay)
+        return c.isDate(resetDate, inSameDayAs: resetToDay)
     }
 }

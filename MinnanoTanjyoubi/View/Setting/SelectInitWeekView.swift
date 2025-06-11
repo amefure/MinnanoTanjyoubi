@@ -1,82 +1,79 @@
 //
-//  SelectSortView.swift
+//  SelectInitWeekView.swift
 //  MinnanoTanjyoubi
 //
-//  Created by t&a on 2024/12/23.
+//  Created by t&a on 2025/06/11.
 //
 
 import SwiftUI
 
-struct SelectSortView: View {
-    @State private var sort: AppSortItem = .daysLater
-    @State private var isAlert = false
-
-    @ObservedObject private var repository = RealmRepositoryViewModel.shared
+struct SelectInitWeekView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-    @Environment(\.dismiss) private var dismiss
+    @State private var selectWeek: SCWeek = .sunday
+    @State private var showSuccessAlert = false
 
+    // MARK: - Environment
+
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack {
             UpSideView()
                 .environmentObject(rootEnvironment)
 
-            Text("並び順変更")
+            Text("週始まり変更")
                 .fontL(bold: true)
                 .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
                 .padding(.vertical)
 
+            Text("カレンダーの週の始まりの曜日を変更することができます。")
+                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .padding(.top, 10)
+                .font(.caption)
+
             List {
-                ForEach(AppSortItem.allCases, id: \.self) { sort in
+                ForEach(SCWeek.allCases, id: \.self) { week in
                     Button {
-                        self.sort = sort
+                        selectWeek = week
                     } label: {
                         HStack {
-                            Text(sort.name)
+                            Text(week.fullSymbols)
                                 .foregroundStyle(Asset.Colors.exText.swiftUIColor)
-                                .fontWeight(.bold)
-                                .font(.system(size: 17))
-
                             Spacer()
 
-                            if self.sort == sort {
+                            if selectWeek == week {
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
                             }
                         }
                     }
                 }
-
             }.scrollContentBackground(.hidden)
                 .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
 
             Spacer()
 
             DownSideView(parentFunction: {
-                UIApplication.shared.closeKeyboard()
-
-                rootEnvironment.registerSortItem(sort)
-                repository.readAllUsers(sort: sort)
-                isAlert = true
+                rootEnvironment.saveInitWeek(week: selectWeek)
+                showSuccessAlert = true
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)
-
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .fontM()
             .navigationBarBackButtonHidden()
-            .onAppear {
-                sort = rootEnvironment.sort
-            }.alert(
-                isPresented: $isAlert,
+            .alert(
+                isPresented: $showSuccessAlert,
                 title: "お知らせ",
-                message: "並び順を変更しました。",
+                message: "週始まりを変更しました。",
                 positiveButtonTitle: "OK",
                 positiveAction: {
                     dismiss()
                 }
-            )
+            ).onAppear {
+                selectWeek = rootEnvironment.getInitWeek()
+            }
     }
 }
 
 #Preview {
-    SelectSortView()
+    SelectInitWeekView()
 }
