@@ -36,7 +36,7 @@ class CalendarViewModel: ObservableObject {
 
         getInitWeek()
 
-        setFirstWeek(week: initWeek)
+        dayOfWeekList = setFirstWeek(week: initWeek)
 
         // 初回描画用に最新月だけ取得して表示する
         let today = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day], from: Date())
@@ -124,7 +124,7 @@ extension CalendarViewModel {
     }
 
     /// 週始まりを設定
-    public func setFirstWeek(week: SCWeek) {
+    public func setFirstWeek(week: SCWeek) -> [SCWeek] {
         scCalenderRepository.setFirstWeek(week)
     }
 

@@ -254,11 +254,12 @@ extension SCCalenderRepository {
 
     /// 最初に表示したい曜日を設定
     /// - parameter week: 開始曜日
-    public func setFirstWeek(_ week: SCWeek) {
+    public func setFirstWeek(_ week: SCWeek) -> [SCWeek] {
         initWeek = week
         var list = _dayOfWeekList.value
         list.moveWeekToFront(initWeek)
         _dayOfWeekList.send(list)
         updateCalendar()
+        return list
     }
 }
