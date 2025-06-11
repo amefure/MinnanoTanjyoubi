@@ -78,7 +78,7 @@ class SCCalenderRepository {
         // カレンダーの初期表示用データのセットアップ
         initialSetUpCalendarData(year: nowYear, month: nowMonth)
         // 週の始まりに設定する曜日を指定
-        setFirstWeek(initWeek)
+        _ = setFirstWeek(initWeek)
         // カレンダー更新
         updateCalendar()
     }
@@ -261,5 +261,10 @@ extension SCCalenderRepository {
         _dayOfWeekList.send(list)
         updateCalendar()
         return list
+    }
+
+    /// カレンダー表示年月インデックスを変更
+    public func setDisplayCalendarIndex(index: Int) {
+        _displayCalendarIndex.send(index)
     }
 }

@@ -131,7 +131,7 @@ struct TheDayView: View {
                 .fontM(bold: true)
                 .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
 
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(theDay.users) { user in
                         Button {

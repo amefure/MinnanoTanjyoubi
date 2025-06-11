@@ -21,9 +21,11 @@ class CalendarViewModel: ObservableObject {
     /// アプリに表示しているカレンダー年月インデックス番号
     @Published var displayCalendarIndex: CGFloat = 0
 
-    // MARK: 永続化
-
+    /// 曜日始まり
     @Published private(set) var initWeek: SCWeek = .sunday
+
+    /// カレンダーをイニシャライズしたかどうか
+    private var isInitializeFlag: Bool = false
 
     private let userDefaultsRepository: UserDefaultsRepository
     private let scCalenderRepository: SCCalenderRepository
@@ -41,13 +43,16 @@ class CalendarViewModel: ObservableObject {
         // 初回描画用に最新月だけ取得して表示する
         let today = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day], from: Date())
         let yearAndMonth = SCYearAndMonth(year: today.year ?? 1, month: today.month ?? 1)
-        let dates = scCalenderRepository.createDates(yearAndMonth: yearAndMonth, df: DateFormatUtility())
+        let dates = scCalenderRepository.createDates(yearAndMonth: yearAndMonth, df: dateFormatUtility)
         currentDates = [dates]
         currentYearAndMonth = [yearAndMonth]
     }
 
     public func onAppear(users: [User]) {
-        scCalenderRepository.initialize(users: users)
+        if !isInitializeFlag {
+            scCalenderRepository.initialize(users: users)
+            isInitializeFlag = true
+        }
 
         scCalenderRepository.displayCalendarIndex
             .receive(on: DispatchQueue.main)
@@ -89,7 +94,8 @@ extension CalendarViewModel {
     /// 年月ページを1つ進める
     public func forwardMonthPage() {
         let count: Int = currentYearAndMonth.count
-        displayCalendarIndex = min(displayCalendarIndex + 1, CGFloat(count))
+        let next = Int(min(displayCalendarIndex + 1, CGFloat(count)))
+        scCalenderRepository.setDisplayCalendarIndex(index: next)
         // 最大年月まで2になったら翌月を追加する
         if displayCalendarIndex == CGFloat(count) - 2 {
             addNextMonth()
@@ -102,9 +108,11 @@ extension CalendarViewModel {
             // 残り年月が2になったら前月を12ヶ月分追加する
             addPreMonth()
             // 2のタイミングで12ヶ月分追加するのでインデックスを+10
-            displayCalendarIndex = displayCalendarIndex + 10
+            let next = Int(displayCalendarIndex + 10)
+            scCalenderRepository.setDisplayCalendarIndex(index: next)
         } else {
-            displayCalendarIndex = displayCalendarIndex - 1
+            let next = Int(displayCalendarIndex - 1)
+            scCalenderRepository.setDisplayCalendarIndex(index: next)
         }
     }
 
@@ -139,22 +147,6 @@ extension CalendarViewModel {
         guard let todayIndex = currentYearAndMonth.firstIndex(where: { $0.year == year && $0.month == month }) else { return }
         displayCalendarIndex = CGFloat(todayIndex)
     }
-
-//    /// Poopが追加された際にカレンダー構成用のデータも更新
-//    public func addPoopUpdateCalender(createdAt: Date) {
-//        let (year, date) = getUpdateCurrentDateIndex(createdAt: createdAt)
-//        if year != -1, date != -1 {
-//            currentDates[year][date].count += 1
-//        }
-//    }
-//
-//    /// Poopが削除された際にカレンダー構成用のデータも更新
-//    public func deletePoopUpdateCalender(createdAt: Date) {
-//        let (year, date) = getUpdateCurrentDateIndex(createdAt: createdAt)
-//        if year != -1, date != -1 {
-//            currentDates[year][date].count -= 1
-//        }
-//    }
 
     // 更新対象のインデックス番号を取得する
     private func getUpdateCurrentDateIndex(createdAt: Date) -> (Int, Int) {

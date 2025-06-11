@@ -203,7 +203,7 @@ struct EntryUserView: View {
                 }
             })
             .navigationBarBackButtonHidden(true)
-            .dialog(
+            .alert(
                 isPresented: $showValidationDialog,
                 title: "エラー",
                 message: "名前を入力してください。",
