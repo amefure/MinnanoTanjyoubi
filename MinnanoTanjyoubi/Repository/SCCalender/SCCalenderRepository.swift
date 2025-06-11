@@ -61,12 +61,6 @@ class SCCalenderRepository {
 
     init() {
         today = calendar.dateComponents([.year, .month, .day], from: Date())
-
-        var dummyDates: [SCDate] = []
-        for i in 0 ..< 30 {
-            dummyDates.append(SCDate(year: -1, month: -1, day: -1))
-        }
-        _currentDates.send([dummyDates])
     }
 
     public func initialize(
@@ -131,91 +125,96 @@ extension SCCalenderRepository {
 
         var datesList: [[SCDate]] = []
         for yearAndMonth in yearAndMonths {
-            let year: Int = yearAndMonth.year
-            let month: Int = yearAndMonth.month
-
-            // 指定された年月の最初の日を取得
-            var components = DateComponents()
-            components.year = year
-            components.month = month
-            components.day = 1
-            guard let startDate = calendar.date(from: components) else {
-                datesList.append([])
-                continue
-            }
-
-            // 指定された年月の日数を取得
-            guard let range = calendar.range(of: .day, in: .month, for: startDate) else {
-                datesList.append([])
-                continue
-            }
-
-            // 日にち情報を格納する配列を準備
-            var dates: [SCDate] = []
-
-            // 月の初めから最後の日までループして日にち情報を作成
-            for day in 1 ... range.count {
-                components.year = year
-                components.month = month
-                components.day = day
-                guard let date = calendar.date(from: components) else {
-                    datesList.append([])
-                    continue
-                }
-                let dayOfWeek = calendar.component(.weekday, from: date)
-                let week = SCWeek(rawValue: dayOfWeek - 1) ?? SCWeek.sunday
-                let isToday: Bool = df.checkInSameDayAs(date: date, sameDay: Date())
-                // 対象の日付に紐づく誕生日情報だけを格納する
-                let theDayUsers: [User] = users.filter {
-                    let userComponents = calendar.dateComponents([.month, .day], from: $0.date)
-                    return day == userComponents.day && month == userComponents.month
-                }
-                let scDate = SCDate(
-                    year: year,
-                    month: month,
-                    day: day,
-                    date: date,
-                    week: week,
-                    users: theDayUsers,
-                    isToday: isToday
-                )
-                dates.append(scDate)
-            }
-
-            guard let week = dates.first?.week else { return }
-
-            let firstWeek: Int = _dayOfWeekList.value.firstIndex(of: week) ?? 0
-            let initWeek: Int = _dayOfWeekList.value.firstIndex(of: initWeek) ?? 0
-            let subun: Int = abs(firstWeek - initWeek)
-
-            // 月始まりの曜日より前にブランクを追加
-            if subun != 0 {
-                for _ in 0 ..< subun {
-                    let blankScDate = SCDate(year: -1, month: -1, day: -1)
-                    dates.insert(blankScDate, at: 0)
-                }
-            }
-
-            // 月終わりの曜日より後にブランクを追加
-            if dates.count % 7 != 0 {
-                let space = 7 - dates.count % 7
-                for _ in 0 ..< space {
-                    let blankScDate = SCDate(year: -1, month: -1, day: -1)
-                    dates.append(blankScDate)
-                }
-            }
-
-            // 35より小さい(5段しかない)なら6段になるように追加
-            if dates.count <= 35 {
-                for _ in 0 ..< 7 {
-                    let blankScDate = SCDate(year: -1, month: -1, day: -1)
-                    dates.append(blankScDate)
-                }
-            }
-
+            let dates: [SCDate] = createDates(yearAndMonth: yearAndMonth, df: df)
             datesList.append(dates)
         }
         _currentDates.send(datesList)
+    }
+
+    /// 1ヶ月単位のSCDateインスタンスを作成
+    public func createDates(
+        yearAndMonth: SCYearAndMonth,
+        df: DateFormatUtility
+    ) -> [SCDate] {
+        let year: Int = yearAndMonth.year
+        let month: Int = yearAndMonth.month
+
+        // 指定された年月の最初の日を取得
+        var components = DateComponents()
+        components.year = year
+        components.month = month
+        components.day = 1
+        guard let startDate = calendar.date(from: components) else {
+            return []
+        }
+
+        // 指定された年月の日数を取得
+        guard let range = calendar.range(of: .day, in: .month, for: startDate) else {
+            return []
+        }
+
+        // 日にち情報を格納する配列を準備
+        var dates: [SCDate] = []
+
+        // 月の初めから最後の日までループして日にち情報を作成
+        for day in 1 ... range.count {
+            components.year = year
+            components.month = month
+            components.day = day
+            guard let date = calendar.date(from: components) else {
+                return []
+            }
+            let dayOfWeek = calendar.component(.weekday, from: date)
+            let week = SCWeek(rawValue: dayOfWeek - 1) ?? SCWeek.sunday
+            let isToday: Bool = df.checkInSameDayAs(date: date, sameDay: Date())
+            // 対象の日付に紐づく誕生日情報だけを格納する
+            let theDayUsers: [User] = users.filter {
+                let userComponents = calendar.dateComponents([.month, .day], from: $0.date)
+                return day == userComponents.day && month == userComponents.month
+            }
+            let scDate = SCDate(
+                year: year,
+                month: month,
+                day: day,
+                date: date,
+                week: week,
+                users: theDayUsers,
+                isToday: isToday
+            )
+            dates.append(scDate)
+        }
+
+        guard let week = dates.first?.week else { return [] }
+
+        let firstWeek: Int = _dayOfWeekList.value.firstIndex(of: week) ?? 0
+        let initWeek: Int = _dayOfWeekList.value.firstIndex(of: initWeek) ?? 0
+        let subun: Int = abs(firstWeek - initWeek)
+
+        // 月始まりの曜日より前にブランクを追加
+        if subun != 0 {
+            for _ in 0 ..< subun {
+                let blankScDate = SCDate(year: -1, month: -1, day: -1)
+                dates.insert(blankScDate, at: 0)
+            }
+        }
+
+        // 月終わりの曜日より後にブランクを追加
+        if dates.count % 7 != 0 {
+            let space = 7 - dates.count % 7
+            for _ in 0 ..< space {
+                let blankScDate = SCDate(year: -1, month: -1, day: -1)
+                dates.append(blankScDate)
+            }
+        }
+
+        // 35より小さい(5段しかない)なら6段になるように追加
+        if dates.count <= 35 {
+            for _ in 0 ..< 7 {
+                let blankScDate = SCDate(year: -1, month: -1, day: -1)
+                dates.append(blankScDate)
+            }
+        }
+        return dates
     }
 }
 

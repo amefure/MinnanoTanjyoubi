@@ -37,6 +37,13 @@ class CalendarViewModel: ObservableObject {
         getInitWeek()
 
         setFirstWeek(week: initWeek)
+
+        // 初回描画用に最新月だけ取得して表示する
+        let today = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day], from: Date())
+        let yearAndMonth = SCYearAndMonth(year: today.year ?? 1, month: today.month ?? 1)
+        let dates = scCalenderRepository.createDates(yearAndMonth: yearAndMonth, df: DateFormatUtility())
+        currentDates = [dates]
+        currentYearAndMonth = [yearAndMonth]
     }
 
     public func onAppear(users: [User]) {
