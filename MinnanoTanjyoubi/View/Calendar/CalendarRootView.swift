@@ -34,7 +34,7 @@ struct CalendarRootView: View {
             Spacer()
 
         }.navigationBarBackButtonHidden()
-            .onAppear { viewModel.onAppear(users: users) }
+            .onAppear { viewModel.onAppear() }
             .onDisappear { viewModel.onDisappear() }
             .frame(width: DeviceSizeUtility.deviceWidth)
             .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))

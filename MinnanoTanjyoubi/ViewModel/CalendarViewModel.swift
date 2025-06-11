@@ -27,12 +27,19 @@ class CalendarViewModel: ObservableObject {
     /// カレンダーをイニシャライズしたかどうか
     private var isInitializeFlag: Bool = false
 
+    private let realmRepository: RealmRepository
     private let userDefaultsRepository: UserDefaultsRepository
     private let scCalenderRepository: SCCalenderRepository
 
     private var cancellables: Set<AnyCancellable> = []
+    private var updateCancellable: AnyCancellable? = nil
+
+    deinit {
+        updateCancellable?.cancel()
+    }
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
+        realmRepository = repositoryDependency.realmRepository
         userDefaultsRepository = repositoryDependency.userDefaultsRepository
         scCalenderRepository = repositoryDependency.scCalenderRepository
 
@@ -48,8 +55,10 @@ class CalendarViewModel: ObservableObject {
         currentYearAndMonth = [yearAndMonth]
     }
 
-    public func onAppear(users: [User]) {
+    public func onAppear() {
         if !isInitializeFlag {
+            // リフレッシュしたいため都度取得する
+            let users = Array(realmRepository.readAllUsers())
             scCalenderRepository.initialize(users: users)
             isInitializeFlag = true
         }
@@ -81,6 +90,21 @@ class CalendarViewModel: ObservableObject {
                 guard let self else { return }
                 self.dayOfWeekList = list
             }.store(in: &cancellables)
+
+        // カレンダー更新用Notificationを観測
+        updateCancellable = NotificationCenter.default.publisher(for: .updateCalendar)
+            .sink { [weak self] notification in
+                guard let self else { return }
+                guard let obj = notification.object as? Bool else { return }
+                // trueなら更新
+                if obj {
+                    // リフレッシュしたいため都度取得する
+                    let users = Array(realmRepository.readAllUsers())
+                    scCalenderRepository.initialize(users: users)
+                    // カレンダーを更新
+                    NotificationCenter.default.post(name: .updateCalendar, object: false)
+                }
+            }
     }
 
     public func onDisappear() {
