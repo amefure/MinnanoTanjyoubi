@@ -61,6 +61,12 @@ class SCCalenderRepository {
 
     init() {
         today = calendar.dateComponents([.year, .month, .day], from: Date())
+
+        var dummyDates: [SCDate] = []
+        for i in 0 ..< 30 {
+            dummyDates.append(SCDate(year: -1, month: -1, day: -1))
+        }
+        _currentDates.send([dummyDates])
     }
 
     public func initialize(

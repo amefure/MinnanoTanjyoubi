@@ -24,6 +24,7 @@ struct CalendarRootView: View {
                 // .overlayLoadingDialog()によりローディングビューが表示される
 
                 Spacer()
+
             } else {
                 YearAndMonthSelectionView()
                     .environmentObject(viewModel)
@@ -43,7 +44,6 @@ struct CalendarRootView: View {
             }
 
         }.navigationBarBackButtonHidden()
-            .overlayLoadingDialog()
             .onAppear { viewModel.onAppear(users: users) }
             .onDisappear { viewModel.onDisappear() }
             .frame(width: DeviceSizeUtility.deviceWidth)
