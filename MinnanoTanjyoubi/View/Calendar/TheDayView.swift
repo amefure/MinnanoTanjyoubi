@@ -37,16 +37,30 @@ struct TheDayView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 18))
                         .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor(defaultColor: AppColorScheme.getText(rootEnvironment.scheme)))
 
-                    // 最大3人まで表示
-                    ForEach(theDay.users.prefix(3)) { user in
-                        Text(user.name)
-                            .lineLimit(1)
-                            .fontSSS(bold: true)
-                            .foregroundStyle(.white)
-                            .frame(height: 15)
-                            .frame(maxWidth: .infinity)
-                            .background(theDay.isToday ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exThemaYellow.swiftUIColor)
-                            .clipShape(RoundedRectangle(cornerRadius: 2))
+                    if DeviceSizeUtility.isSESize {
+                        // SEサイズなら最大2人まで表示
+                        ForEach(theDay.users.prefix(2)) { user in
+                            Text(user.name)
+                                .lineLimit(1)
+                                .fontSSS(bold: true)
+                                .foregroundStyle(.white)
+                                .frame(height: 15)
+                                .frame(maxWidth: .infinity)
+                                .background(theDay.isToday ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exThemaYellow.swiftUIColor)
+                                .clipShape(RoundedRectangle(cornerRadius: 2))
+                        }
+                    } else {
+                        // 最大3人まで表示
+                        ForEach(theDay.users.prefix(3)) { user in
+                            Text(user.name)
+                                .lineLimit(1)
+                                .fontSSS(bold: true)
+                                .foregroundStyle(.white)
+                                .frame(height: 15)
+                                .frame(maxWidth: .infinity)
+                                .background(theDay.isToday ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exThemaYellow.swiftUIColor)
+                                .clipShape(RoundedRectangle(cornerRadius: 2))
+                        }
                     }
 
                     // スペーサー用(スワイプタップ判定領域確保のため)
@@ -80,7 +94,7 @@ struct TheDayView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .frame(height: DeviceSizeUtility.isSESize ? 68 : 80)
+        .frame(height: DeviceSizeUtility.isSESize ? 74 : 80)
         .overlay {
             Rectangle()
                 .stroke(AppColorScheme.getText(rootEnvironment.scheme), lineWidth: 2)
