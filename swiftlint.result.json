@@ -1,0 +1,2198 @@
+[
+  {
+    "character" : 12,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 182,
+    "reason" : "Function should have 5 parameters or less: it currently has 6",
+    "rule_id" : "function_parameter_count",
+    "severity" : "Warning",
+    "type" : "Function Parameter Count"
+  },
+  {
+    "character" : 34,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 178,
+    "reason" : "Variable name 'key' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 111,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 182,
+    "reason" : "Variable name 'sns' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 204,
+    "reason" : "Variable name 'sns' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 182,
+    "reason" : "Line should be 110 characters or less; currently it has 124 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 194,
+    "reason" : "Line should be 110 characters or less; currently it has 145 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 196,
+    "reason" : "Line should be 110 characters or less; currently it has 145 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 198,
+    "reason" : "Line should be 110 characters or less; currently it has 145 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 200,
+    "reason" : "Line should be 110 characters or less; currently it has 139 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 202,
+    "reason" : "Line should be 110 characters or less; currently it has 142 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RootEnvironment.swift",
+    "line" : 204,
+    "reason" : "Line should be 110 characters or less; currently it has 136 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 22,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Generated/Assets.swift",
+    "line" : 1,
+    "reason" : "Use 'next', 'this' or 'previous' instead to disable the 'all' rule once, or re-enable it as soon as possible`",
+    "rule_id" : "blanket_disable_command",
+    "severity" : "Warning",
+    "type" : "Blanket Disable Command"
+  },
+  {
+    "character" : 12,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RealmRepositoryViewModel.swift",
+    "line" : 24,
+    "reason" : "Function should have complexity 10 or less; currently complexity is 11",
+    "rule_id" : "cyclomatic_complexity",
+    "severity" : "Warning",
+    "type" : "Cyclomatic Complexity"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RealmRepositoryViewModel.swift",
+    "line" : 13,
+    "reason" : "Variable name 'df' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 21,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RealmRepositoryViewModel.swift",
+    "line" : 62,
+    "reason" : "Variable name 'pre' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 21,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/RealmRepositoryViewModel.swift",
+    "line" : 69,
+    "reason" : "Variable name 'pre' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 12,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/TutorialPopUpViewModel.swift",
+    "line" : 23,
+    "reason" : "Prefer checking `isEmpty` over comparing `count` to zero",
+    "rule_id" : "empty_count",
+    "severity" : "Error",
+    "type" : "Empty Count"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/TutorialPopUpViewModel.swift",
+    "line" : 70,
+    "reason" : "Line should be 110 characters or less; currently it has 112 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 22,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Generated/Strings.swift",
+    "line" : 1,
+    "reason" : "Use 'next', 'this' or 'previous' instead to disable the 'all' rule once, or re-enable it as soon as possible`",
+    "rule_id" : "blanket_disable_command",
+    "severity" : "Warning",
+    "type" : "Blanket Disable Command"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/Setting/SettingViewModel.swift",
+    "line" : 19,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 35,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/Setting/SettingViewModel.swift",
+    "line" : 102,
+    "reason" : "Variable name 'msg' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 27,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/CalendarViewModel.swift",
+    "line" : 98,
+    "reason" : "Variable name 'obj' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/CalendarViewModel.swift",
+    "line" : 173,
+    "reason" : "Line should be 110 characters or less; currently it has 126 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/CalendarViewModel.swift",
+    "line" : 180,
+    "reason" : "Line should be 110 characters or less; currently it has 166 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/Setting/RewardViewModel.swift",
+    "line" : 11,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 12,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/EntryUserViewModel.swift",
+    "line" : 16,
+    "reason" : "Function should have 5 parameters or less: it currently has 7",
+    "rule_id" : "function_parameter_count",
+    "severity" : "Warning",
+    "type" : "Function Parameter Count"
+  },
+  {
+    "character" : 42,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/EntryUserViewModel.swift",
+    "line" : 37,
+    "reason" : "Variable name 'day' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/ViewModel/EntryUserViewModel.swift",
+    "line" : 38,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 12,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 135,
+    "reason" : "Function should have complexity 10 or less; currently complexity is 11",
+    "rule_id" : "cyclomatic_complexity",
+    "severity" : "Warning",
+    "type" : "Cyclomatic Complexity"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 135,
+    "reason" : "Function body should span 50 lines or less excluding comments and whitespace: currently spans 62 lines",
+    "rule_id" : "function_body_length",
+    "severity" : "Warning",
+    "type" : "Function Body Length"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 15,
+    "reason" : "Variable name 'START_YEAR' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 16,
+    "reason" : "Variable name 'START_MONTH' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 23,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 105,
+    "reason" : "Variable name 'y' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 23,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 106,
+    "reason" : "Variable name 'm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 124,
+    "reason" : "Variable name 'df' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 137,
+    "reason" : "Variable name 'df' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 160,
+    "reason" : "Variable name 'day' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 44,
+    "reason" : "Line should be 110 characters or less; currently it has 142 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/SCCalender/SCCalenderRepository.swift",
+    "line" : 103,
+    "reason" : "Line should be 110 characters or less; currently it has 112 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 38,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/KeyChainRepository.swift",
+    "line" : 24,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 33,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/KeyChainRepository.swift",
+    "line" : 49,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 38,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/KeyChainRepository.swift",
+    "line" : 71,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/InAppPurchaseRepository.swift",
+    "line" : 14,
+    "reason" : "Variable name 'REMOVE_ADS_ID' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/InAppPurchaseRepository.swift",
+    "line" : 15,
+    "reason" : "Variable name 'UNLOCK_STORAGE_ID' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 12,
+    "reason" : "Variable name 'LIMIT_CAPACITY' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 14,
+    "reason" : "Variable name 'LAST_ACQUISITION_DATE' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 16,
+    "reason" : "Variable name 'NOTICE_TIME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 18,
+    "reason" : "Variable name 'NOTICE_DATE_FLAG' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 20,
+    "reason" : "Variable name 'NOTICE_MSG' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 22,
+    "reason" : "Variable name 'DISPLAY_DAYS_LATER' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 24,
+    "reason" : "Variable name 'DISPLAY_AGE_MONTH' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 26,
+    "reason" : "Variable name 'DISPLAY_SECTION_LAYOUT' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 28,
+    "reason" : "Variable name 'ENTRY_INTI_YEAR' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 30,
+    "reason" : "Variable name 'APP_COLOR_SCHEME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 32,
+    "reason" : "Variable name 'APP_SORT_ITEM' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 34,
+    "reason" : "Variable name 'TUTORIAL_SHOW_FLAG' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 36,
+    "reason" : "Variable name 'TUTORIAL_RE_SHOW_FLAG' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 38,
+    "reason" : "Variable name 'SHOW_REVIEW_POPUP' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 40,
+    "reason" : "Variable name 'SHOW_REVIEW_POPUP_MIGRATE_VERSION' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 42,
+    "reason" : "Variable name 'LAUNCH_APP_COUNT' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 44,
+    "reason" : "Variable name 'PURCHASED_REMOVE_ADS' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 46,
+    "reason" : "Variable name 'PURCHASED_UNLOCK_STORAGE' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 48,
+    "reason" : "Variable name 'INIT_WEEK' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 51,
+    "reason" : "Variable name 'DISPLAY_RELATION_FRIEND' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 52,
+    "reason" : "Variable name 'DISPLAY_RELATION_FAMILY' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 53,
+    "reason" : "Variable name 'DISPLAY_RELATION_SCHOOL' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 54,
+    "reason" : "Variable name 'DISPLAY_RELATION_WORK' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 55,
+    "reason" : "Variable name 'DISPLAY_RELATION_OTHER' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 56,
+    "reason" : "Variable name 'DISPLAY_RELATION_SNS' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 29,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 64,
+    "reason" : "Variable name 'key' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 29,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 69,
+    "reason" : "Variable name 'key' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 28,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 74,
+    "reason" : "Variable name 'key' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 28,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 79,
+    "reason" : "Variable name 'key' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 31,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 84,
+    "reason" : "Variable name 'key' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 31,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/UserDefaultsRepository.swift",
+    "line" : 89,
+    "reason" : "Variable name 'key' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/RealmRepository.swift",
+    "line" : 15,
+    "reason" : "Force tries should be avoided",
+    "rule_id" : "force_try",
+    "severity" : "Warning",
+    "type" : "Force Try"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/RealmRepository.swift",
+    "line" : 27,
+    "reason" : "Force tries should be avoided",
+    "rule_id" : "force_try",
+    "severity" : "Warning",
+    "type" : "Force Try"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/RealmRepository.swift",
+    "line" : 36,
+    "reason" : "Force tries should be avoided",
+    "rule_id" : "force_try",
+    "severity" : "Warning",
+    "type" : "Force Try"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/RealmRepository.swift",
+    "line" : 46,
+    "reason" : "Force tries should be avoided",
+    "rule_id" : "force_try",
+    "severity" : "Warning",
+    "type" : "Force Try"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/RealmRepository.swift",
+    "line" : 60,
+    "reason" : "Force tries should be avoided",
+    "rule_id" : "force_try",
+    "severity" : "Warning",
+    "type" : "Force Try"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/RealmRepository.swift",
+    "line" : 69,
+    "reason" : "Force tries should be avoided",
+    "rule_id" : "force_try",
+    "severity" : "Warning",
+    "type" : "Force Try"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Repository/RealmRepository.swift",
+    "line" : 82,
+    "reason" : "Force tries should be avoided",
+    "rule_id" : "force_try",
+    "severity" : "Warning",
+    "type" : "Force Try"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 40,
+    "reason" : "Function should have complexity 10 or less; currently complexity is 14",
+    "rule_id" : "cyclomatic_complexity",
+    "severity" : "Warning",
+    "type" : "Cyclomatic Complexity"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 83,
+    "reason" : "Function should have complexity 10 or less; currently complexity is 14",
+    "rule_id" : "cyclomatic_complexity",
+    "severity" : "Warning",
+    "type" : "Cyclomatic Complexity"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 21,
+    "reason" : "Variable name 'age' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 42,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 44,
+    "reason" : "Variable name 'df' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 85,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 92,
+    "reason" : "Variable name 'num' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 127,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 130,
+    "reason" : "Variable name 'pre' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 143,
+    "reason" : "Variable name 'num' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 9,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 156,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 158,
+    "reason" : "Variable name 'day' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/UserCalcUtility.swift",
+    "line" : 147,
+    "reason" : "Prefer shorthand operators (+=, -=, *=, /=) over doing the operation and assigning",
+    "rule_id" : "shorthand_operator",
+    "severity" : "Error",
+    "type" : "Shorthand Operator"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/DateFormatUtility.swift",
+    "line" : 11,
+    "reason" : "Variable name 'df' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/DateFormatUtility.swift",
+    "line" : 13,
+    "reason" : "Variable name 'c' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 55,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/DateFormatUtility.swift",
+    "line" : 107,
+    "reason" : "Variable name 'day' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/DateFormatUtility.swift",
+    "line" : 108,
+    "reason" : "Variable name 'now' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/DateFormatUtility.swift",
+    "line" : 102,
+    "reason" : "Line should be 110 characters or less; currently it has 155 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 1,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/DateFormatUtility.swift",
+    "line" : 94,
+    "reason" : "MARK comment should be in valid format. e.g. '// MARK: ...' or '// MARK: - ...'",
+    "rule_id" : "mark",
+    "severity" : "Warning",
+    "type" : "Mark"
+  },
+  {
+    "character" : 19,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/ShareInfoUtillity.swift",
+    "line" : 12,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/ShareInfoUtillity.swift",
+    "line" : 37,
+    "reason" : "Line should be 110 characters or less; currently it has 262 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/ImageFileManager.swift",
+    "line" : 28,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/ImageFileManager.swift",
+    "line" : 72,
+    "reason" : "Line should be 110 characters or less; currently it has 124 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/ImageFileManager.swift",
+    "line" : 73,
+    "reason" : "Line should be 110 characters or less; currently it has 124 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/ImageFileManager.swift",
+    "line" : 90,
+    "reason" : "Line should be 110 characters or less; currently it has 124 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/UserDefaultManager.swift",
+    "line" : 64,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/UserDefaultManager.swift",
+    "line" : 72,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/UserDefaultManager.swift",
+    "line" : 106,
+    "reason" : "Variable name 'msg' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 32,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/UserDefaultManager.swift",
+    "line" : 116,
+    "reason" : "Variable name 'msg' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/UserDefaultManager.swift",
+    "line" : 35,
+    "reason" : "Line should be 110 characters or less; currently it has 117 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/UserDefaultManager.swift",
+    "line" : 157,
+    "reason" : "Line should be 110 characters or less; currently it has 143 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/UserDefaultManager.swift",
+    "line" : 169,
+    "reason" : "Line should be 110 characters or less; currently it has 137 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/UserDefaultManager.swift",
+    "line" : 219,
+    "reason" : "Line should be 110 characters or less; currently it has 111 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBRemoteConfigManager.swift",
+    "line" : 55,
+    "reason" : "Variable name 'SHOW_REVIEW_POPUP_VERSION_KEY' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBRemoteConfigManager.swift",
+    "line" : 51,
+    "reason" : "Line should be 110 characters or less; currently it has 114 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/CryptoUtillity.swift",
+    "line" : 19,
+    "reason" : "Variable name 'aes' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Extension&Utility/Utility/CryptoUtillity.swift",
+    "line" : 44,
+    "reason" : "Variable name 'aes' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Config/AdsConfig.swift",
+    "line" : 11,
+    "reason" : "Variable name 'INITIAL_CAPACITY' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Config/AdsConfig.swift",
+    "line" : 12,
+    "reason" : "Variable name 'ADD_CAPACITY' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Config/NotifyConfig.swift",
+    "line" : 11,
+    "reason" : "Variable name 'INITIAL_TIME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Config/NotifyConfig.swift",
+    "line" : 12,
+    "reason" : "Variable name 'INITIAL_DATE_FLAG' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Config/NotifyConfig.swift",
+    "line" : 13,
+    "reason" : "Variable name 'INITIAL_MSG' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Config/NotifyConfig.swift",
+    "line" : 14,
+    "reason" : "Variable name 'VARIABLE_USER_NAME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Config/RealmConfig.swift",
+    "line" : 12,
+    "reason" : "Variable name 'MIGRATION_VERSION' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 84,
+    "reason" : "Enum element name 'AppLockScreen' should start with a lowercase character",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 85,
+    "reason" : "Enum element name 'InAppPurchaseScreen' should start with a lowercase character",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 86,
+    "reason" : "Enum element name 'EditNotifyMessageScreen' should start with a lowercase character",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 87,
+    "reason" : "Enum element name 'UpdateRelationScreen' should start with a lowercase character",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 88,
+    "reason" : "Enum element name 'ShareUserLinkScreen' should start with a lowercase character",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 63,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 18,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 60,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 30,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 59,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 42,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 51,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 54,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 43,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 65,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 39,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/FBAnalyticsManager.swift",
+    "line" : 76,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/SCCalendar/SCDate.swift",
+    "line" : 14,
+    "reason" : "Variable name 'day' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/SCCalendar/SCDate.swift",
+    "line" : 24,
+    "reason" : "Variable name 'str' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/SecretCryptoKey.swift",
+    "line" : 11,
+    "reason" : "Variable name 'KEY' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/SecretCryptoKey.swift",
+    "line" : 12,
+    "reason" : "Variable name 'IV' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/NotificationRequestManager.swift",
+    "line" : 56,
+    "reason" : "Variable name 'msg' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/NotificationRequestManager.swift",
+    "line" : 86,
+    "reason" : "Variable name 'day' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/NotificationRequestManager.swift",
+    "line" : 56,
+    "reason" : "Line should be 110 characters or less; currently it has 127 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/NotificationRequestManager.swift",
+    "line" : 62,
+    "reason" : "Line should be 110 characters or less; currently it has 133 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Managers/NotificationRequestManager.swift",
+    "line" : 64,
+    "reason" : "Line should be 110 characters or less; currently it has 144 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 12,
+    "reason" : "Variable name 'APP_URL' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 14,
+    "reason" : "Variable name 'APP_REVIEW_URL' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 16,
+    "reason" : "Variable name 'APP_WEB_URL' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 18,
+    "reason" : "Variable name 'APP_CONTACT_URL' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 20,
+    "reason" : "Variable name 'APP_TERMS_OF_SERVICE_URL' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 23,
+    "reason" : "Variable name 'APP_OIWAI_URL' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 29,
+    "reason" : "Variable name 'CUSTOM_URL_SCHEME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 32,
+    "reason" : "Variable name 'PARAM_CREATE_USER' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 34,
+    "reason" : "Variable name 'QUERY_PREFIX' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 36,
+    "reason" : "Variable name 'QUERY_CREATE_USER' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 39,
+    "reason" : "Variable name 'CREATE_USER_SCHEME_LINK' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 12,
+    "reason" : "Line should be 110 characters or less; currently it has 133 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 23,
+    "reason" : "Line should be 110 characters or less; currently it has 148 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Common/StaticUrls.swift",
+    "line" : 39,
+    "reason" : "Line should be 110 characters or less; currently it has 113 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/RelationEnum.swift",
+    "line" : 18,
+    "reason" : "Enum element name 'sns' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/RelationEnum.swift",
+    "line" : 58,
+    "reason" : "Variable name 'FRIEND_NAME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/RelationEnum.swift",
+    "line" : 59,
+    "reason" : "Variable name 'FAMILY_NAME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/RelationEnum.swift",
+    "line" : 60,
+    "reason" : "Variable name 'SCHOOL_NAME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/RelationEnum.swift",
+    "line" : 61,
+    "reason" : "Variable name 'WORK_NAME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/RelationEnum.swift",
+    "line" : 62,
+    "reason" : "Variable name 'OTHER_NAME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/RelationEnum.swift",
+    "line" : 63,
+    "reason" : "Variable name 'SNS_NAME' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 93,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/AdMobViewModels.swift",
+    "line" : 53,
+    "reason" : "Variable name 'ad' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/AdMobViewModels.swift",
+    "line" : 70,
+    "reason" : "Variable name 'ad' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 20,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/AdMobViewModels.swift",
+    "line" : 54,
+    "reason" : "Prefer `!= nil` over `let _ =`",
+    "rule_id" : "unused_optional_binding",
+    "severity" : "Warning",
+    "type" : "Unused Optional Binding"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/AppLock/AppLockInputView.swift",
+    "line" : 45,
+    "reason" : "Line should be 110 characters or less; currently it has 161 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/AppLock/AppLockInputView.swift",
+    "line" : 46,
+    "reason" : "Line should be 110 characters or less; currently it has 114 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/AppLock/AppLockInputView.swift",
+    "line" : 52,
+    "reason" : "Line should be 110 characters or less; currently it has 124 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/User.swift",
+    "line" : 84,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 13,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/User.swift",
+    "line" : 168,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/Domain/User.swift",
+    "line" : 82,
+    "reason" : "Line should be 110 characters or less; currently it has 2377 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/InAppPurchase/SecretProductIdKey.swift",
+    "line" : 9,
+    "reason" : "Variable name 'REMOVE_ADS' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/InAppPurchase/SecretProductIdKey.swift",
+    "line" : 10,
+    "reason" : "Variable name 'UNLOCK_STORAGE' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/InAppPurchase/SecretProductIdKey.swift",
+    "line" : 11,
+    "reason" : "Variable name 'TEST_REMOVE_ADS' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/Models/InAppPurchase/SecretProductIdKey.swift",
+    "line" : 12,
+    "reason" : "Variable name 'TEST_UNLOCK_STORAGE' should only contain alphanumeric and other allowed characters",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Calendar/TheDayView.swift",
+    "line" : 38,
+    "reason" : "Line should be 110 characters or less; currently it has 150 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Calendar/TheDayView.swift",
+    "line" : 49,
+    "reason" : "Line should be 110 characters or less; currently it has 140 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Calendar/TheDayView.swift",
+    "line" : 61,
+    "reason" : "Line should be 110 characters or less; currently it has 140 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/MinnanoTanjyoubiApp.swift",
+    "line" : 17,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/ControlPanel/SortedButtonView.swift",
+    "line" : 29,
+    "reason" : "Line should be 110 characters or less; currently it has 113 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/ControlPanel/SortedButtonView.swift",
+    "line" : 39,
+    "reason" : "Line should be 110 characters or less; currently it has 113 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/SectionGridListView.swift",
+    "line" : 15,
+    "reason" : "Line should be 110 characters or less; currently it has 161 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/SectionGridListView.swift",
+    "line" : 18,
+    "reason" : "Line should be 110 characters or less; currently it has 161 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/SectionGridListView.swift",
+    "line" : 21,
+    "reason" : "Line should be 110 characters or less; currently it has 161 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/SectionGridListView.swift",
+    "line" : 24,
+    "reason" : "Line should be 110 characters or less; currently it has 157 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/SectionGridListView.swift",
+    "line" : 27,
+    "reason" : "Line should be 110 characters or less; currently it has 159 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/SectionGridListView.swift",
+    "line" : 30,
+    "reason" : "Line should be 110 characters or less; currently it has 155 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/RowUserView.swift",
+    "line" : 21,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 25,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/RowUserView.swift",
+    "line" : 79,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 26,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/RootView.swift",
+    "line" : 35,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/RootView.swift",
+    "line" : 39,
+    "reason" : "Line should be 110 characters or less; currently it has 125 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/RootView.swift",
+    "line" : 49,
+    "reason" : "Line should be 110 characters or less; currently it has 139 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 36,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/ListUser/RootListUserView.swift",
+    "line" : 99,
+    "reason" : "FIXMEs should be resolved (- iOS17以前ではスクロールが動作しないため暫定対応とし...)",
+    "rule_id" : "todo",
+    "severity" : "Warning",
+    "type" : "Todo"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/WebView/UICustomWebView.swift",
+    "line" : 15,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/WebView/UICustomWebView.swift",
+    "line" : 17,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 19,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/WebView/UICustomWebView.swift",
+    "line" : 71,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/WebView/UICustomWebView.swift",
+    "line" : 46,
+    "reason" : "Line should be 110 characters or less; currently it has 181 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/WebView/ControlWebView.swift",
+    "line" : 14,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 10,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/WebView/ControlWebView.swift",
+    "line" : 20,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 5,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Dialog/CustomNotifyDialogView.swift",
+    "line" : 102,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Dialog/CustomPopUpDialogView.swift",
+    "line" : 58,
+    "reason" : "Line should be 110 characters or less; currently it has 126 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 82,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Components/AdMobViewModels.swift",
+    "line" : 67,
+    "reason" : "Variable name 'ad' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Components/AdMobViewModels.swift",
+    "line" : 84,
+    "reason" : "Variable name 'ad' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 20,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Components/AdMobViewModels.swift",
+    "line" : 68,
+    "reason" : "Prefer `!= nil` over `let _ =`",
+    "rule_id" : "unused_optional_binding",
+    "severity" : "Warning",
+    "type" : "Unused Optional Binding"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Dialog/ImagePickerDialog.swift",
+    "line" : 23,
+    "reason" : "Line should be 110 characters or less; currently it has 123 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Dialog/ImagePickerDialog.swift",
+    "line" : 32,
+    "reason" : "Line should be 110 characters or less; currently it has 129 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Dialog/ImagePickerDialog.swift",
+    "line" : 44,
+    "reason" : "Line should be 110 characters or less; currently it has 114 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/EntryUser/DatePickerView.swift",
+    "line" : 11,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/EntryUser/DatePickerView.swift",
+    "line" : 79,
+    "reason" : "Line should be 110 characters or less; currently it has 125 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/UpdateRelationNameView.swift",
+    "line" : 16,
+    "reason" : "Variable name 'sns' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/UpdateRelationNameView.swift",
+    "line" : 22,
+    "reason" : "Line should be 110 characters or less; currently it has 111 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/EntryUser/EntryUserView.swift",
+    "line" : 134,
+    "reason" : "Line should be 110 characters or less; currently it has 138 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/EntryUser/EntryUserView.swift",
+    "line" : 173,
+    "reason" : "Line should be 110 characters or less; currently it has 115 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SelectInitWeekView.swift",
+    "line" : 45,
+    "reason" : "Line should be 110 characters or less; currently it has 113 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SelectSortView.swift",
+    "line" : 43,
+    "reason" : "Line should be 110 characters or less; currently it has 113 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SelectColorScheme.swift",
+    "line" : 48,
+    "reason" : "Line should be 110 characters or less; currently it has 113 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/EditNotifyMessageView.swift",
+    "line" : 116,
+    "reason" : "Variable name 'msg' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 40,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/EditNotifyMessageView.swift",
+    "line" : 120,
+    "reason" : "Variable name 'str' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/DetailUser/DetailUserView.swift",
+    "line" : 121,
+    "reason" : "Line should be 110 characters or less; currently it has 138 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/DetailUser/MiddleUserInfoView.swift",
+    "line" : 39,
+    "reason" : "Line should be 110 characters or less; currently it has 126 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/DetailUser/MiddleUserInfoView.swift",
+    "line" : 42,
+    "reason" : "Line should be 110 characters or less; currently it has 129 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/DetailUser/MiddleUserInfoView.swift",
+    "line" : 46,
+    "reason" : "Line should be 110 characters or less; currently it has 133 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/DetailUser/MiddleUserInfoView.swift",
+    "line" : 49,
+    "reason" : "Line should be 110 characters or less; currently it has 133 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 536,
+    "reason" : "File should contain 500 lines or less: currently contains 536",
+    "rule_id" : "file_length",
+    "severity" : "Warning",
+    "type" : "File Length"
+  },
+  {
+    "character" : 28,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 292,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 28,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 317,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 28,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 331,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 24,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 372,
+    "reason" : "Variable name 'url' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 424,
+    "reason" : "Variable name 'now' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 16,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 425,
+    "reason" : "Variable name 'max' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 147,
+    "reason" : "Line should be 110 characters or less; currently it has 158 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 255,
+    "reason" : "Line should be 110 characters or less; currently it has 149 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 95,
+    "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration",
+    "rule_id" : "opening_brace",
+    "severity" : "Warning",
+    "type" : "Opening Brace Spacing"
+  },
+  {
+    "character" : 1,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/SettingView.swift",
+    "line" : 12,
+    "reason" : "Type body should span 300 lines or less excluding comments and whitespace: currently spans 335 lines",
+    "rule_id" : "type_body_length",
+    "severity" : "Warning",
+    "type" : "Type Body Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/Setting/ShareUserLinkView.swift",
+    "line" : 66,
+    "reason" : "Line should be 110 characters or less; currently it has 122 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : null,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/DetailUser/NotificationButtonView.swift",
+    "line" : 43,
+    "reason" : "Line should be 110 characters or less; currently it has 126 characters",
+    "rule_id" : "line_length",
+    "severity" : "Warning",
+    "type" : "Line Length"
+  },
+  {
+    "character" : 36,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubiTests/MinnanoTanjyoubiTests.swift",
+    "line" : 14,
+    "reason" : "Collection literals should not have trailing commas",
+    "rule_id" : "trailing_comma",
+    "severity" : "Warning",
+    "type" : "Trailing Comma"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubiTests/UserTest.swift",
+    "line" : 20,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  },
+  {
+    "character" : 17,
+    "file" : "/Users/s/Desktop/SwiftApp/MinnanoTanjyoubi/MinnanoTanjyoubi/View/DetailUser/UpSideUserInfoView.swift",
+    "line" : 15,
+    "reason" : "Variable name 'dfm' should be between 4 and 40 characters long",
+    "rule_id" : "identifier_name",
+    "severity" : "Error",
+    "type" : "Identifier Name"
+  }
+]

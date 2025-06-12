@@ -783,7 +783,6 @@
 				125F12382A58F0C400B36D02 /* ShellScript */,
 				12B76E892D0DB3080021A018 /* Firebase Crashlytics Script */,
 				FF1816DDE408F875A97B3628 /* [CP] Copy Pods Resources */,
-				12F9F1732DFAF78300B7A46C /* SwiftLintRun Script */,
 			);
 			buildRules = (
 			);
@@ -904,25 +903,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
-		};
-		12F9F1732DFAF78300B7A46C /* SwiftLintRun Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "SwiftLintRun Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ -f /opt/homebrew/bin/swiftlint ]; then\n  /opt/homebrew/bin/swiftlint\nelse\n  echo \"⚠️⚠️⚠️warning: SwiftLint not installed at expected path\"\nfi\n";
 		};
 		4C51D6F7A50A7695D8FD0FC9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
