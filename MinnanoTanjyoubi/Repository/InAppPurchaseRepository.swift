@@ -113,7 +113,6 @@ class InAppPurchaseRepository {
             // 購入中 , ユーザーキャンセル
             case .pending, .userCancelled:
                 _isPurchasing.send(false)
-                break
             @unknown default:
                 _isPurchasing.send(false)
             }

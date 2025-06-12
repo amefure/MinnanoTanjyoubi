@@ -16,7 +16,7 @@ struct RemoveButtonView: View {
 
     var body: some View {
         Button {
-            if rootEnvironment.deleteIdArray.count != 0 {
+            if !rootEnvironment.deleteIdArray.isEmpty {
                 isDeleteAlert = true
             } else {
                 if rootEnvironment.isDeleteMode {

@@ -23,7 +23,7 @@ class InAppPurchaseViewModel: ObservableObject {
 
     private let inAppPurchaseRepository: InAppPurchaseRepository
 
-    private var purchaseTask: Task<Void, Never>? = nil
+    private var purchaseTask: Task<Void, Never>?
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         inAppPurchaseRepository = repositoryDependency.inAppPurchaseRepository

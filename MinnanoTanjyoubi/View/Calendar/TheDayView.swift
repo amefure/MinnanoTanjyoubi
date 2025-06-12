@@ -22,7 +22,7 @@ struct TheDayView: View {
     /// 詳細画面表示
     @State private var isShowDetailView: Bool = false
     /// 複数存在時に詳細画面に遷移するUser情報を保持する
-    @State private var user: User? = nil
+    @State private var user: User?
 
     var body: some View {
         VStack {
@@ -72,7 +72,7 @@ struct TheDayView: View {
                     TapGesture()
                         .onEnded { _ in
 
-                            if theDay.users.count == 0 {
+                            if theDay.users.isEmpty {
                                 // 0なら新規登録
                                 // 容量がオーバーしていないか または 容量解放されている
                                 if !repository.isOverCapacity(1) || rootEnvironment.unlockStorage {
@@ -98,7 +98,7 @@ struct TheDayView: View {
         .overlay {
             Rectangle()
                 .stroke(AppColorScheme.getText(rootEnvironment.scheme), lineWidth: 2)
-        }.if(theDay.users.count == 0) { view in
+        }.if(theDay.users.isEmpty) { view in
             view
                 .sheet(isPresented: $isShowEntryModal) {
                     EntryUserView(

@@ -40,7 +40,7 @@ class Reward: NSObject, ObservableObject, GADFullScreenContentDelegate {
     // リワード広告を読み込んだかどうか
     @Published var rewardLoaded: Bool = false
     // リワード広告が格納される
-    var rewardedAd: GADRewardedAd? = nil
+    var rewardedAd: GADRewardedAd?
 
     override init() {
         super.init()

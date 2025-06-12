@@ -14,7 +14,7 @@ struct SectionRowView: View {
     public var title: String
 
     var body: some View {
-        if users.count != 0 {
+        if !users.isEmpty {
             VStack(alignment: .leading) {
                 Text(title)
                     .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))

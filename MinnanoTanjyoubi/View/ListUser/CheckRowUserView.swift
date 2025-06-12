@@ -27,7 +27,7 @@ struct CheckBoxToggleStyle: ToggleStyle {
                 Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
             }
         }.onAppear {
-            if deleteIdArray.count == 0 {
+            if deleteIdArray.isEmpty {
                 // カウントが0 = キャンセルボタン押下後ならトグルをリセット
                 configuration.isOn = false
             }

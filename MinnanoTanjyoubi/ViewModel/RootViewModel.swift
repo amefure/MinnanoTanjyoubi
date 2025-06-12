@@ -12,7 +12,7 @@ class RootViewModel: ObservableObject {
     @Published var showCreateShareUserError: Bool = false
     @Published var showSuccessCreateUser: Bool = false
 
-    @Published private(set) var error: ShareCreateError? = nil
+    @Published private(set) var error: ShareCreateError?
     @Published var createUsers: [User] = []
 
     /// 共有された暗号化された文字列から`User`オブジェクトを生成する

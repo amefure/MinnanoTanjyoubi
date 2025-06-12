@@ -63,11 +63,11 @@ struct ShareUserLinkView: View {
                 Text("共有する")
                     .fontM()
             }.frame(width: DeviceSizeUtility.deviceWidth - 80, height: 50)
-                .background(shareUsers.count != 0 ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
+                .background(!shareUsers.isEmpty ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
-                .disabled(shareUsers.count == 0)
+                .disabled(shareUsers.isEmpty)
 
             Spacer()
 

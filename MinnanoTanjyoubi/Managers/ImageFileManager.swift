@@ -67,7 +67,7 @@ class ImageFileManager {
     /// 画像保存処理
     public func saveImage(name: String, image: UIImage) -> AnyPublisher<Void, ImageError> {
         Deferred {
-            Future<Void, ImageError>() { [weak self] promise in
+            Future<Void, ImageError> { [weak self] promise in
                 guard let self = self else { return promise(.failure(.castFailed)) }
                 guard let imageData = image.jpegData(compressionQuality: 1.0) else { return promise(.failure(.castFailed)) }
                 guard let path = self.getDocmentsUrl("\(name + self.suffix)") else { return promise(.failure(.castFailed)) }
@@ -84,7 +84,7 @@ class ImageFileManager {
     /// 画像削除処理
     public func deleteImage(name: String) -> AnyPublisher<Void, ImageError> {
         Deferred {
-            Future<Void, ImageError>() { [weak self] promise in
+            Future<Void, ImageError> { [weak self] promise in
                 guard let self = self else { return promise(.failure(.castFailed)) }
 
                 guard let path = self.getDocmentsUrl("\(name + self.suffix)") else { return promise(.failure(.castFailed)) }

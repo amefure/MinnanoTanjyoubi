@@ -32,7 +32,7 @@ class CalendarViewModel: ObservableObject {
     private let scCalenderRepository: SCCalenderRepository
 
     private var cancellables: Set<AnyCancellable> = []
-    private var updateCancellable: AnyCancellable? = nil
+    private var updateCancellable: AnyCancellable?
 
     deinit {
         updateCancellable?.cancel()

@@ -74,7 +74,7 @@ struct RootListUserView: View {
             default:
                 ZStack {
                     // List Contents
-                    if repository.users.count == 0 {
+                    if repository.users.isEmpty {
                         noDataView()
                     } else {
                         ScrollView {

@@ -88,8 +88,8 @@ class NotificationRequestManager {
         let minute = Int(timeArray[safe: 1] ?? "0") ?? 0
 
         // 毎年通知を送るため年は不要
-//        let nowDate = Calendar.current.dateComponents([.year], from: Date())
-//        dateComponent.year = nowDate.year
+        //        let nowDate = Calendar.current.dateComponents([.year], from: Date())
+        //        dateComponent.year = nowDate.year
 
         let dateComponent = DateComponents(
             month: month,

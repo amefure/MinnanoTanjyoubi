@@ -23,12 +23,12 @@ class DetailViewModel: ObservableObject {
     /// 削除対象のパス
     @Published private(set) var isUpdateView: Int = 0
     /// 画像エラー
-    @Published private(set) var imageError: ImageError? = nil
+    @Published private(set) var imageError: ImageError?
 
     /// 削除対象のパス
     public var selectPath: String = ""
     /// 表示対象のUIImage
-    public var selectImage: Image? = nil
+    public var selectImage: Image?
 
     /// ImageContainerViewの描画更新フラグ
     public func updateView() {

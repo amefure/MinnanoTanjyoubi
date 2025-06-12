@@ -20,7 +20,7 @@ struct ImageContainerView: View {
 
     @State private var isShowImagePicker: Bool = false // 画像ピッカー表示
     @State private var cancellables: Set<AnyCancellable> = Set()
-    @State private var image: UIImage? = nil
+    @State private var image: UIImage?
     @State var images: [String] = []
 
     var body: some View {
