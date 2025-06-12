@@ -1,0 +1,68 @@
+# デフォルトでは、SwiftLint は適切なデフォルトルールセットを使用します。以下で調整可能です。
+disabled_rules: # デフォルトで有効になっているルールのうち、除外したいルールを指定
+  - colon              # コロンのスタイルチェックを無効化
+  - comma              # カンマのスタイルチェックを無効化
+  - control_statement  # if などの制御文の書き方チェックを無効化
+
+opt_in_rules: # デフォルトでは無効になっているルール。使用するには明示的に opt-in が必要
+  - empty_count        # `.count == 0` の代わりに `.isEmpty` を使うことを推奨するルール
+  # 利用可能なすべてのルールは `swiftlint rules` コマンドで確認できます
+
+# 代わりに、使用するすべてのルールを明示的に指定する方法もあります（以下のオプションのコメントを外す）
+# only_rules: # `disabled_rules` と `opt_in_rules` はこの設定を使う場合は削除してください
+#   - empty_parameters
+#   - vertical_whitespace
+
+analyzer_rules: # `swiftlint analyze` 実行時に適用されるルール
+  - explicit_self      # 明示的な self の使用を推奨
+
+
+excluded: # lint の対象外とするパス（大文字小文字を区別）。`included` より優先されます
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+  - Source/*/ExcludedFile.swift # ワイルドカードでファイルを除外
+
+# true の場合、lint 対象ファイルが見つからなくても SwiftLint は失敗しません
+allow_zero_lintable_files: false
+
+# 設定可能なルールのカスタマイズ
+# バイナリルールは severity（警告レベル）を設定できます
+force_cast: warning # `as!` の強制キャストに対して警告
+
+force_try:
+  severity: warning # `try!` の強制使用に対して警告
+
+# 警告とエラーのレベルを持つルールは、警告レベルのみを設定することも可能
+line_length: 110 # 1行の最大文字数。これを超えると警告
+
+# 警告とエラーの両方を設定する場合（配列で設定）
+type_body_length:
+  - 300 # 警告レベル
+  - 400 # エラーレベル
+
+# 警告とエラーを明示的に設定する場合
+file_length:
+  warning: 500  # ファイル行数が 500 行で警告
+  error: 1200   # ファイル行数が 1200 行でエラー
+
+# 命名規則ルールの設定：min/max 長さの警告・エラー閾値、除外対象など
+type_name:
+  min_length: 4 # 最小長さに対する警告
+  max_length:
+    warning: 40
+    error: 50
+  excluded: iPhone # 除外する型名
+  allowed_symbols: ["_"] # 型名に許可される記号
+
+identifier_name:
+  min_length:
+    error: 4 # 最小長さに満たない識別子に対してエラー
+  excluded:
+    - id
+    - URL
+    - GlobalAPIKey # 特定の識別子を除外
+
+# エラー・警告の出力形式を指定（例: xcode, json, markdown など）
+reporter: "xcode"
