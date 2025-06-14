@@ -24,15 +24,13 @@ struct EditNotifyMessageView: View {
                 .environmentObject(rootEnvironment)
 
             Text("通知メッセージ編集")
-                .font(.system(size: 20))
+                .fontL(bold: true)
                 .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-                .fontWeight(.bold)
                 .padding(.vertical)
 
             Text("通知プレビュー")
-                .font(.system(size: 14))
+                .fontS(bold: true)
                 .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-                .fontWeight(.bold)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             DemoNotifyView(title: "みんなの誕生日", msg: notifyMsg)
@@ -44,9 +42,8 @@ struct EditNotifyMessageView: View {
                 .padding(.vertical)
 
             Text("通知メッセージ入力")
-                .font(.system(size: 14))
+                .fontS(bold: true)
                 .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-                .fontWeight(.bold)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             TextField("ここに通知メッセージを入力してね。", text: $notifyMsg)
@@ -59,9 +56,8 @@ struct EditNotifyMessageView: View {
                 .shadow(color: .gray, radius: 3, x: 3, y: 3)
 
             Text("・通知メッセージは" + NotifyConfig.VARIABLE_USER_NAME + "部分が名前に自動で置き換わります。")
-                .font(.system(size: 14))
+                .fontS(bold: true)
                 .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-                .fontWeight(.bold)
                 .padding(.vertical)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
@@ -81,9 +77,6 @@ struct EditNotifyMessageView: View {
 
         }.onAppear {
             notifyMsg = viewModel.getNotifyMsg()
-            DispatchQueue.main.async {
-                isFocus = true
-            }
         }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
             .ignoresSafeArea(.keyboard)
             .fontM()

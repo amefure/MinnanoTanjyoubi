@@ -51,8 +51,12 @@ struct CarouselCalendarView: View {
         .offset(x: -(viewModel.displayCalendarIndex * deviceWidth))
         // スワイプ完了後の動作をなめらかにするためのアニメーション
         .animation(
-            .linear(duration: 0.2),
+            .linear(duration: 0.5),
             value: viewModel.displayCalendarIndex * deviceWidth
+        )
+        .animation(
+            .linear(duration: 0.5),
+            value: dragOffset
         )
         .gesture(
             DragGesture(minimumDistance: 0)

@@ -59,7 +59,7 @@ class TutorialPopUpViewModel: ObservableObject {
         switch position {
         case .topLeft:
             title = "レイアウトを変更できるよ！"
-            message = "単純なグリッドレイアウトではなく関係性ごとにセクション分けされたレイアウトに切り替えることができます。"
+            message = "選べる3つのレイアウト\n\n・グリッドレイアウト(デフォルト)\n・グリッドレイアウト(セクション分け)\n・カレンダー\n好きなレイアウトでアプリを使ってね。"
             buttonTitle = "アプリをはじめよう！"
         case .topRight:
             title = "通知やアプリのカスタマイズ！"
