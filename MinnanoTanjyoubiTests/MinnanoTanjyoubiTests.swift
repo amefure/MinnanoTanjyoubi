@@ -12,5 +12,7 @@ struct MinnanoTanjyoubiTests {
     static let allTests = [
         UserTest.self,
         DateFormatUtilityTests.self,
+        CryptoUtilityTests.self,
+        JsonConvertUtilityTests.self,
     ] as [Any]
 }
