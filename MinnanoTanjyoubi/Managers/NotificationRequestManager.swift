@@ -8,7 +8,6 @@
 import RealmSwift
 import UIKit
 
-@MainActor
 final class NotificationRequestManager: Sendable {
     /// 通知許可申請リクエスト
     public func requestAuthorization(completion: @escaping (Bool) -> Void) {
@@ -22,6 +21,7 @@ final class NotificationRequestManager: Sendable {
     }
 
     /// 通知が許可されていない場合にアラートで通知許可を促す
+    @MainActor
     public func showSettingsAlert() {
         let alertController = UIAlertController(
             title: "通知が許可されていません。",
