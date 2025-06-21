@@ -115,6 +115,7 @@
 		12CFB0C92D0C7D8300407CEA /* RewardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */; };
 		12CFB0CB2D0C7DB400407CEA /* ShareInfoUtillity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */; };
 		12D0C7FF2953B7CD002C9C4E /* NotificationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */; };
+		12DCD53C2E06E514007E59A7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD53B2E06E511007E59A7 /* Logger.swift */; };
 		12E9C8902D0B23E500C0A20B /* ShareUserLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */; };
 		12E9C8952D0B2B7700C0A20B /* JsonConvertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */; };
 		12E9C8972D0C258600C0A20B /* CryptoUtillity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */; };
@@ -254,6 +255,7 @@
 		12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewModel.swift; sourceTree = "<group>"; };
 		12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInfoUtillity.swift; sourceTree = "<group>"; };
 		12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButtonView.swift; sourceTree = "<group>"; };
+		12DCD53B2E06E511007E59A7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareUserLinkView.swift; sourceTree = "<group>"; };
 		12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConvertUtility.swift; sourceTree = "<group>"; };
 		12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUtillity.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 		12CFB0A52D0C53B200407CEA /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				12DCD53B2E06E511007E59A7 /* Logger.swift */,
 				12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */,
 				12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */,
 				12ACAD2629984D5400273834 /* DateFormatUtility.swift */,
@@ -1117,6 +1120,7 @@
 				12CB922028E92293002BD7B2 /* DatePickerView.swift in Sources */,
 				12D0C7FF2953B7CD002C9C4E /* NotificationButtonView.swift in Sources */,
 				1262361B2DF3BFA500A5F1AE /* YearAndMonthSelectionView.swift in Sources */,
+				12DCD53C2E06E514007E59A7 /* Logger.swift in Sources */,
 				123F485B29A42083001B91B3 /* NoticeDateFlagView.swift in Sources */,
 				123F485629A23886001B91B3 /* ControlPanelView.swift in Sources */,
 				12CB921328E6FD43002BD7B2 /* RowUserView.swift in Sources */,
@@ -1200,6 +1204,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = targeted;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MinnanoTanjyoubi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MinnanoTanjyoubi";
@@ -1225,6 +1230,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = targeted;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MinnanoTanjyoubi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MinnanoTanjyoubi";
@@ -1288,6 +1294,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -1341,6 +1348,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1377,7 +1385,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1413,7 +1421,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

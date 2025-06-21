@@ -8,6 +8,7 @@ import UIKit
 
 class ShareInfoUtillity {
     /// アプリシェアロジック
+    @MainActor
     static func shareApp(shareText: String, shareLink: String) {
         guard let url = URL(string: shareLink) else { return }
         let items = [shareText, url] as [Any]
@@ -26,6 +27,7 @@ class ShareInfoUtillity {
 
     /// 誕生日情報を友達に共有するためのリンクを発行しシェアする
     /// - Parameter user: 共有対象の誕生日情報
+    @MainActor
     static func shareBirthday(_ users: [User]) {
         let jsonConvertUtility = JsonConvertUtility()
         let cryptoUtility = CryptoUtillity()

@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     // フォアグラウンドでも通知を有効にする
-    func userNotificationCenter(
+    nonisolated func userNotificationCenter(
         _: UNUserNotificationCenter,
         willPresent _: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void

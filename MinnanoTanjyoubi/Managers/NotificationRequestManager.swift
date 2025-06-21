@@ -8,7 +8,8 @@
 import RealmSwift
 import UIKit
 
-class NotificationRequestManager {
+@MainActor
+final class NotificationRequestManager: Sendable {
     /// 通知許可申請リクエスト
     public func requestAuthorization(completion: @escaping (Bool) -> Void) {
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]

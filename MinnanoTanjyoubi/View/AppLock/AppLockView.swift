@@ -36,7 +36,9 @@ struct AppLockView: View {
                         .offset(y: 60)
                 } else {
                     Button {
-                        viewModel.requestBiometricsLogin()
+                        Task {
+                            await viewModel.requestBiometricsLogin()
+                        }
                     } label: {
                         VStack {
                             if viewModel.type == .faceID {

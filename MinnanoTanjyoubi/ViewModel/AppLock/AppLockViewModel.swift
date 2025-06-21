@@ -9,6 +9,7 @@ import Combine
 import LocalAuthentication
 import UIKit
 
+@MainActor
 class AppLockViewModel: ObservableObject {
     @Published var isShowApp = false // アプリメイン画面遷移
     @Published var isShowFailureAlert = false // パスワード失敗アラート
@@ -33,21 +34,21 @@ class AppLockViewModel: ObservableObject {
         }.store(in: &cancellables)
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) { [weak self] in
-            guard let self = self else { return }
-            self.requestBiometricsLogin()
+            guard let self else { return }
+            Task {
+                await self.requestBiometricsLogin()
+            }
         }
     }
 
     /// 生体認証リクエスト
-    public func requestBiometricsLogin() {
-        biometricAuthRepository.requestBiometrics { [weak self] result in
-            guard let self = self else { return }
-            if result {
-                self.showProgress()
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) { [weak self] in
-                    guard let self = self else { return }
-                    self.showApp()
-                }
+    public func requestBiometricsLogin() async {
+        let result: Bool = await biometricAuthRepository.requestBiometrics()
+        if result {
+            showProgress()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) { [weak self] in
+                guard let self = self else { return }
+                self.showApp()
             }
         }
     }
@@ -59,13 +60,13 @@ class AppLockViewModel: ObservableObject {
             let pass = password.joined(separator: "")
             if pass == keyChainRepository.getData() {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) { [weak self] in
-                    guard let self = self else { return }
+                    guard let self else { return }
                     self.showApp()
                 }
 
             } else {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) { [weak self] in
-                    guard let self = self else { return }
+                    guard let self else { return }
                     self.hiddenProgress()
                     self.showFailureAlert()
                     completion(false)

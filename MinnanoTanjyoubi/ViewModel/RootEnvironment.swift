@@ -11,6 +11,7 @@ import StoreKit
 import UIKit
 
 /// アプリ内で共通で利用される状態や環境値を保持する
+@MainActor
 class RootEnvironment: ObservableObject {
     /// `Singleton`
     static let shared = RootEnvironment()

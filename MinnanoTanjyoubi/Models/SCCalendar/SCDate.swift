@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SCDate: Identifiable {
+struct SCDate: Identifiable, @unchecked Sendable {
     public var id: UUID = .init()
     public var year: Int
     public var month: Int

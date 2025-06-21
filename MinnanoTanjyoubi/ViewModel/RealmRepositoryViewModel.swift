@@ -9,6 +9,7 @@ import RealmSwift
 import UIKit
 
 class RealmRepositoryViewModel: ObservableObject {
+    @MainActor
     static let shared = RealmRepositoryViewModel()
     private let df = DateFormatUtility()
 
@@ -141,8 +142,10 @@ class RealmRepositoryViewModel: ObservableObject {
 
     public func removeUser(removeIdArray: [ObjectId]) {
         for id in removeIdArray {
-            /// 削除対象の通知を全てOFFにする
-            AppManager.sharedNotificationRequestManager.removeNotificationRequest(id)
+            Task {
+                /// 削除対象の通知を全てOFFにする
+                await AppManager.sharedNotificationRequestManager.removeNotificationRequest(id)
+            }
         }
         repository.removeUser(removeIdArray: removeIdArray)
         readAllUsers()

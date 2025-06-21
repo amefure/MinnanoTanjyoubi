@@ -57,7 +57,8 @@ class UserDefaultsKey {
 }
 
 /// UserDefaultsの基底クラス
-class UserDefaultsRepository {
+class UserDefaultsRepository: @unchecked Sendable {
+    /// `UserDefaults`がスレッドセーフではあるが`Sendable`ではないため`@unchecked`で回避
     private let userDefaults = UserDefaults.standard
 
     /// Bool：保存

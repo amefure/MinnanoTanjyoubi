@@ -8,7 +8,7 @@
 import Combine
 import SwiftUI
 
-class SCCalenderRepository {
+final class SCCalenderRepository: @unchecked Sendable {
     // MARK: Config
 
     // 初期表示位置デモ値

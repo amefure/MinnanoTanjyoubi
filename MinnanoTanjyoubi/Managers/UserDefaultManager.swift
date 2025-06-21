@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserDefaultManager {
+final class UserDefaultManager: Sendable {
     private let userDefaultsRepository: UserDefaultsRepository
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {

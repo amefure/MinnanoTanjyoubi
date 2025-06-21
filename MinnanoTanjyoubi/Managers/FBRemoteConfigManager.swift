@@ -8,7 +8,7 @@
 import Combine
 import FirebaseRemoteConfig
 
-class RemoteConfigManager {
+final class RemoteConfigManager: @unchecked Sendable {
     private let remoteConfig: RemoteConfig
 
     public var showReviewPopupVersion: AnyPublisher<Int, Never> {

@@ -9,6 +9,7 @@ import Combine
 import StoreKit
 import SwiftUI
 
+@MainActor
 class InAppPurchaseViewModel: ObservableObject {
     /// 取得エラー
     @Published var fetchError: Bool = false
@@ -31,6 +32,10 @@ class InAppPurchaseViewModel: ObservableObject {
 
     public func onAppear() {
         FBAnalyticsManager.loggingScreen(screen: .InAppPurchaseScreen)
+
+        Task {
+            await inAppPurchaseRepository.startListen()
+        }
 
         // 課金アイテム取得
         inAppPurchaseRepository.products.sink { [weak self] products in
