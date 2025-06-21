@@ -14,5 +14,5 @@ xcassets:
     - MinnanoTanjyoubi/Resources/Colors.xcassets
   # テンプレート指定と保存先
   outputs:
-    - templateName: swift5
+    - templatePath: ./swiftgen_custom_template.stencil
       output: MinnanoTanjyoubi/Generated/Assets.swift
