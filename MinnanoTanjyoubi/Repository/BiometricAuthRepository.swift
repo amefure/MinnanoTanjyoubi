@@ -40,7 +40,7 @@ final class BiometricAuthRepository: Sendable {
 
         var error: NSError?
         guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
-            print(error?.localizedDescription ?? "生体認証をサポートしていないデバイスです")
+            AppLogger.logger.debug("生体認証をサポートしていないデバイスです：\(error)")
             return false
         }
         _biometryType.send(context.biometryType)
@@ -50,7 +50,7 @@ final class BiometricAuthRepository: Sendable {
             _isLogin.send(true)
             return true
         } catch {
-            print(error.localizedDescription)
+            AppLogger.logger.debug("\(error)")
             return false
         }
     }

@@ -114,7 +114,6 @@
 		12CFB0C52D0C7BEE00407CEA /* ExModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0C42D0C7BED00407CEA /* ExModifier.swift */; };
 		12CFB0C92D0C7D8300407CEA /* RewardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */; };
 		12CFB0CB2D0C7DB400407CEA /* ShareInfoUtillity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */; };
-		12D0C7FF2953B7CD002C9C4E /* NotificationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */; };
 		12DCD53C2E06E514007E59A7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD53B2E06E511007E59A7 /* Logger.swift */; };
 		12E9C8902D0B23E500C0A20B /* ShareUserLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */; };
 		12E9C8952D0B2B7700C0A20B /* JsonConvertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */; };
@@ -124,7 +123,7 @@
 		12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29C02C21958700A1293D /* EntryUserViewModel.swift */; };
 		12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */; };
 		12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */; };
-		12F9F1702DF9B2C900B7A46C /* ExUpdateCalendarNotification.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F16F2DF9B2BC00B7A46C /* ExUpdateCalendarNotification.swift.swift */; };
+		12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */; };
 		12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */; };
 		12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */; };
 		12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A272B2DC1C600FA700E /* RealmRepository.swift */; };
@@ -254,7 +253,6 @@
 		12CFB0C42D0C7BED00407CEA /* ExModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExModifier.swift; sourceTree = "<group>"; };
 		12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewModel.swift; sourceTree = "<group>"; };
 		12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInfoUtillity.swift; sourceTree = "<group>"; };
-		12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButtonView.swift; sourceTree = "<group>"; };
 		12DCD53B2E06E511007E59A7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareUserLinkView.swift; sourceTree = "<group>"; };
 		12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConvertUtility.swift; sourceTree = "<group>"; };
@@ -264,7 +262,7 @@
 		12ED29C02C21958700A1293D /* EntryUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserViewModel.swift; sourceTree = "<group>"; };
 		12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
 		12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorScheme.swift; sourceTree = "<group>"; };
-		12F9F16F2DF9B2BC00B7A46C /* ExUpdateCalendarNotification.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUpdateCalendarNotification.swift.swift; sourceTree = "<group>"; };
+		12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExNotificationName.swift; sourceTree = "<group>"; };
 		12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInitWeekView.swift; sourceTree = "<group>"; };
 		12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryViewModel.swift; sourceTree = "<group>"; };
 		12FE3A272B2DC1C600FA700E /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
@@ -411,7 +409,6 @@
 				12CB921728E858DF002BD7B2 /* DetailUserView.swift */,
 				12682BB629A7963200D0498F /* UpSideUserInfoView.swift */,
 				12682BB429A7949000D0498F /* MiddleUserInfoView.swift */,
-				12D0C7FE2953B7CD002C9C4E /* NotificationButtonView.swift */,
 				1224013F2B8721EE0099BE8D /* ImageContainerView.swift */,
 			);
 			path = DetailUser;
@@ -706,7 +703,7 @@
 				12CFB0C42D0C7BED00407CEA /* ExModifier.swift */,
 				12CFB0A82D0C53C500407CEA /* ExView.swift */,
 				121DEE072B1A20BF00964902 /* ExCollection.swift */,
-				12F9F16F2DF9B2BC00B7A46C /* ExUpdateCalendarNotification.swift.swift */,
+				12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */,
 			);
 			path = Extenstion;
 			sourceTree = "<group>";
@@ -1118,7 +1115,6 @@
 				128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */,
 				12CB921E28E9223C002BD7B2 /* RelationPickerView.swift in Sources */,
 				12CB922028E92293002BD7B2 /* DatePickerView.swift in Sources */,
-				12D0C7FF2953B7CD002C9C4E /* NotificationButtonView.swift in Sources */,
 				1262361B2DF3BFA500A5F1AE /* YearAndMonthSelectionView.swift in Sources */,
 				12DCD53C2E06E514007E59A7 /* Logger.swift in Sources */,
 				123F485B29A42083001B91B3 /* NoticeDateFlagView.swift in Sources */,
@@ -1145,7 +1141,7 @@
 				12B76E882D0D940B0021A018 /* ControlWebView.swift in Sources */,
 				12682BB329A788A200D0498F /* EntryButtonView.swift in Sources */,
 				1262361F2DF3C72700A5F1AE /* CarouselCalendarView.swift in Sources */,
-				12F9F1702DF9B2C900B7A46C /* ExUpdateCalendarNotification.swift.swift in Sources */,
+				12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */,
 				121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */,
 				126236142DF3BEB200A5F1AE /* SCYearAndMonth.swift in Sources */,
 				12682BB529A7949000D0498F /* MiddleUserInfoView.swift in Sources */,

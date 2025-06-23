@@ -16,8 +16,6 @@ final class RealmRepository: Sendable {
         realm = try! Realm()
     }
 
-    // MARK: - private property
-
     private let realm: Realm
 
     // MARK: - Create

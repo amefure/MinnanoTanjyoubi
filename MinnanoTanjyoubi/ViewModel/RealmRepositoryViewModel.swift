@@ -5,6 +5,7 @@
 //  Created by t&a on 2023/12/16.
 //
 
+import Combine
 import RealmSwift
 import UIKit
 
@@ -17,9 +18,22 @@ class RealmRepositoryViewModel: ObservableObject {
 
     private let repository: RealmRepository
 
+    private var cancellables: Set<AnyCancellable> = []
+
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         repository = repositoryDependency.realmRepository
         readAllUsers()
+
+        // 更新用Notificationを観測
+        NotificationCenter.default.publisher(for: .readAllUsers)
+            .sink { [weak self] notification in
+                guard let self else { return }
+                guard let obj = notification.object as? Bool else { return }
+                // trueなら更新
+                guard obj else { return }
+                readAllUsers()
+                NotificationCenter.default.post(name: .readAllUsers, object: false)
+            }.store(in: &cancellables)
     }
 
     public func readAllUsers(sort: AppSortItem? = nil) {

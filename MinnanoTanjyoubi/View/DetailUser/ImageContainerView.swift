@@ -10,16 +10,15 @@ import SwiftUI
 import UIKit
 
 struct ImageContainerView: View {
-    private let imageFileManager = ImageFileManager()
 
     @State var user: User
     @StateObject var viewModel: DetailViewModel
 
-    @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    @State private var isShowImagePicker: Bool = false // 画像ピッカー表示
-    @State private var cancellables: Set<AnyCancellable> = Set()
+    // 画像ピッカー表示
+    @State private var isShowImagePicker: Bool = false
+    
     @State private var image: UIImage?
     @State var images: [String] = []
 
@@ -33,12 +32,11 @@ struct ImageContainerView: View {
                                 .resizable()
                                 .frame(width: 80, height: 80)
                                 .onTapGesture {
-                                    viewModel.selectImage = image
-                                    viewModel.isImageShowAlert = true
+                                    viewModel.showPreViewImagePopup(image: image)
                                 }.onLongPressGesture {
-                                    viewModel.selectPath = user.imagePaths[safe: index] ?? ""
-                                    viewModel.isDeleteConfirmAlert = true
+                                    viewModel.showDeleteConfirmAlert(user: user, index: index)
                                 }
+                            // 選択中UI表示
                             if viewModel.selectPath == user.imagePaths[safe: index] {
                                 Rectangle()
                                     .frame(width: 80, height: 80)
@@ -57,7 +55,7 @@ struct ImageContainerView: View {
                     isShowImagePicker = true
                 } label: {
                     Image(systemName: "plus")
-                        .font(.system(size: 17))
+                        .fontM()
                         .frame(width: 80, height: 80)
                         .overBorder(
                             radius: 5,
@@ -71,28 +69,12 @@ struct ImageContainerView: View {
         .sheet(isPresented: $isShowImagePicker) {
             ImagePickerDialog(image: $image)
         }.onChange(of: image) { image in
-            guard let image = image else { return }
-            let imgName = UUID().uuidString
-            imageFileManager.saveImage(name: imgName, image: image)
-                .sink { result in
-                    switch result {
-                    case .finished:
-                        var imagePaths = Array(user.imagePaths)
-                        imagePaths.append(imgName)
-                        repository.updateImagePathsUser(id: user.id, imagePathsArray: imagePaths)
-                        viewModel.isSaveSuccessAlert = true
-                    case let .failure(error):
-                        viewModel.showImageErrorHandle(error: error)
-                        return
-                    }
-                } receiveValue: { _ in
-
-                }.store(in: &cancellables)
+            viewModel.saveImage(user: user, image: image)
         }.onAppear {
+            // UI表示時に画像パスを取得する
             for path in user.imagePaths {
-                if let path = imageFileManager.loadImagePath(name: path) {
-                    images.append(path)
-                }
+                guard let path = viewModel.loadImagePath(name: path) else { continue }
+                images.append(path)
             }
         }
     }

@@ -9,15 +9,23 @@ import RealmSwift
 import UIKit
 
 final class NotificationRequestManager: Sendable {
+    private let userDefaultsRepository: UserDefaultsRepository
+
+    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
+        userDefaultsRepository = repositoryDependency.userDefaultsRepository
+    }
+
     /// 通知許可申請リクエスト
-    public func requestAuthorization(completion: @escaping (Bool) -> Void) {
+    public func requestAuthorization() async -> Bool {
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter
-            .current()
-            .requestAuthorization(options: authOptions) { [weak self] granted, _ in
-                guard self != nil else { return }
-                completion(granted)
-            }
+        do {
+            let result: Bool = try await UNUserNotificationCenter
+                .current()
+                .requestAuthorization(options: authOptions)
+            return result
+        } catch {
+            return false
+        }
     }
 
     /// 通知が許可されていない場合にアラートで通知許可を促す
@@ -30,9 +38,8 @@ final class NotificationRequestManager: Sendable {
         )
         let settingsAction = UIAlertAction(title: "設定を開く", style: .default) { _ in
             guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
-            if UIApplication.shared.canOpenURL(settingsURL) {
-                UIApplication.shared.open(settingsURL)
-            }
+            guard UIApplication.shared.canOpenURL(settingsURL) else { return }
+            UIApplication.shared.open(settingsURL)
         }
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
 
@@ -42,12 +49,6 @@ final class NotificationRequestManager: Sendable {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let rootVC = windowScene?.windows.first?.rootViewController
         rootVC?.present(alertController, animated: true, completion: {})
-    }
-
-    private let userDefaultsRepository: UserDefaultsRepository
-
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        userDefaultsRepository = repositoryDependency.userDefaultsRepository
     }
 
     public func sendNotificationRequest(_ id: ObjectId, _ userName: String, _ date: Date) {
@@ -74,7 +75,7 @@ final class NotificationRequestManager: Sendable {
             let dayNum = Int(dateFlag) ?? 1
             // 0以外なら日数前にする
             let calendar = Calendar.current
-            let modifiedDate = calendar.date(byAdding: .day, value: -dayNum, to: date) ?? Date()
+            let modifiedDate: Date = calendar.date(byAdding: .day, value: -dayNum, to: date) ?? Date()
             dateStr = DateFormatUtility().getNotifyString(date: modifiedDate)
         }
 
@@ -109,14 +110,13 @@ final class NotificationRequestManager: Sendable {
         center.removePendingNotificationRequests(withIdentifiers: [id.stringValue])
     }
 
-    // MARK: - 確認用
-
-    #if DEBUG
-        func confirmNotificationRequest() {
-            let center = UNUserNotificationCenter.current()
-            center.getPendingNotificationRequests { array in
-                print(array)
-            }
+    /// 通知確認用
+    public func confirmNotificationRequest() {
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests { array in
+            #if DEBUG
+                AppLogger.logger.debug("設定済み通知一覧：\(array)")
+            #endif
         }
-    #endif
+    }
 }

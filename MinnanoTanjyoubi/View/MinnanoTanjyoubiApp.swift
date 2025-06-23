@@ -21,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Firebase
         FirebaseApp.configure()
 
-        // 通知の許可申請
-        AppManager.sharedNotificationRequestManager.requestAuthorization { _ in }
+        Task {
+            // 通知の許可申請
+            await AppManager.sharedNotificationRequestManager.requestAuthorization()
+        }
 
         // Remote Config 初期設定
         AppManager.sharedRemoteConfigManager.initialize()
