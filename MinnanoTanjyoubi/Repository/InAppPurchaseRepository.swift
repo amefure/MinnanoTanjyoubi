@@ -84,19 +84,24 @@ actor InAppPurchaseRepository {
     }
 
     /// 課金アイテムを取得する
-    public func requestProducts() async {
+    private func requestProducts() async {
         do {
             let productIdentifiers = [Self.REMOVE_ADS_ID, Self.UNLOCK_STORAGE_ID]
             let products = try await Product.products(for: productIdentifiers)
             let sorted = products.sorted { $0.price < $1.price }
-            _products.send(sorted)
+            await MainActor.run {
+                _products.send(sorted)
+            }
         } catch {
-            // 課金アイテム取得失敗
-            _fetchError.send(true)
+            await MainActor.run {
+                // 課金アイテム取得失敗
+                _fetchError.send(true)
+            }
         }
     }
 
     /// 購入処理
+    @MainActor
     public func purchase(product: Product) async {
         _isPurchasing.send(true)
         do {
@@ -109,7 +114,7 @@ actor InAppPurchaseRepository {
                 switch verificationResult {
                 case .verified:
                     // 検証成功
-                    let transaction = try checkVerified(verificationResult)
+                    let transaction = try await checkVerified(verificationResult)
                     // 課金アイテム情報更新
                     await updateCustomerProductStatus()
                     // トランザクションを明示的に終了
@@ -117,7 +122,7 @@ actor InAppPurchaseRepository {
                     _isPurchasing.send(false)
                 case .unverified:
                     // 検証失敗エラー
-                    handlePurchaseError()
+                    await handlePurchaseError()
                     _isPurchasing.send(false)
                 }
             // 購入中 , ユーザーキャンセル
@@ -129,7 +134,7 @@ actor InAppPurchaseRepository {
         } catch {
             _isPurchasing.send(false)
             // エラー
-            handlePurchaseError()
+            await handlePurchaseError()
         }
     }
 

@@ -16,7 +16,7 @@ struct RemoveButtonView: View {
 
     var body: some View {
         Button {
-            if !rootEnvironment.deleteIdArray.isEmpty {
+            if !rootEnvironment.deleteArray.isEmpty {
                 isDeleteAlert = true
             } else {
                 if rootEnvironment.isDeleteMode {
@@ -37,7 +37,7 @@ struct RemoveButtonView: View {
                 negativeButtonTitle: "キャンセル",
                 positiveButtonRole: .destructive,
                 positiveAction: {
-                    repository.removeUser(removeIdArray: rootEnvironment.deleteIdArray)
+                    repository.removeUsers(users: rootEnvironment.deleteArray)
                     rootEnvironment.resetDeleteMode()
                 },
                 negativeAction: {

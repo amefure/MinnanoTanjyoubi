@@ -16,6 +16,8 @@ class RealmRepositoryViewModel: ObservableObject {
 
     @Published var users: [User] = []
 
+    private let imageFileManager = ImageFileManager()
+
     private let repository: RealmRepository
 
     private var cancellables: Set<AnyCancellable> = []
@@ -149,20 +151,30 @@ class RealmRepositoryViewModel: ObservableObject {
         readAllUsers()
     }
 
-    public func updateImagePathsUser(id: ObjectId, imagePathsArray: [String]) {
-        repository.updateImagePathsUser(id: id, imagePathsArray: imagePathsArray)
+    public func removeUsers(users: [User]) {
+        for user in users {
+            let userId: ObjectId = user.id
+            Task {
+                /// 削除対象の通知を全てOFFにする
+                await AppManager.sharedNotificationRequestManager.removeNotificationRequest(userId)
+            }
+
+            // 画像を削除する
+            deleteImage(user: user)
+        }
+
+        let removeIds: [ObjectId] = users.map { $0.id }
+        repository.removeUser(removeIdArray: removeIds)
         readAllUsers()
     }
 
-    public func removeUser(removeIdArray: [ObjectId]) {
-        for id in removeIdArray {
-            Task {
-                /// 削除対象の通知を全てOFFにする
-                await AppManager.sharedNotificationRequestManager.removeNotificationRequest(id)
-            }
+    /// 画像削除
+    public func deleteImage(user: User) {
+        let imagePaths = Array(user.imagePaths)
+        for selectPath in imagePaths {
+            // ここのエラーは握り潰す
+            _ = try? imageFileManager.deleteImage(name: selectPath)
         }
-        repository.removeUser(removeIdArray: removeIdArray)
-        readAllUsers()
     }
 }
 

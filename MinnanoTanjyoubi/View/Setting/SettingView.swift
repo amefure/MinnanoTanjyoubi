@@ -252,7 +252,12 @@ struct SettingView: View {
                         })
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
-                Section(header: Text("Link"), footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。").font(.system(size: 14)).fontWeight(.bold)) {
+                Section(
+                    header: Text("Link"),
+                    footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。")
+                        .font(.system(size: 14))
+                        .fontWeight(.bold)
+                ) {
                     // よくある質問
                     NavigationLink {
                         FaqListView()

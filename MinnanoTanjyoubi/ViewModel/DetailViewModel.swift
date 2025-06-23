@@ -84,7 +84,7 @@ extension DetailViewModel {
         selectPath = user.imagePaths[safe: index] ?? ""
         isDeleteConfirmAlert = true
     }
-    
+
     /// 画像がちゃんと保存されているパスをチェック & 取得
     public func loadImagePath(name: String) -> String? {
         imageFileManager.loadImagePath(name: name)
@@ -99,6 +99,8 @@ extension DetailViewModel {
             var imagePaths = Array(user.imagePaths)
             imagePaths.append(imgName)
             repository.updateImagePathsUser(id: user.id, imagePathsArray: imagePaths)
+            // 再取得
+            NotificationCenter.default.post(name: .readAllUsers, object: true)
             isSaveSuccessAlert = true
         } catch {
             guard error is ImageError else { return }

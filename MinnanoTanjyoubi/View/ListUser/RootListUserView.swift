@@ -11,7 +11,6 @@ import UIKit
 
 /// データをリスト表示するビュー
 struct RootListUserView: View {
-    // Models
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
 
     // Environment

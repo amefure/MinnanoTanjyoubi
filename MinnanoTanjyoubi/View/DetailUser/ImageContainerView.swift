@@ -10,7 +10,6 @@ import SwiftUI
 import UIKit
 
 struct ImageContainerView: View {
-
     @State var user: User
     @StateObject var viewModel: DetailViewModel
 
@@ -18,7 +17,7 @@ struct ImageContainerView: View {
 
     // 画像ピッカー表示
     @State private var isShowImagePicker: Bool = false
-    
+
     @State private var image: UIImage?
     @State var images: [String] = []
 
