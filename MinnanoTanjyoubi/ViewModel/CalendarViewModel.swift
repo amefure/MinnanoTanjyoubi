@@ -9,7 +9,7 @@ import Combine
 import UIKit
 
 class CalendarViewModel: ObservableObject {
-    static let shared = CalendarViewModel()
+    @MainActor static let shared = CalendarViewModel()
 
     private let dateFormatUtility = DateFormatUtility()
 

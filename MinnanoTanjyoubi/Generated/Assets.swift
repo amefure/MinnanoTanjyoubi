@@ -1,3 +1,4 @@
+
 // swiftlint:disable all
 // Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
 
@@ -90,7 +91,7 @@ enum Asset {
 
 // MARK: - Implementation Details
 
-final class ColorAsset {
+final class ColorAsset: @unchecked Sendable {
     fileprivate(set) var name: String
 
     #if os(macOS)

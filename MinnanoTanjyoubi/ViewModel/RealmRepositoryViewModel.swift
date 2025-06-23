@@ -5,20 +5,37 @@
 //  Created by t&a on 2023/12/16.
 //
 
+import Combine
 import RealmSwift
 import UIKit
 
 class RealmRepositoryViewModel: ObservableObject {
+    @MainActor
     static let shared = RealmRepositoryViewModel()
     private let df = DateFormatUtility()
 
     @Published var users: [User] = []
 
+    private let imageFileManager = ImageFileManager()
+
     private let repository: RealmRepository
+
+    private var cancellables: Set<AnyCancellable> = []
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         repository = repositoryDependency.realmRepository
         readAllUsers()
+
+        // 更新用Notificationを観測
+        NotificationCenter.default.publisher(for: .readAllUsers)
+            .sink { [weak self] notification in
+                guard let self else { return }
+                guard let obj = notification.object as? Bool else { return }
+                // trueなら更新
+                guard obj else { return }
+                readAllUsers()
+                NotificationCenter.default.post(name: .readAllUsers, object: false)
+            }.store(in: &cancellables)
     }
 
     public func readAllUsers(sort: AppSortItem? = nil) {
@@ -134,18 +151,30 @@ class RealmRepositoryViewModel: ObservableObject {
         readAllUsers()
     }
 
-    public func updateImagePathsUser(id: ObjectId, imagePathsArray: [String]) {
-        repository.updateImagePathsUser(id: id, imagePathsArray: imagePathsArray)
+    public func removeUsers(users: [User]) {
+        for user in users {
+            let userId: ObjectId = user.id
+            Task {
+                /// 削除対象の通知を全てOFFにする
+                await AppManager.sharedNotificationRequestManager.removeNotificationRequest(userId)
+            }
+
+            // 画像を削除する
+            deleteImage(user: user)
+        }
+
+        let removeIds: [ObjectId] = users.map { $0.id }
+        repository.removeUser(removeIdArray: removeIds)
         readAllUsers()
     }
 
-    public func removeUser(removeIdArray: [ObjectId]) {
-        for id in removeIdArray {
-            /// 削除対象の通知を全てOFFにする
-            AppManager.sharedNotificationRequestManager.removeNotificationRequest(id)
+    /// 画像削除
+    private func deleteImage(user: User) {
+        let imagePaths = Array(user.imagePaths)
+        for selectPath in imagePaths {
+            // ここのエラーは握り潰す
+            _ = try? imageFileManager.deleteImage(name: selectPath)
         }
-        repository.removeUser(removeIdArray: removeIdArray)
-        readAllUsers()
     }
 }
 

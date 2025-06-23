@@ -6,15 +6,17 @@
 //
 
 import Combine
-import FirebaseRemoteConfig
+@preconcurrency import FirebaseRemoteConfig
 
-class RemoteConfigManager {
+final class RemoteConfigManager: Sendable {
     private let remoteConfig: RemoteConfig
 
+    @MainActor
     public var showReviewPopupVersion: AnyPublisher<Int, Never> {
         _showReviewPopupVersion.eraseToAnyPublisher()
     }
 
+    @MainActor
     private var _showReviewPopupVersion = CurrentValueSubject<Int, Never>(0)
 
     init() {
@@ -37,19 +39,23 @@ class RemoteConfigManager {
             guard let self else { return }
             if status == .success {
                 self.remoteConfig.activate(completion: nil)
-                applyShowReviewPopupVersion()
+                Task {
+                    await applyShowReviewPopupVersion()
+                }
             } else {
                 #if DEBUG
-                    print("Error: \(error?.localizedDescription ?? "No error available.")")
+                    AppLogger.logger.debug("Error: \(error?.localizedDescription ?? "No error available.")")
                 #endif
             }
         }
     }
 
     /// `SHOW_REVIEW_POPUP_KEY`設定値を取得し公開
-    private func applyShowReviewPopupVersion() {
+    private func applyShowReviewPopupVersion() async {
         let version = Int(truncating: remoteConfig[RemoteConfigManager.SHOW_REVIEW_POPUP_VERSION_KEY].numberValue)
-        _showReviewPopupVersion.send(version)
+        await MainActor.run {
+            _showReviewPopupVersion.send(version)
+        }
     }
 
     private static let SHOW_REVIEW_POPUP_VERSION_KEY = "show_review_popup_version"

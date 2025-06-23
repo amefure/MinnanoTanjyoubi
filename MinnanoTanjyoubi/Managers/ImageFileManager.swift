@@ -6,17 +6,15 @@
 //
 
 import Combine
-import SwiftUI
 import UIKit
 
 /// アプリからデバイス内(Docmentsフォルダ)へ画像を保存するクラス
-class ImageFileManager {
-    private var fileManager = FileManager.default
-
-    private var suffix = ".jpg"
+final class ImageFileManager: Sendable {
+    private let suffix = ".jpg"
 
     // DocmentsフォルダまでのURLを取得
     private func getDocmentsUrl(_ fileName: String) -> URL? {
+        let fileManager = FileManager.default
         do {
             let docsUrl = try fileManager.url(
                 for: .documentDirectory,
@@ -28,6 +26,7 @@ class ImageFileManager {
             let url = docsUrl.appendingPathComponent(fileName)
             return url
         } catch {
+            AppLogger.logger.debug("ドキュメントパスの取得失敗")
             return nil
         }
     }
@@ -37,15 +36,10 @@ class ImageFileManager {
         guard name != "" else { return nil }
 
         guard let path = getDocmentsUrl("\(name + suffix)")?.path else { return nil }
-
-        if fileManager.fileExists(atPath: path) {
-            if let image = UIImage(contentsOfFile: path) {
-                return image
-            } else {
-                return nil
-            }
-        }
-        return nil
+        let fileManager = FileManager.default
+        guard fileManager.fileExists(atPath: path) else { return nil }
+        guard let image = UIImage(contentsOfFile: path) else { return nil }
+        return image
     }
 
     public func loadImagePath(name: String) -> String? {
@@ -53,48 +47,33 @@ class ImageFileManager {
         guard name != "" else { return nil }
 
         guard let path = getDocmentsUrl("\(name + suffix)")?.path else { return nil }
-
-        if fileManager.fileExists(atPath: path) {
-            if UIImage(contentsOfFile: path) != nil {
-                return path
-            } else {
-                return nil
-            }
-        }
-        return nil
+        let fileManager = FileManager.default
+        guard fileManager.fileExists(atPath: path) else { return nil }
+        guard UIImage(contentsOfFile: path) != nil else { return nil }
+        return path
     }
 
     /// 画像保存処理
-    public func saveImage(name: String, image: UIImage) -> AnyPublisher<Void, ImageError> {
-        Deferred {
-            Future<Void, ImageError> { [weak self] promise in
-                guard let self = self else { return promise(.failure(.castFailed)) }
-                guard let imageData = image.jpegData(compressionQuality: 1.0) else { return promise(.failure(.castFailed)) }
-                guard let path = self.getDocmentsUrl("\(name + self.suffix)") else { return promise(.failure(.castFailed)) }
-                do {
-                    try imageData.write(to: path)
-                    promise(.success(()))
-                } catch {
-                    promise(.failure(.saveFailed))
-                }
-            }
-        }.eraseToAnyPublisher()
+    public func saveImage(name: String, image: UIImage) throws -> Bool {
+        guard let imageData = image.jpegData(compressionQuality: 1.0) else { throw ImageError.castFailed }
+        guard let path = getDocmentsUrl("\(name + suffix)") else { throw ImageError.castFailed }
+        do {
+            try imageData.write(to: path)
+            return true
+        } catch {
+            throw ImageError.saveFailed
+        }
     }
 
     /// 画像削除処理
-    public func deleteImage(name: String) -> AnyPublisher<Void, ImageError> {
-        Deferred {
-            Future<Void, ImageError> { [weak self] promise in
-                guard let self = self else { return promise(.failure(.castFailed)) }
-
-                guard let path = self.getDocmentsUrl("\(name + self.suffix)") else { return promise(.failure(.castFailed)) }
-                do {
-                    try fileManager.removeItem(at: path)
-                    promise(.success(()))
-                } catch {
-                    promise(.failure(.deleteFailed))
-                }
-            }
-        }.eraseToAnyPublisher()
+    public func deleteImage(name: String) throws -> Bool {
+        guard let path = getDocmentsUrl("\(name + suffix)") else { throw ImageError.castFailed }
+        do {
+            let fileManager = FileManager.default
+            try fileManager.removeItem(at: path)
+            return true
+        } catch {
+            throw ImageError.deleteFailed
+        }
     }
 }

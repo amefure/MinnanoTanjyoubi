@@ -129,6 +129,7 @@ class SettingViewModel: ObservableObject {
     }
 
     /// アプリシェアロジック
+    @MainActor
     public func shareApp(shareText: String, shareLink: String) {
         ShareInfoUtillity.shareApp(shareText: shareText, shareLink: shareLink)
     }

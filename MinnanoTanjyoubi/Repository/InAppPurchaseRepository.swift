@@ -5,54 +5,65 @@
 //  Created by t&a on 2025/01/02.
 //
 
-import Combine
+/// CombineではSwift6対応(Sendable準拠))がされていないため`@preconcurrency`で制限を緩くする
+@preconcurrency import Combine
 import StoreKit
 import SwiftUI
 
-class InAppPurchaseRepository {
+actor InAppPurchaseRepository {
     /// `課金アイテムID`
     static let REMOVE_ADS_ID = ProductItem.removeAds.id
     static let UNLOCK_STORAGE_ID = ProductItem.unlockStorage.id
 
     /// 課金アイテム配列
+    @MainActor
     public var products: AnyPublisher<[Product], Never> {
         _products.eraseToAnyPublisher()
     }
 
+    @MainActor
     private let _products = CurrentValueSubject<[Product], Never>([])
 
     /// 購入済み課金アイテム配列
+    @MainActor
     public var purchasedProducts: AnyPublisher<[Product], Never> {
         _purchasedProducts.eraseToAnyPublisher()
     }
 
+    @MainActor
     private let _purchasedProducts = CurrentValueSubject<[Product], Never>([])
 
     /// 購入中
+    @MainActor
     public var isPurchasing: AnyPublisher<Bool, Never> {
         _isPurchasing.eraseToAnyPublisher()
     }
 
+    @MainActor
     private let _isPurchasing = PassthroughSubject<Bool, Never>()
 
     /// 購入エラー
+    @MainActor
     public var fetchError: AnyPublisher<Bool, Never> {
         _fetchError.eraseToAnyPublisher()
     }
 
+    @MainActor
     private let _fetchError = PassthroughSubject<Bool, Never>()
 
     /// 購入エラー
+    @MainActor
     public var purchaseError: AnyPublisher<Bool, Never> {
         _purchaseError.eraseToAnyPublisher()
     }
 
+    @MainActor
     private let _purchaseError = PassthroughSubject<Bool, Never>()
 
     ///
     private var updateListenerTask: Task<Void, Error>?
 
-    init() {
+    public func startListen() {
         updateListenerTask = listenForTransactions()
 
         Task {
@@ -67,21 +78,25 @@ class InAppPurchaseRepository {
     }
 
     /// 購入済みプロダクトかどうか
+    @MainActor
     public func isPurchased(_ productId: String) -> Bool {
         _purchasedProducts.value.contains { $0.id == productId }
     }
 
     /// 課金アイテムを取得する
-    @MainActor
-    public func requestProducts() async {
+    private func requestProducts() async {
         do {
             let productIdentifiers = [Self.REMOVE_ADS_ID, Self.UNLOCK_STORAGE_ID]
             let products = try await Product.products(for: productIdentifiers)
             let sorted = products.sorted { $0.price < $1.price }
-            _products.send(sorted)
+            await MainActor.run {
+                _products.send(sorted)
+            }
         } catch {
-            // 課金アイテム取得失敗
-            _fetchError.send(true)
+            await MainActor.run {
+                // 課金アイテム取得失敗
+                _fetchError.send(true)
+            }
         }
     }
 
@@ -99,7 +114,7 @@ class InAppPurchaseRepository {
                 switch verificationResult {
                 case .verified:
                     // 検証成功
-                    let transaction = try checkVerified(verificationResult)
+                    let transaction = try await checkVerified(verificationResult)
                     // 課金アイテム情報更新
                     await updateCustomerProductStatus()
                     // トランザクションを明示的に終了
@@ -107,7 +122,7 @@ class InAppPurchaseRepository {
                     _isPurchasing.send(false)
                 case .unverified:
                     // 検証失敗エラー
-                    handlePurchaseError()
+                    await handlePurchaseError()
                     _isPurchasing.send(false)
                 }
             // 購入中 , ユーザーキャンセル
@@ -119,16 +134,13 @@ class InAppPurchaseRepository {
         } catch {
             _isPurchasing.send(false)
             // エラー
-            handlePurchaseError()
+            await handlePurchaseError()
         }
     }
 
     /// 購入エラー
     private func handlePurchaseError() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self._purchaseError.send(true)
-        }
+        _purchaseError.send(true)
     }
 
     /// 課金アイテムの更新を観測
@@ -136,7 +148,7 @@ class InAppPurchaseRepository {
         return Task.detached {
             for await result in Transaction.updates {
                 do {
-                    let transaction = try self.checkVerified(result)
+                    let transaction = try await self.checkVerified(result)
 
                     await self.updateCustomerProductStatus()
 
@@ -159,6 +171,7 @@ class InAppPurchaseRepository {
     }
 
     /// 復元処理
+    @MainActor
     public func restore() {
         Task {
             do {

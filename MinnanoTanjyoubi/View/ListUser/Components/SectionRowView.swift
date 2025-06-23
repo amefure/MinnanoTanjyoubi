@@ -18,9 +18,8 @@ struct SectionRowView: View {
             VStack(alignment: .leading) {
                 Text(title)
                     .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
-                    .fontWeight(.bold)
                     .padding(.horizontal)
-                    .font(.system(size: 17))
+                    .fontM(bold: true)
 
                 HStack {
                     Spacer()

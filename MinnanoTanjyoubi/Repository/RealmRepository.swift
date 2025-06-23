@@ -5,21 +5,18 @@
 //  Created by t&a on 2023/12/16.
 //
 
+@preconcurrency
 import RealmSwift
 import UIKit
 
-class RealmRepository {
+final class RealmRepository: Sendable {
     init() {
         let config = Realm.Configuration(schemaVersion: RealmConfig.MIGRATION_VERSION)
         Realm.Configuration.defaultConfiguration = config
         realm = try! Realm()
     }
 
-    // MARK: - private property
-
     private let realm: Realm
-
-    public var addUserId: ObjectId?
 
     // MARK: - Create
 
@@ -27,7 +24,6 @@ class RealmRepository {
         try! realm.write {
             realm.add(user)
         }
-        addUserId = user.id
     }
 
     // MARK: - Read

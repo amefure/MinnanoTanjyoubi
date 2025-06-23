@@ -11,14 +11,15 @@ import SwiftUI
 /// Toggleボタンのカスタマイズ構造体
 struct CheckBoxToggleStyle: ToggleStyle {
     public var user: User
-    @Binding var deleteIdArray: [ObjectId]
+    @Binding var deleteArray: [User]
 
     func makeBody(configuration: Configuration) -> some View {
         Button {
             if configuration.isOn {
-                deleteIdArray.remove(at: deleteIdArray.firstIndex(of: user.id)!)
+                guard let index = deleteArray.firstIndex(of: user) else { return }
+                deleteArray.remove(at: index)
             } else {
-                deleteIdArray.append(user.id)
+                deleteArray.append(user)
             }
             configuration.isOn.toggle()
 
@@ -27,7 +28,7 @@ struct CheckBoxToggleStyle: ToggleStyle {
                 Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
             }
         }.onAppear {
-            if deleteIdArray.isEmpty {
+            if deleteArray.isEmpty {
                 // カウントが0 = キャンセルボタン押下後ならトグルをリセット
                 configuration.isOn = false
             }
@@ -53,7 +54,7 @@ struct CheckRowUserView: View {
             // チェックボタン
             Toggle(isOn: $isOn) {
                 EmptyView()
-            }.toggleStyle(CheckBoxToggleStyle(user: user, deleteIdArray: $rootEnvironment.deleteIdArray))
+            }.toggleStyle(CheckBoxToggleStyle(user: user, deleteArray: $rootEnvironment.deleteArray))
                 .tint(AppColorScheme.getThema1(rootEnvironment.scheme))
                 .frame(width: itemWidth)
                 .zIndex(2)
@@ -62,9 +63,9 @@ struct CheckRowUserView: View {
 
             Button {
                 if isOn {
-                    rootEnvironment.removeDeleteIdArray(id: user.id)
+                    rootEnvironment.removeDeleteArray(user)
                 } else {
-                    rootEnvironment.appendDeleteIdArray(id: user.id)
+                    rootEnvironment.appendDeleteArray(user)
                 }
                 isOn.toggle()
             } label: {

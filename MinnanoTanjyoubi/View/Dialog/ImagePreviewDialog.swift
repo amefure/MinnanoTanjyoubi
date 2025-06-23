@@ -42,7 +42,7 @@ struct ImagePreviewDialog: View {
 }
 
 extension View {
-    func dialogImageView(
+    func dialogImagePreviewView(
         isPresented: Binding<Bool>,
         image: Image?
     ) -> some View {

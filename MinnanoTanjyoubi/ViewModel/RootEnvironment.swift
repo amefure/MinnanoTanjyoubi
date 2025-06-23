@@ -11,6 +11,7 @@ import StoreKit
 import UIKit
 
 /// アプリ内で共通で利用される状態や環境値を保持する
+@MainActor
 class RootEnvironment: ObservableObject {
     /// `Singleton`
     static let shared = RootEnvironment()
@@ -26,8 +27,8 @@ class RootEnvironment: ObservableObject {
     @Published var removeAds: Bool = false
     /// 容量解放購入フラグ
     @Published var unlockStorage: Bool = false
-    /// 削除対象のUserId
-    @Published var deleteIdArray: [ObjectId] = []
+    /// 削除対象のUser
+    @Published var deleteArray: [User] = []
     /// Deleteモード
     @Published private(set) var isDeleteMode: Bool = false
     /// 関係の名称
@@ -119,22 +120,21 @@ extension RootEnvironment {
         isDeleteMode = false
     }
 
-    /// 対象のUserIdを追加
-    public func appendDeleteIdArray(id: ObjectId) {
-        deleteIdArray.append(id)
+    /// 対象のUserを追加
+    public func appendDeleteArray(_ user: User) {
+        deleteArray.append(user)
     }
 
-    /// 対象のUserIdを削除
-    public func removeDeleteIdArray(id: ObjectId) {
-        if let index = deleteIdArray.firstIndex(of: id) {
-            deleteIdArray.remove(at: index)
-        }
+    /// 対象のUserを削除
+    public func removeDeleteArray(_ user: User) {
+        guard let index = deleteArray.firstIndex(where: { $0.id == user.id }) else { return }
+        deleteArray.remove(at: index)
     }
 
     /// Deleteモードリセット
     public func resetDeleteMode() {
         isDeleteMode = false
-        deleteIdArray.removeAll()
+        deleteArray.removeAll()
     }
 
     /// レビューポップアップ表示

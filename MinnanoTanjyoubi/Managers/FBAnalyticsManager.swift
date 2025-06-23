@@ -7,7 +7,7 @@
 
 import FirebaseAnalytics
 
-class FBAnalyticsManager {
+final class FBAnalyticsManager: Sendable {
     /// `screen_view`イベント計測
     /// デフォルトイベント：`AnalyticsEventScreenView`
     static func loggingScreen(screen: AppSreenClassName) {

@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 class DeviceSizeUtility {
     static var deviceWidth: CGFloat {
         guard let window = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return 0 }
