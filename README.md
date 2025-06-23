@@ -37,7 +37,7 @@
 ## 開発環境
 
 - Xcode：16.3
-- Swift：5.9
+- Swift：6
 - Mac M1：Sequoia 15.4
 
 ### アーキテクチャ
