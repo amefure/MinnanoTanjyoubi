@@ -169,7 +169,7 @@ class RealmRepositoryViewModel: ObservableObject {
     }
 
     /// 画像削除
-    public func deleteImage(user: User) {
+    private func deleteImage(user: User) {
         let imagePaths = Array(user.imagePaths)
         for selectPath in imagePaths {
             // ここのエラーは握り潰す
