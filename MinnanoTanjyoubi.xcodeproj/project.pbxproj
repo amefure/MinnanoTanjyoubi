@@ -132,6 +132,7 @@
 		12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A272B2DC1C600FA700E /* RealmRepository.swift */; };
 		12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A292B2DC29500FA700E /* RealmConfig.swift */; };
 		12FE3A2C2B2DCC7100FA700E /* RootEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */; };
+		4C4479C48670C305B94727BB /* Pods_BirthDayWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330DD38E47DD184947AECB88 /* Pods_BirthDayWidgetExtension.framework */; };
 		FC61592AD699FD872A6E3487 /* Pods_MinnanoTanjyoubi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748C37ED1DB63AF9B33A268C /* Pods_MinnanoTanjyoubi.framework */; };
 		FD427E14A9C9D487FB63255F /* Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C0CB22528FE95D10803FCC6 /* Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework */; };
 /* End PBXBuildFile section */
@@ -168,6 +169,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0BE0ABE0571707664FC8141C /* Pods-BirthDayWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirthDayWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-BirthDayWidgetExtension/Pods-BirthDayWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		1204FB042E704DF30092AE9E /* BirthDayWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BirthDayWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1204FB052E704DF30092AE9E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1204FB072E704DF30092AE9E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -297,7 +299,9 @@
 		12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootEnvironment.swift; sourceTree = "<group>"; };
 		13F3BE9ECF2FEC3AE4EF77C2 /* Pods-MinnanoTanjyoubi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi.debug.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi.debug.xcconfig"; sourceTree = "<group>"; };
 		2D32FE4F74F4E74D9B1C5240 /* Pods-MinnanoTanjyoubi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi.release.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi.release.xcconfig"; sourceTree = "<group>"; };
+		330DD38E47DD184947AECB88 /* Pods_BirthDayWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BirthDayWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C0CB22528FE95D10803FCC6 /* Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7337FC0509ECE735D5CAFECA /* Pods-BirthDayWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirthDayWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-BirthDayWidgetExtension/Pods-BirthDayWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		748C37ED1DB63AF9B33A268C /* Pods_MinnanoTanjyoubi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MinnanoTanjyoubi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E130CCE94C4DB3BB640438B /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig"; sourceTree = "<group>"; };
 		E0138471AD6F6257451B6EC5 /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig"; path = "Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -331,6 +335,7 @@
 			files = (
 				1204FB082E704DF30092AE9E /* SwiftUI.framework in Frameworks */,
 				1204FB062E704DF30092AE9E /* WidgetKit.framework in Frameworks */,
+				4C4479C48670C305B94727BB /* Pods_BirthDayWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,6 +803,8 @@
 				2D32FE4F74F4E74D9B1C5240 /* Pods-MinnanoTanjyoubi.release.xcconfig */,
 				E0138471AD6F6257451B6EC5 /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.debug.xcconfig */,
 				7E130CCE94C4DB3BB640438B /* Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests.release.xcconfig */,
+				7337FC0509ECE735D5CAFECA /* Pods-BirthDayWidgetExtension.debug.xcconfig */,
+				0BE0ABE0571707664FC8141C /* Pods-BirthDayWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -810,6 +817,7 @@
 				6C0CB22528FE95D10803FCC6 /* Pods_MinnanoTanjyoubi_MinnanoTanjyoubiTests.framework */,
 				1204FB052E704DF30092AE9E /* WidgetKit.framework */,
 				1204FB072E704DF30092AE9E /* SwiftUI.framework */,
+				330DD38E47DD184947AECB88 /* Pods_BirthDayWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -821,6 +829,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1204FB182E704DF50092AE9E /* Build configuration list for PBXNativeTarget "BirthDayWidgetExtension" */;
 			buildPhases = (
+				E4FB7989ED8E24AB2A57E20D /* [CP] Check Pods Manifest.lock */,
 				1204FB002E704DF30092AE9E /* Sources */,
 				1204FB012E704DF30092AE9E /* Frameworks */,
 				1204FB022E704DF30092AE9E /* Resources */,
@@ -833,8 +842,6 @@
 				1204FB092E704DF30092AE9E /* BirthDayWidget */,
 			);
 			name = BirthDayWidgetExtension;
-			packageProductDependencies = (
-			);
 			productName = BirthDayWidgetExtension;
 			productReference = 1204FB042E704DF30092AE9E /* BirthDayWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -864,8 +871,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12CB920728E5C6E1002BD7B2 /* Build configuration list for PBXNativeTarget "MinnanoTanjyoubi" */;
 			buildPhases = (
-				1204FB142E704DF50092AE9E /* Embed Foundation Extensions */,
 				4C51D6F7A50A7695D8FD0FC9 /* [CP] Check Pods Manifest.lock */,
+				1204FB142E704DF50092AE9E /* Embed Foundation Extensions */,
 				12CB91F528E5C6E0002BD7B2 /* Sources */,
 				12CB91F628E5C6E0002BD7B2 /* Frameworks */,
 				12CB91F728E5C6E0002BD7B2 /* Resources */,
@@ -1036,13 +1043,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1079,17 +1082,35 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			outputPaths = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4FB7989ED8E24AB2A57E20D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BirthDayWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F014A423D9D1F42E9E895ED9 /* [CP] Embed Pods Frameworks */ = {
@@ -1100,13 +1121,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1121,13 +1138,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1290,6 +1303,7 @@
 /* Begin XCBuildConfiguration section */
 		1204FB152E704DF50092AE9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7337FC0509ECE735D5CAFECA /* Pods-BirthDayWidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1324,6 +1338,7 @@
 		};
 		1204FB162E704DF50092AE9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BE0ABE0571707664FC8141C /* Pods-BirthDayWidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

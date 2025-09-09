@@ -27,6 +27,10 @@ end
 
 
 target 'BirthDayWidgetExtension' do
+  use_frameworks!
+
+  # Pods for WidgetTest
+  pod 'RealmSwift' , '10.37.2'
 
 end
 
