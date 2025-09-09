@@ -24,3 +24,9 @@ target 'MinnanoTanjyoubi' do
   end
 
 end
+
+
+target 'BirthDayWidgetExtension' do
+
+end
+
