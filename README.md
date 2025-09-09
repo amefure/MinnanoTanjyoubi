@@ -67,6 +67,12 @@ Test Flightへのアップロードも自動化しています。
 $ bundle exec fastlane upload_test_flight
 ```
 
+### アセット管理
+アセットの管理にはSwiftGenを使用しています。以下のコマンドを実行することでアセット管理クラスを自動生成します。
+
+```
+$ swiftgen config run
+```
 
 ## ライブラリ
 

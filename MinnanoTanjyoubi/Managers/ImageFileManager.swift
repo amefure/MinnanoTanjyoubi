@@ -12,7 +12,10 @@ import UIKit
 final class ImageFileManager: Sendable {
     private let suffix = ".jpg"
 
-    // DocmentsフォルダまでのURLを取得
+    /// DocmentsフォルダまでのURLを取得
+    /// file:///var/mobile/Containers/Data/Application/085DB140-E500-4561-8EA3-A6AF0748AD27/Documents
+    /// ↑ 形式で取得できるが`Application/UUID`の`UUID部分はアップデートなどで変わってしまう`ことがあるので
+    /// このパスを保存して使用するみたいなことはできないので注意
     private func getDocmentsUrl(_ fileName: String) -> URL? {
         let fileManager = FileManager.default
         do {
