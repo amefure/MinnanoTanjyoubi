@@ -10,6 +10,13 @@
 		1204FB062E704DF30092AE9E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1204FB052E704DF30092AE9E /* WidgetKit.framework */; };
 		1204FB082E704DF30092AE9E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1204FB072E704DF30092AE9E /* SwiftUI.framework */; };
 		1204FB132E704DF50092AE9E /* BirthDayWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1204FB042E704DF30092AE9E /* BirthDayWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1204FB232E7058220092AE9E /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A272B2DC1C600FA700E /* RealmRepository.swift */; };
+		1204FB242E7058390092AE9E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB920B28E5C884002BD7B2 /* User.swift */; };
+		1204FB252E7058390092AE9E /* NotifyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121E5B732DAD3DEC0032D66C /* NotifyDate.swift */; };
+		1204FB262E7058390092AE9E /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
+		1204FB272E7058560092AE9E /* DateFormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateFormatUtility.swift */; };
+		1204FB282E7058600092AE9E /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A292B2DC29500FA700E /* RealmConfig.swift */; };
+		1204FB292E7060B10092AE9E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD53B2E06E511007E59A7 /* Logger.swift */; };
 		121DEE012B198D4600964902 /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE002B198D4600964902 /* AppLockView.swift */; };
 		121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE042B1A200600964902 /* KeyChainRepository.swift */; };
 		121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE072B1A20BF00964902 /* ExCollection.swift */; };
@@ -173,6 +180,8 @@
 		1204FB042E704DF30092AE9E /* BirthDayWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BirthDayWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1204FB052E704DF30092AE9E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1204FB072E704DF30092AE9E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		1204FB212E7056F00092AE9E /* MinnanoTanjyoubiDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinnanoTanjyoubiDebug.entitlements; sourceTree = "<group>"; };
+		1204FB222E7057410092AE9E /* BirthDayWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BirthDayWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
 		121DEE002B198D4600964902 /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		121DEE042B1A200600964902 /* KeyChainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepository.swift; sourceTree = "<group>"; };
 		121DEE072B1A20BF00964902 /* ExCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCollection.swift; sourceTree = "<group>"; };
@@ -666,6 +675,7 @@
 		12CB91F028E5C6E0002BD7B2 = {
 			isa = PBXGroup;
 			children = (
+				1204FB222E7057410092AE9E /* BirthDayWidgetExtensionDebug.entitlements */,
 				12CB91FB28E5C6E1002BD7B2 /* MinnanoTanjyoubi */,
 				12B0DC582DE884F700BDA78C /* MinnanoTanjyoubiTests */,
 				1204FB092E704DF30092AE9E /* BirthDayWidget */,
@@ -688,6 +698,7 @@
 		12CB91FB28E5C6E1002BD7B2 /* MinnanoTanjyoubi */ = {
 			isa = PBXGroup;
 			children = (
+				1204FB212E7056F00092AE9E /* MinnanoTanjyoubiDebug.entitlements */,
 				12CB920A28E5C7E3002BD7B2 /* Info.plist */,
 				12CA5D942D20308300A4C1F6 /* AsyncProducts.storekit */,
 				12ACAD2429951A0E00273834 /* GoogleService-Info.plist */,
@@ -1043,9 +1054,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1082,9 +1097,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1121,9 +1140,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1138,9 +1161,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1154,6 +1181,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1204FB242E7058390092AE9E /* User.swift in Sources */,
+				1204FB282E7058600092AE9E /* RealmConfig.swift in Sources */,
+				1204FB292E7060B10092AE9E /* Logger.swift in Sources */,
+				1204FB252E7058390092AE9E /* NotifyDate.swift in Sources */,
+				1204FB262E7058390092AE9E /* RelationEnum.swift in Sources */,
+				1204FB232E7058220092AE9E /* RealmRepository.swift in Sources */,
+				1204FB272E7058560092AE9E /* DateFormatUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1309,6 +1343,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = BirthDayWidgetExtensionDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CGD79LB65H;
@@ -1545,6 +1580,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MinnanoTanjyoubi/MinnanoTanjyoubiDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
