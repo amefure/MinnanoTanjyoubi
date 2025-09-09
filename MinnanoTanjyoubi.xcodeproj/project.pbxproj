@@ -20,6 +20,7 @@
 		1204FB2F2E70660D0092AE9E /* BirthDayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204FB2B2E70660D0092AE9E /* BirthDayWidget.swift */; };
 		1204FB302E70660D0092AE9E /* BirthDayWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204FB2C2E70660D0092AE9E /* BirthDayWidgetBundle.swift */; };
 		1204FB312E70660D0092AE9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1204FB2A2E70660D0092AE9E /* Assets.xcassets */; };
+		1204FB362E70664B0092AE9E /* BirthDayWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204FB352E7066480092AE9E /* BirthDayWidgetViewModel.swift */; };
 		121DEE012B198D4600964902 /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE002B198D4600964902 /* AppLockView.swift */; };
 		121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE042B1A200600964902 /* KeyChainRepository.swift */; };
 		121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE072B1A20BF00964902 /* ExCollection.swift */; };
@@ -189,6 +190,7 @@
 		1204FB2B2E70660D0092AE9E /* BirthDayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayWidget.swift; sourceTree = "<group>"; };
 		1204FB2C2E70660D0092AE9E /* BirthDayWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayWidgetBundle.swift; sourceTree = "<group>"; };
 		1204FB2D2E70660D0092AE9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1204FB352E7066480092AE9E /* BirthDayWidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayWidgetViewModel.swift; sourceTree = "<group>"; };
 		121DEE002B198D4600964902 /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		121DEE042B1A200600964902 /* KeyChainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepository.swift; sourceTree = "<group>"; };
 		121DEE072B1A20BF00964902 /* ExCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCollection.swift; sourceTree = "<group>"; };
@@ -358,11 +360,28 @@
 			isa = PBXGroup;
 			children = (
 				1204FB2A2E70660D0092AE9E /* Assets.xcassets */,
-				1204FB2B2E70660D0092AE9E /* BirthDayWidget.swift */,
-				1204FB2C2E70660D0092AE9E /* BirthDayWidgetBundle.swift */,
+				1204FB342E7066380092AE9E /* ViewModel */,
+				1204FB332E70662E0092AE9E /* View */,
 				1204FB2D2E70660D0092AE9E /* Info.plist */,
 			);
 			path = BirthDayWidget;
+			sourceTree = "<group>";
+		};
+		1204FB332E70662E0092AE9E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1204FB2C2E70660D0092AE9E /* BirthDayWidgetBundle.swift */,
+				1204FB2B2E70660D0092AE9E /* BirthDayWidget.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1204FB342E7066380092AE9E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1204FB352E7066480092AE9E /* BirthDayWidgetViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		121DEE022B1A1EFB00964902 /* View */ = {
@@ -1181,6 +1200,7 @@
 				1204FB292E7060B10092AE9E /* Logger.swift in Sources */,
 				1204FB252E7058390092AE9E /* NotifyDate.swift in Sources */,
 				1204FB2F2E70660D0092AE9E /* BirthDayWidget.swift in Sources */,
+				1204FB362E70664B0092AE9E /* BirthDayWidgetViewModel.swift in Sources */,
 				1204FB302E70660D0092AE9E /* BirthDayWidgetBundle.swift in Sources */,
 				1204FB262E7058390092AE9E /* RelationEnum.swift in Sources */,
 				1204FB232E7058220092AE9E /* RealmRepository.swift in Sources */,
