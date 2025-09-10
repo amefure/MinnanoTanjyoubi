@@ -138,11 +138,16 @@ extension RealmRepository {
 
             let newRealm = try Realm(configuration: appRealmConfig)
 
+            let users = oldRealm.objects(User.self)
             // データをコピー
             try newRealm.write {
-                for obj in oldRealm.objects(User.self) {
+                for obj in users {
                     newRealm.create(User.self, value: obj, update: .all)
                 }
+            }
+            // コピー成功したら旧DBからデータを全て削除する
+            try oldRealm.write {
+                oldRealm.delete(users)
             }
             AppLogger.logger.debug("✅ Realm データを共有コンテナに移行しました")
         } catch {

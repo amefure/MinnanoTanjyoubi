@@ -286,8 +286,8 @@ struct BirthDayWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("みんなの誕生日 Widget")
+        .description("誕生日が近い順に登録済みの情報が表示されます。")
     }
 }
 

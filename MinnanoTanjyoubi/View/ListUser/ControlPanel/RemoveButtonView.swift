@@ -7,6 +7,7 @@
 
 import RealmSwift
 import SwiftUI
+import WidgetKit
 
 struct RemoveButtonView: View {
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
@@ -39,6 +40,9 @@ struct RemoveButtonView: View {
                 positiveAction: {
                     repository.removeUsers(users: rootEnvironment.deleteArray)
                     rootEnvironment.resetDeleteMode()
+
+                    // 削除タイミングでウィジェットも更新する
+                    WidgetCenter.shared.reloadAllTimelines()
                 },
                 negativeAction: {
                     rootEnvironment.resetDeleteMode()
