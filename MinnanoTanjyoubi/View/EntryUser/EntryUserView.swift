@@ -7,6 +7,7 @@
 
 import RealmSwift
 import SwiftUI
+import WidgetKit
 
 /// モーダル表示されるデータ登録ビュー
 /// データ更新時も呼び出される
@@ -173,6 +174,8 @@ struct EntryUserView: View {
                         AppManager.sharedNotificationRequestManager.sendNotificationRequest(newUser.id, name, date)
                     }
                 }
+                // 登録 & 更新のタイミングでウィジェットも更新する
+                WidgetCenter.shared.reloadAllTimelines()
 
                 isModal = false
             }, imageString: "checkmark")

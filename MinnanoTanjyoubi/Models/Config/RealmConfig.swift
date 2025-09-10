@@ -18,4 +18,7 @@ class RealmConfig {
      4：------
      5：------
      */
+
+    static let APP_GROUP_ID = "group.com.ame.MinnanoTanjyoubi"
+    static let REALM_FILENAME = "db.realm"
 }
