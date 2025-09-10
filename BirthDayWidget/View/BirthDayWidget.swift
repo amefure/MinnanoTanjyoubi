@@ -8,33 +8,29 @@
 import SwiftUI
 import WidgetKit
 
-// `Widget`を管理する`TimelineProvider`
-///
+/// `Widget`を管理する`TimelineProvider`
 struct Provider: TimelineProvider {
     /// 仮で表示させたいビュー
     func placeholder(in _: Context) -> BirthDayEntry {
-        BirthDayEntry(date: Date(), users: [])
+        BirthDayEntry(date: .now, users: [])
     }
 
     /// 一時的な(最初の)ビュー&Widget Galleryのプレビュー
     func getSnapshot(in _: Context, completion: @escaping (BirthDayEntry) -> Void) {
-        let entry = BirthDayEntry(date: Date(), users: [])
+        let entry = BirthDayEntry(date: .now, users: User.demoUsers)
         completion(entry)
     }
 
     /// 時間と共に変化させる間隔とビュー
     func getTimeline(in _: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        var entries: [BirthDayEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = BirthDayEntry(date: entryDate, users: [])
-            entries.append(entry)
-        }
+        let users = BirthDayWidgetViewModel().getAllUser()
+        // 現在時刻用の Entry
+        let entry = BirthDayEntry(date: currentDate, users: users)
+        // 3時間後を次回更新に指定
+        guard let nextUpdateDate = Calendar.current.date(byAdding: .hour, value: 3, to: currentDate) else { return }
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: [entry], policy: .after(nextUpdateDate))
         completion(timeline)
     }
 
@@ -54,10 +50,11 @@ struct BirthDayWidgetEntryView: View {
     private let viewModel = BirthDayWidgetViewModel()
     private let dfm = DateFormatUtility()
 
-    // ← ここでサイズを取得
+    /// Widgetサイズを取得
     @Environment(\.widgetFamily) var family
 
     var body: some View {
+        //　WidgetサイズごとにViewを分岐
         switch family {
         case .systemSmall:
             smallView
@@ -65,12 +62,14 @@ struct BirthDayWidgetEntryView: View {
             mediumView
         case .systemLarge:
             largeView
+        case .systemExtraLarge:
+            largeView
         default:
             mediumView
         }
     }
 
-    // 小サイズ
+    /// systemSmall
     private var smallView: some View {
         VStack {
             headerView()
@@ -109,7 +108,7 @@ struct BirthDayWidgetEntryView: View {
             .foregroundStyle(.exText)
     }
 
-    // 中サイズ
+    /// systemMedium
     private var mediumView: some View {
         VStack {
             headerView()
@@ -136,8 +135,7 @@ struct BirthDayWidgetEntryView: View {
                             Text("歳")
                                 .fontSS()
                         }.frame(width: 40, alignment: .leading)
-                        
-                        
+
                         if user.isYearsUnknown {
                             Text(dfm.getJpStringOnlyDate(date: user.date))
                                 .fontSS()
@@ -171,7 +169,7 @@ struct BirthDayWidgetEntryView: View {
             .foregroundStyle(.exText)
     }
 
-    // 大サイズ
+    /// systemLarge
     private var largeView: some View {
         VStack {
             headerView()
@@ -198,8 +196,7 @@ struct BirthDayWidgetEntryView: View {
                             Text("歳")
                                 .fontSS()
                         }.frame(width: 40, alignment: .leading)
-                        
-                        
+
                         if user.isYearsUnknown {
                             Text(dfm.getJpStringOnlyDate(date: user.date))
                                 .fontSS()
@@ -233,6 +230,7 @@ struct BirthDayWidgetEntryView: View {
             .foregroundStyle(.exText)
     }
 
+    /// ヘッダービュー
     private func headerView() -> some View {
         VStack {
             HStack {
@@ -244,6 +242,7 @@ struct BirthDayWidgetEntryView: View {
         }
     }
 
+    /// データ空
     private func emptyDataView() -> some View {
         VStack {
             Spacer()
@@ -260,6 +259,7 @@ struct BirthDayWidgetEntryView: View {
         }
     }
 
+    /// アプリアイコン
     private func appIcon(
         size: CGFloat
     ) -> some View {
@@ -291,7 +291,7 @@ struct BirthDayWidget: Widget {
     }
 }
 
-#Preview(as: .systemMedium) {
+#Preview(as: .systemExtraLarge) {
     BirthDayWidget()
 } timeline: {
     BirthDayEntry(date: .now, users: User.demoUsers)
