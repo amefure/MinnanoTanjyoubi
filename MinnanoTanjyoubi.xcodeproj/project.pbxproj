@@ -187,8 +187,8 @@
 		1204FB042E704DF30092AE9E /* BirthDayWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BirthDayWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1204FB052E704DF30092AE9E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1204FB072E704DF30092AE9E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		1204FB212E7056F00092AE9E /* MinnanoTanjyoubiDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinnanoTanjyoubiDebug.entitlements; sourceTree = "<group>"; };
-		1204FB222E7057410092AE9E /* BirthDayWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BirthDayWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
+		1204FB212E7056F00092AE9E /* MinnanoTanjyoubi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinnanoTanjyoubi.entitlements; sourceTree = "<group>"; };
+		1204FB222E7057410092AE9E /* BirthDayWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BirthDayWidgetExtension.entitlements; sourceTree = "<group>"; };
 		1204FB2A2E70660D0092AE9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1204FB2B2E70660D0092AE9E /* BirthDayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayWidget.swift; sourceTree = "<group>"; };
 		1204FB2C2E70660D0092AE9E /* BirthDayWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayWidgetBundle.swift; sourceTree = "<group>"; };
@@ -695,7 +695,7 @@
 		12CB91F028E5C6E0002BD7B2 = {
 			isa = PBXGroup;
 			children = (
-				1204FB222E7057410092AE9E /* BirthDayWidgetExtensionDebug.entitlements */,
+				1204FB222E7057410092AE9E /* BirthDayWidgetExtension.entitlements */,
 				12CB91FB28E5C6E1002BD7B2 /* MinnanoTanjyoubi */,
 				12B0DC582DE884F700BDA78C /* MinnanoTanjyoubiTests */,
 				1204FB2E2E70660D0092AE9E /* BirthDayWidget */,
@@ -718,7 +718,7 @@
 		12CB91FB28E5C6E1002BD7B2 /* MinnanoTanjyoubi */ = {
 			isa = PBXGroup;
 			children = (
-				1204FB212E7056F00092AE9E /* MinnanoTanjyoubiDebug.entitlements */,
+				1204FB212E7056F00092AE9E /* MinnanoTanjyoubi.entitlements */,
 				12CB920A28E5C7E3002BD7B2 /* Info.plist */,
 				12CA5D942D20308300A4C1F6 /* AsyncProducts.storekit */,
 				12ACAD2429951A0E00273834 /* GoogleService-Info.plist */,
@@ -932,6 +932,8 @@
 				TargetAttributes = {
 					1204FB032E704DF30092AE9E = {
 						CreatedOnToolsVersion = 16.3;
+						DevelopmentTeam = CGD79LB65H;
+						ProvisioningStyle = Automatic;
 					};
 					121EADB52DD835A70026B49D = {
 						CreatedOnToolsVersion = 16.3;
@@ -1368,9 +1370,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = BirthDayWidgetExtensionDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BirthDayWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -1385,7 +1387,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi.BirthDayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1404,8 +1406,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = BirthDayWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = CGD79LB65H;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -1420,7 +1423,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi.BirthDayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1605,7 +1608,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MinnanoTanjyoubi/MinnanoTanjyoubiDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MinnanoTanjyoubi/MinnanoTanjyoubi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1628,7 +1631,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.8.1;
+				MARKETING_VERSION = 4.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1643,6 +1646,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MinnanoTanjyoubi/MinnanoTanjyoubi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MinnanoTanjyoubi/Preview Content\"";
@@ -1664,7 +1668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.8.1;
+				MARKETING_VERSION = 4.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.MinnanoTanjyoubi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
