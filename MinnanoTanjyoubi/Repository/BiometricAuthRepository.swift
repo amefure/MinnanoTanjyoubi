@@ -5,7 +5,7 @@
 //  Created by t&a on 2023/12/23.
 //
 
-/// CombineではSwift6対応(Sendable準拠))がされていないため`@preconcurrency`で制限を緩くする
+/// CombineではSwift6対応(Sendable準拠)がされていないため`@preconcurrency`で制限を緩くする
 @preconcurrency import Combine
 import LocalAuthentication
 
@@ -34,6 +34,7 @@ final class BiometricAuthRepository: Sendable {
     }
 
     /// 生体認証リクエスト
+    @MainActor
     public func requestBiometrics() async -> Bool {
         // コンテキストは都度リセットしないと何度も認証なしでログインできてしまう
         let context = makeNewContext()
