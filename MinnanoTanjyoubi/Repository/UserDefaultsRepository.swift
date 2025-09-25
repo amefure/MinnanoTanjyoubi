@@ -24,8 +24,10 @@ class UserDefaultsKey {
     static let DISPLAY_AGE_MONTH = "DISPLAY_AGE_MONTH"
     /// セクションレイアウト表示フラグ
     static let DISPLAY_SECTION_LAYOUT = "DISPLAY_SECTION_LAYOUT"
-    /// 登録年数初期値
+    /// 登録年数初期値(INITのTypo)
     static let ENTRY_INTI_YEAR = "ENTRY_INTI_YEAR"
+    /// 登録関係初期値
+    static let ENTRY_INIT_RELATION = "ENTRY_INIT_RELATION"
     /// アプリカラースキーム
     static let APP_COLOR_SCHEME = "APP_COLOR_SCHEME"
     /// 並び順

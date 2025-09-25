@@ -198,6 +198,8 @@ struct EntryUserView: View {
                     // 新規登録なら初期値年数を反映
                     // カレンダーからの遷移なら日付まで指定する
                     date = viewModel.getInitDate(month: isCalendarMonth, day: isCalendarDay)
+                    // 関係初期値を取得
+                    selectedRelation = viewModel.getInitRelation()
                 }
             }
             .onChange(of: isFocusActive, perform: { _ in

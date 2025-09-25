@@ -11,7 +11,7 @@ struct YearPickerView: View {
     @StateObject var viewModel: SettingViewModel
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    @State private var year: Int = 0
+    @State private var year: Int = 2025
 
     var body: some View {
         Picker("登録年数初期値", selection: $year) {

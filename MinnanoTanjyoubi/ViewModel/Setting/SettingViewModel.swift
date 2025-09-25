@@ -83,6 +83,16 @@ class SettingViewModel: ObservableObject {
         AppManager.sharedUserDefaultManager.setEntryInitYear(year)
     }
 
+    /// 年数初期値取得
+    public func getEntryInitRelation() -> Relation {
+        AppManager.sharedUserDefaultManager.getEntryInitRelation()
+    }
+
+    /// 年数初期値登録
+    public func registerEntryInitRelation(relation: Relation) {
+        AppManager.sharedUserDefaultManager.setEntryInitRelation(relation)
+    }
+
     ///  通知日付フラグ取得
     public func getNotifyDate() -> String {
         AppManager.sharedUserDefaultManager.getNotifyDate()

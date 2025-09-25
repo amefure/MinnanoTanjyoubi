@@ -40,4 +40,9 @@ class EntryUserViewModel {
         let yearDate = dfm.setDate(year: year, month: month, day: day)
         return yearDate
     }
+
+    /// 関係初期値
+    public func getInitRelation() -> Relation {
+        return AppManager.sharedUserDefaultManager.getEntryInitRelation()
+    }
 }

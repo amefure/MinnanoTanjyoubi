@@ -83,6 +83,18 @@ final class UserDefaultManager: Sendable {
         userDefaultsRepository.setIntData(key: UserDefaultsKey.ENTRY_INTI_YEAR, value: year)
     }
 
+    /// `ENTRY_INIT_RELATION`
+    /// 取得：関係初期値
+    public func getEntryInitRelation() -> Relation {
+        var rawValue = userDefaultsRepository.getIntData(key: UserDefaultsKey.ENTRY_INIT_RELATION)
+        return Relation.getIndexbyRelation(rawValue)
+    }
+
+    /// 登録：関係初期値
+    public func setEntryInitRelation(_ relation: Relation) {
+        userDefaultsRepository.setIntData(key: UserDefaultsKey.ENTRY_INIT_RELATION, value: relation.relationIndex)
+    }
+
     /// `NOTICE_DATE_FLAG`
     /// 取得：通知日付フラグ
     public func getNotifyDate() -> String {

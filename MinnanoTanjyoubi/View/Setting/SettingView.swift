@@ -19,6 +19,8 @@ struct SettingView: View {
     @State private var isDaysLaterFlag: Bool = false
     @State private var isAgeMonthFlag: Bool = false
 
+    @State private var selectedRelation: Relation = .other
+
     // dismissで実装するとCPUがオーバーフローする
     @Environment(\.presentationMode) var presentationMode
 
@@ -167,6 +169,24 @@ struct SettingView: View {
                             .environmentObject(rootEnvironment)
                     }.listRowHeight()
 
+                    // 登録関係初期値
+                    HStack {
+                        Image(systemName: "person.crop.rectangle.stack")
+                            .settingIcon(rootEnvironment.scheme)
+                        Picker("登録関係初期値", selection: $selectedRelation) {
+                            ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
+                                Text(item)
+                                    .tag(Relation.getIndexbyRelation(index))
+                            }
+                        }.tint(AppColorScheme.getText(rootEnvironment.scheme))
+                            .fontM()
+                            .onChange(of: selectedRelation) { _ in
+                                viewModel.registerEntryInitRelation(relation: selectedRelation)
+                            }.onAppear {
+                                selectedRelation = viewModel.getEntryInitRelation()
+                            }
+                    }.listRowHeight()
+
                     // 並び順を変更する
                     NavigationLink {
                         SelectSortView()
@@ -217,7 +237,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "pencil.line")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("関係をカスタマイズする")
+                            Text("関係名をカスタマイズする")
                         }
                     }.listRowHeight()
 
