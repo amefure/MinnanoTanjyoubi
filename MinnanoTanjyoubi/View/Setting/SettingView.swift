@@ -31,6 +31,7 @@ struct SettingView: View {
                 } else {
                     // 容量パラメーター
                     CapacityParametersView(
+                        viewModel: viewModel,
                         now: Double(repository.users.count),
                         max: Double(viewModel.getCapacity())
                     ).foregroundStyle(Asset.Colors.exText.swiftUIColor)
@@ -60,8 +61,12 @@ struct SettingView: View {
                     HStack {
                         Image(systemName: "calendar")
                             .settingIcon(rootEnvironment.scheme)
-                        NoticeDateFlagView(viewModel: viewModel)
-                            .environmentObject(rootEnvironment)
+                        Picker("通知日", selection: $viewModel.selectedNotifyDate) {
+                            ForEach(NotifyDate.allCases, id: \.self) { notifyDate in
+                                Text(notifyDate.title)
+                            }
+                        }.tint(AppColorScheme.getText(rootEnvironment.scheme))
+                            .fontM()
                     }.listRowHeight()
 
                     // 通知メッセージを変更する
@@ -324,6 +329,10 @@ struct SettingView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
             .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .navigationDestination(isPresented: $viewModel.isShowInAppPurchaseView) {
+                InAppPurchaseView()
+                    .environmentObject(rootEnvironment)
+            }
     }
 
     /// 容量解放セクション
@@ -446,6 +455,8 @@ private extension View {
 }
 
 private struct CapacityParametersView: View {
+    @StateObject var viewModel: SettingViewModel
+
     public let now: Double
     public let max: Double
     public let color: Color = Asset.Colors.exThemaYellow.swiftUIColor
@@ -456,7 +467,6 @@ private struct CapacityParametersView: View {
 
     @State private var target: Double = 0
     @State private var showCapacity: CGFloat = 0
-    @State private var presentInAppPurchaseView: Bool = false
 
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
@@ -475,7 +485,7 @@ private struct CapacityParametersView: View {
                 Spacer()
 
                 Button {
-                    presentInAppPurchaseView = true
+                    viewModel.isShowInAppPurchaseView = true
                 } label: {
                     Image(systemName: "lock.open")
                         .fontL()
@@ -485,10 +495,6 @@ private struct CapacityParametersView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 40))
                         .shadow(color: .gray, radius: 1, x: 2, y: 2)
                 }.buttonStyle(.plain)
-                    .navigationDestination(isPresented: $presentInAppPurchaseView) {
-                        InAppPurchaseView()
-                            .environmentObject(rootEnvironment)
-                    }
             }
 
             HStack {

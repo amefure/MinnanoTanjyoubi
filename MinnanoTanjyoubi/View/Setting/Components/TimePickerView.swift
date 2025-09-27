@@ -21,7 +21,7 @@ struct TimePickerView: View {
             label: { Text("通知時間") }
         ).labelsHidden()
             .environment(\.locale, Locale(identifier: "ja_JP"))
-            .font(.system(size: 17))
+            .fontM()
             .colorInvert()
             .colorMultiply(AppColorScheme.getText(rootEnvironment.scheme))
             .onChange(of: time) { newValue in

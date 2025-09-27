@@ -16,7 +16,17 @@ enum NotifyDate: String, CaseIterable {
     case before7 = "7"
 
     /// 日付に変換
-    var dayNum: Int {
+    private var dayNum: Int {
         return Int(rawValue) ?? 1
+    }
+
+    /// タイトル
+    var title: String {
+        return switch self {
+        case .onTheDay:
+            "当日"
+        default:
+            "\(dayNum)日前"
+        }
     }
 }

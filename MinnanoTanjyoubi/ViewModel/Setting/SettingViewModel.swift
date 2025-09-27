@@ -12,12 +12,14 @@ import UIKit
 /// 配下のViewも含めて管理
 final class SettingViewModel: ObservableObject {
     @Published var isShowPassInput: Bool = false
+    @Published var isShowInAppPurchaseView: Bool = false
 
     @Published private(set) var yearArray: [Int] = []
 
     @Published var isDaysLaterFlag: Bool = false
     @Published var isAgeMonthFlag: Bool = false
     @Published var isLock: Bool = false
+    @Published var selectedNotifyDate: NotifyDate = .onTheDay
     @Published var selectedRelation: Relation = .other
     @Published var selectedYear: Int = 2025
 
@@ -36,6 +38,7 @@ final class SettingViewModel: ObservableObject {
         setUpIsLock()
         setUpDisplayAgeMonth()
         setUpDaysLaterFlag()
+        setUpNotifyDate()
         setUpEntryInitRelation()
         setUpEntryInitYear()
     }
@@ -86,6 +89,18 @@ extension SettingViewModel {
             .removeDuplicates() // 重複値は流さない
             .sink { [weak self] flag in
                 self?.registerDisplayDaysLater(flag: flag)
+            }.store(in: &cancellables)
+    }
+
+    /// 通知日
+    private func setUpNotifyDate() {
+        selectedNotifyDate = NotifyDate(rawValue: getNotifyDate()) ?? .onTheDay
+        $selectedNotifyDate
+            .eraseToAnyPublisher()
+            .dropFirst() // 初回はスキップ
+            .removeDuplicates() // 重複値は流さない
+            .sink { [weak self] flag in
+                self?.registerNotifyDate(flag: flag.rawValue)
             }.store(in: &cancellables)
     }
 
@@ -163,12 +178,12 @@ extension SettingViewModel {
     }
 
     ///  通知日付フラグ取得
-    public func getNotifyDate() -> String {
+    private func getNotifyDate() -> String {
         AppManager.sharedUserDefaultManager.getNotifyDate()
     }
 
     /// 通知日付フラグ登録
-    public func registerNotifyDate(flag: String) {
+    private func registerNotifyDate(flag: String) {
         AppManager.sharedUserDefaultManager.setNotifyDate(flag)
     }
 
