@@ -5,29 +5,116 @@
 //  Created by t&a on 2023/12/23.
 //
 
+import Combine
 import UIKit
 
 /// SettingView画面全域を管理するViewModel
 /// 配下のViewも含めて管理
-class SettingViewModel: ObservableObject {
+final class SettingViewModel: ObservableObject {
     @Published var isShowPassInput: Bool = false
-    @Published private(set) var isLock: Bool = false
+    
     @Published private(set) var yearArray: [Int] = []
-
+    
+    @Published var isDaysLaterFlag: Bool = false
+    @Published var isAgeMonthFlag: Bool = false
+    @Published var isLock: Bool = false
+    @Published var selectedRelation: Relation = .other
+    @Published var selectedYear: Int = 2025
+    
     private let keyChainRepository: KeyChainRepository
-
+    
     private let dfm = DateFormatUtility()
-
+    private var cancellables: Set<AnyCancellable> = []
+    
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         keyChainRepository = repositoryDependency.keyChainRepository
-
+        
         setUpYears()
     }
-
+    
     public func onAppear() {
-        checkAppLock()
+        setUpIsLock()
+        setUpDisplayAgeMonth()
+        setUpDaysLaterFlag()
+        setUpEntryInitRelation()
+        setUpEntryInitYear()
+    }
+    
+    public func onDisappear() {
+        cancellables.forEach { $0.cancel() }
+    }
+}
+
+
+extension SettingViewModel {
+    /// アプリロック
+    private func setUpIsLock() {
+        isLock = keyChainRepository.getData().count == 4
+        $isLock
+            .eraseToAnyPublisher()
+            .dropFirst()        // 初回はスキップ
+            .removeDuplicates() // 重複値は流さない
+            .sink { [weak self] flag in
+                guard let self else { return }
+                if flag {
+                    // パスワード入力画面を表示
+                    self.isShowPassInput = true
+                } else {
+                    // アプリパスワードをリセット
+                    self.keyChainRepository.delete()
+                }
+            }.store(in: &cancellables)
     }
 
+    /// 年齢の月数表示
+    private func setUpDisplayAgeMonth() {
+        isAgeMonthFlag = getDisplayAgeMonth()
+        $isAgeMonthFlag
+            .eraseToAnyPublisher()
+            .dropFirst()        // 初回はスキップ
+            .removeDuplicates() // 重複値は流さない
+            .sink { [weak self] flag in
+                self?.registerDisplayAgeMonth(flag: flag)
+            }.store(in: &cancellables)
+    }
+
+    /// 誕生日までの単位
+    private func setUpDaysLaterFlag() {
+        isDaysLaterFlag = getDisplayDaysLater()
+        $isDaysLaterFlag
+            .eraseToAnyPublisher()
+            .dropFirst()        // 初回はスキップ
+            .removeDuplicates() // 重複値は流さない
+            .sink { [weak self] flag in
+                self?.registerDisplayDaysLater(flag: flag)
+            }.store(in: &cancellables)
+    }
+
+    /// 関係初期値セットアップ
+    private func setUpEntryInitRelation() {
+        selectedRelation = getEntryInitRelation()
+        $selectedRelation
+            .eraseToAnyPublisher()
+            .dropFirst()        // 初回はスキップ
+            .removeDuplicates() // 重複値は流さない
+            .sink { [weak self] relation in
+                self?.registerEntryInitRelation(relation: relation)
+            }.store(in: &cancellables)
+    }
+
+    /// 年数初期値セットアップ
+    private func setUpEntryInitYear() {
+        selectedYear = getEntryInitYear()
+        $selectedYear
+            .eraseToAnyPublisher()
+            .dropFirst()        // 初回はスキップ
+            .removeDuplicates() // 重複値は流さない
+            .sink { [weak self] year in
+                self?.registerEntryInitYear(year: year)
+            }.store(in: &cancellables)
+    }
+
+    /// 登録可能年数ピッカー用値セット
     private func setUpYears() {
         yearArray = []
         guard let year = dfm.convertDateComponents(date: Date()).year else { return }
@@ -37,22 +124,6 @@ class SettingViewModel: ObservableObject {
         yearArray.sort(by: { $0 > $1 })
     }
 
-    // MARK: - App Lock
-
-    /// アプリにロックがかけてあるかをチェック
-    private func checkAppLock() {
-        isLock = keyChainRepository.getData().count == 4
-    }
-
-    /// パスワード入力画面を表示
-    public func showPassInput() {
-        isShowPassInput = true
-    }
-
-    /// アプリロックパスワードをリセット
-    public func deletePassword() {
-        keyChainRepository.delete()
-    }
 
     // MARK: - Reward Logic
 
@@ -74,22 +145,22 @@ class SettingViewModel: ObservableObject {
     }
 
     /// 年数初期値取得
-    public func getEntryInitYear() -> Int {
+    private func getEntryInitYear() -> Int {
         AppManager.sharedUserDefaultManager.getEntryInitYear()
     }
 
     /// 年数初期値登録
-    public func registerEntryInitYear(year: Int) {
+    private func registerEntryInitYear(year: Int) {
         AppManager.sharedUserDefaultManager.setEntryInitYear(year)
     }
 
     /// 年数初期値取得
-    public func getEntryInitRelation() -> Relation {
+    private func getEntryInitRelation() -> Relation {
         AppManager.sharedUserDefaultManager.getEntryInitRelation()
     }
 
     /// 年数初期値登録
-    public func registerEntryInitRelation(relation: Relation) {
+    private func registerEntryInitRelation(relation: Relation) {
         AppManager.sharedUserDefaultManager.setEntryInitRelation(relation)
     }
 
@@ -114,22 +185,22 @@ class SettingViewModel: ObservableObject {
     }
 
     ///  誕生日までの単位フラグ登録
-    public func registerDisplayDaysLater(flag: Bool) {
+    private func registerDisplayDaysLater(flag: Bool) {
         AppManager.sharedUserDefaultManager.setDisplayDaysLater(flag)
     }
 
     /// 誕生日までの単位フラグ取得
-    public func getDisplayDaysLater() -> Bool {
+    private func getDisplayDaysLater() -> Bool {
         return AppManager.sharedUserDefaultManager.getDisplayDaysLater()
     }
 
     /// 年齢に月を含めるかフラグ登録
-    public func registerDisplayAgeMonth(flag: Bool) {
+    private func registerDisplayAgeMonth(flag: Bool) {
         AppManager.sharedUserDefaultManager.setDisplayAgeMonth(flag)
     }
 
     /// 年齢に月を含めるかフラグ取得
-    public func getDisplayAgeMonth() -> Bool {
+    private func getDisplayAgeMonth() -> Bool {
         return AppManager.sharedUserDefaultManager.getDisplayAgeMonth()
     }
 

@@ -136,10 +136,10 @@
 		12E9C8952D0B2B7700C0A20B /* JsonConvertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */; };
 		12E9C8972D0C258600C0A20B /* CryptoUtillity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */; };
 		12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29BA2C21695800A1293D /* StaticUrls.swift */; };
-		12ED29BF2C216CA900A1293D /* YearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29BE2C216CA900A1293D /* YearPickerView.swift */; };
 		12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29C02C21958700A1293D /* EntryUserViewModel.swift */; };
 		12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */; };
 		12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */; };
+		12F9A67A2E85819D0010B116 /* ExPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9A6792E85819C0010B116 /* ExPublisher.swift */; };
 		12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */; };
 		12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */; };
 		12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */; };
@@ -309,10 +309,10 @@
 		12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConvertUtility.swift; sourceTree = "<group>"; };
 		12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUtillity.swift; sourceTree = "<group>"; };
 		12ED29BA2C21695800A1293D /* StaticUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticUrls.swift; sourceTree = "<group>"; };
-		12ED29BE2C216CA900A1293D /* YearPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearPickerView.swift; sourceTree = "<group>"; };
 		12ED29C02C21958700A1293D /* EntryUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserViewModel.swift; sourceTree = "<group>"; };
 		12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
 		12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorScheme.swift; sourceTree = "<group>"; };
+		12F9A6792E85819C0010B116 /* ExPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExPublisher.swift; sourceTree = "<group>"; };
 		12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExNotificationName.swift; sourceTree = "<group>"; };
 		12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInitWeekView.swift; sourceTree = "<group>"; };
 		12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryViewModel.swift; sourceTree = "<group>"; };
@@ -677,7 +677,6 @@
 			children = (
 				12ACAD33299FAE8D00273834 /* RewardButtonView.swift */,
 				123F485A29A42083001B91B3 /* NoticeDateFlagView.swift */,
-				12ED29BE2C216CA900A1293D /* YearPickerView.swift */,
 				12CB925328EEC754002BD7B2 /* TimePickerView.swift */,
 			);
 			path = Components;
@@ -795,6 +794,7 @@
 			isa = PBXGroup;
 			children = (
 				128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */,
+				12F9A6792E85819C0010B116 /* ExPublisher.swift */,
 				12CFB0C42D0C7BED00407CEA /* ExModifier.swift */,
 				1204FB372E706AB50092AE9E /* ExFontSize.swift */,
 				12CFB0A82D0C53C500407CEA /* ExView.swift */,
@@ -1237,7 +1237,6 @@
 				12ACAD2C299C36CB00273834 /* UpSideView.swift in Sources */,
 				12CFB0A92D0C53CA00407CEA /* ExView.swift in Sources */,
 				122B346E2D14604600204703 /* PopUpPosition.swift in Sources */,
-				12ED29BF2C216CA900A1293D /* YearPickerView.swift in Sources */,
 				12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */,
 				12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */,
 				12CA5D8A2D19947900A4C1F6 /* SelectSortView.swift in Sources */,
@@ -1299,6 +1298,7 @@
 				126236092DF30D2F00A5F1AE /* UserCalcUtility.swift in Sources */,
 				12CB921A28E85952002BD7B2 /* SettingView.swift in Sources */,
 				122B346A2D14600100204703 /* TutorialPopUpViewModel.swift in Sources */,
+				12F9A67A2E85819D0010B116 /* ExPublisher.swift in Sources */,
 				121E5B742DAD3DEE0032D66C /* NotifyDate.swift in Sources */,
 				12CA5D9E2D266E8B00A4C1F6 /* InAppPurchaseRepository.swift in Sources */,
 				121DEE0D2B1A23E000964902 /* UserDefaultsRepository.swift in Sources */,

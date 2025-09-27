@@ -15,12 +15,6 @@ struct SettingView: View {
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    @State private var isLock: Bool = false
-    @State private var isDaysLaterFlag: Bool = false
-    @State private var isAgeMonthFlag: Bool = false
-
-    @State private var selectedRelation: Relation = .other
-
     // dismissで実装するとCPUがオーバーフローする
     @Environment(\.presentationMode) var presentationMode
 
@@ -138,15 +132,13 @@ struct SettingView: View {
                             .settingIcon(rootEnvironment.scheme)
                         Text("誕生日までの単位を切り替える")
                         Spacer()
-                        Toggle(isOn: $isDaysLaterFlag) {
-                            Text(isDaysLaterFlag ? "月" : "日")
+                        Toggle(isOn: $viewModel.isDaysLaterFlag) {
+                            Text(viewModel.isDaysLaterFlag ? "月" : "日")
                                 .fontWeight(.bold)
                                 .foregroundStyle(.white)
-                        }.onChange(of: isDaysLaterFlag, perform: { newValue in
-                            viewModel.registerDisplayDaysLater(flag: newValue)
-                        }).toggleStyle(.button)
+                        }.toggleStyle(.button)
                             .opacity(0.9)
-                            .background(isDaysLaterFlag ? AppColorScheme.getThema3(rootEnvironment.scheme) : AppColorScheme.getThema2(rootEnvironment.scheme))
+                            .background(viewModel.isDaysLaterFlag ? AppColorScheme.getThema3(rootEnvironment.scheme) : AppColorScheme.getThema2(rootEnvironment.scheme))
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                     }.listRowHeight()
 
@@ -154,37 +146,36 @@ struct SettingView: View {
                     HStack {
                         Image(systemName: "switch.2")
                             .settingIcon(rootEnvironment.scheme)
-                        Toggle(isOn: $isAgeMonthFlag) {
+                        Toggle(isOn: $viewModel.isAgeMonthFlag) {
                             Text("年齢の⚪︎ヶ月を表示する")
-                        }.onChange(of: isAgeMonthFlag, perform: { newValue in
-                            viewModel.registerDisplayAgeMonth(flag: newValue)
-                        }).tint(AppColorScheme.getThema1(rootEnvironment.scheme))
+                        }.tint(AppColorScheme.getThema1(rootEnvironment.scheme))
                     }.listRowHeight()
 
                     // 登録初期年数
                     HStack {
                         Image(systemName: "clock")
                             .settingIcon(rootEnvironment.scheme)
-                        YearPickerView(viewModel: viewModel)
-                            .environmentObject(rootEnvironment)
+                        Picker("登録年数初期値", selection: $viewModel.selectedYear) {
+                            ForEach(viewModel.yearArray, id: \.self) { year in
+                                Text("\(String(year))年")
+                                    .fontM()
+                            }
+                        }.tint(AppColorScheme.getText(rootEnvironment.scheme))
+                            .fontM()
                     }.listRowHeight()
 
                     // 登録関係初期値
                     HStack {
                         Image(systemName: "person.crop.rectangle.stack")
                             .settingIcon(rootEnvironment.scheme)
-                        Picker("登録関係初期値", selection: $selectedRelation) {
+                        Picker("登録関係初期値", selection: $viewModel.selectedRelation) {
                             ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
                                 Text(item)
                                     .tag(Relation.getIndexbyRelation(index))
                             }
                         }.tint(AppColorScheme.getText(rootEnvironment.scheme))
                             .fontM()
-                            .onChange(of: selectedRelation) { _ in
-                                viewModel.registerEntryInitRelation(relation: selectedRelation)
-                            }.onAppear {
-                                selectedRelation = viewModel.getEntryInitRelation()
-                            }
+
                     }.listRowHeight()
 
                     // 並び順を変更する
@@ -256,20 +247,14 @@ struct SettingView: View {
                     HStack {
                         Image(systemName: "lock.iphone")
                             .settingIcon(rootEnvironment.scheme)
-                        Toggle(isOn: $isLock) {
+                        Toggle(isOn: $viewModel.isLock) {
                             Text("アプリをロックする")
-                        }.onChange(of: isLock, perform: { newValue in
-                            if newValue {
-                                viewModel.showPassInput()
-                            } else {
-                                viewModel.deletePassword()
-                            }
-                        }).tint(AppColorScheme.getThema1(rootEnvironment.scheme))
+                        }.tint(AppColorScheme.getThema1(rootEnvironment.scheme))
                     }.listRowHeight()
-                        .sheet(isPresented: $viewModel.isShowPassInput, content: {
-                            AppLockInputView(isLock: $isLock)
+                        .sheet(isPresented: $viewModel.isShowPassInput) {
+                            AppLockInputView(isLock: $viewModel.isLock)
                                 .environmentObject(rootEnvironment)
-                        })
+                        }
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
                 Section(
@@ -427,12 +412,8 @@ struct SettingView: View {
             }
 
         }.fontM()
-            .onAppear {
-                viewModel.onAppear()
-                isLock = viewModel.isLock
-                isDaysLaterFlag = viewModel.getDisplayDaysLater()
-                isAgeMonthFlag = viewModel.getDisplayAgeMonth()
-            }
+            .onAppear { viewModel.onAppear() }
+            .onDisappear { viewModel.onDisappear() }
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
             .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
@@ -445,7 +426,7 @@ private extension View {
     }
 }
 
-struct CapacityParametersView: View {
+private struct CapacityParametersView: View {
     public let now: Double
     public let max: Double
     public let color: Color = Asset.Colors.exThemaYellow.swiftUIColor
@@ -553,9 +534,7 @@ struct CapacityParametersView: View {
     }
 }
 
-struct SettingView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingView()
-            .environmentObject(RootEnvironment())
-    }
+#Preview {
+    SettingView()
+        .environmentObject(RootEnvironment())
 }
