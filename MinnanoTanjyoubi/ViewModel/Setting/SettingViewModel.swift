@@ -12,26 +12,26 @@ import UIKit
 /// 配下のViewも含めて管理
 final class SettingViewModel: ObservableObject {
     @Published var isShowPassInput: Bool = false
-    
+
     @Published private(set) var yearArray: [Int] = []
-    
+
     @Published var isDaysLaterFlag: Bool = false
     @Published var isAgeMonthFlag: Bool = false
     @Published var isLock: Bool = false
     @Published var selectedRelation: Relation = .other
     @Published var selectedYear: Int = 2025
-    
+
     private let keyChainRepository: KeyChainRepository
-    
+
     private let dfm = DateFormatUtility()
     private var cancellables: Set<AnyCancellable> = []
-    
+
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         keyChainRepository = repositoryDependency.keyChainRepository
-        
+
         setUpYears()
     }
-    
+
     public func onAppear() {
         setUpIsLock()
         setUpDisplayAgeMonth()
@@ -39,12 +39,11 @@ final class SettingViewModel: ObservableObject {
         setUpEntryInitRelation()
         setUpEntryInitYear()
     }
-    
+
     public func onDisappear() {
         cancellables.forEach { $0.cancel() }
     }
 }
-
 
 extension SettingViewModel {
     /// アプリロック
@@ -52,7 +51,7 @@ extension SettingViewModel {
         isLock = keyChainRepository.getData().count == 4
         $isLock
             .eraseToAnyPublisher()
-            .dropFirst()        // 初回はスキップ
+            .dropFirst() // 初回はスキップ
             .removeDuplicates() // 重複値は流さない
             .sink { [weak self] flag in
                 guard let self else { return }
@@ -71,7 +70,7 @@ extension SettingViewModel {
         isAgeMonthFlag = getDisplayAgeMonth()
         $isAgeMonthFlag
             .eraseToAnyPublisher()
-            .dropFirst()        // 初回はスキップ
+            .dropFirst() // 初回はスキップ
             .removeDuplicates() // 重複値は流さない
             .sink { [weak self] flag in
                 self?.registerDisplayAgeMonth(flag: flag)
@@ -83,7 +82,7 @@ extension SettingViewModel {
         isDaysLaterFlag = getDisplayDaysLater()
         $isDaysLaterFlag
             .eraseToAnyPublisher()
-            .dropFirst()        // 初回はスキップ
+            .dropFirst() // 初回はスキップ
             .removeDuplicates() // 重複値は流さない
             .sink { [weak self] flag in
                 self?.registerDisplayDaysLater(flag: flag)
@@ -95,7 +94,7 @@ extension SettingViewModel {
         selectedRelation = getEntryInitRelation()
         $selectedRelation
             .eraseToAnyPublisher()
-            .dropFirst()        // 初回はスキップ
+            .dropFirst() // 初回はスキップ
             .removeDuplicates() // 重複値は流さない
             .sink { [weak self] relation in
                 self?.registerEntryInitRelation(relation: relation)
@@ -107,7 +106,7 @@ extension SettingViewModel {
         selectedYear = getEntryInitYear()
         $selectedYear
             .eraseToAnyPublisher()
-            .dropFirst()        // 初回はスキップ
+            .dropFirst() // 初回はスキップ
             .removeDuplicates() // 重複値は流さない
             .sink { [weak self] year in
                 self?.registerEntryInitYear(year: year)
@@ -123,7 +122,6 @@ extension SettingViewModel {
         }
         yearArray.sort(by: { $0 > $1 })
     }
-
 
     // MARK: - Reward Logic
 

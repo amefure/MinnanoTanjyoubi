@@ -26,56 +26,10 @@ struct SettingView: View {
             // List ここから
             List {
                 if rootEnvironment.unlockStorage {
-                    HStack {
-                        VStack {
-                            Text("アプリ容量")
-                                .fontM(bold: true)
-                                .frame(width: DeviceSizeUtility.deviceWidth - 80, alignment: .leading)
-
-                            HStack {
-                                Image(systemName: "lock.open")
-                                    .fontL()
-                                    .foregroundStyle(.white)
-                                    .frame(width: 40, height: 40)
-                                    .background(Asset.Colors.exThemaYellow.swiftUIColor)
-                                    .clipShape(RoundedRectangle(cornerRadius: 40))
-
-                                Text("UNLOCK STORAGE")
-                                    .opacity(0.1)
-
-                                Spacer()
-
-                                Rectangle()
-                                    .fill(Asset.Colors.exText.swiftUIColor)
-                                    .frame(width: 1)
-                                    .opacity(0.1)
-
-                                Spacer()
-
-                                VStack {
-                                    Text("登録数")
-                                        .fontS()
-                                        .opacity(0.5)
-                                        .padding(.bottom, 8)
-                                    HStack(alignment: .bottom) {
-                                        Text("\(repository.users.count)")
-                                            .foregroundStyle(Asset.Colors.exThemaRed.swiftUIColor)
-                                            .fontCustom(size: 30, bold: true)
-                                        Text("人")
-                                            .fontM()
-                                            .offset(y: -3)
-                                    }.padding(.leading, 8)
-                                }
-
-                                Spacer()
-                            }.fontCustom(size: 35, bold: true)
-
-                            Spacer()
-                        }
-
-                    }.foregroundStyle(Asset.Colors.exText.swiftUIColor)
-
+                    // 容量解放済み
+                    unlockStorageSection()
                 } else {
+                    // 容量パラメーター
                     CapacityParametersView(
                         now: Double(repository.users.count),
                         max: Double(viewModel.getCapacity())
@@ -86,8 +40,7 @@ struct SettingView: View {
                 Section(header: Text("通知設定"),
                         footer:
                         Text("・通知設定を変更した場合はこれより後に通知登録した通知に反映されます。\n既にONになっている場合はON→OFF→ONと操作してください。")
-                            .font(.system(size: 14))
-                            .fontWeight(.bold))
+                            .fontS(bold: true))
                 {
                     // 通知時間
                     HStack {
@@ -260,8 +213,7 @@ struct SettingView: View {
                 Section(
                     header: Text("Link"),
                     footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。")
-                        .font(.system(size: 14))
-                        .fontWeight(.bold)
+                        .fontS(bold: true)
                 ) {
                     // よくある質問
                     NavigationLink {
@@ -353,23 +305,8 @@ struct SettingView: View {
                     }
                 }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
 
-                HStack {
-                    Spacer()
-                    VStack(alignment: .center, spacing: 4) {
-                        Asset.Images.appiconRemove.swiftUIImage
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .padding(5)
-                            .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
-                            .clipShape(RoundedRectangle(cornerRadius: 50))
-                            .padding(.bottom, 8)
-
-                        Text("『大切な人の大切な日を忘れずにお祝いするためのアプリ』")
-                        Text("みんなの誕生日 Ver \(viewModel.getVersion())")
-                        Text("Created by Shibuya")
-                    }.fontSS()
-                    Spacer()
-                }.listRowBackground(Color.clear)
+                // クレジット
+                creditSection()
 
             }.scrollContentBackground(.hidden)
                 .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
@@ -378,6 +315,94 @@ struct SettingView: View {
 
             Spacer()
 
+            // カスタム広告
+            adsSection()
+
+        }.fontM()
+            .onAppear { viewModel.onAppear() }
+            .onDisappear { viewModel.onDisappear() }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+    }
+
+    /// 容量解放セクション
+    private func unlockStorageSection() -> some View {
+        HStack {
+            VStack {
+                Text("アプリ容量")
+                    .fontM(bold: true)
+                    .frame(width: DeviceSizeUtility.deviceWidth - 80, alignment: .leading)
+
+                HStack {
+                    Image(systemName: "lock.open")
+                        .fontL()
+                        .foregroundStyle(.white)
+                        .frame(width: 40, height: 40)
+                        .background(Asset.Colors.exThemaYellow.swiftUIColor)
+                        .clipShape(RoundedRectangle(cornerRadius: 40))
+
+                    Text("UNLOCK STORAGE")
+                        .opacity(0.1)
+
+                    Spacer()
+
+                    Rectangle()
+                        .fill(Asset.Colors.exText.swiftUIColor)
+                        .frame(width: 1)
+                        .opacity(0.1)
+
+                    Spacer()
+
+                    VStack {
+                        Text("登録数")
+                            .fontS()
+                            .opacity(0.5)
+                            .padding(.bottom, 8)
+                        HStack(alignment: .bottom) {
+                            Text("\(repository.users.count)")
+                                .foregroundStyle(Asset.Colors.exThemaRed.swiftUIColor)
+                                .fontCustom(size: 30, bold: true)
+                            Text("人")
+                                .fontM()
+                                .offset(y: -3)
+                        }.padding(.leading, 8)
+                    }
+
+                    Spacer()
+                }.fontCustom(size: 35, bold: true)
+
+                Spacer()
+            }
+
+        }.foregroundStyle(Asset.Colors.exText.swiftUIColor)
+    }
+
+    /// クレジット
+    private func creditSection() -> some View {
+        HStack {
+            Spacer()
+            VStack(alignment: .center, spacing: 4) {
+                Asset.Images.appiconRemove.swiftUIImage
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .padding(5)
+                    .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                    .clipShape(RoundedRectangle(cornerRadius: 50))
+                    .padding(.bottom, 8)
+
+                Text("『大切な人の大切な日を忘れずにお祝いするためのアプリ』")
+                Text("みんなの誕生日 Ver \(viewModel.getVersion())")
+                Text("Created by Shibuya")
+            }.fontSS()
+            Spacer()
+        }.listRowBackground(Color.clear)
+    }
+
+    /// 　「みんなの出産祝い」広告
+    private func adsSection() -> some View {
+        VStack {
+            // 広告削除済みなら何も表示しない
             if !rootEnvironment.removeAds {
                 if let url = URL(string: StaticUrls.APP_OIWAI_URL) {
                     Link(destination: url) {
@@ -410,13 +435,7 @@ struct SettingView: View {
                         .frame(height: 50)
                 }
             }
-
-        }.fontM()
-            .onAppear { viewModel.onAppear() }
-            .onDisappear { viewModel.onDisappear() }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
-            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+        }
     }
 }
 
