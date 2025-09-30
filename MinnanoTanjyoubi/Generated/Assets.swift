@@ -78,6 +78,13 @@ enum Asset {
         static let scheme7Thema2 = ColorAsset(name: "scheme_7_thema2")
         static let scheme7Thema3 = ColorAsset(name: "scheme_7_thema3")
         static let scheme7Thema4 = ColorAsset(name: "scheme_7_thema4")
+        static let scheme8FoundationPrimary = ColorAsset(name: "scheme_8_foundation_primary")
+        static let scheme8FoundationSub = ColorAsset(name: "scheme_8_foundation_sub")
+        static let scheme8Text = ColorAsset(name: "scheme_8_text")
+        static let scheme8Thema1 = ColorAsset(name: "scheme_8_thema1")
+        static let scheme8Thema2 = ColorAsset(name: "scheme_8_thema2")
+        static let scheme8Thema3 = ColorAsset(name: "scheme_8_thema3")
+        static let scheme8Thema4 = ColorAsset(name: "scheme_8_thema4")
     }
 
     enum Images {

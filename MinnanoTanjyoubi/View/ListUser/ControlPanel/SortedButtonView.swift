@@ -27,8 +27,7 @@ struct SortedButtonView: View {
         } label: {
             Image(systemName: isSorted ? "arrowshape.turn.up.backward.fill" : "person.2.crop.square.stack")
                 .circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema4(rootEnvironment.scheme))
-                .foregroundColor(.white)
-                .font(.system(size: 17))
+                .fontM()
         }
         .onChange(of: selectedRelation) { newValue in
             repository.filteringUser(selectedRelation: newValue)

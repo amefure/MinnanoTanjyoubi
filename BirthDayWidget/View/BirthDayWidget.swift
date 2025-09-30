@@ -291,7 +291,7 @@ struct BirthDayWidget: Widget {
     }
 }
 
-#Preview(as: .systemExtraLarge) {
+#Preview(as: .systemSmall) {
     BirthDayWidget()
 } timeline: {
     BirthDayEntry(date: .now, users: User.demoUsers)
