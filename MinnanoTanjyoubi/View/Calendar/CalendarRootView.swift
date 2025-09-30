@@ -23,7 +23,7 @@ struct CalendarRootView: View {
             LazyVGrid(columns: columns, spacing: 0) {
                 ForEach(viewModel.dayOfWeekList, id: \.self) { week in
                     Text(week.shortSymbols)
-                        .foregroundStyle(week.color ?? AppColorScheme.getText(rootEnvironment.scheme))
+                        .foregroundStyle(week.color ?? rootEnvironment.scheme.text)
                 }
             }.padding(.vertical, 8)
                 .frame(height: 40)
@@ -37,7 +37,7 @@ struct CalendarRootView: View {
             .onAppear { viewModel.onAppear() }
             .onDisappear { viewModel.onDisappear() }
             .frame(width: DeviceSizeUtility.deviceWidth)
-            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .background(rootEnvironment.scheme.foundationSub)
     }
 }
 

@@ -49,7 +49,7 @@ struct SettingView: View {
                             .settingIcon(rootEnvironment.scheme)
 
                         Text("通知時間")
-                            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                            .foregroundStyle(rootEnvironment.scheme.text)
                             .font(.system(size: 17))
 
                         Spacer()
@@ -65,7 +65,7 @@ struct SettingView: View {
                             ForEach(NotifyDate.allCases, id: \.self) { notifyDate in
                                 Text(notifyDate.title)
                             }
-                        }.tint(AppColorScheme.getText(rootEnvironment.scheme))
+                        }.tint(rootEnvironment.scheme.text)
                             .fontM()
                     }.listRowHeight()
 
@@ -81,7 +81,7 @@ struct SettingView: View {
                         }
                     }.listRowHeight()
 
-                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
 
                 Section(header: Text("誕生日登録・表示設定")) {
                     // 誕生日までの単位
@@ -96,7 +96,7 @@ struct SettingView: View {
                                 .foregroundStyle(.white)
                         }.toggleStyle(.button)
                             .opacity(0.9)
-                            .background(viewModel.isDaysLaterFlag ? AppColorScheme.getThema3(rootEnvironment.scheme) : AppColorScheme.getThema2(rootEnvironment.scheme))
+                            .background(viewModel.isDaysLaterFlag ? rootEnvironment.scheme.thema3 : rootEnvironment.scheme.thema2)
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                     }.listRowHeight()
 
@@ -106,7 +106,7 @@ struct SettingView: View {
                             .settingIcon(rootEnvironment.scheme)
                         Toggle(isOn: $viewModel.isAgeMonthFlag) {
                             Text("年齢の⚪︎ヶ月を表示する")
-                        }.tint(AppColorScheme.getThema1(rootEnvironment.scheme))
+                        }.tint(rootEnvironment.scheme.thema1)
                     }.listRowHeight()
 
                     // 登録初期年数
@@ -118,7 +118,7 @@ struct SettingView: View {
                                 Text("\(String(year))年")
                                     .fontM()
                             }
-                        }.tint(AppColorScheme.getText(rootEnvironment.scheme))
+                        }.tint(rootEnvironment.scheme.thema1)
                             .fontM()
                     }.listRowHeight()
 
@@ -131,7 +131,7 @@ struct SettingView: View {
                                 Text(item)
                                     .tag(Relation.getIndexbyRelation(index))
                             }
-                        }.tint(AppColorScheme.getText(rootEnvironment.scheme))
+                        }.tint(rootEnvironment.scheme.text)
                             .fontM()
 
                     }.listRowHeight()
@@ -160,7 +160,7 @@ struct SettingView: View {
                         }
                     }.listRowHeight()
 
-                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
 
                 Section(
                     header: Text("アプリ設定"),
@@ -207,13 +207,13 @@ struct SettingView: View {
                             .settingIcon(rootEnvironment.scheme)
                         Toggle(isOn: $viewModel.isLock) {
                             Text("アプリをロックする")
-                        }.tint(AppColorScheme.getThema1(rootEnvironment.scheme))
+                        }.tint(rootEnvironment.scheme.thema1)
                     }.listRowHeight()
                         .sheet(isPresented: $viewModel.isShowPassInput) {
                             AppLockInputView(isLock: $viewModel.isLock)
                                 .environmentObject(rootEnvironment)
                         }
-                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
 
                 Section(
                     header: Text("Link"),
@@ -308,14 +308,14 @@ struct SettingView: View {
                             }
                         }.listRowHeight()
                     }
-                }.listRowBackground(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
 
                 // クレジット
                 creditSection()
 
             }.scrollContentBackground(.hidden)
-                .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
-                .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
+                .background(rootEnvironment.scheme.foundationSub)
+                .foregroundColor(rootEnvironment.scheme.text)
             // List ここまで
 
             Spacer()
@@ -328,7 +328,7 @@ struct SettingView: View {
             .onDisappear { viewModel.onDisappear() }
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .background(rootEnvironment.scheme.foundationSub)
             .navigationDestination(isPresented: $viewModel.isShowInAppPurchaseView) {
                 InAppPurchaseView()
                     .environmentObject(rootEnvironment)
@@ -396,7 +396,7 @@ struct SettingView: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                     .padding(5)
-                    .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                    .background(rootEnvironment.scheme.foundationPrimary)
                     .clipShape(RoundedRectangle(cornerRadius: 50))
                     .padding(.bottom, 8)
 

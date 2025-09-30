@@ -35,7 +35,7 @@ struct UpdateRelationNameView: View {
 
             Text("関係カテゴリ名編集")
                 .fontL(bold: true)
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
                 .padding(.vertical)
 
             CustomInputView(title: "カテゴリ1", placeholder: RelationConfig.FRIEND_NAME, text: $friend)
@@ -77,7 +77,7 @@ struct UpdateRelationNameView: View {
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)
 
-        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+        }.background(rootEnvironment.scheme.foundationSub)
             .onAppear { FBAnalyticsManager.loggingScreen(screen: .UpdateRelationScreen) }
             .fontM()
             .navigationBarBackButtonHidden()

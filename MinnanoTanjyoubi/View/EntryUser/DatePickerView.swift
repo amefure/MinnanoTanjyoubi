@@ -35,7 +35,7 @@ struct DatePickerView: View {
                         }
                     }
                     .colorInvert()
-                    .colorMultiply(AppColorScheme.getText(rootEnvironment.scheme))
+                    .colorMultiply(rootEnvironment.scheme.text)
                     .frame(width: DeviceSizeUtility.deviceWidth - 180)
                     .datePickerStyle(.wheel)
                     .labelsHidden()
@@ -47,7 +47,7 @@ struct DatePickerView: View {
                     Image(systemName: "checkmark")
                         .foregroundStyle(.white)
                         .padding(3)
-                        .background(AppColorScheme.getThema2(rootEnvironment.scheme))
+                        .background(rootEnvironment.scheme.thema2)
                         .opacity(0.8)
                         .cornerRadius(5)
                 }.padding([.leading, .top, .bottom])

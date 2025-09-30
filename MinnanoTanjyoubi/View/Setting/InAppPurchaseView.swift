@@ -19,12 +19,12 @@ struct InAppPurchaseView: View {
 
             Text("広告削除 & 容量解放")
                 .fontL(bold: true)
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
                 .padding(.vertical)
 
             Text("購入後のキャンセルは致しかねますのでご了承ください。")
                 .fontS()
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
                 .padding(.horizontal)
 
             if viewModel.fetchError {
@@ -37,14 +37,14 @@ struct InAppPurchaseView: View {
                     Image(systemName: "xmark.circle")
                         .resizable()
                         .frame(width: 50, height: 50)
-                        .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                        .foregroundStyle(rootEnvironment.scheme.text)
                         .padding(.vertical)
 
                     Text("課金アイテムの取得に失敗しました。\nネットワークの接続を確認してください。")
                         .fontM(bold: true)
 
                 }.frame(width: DeviceSizeUtility.deviceWidth)
-                    .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                    .foregroundStyle(rootEnvironment.scheme.text)
                     .padding(.bottom, 30)
 
                 Spacer()
@@ -112,13 +112,13 @@ struct InAppPurchaseView: View {
                         }.buttonStyle(.plain)
                     }
                 }.scrollContentBackground(.hidden)
-                    .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                    .background(rootEnvironment.scheme.foundationSub)
                     .foregroundStyle(Asset.Colors.exText.swiftUIColor)
             }
 
         }.onAppear { viewModel.onAppear() }
             .onDisappear { viewModel.onDisappear() }
-            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .background(rootEnvironment.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .fontM()
             .navigationBarBackButtonHidden()

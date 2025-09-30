@@ -28,7 +28,7 @@ struct SettingIcon: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(width: 30)
-            .foregroundColor(AppColorScheme.getThema1(scheme))
+            .foregroundColor(scheme.thema1)
     }
 }
 

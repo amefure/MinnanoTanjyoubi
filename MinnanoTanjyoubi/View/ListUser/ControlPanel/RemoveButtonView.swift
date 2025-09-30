@@ -29,7 +29,7 @@ struct RemoveButtonView: View {
         } label: {
             Image(systemName: rootEnvironment.isDeleteMode ? "trash" : "app.badge.checkmark")
                 .font(.system(size: 17))
-        }.circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema2(rootEnvironment.scheme))
+        }.circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema2)
             .alert(
                 isPresented: $isDeleteAlert,
                 title: "お知らせ",

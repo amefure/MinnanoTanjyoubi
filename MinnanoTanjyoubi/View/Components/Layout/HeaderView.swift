@@ -31,7 +31,7 @@ struct HeaderView: View {
                     } label: {
                         Image(systemName: "gearshape.fill")
                             .fontM()
-                    }.foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
+                    }.foregroundColor(rootEnvironment.scheme.text)
                         .position(x: deviceWidth - 30, y: 30)
                 }
 
@@ -41,12 +41,12 @@ struct HeaderView: View {
                     } label: {
                         Image(systemName: rootEnvironment.sectionLayoutFlag.next.imageName)
                             .fontM()
-                    }.foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                    }.foregroundStyle(rootEnvironment.scheme.text)
                         .position(x: 0 + 30, y: 30)
                 }
             }
         }.frame(width: deviceWidth, height: isSESize ? 60 : 70)
-            .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+            .background(rootEnvironment.scheme.foundationPrimary)
             .navigationDestination(isPresented: $isSettingActive) {
                 SettingView()
                     .environmentObject(rootEnvironment)

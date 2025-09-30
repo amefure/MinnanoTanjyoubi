@@ -47,7 +47,7 @@ struct RootListUserView: View {
 
             Text("登録されている誕生日情報がありません。")
                 .fontM(bold: true)
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
 
             Spacer()
         }
@@ -114,7 +114,7 @@ struct RootListUserView: View {
                 }
             }
 
-        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+        }.background(rootEnvironment.scheme.foundationSub)
             .onChange(of: isScrollingDown) { _ in
                 // 下方向にスクロール中のみ半透明にする
                 opacity = isScrollingDown ? 0.5 : 1

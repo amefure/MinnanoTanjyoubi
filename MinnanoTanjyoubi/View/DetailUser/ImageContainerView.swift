@@ -58,7 +58,7 @@ struct ImageContainerView: View {
                         .frame(width: 80, height: 80)
                         .overBorder(
                             radius: 5,
-                            color: AppColorScheme.getFoundationPrimary(rootEnvironment.scheme),
+                            color: rootEnvironment.scheme.foundationPrimary,
                             opacity: 0.4,
                             lineWidth: 2
                         )

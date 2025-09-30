@@ -7,22 +7,16 @@
 
 import SwiftUI
 
-// Swift UIでWebViewを操作するための枠View
+/// Swift UIでWebViewを操作するための枠View
 struct ControlWebView: View {
-    // MARK: - Receive
-
     public var url: URL
     private let uICustomWebView: UICustomWebView!
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-
-    // MARK: - Initializa
 
     init(url: URL) {
         self.url = url
         uICustomWebView = UICustomWebView(url: url)
     }
-
-    // MARK: - Environment
 
     @Environment(\.dismiss) var dismiss
 
@@ -74,8 +68,8 @@ struct ControlWebView: View {
             }.padding(10)
                 .padding(.horizontal)
 
-        }.background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
-            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+        }.background(rootEnvironment.scheme.foundationPrimary)
+            .foregroundStyle(rootEnvironment.scheme.text)
             .navigationBarBackButtonHidden()
     }
 }

@@ -36,7 +36,7 @@ struct UpSideUserInfoView: View {
                     .frame(minWidth: roundWidth, alignment: .center)
                     .frame(maxWidth: roundWidth * 1.5)
                     .lineLimit(1)
-                    .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                    .background(rootEnvironment.scheme.foundationPrimary)
                     .cornerRadius(5)
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
 
@@ -46,20 +46,20 @@ struct UpSideUserInfoView: View {
                     let daysLater = UserCalcUtility.daysLater(from: user.date)
                     if daysLater == 0 {
                         Text("HAPPY BIRTHDAY")
-                            .foregroundStyle(AppColorScheme.getThema1(rootEnvironment.scheme))
+                            .foregroundStyle(rootEnvironment.scheme.thema1)
                             .fontWeight(.bold)
 
                     } else {
                         Text("あと")
                         Text("\(daysLater)")
-                            .foregroundColor(AppColorScheme.getThema1(rootEnvironment.scheme))
+                            .foregroundColor(rootEnvironment.scheme.thema1)
                         Text("日")
                     }
 
                 }.padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: roundWidth, alignment: .center)
-                    .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                    .background(rootEnvironment.scheme.foundationPrimary)
                     .cornerRadius(5)
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
             }

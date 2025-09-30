@@ -99,24 +99,24 @@ struct EntryUserView: View {
                 if user == nil {
                     Toggle(isOn: $isAlert, label: {
                         Text("通知")
-                    }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1(rootEnvironment.scheme)))
+                    }).toggleStyle(SwitchToggleStyle(tint: rootEnvironment.scheme.thema1))
                         .frame(width: DeviceSizeUtility.deviceWidth - 50)
                 }
 
                 Toggle(isOn: $isYearsUnknown, label: {
                     Text("年数の指定を未設定にする")
-                }).toggleStyle(SwitchToggleStyle(tint: AppColorScheme.getThema1(rootEnvironment.scheme)))
+                }).toggleStyle(SwitchToggleStyle(tint: rootEnvironment.scheme.thema1))
                     .frame(width: DeviceSizeUtility.deviceWidth - 50)
 
                 Text("MEMO")
-                    .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                    .foregroundStyle(rootEnvironment.scheme.text)
                     .fontWeight(.bold)
                     .opacity(0.8)
 
                 NavigationStack {
                     TextEditor(text: $memo)
                         .padding(5)
-                        .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                        .background(rootEnvironment.scheme.foundationSub)
                         .focused($isFocusActive)
                         .scrollContentBackground(.hidden)
                         .toolbar {
@@ -130,9 +130,9 @@ struct EntryUserView: View {
                                 }
                             }
                         }
-                }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                }.background(rootEnvironment.scheme.foundationSub)
                     .frame(minHeight: DeviceSizeUtility.isSESize ? 60 : 90)
-                    .overBorder(radius: 5, color: AppColorScheme.getFoundationPrimary(rootEnvironment.scheme), opacity: 0.4, lineWidth: 3)
+                    .overBorder(radius: 5, color: rootEnvironment.scheme.foundationPrimary, opacity: 0.4, lineWidth: 3)
             }
 
             Spacer()
@@ -183,8 +183,8 @@ struct EntryUserView: View {
 
         }.padding()
             .fontM()
-            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
-            .foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
+            .background(rootEnvironment.scheme.foundationSub)
+            .foregroundColor(rootEnvironment.scheme.text)
             .onAppear {
                 if let user = user {
                     // Update時なら初期値セット

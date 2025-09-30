@@ -54,7 +54,7 @@ struct AppLockView: View {
                             }
                         }
                     }.offset(y: 80)
-                        .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                        .foregroundStyle(rootEnvironment.scheme.text)
                 }
             }
 
@@ -70,7 +70,7 @@ struct AppLockView: View {
                 .environmentObject(rootEnvironment)
         }
         .onAppear { viewModel.onAppear() }
-        .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+        .background(rootEnvironment.scheme.foundationSub)
     }
 }
 
@@ -163,10 +163,10 @@ struct NumberKeyboardView: View {
                 } label: {
                     Image(systemName: "delete.backward")
                         .frame(width: DeviceSizeUtility.deviceWidth / 3, height: height)
-                        .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                        .background(rootEnvironment.scheme.foundationPrimary)
                 }
             }
-        }.foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+        }.foregroundStyle(rootEnvironment.scheme.text)
             .fontWeight(.bold)
     }
 }
@@ -183,7 +183,7 @@ struct DisplayPasswordView: View {
             Text(password[safe: 1] == nil ? "ー" : "⚫︎")
             Text(password[safe: 2] == nil ? "ー" : "⚫︎")
             Text(password[safe: 3] == nil ? "ー" : "⚫︎")
-        }.foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+        }.foregroundStyle(rootEnvironment.scheme.text)
             .fontWeight(.bold)
     }
 }
@@ -207,7 +207,7 @@ struct NumberButton: View {
         } label: {
             Text(number)
                 .frame(width: DeviceSizeUtility.deviceWidth / 3, height: height)
-                .background(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                .background(rootEnvironment.scheme.foundationPrimary)
         }
     }
 }

@@ -30,7 +30,7 @@ struct EntryButtonView: View {
         } label: {
             Image(systemName: "plus")
                 .fontM()
-        }.circleBorderView(width: 50, height: 50, color: AppColorScheme.getThema3(rootEnvironment.scheme))
+        }.circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema3)
             .sheet(isPresented: $isModal) {
                 EntryUserView(user: nil, isModal: $isModal)
                     .environmentObject(rootEnvironment)

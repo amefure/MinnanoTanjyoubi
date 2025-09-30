@@ -55,12 +55,12 @@ struct DetailUserView: View {
                         .truncationMode(.tail) // 文字溢れを「....」にする
                         .padding()
                         .frame(width: deviceWidth - 40, height: 130, alignment: .topLeading)
-                        .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                        .background(rootEnvironment.scheme.foundationSub)
                         .onTapGesture {
                             viewModel.isShowPopUpMemo = true
                         }.overBorder(
                             radius: 5,
-                            color: AppColorScheme.getFoundationPrimary(rootEnvironment.scheme),
+                            color: rootEnvironment.scheme.foundationPrimary,
                             opacity: 0.4,
                             lineWidth: 2
                         )
@@ -76,7 +76,7 @@ struct DetailUserView: View {
             // 通知トグルビュー
             Toggle("通知", isOn: $viewModel.isNotifyFlag)
                 .toggleStyle(
-                    SwitchToggleStyle(tint: AppColorScheme.getThema1(rootEnvironment.scheme))
+                    SwitchToggleStyle(tint: rootEnvironment.scheme.thema1)
                 ).fontM()
                 .frame(width: DeviceSizeUtility.deviceWidth - 60)
                 .padding(DeviceSizeUtility.isSESize ? 5 : 10)
@@ -102,8 +102,8 @@ struct DetailUserView: View {
                     .frame(height: 50)
             }
 
-        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
-            .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+        }.background(rootEnvironment.scheme.foundationSub)
+            .foregroundStyle(rootEnvironment.scheme.text)
             .fontWeight(.bold)
             .toolbar(.hidden, for: .navigationBar)
             .onAppear { viewModel.onAppear(user: user) }

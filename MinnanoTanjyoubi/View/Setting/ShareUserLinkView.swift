@@ -22,13 +22,13 @@ struct ShareUserLinkView: View {
 
             Text("誕生日情報共有")
                 .fontL()
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
                 .fontWeight(.bold)
                 .padding(.vertical)
 
             Text("「みんなの誕生日」をインストールしている人に自分が登録している誕生日情報をシェアすることができます。\n共有したい誕生日情報を選択して「共有する」をクリックしてください。")
                 .fontS()
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
                 .padding(.horizontal)
 
             List {
@@ -55,7 +55,7 @@ struct ShareUserLinkView: View {
                     }
                 }
             }.scrollContentBackground(.hidden)
-                .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                .background(rootEnvironment.scheme.foundationSub)
 
             Button {
                 ShareInfoUtillity.shareBirthday(shareUsers)
@@ -71,7 +71,7 @@ struct ShareUserLinkView: View {
 
             Spacer()
 
-        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+        }.background(rootEnvironment.scheme.foundationSub)
             .onAppear { FBAnalyticsManager.loggingScreen(screen: .ShareUserLinkScreen) }
             .navigationBarBackButtonHidden()
     }

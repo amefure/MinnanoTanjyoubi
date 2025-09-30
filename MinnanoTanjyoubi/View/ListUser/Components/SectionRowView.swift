@@ -17,7 +17,7 @@ struct SectionRowView: View {
         if !users.isEmpty {
             VStack(alignment: .leading) {
                 Text(title)
-                    .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                    .foregroundStyle(rootEnvironment.scheme.text)
                     .padding(.horizontal)
                     .fontM(bold: true)
 
@@ -28,7 +28,7 @@ struct SectionRowView: View {
                         .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 2)
 
                     Spacer()
-                }.foregroundColor(AppColorScheme.getText(rootEnvironment.scheme))
+                }.foregroundColor(rootEnvironment.scheme.text)
 
                 SingleGridListView(users: users)
             }.padding()

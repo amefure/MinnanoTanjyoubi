@@ -23,7 +23,7 @@ struct TimePickerView: View {
             .environment(\.locale, Locale(identifier: "ja_JP"))
             .fontM()
             .colorInvert()
-            .colorMultiply(AppColorScheme.getText(rootEnvironment.scheme))
+            .colorMultiply(rootEnvironment.scheme.text)
             .onChange(of: time) { newValue in
                 viewModel.registerNotifyTime(date: newValue)
             }.onAppear {

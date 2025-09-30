@@ -22,7 +22,7 @@ struct SelectSortView: View {
 
             Text("並び順変更")
                 .fontL(bold: true)
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
                 .padding(.vertical)
 
             List {
@@ -40,14 +40,14 @@ struct SelectSortView: View {
 
                             if self.sort == sort {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                                    .foregroundStyle(rootEnvironment.scheme.foundationPrimary)
                             }
                         }
                     }
                 }
 
             }.scrollContentBackground(.hidden)
-                .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                .background(rootEnvironment.scheme.foundationSub)
 
             Spacer()
 
@@ -60,7 +60,7 @@ struct SelectSortView: View {
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)
 
-        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+        }.background(rootEnvironment.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {

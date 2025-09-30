@@ -28,7 +28,7 @@ struct ImagePreviewDialog: View {
                         .scaledToFit()
                         .padding(5)
                         .frame(maxWidth: 300)
-                        .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                        .background(rootEnvironment.scheme.foundationSub)
                         .shadow(radius: 10)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                     // 画面一杯にViewを広げる

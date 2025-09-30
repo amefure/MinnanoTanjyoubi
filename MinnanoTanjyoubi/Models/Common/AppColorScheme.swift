@@ -15,16 +15,7 @@ enum AppColorScheme: String, CaseIterable {
     case lemon
     case blue
     case modern
-    case pastel
-
-    public var controlText: Color {
-        switch self {
-        case .pretty, .lemon, .pastel:
-            return Asset.Colors.exText.swiftUIColor
-        default:
-            return .white
-        }
-    }
+    case pastelBlue
 
     public var name: String {
         switch self {
@@ -42,13 +33,24 @@ enum AppColorScheme: String, CaseIterable {
             return "ディープブルー"
         case .modern:
             return "モダンブラック"
-        case .pastel:
+        case .pastelBlue:
             return "パステルブルー"
         }
     }
 
-    static func getFoundationPrimary(_ scheme: AppColorScheme = .light) -> Color {
-        switch scheme {
+    /// コントロールパネルのボタンテキストカラー
+    public var controlText: Color {
+        switch self {
+        case .pretty, .lemon, .pastelBlue:
+            return Asset.Colors.exText.swiftUIColor
+        default:
+            return .white
+        }
+    }
+
+    /// ファンデーションプライマリーカラー
+    public var foundationPrimary: Color {
+        switch self {
         case .original:
             return Asset.Colors.scheme1FoundationPrimary.swiftUIColor
         case .dark:
@@ -63,13 +65,14 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme6FoundationPrimary.swiftUIColor
         case .modern:
             return Asset.Colors.scheme7FoundationPrimary.swiftUIColor
-        case .pastel:
+        case .pastelBlue:
             return Asset.Colors.scheme8FoundationPrimary.swiftUIColor
         }
     }
 
-    static func getFoundationSub(_ scheme: AppColorScheme = .light) -> Color {
-        switch scheme {
+    /// ファンデーションサブカラー
+    public var foundationSub: Color {
+        switch self {
         case .original:
             return Asset.Colors.scheme1FoundationSub.swiftUIColor
         case .dark:
@@ -84,13 +87,14 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme6FoundationSub.swiftUIColor
         case .modern:
             return Asset.Colors.scheme7FoundationSub.swiftUIColor
-        case .pastel:
+        case .pastelBlue:
             return Asset.Colors.scheme8FoundationSub.swiftUIColor
         }
     }
 
-    static func getThema1(_ scheme: AppColorScheme = .light) -> Color {
-        switch scheme {
+    /// テーマカラー1
+    public var thema1: Color {
+        switch self {
         case .original:
             return Asset.Colors.scheme1Thema1.swiftUIColor
         case .dark:
@@ -105,13 +109,14 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme6Thema1.swiftUIColor
         case .modern:
             return Asset.Colors.scheme7Thema1.swiftUIColor
-        case .pastel:
+        case .pastelBlue:
             return Asset.Colors.scheme8Thema1.swiftUIColor
         }
     }
 
-    static func getThema2(_ scheme: AppColorScheme = .light) -> Color {
-        switch scheme {
+    /// テーマカラー2
+    public var thema2: Color {
+        switch self {
         case .original:
             return Asset.Colors.scheme1Thema2.swiftUIColor
         case .dark:
@@ -126,13 +131,14 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme6Thema2.swiftUIColor
         case .modern:
             return Asset.Colors.scheme7Thema2.swiftUIColor
-        case .pastel:
+        case .pastelBlue:
             return Asset.Colors.scheme8Thema2.swiftUIColor
         }
     }
 
-    static func getThema3(_ scheme: AppColorScheme = .light) -> Color {
-        switch scheme {
+    /// テーマカラー3
+    public var thema3: Color {
+        switch self {
         case .original:
             return Asset.Colors.scheme1Thema3.swiftUIColor
         case .dark:
@@ -147,13 +153,14 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme6Thema3.swiftUIColor
         case .modern:
             return Asset.Colors.scheme7Thema3.swiftUIColor
-        case .pastel:
+        case .pastelBlue:
             return Asset.Colors.scheme8Thema3.swiftUIColor
         }
     }
 
-    static func getThema4(_ scheme: AppColorScheme = .light) -> Color {
-        switch scheme {
+    /// テーマカラー4
+    public var thema4: Color {
+        switch self {
         case .original:
             return Asset.Colors.scheme1Thema4.swiftUIColor
         case .dark:
@@ -168,13 +175,14 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme6Thema4.swiftUIColor
         case .modern:
             return Asset.Colors.scheme7Thema4.swiftUIColor
-        case .pastel:
+        case .pastelBlue:
             return Asset.Colors.scheme8Thema4.swiftUIColor
         }
     }
 
-    static func getText(_ scheme: AppColorScheme = .light) -> Color {
-        switch scheme {
+    /// テキストカラー
+    public var text: Color {
+        switch self {
         case .original:
             return Asset.Colors.scheme1Text.swiftUIColor
         case .dark:
@@ -189,7 +197,7 @@ enum AppColorScheme: String, CaseIterable {
             return Asset.Colors.scheme6Text.swiftUIColor
         case .modern:
             return Asset.Colors.scheme7Text.swiftUIColor
-        case .pastel:
+        case .pastelBlue:
             return Asset.Colors.scheme8Text.swiftUIColor
         }
     }

@@ -36,17 +36,17 @@ struct MiddleUserInfoView: View {
                         Text("\(UserCalcUtility.currentAgeMonth(from: user.date))ヶ月")
                     }
                 }
-            }.circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema2(rootEnvironment.scheme))
+            }.circleBorderView(width: roundWidth, height: roundWidth, color: rootEnvironment.scheme.thema2)
 
             Text(UserCalcUtility.signOfZodiac(from: user.date))
-                .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema4(rootEnvironment.scheme))
+                .circleBorderView(width: roundWidth, height: roundWidth, color: rootEnvironment.scheme.thema4)
 
             if user.isYearsUnknown {
                 Text("- 年")
-                    .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3(rootEnvironment.scheme))
+                    .circleBorderView(width: roundWidth, height: roundWidth, color: rootEnvironment.scheme.thema3)
             } else {
                 Text(UserCalcUtility.zodiac(from: user.date))
-                    .circleBorderView(width: roundWidth, height: roundWidth, color: AppColorScheme.getThema3(rootEnvironment.scheme))
+                    .circleBorderView(width: roundWidth, height: roundWidth, color: rootEnvironment.scheme.thema3)
             }
 
         }.font(isSESize ? .system(size: 12) : .system(size: 17))

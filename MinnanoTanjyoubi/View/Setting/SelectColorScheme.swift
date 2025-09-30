@@ -21,7 +21,7 @@ struct SelectColorScheme: View {
 
             Text("テーマカラー変更")
                 .fontL(bold: true)
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
                 .padding(.vertical)
 
             List {
@@ -31,10 +31,10 @@ struct SelectColorScheme: View {
                     } label: {
                         HStack {
                             ColorSchemePreView(
-                                color1: AppColorScheme.getFoundationPrimary(scheme),
-                                color2: AppColorScheme.getThema2(scheme),
-                                color3: AppColorScheme.getThema3(scheme),
-                                color4: AppColorScheme.getThema4(scheme)
+                                color1: scheme.foundationPrimary,
+                                color2: scheme.thema2,
+                                color3: scheme.thema3,
+                                color4: scheme.thema4
                             )
 
                             Text(scheme.name)
@@ -45,7 +45,7 @@ struct SelectColorScheme: View {
 
                             if self.scheme == scheme {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(AppColorScheme.getFoundationPrimary(rootEnvironment.scheme))
+                                    .foregroundStyle(rootEnvironment.scheme.foundationPrimary)
                             }
                         }
                     }
@@ -56,7 +56,7 @@ struct SelectColorScheme: View {
                     .fontM()
 
             }.scrollContentBackground(.hidden)
-                .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                .background(rootEnvironment.scheme.foundationSub)
 
             Spacer()
 
@@ -68,7 +68,7 @@ struct SelectColorScheme: View {
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)
 
-        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+        }.background(rootEnvironment.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {
@@ -85,7 +85,7 @@ struct SelectColorScheme: View {
     }
 }
 
-struct ColorSchemePreView: View {
+private struct ColorSchemePreView: View {
     var color1: Color
     var color2: Color
     var color3: Color

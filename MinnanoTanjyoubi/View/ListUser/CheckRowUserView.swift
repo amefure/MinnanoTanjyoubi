@@ -55,7 +55,7 @@ struct CheckRowUserView: View {
             Toggle(isOn: $isOn) {
                 EmptyView()
             }.toggleStyle(CheckBoxToggleStyle(user: user, deleteArray: $rootEnvironment.deleteArray))
-                .tint(AppColorScheme.getThema1(rootEnvironment.scheme))
+                .tint(rootEnvironment.scheme.thema1)
                 .frame(width: itemWidth)
                 .zIndex(2)
                 .position(x: 15, y: 15)

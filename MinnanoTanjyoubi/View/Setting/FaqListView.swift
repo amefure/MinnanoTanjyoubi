@@ -18,7 +18,7 @@ struct FaqListView: View {
 
             Text("よくある質問")
                 .fontL(bold: true)
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
                 .padding(.vertical)
 
             List {
@@ -32,8 +32,8 @@ struct FaqListView: View {
                     AccordionBoxView(question: L10n.howToUseQ7Title, answer: L10n.howToUseQ7Text)
                 }
             }.scrollContentBackground(.hidden)
-                .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
-        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+                .background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
     }

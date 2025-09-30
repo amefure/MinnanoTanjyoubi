@@ -27,7 +27,7 @@ struct RootView: View {
                     .frame(height: 50)
             }
 
-        }.background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+        }.background(rootEnvironment.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .navigationBarBackButtonHidden()
             .navigationBarHidden(true)

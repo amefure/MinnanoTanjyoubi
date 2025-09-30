@@ -27,7 +27,7 @@ struct TheDayView: View {
     var body: some View {
         VStack {
             if theDay.day == -1 {
-                AppColorScheme.getFoundationPrimary(rootEnvironment.scheme)
+                rootEnvironment.scheme.foundationPrimary
             } else {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("\(theDay.day)")
@@ -35,7 +35,7 @@ struct TheDayView: View {
                         .background(theDay.isToday ? Asset.Colors.exThemaRed.swiftUIColor : Color.clear)
                         .fontSS(bold: true)
                         .clipShape(RoundedRectangle(cornerRadius: 18))
-                        .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor(defaultColor: AppColorScheme.getText(rootEnvironment.scheme)))
+                        .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor(defaultColor: rootEnvironment.scheme.text))
 
                     if DeviceSizeUtility.isSESize {
                         // SEサイズなら最大2人まで表示
@@ -64,7 +64,7 @@ struct TheDayView: View {
                     }
 
                     // スペーサー用(スワイプタップ判定領域確保のため)
-                    AppColorScheme.getFoundationSub(rootEnvironment.scheme)
+                    rootEnvironment.scheme.foundationSub
                 }
                 .padding(.vertical, 6)
                 .padding(.horizontal, 3)
@@ -97,7 +97,7 @@ struct TheDayView: View {
         .frame(height: DeviceSizeUtility.isSESize ? 74 : 80)
         .overlay {
             Rectangle()
-                .stroke(AppColorScheme.getText(rootEnvironment.scheme), lineWidth: 2)
+                .stroke(rootEnvironment.scheme.text, lineWidth: 2)
         }.if(theDay.users.isEmpty) { view in
             view
                 .sheet(isPresented: $isShowEntryModal) {
@@ -143,7 +143,7 @@ struct TheDayView: View {
         VStack(spacing: 0) {
             Text(theDay.getDate())
                 .fontM(bold: true)
-                .foregroundStyle(AppColorScheme.getText(rootEnvironment.scheme))
+                .foregroundStyle(rootEnvironment.scheme.text)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
@@ -163,7 +163,7 @@ struct TheDayView: View {
         }.presentationDetents([.height(200)])
             .padding()
             .ignoresSafeArea(.all)
-            .background(AppColorScheme.getFoundationSub(rootEnvironment.scheme))
+            .background(rootEnvironment.scheme.foundationSub)
     }
 }
 
