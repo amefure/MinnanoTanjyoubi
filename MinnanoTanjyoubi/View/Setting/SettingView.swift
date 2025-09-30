@@ -118,7 +118,7 @@ struct SettingView: View {
                                 Text("\(String(year))年")
                                     .fontM()
                             }
-                        }.tint(rootEnvironment.scheme.thema1)
+                        }.tint(rootEnvironment.scheme.text)
                             .fontM()
                     }.listRowHeight()
 
