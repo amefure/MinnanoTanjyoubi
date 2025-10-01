@@ -83,6 +83,7 @@ struct BirthDayWidgetEntryView: View {
                     HStack(alignment: .center, spacing: 0) {
                         Text(user.name)
                             .fontSS(bold: true)
+                            .layoutPriority(1)
                         Spacer()
                         let daysLater = UserCalcUtility.daysLater(from: user.date)
                         if daysLater == 0 {
@@ -90,6 +91,7 @@ struct BirthDayWidgetEntryView: View {
                                 Text("HAPPY")
                                 Text("BIRTHDAY")
                             }.foregroundStyle(.exThemaYellow)
+                                .layoutPriority(2)
 
                         } else {
                             HStack(alignment: .firstTextBaseline, spacing: 0) {
@@ -98,7 +100,7 @@ struct BirthDayWidgetEntryView: View {
                                     .fontS(bold: true)
                                     .foregroundStyle(.exThemaYellow)
                                 Text("日")
-                            }
+                            }.layoutPriority(2)
                         }
                     }
                     Spacer()
@@ -236,7 +238,7 @@ struct BirthDayWidgetEntryView: View {
             HStack {
                 appIcon(size: 20)
                 Text("みんなの誕生日")
-                    .fontS(bold: true)
+                    .fontSS(bold: true)
             }
             Divider()
         }
@@ -247,12 +249,7 @@ struct BirthDayWidgetEntryView: View {
         VStack {
             Spacer()
 
-            Text("誕生日情報がありません。")
-                .fontSS(bold: true)
-
-            Spacer()
-
-            Text("アプリから登録してね♪")
+            Text("誕生日情報がありません。\nアプリから登録してね♪")
                 .fontSS(bold: true)
 
             Spacer()
