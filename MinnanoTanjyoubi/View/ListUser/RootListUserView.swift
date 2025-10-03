@@ -92,7 +92,6 @@ struct RootListUserView: View {
                                     EmptyView()
                                 }
                             }.padding(.bottom, 75)
-                                .simultaneousGesture(drag)
                         }.padding([.top, .trailing, .leading])
                             .if(isIos18) { view in
                                 // FIXME: - iOS17以前ではスクロールが動作しないため暫定対応としてiOS18以降のみ
