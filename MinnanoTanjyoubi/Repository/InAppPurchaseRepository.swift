@@ -60,7 +60,7 @@ actor InAppPurchaseRepository {
     @MainActor
     private let _purchaseError = PassthroughSubject<Bool, Never>()
 
-    ///
+    /// 課金情報観測タスク
     private var updateListenerTask: Task<Void, Error>?
 
     func startListen() {
@@ -172,14 +172,8 @@ actor InAppPurchaseRepository {
 
     /// 復元処理
     @MainActor
-    func restore() {
-        Task {
-            do {
-                try await AppStore.sync()
-            } catch {
-                // 復元失敗
-            }
-        }
+    func restore() async throws {
+        try await AppStore.sync()
     }
 
     /// 購入済みアイテム履歴情報を取得

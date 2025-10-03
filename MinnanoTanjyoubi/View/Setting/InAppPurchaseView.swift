@@ -132,6 +132,17 @@ struct InAppPurchaseView: View {
                     viewModel.purchaseError = false
                 },
                 negativeAction: {}
+            ).alert(
+                isPresented: $viewModel.successRestoreAlert,
+                title: "成功",
+                message: "購入アイテムの復元に成功しました。\n購入アイテムがそれでも復元されない場合はお手数ですがお問合せください。",
+                positiveButtonTitle: "OK"
+            )
+            .alert(
+                isPresented: $viewModel.failedRestoreAlert,
+                title: "Error",
+                message: "購入アイテムの復元に失敗しました。\n時間を開けてから再度お試しください。",
+                positiveButtonTitle: "OK"
             )
     }
 }

@@ -15,6 +15,10 @@ class InAppPurchaseViewModel: ObservableObject {
     @Published var fetchError: Bool = false
     /// 購入エラー
     @Published var purchaseError: Bool = false
+    /// 復元成功
+    @Published var successRestoreAlert: Bool = false
+    /// 復元エラー
+    @Published var failedRestoreAlert: Bool = false
     /// 購入中アイテムID
     @Published private(set) var isPurchasingId: String = ""
     /// 課金アイテム
@@ -99,6 +103,13 @@ class InAppPurchaseViewModel: ObservableObject {
 
     /// 復帰処理
     func restore() {
-        inAppPurchaseRepository.restore()
+        Task {
+            do {
+                try await inAppPurchaseRepository.restore()
+                successRestoreAlert = true
+            } catch {
+                failedRestoreAlert = true
+            }
+        }
     }
 }
