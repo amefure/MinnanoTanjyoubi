@@ -7,7 +7,7 @@ target 'MinnanoTanjyoubi' do
 
   # Pods for MinnanoTanjyoubi
   pod 'Google-Mobile-Ads-SDK'
-  pod 'RealmSwift' , '10.37.2'
+  pod 'RealmSwift'
   pod 'FirebaseCrashlytics'
   pod 'FirebaseAnalytics'
   pod 'FirebasePerformance'
@@ -19,7 +19,7 @@ target 'MinnanoTanjyoubi' do
   target 'MinnanoTanjyoubiTests' do 
     use_frameworks!
 
-    pod 'RealmSwift' , '10.37.2'
+    pod 'RealmSwift'
     pod 'CryptoSwift'
   end
 
@@ -30,7 +30,7 @@ target 'BirthDayWidgetExtension' do
   use_frameworks!
 
   # Pods for WidgetTest
-  pod 'RealmSwift' , '10.37.2'
+  pod 'RealmSwift'
 
 end
 

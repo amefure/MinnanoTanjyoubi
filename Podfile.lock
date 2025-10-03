@@ -139,11 +139,11 @@ PODS:
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
     - PromisesObjC (= 2.4.0)
-  - Realm (10.37.2):
-    - Realm/Headers (= 10.37.2)
-  - Realm/Headers (10.37.2)
-  - RealmSwift (10.37.2):
-    - Realm (= 10.37.2)
+  - Realm (20.0.3):
+    - Realm/Headers (= 20.0.3)
+  - Realm/Headers (20.0.3)
+  - RealmSwift (20.0.3):
+    - Realm (= 20.0.3)
   - SwiftFormat/CLI (0.58.2)
 
 DEPENDENCIES:
@@ -154,7 +154,7 @@ DEPENDENCIES:
   - FirebasePerformance
   - FirebaseRemoteConfig
   - Google-Mobile-Ads-SDK
-  - RealmSwift (= 10.37.2)
+  - RealmSwift
   - SwiftFormat/CLI
 
 SPEC REPOS:
@@ -208,10 +208,10 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
-  Realm: 09e17879e909fafc5336864bff22272de9bd11bf
-  RealmSwift: adaf8f6fd925b41447089fcfab71b9b7cdc3982d
+  Realm: 853e5089d6042dff807bda000277eadfe2da93d2
+  RealmSwift: f33c19577cefcbf681345d721fcbc7b42be4c949
   SwiftFormat: 3fd934337426a4edd149c3534d746e9ef2bb67c3
 
-PODFILE CHECKSUM: cca4f8f4d2a345530ef01134f3d2c8aef8ac278c
+PODFILE CHECKSUM: 4f386bd3fb983e24a20329388b10642d69e4d5f3
 
 COCOAPODS: 1.16.2
