@@ -36,9 +36,10 @@
 
 ## 開発環境
 
-- Xcode：16.3
+- Xcode：26.0.1
 - Swift：6
-- Mac M1：Sequoia 15.4
+- iOS：16〜26
+- Mac M1：Tahoe 26.0.1
 
 ### アーキテクチャ
 
