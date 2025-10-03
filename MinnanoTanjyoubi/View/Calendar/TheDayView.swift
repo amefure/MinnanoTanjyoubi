@@ -11,7 +11,7 @@ struct TheDayView: View {
     @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    public let theDay: SCDate
+    let theDay: SCDate
 
     /// 上限に達した場合のアラート
     @State private var isLimitAlert: Bool = false
@@ -71,7 +71,6 @@ struct TheDayView: View {
                 .simultaneousGesture(
                     TapGesture()
                         .onEnded { _ in
-
                             if theDay.users.isEmpty {
                                 // 0なら新規登録
                                 // 容量がオーバーしていないか または 容量解放されている

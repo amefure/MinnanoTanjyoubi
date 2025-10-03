@@ -34,7 +34,7 @@ final class SettingViewModel: ObservableObject {
         setUpYears()
     }
 
-    public func onAppear() {
+    func onAppear() {
         setUpIsLock()
         setUpDisplayAgeMonth()
         setUpDaysLaterFlag()
@@ -43,7 +43,7 @@ final class SettingViewModel: ObservableObject {
         setUpEntryInitYear()
     }
 
-    public func onDisappear() {
+    func onDisappear() {
         cancellables.forEach { $0.cancel() }
     }
 }
@@ -141,19 +141,19 @@ extension SettingViewModel {
     // MARK: - Reward Logic
 
     // 最大容量取得
-    public func getCapacity() -> Int {
+    func getCapacity() -> Int {
         AppManager.sharedUserDefaultManager.getCapacity()
     }
 
     // MARK: - Notify Logic
 
     /// 通知時間取得
-    public func getNotifyTimeDate() -> Date {
+    func getNotifyTimeDate() -> Date {
         AppManager.sharedUserDefaultManager.getNotifyTimeDate()
     }
 
     /// 通知時間登録
-    public func registerNotifyTime(date: Date) {
+    func registerNotifyTime(date: Date) {
         AppManager.sharedUserDefaultManager.setNotifyTimeDate(date)
     }
 
@@ -188,12 +188,12 @@ extension SettingViewModel {
     }
 
     /// 通知Msg取得
-    public func getNotifyMsg() -> String {
+    func getNotifyMsg() -> String {
         AppManager.sharedUserDefaultManager.getNotifyMsg()
     }
 
     /// 通知Msg登録
-    public func registerNotifyMsg(msg: String) {
+    func registerNotifyMsg(msg: String) {
         AppManager.sharedUserDefaultManager.setNotifyMsg(msg)
     }
 
@@ -218,18 +218,18 @@ extension SettingViewModel {
     }
 
     /// チュートリアル再表示フラグセット
-    public func setTutorialReShowFlag() {
+    func setTutorialReShowFlag() {
         AppManager.sharedUserDefaultManager.setTutorialReShowFlag(true)
     }
 
     /// アプリシェアロジック
     @MainActor
-    public func shareApp(shareText: String, shareLink: String) {
+    func shareApp(shareText: String, shareLink: String) {
         ShareInfoUtillity.shareApp(shareText: shareText, shareLink: shareLink)
     }
 
     /// バージョン番号取得
-    public func getVersion() -> String {
+    func getVersion() -> String {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.0"
     }
 }

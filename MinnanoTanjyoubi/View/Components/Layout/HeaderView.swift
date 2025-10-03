@@ -11,7 +11,7 @@ struct HeaderView: View {
     /// Modal Control 設定画面遷移
     @State private var isSettingActive: Bool = false
 
-    public var isShowIcon: Bool = true
+    var isShowIcon: Bool = true
 
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isSESize = DeviceSizeUtility.isSESize

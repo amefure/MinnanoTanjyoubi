@@ -17,7 +17,7 @@ enum AppColorScheme: String, CaseIterable {
     case modern
     case pastelBlue
 
-    public var name: String {
+    var name: String {
         switch self {
         case .original:
             return "オリジナル"
@@ -39,7 +39,7 @@ enum AppColorScheme: String, CaseIterable {
     }
 
     /// コントロールパネルのボタンテキストカラー
-    public var controlText: Color {
+    var controlText: Color {
         switch self {
         case .pretty, .lemon, .pastelBlue:
             return Asset.Colors.exText.swiftUIColor
@@ -49,7 +49,7 @@ enum AppColorScheme: String, CaseIterable {
     }
 
     /// ファンデーションプライマリーカラー
-    public var foundationPrimary: Color {
+    var foundationPrimary: Color {
         switch self {
         case .original:
             return Asset.Colors.scheme1FoundationPrimary.swiftUIColor
@@ -71,7 +71,7 @@ enum AppColorScheme: String, CaseIterable {
     }
 
     /// ファンデーションサブカラー
-    public var foundationSub: Color {
+    var foundationSub: Color {
         switch self {
         case .original:
             return Asset.Colors.scheme1FoundationSub.swiftUIColor
@@ -93,7 +93,7 @@ enum AppColorScheme: String, CaseIterable {
     }
 
     /// テーマカラー1
-    public var thema1: Color {
+    var thema1: Color {
         switch self {
         case .original:
             return Asset.Colors.scheme1Thema1.swiftUIColor
@@ -115,7 +115,7 @@ enum AppColorScheme: String, CaseIterable {
     }
 
     /// テーマカラー2
-    public var thema2: Color {
+    var thema2: Color {
         switch self {
         case .original:
             return Asset.Colors.scheme1Thema2.swiftUIColor
@@ -137,7 +137,7 @@ enum AppColorScheme: String, CaseIterable {
     }
 
     /// テーマカラー3
-    public var thema3: Color {
+    var thema3: Color {
         switch self {
         case .original:
             return Asset.Colors.scheme1Thema3.swiftUIColor
@@ -159,7 +159,7 @@ enum AppColorScheme: String, CaseIterable {
     }
 
     /// テーマカラー4
-    public var thema4: Color {
+    var thema4: Color {
         switch self {
         case .original:
             return Asset.Colors.scheme1Thema4.swiftUIColor
@@ -181,7 +181,7 @@ enum AppColorScheme: String, CaseIterable {
     }
 
     /// テキストカラー
-    public var text: Color {
+    var text: Color {
         switch self {
         case .original:
             return Asset.Colors.scheme1Text.swiftUIColor

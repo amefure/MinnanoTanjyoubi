@@ -192,7 +192,7 @@ struct DisplayPasswordView: View {
 struct NumberButton: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    public let number: String
+    let number: String
     @Binding var password: [String]
 
     private var height: CGFloat {

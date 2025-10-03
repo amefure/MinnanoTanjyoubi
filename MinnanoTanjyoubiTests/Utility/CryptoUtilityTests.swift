@@ -13,7 +13,7 @@ struct CryptoUtilityTests {
     let crypto = CryptoUtillity()
 
     @Test
-    func testEncryptionAndDecryption() {
+    func encryptionAndDecryption() {
         let originalText = "Hello, Swift暗号化123!🚀"
 
         let encryptedText = crypto.encryption(originalText)
@@ -24,14 +24,14 @@ struct CryptoUtilityTests {
     }
 
     @Test
-    func testDecryptionWithInvalidBase64() {
+    func decryptionWithInvalidBase64() {
         let invalidCipherText = "ThisIsNotBase64EncodedString"
         let decrypted = crypto.decryption(invalidCipherText)
         #expect(decrypted == nil)
     }
 
     @Test
-    func testEncryptionReturnsDifferentValuesForDifferentInputs() {
+    func encryptionReturnsDifferentValuesForDifferentInputs() {
         let text1 = "SampleText1"
         let text2 = "SampleText2"
 
@@ -42,7 +42,7 @@ struct CryptoUtilityTests {
     }
 
     @Test
-    func testEncryptionIsDeterministic() {
+    func encryptionIsDeterministic() {
         let text = "RepeatableText"
 
         let encrypted1 = crypto.encryption(text)

@@ -457,13 +457,13 @@ private extension View {
 private struct CapacityParametersView: View {
     @StateObject var viewModel: SettingViewModel
 
-    public let now: Double
-    public let max: Double
-    public let color: Color = Asset.Colors.exThemaYellow.swiftUIColor
-    public let fullColor: Color = Asset.Colors.exThemaRed.swiftUIColor
-    public let width: CGFloat = DeviceSizeUtility.deviceWidth - 80
-    public let height: CGFloat = 40
-    public let radius: CGFloat = 8
+    let now: Double
+    let max: Double
+    let color: Color = Asset.Colors.exThemaYellow.swiftUIColor
+    let fullColor: Color = Asset.Colors.exThemaRed.swiftUIColor
+    let width: CGFloat = DeviceSizeUtility.deviceWidth - 80
+    let height: CGFloat = 40
+    let radius: CGFloat = 8
 
     @State private var target: Double = 0
     @State private var showCapacity: CGFloat = 0

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CustomPopUpDialogView: View {
     @Binding var isPresented: Bool
-    public let title: String
-    public let message: String
+    let title: String
+    let message: String
 
     var body: some View {
         if isPresented {

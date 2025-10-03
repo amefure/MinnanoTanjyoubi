@@ -8,7 +8,7 @@
 final class BirthDayWidgetViewModel {
     private let realmRepository = RealmRepository()
 
-    public func getNearBirthDayUser(
+    func getNearBirthDayUser(
         users: [User],
         size: Int
     ) -> [User] {
@@ -18,7 +18,7 @@ final class BirthDayWidgetViewModel {
         return Array(result.prefix(size))
     }
 
-    public func getAllUser() -> [User] {
+    func getAllUser() -> [User] {
         return Array(realmRepository.readAllUsers())
     }
 }

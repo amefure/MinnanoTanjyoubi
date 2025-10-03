@@ -27,7 +27,7 @@ class AppLockViewModel: ObservableObject {
         keyChainRepository = repositoryDependency.keyChainRepository
     }
 
-    public func onAppear() {
+    func onAppear() {
         biometricAuthRepository.biometryType.sink { [weak self] type in
             guard let self = self else { return }
             self.type = type
@@ -42,7 +42,7 @@ class AppLockViewModel: ObservableObject {
     }
 
     /// 生体認証リクエスト
-    public func requestBiometricsLogin() async {
+    func requestBiometricsLogin() async {
         let result: Bool = await biometricAuthRepository.requestBiometrics()
         if result {
             showProgress()
@@ -54,7 +54,7 @@ class AppLockViewModel: ObservableObject {
     }
 
     /// パスワードログイン(keyChain)
-    public func passwordLogin(password: [String], completion: @escaping (Bool) -> Void) {
+    func passwordLogin(password: [String], completion: @escaping (Bool) -> Void) {
         if password.count == 4 {
             showProgress()
             let pass = password.joined(separator: "")
@@ -76,22 +76,22 @@ class AppLockViewModel: ObservableObject {
     }
 
     /// アプリトップへ遷移
-    public func showApp() {
+    func showApp() {
         isShowApp = true
     }
 
     /// プログレス表示
-    public func showProgress() {
+    func showProgress() {
         isShowProgress = true
     }
 
     /// プログレス非表示
-    public func hiddenProgress() {
+    func hiddenProgress() {
         isShowProgress = false
     }
 
     /// 失敗アラート表示
-    public func showFailureAlert() {
+    func showFailureAlert() {
         isShowFailureAlert = true
     }
 }

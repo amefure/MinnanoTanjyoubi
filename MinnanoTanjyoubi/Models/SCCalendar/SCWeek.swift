@@ -17,7 +17,7 @@ enum SCWeek: Int, CaseIterable {
     case friday = 5
     case saturday = 6
 
-    public var fullSymbols: String {
+    var fullSymbols: String {
         switch self {
         case .sunday: return "日曜日"
         case .monday: return "月曜日"
@@ -29,7 +29,7 @@ enum SCWeek: Int, CaseIterable {
         }
     }
 
-    public var shortSymbols: String {
+    var shortSymbols: String {
         switch self {
         case .sunday: return "日"
         case .monday: return "月"
@@ -41,7 +41,7 @@ enum SCWeek: Int, CaseIterable {
         }
     }
 
-    public var color: Color? {
+    var color: Color? {
         switch self {
         case .sunday: return .red
         case .saturday: return .blue

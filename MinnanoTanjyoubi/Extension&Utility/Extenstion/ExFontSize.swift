@@ -9,8 +9,8 @@ import SwiftUI
 
 /// フォントサイズ
 struct FontSize: ViewModifier {
-    public let size: CGFloat
-    public let bold: Bool
+    let size: CGFloat
+    let bold: Bool
     func body(content: Content) -> some View {
         content
             .font(.system(size: size))

@@ -12,12 +12,12 @@ struct CustomNotifyDialogView: View {
 
     @Binding var isPresented: Bool
 
-    public let title: String
-    public let message: String
-    public let positiveButtonTitle: String
-    public let negativeButtonTitle: String
-    public let positiveAction: () -> Void
-    public let negativeAction: () -> Void
+    let title: String
+    let message: String
+    let positiveButtonTitle: String
+    let negativeButtonTitle: String
+    let positiveAction: () -> Void
+    let negativeAction: () -> Void
 
     var body: some View {
         if isPresented {

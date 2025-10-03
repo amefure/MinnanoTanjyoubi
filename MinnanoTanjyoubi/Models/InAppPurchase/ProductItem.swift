@@ -9,7 +9,7 @@ enum ProductItem {
     case removeAds
     case unlockStorage
 
-    public var id: String {
+    var id: String {
         return switch self {
         case .removeAds:
             #if DEBUG

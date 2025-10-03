@@ -20,7 +20,7 @@ struct JsonConvertUtilityTests {
     )
 
     @Test
-    func testEncodeToJsonString() {
+    func encodeToJsonString() {
         let json = jsonUtil.convertJson(user)
         #expect(json != nil)
         #expect(json!.contains("吉田　真紘"))
@@ -28,7 +28,7 @@ struct JsonConvertUtilityTests {
     }
 
     @Test
-    func testDecodeFromJsonString() {
+    func decodeFromJsonString() {
         let json = """
         {
             "id": 2,
@@ -43,7 +43,7 @@ struct JsonConvertUtilityTests {
     }
 
     @Test
-    func testRoundTripEncodeDecode() {
+    func roundTripEncodeDecode() {
         let json = jsonUtil.convertJson(user)
         #expect(json != nil)
 
@@ -53,7 +53,7 @@ struct JsonConvertUtilityTests {
     }
 
     @Test
-    func testInvalidJsonReturnsNil() {
+    func invalidJsonReturnsNil() {
         let invalidJson = "{ invalid json }"
         let decoded: User? = jsonUtil.decode(invalidJson)
         #expect(decoded == nil)

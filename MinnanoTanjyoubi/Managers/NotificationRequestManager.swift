@@ -16,7 +16,7 @@ final class NotificationRequestManager: Sendable {
     }
 
     /// 通知許可申請リクエスト
-    public func requestAuthorization() async -> Bool {
+    func requestAuthorization() async -> Bool {
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         do {
             let result: Bool = try await UNUserNotificationCenter
@@ -30,7 +30,7 @@ final class NotificationRequestManager: Sendable {
 
     /// 通知が許可されていない場合にアラートで通知許可を促す
     @MainActor
-    public func showSettingsAlert() {
+    func showSettingsAlert() {
         let alertController = UIAlertController(
             title: "通知が許可されていません。",
             message: "誕生日のお知らせ通知を受け取ることができないため\n設定アプリから通知を有効にしてください。",
@@ -51,7 +51,7 @@ final class NotificationRequestManager: Sendable {
         rootVC?.present(alertController, animated: true, completion: {})
     }
 
-    public func sendNotificationRequest(_ id: ObjectId, _ userName: String, _ date: Date) {
+    func sendNotificationRequest(_ id: ObjectId, _ userName: String, _ date: Date) {
         let content = UNMutableNotificationContent()
         content.title = "みんなの誕生日"
 
@@ -105,13 +105,13 @@ final class NotificationRequestManager: Sendable {
         UNUserNotificationCenter.current().add(request)
     }
 
-    public func removeNotificationRequest(_ id: ObjectId) {
+    func removeNotificationRequest(_ id: ObjectId) {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [id.stringValue])
     }
 
     /// 通知確認用
-    public func confirmNotificationRequest() {
+    func confirmNotificationRequest() {
         let center = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests { array in
             #if DEBUG

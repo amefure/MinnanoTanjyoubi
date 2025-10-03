@@ -10,8 +10,8 @@ import SwiftUI
 struct CustomInputView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    public var title: String
-    public var placeholder: String
+    var title: String
+    var placeholder: String
     @Binding var text: String
 
     var body: some View {

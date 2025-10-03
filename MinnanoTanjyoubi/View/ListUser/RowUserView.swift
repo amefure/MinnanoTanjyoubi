@@ -10,7 +10,7 @@ import SwiftUI
 
 /// リスト表示させる1行単位のビュー
 struct RowUserView: View {
-    public var user: User
+    var user: User
 
     @State private var isDisplayDateLater = false
     @State private var isDisplayAgeMonth = false

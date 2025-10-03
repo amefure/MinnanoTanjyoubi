@@ -17,7 +17,7 @@ actor InAppPurchaseRepository {
 
     /// 課金アイテム配列
     @MainActor
-    public var products: AnyPublisher<[Product], Never> {
+    var products: AnyPublisher<[Product], Never> {
         _products.eraseToAnyPublisher()
     }
 
@@ -26,7 +26,7 @@ actor InAppPurchaseRepository {
 
     /// 購入済み課金アイテム配列
     @MainActor
-    public var purchasedProducts: AnyPublisher<[Product], Never> {
+    var purchasedProducts: AnyPublisher<[Product], Never> {
         _purchasedProducts.eraseToAnyPublisher()
     }
 
@@ -35,7 +35,7 @@ actor InAppPurchaseRepository {
 
     /// 購入中
     @MainActor
-    public var isPurchasing: AnyPublisher<Bool, Never> {
+    var isPurchasing: AnyPublisher<Bool, Never> {
         _isPurchasing.eraseToAnyPublisher()
     }
 
@@ -44,7 +44,7 @@ actor InAppPurchaseRepository {
 
     /// 購入エラー
     @MainActor
-    public var fetchError: AnyPublisher<Bool, Never> {
+    var fetchError: AnyPublisher<Bool, Never> {
         _fetchError.eraseToAnyPublisher()
     }
 
@@ -53,7 +53,7 @@ actor InAppPurchaseRepository {
 
     /// 購入エラー
     @MainActor
-    public var purchaseError: AnyPublisher<Bool, Never> {
+    var purchaseError: AnyPublisher<Bool, Never> {
         _purchaseError.eraseToAnyPublisher()
     }
 
@@ -63,7 +63,7 @@ actor InAppPurchaseRepository {
     ///
     private var updateListenerTask: Task<Void, Error>?
 
-    public func startListen() {
+    func startListen() {
         updateListenerTask = listenForTransactions()
 
         Task {
@@ -79,7 +79,7 @@ actor InAppPurchaseRepository {
 
     /// 購入済みプロダクトかどうか
     @MainActor
-    public func isPurchased(_ productId: String) -> Bool {
+    func isPurchased(_ productId: String) -> Bool {
         _purchasedProducts.value.contains { $0.id == productId }
     }
 
@@ -102,7 +102,7 @@ actor InAppPurchaseRepository {
 
     /// 購入処理
     @MainActor
-    public func purchase(product: Product) async {
+    func purchase(product: Product) async {
         _isPurchasing.send(true)
         do {
             // 購入
@@ -172,7 +172,7 @@ actor InAppPurchaseRepository {
 
     /// 復元処理
     @MainActor
-    public func restore() {
+    func restore() {
         Task {
             do {
                 try await AppStore.sync()

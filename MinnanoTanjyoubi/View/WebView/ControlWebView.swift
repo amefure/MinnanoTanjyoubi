@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Swift UIでWebViewを操作するための枠View
 struct ControlWebView: View {
-    public var url: URL
+    var url: URL
     private let uICustomWebView: UICustomWebView!
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 

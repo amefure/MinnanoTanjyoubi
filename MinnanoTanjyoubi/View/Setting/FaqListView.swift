@@ -45,8 +45,8 @@ struct FaqListView: View {
 }
 
 struct AccordionBoxView: View {
-    public let question: String
-    public let answer: String
+    let question: String
+    let answer: String
     @State private var isClick: Bool = false
 
     var body: some View {

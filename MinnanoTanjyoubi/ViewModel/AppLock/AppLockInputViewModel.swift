@@ -16,11 +16,11 @@ class AppLockInputViewModel: ObservableObject {
         keyChainRepository = repositoryDependency.keyChainRepository
     }
 
-    public func onAppear() {
+    func onAppear() {
         FBAnalyticsManager.loggingScreen(screen: .AppLockScreen)
     }
 
-    public func entryPassword(password: [String]) {
+    func entryPassword(password: [String]) {
         entryFlag = true
         let pass = password.joined(separator: "")
         keyChainRepository.entry(value: pass)

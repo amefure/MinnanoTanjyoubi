@@ -20,7 +20,7 @@ final class SCCalenderRepository: @unchecked Sendable {
     /// 表示対象として保持している日付オブジェクト
     /// `currentYearAndMonth`の要素番号と紐づく形で日付情報が格納される
     ///  `[[2月の日付情報] , [3月の日付情報] , [4月の日付情報]]`
-    public var currentDates: AnyPublisher<[[SCDate]], Never> {
+    var currentDates: AnyPublisher<[[SCDate]], Never> {
         _currentDates.eraseToAnyPublisher()
     }
 
@@ -30,21 +30,21 @@ final class SCCalenderRepository: @unchecked Sendable {
     ///  `[2024.2 , 2024.3 , 2024.4]`
     /// `forwardMonth / backMonth`を実行するたびに追加されていく
     /// 初期表示時点は
-    public var currentYearAndMonth: AnyPublisher<[SCYearAndMonth], Never> {
+    var currentYearAndMonth: AnyPublisher<[SCYearAndMonth], Never> {
         _currentYearAndMonth.eraseToAnyPublisher()
     }
 
     private let _currentYearAndMonth = CurrentValueSubject<[SCYearAndMonth], Never>([])
 
     /// 表示している曜日配列(順番はUIに反映される)
-    public var dayOfWeekList: AnyPublisher<[SCWeek], Never> {
+    var dayOfWeekList: AnyPublisher<[SCWeek], Never> {
         _dayOfWeekList.eraseToAnyPublisher()
     }
 
     private let _dayOfWeekList = CurrentValueSubject<[SCWeek], Never>([.sunday, .monday, .tuesday, .wednesday, .thursday, .friday, .saturday])
 
     /// アプリに表示中の年月インデックス
-    public var displayCalendarIndex: AnyPublisher<Int, Never> {
+    var displayCalendarIndex: AnyPublisher<Int, Never> {
         _displayCalendarIndex.eraseToAnyPublisher()
     }
 
@@ -63,7 +63,7 @@ final class SCCalenderRepository: @unchecked Sendable {
         today = calendar.dateComponents([.year, .month, .day], from: Date())
     }
 
-    public func initialize(
+    func initialize(
         startYear: Int = START_YEAR,
         startMonth: Int = START_MONTH,
         initWeek: SCWeek = .sunday,
@@ -118,7 +118,7 @@ extension SCCalenderRepository {
 extension SCCalenderRepository {
     /// カレンダーUIを更新
     /// `currentYearAndMonth`を元に日付情報を取得して配列に格納
-    public func updateCalendar() {
+    func updateCalendar() {
         let yearAndMonths = _currentYearAndMonth.value
 
         let df = DateFormatUtility()
@@ -132,7 +132,7 @@ extension SCCalenderRepository {
     }
 
     /// 1ヶ月単位のSCDateインスタンスを作成
-    public func createDates(
+    func createDates(
         yearAndMonth: SCYearAndMonth,
         df: DateFormatUtility
     ) -> [SCDate] {
@@ -221,7 +221,7 @@ extension SCCalenderRepository {
 extension SCCalenderRepository {
     /// 格納済みの最新月の翌月を1ヶ月分追加する
     /// - Returns: 成功フラグ
-    public func addNextMonth() -> Bool {
+    func addNextMonth() -> Bool {
         var value = _currentYearAndMonth.value
         guard let last = value.last else { return false }
         if last.month + 1 == 13 {
@@ -236,7 +236,7 @@ extension SCCalenderRepository {
 
     /// 格納済みの最古月の前月を12ヶ月分追加する
     /// - Returns: 成功フラグ
-    public func addPreMonth() -> Bool {
+    func addPreMonth() -> Bool {
         var value = _currentYearAndMonth.value
         // 12ヶ月分一気に追加する
         for _ in 1 ..< 12 {
@@ -254,7 +254,7 @@ extension SCCalenderRepository {
 
     /// 最初に表示したい曜日を設定
     /// - parameter week: 開始曜日
-    public func setFirstWeek(_ week: SCWeek) -> [SCWeek] {
+    func setFirstWeek(_ week: SCWeek) -> [SCWeek] {
         initWeek = week
         var list = _dayOfWeekList.value
         list.moveWeekToFront(initWeek)
@@ -264,7 +264,7 @@ extension SCCalenderRepository {
     }
 
     /// カレンダー表示年月インデックスを変更
-    public func setDisplayCalendarIndex(index: Int) {
+    func setDisplayCalendarIndex(index: Int) {
         _displayCalendarIndex.send(index)
     }
 }

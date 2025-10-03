@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SingleGridListView: View {
-    public var users: [User]
+    var users: [User]
 
     // Environment
     @EnvironmentObject private var rootEnvironment: RootEnvironment

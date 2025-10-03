@@ -9,7 +9,7 @@ import UIKit
 
 final class KeyChainRepository: Sendable {
     /// データ登録/更新
-    public func entry(value: String) {
+    func entry(value: String) {
         guard let data = value.data(using: .utf8) else { return }
         guard let bundleId = Bundle.main.bundleIdentifier else { return }
 
@@ -35,7 +35,7 @@ final class KeyChainRepository: Sendable {
     }
 
     /// データ取得
-    public func getData() -> String {
+    func getData() -> String {
         guard let bundleId = Bundle.main.bundleIdentifier else { return "" }
 
         let query = [
@@ -57,7 +57,7 @@ final class KeyChainRepository: Sendable {
     }
 
     /// データ削除
-    public func delete() {
+    func delete() {
         guard let bundleId = Bundle.main.bundleIdentifier else { return }
         let query = [
             kSecClass: kSecClassGenericPassword,

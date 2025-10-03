@@ -38,7 +38,7 @@ class RealmRepositoryViewModel: ObservableObject {
             }.store(in: &cancellables)
     }
 
-    public func readAllUsers(sort: AppSortItem? = nil) {
+    func readAllUsers(sort: AppSortItem? = nil) {
         var sort: AppSortItem? = sort
         users.removeAll()
         let result = repository.readAllUsers()
@@ -98,12 +98,12 @@ class RealmRepositoryViewModel: ObservableObject {
         NotificationCenter.default.post(name: .updateCalendar, object: true)
     }
 
-    public func createUser(newUser: User) {
+    func createUser(newUser: User) {
         repository.createUser(user: newUser)
         readAllUsers()
     }
 
-    public func shareCreateUsers(shareUsers: [User], unlockStorage: Bool) -> ShareCreateError? {
+    func shareCreateUsers(shareUsers: [User], unlockStorage: Bool) -> ShareCreateError? {
         // 容量チェック && 容量解放されていないか
         guard !isOverCapacity(shareUsers.count) || unlockStorage else { return ShareCreateError.overCapacity }
         for user in shareUsers {
@@ -115,7 +115,7 @@ class RealmRepositoryViewModel: ObservableObject {
         return nil
     }
 
-    public func isOverCapacity(_ size: Int) -> Bool {
+    func isOverCapacity(_ size: Int) -> Bool {
         let size = users.count + size
         return size > getMaxCapacity()
     }
@@ -136,22 +136,22 @@ class RealmRepositoryViewModel: ObservableObject {
         return copy
     }
 
-    public func filteringUser(selectedRelation: Relation) {
+    func filteringUser(selectedRelation: Relation) {
         readAllUsers()
         users = users.filter { $0.relation == selectedRelation }
     }
 
-    public func updateUser(id: ObjectId, newUser: User) {
+    func updateUser(id: ObjectId, newUser: User) {
         repository.updateUser(id: id, newUser: newUser)
         readAllUsers()
     }
 
-    public func updateNotifyUser(id: ObjectId, notify: Bool) {
+    func updateNotifyUser(id: ObjectId, notify: Bool) {
         repository.updateNotifyUser(id: id, notify: notify)
         readAllUsers()
     }
 
-    public func removeUsers(users: [User]) {
+    func removeUsers(users: [User]) {
         for user in users {
             let userId: ObjectId = user.id
             Task {

@@ -34,7 +34,7 @@ final class ImageFileManager: Sendable {
         }
     }
 
-    public func loadImage(name: String) -> UIImage? {
+    func loadImage(name: String) -> UIImage? {
         /// 名前がないなら終了
         guard name != "" else { return nil }
 
@@ -45,7 +45,7 @@ final class ImageFileManager: Sendable {
         return image
     }
 
-    public func loadImagePath(name: String) -> String? {
+    func loadImagePath(name: String) -> String? {
         /// 名前がないなら終了
         guard name != "" else { return nil }
 
@@ -57,7 +57,7 @@ final class ImageFileManager: Sendable {
     }
 
     /// 画像保存処理
-    public func saveImage(name: String, image: UIImage) throws -> Bool {
+    func saveImage(name: String, image: UIImage) throws -> Bool {
         guard let imageData = image.jpegData(compressionQuality: 1.0) else { throw ImageError.castFailed }
         guard let path = getDocmentsUrl("\(name + suffix)") else { throw ImageError.castFailed }
         do {
@@ -69,7 +69,7 @@ final class ImageFileManager: Sendable {
     }
 
     /// 画像削除処理
-    public func deleteImage(name: String) throws -> Bool {
+    func deleteImage(name: String) throws -> Bool {
         guard let path = getDocmentsUrl("\(name + suffix)") else { throw ImageError.castFailed }
         do {
             let fileManager = FileManager.default

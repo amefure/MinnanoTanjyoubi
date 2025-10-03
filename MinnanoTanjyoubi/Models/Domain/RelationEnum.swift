@@ -17,7 +17,7 @@ enum Relation: String, PersistableEnum, Identifiable, CaseIterable, Codable {
     case other = "その他"
     case sns = "SNS"
 
-    public var relationIndex: Int {
+    var relationIndex: Int {
         return switch self {
         case .friend:
             0

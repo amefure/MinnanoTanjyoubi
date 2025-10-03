@@ -12,7 +12,7 @@ struct ImagePreviewDialog: View {
 
     @Binding var isPresented: Bool
 
-    public let image: Image?
+    let image: Image?
 
     var body: some View {
         if isPresented {

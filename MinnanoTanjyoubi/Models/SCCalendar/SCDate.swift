@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct SCDate: Identifiable, @unchecked Sendable {
-    public var id: UUID = .init()
-    public var year: Int
-    public var month: Int
-    public var day: Int
-    public var date: Date?
-    public var week: SCWeek?
-    public var holidayName: String = ""
+    var id: UUID = .init()
+    var year: Int
+    var month: Int
+    var day: Int
+    var date: Date?
+    var week: SCWeek?
+    var holidayName: String = ""
     // 登録されている誕生日情報
-    public var users: [User] = []
-    public var isToday: Bool = false
+    var users: [User] = []
+    var isToday: Bool = false
 
     /// 年月日取得
-    public func getDate(format _: String = "yyyy-M-d") -> String {
+    func getDate(format _: String = "yyyy-M-d") -> String {
         let str = DateFormatUtility().getJpString(date: date ?? Date())
         return str
     }
 
-    public func dayColor(defaultColor: Color = .gray) -> Color {
+    func dayColor(defaultColor: Color = .gray) -> Color {
         guard let week = week else { return defaultColor }
         if !holidayName.isEmpty { return .red }
         if week == .saturday {

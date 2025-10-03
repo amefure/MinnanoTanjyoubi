@@ -15,9 +15,9 @@ struct DownSideView: View {
     private let isSESize = DeviceSizeUtility.isiPadSize
 
     // EntryView
-    public var parentFunction: () -> Void
+    var parentFunction: () -> Void
     // 表示させたい画像名を受け取る
-    public var imageString: String
+    var imageString: String
 
     private var viewSize: CGFloat {
         if isSESize {

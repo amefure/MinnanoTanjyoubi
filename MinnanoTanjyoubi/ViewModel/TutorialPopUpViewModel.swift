@@ -31,7 +31,7 @@ class TutorialPopUpViewModel: ObservableObject {
         }
     }
 
-    public func onAppear() {
+    func onAppear() {
         // 再表示フラグがONならチュートリアル開始
         if getTutorialReShowFlag() {
             // 再表示フラグをOFFに
@@ -98,7 +98,7 @@ extension TutorialPopUpViewModel {
     }
 
     /// チュートリアル再表示フラグセット
-    public func setTutorialReShowFlag() {
+    func setTutorialReShowFlag() {
         AppManager.sharedUserDefaultManager.setTutorialReShowFlag(false)
     }
 }

@@ -17,9 +17,9 @@ enum ImageError: Error {
     /// EI003：型変換失敗エラー(公開しない)
     case castFailed
 
-    public var title: String { "画像操作エラー" }
+    var title: String { "画像操作エラー" }
 
-    public var message: String {
+    var message: String {
         return switch self {
         case .saveFailed:
             "画像の保存に失敗しました。何度も繰り返される場合はアプリを起動し直して再度実行してみてください。"

@@ -24,7 +24,7 @@ final class RealmRepository: Sendable {
 
     // MARK: - Create
 
-    public func createUser(user: User) {
+    func createUser(user: User) {
         try! realm.write {
             realm.add(user)
         }
@@ -32,7 +32,7 @@ final class RealmRepository: Sendable {
 
     // MARK: - Read
 
-    public func readAllUsers() -> Results<User> {
+    func readAllUsers() -> Results<User> {
         try! realm.write {
             let users = realm.objects(User.self)
             // Deleteでクラッシュするため凍結させる
@@ -42,7 +42,7 @@ final class RealmRepository: Sendable {
 
     // MARK: - Update
 
-    public func updateUser(id: ObjectId, newUser: User) {
+    func updateUser(id: ObjectId, newUser: User) {
         try! realm.write {
             guard let result = realm.objects(User.self).where({ $0.id == id }).first else {
                 return
@@ -56,7 +56,7 @@ final class RealmRepository: Sendable {
         }
     }
 
-    public func updateNotifyUser(id: ObjectId, notify: Bool) {
+    func updateNotifyUser(id: ObjectId, notify: Bool) {
         try! realm.write {
             guard let result = realm.objects(User.self).where({ $0.id == id }).first else {
                 return
@@ -65,7 +65,7 @@ final class RealmRepository: Sendable {
         }
     }
 
-    public func updateImagePathsUser(id: ObjectId, imagePathsArray: [String]) {
+    func updateImagePathsUser(id: ObjectId, imagePathsArray: [String]) {
         try! realm.write {
             guard let result = realm.objects(User.self).where({ $0.id == id }).first else {
                 return
@@ -78,7 +78,7 @@ final class RealmRepository: Sendable {
 
     // MARK: - Remove
 
-    public func removeUser(removeIdArray: [ObjectId]) {
+    func removeUser(removeIdArray: [ObjectId]) {
         try! realm.write {
             var records: [User] = []
             for targetId in removeIdArray {

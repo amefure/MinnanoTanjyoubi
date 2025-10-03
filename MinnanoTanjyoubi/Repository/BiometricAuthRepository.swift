@@ -11,7 +11,7 @@ import LocalAuthentication
 
 final class BiometricAuthRepository: Sendable {
     /// ログイン可否
-    public var isLogin: AnyPublisher<Bool, Never> {
+    var isLogin: AnyPublisher<Bool, Never> {
         _isLogin.eraseToAnyPublisher()
     }
 
@@ -19,7 +19,7 @@ final class BiometricAuthRepository: Sendable {
     private let _isLogin = PassthroughSubject<Bool, Never>()
 
     /// サポートしている生体認証Type
-    public var biometryType: AnyPublisher<LABiometryType, Never> {
+    var biometryType: AnyPublisher<LABiometryType, Never> {
         _biometryType.eraseToAnyPublisher()
     }
 
@@ -35,7 +35,7 @@ final class BiometricAuthRepository: Sendable {
 
     /// 生体認証リクエスト
     @MainActor
-    public func requestBiometrics() async -> Bool {
+    func requestBiometrics() async -> Bool {
         // コンテキストは都度リセットしないと何度も認証なしでログインできてしまう
         let context = makeNewContext()
 
@@ -57,7 +57,7 @@ final class BiometricAuthRepository: Sendable {
     }
 
     /// ログアウト
-    public func logout() {
+    func logout() {
         _isLogin.send(false)
     }
 

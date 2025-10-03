@@ -30,7 +30,7 @@ class InAppPurchaseViewModel: ObservableObject {
         inAppPurchaseRepository = repositoryDependency.inAppPurchaseRepository
     }
 
-    public func onAppear() {
+    func onAppear() {
         FBAnalyticsManager.loggingScreen(screen: .InAppPurchaseScreen)
 
         Task {
@@ -78,19 +78,19 @@ class InAppPurchaseViewModel: ObservableObject {
         }.store(in: &cancellables)
     }
 
-    public func onDisappear() {
+    func onDisappear() {
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
         purchaseTask?.cancel()
     }
 
     /// 購入済みプロダクトかどうか
-    public func isPurchased(_ productId: String) -> Bool {
+    func isPurchased(_ productId: String) -> Bool {
         inAppPurchaseRepository.isPurchased(productId)
     }
 
     /// 購入開始
-    public func purchase(product: Product) {
+    func purchase(product: Product) {
         isPurchasingId = product.id
         purchaseTask = Task {
             await inAppPurchaseRepository.purchase(product: product)
@@ -98,7 +98,7 @@ class InAppPurchaseViewModel: ObservableObject {
     }
 
     /// 復帰処理
-    public func restore() {
+    func restore() {
         inAppPurchaseRepository.restore()
     }
 }

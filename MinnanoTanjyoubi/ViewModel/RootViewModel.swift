@@ -18,7 +18,7 @@ class RootViewModel: ObservableObject {
     /// 共有された暗号化された文字列から`User`オブジェクトを生成する
     /// - Parameter cipherText: 暗号化されたUserオブジェクトのJson形式
     /// - Returns: 共有された`User`オブジェクト
-    public func decryptAndInitializeUsers(_ cipherText: String) -> [User]? {
+    func decryptAndInitializeUsers(_ cipherText: String) -> [User]? {
         let jsonUtility = JsonConvertUtility()
         let cryptoUtility = CryptoUtillity()
         // 不要な`birthday=`部分を置換
@@ -36,7 +36,7 @@ class RootViewModel: ObservableObject {
         return users
     }
 
-    public func showErrorAlert(_ error: ShareCreateError) {
+    func showErrorAlert(_ error: ShareCreateError) {
         self.error = error
         showCreateShareUserError = true
     }

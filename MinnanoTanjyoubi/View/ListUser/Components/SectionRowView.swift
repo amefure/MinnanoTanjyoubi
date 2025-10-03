@@ -10,8 +10,8 @@ import SwiftUI
 struct SectionRowView: View {
     // Environment
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-    public var users: [User]
-    public var title: String
+    var users: [User]
+    var title: String
 
     var body: some View {
         if !users.isEmpty {

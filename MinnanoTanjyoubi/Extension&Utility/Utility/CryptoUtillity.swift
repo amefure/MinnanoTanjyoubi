@@ -13,7 +13,7 @@ class CryptoUtillity {
     /// 文字列を暗号化して返却
     /// - Parameter targetText: 暗号化対象の文字列
     /// - Returns: 暗号化文字列
-    public func encryption(_ targetText: String) -> String? {
+    func encryption(_ targetText: String) -> String? {
         do {
             // AESキーと初期ベクトルを使用してAESインスタンスを生成
             let aes = try AES(key: SecretCryptoKey.KEY, iv: SecretCryptoKey.IV)
@@ -38,7 +38,7 @@ class CryptoUtillity {
     /// 暗号化された文字列を複合化して返却
     /// - Parameter cipherText: 暗号化された文字列
     /// - Returns: 複合化して平分にした文字列
-    public func decryption(_ cipherText: String) -> String? {
+    func decryption(_ cipherText: String) -> String? {
         do {
             // AESキーと初期ベクトルを使用してAESインスタンスを生成
             let aes = try AES(key: SecretCryptoKey.KEY, iv: SecretCryptoKey.IV)

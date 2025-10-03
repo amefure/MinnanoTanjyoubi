@@ -84,7 +84,7 @@ class RootEnvironment: ObservableObject {
     }
 
     /// アプリ起動時に1回だけ呼ばれる設計
-    public func onAppear() {
+    func onAppear() {
         // アプリ起動回数カウント
         setLaunchAppCount()
 
@@ -111,34 +111,34 @@ class RootEnvironment: ObservableObject {
 // プロパティ操作
 extension RootEnvironment {
     /// Deleteモード有効
-    public func enableDeleteMode() {
+    func enableDeleteMode() {
         isDeleteMode = true
     }
 
     /// Deleteモード無効
-    public func disableDeleteMode() {
+    func disableDeleteMode() {
         isDeleteMode = false
     }
 
     /// 対象のUserを追加
-    public func appendDeleteArray(_ user: User) {
+    func appendDeleteArray(_ user: User) {
         deleteArray.append(user)
     }
 
     /// 対象のUserを削除
-    public func removeDeleteArray(_ user: User) {
+    func removeDeleteArray(_ user: User) {
         guard let index = deleteArray.firstIndex(where: { $0.id == user.id }) else { return }
         deleteArray.remove(at: index)
     }
 
     /// Deleteモードリセット
-    public func resetDeleteMode() {
+    func resetDeleteMode() {
         isDeleteMode = false
         deleteArray.removeAll()
     }
 
     /// レビューポップアップ表示
-    public func showReviewPopup() {
+    func showReviewPopup() {
         // 1度表示していれば表示しない
         guard !getShowReviewPopupFlag() else { return }
         // アプリを5回以上起動していない場合は表示しない
@@ -179,7 +179,7 @@ extension RootEnvironment {
         userDefaultsRepository.setStringData(key: key, value: newName)
     }
 
-    public func saveRelationName(friend: String, family: String, school: String, work: String, other: String, sns: String) {
+    func saveRelationName(friend: String, family: String, school: String, work: String, other: String, sns: String) {
         userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, value: friend)
         userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_FAMILY, value: family)
         userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_SCHOOL, value: school)
@@ -189,7 +189,7 @@ extension RootEnvironment {
         getRelationName()
     }
 
-    public func getRelationName() {
+    func getRelationName() {
         var results: [String] = []
         let friend = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, initialValue: RelationConfig.FRIEND_NAME)
         results.append(friend)
@@ -207,11 +207,11 @@ extension RootEnvironment {
         relationNameList = results
     }
 
-    public func getDisplayDaysLater() -> Bool {
+    func getDisplayDaysLater() -> Bool {
         AppManager.sharedUserDefaultManager.getDisplayDaysLater()
     }
 
-    public func getDisplayAgeMonth() -> Bool {
+    func getDisplayAgeMonth() -> Bool {
         AppManager.sharedUserDefaultManager.getDisplayAgeMonth()
     }
 
@@ -220,7 +220,7 @@ extension RootEnvironment {
     }
 
     /// セクショングリッドレイアウト変更フラグ登録
-    public func switchDisplaySectionLayout() {
+    func switchDisplaySectionLayout() {
         AppManager.sharedUserDefaultManager.setDisplaySectionLayout(sectionLayoutFlag.next)
         getDisplaySectionLayout()
     }
@@ -231,7 +231,7 @@ extension RootEnvironment {
     }
 
     /// アプリカラースキーム登録
-    public func registerColorScheme(_ scheme: AppColorScheme) {
+    func registerColorScheme(_ scheme: AppColorScheme) {
         // カスタムイベント計測
         FBAnalyticsManager.loggingSelectColorEvent(color: scheme)
         AppManager.sharedUserDefaultManager.setColorScheme(scheme)
@@ -244,7 +244,7 @@ extension RootEnvironment {
     }
 
     /// 並び順登録
-    public func registerSortItem(_ sort: AppSortItem) {
+    func registerSortItem(_ sort: AppSortItem) {
         // カスタムイベント計測
         FBAnalyticsManager.loggingSelectSortEvent(sort: sort)
         AppManager.sharedUserDefaultManager.setSortItem(sort)
@@ -283,13 +283,13 @@ extension RootEnvironment {
     }
 
     /// 週始まりを取得
-    public func getInitWeek() -> SCWeek {
+    func getInitWeek() -> SCWeek {
         let week = userDefaultsRepository.getIntData(key: UserDefaultsKey.INIT_WEEK)
         return SCWeek(rawValue: week) ?? SCWeek.sunday
     }
 
     /// 週始まりを登録
-    public func saveInitWeek(week: SCWeek) {
+    func saveInitWeek(week: SCWeek) {
         userDefaultsRepository.setIntData(key: UserDefaultsKey.INIT_WEEK, value: week.rawValue)
         // カレンダーを更新
         NotificationCenter.default.post(name: .updateCalendar, object: true)

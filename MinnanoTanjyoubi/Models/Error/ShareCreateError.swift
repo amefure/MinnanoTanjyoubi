@@ -12,9 +12,9 @@ enum ShareCreateError: Error {
     /// ES002：容量超過エラー
     case overCapacity
 
-    public var title: String { "転送登録エラー" }
+    var title: String { "転送登録エラー" }
 
-    public var message: String {
+    var message: String {
         return switch self {
         case .existUser:
             "すでに同姓同名の誕生日情報が存在するため登録を中断しました。"

@@ -10,12 +10,12 @@ import UIKit
 /// `Repository` クラスのDIクラス
 class RepositoryDependency {
     /// `Repository`
-    public let realmRepository: RealmRepository
-    public let biometricAuthRepository: BiometricAuthRepository
-    public let keyChainRepository: KeyChainRepository
-    public let userDefaultsRepository: UserDefaultsRepository
-    public let inAppPurchaseRepository: InAppPurchaseRepository
-    public let scCalenderRepository: SCCalenderRepository
+    let realmRepository: RealmRepository
+    let biometricAuthRepository: BiometricAuthRepository
+    let keyChainRepository: KeyChainRepository
+    let userDefaultsRepository: UserDefaultsRepository
+    let inAppPurchaseRepository: InAppPurchaseRepository
+    let scCalenderRepository: SCCalenderRepository
 
     // シングルトンインスタンスをここで保持する
     private static let sharedRealmRepository = RealmRepository()

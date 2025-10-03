@@ -12,7 +12,7 @@ final class RemoteConfigManager: Sendable {
     private let remoteConfig: RemoteConfig
 
     @MainActor
-    public var showReviewPopupVersion: AnyPublisher<Int, Never> {
+    var showReviewPopupVersion: AnyPublisher<Int, Never> {
         _showReviewPopupVersion.eraseToAnyPublisher()
     }
 
@@ -29,7 +29,7 @@ final class RemoteConfigManager: Sendable {
         remoteConfig.configSettings = settings
     }
 
-    public func initialize() {
+    func initialize() {
         fetchRemoteConfig()
     }
 

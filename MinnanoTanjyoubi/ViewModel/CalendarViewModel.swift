@@ -55,7 +55,7 @@ class CalendarViewModel: ObservableObject {
         currentYearAndMonth = [yearAndMonth]
     }
 
-    public func onAppear() {
+    func onAppear() {
         if !isInitializeFlag {
             // リフレッシュしたいため都度取得する
             let users = Array(realmRepository.readAllUsers())
@@ -109,7 +109,7 @@ class CalendarViewModel: ObservableObject {
             }
     }
 
-    public func onDisappear() {
+    func onDisappear() {
         cancellables.forEach { $0.cancel() }
     }
 }
@@ -118,7 +118,7 @@ class CalendarViewModel: ObservableObject {
 
 extension CalendarViewModel {
     /// 年月ページを1つ進める
-    public func forwardMonthPage() {
+    func forwardMonthPage() {
         let count: Int = currentYearAndMonth.count
         let next = Int(min(displayCalendarIndex + 1, CGFloat(count)))
         scCalenderRepository.setDisplayCalendarIndex(index: next)
@@ -129,7 +129,7 @@ extension CalendarViewModel {
     }
 
     /// 年月ページを1つ戻る
-    public func backMonthPage() {
+    func backMonthPage() {
         if displayCalendarIndex == 2 {
             // 残り年月が2になったら前月を12ヶ月分追加する
             addPreMonth()
@@ -143,7 +143,7 @@ extension CalendarViewModel {
     }
 
     /// 現在表示中の年月を取得する
-    public func getCurrentYearAndMonth() -> SCYearAndMonth {
+    func getCurrentYearAndMonth() -> SCYearAndMonth {
         return currentYearAndMonth[safe: Int(displayCalendarIndex)] ?? SCYearAndMonth(year: 2025, month: 1)
     }
 
@@ -158,12 +158,12 @@ extension CalendarViewModel {
     }
 
     /// 週始まりを設定
-    public func setFirstWeek(week: SCWeek) -> [SCWeek] {
+    func setFirstWeek(week: SCWeek) -> [SCWeek] {
         scCalenderRepository.setFirstWeek(week)
     }
 
     /// 今月にカレンダーを移動
-    public func moveTodayCalendar() {
+    func moveTodayCalendar() {
         // 今月の年月を取得
         let (year, month) = dateFormatUtility.getDateYearAndMonth()
 

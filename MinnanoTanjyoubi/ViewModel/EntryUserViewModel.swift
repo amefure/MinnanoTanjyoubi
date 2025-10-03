@@ -9,11 +9,11 @@ import UIKit
 
 class EntryUserViewModel {
     /// バリデーション
-    public func validationInput(_ name: String) -> Bool {
+    func validationInput(_ name: String) -> Bool {
         return name != ""
     }
 
-    public func getNewUser(
+    func getNewUser(
         name: String,
         ruby: String,
         date: Date,
@@ -34,7 +34,7 @@ class EntryUserViewModel {
     }
 
     /// 保存された年数&カレンダーから渡された日付があればそのDateオブジェクトを取得
-    public func getInitDate(month: Int?, day: Int?) -> Date {
+    func getInitDate(month: Int?, day: Int?) -> Date {
         let dfm = DateFormatUtility()
         let year = AppManager.sharedUserDefaultManager.getEntryInitYear()
         let yearDate = dfm.setDate(year: year, month: month, day: day)
@@ -42,7 +42,7 @@ class EntryUserViewModel {
     }
 
     /// 関係初期値
-    public func getInitRelation() -> Relation {
+    func getInitRelation() -> Relation {
         return AppManager.sharedUserDefaultManager.getEntryInitRelation()
     }
 }

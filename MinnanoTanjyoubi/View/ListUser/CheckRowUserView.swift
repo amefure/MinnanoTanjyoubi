@@ -10,7 +10,7 @@ import SwiftUI
 
 /// Toggleボタンのカスタマイズ構造体
 struct CheckBoxToggleStyle: ToggleStyle {
-    public var user: User
+    var user: User
     @Binding var deleteArray: [User]
 
     func makeBody(configuration: Configuration) -> some View {
@@ -38,7 +38,7 @@ struct CheckBoxToggleStyle: ToggleStyle {
 
 /// 削除時のリスト選択ボタン
 struct CheckRowUserView: View {
-    public var user: User
+    var user: User
 
     // Environment
     @EnvironmentObject private var rootEnvironment: RootEnvironment

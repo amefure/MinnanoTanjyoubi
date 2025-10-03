@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarRootView: View {
-    public var users: [User]
+    var users: [User]
     @StateObject private var viewModel = CalendarViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 

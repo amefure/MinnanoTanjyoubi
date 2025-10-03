@@ -12,7 +12,7 @@ import WebKit
 // WebViewを表示するためのUikitView
 struct UICustomWebView: UIViewRepresentable {
     private var webView: WKWebView
-    public var url: URL
+    var url: URL
 
     init(url: URL) {
         self.url = url
@@ -59,22 +59,22 @@ extension UICustomWebView {
 }
 
 extension UICustomWebView {
-    public func goBack() {
+    func goBack() {
         webView.goBack()
     }
 
-    public func goForward() {
+    func goForward() {
         webView.goForward()
     }
 
-    public func openBrowser() {
+    func openBrowser() {
         guard let url = webView.url else { return }
         // Safariで起動する
         guard UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url)
     }
 
-    public func reload() {
+    func reload() {
         webView.reload()
     }
 }

@@ -10,14 +10,14 @@ import SwiftUI
 struct TutorialPopupView: View {
     @Binding var isPresented: Bool
 
-    public let title: String
-    public let message: String
-    public let buttonTitle: String
-    public let buttonAction: () -> Void
-    public let popupWidth: CGFloat
-    public let headerHeight: CGFloat
-    public let footerHeight: CGFloat
-    public let position: PopUpPosition
+    let title: String
+    let message: String
+    let buttonTitle: String
+    let buttonAction: () -> Void
+    let popupWidth: CGFloat
+    let headerHeight: CGFloat
+    let footerHeight: CGFloat
+    let position: PopUpPosition
 
     var body: some View {
         if isPresented {

@@ -105,9 +105,9 @@ struct EditNotifyMessageView: View {
 struct DemoNotifyView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    public let title: String
-    public let msg: String
-    public var time: String = "now"
+    let title: String
+    let msg: String
+    var time: String = "now"
 
     /// 名前格納用の変数部分を「お名前」に置換し、その部分の色を変更するメソッド
     private func getAttributedString(_ str: String) -> AttributedString {

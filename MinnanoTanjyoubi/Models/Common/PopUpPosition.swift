@@ -15,7 +15,7 @@ enum PopUpPosition {
     case bottomMiddle
     case bottomRight
 
-    public var next: PopUpPosition? {
+    var next: PopUpPosition? {
         switch self {
         case .topLeft:
             return nil

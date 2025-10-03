@@ -48,7 +48,7 @@ struct DateFormatUtilityTests {
     }
 
     @Test
-    func testGetNotifyStringAndBack() {
+    func getNotifyStringAndBack() {
         let string = formatter.getNotifyString(date: testDate)
         let resultDate = formatter.getNotifyDate(from: string)
         let reconverted = formatter.getNotifyString(date: resultDate)
@@ -91,7 +91,7 @@ struct DateFormatUtilityTests {
     }
 
     @Test
-    func testSetYearDate() {
+    func setYearDate() {
         let newDate = formatter.setDate(year: 2030)
         let year = Calendar(identifier: .gregorian).component(.year, from: newDate)
         #expect(year == 2030)

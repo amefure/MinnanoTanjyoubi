@@ -1072,13 +1072,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1115,13 +1111,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1158,13 +1150,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1179,13 +1167,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
