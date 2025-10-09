@@ -4,9 +4,6 @@ platform :ios, '16.0'
 target 'MinnanoTanjyoubi' do
   # ダイナミックフレームワーク (.framework) でビルド
   use_frameworks!
-
-  # Pods for MinnanoTanjyoubi
-  pod 'Google-Mobile-Ads-SDK'
   pod 'RealmSwift'
   pod 'FirebaseCrashlytics'
   pod 'FirebaseAnalytics'

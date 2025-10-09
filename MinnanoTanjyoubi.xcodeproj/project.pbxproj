@@ -26,6 +26,7 @@
 		1204FB3A2E706D270092AE9E /* UserCalcUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236082DF30D2800A5F1AE /* UserCalcUtility.swift */; };
 		121732FC2E97F05B009235E6 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 121732FB2E97F05B009235E6 /* CryptoSwift */; };
 		121732FE2E97F0BD009235E6 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 121732FD2E97F0BD009235E6 /* CryptoSwift */; };
+		121733012E97F246009235E6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 121733002E97F246009235E6 /* GoogleMobileAds */; };
 		121DEE012B198D4600964902 /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE002B198D4600964902 /* AppLockView.swift */; };
 		121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE042B1A200600964902 /* KeyChainRepository.swift */; };
 		121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE072B1A20BF00964902 /* ExCollection.swift */; };
@@ -353,6 +354,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				121733012E97F246009235E6 /* GoogleMobileAds in Frameworks */,
 				FC61592AD699FD872A6E3487 /* Pods_MinnanoTanjyoubi.framework in Frameworks */,
 				12CA5D8E2D19A59F00A4C1F6 /* StoreKit.framework in Frameworks */,
 				121732FC2E97F05B009235E6 /* CryptoSwift in Frameworks */,
@@ -885,7 +887,6 @@
 				121EADB32DD835A70026B49D /* Frameworks */,
 				121EADB42DD835A70026B49D /* Resources */,
 				B0CCB3F52204EB7AA640B06A /* [CP] Embed Pods Frameworks */,
-				D9EF11A99D8B714E7B44714C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -909,7 +910,6 @@
 				F014A423D9D1F42E9E895ED9 /* [CP] Embed Pods Frameworks */,
 				125F12382A58F0C400B36D02 /* ShellScript */,
 				12B76E892D0DB3080021A018 /* Firebase Crashlytics Script */,
-				FF1816DDE408F875A97B3628 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -960,6 +960,7 @@
 			mainGroup = 12CB91F028E5C6E0002BD7B2;
 			packageReferences = (
 				121732FA2E97F05B009235E6 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				121732FF2E97F246009235E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 12CB91FA28E5C6E0002BD7B2 /* Products */;
@@ -1110,23 +1111,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D9EF11A99D8B714E7B44714C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests/Pods-MinnanoTanjyoubi-MinnanoTanjyoubiTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E4FB7989ED8E24AB2A57E20D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1164,23 +1148,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF1816DDE408F875A97B3628 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1714,6 +1681,14 @@
 				minimumVersion = 1.9.0;
 			};
 		};
+		121732FF2E97F246009235E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1726,6 +1701,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 121732FA2E97F05B009235E6 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
+		};
+		121733002E97F246009235E6 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 121732FF2E97F246009235E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
