@@ -4,7 +4,7 @@
 //
 //  Created by t&a on 2022/09/29.
 //
-
+import Foundation
 import RealmSwift
 
 class User: Object, ObjectKeyIdentifiable, Codable {
