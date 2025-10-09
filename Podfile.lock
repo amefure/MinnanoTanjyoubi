@@ -1,5 +1,4 @@
 PODS:
-  - CryptoSwift (1.8.4)
   - FirebaseABTesting (12.3.0):
     - FirebaseCore (~> 12.3.0)
   - FirebaseAnalytics (12.3.0):
@@ -147,7 +146,6 @@ PODS:
   - SwiftFormat/CLI (0.58.2)
 
 DEPENDENCIES:
-  - CryptoSwift
   - FirebaseAnalytics
   - FirebaseCore
   - FirebaseCrashlytics
@@ -159,7 +157,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - CryptoSwift
     - FirebaseABTesting
     - FirebaseAnalytics
     - FirebaseCore
@@ -186,7 +183,6 @@ SPEC REPOS:
     - SwiftFormat
 
 SPEC CHECKSUMS:
-  CryptoSwift: e64e11850ede528a02a0f3e768cec8e9d92ecb90
   FirebaseABTesting: 6e748dfecb81a49539c030adb5b12263acf62865
   FirebaseAnalytics: fefb765365c6d3a4f2cb9d2c99dcf595124d41ae
   FirebaseCore: ff47fe1ad3ab9ef66edd3e8bc4647b493d2067f8
@@ -212,6 +208,6 @@ SPEC CHECKSUMS:
   RealmSwift: f33c19577cefcbf681345d721fcbc7b42be4c949
   SwiftFormat: 3fd934337426a4edd149c3534d746e9ef2bb67c3
 
-PODFILE CHECKSUM: 4f386bd3fb983e24a20329388b10642d69e4d5f3
+PODFILE CHECKSUM: 8801febefa71647afd58b6ac05ccc5fba9d4043f
 
 COCOAPODS: 1.16.2

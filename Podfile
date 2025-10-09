@@ -12,7 +12,6 @@ target 'MinnanoTanjyoubi' do
   pod 'FirebaseAnalytics'
   pod 'FirebasePerformance'
   pod 'FirebaseRemoteConfig'
-  pod 'CryptoSwift'
   pod 'FirebaseCore'
   pod 'SwiftFormat/CLI', :configurations => ['Debug']
 
@@ -20,7 +19,6 @@ target 'MinnanoTanjyoubi' do
     use_frameworks!
 
     pod 'RealmSwift'
-    pod 'CryptoSwift'
   end
 
 end
