@@ -22,7 +22,7 @@ final class RewardViewModel: ObservableObject {
     
     func loadReward() async {
         do {
-            let ad = try await rewardService.loadReward()
+            let ad = try await rewardService.loadAds()
             rewardedAd = ad
             rewardLoaded = true
         } catch {
@@ -46,7 +46,7 @@ final class RewardViewModel: ObservableObject {
             return
         }
         do {
-            try await rewardService.showReward(ad)
+            try await rewardService.showAds(ad)
             rewardLoaded = false
             // 計測
             FBAnalyticsManager.loggingAddCapacityEvent()
