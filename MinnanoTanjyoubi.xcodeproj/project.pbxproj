@@ -33,6 +33,11 @@
 		121733112E97F57C009235E6 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 1217330F2E97F57C009235E6 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		121733142E97F587009235E6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 121733132E97F587009235E6 /* RealmSwift */; };
 		121733152E97F587009235E6 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 121733132E97F587009235E6 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		121733192E98D8E5009235E6 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 121733182E98D8E5009235E6 /* FirebaseAnalytics */; };
+		1217331B2E98D8E5009235E6 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1217331A2E98D8E5009235E6 /* FirebaseCore */; };
+		1217331D2E98D8E5009235E6 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1217331C2E98D8E5009235E6 /* FirebaseCrashlytics */; };
+		1217331F2E98D8E5009235E6 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 1217331E2E98D8E5009235E6 /* FirebasePerformance */; };
+		121733212E98D8E5009235E6 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 121733202E98D8E5009235E6 /* FirebaseRemoteConfig */; };
 		121DEE012B198D4600964902 /* AppLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE002B198D4600964902 /* AppLockView.swift */; };
 		121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE042B1A200600964902 /* KeyChainRepository.swift */; };
 		121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121DEE072B1A20BF00964902 /* ExCollection.swift */; };
@@ -387,9 +392,14 @@
 			files = (
 				1217330E2E97F510009235E6 /* RealmSwift in Frameworks */,
 				121733012E97F246009235E6 /* GoogleMobileAds in Frameworks */,
+				1217331F2E98D8E5009235E6 /* FirebasePerformance in Frameworks */,
+				121733192E98D8E5009235E6 /* FirebaseAnalytics in Frameworks */,
 				FC61592AD699FD872A6E3487 /* Pods_MinnanoTanjyoubi.framework in Frameworks */,
+				1217331B2E98D8E5009235E6 /* FirebaseCore in Frameworks */,
+				1217331D2E98D8E5009235E6 /* FirebaseCrashlytics in Frameworks */,
 				12CA5D8E2D19A59F00A4C1F6 /* StoreKit.framework in Frameworks */,
 				121732FC2E97F05B009235E6 /* CryptoSwift in Frameworks */,
+				121733212E98D8E5009235E6 /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,9 +943,7 @@
 				12CB91F628E5C6E0002BD7B2 /* Frameworks */,
 				12CB91F728E5C6E0002BD7B2 /* Resources */,
 				1217330C2E97F4BB009235E6 /* Embed Frameworks */,
-				F014A423D9D1F42E9E895ED9 /* [CP] Embed Pods Frameworks */,
 				125F12382A58F0C400B36D02 /* ShellScript */,
-				12B76E892D0DB3080021A018 /* Firebase Crashlytics Script */,
 			);
 			buildRules = (
 			);
@@ -988,6 +996,7 @@
 				121732FA2E97F05B009235E6 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				121732FF2E97F246009235E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				121733022E97F34B009235E6 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 12CB91FA28E5C6E0002BD7B2 /* Products */;
@@ -1052,31 +1061,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" .\nelse\n    echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
-		12B76E892D0DB3080021A018 /* Firebase Crashlytics Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
-				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Firebase Crashlytics Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
-		};
 		4C51D6F7A50A7695D8FD0FC9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1097,27 +1081,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F014A423D9D1F42E9E895ED9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MinnanoTanjyoubi/Pods-MinnanoTanjyoubi-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1663,6 +1626,14 @@
 				kind = branch;
 			};
 		};
+		121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1700,6 +1671,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 121733022E97F34B009235E6 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		121733182E98D8E5009235E6 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		1217331A2E98D8E5009235E6 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		1217331C2E98D8E5009235E6 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		1217331E2E98D8E5009235E6 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		121733202E98D8E5009235E6 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
