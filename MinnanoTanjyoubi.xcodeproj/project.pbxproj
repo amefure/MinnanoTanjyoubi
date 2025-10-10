@@ -237,6 +237,7 @@
 		1204FB2D2E70660D0092AE9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1204FB352E7066480092AE9E /* BirthDayWidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayWidgetViewModel.swift; sourceTree = "<group>"; };
 		1204FB372E706AB50092AE9E /* ExFontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFontSize.swift; sourceTree = "<group>"; };
+		121733242E98E078009235E6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		121DEE002B198D4600964902 /* AppLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockView.swift; sourceTree = "<group>"; };
 		121DEE042B1A200600964902 /* KeyChainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepository.swift; sourceTree = "<group>"; };
 		121DEE072B1A20BF00964902 /* ExCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCollection.swift; sourceTree = "<group>"; };
@@ -404,6 +405,7 @@
 		1204FB2E2E70660D0092AE9E /* BirthDayWidget */ = {
 			isa = PBXGroup;
 			children = (
+				1204FB222E7057410092AE9E /* BirthDayWidgetExtension.entitlements */,
 				1204FB2A2E70660D0092AE9E /* Assets.xcassets */,
 				1204FB342E7066380092AE9E /* ViewModel */,
 				1204FB332E70662E0092AE9E /* View */,
@@ -734,7 +736,7 @@
 		12CB91F028E5C6E0002BD7B2 = {
 			isa = PBXGroup;
 			children = (
-				1204FB222E7057410092AE9E /* BirthDayWidgetExtension.entitlements */,
+				121733242E98E078009235E6 /* README.md */,
 				12CB91FB28E5C6E1002BD7B2 /* MinnanoTanjyoubi */,
 				12B0DC582DE884F700BDA78C /* MinnanoTanjyoubiTests */,
 				1204FB2E2E70660D0092AE9E /* BirthDayWidget */,
