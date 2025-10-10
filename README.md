@@ -78,7 +78,8 @@ $ swiftgen config run
 ## ライブラリ
 
 ### ライブラリ管理ツール
-Cocoa Pods：1.16.2
+~~Cocoa Pods：1.16.2 (移行済み) ~~
+Swift Package Manager
 
 ### Storage
 
