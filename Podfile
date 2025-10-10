@@ -4,7 +4,7 @@ platform :ios, '16.0'
 target 'MinnanoTanjyoubi' do
   # ダイナミックフレームワーク (.framework) でビルド
   use_frameworks!
-  pod 'SwiftFormat/CLI', :configurations => ['Debug']
+
 end
 
 
