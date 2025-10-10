@@ -8,32 +8,22 @@
 import SwiftUI
 
 struct RewardButtonView: View {
-    @StateObject private var reward = Reward()
-    private let viewModel = RewardViewModel()
+    @StateObject private var viewModel = RewardViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-
-    @State private var isAlertReward = false
 
     var body: some View {
         Button {
-            // 1日1回までしか視聴できないようにする
-            if viewModel.checkAcquisitionDate() {
-                reward.showReward() //  広告配信
-                // 計測
-                FBAnalyticsManager.loggingAddCapacityEvent()
-                viewModel.addCapacity()
-                viewModel.registerAcquisitionDate()
-
-            } else {
-                isAlertReward = true
+            Task {
+                //  広告配信
+                await viewModel.showReward()
             }
         } label: {
             HStack {
-                Text(reward.rewardLoaded ? "広告を視聴して容量を追加する" : "広告を読み込んでいます")
+                Text(viewModel.rewardLoaded ? "広告を視聴して容量を追加する" : "広告を読み込んでいます")
                     .foregroundStyle(.white)
                     .fontS(bold: true)
                 // 読み込み中のプログレス表示
-                if !reward.rewardLoaded {
+                if !viewModel.rewardLoaded {
                     ProgressView()
                         .tint(.white)
                         .padding(.leading, 8)
@@ -43,18 +33,20 @@ struct RewardButtonView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
         }.buttonStyle(.plain)
-            .onAppear { reward.loadReward() }
-            .disabled(!reward.rewardLoaded)
+            .onAppear {
+                Task {
+                    await viewModel.loadReward()
+                }
+            }
+            .disabled(!viewModel.rewardLoaded)
             .alert(
-                isPresented: $isAlertReward,
+                isPresented: $viewModel.isShowAlert,
                 title: "Sorry...",
                 message: "広告を視聴できるのは1日に1回までです。",
                 positiveButtonTitle: "OK",
-                negativeButtonTitle: "",
                 positiveAction: {
-                    isAlertReward = false
-                },
-                negativeAction: {}
+                    viewModel.isShowAlert = false
+                }
             )
     }
 }

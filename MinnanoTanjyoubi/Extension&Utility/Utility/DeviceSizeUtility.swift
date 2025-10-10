@@ -19,19 +19,7 @@ class DeviceSizeUtility {
         return window.screen.bounds.height
     }
 
-    static var isSESize: Bool {
-        if deviceWidth < 400 {
-            return true
-        } else {
-            return false
-        }
-    }
+    static var isSESize: Bool { deviceWidth < 400 }
 
-    static var isiPadSize: Bool {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return true
-        } else {
-            return false
-        }
-    }
+    static var isiPadSize: Bool { UIDevice.current.userInterfaceIdiom == .pad }
 }

@@ -130,7 +130,7 @@
 		12CB920128E5C6E1002BD7B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CB920028E5C6E1002BD7B2 /* Images.xcassets */; };
 		12CB920428E5C6E1002BD7B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CB920328E5C6E1002BD7B2 /* Preview Assets.xcassets */; };
 		12CB920C28E5C884002BD7B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB920B28E5C884002BD7B2 /* User.swift */; };
-		12CB920F28E5C89B002BD7B2 /* AdMobViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB920E28E5C89B002BD7B2 /* AdMobViewModels.swift */; };
+		12CB920F28E5C89B002BD7B2 /* AdMobCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB920E28E5C89B002BD7B2 /* AdMobCommonView.swift */; };
 		12CB921128E64ABC002BD7B2 /* RootListUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921028E64ABC002BD7B2 /* RootListUserView.swift */; };
 		12CB921328E6FD43002BD7B2 /* RowUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921228E6FD43002BD7B2 /* RowUserView.swift */; };
 		12CB921628E6FF26002BD7B2 /* EntryUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921528E6FF26002BD7B2 /* EntryUserView.swift */; };
@@ -332,7 +332,7 @@
 		12CB920328E5C6E1002BD7B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12CB920A28E5C7E3002BD7B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		12CB920B28E5C884002BD7B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		12CB920E28E5C89B002BD7B2 /* AdMobViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobViewModels.swift; sourceTree = "<group>"; };
+		12CB920E28E5C89B002BD7B2 /* AdMobCommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobCommonView.swift; sourceTree = "<group>"; };
 		12CB921028E64ABC002BD7B2 /* RootListUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootListUserView.swift; sourceTree = "<group>"; };
 		12CB921228E6FD43002BD7B2 /* RowUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowUserView.swift; sourceTree = "<group>"; };
 		12CB921528E6FF26002BD7B2 /* EntryUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserView.swift; sourceTree = "<group>"; };
@@ -801,7 +801,7 @@
 			isa = PBXGroup;
 			children = (
 				128FC4C32B5FC050003E3B53 /* Layout */,
-				12CB920E28E5C89B002BD7B2 /* AdMobViewModels.swift */,
+				12CB920E28E5C89B002BD7B2 /* AdMobCommonView.swift */,
 				128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */,
 			);
 			path = Components;
@@ -1131,7 +1131,7 @@
 				12CA5D9E2D266E8B00A4C1F6 /* InAppPurchaseRepository.swift in Sources */,
 				121DEE0D2B1A23E000964902 /* UserDefaultsRepository.swift in Sources */,
 				1258FD722C97D0480065A081 /* EditNotifyMessageView.swift in Sources */,
-				12CB920F28E5C89B002BD7B2 /* AdMobViewModels.swift in Sources */,
+				12CB920F28E5C89B002BD7B2 /* AdMobCommonView.swift in Sources */,
 				122401402B8721EE0099BE8D /* ImageContainerView.swift in Sources */,
 				1268B3EC2D15742D00E1F8F7 /* CustomPopUpDialogView.swift in Sources */,
 				121DEE012B198D4600964902 /* AppLockView.swift in Sources */,
