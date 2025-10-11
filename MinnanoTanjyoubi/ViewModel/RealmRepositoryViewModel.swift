@@ -9,6 +9,7 @@ import Combine
 import RealmSwift
 import UIKit
 
+// TODO: この設計を変更したい
 class RealmRepositoryViewModel: ObservableObject {
     @MainActor
     static let shared = RealmRepositoryViewModel()

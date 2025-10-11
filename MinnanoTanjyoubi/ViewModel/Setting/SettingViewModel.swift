@@ -187,16 +187,6 @@ extension SettingViewModel {
         AppManager.sharedUserDefaultManager.setNotifyDate(flag)
     }
 
-    /// 通知Msg取得
-    func getNotifyMsg() -> String {
-        AppManager.sharedUserDefaultManager.getNotifyMsg()
-    }
-
-    /// 通知Msg登録
-    func registerNotifyMsg(msg: String) {
-        AppManager.sharedUserDefaultManager.setNotifyMsg(msg)
-    }
-
     ///  誕生日までの単位フラグ登録
     private func registerDisplayDaysLater(flag: Bool) {
         AppManager.sharedUserDefaultManager.setDisplayDaysLater(flag)

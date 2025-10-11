@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct EditNotifyMessageView: View {
-    @StateObject var viewModel: SettingViewModel
+    @StateObject var viewModel = EditNotifyMessageViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    @State private var notifyMsg = ""
-    @State private var isSuccessAlert = false
-    @State private var isValidationAlert = false
     @FocusState private var isFocus: Bool
 
     @Environment(\.dismiss) private var dismiss
@@ -33,7 +30,7 @@ struct EditNotifyMessageView: View {
                 .foregroundStyle(rootEnvironment.scheme.text)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
-            DemoNotifyView(title: "みんなの誕生日", msg: notifyMsg)
+            DemoNotifyView(msg: viewModel.notifyMsg)
                 .environmentObject(rootEnvironment)
 
             Rectangle()
@@ -46,7 +43,7 @@ struct EditNotifyMessageView: View {
                 .foregroundStyle(rootEnvironment.scheme.text)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
-            TextField("ここに通知メッセージを入力してね。", text: $notifyMsg)
+            TextField("ここに通知メッセージを入力してね。", text: $viewModel.notifyMsg)
                 .focused($isFocus)
                 .padding(20)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 65)
@@ -65,24 +62,18 @@ struct EditNotifyMessageView: View {
 
             DownSideView(
                 parentFunction: {
-                    UIApplication.shared.closeKeyboard()
-                    guard !notifyMsg.isEmpty else {
-                        isValidationAlert = true
-                        return
-                    }
-                    viewModel.registerNotifyMsg(msg: notifyMsg)
-                    isSuccessAlert = true
+                   viewModel.registerNotifyMsg()
                 }, imageString: "checkmark"
             ).environmentObject(rootEnvironment)
 
         }.onAppear {
-            notifyMsg = viewModel.getNotifyMsg()
+            viewModel.onAppear()
         }.background(rootEnvironment.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .fontM()
             .navigationBarBackButtonHidden()
             .alert(
-                isPresented: $isSuccessAlert,
+                isPresented: $viewModel.isShowSuccessAlert,
                 title: "お知らせ",
                 message: "通知メッセージを更新しました。",
                 positiveButtonTitle: "OK",
@@ -91,13 +82,10 @@ struct EditNotifyMessageView: View {
                 }
             )
             .alert(
-                isPresented: $isValidationAlert,
-                title: "お知らせ",
+                isPresented: $viewModel.isShowValidateAlert,
+                title: "Error",
                 message: "通知メッセージを入力してください。",
-                positiveButtonTitle: "OK",
-                positiveAction: {
-                    isValidationAlert = false
-                }
+                positiveButtonTitle: "OK"
             )
     }
 }
@@ -105,7 +93,7 @@ struct EditNotifyMessageView: View {
 struct DemoNotifyView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
-    let title: String
+    let title: String = "みんなの誕生日"
     let msg: String
     var time: String = "now"
 
@@ -152,8 +140,7 @@ struct DemoNotifyView: View {
                         .font(.system(size: 13))
                 }
             }
-        }.onAppear { FBAnalyticsManager.loggingScreen(screen: .EditNotifyMessageScreen) }
-            .padding()
+        }.padding()
             .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 65)
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -162,5 +149,5 @@ struct DemoNotifyView: View {
 }
 
 #Preview {
-    EditNotifyMessageView(viewModel: SettingViewModel())
+    EditNotifyMessageView()
 }

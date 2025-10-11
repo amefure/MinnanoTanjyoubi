@@ -71,13 +71,25 @@ struct SettingView: View {
 
                     // 通知メッセージを変更する
                     NavigationLink {
-                        EditNotifyMessageView(viewModel: viewModel)
+                        EditNotifyMessageView()
                             .environmentObject(rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "text.bubble")
                                 .settingIcon(rootEnvironment.scheme)
                             Text("通知メッセージを変更する")
+                        }
+                    }.listRowHeight()
+                    
+                    // 登録済み通知一覧
+                    NavigationLink {
+                        EntryNotifyListView()
+                            .environmentObject(rootEnvironment)
+                    } label: {
+                        HStack {
+                            Image(systemName: "text.bubble")
+                                .settingIcon(rootEnvironment.scheme)
+                            Text("登録済み通知一覧")
                         }
                     }.listRowHeight()
 

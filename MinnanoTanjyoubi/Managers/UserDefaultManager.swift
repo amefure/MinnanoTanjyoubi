@@ -86,7 +86,7 @@ final class UserDefaultManager: Sendable {
     /// `ENTRY_INIT_RELATION`
     /// 取得：関係初期値
     func getEntryInitRelation() -> Relation {
-        var rawValue = userDefaultsRepository.getIntData(key: UserDefaultsKey.ENTRY_INIT_RELATION)
+        let rawValue = userDefaultsRepository.getIntData(key: UserDefaultsKey.ENTRY_INIT_RELATION)
         return Relation.getIndexbyRelation(rawValue)
     }
 

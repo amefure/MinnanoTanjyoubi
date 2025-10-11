@@ -92,6 +92,11 @@
 		128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB96D2B614B4200B20172 /* SectionGridListView.swift */; };
 		128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB96F2B614BF500B20172 /* SingleGridListView.swift */; };
 		128BB9732B61500800B20172 /* SectionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB9722B61500800B20172 /* SectionRowView.swift */; };
+		128FB79A2E9A2AFA000167C6 /* NotificationRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB7992E9A2AEB000167C6 /* NotificationRequestWrapper.swift */; };
+		128FB79B2E9A2AFA000167C6 /* NotificationRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB7992E9A2AEB000167C6 /* NotificationRequestWrapper.swift */; };
+		128FB79D2E9A2E6B000167C6 /* EntryNotifyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB79C2E9A2E56000167C6 /* EntryNotifyListView.swift */; };
+		128FB79F2E9A2ECF000167C6 /* EntryNotifyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB79E2E9A2ECD000167C6 /* EntryNotifyListViewModel.swift */; };
+		128FB7A12E9A9297000167C6 /* EditNotifyMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB7A02E9A9295000167C6 /* EditNotifyMessageViewModel.swift */; };
 		128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */; };
 		128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */; };
 		128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */; };
@@ -292,6 +297,10 @@
 		128BB96D2B614B4200B20172 /* SectionGridListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionGridListView.swift; sourceTree = "<group>"; };
 		128BB96F2B614BF500B20172 /* SingleGridListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGridListView.swift; sourceTree = "<group>"; };
 		128BB9722B61500800B20172 /* SectionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRowView.swift; sourceTree = "<group>"; };
+		128FB7992E9A2AEB000167C6 /* NotificationRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequestWrapper.swift; sourceTree = "<group>"; };
+		128FB79C2E9A2E56000167C6 /* EntryNotifyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNotifyListView.swift; sourceTree = "<group>"; };
+		128FB79E2E9A2ECD000167C6 /* EntryNotifyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNotifyListViewModel.swift; sourceTree = "<group>"; };
+		128FB7A02E9A9295000167C6 /* EditNotifyMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotifyMessageViewModel.swift; sourceTree = "<group>"; };
 		128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRelationNameView.swift; sourceTree = "<group>"; };
 		128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifyDialogView.swift; sourceTree = "<group>"; };
@@ -476,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				12CB921928E85952002BD7B2 /* SettingView.swift */,
+				128FB79C2E9A2E56000167C6 /* EntryNotifyListView.swift */,
 				1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */,
 				128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */,
 				12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */,
@@ -495,6 +505,7 @@
 				12CB920B28E5C884002BD7B2 /* User.swift */,
 				123F485729A256DB001B91B3 /* RelationEnum.swift */,
 				121E5B732DAD3DEC0032D66C /* NotifyDate.swift */,
+				128FB7992E9A2AEB000167C6 /* NotificationRequestWrapper.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -863,6 +874,8 @@
 			isa = PBXGroup;
 			children = (
 				124602492B36B7BA00B6C32D /* SettingViewModel.swift */,
+				128FB79E2E9A2ECD000167C6 /* EntryNotifyListViewModel.swift */,
+				128FB7A02E9A9295000167C6 /* EditNotifyMessageViewModel.swift */,
 				12CA5D922D19A7E600A4C1F6 /* InAppPurchaseViewModel.swift */,
 				12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */,
 			);
@@ -1042,6 +1055,7 @@
 				1204FB302E70660D0092AE9E /* BirthDayWidgetBundle.swift in Sources */,
 				1204FB262E7058390092AE9E /* RelationEnum.swift in Sources */,
 				1204FB232E7058220092AE9E /* RealmRepository.swift in Sources */,
+				128FB79B2E9A2AFA000167C6 /* NotificationRequestWrapper.swift in Sources */,
 				1204FB272E7058560092AE9E /* DateFormatUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1101,6 +1115,7 @@
 				12B76E832D0D90600021A018 /* SecretCryptoKey.swift in Sources */,
 				12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */,
 				123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */,
+				128FB79F2E9A2ECF000167C6 /* EntryNotifyListViewModel.swift in Sources */,
 				12CFB0CB2D0C7DB400407CEA /* ShareInfoUtillity.swift in Sources */,
 				122401442B87691E0099BE8D /* ImageFileManager.swift in Sources */,
 				12CA5DA02D26D16A00A4C1F6 /* SecretProductIdKey.swift in Sources */,
@@ -1117,6 +1132,7 @@
 				128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */,
 				12CFB0C52D0C7BEE00407CEA /* ExModifier.swift in Sources */,
 				128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */,
+				128FB79A2E9A2AFA000167C6 /* NotificationRequestWrapper.swift in Sources */,
 				12CB921E28E9223C002BD7B2 /* RelationPickerView.swift in Sources */,
 				12CB922028E92293002BD7B2 /* DatePickerView.swift in Sources */,
 				1262361B2DF3BFA500A5F1AE /* YearAndMonthSelectionView.swift in Sources */,
@@ -1131,6 +1147,7 @@
 				12CA5D9E2D266E8B00A4C1F6 /* InAppPurchaseRepository.swift in Sources */,
 				121DEE0D2B1A23E000964902 /* UserDefaultsRepository.swift in Sources */,
 				1258FD722C97D0480065A081 /* EditNotifyMessageView.swift in Sources */,
+				128FB7A12E9A9297000167C6 /* EditNotifyMessageViewModel.swift in Sources */,
 				12CB920F28E5C89B002BD7B2 /* AdMobCommonView.swift in Sources */,
 				122401402B8721EE0099BE8D /* ImageContainerView.swift in Sources */,
 				1268B3EC2D15742D00E1F8F7 /* CustomPopUpDialogView.swift in Sources */,
@@ -1168,6 +1185,7 @@
 				12ACAD32299EDD6200273834 /* DeviceSizeUtility.swift in Sources */,
 				12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */,
 				124602482B36B62300B6C32D /* RootViewModel.swift in Sources */,
+				128FB79D2E9A2E6B000167C6 /* EntryNotifyListView.swift in Sources */,
 				12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */,
 				12CB921628E6FF26002BD7B2 /* EntryUserView.swift in Sources */,
 				12CFB0C92D0C7D8300407CEA /* RewardViewModel.swift in Sources */,
