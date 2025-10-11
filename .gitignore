@@ -40,7 +40,8 @@ playground.xcworkspace
 Pods
 *.xcworkspace
 
-# Firebase
+# Product
+MinnanoTanjyoubi/Info.plist
 GoogleService-Info.plist
 MinnanoTanjyoubi/View/Components/AdMobCommonView.swift
 MinnanoTanjyoubi/Models/InAppPurchase/SecretProductIdKey.swift

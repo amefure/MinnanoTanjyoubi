@@ -11,8 +11,6 @@ import UIKit
 /// 設定画面
 struct SettingView: View {
     @StateObject private var viewModel = SettingViewModel()
-
-    @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     // dismissで実装するとCPUがオーバーフローする
@@ -32,15 +30,15 @@ struct SettingView: View {
                     // 容量パラメーター
                     CapacityParametersView(
                         viewModel: viewModel,
-                        now: Double(repository.users.count),
+                        now: Double(viewModel.allUserCount),
                         max: Double(viewModel.getCapacity())
                     ).foregroundStyle(Asset.Colors.exText.swiftUIColor)
                         .environmentObject(rootEnvironment)
                 }
 
-                Section(header: Text("通知設定"),
-                        footer:
-                        Text("・通知設定を変更した場合はこれより後に通知登録した通知に反映されます。\n既にONになっている場合はON→OFF→ONと操作してください。")
+                Section(
+                    header: Text("通知設定"),
+                    footer: Text("・通知設定を変更した場合はこれより後に通知登録した通知に反映されます。\n既にONになっている場合はON→OFF→ONと操作してください。")
                             .fontS(bold: true))
                 {
                     // 通知時間
@@ -381,7 +379,7 @@ struct SettingView: View {
                             .opacity(0.5)
                             .padding(.bottom, 8)
                         HStack(alignment: .bottom) {
-                            Text("\(repository.users.count)")
+                            Text("\(viewModel.allUserCount)")
                                 .foregroundStyle(Asset.Colors.exThemaRed.swiftUIColor)
                                 .fontCustom(size: 30, bold: true)
                             Text("人")

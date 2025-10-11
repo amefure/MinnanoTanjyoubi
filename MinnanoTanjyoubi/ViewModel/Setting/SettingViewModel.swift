@@ -23,12 +23,17 @@ final class SettingViewModel: ObservableObject {
     @Published var selectedRelation: Relation = .other
     @Published var selectedYear: Int = 2025
 
-    private let keyChainRepository: KeyChainRepository
+    private var allUsers: [User] = []
 
     private let dfm = DateFormatUtility()
     private var cancellables: Set<AnyCancellable> = []
 
+    /// `Repository`
+    private let repository: RealmRepository
+    private let keyChainRepository: KeyChainRepository
+
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
+        repository = repositoryDependency.realmRepository
         keyChainRepository = repositoryDependency.keyChainRepository
 
         setUpYears()
@@ -41,6 +46,7 @@ final class SettingViewModel: ObservableObject {
         setUpNotifyDate()
         setUpEntryInitRelation()
         setUpEntryInitYear()
+        allUsers = Array(repository.readAllUsers())
     }
 
     func onDisappear() {
@@ -49,6 +55,11 @@ final class SettingViewModel: ObservableObject {
 }
 
 extension SettingViewModel {
+    
+    var allUserCount: Int {
+        allUsers.count
+    }
+    
     /// アプリロック
     private func setUpIsLock() {
         isLock = keyChainRepository.getData().count == 4

@@ -44,7 +44,7 @@ struct FaqListView: View {
         .environmentObject(RootEnvironment())
 }
 
-struct AccordionBoxView: View {
+private struct AccordionBoxView: View {
     let question: String
     let answer: String
     @State private var isClick: Bool = false
