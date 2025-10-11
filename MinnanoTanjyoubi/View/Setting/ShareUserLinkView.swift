@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct ShareUserLinkView: View {
-    @ObservedObject private var repository = RealmRepositoryViewModel.shared
+    @StateObject private var viewModel = ShareUserLinkViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-
-    @State private var shareUsers: [User] = []
 
     @Environment(\.dismiss) private var dismiss
 
@@ -32,13 +30,9 @@ struct ShareUserLinkView: View {
                 .padding(.horizontal)
 
             List {
-                ForEach(repository.users.sorted { $0.name < $1.name }, id: \.self) { user in
+                ForEach(viewModel.allUsers.sorted { $0.name < $1.name }, id: \.self) { user in
                     Button {
-                        if shareUsers.contains(user) {
-                            shareUsers.removeAll(where: { $0.id == user.id })
-                        } else {
-                            shareUsers.append(user)
-                        }
+                        viewModel.addOrDeleteShareUser(user)
                     } label: {
                         HStack {
                             Image(systemName: "person.fill")
@@ -46,7 +40,7 @@ struct ShareUserLinkView: View {
 
                             Spacer()
 
-                            if shareUsers.contains(user) {
+                            if viewModel.shareUsers.contains(user) {
                                 Image(systemName: "checkmark")
                             }
 
@@ -58,21 +52,21 @@ struct ShareUserLinkView: View {
                 .background(rootEnvironment.scheme.foundationSub)
 
             Button {
-                ShareInfoUtillity.shareBirthday(shareUsers)
+                viewModel.shareUser()
             } label: {
                 Text("共有する")
                     .fontM()
             }.frame(width: DeviceSizeUtility.deviceWidth - 80, height: 50)
-                .background(!shareUsers.isEmpty ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
+                .background(!viewModel.shareUsers.isEmpty ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
-                .disabled(shareUsers.isEmpty)
+                .disabled(viewModel.shareUsers.isEmpty)
 
             Spacer()
 
         }.background(rootEnvironment.scheme.foundationSub)
-            .onAppear { FBAnalyticsManager.loggingScreen(screen: .ShareUserLinkScreen) }
+            .onAppear { viewModel.onAppear() }
             .navigationBarBackButtonHidden()
     }
 }
