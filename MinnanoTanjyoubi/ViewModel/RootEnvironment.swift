@@ -175,19 +175,6 @@ extension RootEnvironment {
 }
 
 extension RootEnvironment {
-    private func setRelationName(key: String, newName: String) {
-        userDefaultsRepository.setStringData(key: key, value: newName)
-    }
-
-    func saveRelationName(friend: String, family: String, school: String, work: String, other: String, sns: String) {
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, value: friend)
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_FAMILY, value: family)
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_SCHOOL, value: school)
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_WORK, value: work)
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_OTHER, value: other)
-        userDefaultsRepository.setStringData(key: UserDefaultsKey.DISPLAY_RELATION_SNS, value: sns)
-        getRelationName()
-    }
 
     func getRelationName() {
         var results: [String] = []

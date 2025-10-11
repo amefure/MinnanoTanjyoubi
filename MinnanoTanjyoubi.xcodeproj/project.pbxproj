@@ -97,6 +97,7 @@
 		128FB79D2E9A2E6B000167C6 /* EntryNotifyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB79C2E9A2E56000167C6 /* EntryNotifyListView.swift */; };
 		128FB79F2E9A2ECF000167C6 /* EntryNotifyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB79E2E9A2ECD000167C6 /* EntryNotifyListViewModel.swift */; };
 		128FB7A12E9A9297000167C6 /* EditNotifyMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB7A02E9A9295000167C6 /* EditNotifyMessageViewModel.swift */; };
+		128FB7A32E9A94F6000167C6 /* UpdateRelationNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB7A22E9A94F2000167C6 /* UpdateRelationNameViewModel.swift */; };
 		128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */; };
 		128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */; };
 		128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */; };
@@ -301,6 +302,7 @@
 		128FB79C2E9A2E56000167C6 /* EntryNotifyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNotifyListView.swift; sourceTree = "<group>"; };
 		128FB79E2E9A2ECD000167C6 /* EntryNotifyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryNotifyListViewModel.swift; sourceTree = "<group>"; };
 		128FB7A02E9A9295000167C6 /* EditNotifyMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotifyMessageViewModel.swift; sourceTree = "<group>"; };
+		128FB7A22E9A94F2000167C6 /* UpdateRelationNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRelationNameViewModel.swift; sourceTree = "<group>"; };
 		128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRelationNameView.swift; sourceTree = "<group>"; };
 		128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifyDialogView.swift; sourceTree = "<group>"; };
@@ -876,6 +878,7 @@
 				124602492B36B7BA00B6C32D /* SettingViewModel.swift */,
 				128FB79E2E9A2ECD000167C6 /* EntryNotifyListViewModel.swift */,
 				128FB7A02E9A9295000167C6 /* EditNotifyMessageViewModel.swift */,
+				128FB7A22E9A94F2000167C6 /* UpdateRelationNameViewModel.swift */,
 				12CA5D922D19A7E600A4C1F6 /* InAppPurchaseViewModel.swift */,
 				12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */,
 			);
@@ -1084,6 +1087,7 @@
 				12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */,
 				12CA5D8A2D19947900A4C1F6 /* SelectSortView.swift in Sources */,
 				12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */,
+				128FB7A32E9A94F6000167C6 /* UpdateRelationNameViewModel.swift in Sources */,
 				12BA5F142C6BA0A600E1DDF2 /* Assets.swift in Sources */,
 				1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */,
 				12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */,
