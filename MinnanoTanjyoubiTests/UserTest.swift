@@ -17,34 +17,37 @@ struct UserTest {
         relation: .friend
     )
 
-    private let dfm = DateFormatUtility()
     // 検証対象の日付
     private let targetDay = "2000/3/12"
 
     /// あと何日
     @Test func daysLaterTest() {
-        let date: Date = dfm.getSlashDate(from: targetDay) ?? Date()
+        let dfm = DateFormatUtility(format: .slash)
+        let date: Date = dfm.getDateNotNull(from: targetDay)
         let daysLater = UserCalcUtility.daysLater(from: user.date, today: date)
         #expect(daysLater == 284)
     }
 
     /// あと何ヶ月
     @Test func monthLaterTest() {
-        let date: Date = dfm.getSlashDate(from: targetDay) ?? Date()
+        let dfm = DateFormatUtility(format: .slash)
+        let date: Date = dfm.getDateNotNull(from: targetDay)
         let monthLater = UserCalcUtility.monthLater(from: user.date, today: date)
         #expect(monthLater == 9)
     }
 
     /// 今何歳
     @Test func currentAgeTest() {
-        let date: Date = dfm.getSlashDate(from: targetDay) ?? Date()
+        let dfm = DateFormatUtility(format: .slash)
+        let date: Date = dfm.getDateNotNull(from: targetDay)
         let currentAge = UserCalcUtility.currentAge(from: user.date, today: date)
         #expect(currentAge == 5)
     }
 
     /// 今何ヶ月
     @Test func currentAgeMonthTest() {
-        let date: Date = dfm.getSlashDate(from: targetDay) ?? Date()
+        let dfm = DateFormatUtility(format: .slash)
+        let date: Date = dfm.getDateNotNull(from: targetDay)
         let currentAgeMonth = UserCalcUtility.currentAgeMonth(from: user.date, today: date)
         #expect(currentAgeMonth == 2)
     }
