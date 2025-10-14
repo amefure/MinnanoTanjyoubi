@@ -6,6 +6,64 @@
   
 */
 
+// MARK: - 設定画面
+"setting_section_notify_header" = "通知設定";
+"setting_section_notify_footer" = "・通知設定を変更した場合はこれより後に通知登録した通知に反映されます。\n既にONになっている場合はON→OFF→ONと操作してください";
+"setting_section_notify_time_title" = "通知時間";
+"setting_section_notify_time_caption" = "通知日";
+"setting_section_notify_edit_msg_title" = "通知メッセージを変更する";
+"setting_section_notify_list_title" = "登録済み通知一覧";
+
+"setting_section_birthday_header" = "誕生日登録・表示設定";
+"setting_section_birthday_unit_title" = "誕生日までの単位を切り替える";
+"setting_section_birthday_unit_month" = "月";
+"setting_section_birthday_unit_day" = "日";
+"setting_section_birthday_month_title" = "年齢の⚪︎ヶ月を表示する";
+"setting_section_birthday_month_caption" = "登録年数初期値";
+"setting_section_birthday_relation_name" = "登録関係初期値";
+"setting_section_birthday_sort" = "並び順を変更する";
+"setting_section_birthday_share" = "誕生日情報を転送(共有)する";
+
+"setting_section_app_header" = "アプリ設定";
+"setting_section_app_footer" = "・アプリにパスワードを設定してロックをかけることができます。";
+"setting_section_app_color" = "テーマカラーを変更する";
+"setting_section_app_relation" = "関係名をカスタマイズする";
+"setting_section_app_init_week" = "週始まりを変更する";
+"setting_section_app_lock" = "アプリをロックする";
+
+"setting_section_link_header" = "Link";
+"setting_section_link_footer" = "・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。";
+"setting_section_link_faq" = "よくある質問";
+"setting_section_link_tutorial" = "アプリの使い方(チュートリアル)";
+"setting_section_link_in_app_purchase" = "広告削除 & 容量解放";
+"setting_section_link_review" = "アプリをレビューする";
+"setting_section_link_recommend" = "「みんなの誕生日」をオススメする";
+"setting_section_link_contact" = "アプリの不具合はこちら";
+"setting_section_link_terms_of_service" = "利用規約とプライバシーポリシー";
+
+"setting_section_storage_header" = "アプリ容量";
+
+"setting_share_text" = "友達の誕生日をメモできるアプリ「みんなの誕生日」を使ってみてね♪";
+
+// MARK: チュートリアル
+"tutorial_next_button" = "NEXT";
+"tutorial_top_left_title" = "レイアウトを変更できるよ！";
+"tutorial_top_left_msg" = "選べる3つのレイアウト\n\n・グリッドレイアウト(デフォルト)\n・グリッドレイアウト(セクション分け)\n・カレンダー\n好きなレイアウトでアプリを使ってね。";
+"tutorial_top_left_button" = "アプリをはじめよう！";
+
+"tutorial_top_right_title" = "通知やアプリのカスタマイズ！";
+"tutorial_top_right_msg" = "通知時間やメッセージ、アプリのロック、テーマカラーの変更、関係性名の変更、容量の追加など自分の好きなようにアプリをカスタマイズすることができます。";
+
+"tutorial_bottom_left_title" = "誕生日情報を削除できるよ！";
+"tutorial_bottom_left_msg" = "このボタンをタップすることで「削除モード」に切り替わります。\n削除したい誕生日情報を選択できるようになるので選んだ後に再度このボタンをタップすることで削除することができます。";
+
+"tutorial_bottom_middle_title" = "誕生日情報をフィルタリング！";
+"tutorial_bottom_middle_msg" =  "このボタンをタップすることで設定した関係性ごとに誕生日情報をフィルタリングすることができます。";
+
+"tutorial_bottom_right_title" = "誕生日情報を登録をしよう！";
+"tutorial_bottom_right_msg" = "このボタンをタップすることで友達や家族の誕生日情報を入力して登録することができます。\n登録した誕生日情報は一覧として表示されるよ。";
+
+
 // MARK: - How to Use The App
 "how_to_use_q1_title" = "通知が届かないのですがなぜですか？";
 "how_to_use_q1_text" = "通知が届かない場合は、このアプリに対して通知が許可されていない可能性があります。\n端末の設定アプリから「アプリ」＞「みんなの誕生日」＞「通知」から「通知を許可」がONになっていることを確認してください。";

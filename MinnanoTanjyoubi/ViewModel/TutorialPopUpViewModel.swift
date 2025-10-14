@@ -58,25 +58,25 @@ class TutorialPopUpViewModel: ObservableObject {
     private func setUpTitleMessage(_ position: PopUpPosition) {
         switch position {
         case .topLeft:
-            title = "レイアウトを変更できるよ！"
-            message = "選べる3つのレイアウト\n\n・グリッドレイアウト(デフォルト)\n・グリッドレイアウト(セクション分け)\n・カレンダー\n好きなレイアウトでアプリを使ってね。"
-            buttonTitle = "アプリをはじめよう！"
+            title = L10n.tutorialTopLeftTitle
+            message = L10n.tutorialTopLeftMsg
+            buttonTitle = L10n.tutorialTopLeftButton
         case .topRight:
-            title = "通知やアプリのカスタマイズ！"
-            message = "通知時間やメッセージ、アプリのロック、テーマカラーの変更、関係性名の変更、容量の追加など自分の好きなようにアプリをカスタマイズすることができます。"
-            buttonTitle = "NEXT"
+            title = L10n.tutorialTopRightTitle
+            message = L10n.tutorialTopRightMsg
+            buttonTitle = L10n.tutorialNextButton
         case .bottomLeft:
-            title = "誕生日情報を削除できるよ！"
-            message = "このボタンをタップすることで「削除モード」に切り替わります。\n削除したい誕生日情報を選択できるようになるので選んだ後に再度このボタンをタップすることで削除することができます。"
-            buttonTitle = "NEXT"
+            title = L10n.tutorialBottomLeftTitle
+            message = L10n.tutorialBottomLeftMsg
+            buttonTitle = L10n.tutorialNextButton
         case .bottomMiddle:
-            title = "誕生日情報をフィルタリング！"
-            message = "このボタンをタップすることで設定した関係性ごとに誕生日情報をフィルタリングすることができます。"
-            buttonTitle = "NEXT"
+            title = L10n.tutorialBottomMiddleTitle
+            message = L10n.tutorialBottomMiddleMsg
+            buttonTitle = L10n.tutorialNextButton
         case .bottomRight:
-            title = "誕生日情報を登録をしよう！"
-            message = "このボタンをタップすることで友達や家族の誕生日情報を入力して登録することができます。\n登録した誕生日情報は一覧として表示されるよ。"
-            buttonTitle = "NEXT"
+            title = L10n.tutorialBottomRightTitle
+            message = L10n.tutorialBottomRightMsg
+            buttonTitle = L10n.tutorialNextButton
         }
     }
 }

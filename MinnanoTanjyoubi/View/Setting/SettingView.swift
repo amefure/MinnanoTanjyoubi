@@ -37,16 +37,15 @@ struct SettingView: View {
                 }
 
                 Section(
-                    header: Text("通知設定"),
-                    footer: Text("・通知設定を変更した場合はこれより後に通知登録した通知に反映されます。\n既にONになっている場合はON→OFF→ONと操作してください。")
-                            .fontS(bold: true))
-                {
+                    header: Text(L10n.settingSectionNotifyHeader),
+                    footer: Text(L10n.settingSectionNotifyFooter).fontS(bold: true)
+                ) {
                     // 通知時間
                     HStack {
                         Image(systemName: "clock")
                             .settingIcon(rootEnvironment.scheme)
 
-                        Text("通知時間")
+                        Text(L10n.settingSectionNotifyTimeTitle)
                             .foregroundStyle(rootEnvironment.scheme.text)
                             .font(.system(size: 17))
 
@@ -59,7 +58,7 @@ struct SettingView: View {
                     HStack {
                         Image(systemName: "calendar")
                             .settingIcon(rootEnvironment.scheme)
-                        Picker("通知日", selection: $viewModel.selectedNotifyDate) {
+                        Picker(L10n.settingSectionNotifyTimeCaption, selection: $viewModel.selectedNotifyDate) {
                             ForEach(NotifyDate.allCases, id: \.self) { notifyDate in
                                 Text(notifyDate.title)
                             }
@@ -75,7 +74,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "text.bubble")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("通知メッセージを変更する")
+                            Text(L10n.settingSectionNotifyEditMsgTitle)
                         }
                     }.listRowHeight()
                     
@@ -87,21 +86,23 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "text.bubble")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("登録済み通知一覧")
+                            Text(L10n.settingSectionNotifyListTitle)
                         }
                     }.listRowHeight()
 
                 }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
 
-                Section(header: Text("誕生日登録・表示設定")) {
+                Section(
+                    header: Text(L10n.settingSectionBirthdayHeader)
+                ) {
                     // 誕生日までの単位
                     HStack {
                         Image(systemName: "switch.2")
                             .settingIcon(rootEnvironment.scheme)
-                        Text("誕生日までの単位を切り替える")
+                        Text(L10n.settingSectionBirthdayUnitTitle)
                         Spacer()
                         Toggle(isOn: $viewModel.isDaysLaterFlag) {
-                            Text(viewModel.isDaysLaterFlag ? "月" : "日")
+                            Text(viewModel.isDaysLaterFlag ? L10n.settingSectionBirthdayUnitMonth : L10n.settingSectionBirthdayUnitDay)
                                 .fontWeight(.bold)
                                 .foregroundStyle(.white)
                         }.toggleStyle(.button)
@@ -115,7 +116,7 @@ struct SettingView: View {
                         Image(systemName: "switch.2")
                             .settingIcon(rootEnvironment.scheme)
                         Toggle(isOn: $viewModel.isAgeMonthFlag) {
-                            Text("年齢の⚪︎ヶ月を表示する")
+                            Text(L10n.settingSectionBirthdayMonthTitle)
                         }.tint(rootEnvironment.scheme.thema1)
                     }.listRowHeight()
 
@@ -123,7 +124,7 @@ struct SettingView: View {
                     HStack {
                         Image(systemName: "clock")
                             .settingIcon(rootEnvironment.scheme)
-                        Picker("登録年数初期値", selection: $viewModel.selectedYear) {
+                        Picker(L10n.settingSectionBirthdayMonthCaption, selection: $viewModel.selectedYear) {
                             ForEach(viewModel.yearArray, id: \.self) { year in
                                 Text("\(String(year))年")
                                     .fontM()
@@ -136,7 +137,7 @@ struct SettingView: View {
                     HStack {
                         Image(systemName: "person.crop.rectangle.stack")
                             .settingIcon(rootEnvironment.scheme)
-                        Picker("登録関係初期値", selection: $viewModel.selectedRelation) {
+                        Picker(L10n.settingSectionBirthdayRelationName, selection: $viewModel.selectedRelation) {
                             ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
                                 Text(item)
                                     .tag(Relation.getIndexbyRelation(index))
@@ -154,7 +155,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "arrow.up.arrow.down")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("並び順を変更する")
+                            Text(L10n.settingSectionBirthdaySort)
                         }
                     }.listRowHeight()
 
@@ -166,15 +167,15 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "person.line.dotted.person")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("誕生日情報を転送(共有)する")
+                            Text(L10n.settingSectionBirthdayShare)
                         }
                     }.listRowHeight()
 
                 }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
 
                 Section(
-                    header: Text("アプリ設定"),
-                    footer: Text("・アプリにパスワードを設定してロックをかけることができます。").fontS(bold: true)
+                    header: Text(L10n.settingSectionAppHeader),
+                    footer: Text(L10n.settingSectionAppFooter).fontS(bold: true)
                 ) {
                     // テーマカラーを変更する
                     NavigationLink {
@@ -184,7 +185,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "paintpalette")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("テーマカラーを変更する")
+                            Text(L10n.settingSectionAppColor)
                         }
                     }.listRowHeight()
 
@@ -196,7 +197,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "pencil.line")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("関係名をカスタマイズする")
+                            Text(L10n.settingSectionAppRelation)
                         }
                     }.listRowHeight()
 
@@ -208,7 +209,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "calendar")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("週始まりを変更する")
+                            Text(L10n.settingSectionAppInitWeek)
                         }
                     }.listRowHeight()
 
@@ -216,7 +217,7 @@ struct SettingView: View {
                         Image(systemName: "lock.iphone")
                             .settingIcon(rootEnvironment.scheme)
                         Toggle(isOn: $viewModel.isLock) {
-                            Text("アプリをロックする")
+                            Text(L10n.settingSectionAppLock)
                         }.tint(rootEnvironment.scheme.thema1)
                     }.listRowHeight()
                         .sheet(isPresented: $viewModel.isShowPassInput) {
@@ -226,9 +227,8 @@ struct SettingView: View {
                 }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
 
                 Section(
-                    header: Text("Link"),
-                    footer: Text("・アプリに不具合がございましたら「アプリの不具合はこちら」よりお問い合わせください。")
-                        .fontS(bold: true)
+                    header: Text(L10n.settingSectionLinkHeader),
+                    footer: Text(L10n.settingSectionLinkFooter).fontS(bold: true)
                 ) {
                     // よくある質問
                     NavigationLink {
@@ -238,7 +238,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "questionmark.app")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("よくある質問")
+                            Text(L10n.settingSectionLinkFaq)
                         }
                     }.listRowHeight()
 
@@ -250,7 +250,7 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "rectangle.and.hand.point.up.left")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("アプリの使い方(チュートリアル)")
+                            Text(L10n.settingSectionLinkTutorial)
                         }
                     }.listRowHeight()
 
@@ -262,32 +262,34 @@ struct SettingView: View {
                         HStack {
                             Image(systemName: "app.gift.fill")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("広告削除 & 容量解放")
+                            Text(L10n.settingSectionLinkInAppPurchase)
                         }
                     }.listRowHeight()
 
                     if let url = URL(string: StaticUrls.APP_REVIEW_URL) {
                         // 1:レビューページ
-                        Link(destination: url, label: {
-                            HStack {
-                                Image(systemName: "hand.thumbsup")
-                                    .settingIcon(rootEnvironment.scheme)
-                                Text("アプリをレビューする")
-                            }
+                        Link(
+                            destination: url,
+                            label: {
+                                HStack {
+                                    Image(systemName: "hand.thumbsup")
+                                        .settingIcon(rootEnvironment.scheme)
+                                    Text(L10n.settingSectionLinkReview)
+                                }
                         }).listRowHeight()
                     }
 
                     // 2:シェアボタン
                     Button {
                         viewModel.shareApp(
-                            shareText: "友達の誕生日をメモできるアプリ「みんなの誕生日」を使ってみてね♪",
+                            shareText: L10n.settingShareText,
                             shareLink: StaticUrls.APP_URL
                         )
                     } label: {
                         HStack {
                             Image(systemName: "star.bubble")
                                 .settingIcon(rootEnvironment.scheme)
-                            Text("「みんなの誕生日」をオススメする")
+                            Text(L10n.settingSectionLinkRecommend)
                         }
                     }.listRowHeight()
 
@@ -300,7 +302,7 @@ struct SettingView: View {
                             HStack {
                                 Image(systemName: "paperplane")
                                     .settingIcon(rootEnvironment.scheme)
-                                Text("アプリの不具合はこちら")
+                                Text(L10n.settingSectionLinkContact)
                             }
                         }.listRowHeight()
                     }
@@ -314,7 +316,7 @@ struct SettingView: View {
                             HStack {
                                 Image(systemName: "note.text")
                                     .settingIcon(rootEnvironment.scheme)
-                                Text("利用規約とプライバシーポリシー")
+                                Text(L10n.settingSectionLinkTermsOfService)
                             }
                         }.listRowHeight()
                     }
@@ -349,7 +351,7 @@ struct SettingView: View {
     private func unlockStorageSection() -> some View {
         HStack {
             VStack {
-                Text("アプリ容量")
+                Text(L10n.settingSectionStorageHeader)
                     .fontM(bold: true)
                     .frame(width: DeviceSizeUtility.deviceWidth - 80, alignment: .leading)
 
@@ -484,7 +486,7 @@ private struct CapacityParametersView: View {
         VStack(spacing: 8) {
             HStack {
                 VStack(spacing: 8) {
-                    Text("アプリ容量")
+                    Text(L10n.settingSectionStorageHeader)
                         .fontM(bold: true)
                         .frame(width: width - 40, alignment: .leading)
                     Text("・追加される容量は\(AdsConfig.ADD_CAPACITY)人です。\n・容量の追加は1日に1回までです。")
