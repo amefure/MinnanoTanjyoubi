@@ -16,7 +16,9 @@ struct DetailUserView: View {
 
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     
-    private let dfm = DateFormatUtility()
+    private let dfmJp = DateFormatUtility(format: .jp)
+    private let dfmJpOnlyDate = DateFormatUtility(format: .jpOnlyDate)
+    private let dfmJpEra = DateFormatUtility(format: .jpEra)
 
     @State private var image: UIImage?
     @State private var images: [String] = []
@@ -202,11 +204,11 @@ struct DetailUserView: View {
                 .font(viewModel.isSESize ? .system(size: 17) : .system(size: 20))
             HStack {
                 if user.isYearsUnknown {
-                    Text(dfm.getJpStringOnlyDate(date: user.date))
+                    Text(dfmJpOnlyDate.getString(date: user.date))
                     Text("（年数未設定）")
                 } else {
-                    Text(dfm.getJpString(date: user.date))
-                    Text("（\(dfm.getJpEraString(date: user.date))）")
+                    Text(dfmJp.getString(date: user.date))
+                    Text("（\(dfmJpEra.getString(date: user.date))）")
                 }
             }.padding(.top, 8)
                 .fontM()

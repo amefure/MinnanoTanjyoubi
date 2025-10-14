@@ -13,7 +13,6 @@ import UIKit
 class RealmRepositoryViewModel: ObservableObject {
     @MainActor
     static let shared = RealmRepositoryViewModel()
-    private let df = DateFormatUtility()
 
     @Published var users: [User] = []
 
@@ -46,6 +45,9 @@ class RealmRepositoryViewModel: ObservableObject {
         if sort == nil {
             sort = getSortItem()
         }
+        
+        let dfmMonthOnly = DateFormatUtility(format: .monthOnly)
+        
         switch sort {
         case .daysLater:
             // 誕生日までの日付が近い順にソート
@@ -77,15 +79,15 @@ class RealmRepositoryViewModel: ObservableObject {
         case .montheAsce:
             // 生まれ月(昇順)
             users = Array(result).sorted(by: {
-                let pre = df.getMonthInt(date: $0.date)
-                let late = df.getMonthInt(date: $1.date)
+                let pre = dfmMonthOnly.getMonthInt(date: $0.date)
+                let late = dfmMonthOnly.getMonthInt(date: $1.date)
                 return pre < late
             })
         case .montheDesc:
             // 生まれ月(降順)
             users = Array(result).sorted(by: {
-                let pre = df.getMonthInt(date: $0.date)
-                let late = df.getMonthInt(date: $1.date)
+                let pre = dfmMonthOnly.getMonthInt(date: $0.date)
+                let late = dfmMonthOnly.getMonthInt(date: $1.date)
                 return pre > late
             })
         case .none:

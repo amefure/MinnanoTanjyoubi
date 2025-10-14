@@ -67,16 +67,17 @@ final class NotificationRequestManager: Sendable {
 
         var dateStr = ""
 
+        let dfm = DateFormatUtility(format: .hyphen)
         // 前日フラグなら日付を1日前とする
         if dateFlag == "0" {
             // 0 なら当日
-            dateStr = DateFormatUtility().getNotifyString(date: date)
+            dateStr = dfm.getString(date: date)
         } else {
             let dayNum = Int(dateFlag) ?? 1
             // 0以外なら日数前にする
             let calendar = Calendar.current
             let modifiedDate: Date = calendar.date(byAdding: .day, value: -dayNum, to: date) ?? Date()
-            dateStr = DateFormatUtility().getNotifyString(date: modifiedDate)
+            dateStr = dfm.getString(date: modifiedDate)
         }
 
         // "yyyy-MM-dd"形式で取得した文字列を配列に変換

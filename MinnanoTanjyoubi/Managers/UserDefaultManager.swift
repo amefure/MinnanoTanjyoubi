@@ -61,8 +61,8 @@ final class UserDefaultManager: Sendable {
 
     /// 登録：通知時間
     func setNotifyTimeDate(_ date: Date) {
-        let dfm = DateFormatUtility()
-        let time = dfm.getTimeString(date: date)
+        let dfm = DateFormatUtility(format: .time)
+        let time = dfm.getString(date: date)
         userDefaultsRepository.setStringData(key: UserDefaultsKey.NOTICE_TIME, value: time)
     }
 

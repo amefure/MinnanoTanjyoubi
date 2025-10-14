@@ -20,8 +20,9 @@ struct SCDate: Identifiable, @unchecked Sendable {
     var isToday: Bool = false
 
     /// 年月日取得
-    func getDate(format _: String = "yyyy-M-d") -> String {
-        let str = DateFormatUtility().getJpString(date: date ?? Date())
+    func getDate() -> String {
+        let dfm = DateFormatUtility(format: .jp)
+        let str = dfm.getString(date: date ?? Date())
         return str
     }
 

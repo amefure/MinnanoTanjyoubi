@@ -38,41 +38,41 @@ class UserCalcUtility {
 
     /// 12星座
     static func signOfZodiac(
-        from: Date,
-        dfm: DateFormatUtility = DateFormatUtility()
+        from: Date
     ) -> String {
-        let df = dfm.df
+        let dfm = DateFormatUtility(format: .slash)
         // 年数は指定日の年数を取得→範囲を識別するため
-        let thisYear = dfm.getSlashString(date: from).prefix(4)
+        let thisYear = dfm.getString(date: from).prefix(4)
         let nowYear = "\(thisYear)/" // "2023/" 形式
-        let lateYear = "\(Int(thisYear)! + 1)/" // "2024/" 翌年形式
+        guard let intYear = Int(thisYear) else { return "..."}
+        let lateYear = "\(intYear + 1)/" // "2024/" 翌年形式
 
         switch from {
-        case df.date(from: String(nowYear + "3/21"))! ... df.date(from: String(nowYear + "4/20"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "3/21")) ... dfm.getDateNotNull(from: String(nowYear + "4/20")):
             return "おひつじ座"
-        case df.date(from: String(nowYear + "4/20"))! ... df.date(from: String(nowYear + "5/21"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "4/20")) ... dfm.getDateNotNull(from: String(nowYear + "5/21")):
             return "おうし座"
-        case df.date(from: String(nowYear + "5/21"))! ... df.date(from: String(nowYear + "6/22"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "5/21")) ... dfm.getDateNotNull(from: String(nowYear + "6/22")):
             return "ふたご座"
-        case df.date(from: String(nowYear + "6/22"))! ... df.date(from: String(nowYear + "7/23"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "6/22")) ... dfm.getDateNotNull(from: String(nowYear + "7/23")):
             return "かに座"
-        case df.date(from: String(nowYear + "7/23"))! ... df.date(from: String(nowYear + "8/23"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "7/23")) ... dfm.getDateNotNull(from: String(nowYear + "8/23")):
             return "しし座"
-        case df.date(from: String(nowYear + "8/23"))! ... df.date(from: String(nowYear + "9/23"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "8/23")) ... dfm.getDateNotNull(from: String(nowYear + "9/23")):
             return "おとめ座"
-        case df.date(from: String(nowYear + "9/23"))! ... df.date(from: String(nowYear + "10/24"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "9/23")) ... dfm.getDateNotNull(from: String(nowYear + "10/24")):
             return "てんびん座"
-        case df.date(from: String(nowYear + "10/24"))! ... df.date(from: String(nowYear + "11/23"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "10/24")) ... dfm.getDateNotNull(from: String(nowYear + "11/23")):
             return "さそり座"
-        case df.date(from: String(nowYear + "11/23"))! ... df.date(from: String(nowYear + "12/22"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "11/23")) ... dfm.getDateNotNull(from: String(nowYear + "12/22")):
             return "いて座"
-        case df.date(from: String(nowYear + "12/22"))! ... df.date(from: String(lateYear + "1/1"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "12/22")) ... dfm.getDateNotNull(from: String(lateYear + "1/1")):
             return "やぎ座"
-        case df.date(from: String(nowYear + "1/1"))! ... df.date(from: String(nowYear + "1/20"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "1/1")) ... dfm.getDateNotNull(from: String(nowYear + "1/20")):
             return "やぎ座"
-        case df.date(from: String(nowYear + "1/20"))! ... df.date(from: String(nowYear + "2/19"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "1/20")) ... dfm.getDateNotNull(from: String(nowYear + "2/19")):
             return "みずがめ座"
-        case df.date(from: String(nowYear + "2/19"))! ... df.date(from: String(nowYear + "3/21"))!:
+        case dfm.getDateNotNull(from: String(nowYear + "2/19")) ... dfm.getDateNotNull(from: String(nowYear + "3/21")):
             return "うお座"
         default:
             return "..."
@@ -81,10 +81,10 @@ class UserCalcUtility {
 
     ///  十二支
     static func zodiac(
-        from: Date,
-        dfm: DateFormatUtility = DateFormatUtility()
+        from: Date
     ) -> String {
-        let nowYear = dfm.getSlashString(date: from).prefix(4)
+        let dfm = DateFormatUtility(format: .slash)
+        let nowYear = dfm.getString(date: from).prefix(4)
         guard let nowYearInt = Int(nowYear) else {
             // 文字列の場合
             return "..."
@@ -123,21 +123,21 @@ class UserCalcUtility {
     /// 誕生日まであとX日
     static func daysLater(
         from: Date,
-        today: Date = Date(),
-        dfm: DateFormatUtility = DateFormatUtility()
+        today: Date = Date()
     ) -> Int {
-        let dateStr = dfm.getSlashString(date: from)
+        let dfm = DateFormatUtility(format: .slash)
+        let dateStr = dfm.getString(date: from)
         let pre = dateStr.prefix(4)
         guard let range = dateStr.range(of: pre) else { return 0 }
-        let nowYear = dfm.getSlashString(date: today).prefix(4)
+        let nowYear = dfm.getString(date: today).prefix(4)
         var replaceStr = dateStr.replacingCharacters(in: range, with: nowYear)
 
-        var targetDate = dfm.getSlashDate(from: replaceStr)
+        var targetDate = dfm.getDate(from: replaceStr)
         if targetDate == nil {
             // 日付変換失敗；閏年 →　3/1
 
             replaceStr = "\(nowYear)/3/1"
-            targetDate = dfm.getSlashDate(from: replaceStr)
+            targetDate = dfm.getDate(from: replaceStr)
         }
 
         let num = targetDate!.timeIntervalSince(today)
@@ -152,10 +152,9 @@ class UserCalcUtility {
     /// 誕生日まであとXヶ月
     static func monthLater(
         from: Date,
-        today: Date = Date(),
-        dfm: DateFormatUtility = DateFormatUtility()
+        today: Date = Date()
     ) -> Int? {
-        let day = daysLater(from: from, today: today, dfm: dfm)
+        let day = daysLater(from: from, today: today)
         guard day >= 30 else {
             return nil
         }

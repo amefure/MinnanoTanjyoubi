@@ -90,7 +90,7 @@ extension RewardViewModel {
 
     /// 登録する視聴日
     private func nowTime() -> String {
-        let dfm = DateFormatUtility()
-        return dfm.getSlashString(date: Date())
+        let dfm = DateFormatUtility(format: .slash)
+        return dfm.getString(date: Date())
     }
 }

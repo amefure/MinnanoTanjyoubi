@@ -48,7 +48,8 @@ struct BirthDayWidgetEntryView: View {
     var entry: Provider.Entry
 
     private let viewModel = BirthDayWidgetViewModel()
-    private let dfm = DateFormatUtility()
+    private let dfmJp = DateFormatUtility(format: .jp)
+    private let dfmJpOnlyDate = DateFormatUtility(format: .jpOnlyDate)
 
     /// Widgetサイズを取得
     @Environment(\.widgetFamily) var family
@@ -139,10 +140,10 @@ struct BirthDayWidgetEntryView: View {
                         }.frame(width: 40, alignment: .leading)
 
                         if user.isYearsUnknown {
-                            Text(dfm.getJpStringOnlyDate(date: user.date))
+                            Text(dfmJpOnlyDate.getString(date: user.date))
                                 .fontSS()
                         } else {
-                            Text(dfm.getJpString(date: user.date))
+                            Text(dfmJp.getString(date: user.date))
                                 .fontSS()
                         }
 
@@ -200,10 +201,10 @@ struct BirthDayWidgetEntryView: View {
                         }.frame(width: 40, alignment: .leading)
 
                         if user.isYearsUnknown {
-                            Text(dfm.getJpStringOnlyDate(date: user.date))
+                            Text(dfmJpOnlyDate.getString(date: user.date))
                                 .fontSS()
                         } else {
-                            Text(dfm.getJpString(date: user.date))
+                            Text(dfmJp.getString(date: user.date))
                                 .fontSS()
                         }
 

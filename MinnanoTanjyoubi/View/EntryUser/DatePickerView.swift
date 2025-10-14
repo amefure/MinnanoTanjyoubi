@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DatePickerView: View {
-    private let dfm = DateFormatUtility()
+    private let dfmJp = DateFormatUtility(format: .jp)
+    private let dfmJpOnlyDate = DateFormatUtility(format: .jpOnlyDate)
 
     @Binding var date: Date
     @State private var dateStr: String = ""
@@ -29,9 +30,9 @@ struct DatePickerView: View {
                     .environment(\.calendar, Calendar(identifier: .gregorian))
                     .onChange(of: date) { newValue in
                         if isYearsUnknown {
-                            dateStr = dfm.getJpStringOnlyDate(date: newValue)
+                            dateStr = dfmJpOnlyDate.getString(date: newValue)
                         } else {
-                            dateStr = dfm.getJpString(date: newValue)
+                            dateStr = dfmJp.getString(date: newValue)
                         }
                     }
                     .colorInvert()
@@ -59,17 +60,17 @@ struct DatePickerView: View {
                         showWheel = true
                     }.onChange(of: isYearsUnknown) { _ in
                         if isYearsUnknown {
-                            dateStr = dfm.getJpStringOnlyDate(date: date)
+                            dateStr = dfmJpOnlyDate.getString(date: date)
                         } else {
-                            dateStr = dfm.getJpString(date: date)
+                            dateStr = dfmJp.getString(date: date)
                         }
                     }
             }
         }.onAppear {
             if isYearsUnknown {
-                dateStr = dfm.getJpStringOnlyDate(date: date)
+                dateStr = dfmJpOnlyDate.getString(date: date)
             } else {
-                dateStr = dfm.getJpString(date: date)
+                dateStr = dfmJp.getString(date: date)
             }
         }
     }
