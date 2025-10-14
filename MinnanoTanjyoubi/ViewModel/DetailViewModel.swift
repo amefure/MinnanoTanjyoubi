@@ -11,9 +11,14 @@ import UIKit
 
 @MainActor
 class DetailViewModel: ObservableObject {
+    /// 更新画面モーダル
+    @Published var isShowUpdateModalView: Bool = false
+    // 画像ピッカー表示
+    @Published var isShowImagePicker: Bool = false
     /// メモ表示ポップアップ
     @Published var isShowPopUpMemo: Bool = false
-
+    /// 年齢月数表示フラグ
+    @Published private(set) var isDisplayAgeMonth: Bool = false
     /// 保存成功ダイアログ
     @Published var isSaveSuccessAlert: Bool = false
     /// 削除確認ダイアログ
@@ -37,6 +42,17 @@ class DetailViewModel: ObservableObject {
     var selectPath: String = ""
     /// 表示対象のUIImage
     var selectImage: Image?
+    
+    let deviceWidth = DeviceSizeUtility.deviceWidth
+    let isSESize = DeviceSizeUtility.isSESize
+    
+    var roundWidth: CGFloat {
+        if deviceWidth < 400 {
+            return 50
+        } else {
+            return 65
+        }
+    }
 
     private let imageFileManager = ImageFileManager()
     private let repository: RealmRepository
@@ -48,6 +64,7 @@ class DetailViewModel: ObservableObject {
     }
 
     func onAppear(user: User) {
+        isDisplayAgeMonth = getDisplayAgeMonth()
         // 通知初期値セット
         isNotifyFlag = user.alert
         $isNotifyFlag.sink { [weak self] newValue in
@@ -61,6 +78,14 @@ class DetailViewModel: ObservableObject {
     }
 }
 
+// MARK: UserDefaults
+extension DetailViewModel {
+    private func getDisplayAgeMonth() -> Bool {
+        AppManager.sharedUserDefaultManager.getDisplayAgeMonth()
+    }
+}
+
+// MARK: UserDefaults
 extension DetailViewModel {
     /// ImageContainerViewの描画更新フラグ
     func updateImageContainerView() {
