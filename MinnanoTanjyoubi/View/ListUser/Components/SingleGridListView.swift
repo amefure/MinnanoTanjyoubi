@@ -31,7 +31,7 @@ struct SingleGridListView: View {
                 } else {
                     // NormalMode
                     NavigationLink {
-                        DetailUserView(user: user)
+                        DetailUserView(userId: user.id)
                             .environmentObject(rootEnvironment)
                     } label: {
                         RowUserView(user: user)

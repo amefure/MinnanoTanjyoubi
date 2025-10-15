@@ -10,7 +10,7 @@ import SwiftUI
 
 /// リストページからの詳細ページビュー
 struct DetailUserView: View {
-    var user: User
+    var userId: ObjectId
 
     @StateObject private var viewModel = DetailViewModel()
 
@@ -19,10 +19,7 @@ struct DetailUserView: View {
     private let dfmJp = DateFormatUtility(format: .jp)
     private let dfmJpOnlyDate = DateFormatUtility(format: .jpOnlyDate)
     private let dfmJpEra = DateFormatUtility(format: .jpEra)
-
-    @State private var image: UIImage?
-    @State private var images: [String] = []
-
+    
     var body: some View {
         VStack {
             UpSideView()
@@ -41,7 +38,7 @@ struct DetailUserView: View {
                         Spacer()
                         
                         Button {
-                            ShareInfoUtillity.shareBirthday([user])
+                            ShareInfoUtillity.shareBirthday([viewModel.targetUser])
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                                 .fontM()
@@ -51,7 +48,7 @@ struct DetailUserView: View {
                 
                 ZStack(alignment: .topTrailing) {
                     // Memo
-                    Text(user.memo)
+                    Text(viewModel.targetUser.memo)
                         .fontM()
                         .truncationMode(.tail) // 文字溢れを「....」にする
                         .padding()
@@ -88,8 +85,7 @@ struct DetailUserView: View {
             
             // 追加しても更新されないので明示的にidを指定する
             imageContainerView()
-                .id(viewModel.isUpdateImageContainerView)
-            
+              
             Spacer()
             
             DownSideView(
@@ -98,7 +94,7 @@ struct DetailUserView: View {
                 }, 
                 imageString: "square.and.pencil"
             ).sheet(isPresented: $viewModel.isShowUpdateModalView) {
-                EntryUserView(user: user, isModal: $viewModel.isShowUpdateModalView)
+                EntryUserView(user: viewModel.targetUser, isModal: $viewModel.isShowUpdateModalView)
             }.environmentObject(rootEnvironment)
 
             if !viewModel.isSESize && !rootEnvironment.removeAds {
@@ -110,7 +106,7 @@ struct DetailUserView: View {
             .foregroundStyle(rootEnvironment.scheme.text)
             .fontWeight(.bold)
             .toolbar(.hidden, for: .navigationBar)
-            .onAppear { viewModel.onAppear(user: user) }
+            .onAppear { viewModel.onAppear(id: userId) }
             .onDisappear { viewModel.onDisappear() }
             .alert(
                 isPresented: $viewModel.isDeleteConfirmAlert,
@@ -121,9 +117,9 @@ struct DetailUserView: View {
                 positiveButtonRole: .destructive,
                 positiveAction: {
                     // 画像削除
-                    viewModel.deleteImage(user: user)
+                    viewModel.deleteImage()
                 }, negativeAction: {
-                    viewModel.selectPath = ""
+                    viewModel.selectedDeleteImagePath = ""
                 }
             )
             .alert(
@@ -141,7 +137,7 @@ struct DetailUserView: View {
                 message: "画像を削除しました。",
                 positiveButtonTitle: "OK",
                 positiveAction: {
-                    viewModel.selectPath = ""
+                    viewModel.selectedDeleteImagePath = ""
                     viewModel.updateImageContainerView()
                 }
             )
@@ -152,11 +148,11 @@ struct DetailUserView: View {
                 positiveButtonTitle: "OK"
             ).dialogImagePreviewView(
                 isPresented: $viewModel.isImageShowAlert,
-                image: viewModel.selectImage
+                image: viewModel.selectedPreViewImage
             ).popup(
                 isPresented: $viewModel.isShowPopUpMemo,
                 title: "MEMO",
-                message: user.memo
+                message: viewModel.targetUser.memo
             )
     }
     
@@ -164,7 +160,7 @@ struct DetailUserView: View {
     private func upSideUserInfoView() -> some View {
         VStack(spacing: 0) {
             HStack {
-                Text(rootEnvironment.relationNameList[safe: user.relation.relationIndex] ?? "その他")
+                Text(rootEnvironment.relationNameList[safe: viewModel.targetUser.relation.relationIndex] ?? "その他")
                     .padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: viewModel.roundWidth, alignment: .center)
@@ -177,7 +173,7 @@ struct DetailUserView: View {
                 Spacer()
 
                 HStack(alignment: .bottom) {
-                    let daysLater = UserCalcUtility.daysLater(from: user.date)
+                    let daysLater = UserCalcUtility.daysLater(from: viewModel.targetUser.date)
                     if daysLater == 0 {
                         Text("HAPPY BIRTHDAY")
                             .foregroundStyle(rootEnvironment.scheme.thema1)
@@ -198,17 +194,17 @@ struct DetailUserView: View {
                     .font(viewModel.isSESize ? .system(size: 12) : .system(size: 17))
             }
 
-            Text(user.ruby)
+            Text(viewModel.targetUser.ruby)
                 .font(viewModel.isSESize ? .system(size: 12) : .system(size: 14))
-            Text(user.name)
+            Text(viewModel.targetUser.name)
                 .font(viewModel.isSESize ? .system(size: 17) : .system(size: 20))
             HStack {
-                if user.isYearsUnknown {
-                    Text(dfmJpOnlyDate.getString(date: user.date))
+                if viewModel.targetUser.isYearsUnknown {
+                    Text(dfmJpOnlyDate.getString(date: viewModel.targetUser.date))
                     Text("（年数未設定）")
                 } else {
-                    Text(dfmJp.getString(date: user.date))
-                    Text("（\(dfmJpEra.getString(date: user.date))）")
+                    Text(dfmJp.getString(date: viewModel.targetUser.date))
+                    Text("（\(dfmJpEra.getString(date: viewModel.targetUser.date))）")
                 }
             }.padding(.top, 8)
                 .fontM()
@@ -219,26 +215,42 @@ struct DetailUserView: View {
     private func middleUserInfoView() -> some View {
         HStack(spacing: 20) {
             VStack {
-                if user.isYearsUnknown {
+                if viewModel.targetUser.isYearsUnknown {
                     Text("- 歳")
                 } else {
-                    Text("\(UserCalcUtility.currentAge(from: user.date))歳")
+                    Text("\(UserCalcUtility.currentAge(from: viewModel.targetUser.date))歳")
                     // 月数まで表示するか否か
                     if viewModel.isDisplayAgeMonth {
-                        Text("\(UserCalcUtility.currentAgeMonth(from: user.date))ヶ月")
+                        Text("\(UserCalcUtility.currentAgeMonth(from: viewModel.targetUser.date))ヶ月")
                     }
                 }
-            }.circleBorderView(width: viewModel.roundWidth, height: viewModel.roundWidth, color: rootEnvironment.scheme.thema2)
+            }.circleBorderView(
+                width: viewModel.roundWidth,
+                height: viewModel.roundWidth,
+                color: rootEnvironment.scheme.thema2
+            )
 
-            Text(UserCalcUtility.signOfZodiac(from: user.date))
-                .circleBorderView(width: viewModel.roundWidth, height: viewModel.roundWidth, color: rootEnvironment.scheme.thema4)
+            Text(UserCalcUtility.signOfZodiac(from: viewModel.targetUser.date))
+                .circleBorderView(
+                    width: viewModel.roundWidth,
+                    height: viewModel.roundWidth,
+                    color: rootEnvironment.scheme.thema4
+                )
 
-            if user.isYearsUnknown {
+            if viewModel.targetUser.isYearsUnknown {
                 Text("- 年")
-                    .circleBorderView(width: viewModel.roundWidth, height: viewModel.roundWidth, color: rootEnvironment.scheme.thema3)
+                    .circleBorderView(
+                        width: viewModel.roundWidth,
+                        height: viewModel.roundWidth,
+                        color: rootEnvironment.scheme.thema3
+                    )
             } else {
-                Text(UserCalcUtility.zodiac(from: user.date))
-                    .circleBorderView(width: viewModel.roundWidth, height: viewModel.roundWidth, color: rootEnvironment.scheme.thema3)
+                Text(UserCalcUtility.zodiac(from: viewModel.targetUser.date))
+                    .circleBorderView(
+                        width: viewModel.roundWidth,
+                        height: viewModel.roundWidth,
+                        color: rootEnvironment.scheme.thema3
+                    )
             }
 
         }.font(viewModel.isSESize ? .system(size: 12) : .system(size: 17))
@@ -248,19 +260,21 @@ struct DetailUserView: View {
     private func imageContainerView() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
-                ForEach(Array(images.enumerated()), id: \.element) { index, path in
+                ForEach(Array(viewModel.displayImages.enumerated()), id: \.element) { index, path in
                     AsyncImage(url: URL(fileURLWithPath: path)) { image in
                         ZStack {
                             image
                                 .resizable()
                                 .frame(width: 80, height: 80)
                                 .onTapGesture {
+                                    // プレビュー表示
                                     viewModel.showPreViewImagePopup(image: image)
                                 }.onLongPressGesture {
-                                    viewModel.showDeleteConfirmAlert(user: user, index: index)
+                                    // 削除確認ダイアログの表示
+                                    viewModel.showDeleteConfirmAlert(user: viewModel.targetUser, index: index)
                                 }
                             // 選択中UI表示
-                            if viewModel.selectPath == user.imagePaths[safe: index] {
+                            if viewModel.selectedDeleteImagePath == viewModel.targetUser.imagePaths[safe: index] {
                                 Rectangle()
                                     .frame(width: 80, height: 80)
                                     .background(.black)
@@ -290,15 +304,7 @@ struct DetailUserView: View {
             }.padding(.horizontal)
         }
         .sheet(isPresented: $viewModel.isShowImagePicker) {
-            ImagePickerDialog(image: $image)
-        }.onChange(of: image) { image in
-            viewModel.saveImage(user: user, image: image)
-        }.onAppear {
-            // UI表示時に画像パスを取得する
-            for path in user.imagePaths {
-                guard let path = viewModel.loadImagePath(name: path) else { continue }
-                images.append(path)
-            }
+            ImagePickerDialog(image: $viewModel.selectedPickerImage)
         }
     }
 }

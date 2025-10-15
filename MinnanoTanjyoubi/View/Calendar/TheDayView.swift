@@ -121,7 +121,7 @@ struct TheDayView: View {
         }.if(theDay.users.count == 1) { view in
             view
                 .navigationDestination(isPresented: $isShowDetailView) {
-                    DetailUserView(user: theDay.users.first!)
+                    DetailUserView(userId: theDay.users.first!.id)
                         .environmentObject(rootEnvironment)
                 }
         }.if(theDay.users.count >= 2) { view in
@@ -130,7 +130,7 @@ struct TheDayView: View {
                     mulchUserSelectListView()
                 }.navigationDestination(isPresented: $isShowDetailView) {
                     if let user = user {
-                        DetailUserView(user: user)
+                        DetailUserView(userId: user.id)
                             .environmentObject(rootEnvironment)
                     }
                 }

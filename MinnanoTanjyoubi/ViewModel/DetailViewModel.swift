@@ -8,9 +8,13 @@
 import Combine
 import SwiftUI
 import UIKit
+import RealmSwift
 
 @MainActor
 class DetailViewModel: ObservableObject {
+    
+    /// 詳細画面で表示するUser情報
+    @Published var targetUser: User = User()
     /// 更新画面モーダル
     @Published var isShowUpdateModalView: Bool = false
     // 画像ピッカー表示
@@ -38,10 +42,14 @@ class DetailViewModel: ObservableObject {
     /// 通知トグルフラグ
     @Published var isNotifyFlag: Bool = false
 
-    /// 削除対象のパス
-    var selectPath: String = ""
-    /// 表示対象のUIImage
-    var selectImage: Image?
+    /// 画像削除対象のパス
+    var selectedDeleteImagePath: String = ""
+    /// プレビュー表示対象の`Image`
+    var selectedPreViewImage: Image?
+    /// 画像ピッカー選択の`UIImage`
+    @Published var selectedPickerImage: UIImage?
+    /// 有効なパスに変換された画像パス
+    @Published private(set) var displayImages: [String] = []
     
     let deviceWidth = DeviceSizeUtility.deviceWidth
     let isSESize = DeviceSizeUtility.isSESize
@@ -63,14 +71,33 @@ class DetailViewModel: ObservableObject {
         repository = repositoryDependency.realmRepository
     }
 
-    func onAppear(user: User) {
+    func onAppear(id: ObjectId) {
+        
+        refreshTargetUser(id: id)
+        
         isDisplayAgeMonth = getDisplayAgeMonth()
         // 通知初期値セット
-        isNotifyFlag = user.alert
-        $isNotifyFlag.sink { [weak self] newValue in
-            guard let self else { return }
-            self.switchNotifyFlag(flag: newValue, user: user)
-        }.store(in: &cancellables)
+        isNotifyFlag = targetUser.alert
+        
+        $isNotifyFlag
+            .sink { [weak self] newValue in
+                guard let self else { return }
+                self.switchNotifyFlag(flag: newValue, user: targetUser)
+            }.store(in: &cancellables)
+        
+        $selectedPickerImage
+            .sink { [weak self] image in
+                guard let self else { return }
+                self.saveImage(image: image)
+            }.store(in: &cancellables)
+        
+        // 更新モーダルから戻った(falseになった)際にはリフレッシュ
+        $isShowUpdateModalView
+            .sink { [weak self] flag in
+                guard let self else { return }
+                guard !flag else { return }
+                refreshTargetUser(id: targetUser.id)
+            }.store(in: &cancellables)
     }
 
     func onDisappear() {
@@ -82,6 +109,13 @@ class DetailViewModel: ObservableObject {
 extension DetailViewModel {
     private func getDisplayAgeMonth() -> Bool {
         AppManager.sharedUserDefaultManager.getDisplayAgeMonth()
+    }
+    
+    private func refreshTargetUser(id: ObjectId) {
+        guard let user: User = repository.getByPrimaryKey(id) else { return }
+        targetUser = user
+        // 有効な画像保存パスに変換してUI更新
+        displayImages = targetUser.imagePaths.compactMap { loadImagePath(name: $0) }
     }
 }
 
@@ -100,32 +134,30 @@ extension DetailViewModel {
 
     /// 画像プレビューポップアップ表示
     func showPreViewImagePopup(image: Image) {
-        selectImage = image
+        selectedPreViewImage = image
         isImageShowAlert = true
     }
 
     /// 画像削除確認ダイアログ表示
     func showDeleteConfirmAlert(user: User, index: Int) {
-        selectPath = user.imagePaths[safe: index] ?? ""
+        selectedDeleteImagePath = user.imagePaths[safe: index] ?? ""
         isDeleteConfirmAlert = true
     }
 
     /// 画像がちゃんと保存されているパスをチェック & 取得
-    func loadImagePath(name: String) -> String? {
+    private func loadImagePath(name: String) -> String? {
         imageFileManager.loadImagePath(name: name)
     }
 
     /// 画像保存
-    func saveImage(user: User, image: UIImage?) {
+    private func saveImage(image: UIImage?) {
         guard let image = image else { return }
         let imgName = UUID().uuidString
         do {
             _ = try imageFileManager.saveImage(name: imgName, image: image)
-            var imagePaths = Array(user.imagePaths)
-            imagePaths.append(imgName)
-            repository.updateImagePathsUser(id: user.id, imagePathsArray: imagePaths)
-            // 再取得
-            NotificationCenter.default.post(name: .readAllUsers, object: true)
+            repository.appendImagePathUser(id: targetUser.id, imagePath: imgName)
+            // User情報リフレッシュ
+            refreshTargetUser(id: targetUser.id)
             isSaveSuccessAlert = true
         } catch {
             guard error is ImageError else { return }
@@ -134,14 +166,14 @@ extension DetailViewModel {
     }
 
     /// 画像削除
-    func deleteImage(user: User) {
-        var imagePaths = Array(user.imagePaths)
-        imagePaths.removeAll(where: { $0 == selectPath })
+    func deleteImage() {
+        var imagePaths = Array(targetUser.imagePaths)
+        imagePaths.removeAll(where: { $0 == selectedDeleteImagePath })
         // ここのエラーは握り潰す
-        _ = try? imageFileManager.deleteImage(name: selectPath)
-        repository.updateImagePathsUser(id: user.id, imagePathsArray: imagePaths)
-        // 再取得
-        NotificationCenter.default.post(name: .readAllUsers, object: true)
+        _ = try? imageFileManager.deleteImage(name: selectedDeleteImagePath)
+        repository.removeImagePathUser(id: targetUser.id, imagePath: selectedDeleteImagePath)
+        // User情報リフレッシュ
+        refreshTargetUser(id: targetUser.id)
         isDeleteSuccessAlert = true
     }
 

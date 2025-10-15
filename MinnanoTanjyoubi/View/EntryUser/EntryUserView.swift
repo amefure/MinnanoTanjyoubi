@@ -89,8 +89,9 @@ struct EntryUserView: View {
                     Text("関　　係")
                         .frame(width: 80)
                     Spacer()
-                    RelationPickerView(selectedRelation: $selectedRelation)
-                        .environmentObject(rootEnvironment)
+                    
+                    relationPickerView()
+                    
                     Spacer()
                 }.padding(5)
 
@@ -217,5 +218,19 @@ struct EntryUserView: View {
                     showValidationDialog = false
                 }
             )
+    }
+    
+    /// 関係性ピッカー
+    private func relationPickerView() -> some View {
+        Picker(selection: $selectedRelation, label: Text("関係")) {
+            ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
+                Text(item)
+                    .tag(Relation.getIndexbyRelation(index))
+            }
+        }.pickerStyle(.menu)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(rootEnvironment.scheme.text.opacity(0.4), lineWidth: 2)
+            ).tint(rootEnvironment.scheme.text)
     }
 }
