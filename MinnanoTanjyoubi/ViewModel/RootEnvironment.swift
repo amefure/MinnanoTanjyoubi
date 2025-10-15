@@ -258,7 +258,7 @@ extension RootEnvironment {
         AppManager.sharedUserDefaultManager.setLaunchAppCount(reset: reset)
     }
 
-    /// アプリ起動回数取得
+    /// アプリ内課金購入状況取得
     private func getPurchasedFlag() {
         removeAds = AppManager.sharedUserDefaultManager.getPurchasedRemoveAds()
         unlockStorage = AppManager.sharedUserDefaultManager.getPurchasedUnlockStorage()

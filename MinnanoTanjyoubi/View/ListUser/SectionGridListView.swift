@@ -8,43 +8,43 @@
 import SwiftUI
 
 struct SectionGridListView: View {
-    @ObservedObject private var repository = RealmRepositoryViewModel.shared
+    var users: [User]
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {
         SectionRowView(
-            users: repository.users.filter { $0.relation == .friend },
+            users: users.filter { $0.relation == .friend },
             title: rootEnvironment.relationNameList[safe: 0] ?? RelationConfig.FRIEND_NAME
         ).environmentObject(rootEnvironment)
 
         SectionRowView(
-            users: repository.users.filter { $0.relation == .family },
+            users: users.filter { $0.relation == .family },
             title: rootEnvironment.relationNameList[safe: 1] ?? RelationConfig.FAMILY_NAME
         ).environmentObject(rootEnvironment)
 
         SectionRowView(
-            users: repository.users.filter { $0.relation == .school },
+            users: users.filter { $0.relation == .school },
             title: rootEnvironment.relationNameList[safe: 2] ?? RelationConfig.SCHOOL_NAME
         ).environmentObject(rootEnvironment)
 
         SectionRowView(
-            users: repository.users.filter { $0.relation == .work },
+            users: users.filter { $0.relation == .work },
             title: rootEnvironment.relationNameList[safe: 3] ?? RelationConfig.WORK_NAME
         ).environmentObject(rootEnvironment)
 
         SectionRowView(
-            users: repository.users.filter { $0.relation == .other },
+            users: users.filter { $0.relation == .other },
             title: rootEnvironment.relationNameList[safe: 4] ?? RelationConfig.OTHER_NAME
         ).environmentObject(rootEnvironment)
 
         SectionRowView(
-            users: repository.users.filter { $0.relation == .sns },
+            users: users.filter { $0.relation == .sns },
             title: rootEnvironment.relationNameList[safe: 5] ?? RelationConfig.SNS_NAME
         ).environmentObject(rootEnvironment)
     }
 }
 
 #Preview {
-    SectionGridListView()
+    SectionGridListView(users: User.demoUsers)
         .environmentObject(RootEnvironment.shared)
 }

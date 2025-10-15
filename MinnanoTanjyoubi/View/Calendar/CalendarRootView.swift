@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CalendarRootView: View {
-    var users: [User]
     @StateObject private var viewModel = CalendarViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
@@ -42,6 +41,6 @@ struct CalendarRootView: View {
 }
 
 #Preview {
-    CalendarRootView(users: [])
+    CalendarRootView()
         .environmentObject(RootEnvironment.shared)
 }

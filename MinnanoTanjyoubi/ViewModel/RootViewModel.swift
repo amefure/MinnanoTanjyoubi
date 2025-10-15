@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// アプリルートViewModel
 class RootViewModel: ObservableObject {
     @Published private(set) var showCreateFailedError: Bool = false
     @Published var showCreateShareUserError: Bool = false

@@ -9,16 +9,12 @@ import RealmSwift
 import SwiftUI
 import UIKit
 
-/// データをリスト表示するビュー
+/// データをグリッドレイアウト・セクションレイアウト・カレンダー表示を切り替え
 struct RootListUserView: View {
-    @ObservedObject private var repository = RealmRepositoryViewModel.shared
-
-    // Environment
+    
+    @StateObject private var viewModel = RootListUserViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-
-    @State private var isScrollingDown = false
     @GestureState private var dragOffset = CGSize.zero
-    @State private var opacity: Double = 1
 
     private var drag: some Gesture {
         DragGesture(minimumDistance: 0.0)
@@ -27,16 +23,16 @@ struct RootListUserView: View {
                 if value.translation.height < 0 {
                     /// iOS17以前で
                     /// ‘Modifying state during view update, this will cause undefined behavior‘
-                    isScrollingDown = true
+                    viewModel.isScrollingDown = true
                 } else if value.translation.height > 0 {
-                    isScrollingDown = false
+                    viewModel.isScrollingDown = false
                 }
             })
             .onEnded { value in
                 if value.translation.height < 0 {
-                    isScrollingDown = true
+                    viewModel.isScrollingDown = true
                 } else {
-                    isScrollingDown = false
+                    viewModel.isScrollingDown = false
                 }
             }
     }
@@ -53,27 +49,18 @@ struct RootListUserView: View {
         }
     }
 
-    /// iOS18かどうか
-    private var isIos18: Bool {
-        if #available(iOS 18, *) {
-            return true
-        } else {
-            return false
-        }
-    }
-
     var body: some View {
         VStack(spacing: 0) {
             switch rootEnvironment.sectionLayoutFlag {
             case .calendar:
                 // 単体のグリッドレイアウト
-                CalendarRootView(users: repository.users)
+                CalendarRootView()
                     .environmentObject(rootEnvironment)
 
             default:
                 ZStack {
                     // List Contents
-                    if repository.users.isEmpty {
+                    if viewModel.allUsers.isEmpty {
                         noDataView()
                     } else {
                         ScrollView {
@@ -81,11 +68,11 @@ struct RootListUserView: View {
                                 switch rootEnvironment.sectionLayoutFlag {
                                 case .grid:
                                     // 単体のグリッドレイアウト
-                                    SingleGridListView(users: repository.users)
+                                    SingleGridListView(users: viewModel.allUsers)
                                         .environmentObject(rootEnvironment)
                                 case .group:
                                     // カテゴリセクショングリッドレイアウト
-                                    SectionGridListView()
+                                    SectionGridListView(users: viewModel.allUsers)
                                         .environmentObject(rootEnvironment)
                                 case .calendar:
                                     // ここは呼ばれない
@@ -93,7 +80,7 @@ struct RootListUserView: View {
                                 }
                             }.padding(.bottom, 75)
                         }.padding([.top, .trailing, .leading])
-                            .if(isIos18) { view in
+                            .if(viewModel.isIos18Later) { view in
                                 // FIXME: - iOS17以前ではスクロールが動作しないため暫定対応としてiOS18以降のみ
                                 view
                                     .simultaneousGesture(drag)
@@ -103,20 +90,66 @@ struct RootListUserView: View {
                     VStack {
                         Spacer()
 
-                        ControlPanelView(
-                            isScrollingDown: $isScrollingDown
-                        ).environmentObject(rootEnvironment)
-                            .opacity(opacity)
+                        controlPanelView()
+                            .opacity(viewModel.opacity)
                     }.onTapGesture {
-                        opacity = 1
+                        viewModel.opacity = 1
                     }
                 }
             }
 
         }.background(rootEnvironment.scheme.foundationSub)
-            .onChange(of: isScrollingDown) { _ in
-                // 下方向にスクロール中のみ半透明にする
-                opacity = isScrollingDown ? 0.5 : 1
-            }
+            .onAppear { viewModel.onAppear() }
+            .onDisappear { viewModel.onDisappear() }
+           
+    }
+    
+
+    /// フッターコントロールパネル
+    private func controlPanelView() -> some View {
+        HStack {
+            let tapGesture = TapGesture()
+                .onEnded { viewModel.isScrollingDown = false }
+            Spacer()
+
+            RemoveButtonView()
+                .environmentObject(rootEnvironment)
+                .simultaneousGesture(tapGesture)
+
+            Spacer()
+
+            SortedButtonView()
+                .environmentObject(rootEnvironment)
+                .simultaneousGesture(tapGesture)
+
+            Spacer()
+
+            entryButtonView()
+                .simultaneousGesture(tapGesture)
+
+            Spacer()
+
+        }.frame(width: DeviceSizeUtility.deviceWidth, height: 70)
+            .foregroundStyle(rootEnvironment.scheme.controlText)
+            .background(rootEnvironment.scheme.foundationPrimary)
+    }
+
+    
+    private func entryButtonView() -> some View {
+        Button {
+            viewModel.checkEntryEnabled()
+        } label: {
+            Image(systemName: "plus")
+                .fontM()
+        }.circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema3)
+            .sheet(isPresented: $viewModel.isShowEntryModal) {
+                EntryUserView(updateUserId: nil, isSelfShowModal: $viewModel.isShowEntryModal)
+                    .environmentObject(rootEnvironment)
+            }.alert(
+                isPresented: $viewModel.isShowLimitAlert,
+                title: "Error...",
+                message: "保存容量が上限に達しました。\n設定から広告を視聴すると\n保存容量を増やすことができます。",
+                positiveButtonTitle: "OK"
+            )
     }
 }
