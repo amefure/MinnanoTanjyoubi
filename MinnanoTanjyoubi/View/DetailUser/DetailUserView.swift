@@ -12,7 +12,7 @@ import SwiftUI
 struct DetailUserView: View {
     var userId: ObjectId
 
-    @StateObject private var viewModel = DetailViewModel()
+    @StateObject private var viewModel = DetailUserViewModel()
 
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     
@@ -94,7 +94,7 @@ struct DetailUserView: View {
                 }, 
                 imageString: "square.and.pencil"
             ).sheet(isPresented: $viewModel.isShowUpdateModalView) {
-                EntryUserView(user: viewModel.targetUser, isModal: $viewModel.isShowUpdateModalView)
+                EntryUserView(updateUserId: viewModel.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
             }.environmentObject(rootEnvironment)
 
             if !viewModel.isSESize && !rootEnvironment.removeAds {

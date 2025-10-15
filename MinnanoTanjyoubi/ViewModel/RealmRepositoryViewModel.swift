@@ -101,11 +101,6 @@ class RealmRepositoryViewModel: ObservableObject {
         NotificationCenter.default.post(name: .updateCalendar, object: true)
     }
 
-    func createUser(newUser: User) {
-        repository.createUser(user: newUser)
-        readAllUsers()
-    }
-
     func shareCreateUsers(shareUsers: [User], unlockStorage: Bool) -> ShareCreateError? {
         // 容量チェック && 容量解放されていないか
         guard !isOverCapacity(shareUsers.count) || unlockStorage else { return ShareCreateError.overCapacity }
@@ -113,7 +108,7 @@ class RealmRepositoryViewModel: ObservableObject {
             // エラーが発生したら登録シーケンスを終了
             guard !(users.contains { $0.name == user.name }) else { return ShareCreateError.existUser }
             let copy = copyUser(user)
-            repository.createUser(user: copy)
+            repository.createObject(copy)
         }
         return nil
     }
@@ -142,11 +137,6 @@ class RealmRepositoryViewModel: ObservableObject {
     func filteringUser(selectedRelation: Relation) {
         readAllUsers()
         users = users.filter { $0.relation == selectedRelation }
-    }
-
-    func updateUser(id: ObjectId, newUser: User) {
-        repository.updateUser(id: id, newUser: newUser)
-        readAllUsers()
     }
 
     func updateNotifyUser(id: ObjectId, notify: Bool) {

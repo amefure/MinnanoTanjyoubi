@@ -32,7 +32,7 @@ struct EntryButtonView: View {
                 .fontM()
         }.circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema3)
             .sheet(isPresented: $isModal) {
-                EntryUserView(user: nil, isModal: $isModal)
+                EntryUserView(updateUserId: nil, isSelfShowModal: $isModal)
                     .environmentObject(rootEnvironment)
             }.alert(
                 isPresented: $isLimitAlert,

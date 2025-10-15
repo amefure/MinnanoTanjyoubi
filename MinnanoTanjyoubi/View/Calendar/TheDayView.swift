@@ -101,10 +101,10 @@ struct TheDayView: View {
             view
                 .sheet(isPresented: $isShowEntryModal) {
                     EntryUserView(
-                        user: nil,
+                        updateUserId: nil,
                         isCalendarMonth: theDay.month,
                         isCalendarDay: theDay.day,
-                        isModal: $isShowEntryModal
+                        isSelfShowModal: $isShowEntryModal
                     )
                     .environmentObject(rootEnvironment)
                 }.alert(
@@ -115,8 +115,7 @@ struct TheDayView: View {
                     negativeButtonTitle: "",
                     positiveAction: {
                         isLimitAlert = false
-                    },
-                    negativeAction: {}
+                    }
                 )
         }.if(theDay.users.count == 1) { view in
             view

@@ -22,14 +22,6 @@ final class RealmRepository: Sendable {
 
     private let realm: Realm
 
-    // MARK: - Create
-
-    func createUser(user: User) {
-        try! realm.write {
-            realm.add(user)
-        }
-    }
-
     // MARK: - Read
 
     func readAllUsers() -> Results<User> {
@@ -37,22 +29,6 @@ final class RealmRepository: Sendable {
             let users = realm.objects(User.self)
             // Deleteでクラッシュするため凍結させる
             return users.freeze().sorted(byKeyPath: "id", ascending: true)
-        }
-    }
-
-    // MARK: - Update
-
-    func updateUser(id: ObjectId, newUser: User) {
-        try! realm.write {
-            guard let result = realm.objects(User.self).where({ $0.id == id }).first else {
-                return
-            }
-            result.name = newUser.name
-            result.ruby = newUser.ruby
-            result.date = newUser.date
-            result.relation = newUser.relation
-            result.memo = newUser.memo
-            result.isYearsUnknown = newUser.isYearsUnknown
         }
     }
 

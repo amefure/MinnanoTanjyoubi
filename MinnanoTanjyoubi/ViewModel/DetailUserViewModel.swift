@@ -1,5 +1,5 @@
 //
-//  DetailViewModel.swift
+//  DetailUserViewModel.swift
 //  MinnanoTanjyoubi
 //
 //  Created by t&a on 2024/02/22.
@@ -11,7 +11,7 @@ import UIKit
 import RealmSwift
 
 @MainActor
-class DetailViewModel: ObservableObject {
+class DetailUserViewModel: ObservableObject {
     
     /// 詳細画面で表示するUser情報
     @Published var targetUser: User = User()
@@ -106,7 +106,7 @@ class DetailViewModel: ObservableObject {
 }
 
 // MARK: UserDefaults
-extension DetailViewModel {
+extension DetailUserViewModel {
     private func getDisplayAgeMonth() -> Bool {
         AppManager.sharedUserDefaultManager.getDisplayAgeMonth()
     }
@@ -120,7 +120,7 @@ extension DetailViewModel {
 }
 
 // MARK: UserDefaults
-extension DetailViewModel {
+extension DetailUserViewModel {
     /// ImageContainerViewの描画更新フラグ
     func updateImageContainerView() {
         isUpdateImageContainerView += 1
