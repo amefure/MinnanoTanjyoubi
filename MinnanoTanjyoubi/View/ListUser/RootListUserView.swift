@@ -118,8 +118,7 @@ struct RootListUserView: View {
 
             Spacer()
 
-            SortedButtonView()
-                .environmentObject(rootEnvironment)
+            filteringButtonView()
                 .simultaneousGesture(tapGesture)
 
             Spacer()
@@ -132,6 +131,28 @@ struct RootListUserView: View {
         }.frame(width: DeviceSizeUtility.deviceWidth, height: 70)
             .foregroundStyle(rootEnvironment.scheme.controlText)
             .background(rootEnvironment.scheme.foundationPrimary)
+    }
+    
+
+    
+    private func filteringButtonView() -> some View {
+        Button {
+            viewModel.showSortPickerOrResetFiltering()
+        } label: {
+            Image(systemName: viewModel.isFiltering ? "arrowshape.turn.up.backward.fill" : "person.2.crop.square.stack")
+                .circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema4)
+                .fontM()
+        }.sheet(isPresented: $viewModel.isShowRelationPicker) {
+            VStack {
+                Picker(selection: $viewModel.selectedFilteringRelation) {
+                    ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
+                        Text(item).tag(Relation.getIndexbyRelation(index))
+                    }
+                } label: {}
+                    .pickerStyle(.segmented)
+                    .presentationDetents([.height(100)])
+            }
+        }
     }
 
     

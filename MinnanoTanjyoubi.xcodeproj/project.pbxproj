@@ -81,7 +81,6 @@
 		126236212DF3C78F00A5F1AE /* TheDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236202DF3C78E00A5F1AE /* TheDayView.swift */; };
 		126236232DF45DFF00A5F1AE /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236222DF45DEB00A5F1AE /* LayoutItem.swift */; };
 		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
-		12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BB029A785EE00D0498F /* SortedButtonView.swift */; };
 		1268B3EC2D15742D00E1F8F7 /* CustomPopUpDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */; };
 		1276A7982DD8C8F50023067D /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
 		127788C12E9FC40C0048E9D0 /* RealmRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127788C02E9FC40B0048E9D0 /* RealmRepositoryProtocol.swift */; };
@@ -286,7 +285,6 @@
 		126236202DF3C78E00A5F1AE /* TheDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDayView.swift; sourceTree = "<group>"; };
 		126236222DF45DEB00A5F1AE /* LayoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
 		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
-		12682BB029A785EE00D0498F /* SortedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedButtonView.swift; sourceTree = "<group>"; };
 		1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopUpDialogView.swift; sourceTree = "<group>"; };
 		127788C02E9FC40B0048E9D0 /* RealmRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryProtocol.swift; sourceTree = "<group>"; };
 		127788C32E9FD2DB0048E9D0 /* RootListUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootListUserViewModel.swift; sourceTree = "<group>"; };
@@ -634,7 +632,6 @@
 			isa = PBXGroup;
 			children = (
 				12682BAE29A784E600D0498F /* RemoveButtonView.swift */,
-				12682BB029A785EE00D0498F /* SortedButtonView.swift */,
 			);
 			path = ControlPanel;
 			sourceTree = "<group>";
@@ -1117,7 +1114,6 @@
 				124602432B36A92C00B6C32D /* AppLockViewModel.swift in Sources */,
 				128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */,
 				12B76E832D0D90600021A018 /* SecretCryptoKey.swift in Sources */,
-				12682BB129A785EE00D0498F /* SortedButtonView.swift in Sources */,
 				123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */,
 				128FB79F2E9A2ECF000167C6 /* EntryNotifyListViewModel.swift in Sources */,
 				12CFB0CB2D0C7DB400407CEA /* ShareInfoUtillity.swift in Sources */,

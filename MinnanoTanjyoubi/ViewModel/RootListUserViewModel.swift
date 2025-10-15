@@ -21,6 +21,13 @@ final class RootListUserViewModel: ObservableObject {
     /// コントロールパネルopacity
     @Published var opacity: Double = 1
     
+    /// 関係ピッカー表示中かどうか
+    @Published var isShowRelationPicker = false
+    /// フィルタリング中かどうか
+    @Published var isFiltering = false
+    /// 選択されたフィルタリング関係
+    @Published var selectedFilteringRelation: Relation = .other
+    
     private let repository: RealmRepository
     private var cancellables: Set<AnyCancellable> = []
 
@@ -44,6 +51,13 @@ final class RootListUserViewModel: ObservableObject {
                 self.readAllUsers()
             }.store(in: &cancellables)
         
+        $selectedFilteringRelation
+            .sink { [weak self] newValue in
+                guard let self else { return }
+                // 変更になったらフィルタリング
+                filteringUser(selectedRelation: newValue)
+            }.store(in: &cancellables)
+        
         readAllUsers()
     }
     
@@ -64,7 +78,14 @@ final class RootListUserViewModel: ObservableObject {
 
 extension RootListUserViewModel {
     
-    func readAllUsers(sort: AppSortItem? = nil) {
+    /// データを一度リフレッシュしてからフィルタリング
+    private func filteringUser(selectedRelation: Relation) {
+        readAllUsers()
+        allUsers = allUsers.filter { $0.relation == selectedRelation }
+    }
+    
+    /// 全てのデータをソート順を反映させて取得
+    private func readAllUsers(sort: AppSortItem? = nil) {
         var sort: AppSortItem? = sort
         allUsers.removeAll()
         let result: [User] = repository.readAllObjs()
@@ -137,6 +158,16 @@ extension RootListUserViewModel {
 
 
 extension RootListUserViewModel {
+    
+    func showSortPickerOrResetFiltering() {
+        if isFiltering {
+            isFiltering = false
+            readAllUsers()
+        } else {
+            isShowRelationPicker = true
+            isFiltering = true
+        }
+    }
     
     func checkEntryEnabled() {
         let isUnlockStorage = AppManager.sharedUserDefaultManager.getPurchasedUnlockStorage()
