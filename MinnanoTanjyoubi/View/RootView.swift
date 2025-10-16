@@ -9,9 +9,9 @@ import RealmSwift
 import SwiftUI
 
 struct RootView: View {
+    
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @ObservedObject private var popUpViewModel = TutorialPopUpViewModel()
-    @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @ObservedObject private var viewModel = RootViewModel()
 
     var body: some View {
@@ -33,16 +33,8 @@ struct RootView: View {
             .navigationBarHidden(true)
             .onAppear { popUpViewModel.onAppear() }
             .onOpenURL { url in
-                /// Custom URL Schemeでアプリを起動した場合のハンドリング
-                guard let query = url.query() else { return }
-                guard let users = viewModel.decryptAndInitializeUsers(query) else { return }
-                if let error = repository.shareCreateUsers(shareUsers: users, unlockStorage: rootEnvironment.unlockStorage) {
-                    viewModel.showErrorAlert(error)
-                } else {
-                    viewModel.createUsers = users
-                    repository.readAllUsers()
-                    viewModel.showSuccessCreateUser = true
-                }
+                // Custom URL Schemeでアプリを起動した場合のハンドリング
+                viewModel.copyUserFromUrlScheme(url: url)
             }.alert(
                 isPresented: $viewModel.showSuccessCreateUser,
                 title: "登録成功",

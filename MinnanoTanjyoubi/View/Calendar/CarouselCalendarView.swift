@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CarouselCalendarView: View {
     @EnvironmentObject private var viewModel: CalendarViewModel
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     /// スワイプジェスチャー用オフセット
     @GestureState private var dragOffset: CGFloat = 0
@@ -33,6 +33,7 @@ struct CarouselCalendarView: View {
                                             let theDay = dates[dataIndex]
                                             TheDayView(theDay: theDay)
                                                 .environmentObject(viewModel)
+                                                .environmentObject(rootEnvironment)
                                         }
                                     }
                                 }

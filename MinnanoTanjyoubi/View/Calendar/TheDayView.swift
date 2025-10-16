@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct TheDayView: View {
-    @ObservedObject private var repository = RealmRepositoryViewModel.shared
+    
+    @EnvironmentObject private var viewModel: CalendarViewModel
     @EnvironmentObject private var rootEnvironment: RootEnvironment
+
 
     let theDay: SCDate
 
@@ -74,7 +76,7 @@ struct TheDayView: View {
                             if theDay.users.isEmpty {
                                 // 0なら新規登録
                                 // 容量がオーバーしていないか または 容量解放されている
-                                if !repository.isOverCapacity(1) || rootEnvironment.unlockStorage {
+                                if !viewModel.isOverCapacity(1) || rootEnvironment.unlockStorage {
                                     // 登録モーダル表示
                                     isShowEntryModal.toggle()
                                 } else {
@@ -112,7 +114,6 @@ struct TheDayView: View {
                     title: "Error...",
                     message: "保存容量が上限に達しました。\n設定から広告を視聴すると\n保存容量を増やすことができます。",
                     positiveButtonTitle: "OK",
-                    negativeButtonTitle: "",
                     positiveAction: {
                         isLimitAlert = false
                     }

@@ -189,8 +189,6 @@ extension DetailUserViewModel {
                 isNotifyFlag = false
                 // データベース更新
                 repository.updateNotifyUser(id: user.id, notify: false)
-                // 再取得
-                NotificationCenter.default.post(name: .readAllUsers, object: true)
             } else {
                 if flag {
                     // 通知を登録
@@ -198,15 +196,11 @@ extension DetailUserViewModel {
 
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: true)
-                    // 再取得
-                    NotificationCenter.default.post(name: .readAllUsers, object: true)
                 } else {
                     // 通知を削除
                     AppManager.sharedNotificationRequestManager.removeNotificationRequest(user.id)
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: false)
-                    // 再取得
-                    NotificationCenter.default.post(name: .readAllUsers, object: true)
                 }
             }
         }

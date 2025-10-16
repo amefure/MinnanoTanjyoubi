@@ -5,11 +5,12 @@
 //  Created by t&a on 2025/06/07.
 //
 
-import Combine
+
+@preconcurrency import Combine
 import UIKit
 
+@MainActor
 class CalendarViewModel: ObservableObject {
-    @MainActor static let shared = CalendarViewModel()
 
     private let dateFormatUtility = DateFormatUtility()
 
@@ -58,7 +59,7 @@ class CalendarViewModel: ObservableObject {
     func onAppear() {
         if !isInitializeFlag {
             // リフレッシュしたいため都度取得する
-            let users = Array(realmRepository.readAllUsers())
+            let users: [User] = realmRepository.readAllObjs()
             scCalenderRepository.initialize(initWeek: initWeek, users: users)
             isInitializeFlag = true
         }
@@ -197,5 +198,12 @@ extension CalendarViewModel {
     private func getInitWeek() {
         let week = userDefaultsRepository.getIntData(key: UserDefaultsKey.INIT_WEEK)
         initWeek = SCWeek(rawValue: week) ?? SCWeek.sunday
+    }
+    
+    /// 容量超過確認
+    func isOverCapacity(_ size: Int) -> Bool {
+        let users: [User] = realmRepository.readAllObjs()
+        let size = users.count + size
+        return size > AppManager.sharedUserDefaultManager.getCapacity()
     }
 }

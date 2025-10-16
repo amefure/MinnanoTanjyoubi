@@ -78,8 +78,6 @@ final class EntryNotifyListViewModel: ObservableObject {
         AppManager.sharedNotificationRequestManager.removeNotificationRequest(objectId)
         isShowSuccessDeleteAlert = true
         fecthNotifyList()
-        // 再取得
-        NotificationCenter.default.post(name: .readAllUsers, object: true)
     }
     
     func deleteAllNotify() {
@@ -90,8 +88,6 @@ final class EntryNotifyListViewModel: ObservableObject {
         }
         isShowSuccessDeleteAlert = true
         fecthNotifyList()
-        // 再取得
-        NotificationCenter.default.post(name: .readAllUsers, object: true)
     }
     
     

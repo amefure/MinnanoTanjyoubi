@@ -11,7 +11,6 @@ struct SelectSortView: View {
     @State private var sort: AppSortItem = .daysLater
     @State private var isAlert = false
 
-    @ObservedObject private var repository = RealmRepositoryViewModel.shared
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @Environment(\.dismiss) private var dismiss
 
@@ -53,9 +52,7 @@ struct SelectSortView: View {
 
             DownSideView(parentFunction: {
                 UIApplication.shared.closeKeyboard()
-
                 rootEnvironment.registerSortItem(sort)
-                repository.readAllUsers(sort: sort)
                 isAlert = true
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)

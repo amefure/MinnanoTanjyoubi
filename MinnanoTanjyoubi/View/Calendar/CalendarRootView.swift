@@ -29,6 +29,7 @@ struct CalendarRootView: View {
 
             CarouselCalendarView()
                 .environmentObject(viewModel)
+                .environmentObject(rootEnvironment)
 
             Spacer()
 

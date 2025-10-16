@@ -157,7 +157,6 @@
 		12F9A67A2E85819D0010B116 /* ExPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9A6792E85819C0010B116 /* ExPublisher.swift */; };
 		12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */; };
 		12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */; };
-		12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */; };
 		12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A272B2DC1C600FA700E /* RealmRepository.swift */; };
 		12FE3A2A2B2DC29500FA700E /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A292B2DC29500FA700E /* RealmConfig.swift */; };
 		12FE3A2C2B2DCC7100FA700E /* RootEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */; };
@@ -359,7 +358,6 @@
 		12F9A6792E85819C0010B116 /* ExPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExPublisher.swift; sourceTree = "<group>"; };
 		12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExNotificationName.swift; sourceTree = "<group>"; };
 		12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInitWeekView.swift; sourceTree = "<group>"; };
-		12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryViewModel.swift; sourceTree = "<group>"; };
 		12FE3A272B2DC1C600FA700E /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		12FE3A292B2DC29500FA700E /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
 		12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootEnvironment.swift; sourceTree = "<group>"; };
@@ -532,7 +530,6 @@
 				124602472B36B62300B6C32D /* RootViewModel.swift */,
 				127788C32E9FD2DB0048E9D0 /* RootListUserViewModel.swift */,
 				1262361C2DF3BFCA00A5F1AE /* CalendarViewModel.swift */,
-				12FE3A252B2DC1A900FA700E /* RealmRepositoryViewModel.swift */,
 				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
 				12ED29C02C21958700A1293D /* EntryUserViewModel.swift */,
 				122401472B87738D0099BE8D /* DetailUserViewModel.swift */,
@@ -1142,7 +1139,6 @@
 				128FB7A52E9A99A3000167C6 /* ShareUserLinkViewModel.swift in Sources */,
 				121DEE012B198D4600964902 /* AppLockView.swift in Sources */,
 				12FE3A2C2B2DCC7100FA700E /* RootEnvironment.swift in Sources */,
-				12FE3A262B2DC1A900FA700E /* RealmRepositoryViewModel.swift in Sources */,
 				12CB921828E858DF002BD7B2 /* DetailUserView.swift in Sources */,
 				1224013E2B8720FA0099BE8D /* ImagePickerDialog.swift in Sources */,
 				1246024C2B36BCE500B6C32D /* AdsConfig.swift in Sources */,
