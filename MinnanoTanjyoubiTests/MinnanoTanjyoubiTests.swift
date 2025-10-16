@@ -7,6 +7,8 @@
 
 import Testing
 
+// FIXME:  as [Any] だと認識されていないおらずここから実行できないかも
+// ⌘ + Uでテスト実行できるのでそちらで動かす
 @Suite
 struct MinnanoTanjyoubiTests {
     static let allTests = [
@@ -16,3 +18,4 @@ struct MinnanoTanjyoubiTests {
         JsonConvertUtilityTests.self,
     ] as [Any]
 }
+

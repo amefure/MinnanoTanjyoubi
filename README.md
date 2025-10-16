@@ -68,6 +68,33 @@ Test Flightへのアップロードも自動化しています。
 $ bundle exec fastlane upload_test_flight
 ```
 
+### アプリ内課金テスト環境
+
+AsyncProducts.storekitを用意
+
+1. Schemeを「StoreKit-Test」に変更
+2. ビルド
+3. 広告削除 & 容量解放画面からテスト購入可能
+
+
+### Unit Test
+
+- Framework：Swift Testing
+- Test Coverage：15%
+
+▼ 単体テスト
+```
+@Suite
+struct MinnanoTanjyoubiTests {
+    static let allTests = [
+        UserTest.self,
+        DateFormatUtilityTests.self,
+        CryptoUtilityTests.self,
+        JsonConvertUtilityTests.self,
+    ] as [Any]
+}
+```
+
 ### アセット管理
 アセットの管理にはSwiftGenを使用しています。以下のコマンドを実行することでアセット管理クラスを自動生成します。
 
@@ -79,6 +106,7 @@ $ swiftgen config run
 
 ### ライブラリ管理ツール
 ~~Cocoa Pods：1.16.2 (移行済み) ~~
+
 Swift Package Manager
 
 ### Storage
@@ -98,7 +126,7 @@ Swift Package Manager
 - CryptoSwift・・・暗号化・複合化 データ送信機能
 
 ### Debug
-- SwiftFormat/CLI・・・フォーマット
+- ~~SwiftFormat/CLI・・・フォーマット~~
 
 ## ドキュメント
 

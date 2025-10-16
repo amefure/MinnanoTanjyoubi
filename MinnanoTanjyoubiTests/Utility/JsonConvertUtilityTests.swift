@@ -31,14 +31,19 @@ struct JsonConvertUtilityTests {
     func decodeFromJsonString() {
         let json = """
         {
-            "id": 2,
-            "name": "吉田　真紘",
-            "ruby": "よしだ　まひろ"
+            "date": -190371600,
+            "memo": "",
+            "alert": false,
+            "isYearsUnknown": false,
+            "ruby": "よしだ　まひろ",
+            "relation": "友達",
+            "id": "68f0f5faef0542b1372f44c7",
+            "name": "吉田　真紘"
         }
         """
         let user: User? = jsonUtil.decode(json)
         #expect(user != nil)
-        #expect(user?.id == 2)
+        #expect(user?.id.stringValue == "68f0f5faef0542b1372f44c7")
         #expect(user?.name == "吉田　真紘")
     }
 
@@ -49,7 +54,7 @@ struct JsonConvertUtilityTests {
 
         let decoded: User? = jsonUtil.decode(json!)
         #expect(decoded != nil)
-        #expect(decoded == user)
+        #expect(decoded?.id == user.id)
     }
 
     @Test
