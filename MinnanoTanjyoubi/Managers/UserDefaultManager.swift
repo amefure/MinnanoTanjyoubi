@@ -269,4 +269,16 @@ final class UserDefaultManager: Sendable {
     func setPurchasedUnlockStorage(_ flag: Bool) {
         userDefaultsRepository.setBoolData(key: UserDefaultsKey.PURCHASED_UNLOCK_STORAGE, isOn: flag)
     }
+    
+    /// `INIT_WEEK`
+    /// 取得：カレンダー週始まり
+    func getInitWeek() -> SCWeek {
+        let week = userDefaultsRepository.getIntData(key: UserDefaultsKey.INIT_WEEK)
+        return SCWeek(rawValue: week) ?? SCWeek.sunday
+    }
+
+    /// 登録：カレンダー週始まり
+    func setInitWeek(_ week: SCWeek) {
+        userDefaultsRepository.setIntData(key: UserDefaultsKey.INIT_WEEK, value: week.rawValue)
+    }
 }

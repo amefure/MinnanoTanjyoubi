@@ -19,8 +19,6 @@ class RootEnvironment: ObservableObject {
     /// `Property`
     /// カラースキーム
     @Published private(set) var scheme: AppColorScheme = .original
-//    /// 並び順
-//    @Published private(set) var sort: AppSortItem = .daysLater
     /// アプリロック
     @Published var appLocked: Bool = false
     /// 広告削除購入フラグ
@@ -253,18 +251,5 @@ extension RootEnvironment {
     /// アプリにロックがかけてあるかをチェック
     private func getAppLockFlag() {
         appLocked = keyChainRepository.getData().count == 4
-    }
-
-    /// 週始まりを取得
-    func getInitWeek() -> SCWeek {
-        let week = userDefaultsRepository.getIntData(key: UserDefaultsKey.INIT_WEEK)
-        return SCWeek(rawValue: week) ?? SCWeek.sunday
-    }
-
-    /// 週始まりを登録
-    func saveInitWeek(week: SCWeek) {
-        userDefaultsRepository.setIntData(key: UserDefaultsKey.INIT_WEEK, value: week.rawValue)
-        // カレンダーを更新
-        NotificationCenter.default.post(name: .updateCalendar, object: true)
     }
 }

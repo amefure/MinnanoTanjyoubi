@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct SelectInitWeekView: View {
+    
+    @StateObject private var viewModel = SelectInitWeekViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-    @State private var selectWeek: SCWeek = .sunday
-    @State private var showSuccessAlert = false
-
-    // MARK: - Environment
-
     @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack {
             UpSideView()
@@ -33,14 +31,14 @@ struct SelectInitWeekView: View {
             List {
                 ForEach(SCWeek.allCases, id: \.self) { week in
                     Button {
-                        selectWeek = week
+                        viewModel.setWeek(week: week)
                     } label: {
                         HStack {
                             Text(week.fullSymbols)
                                 .foregroundStyle(Asset.Colors.exText.swiftUIColor)
                             Spacer()
 
-                            if selectWeek == week {
+                            if viewModel.selectWeek == week {
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(rootEnvironment.scheme.foundationPrimary)
                             }
@@ -52,16 +50,18 @@ struct SelectInitWeekView: View {
 
             Spacer()
 
-            DownSideView(parentFunction: {
-                rootEnvironment.saveInitWeek(week: selectWeek)
-                showSuccessAlert = true
-            }, imageString: "checkmark")
-                .environmentObject(rootEnvironment)
+            DownSideView(
+                parentFunction: {
+                    viewModel.registerInitWeek()
+                },
+                imageString: "checkmark"
+            ).environmentObject(rootEnvironment)
+            
         }.background(rootEnvironment.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
             .alert(
-                isPresented: $showSuccessAlert,
+                isPresented: $viewModel.isShowSuccessAlert,
                 title: "お知らせ",
                 message: "週始まりを変更しました。",
                 positiveButtonTitle: "OK",
@@ -69,7 +69,7 @@ struct SelectInitWeekView: View {
                     dismiss()
                 }
             ).onAppear {
-                selectWeek = rootEnvironment.getInitWeek()
+                viewModel.onAppear()
             }
     }
 }
