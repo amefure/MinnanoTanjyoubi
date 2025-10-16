@@ -9,7 +9,7 @@ import RealmSwift
 import SwiftUI
 
 /// Toggleボタンのカスタマイズ構造体
-struct CheckBoxToggleStyle: ToggleStyle {
+private struct CheckBoxToggleStyle: ToggleStyle {
     var user: User
     @Binding var deleteArray: [User]
 

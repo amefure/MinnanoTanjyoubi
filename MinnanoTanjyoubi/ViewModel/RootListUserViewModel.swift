@@ -7,6 +7,8 @@
 
 import UIKit
 import Combine
+import RealmSwift
+import WidgetKit
 
 @MainActor
 final class RootListUserViewModel: ObservableObject {
@@ -16,6 +18,8 @@ final class RootListUserViewModel: ObservableObject {
     @Published var isShowLimitAlert: Bool = false
     /// 新規登録モーダル表示
     @Published var isShowEntryModal: Bool = false
+    /// 削除確認ダイアログ
+    @Published var isDeleteConfirmAlert: Bool = false
     /// グリッドレイアウトスクロールダウンフラグ
     @Published var isScrollingDown: Bool = false
     /// コントロールパネルopacity
@@ -56,6 +60,17 @@ final class RootListUserViewModel: ObservableObject {
                 guard let self else { return }
                 // 変更になったらフィルタリング
                 filteringUser(selectedRelation: newValue)
+            }.store(in: &cancellables)
+        
+        // 更新用Notificationを観測
+        NotificationCenter.default.publisher(for: .readAllUsers)
+            .sink { [weak self] notification in
+                guard let self else { return }
+                guard let obj = notification.object as? Bool else { return }
+                // trueなら更新
+                guard obj else { return }
+                readAllUsers()
+                NotificationCenter.default.post(name: .readAllUsers, object: false)
             }.store(in: &cancellables)
         
         readAllUsers()
@@ -153,6 +168,31 @@ extension RootListUserViewModel {
     private func getSortItem() -> AppSortItem {
         AppManager.sharedUserDefaultManager.getSortItem()
     }
+    
+    func removeUsers(users: [User]) {
+        for user in users {
+            let userId: ObjectId = user.id
+            // 通知を削除
+            AppManager.sharedNotificationRequestManager.removeNotificationRequest(userId)
+            // 画像を削除
+            deleteImage(user: user)
+        }
+        repository.removeObjs(list: users)
+        readAllUsers()
+        
+        // 削除タイミングでウィジェットも更新する
+        WidgetCenter.shared.reloadAllTimelines()
+    }
+
+    /// 画像削除
+    private func deleteImage(user: User) {
+        let imageFileManager = ImageFileManager()
+        let imagePaths = Array(user.imagePaths)
+        for selectPath in imagePaths {
+            // ここのエラーは握り潰す
+            _ = try? imageFileManager.deleteImage(name: selectPath)
+        }
+    }
 }
 
 
@@ -184,11 +224,6 @@ extension RootListUserViewModel {
     /// 容量超過確認
     private func isOverCapacity(_ size: Int) -> Bool {
         let size = allUsers.count + size
-        return size > getMaxCapacity()
-    }
-    
-    /// 最大容量取得
-    private func getMaxCapacity() -> Int {
-        AppManager.sharedUserDefaultManager.getCapacity()
+        return size > AppManager.sharedUserDefaultManager.getCapacity()
     }
 }

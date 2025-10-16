@@ -112,18 +112,20 @@ struct RootListUserView: View {
                 .onEnded { viewModel.isScrollingDown = false }
             Spacer()
 
-            RemoveButtonView()
-                .environmentObject(rootEnvironment)
+            removeButtonView()
+                .circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema2)
                 .simultaneousGesture(tapGesture)
 
             Spacer()
 
             filteringButtonView()
+                .circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema4)
                 .simultaneousGesture(tapGesture)
 
             Spacer()
 
             entryButtonView()
+                .circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema3)
                 .simultaneousGesture(tapGesture)
 
             Spacer()
@@ -133,6 +135,36 @@ struct RootListUserView: View {
             .background(rootEnvironment.scheme.foundationPrimary)
     }
     
+    private func removeButtonView() -> some View {
+        Button {
+            if !rootEnvironment.deleteArray.isEmpty {
+                viewModel.isDeleteConfirmAlert = true
+            } else {
+                if rootEnvironment.isDeleteMode {
+                    rootEnvironment.disableDeleteMode()
+                } else {
+                    rootEnvironment.enableDeleteMode()
+                }
+            }
+        } label: {
+            Image(systemName: rootEnvironment.isDeleteMode ? "trash" : "app.badge.checkmark")
+                .fontM()
+        }.alert(
+            isPresented: $viewModel.isDeleteConfirmAlert,
+            title: "お知らせ",
+            message: "選択した誕生日情報を\n削除しますか？",
+            positiveButtonTitle: "削除",
+            negativeButtonTitle: "キャンセル",
+            positiveButtonRole: .destructive,
+            positiveAction: {
+                viewModel.removeUsers(users: rootEnvironment.deleteArray)
+                rootEnvironment.resetDeleteMode()
+            },
+            negativeAction: {
+                rootEnvironment.resetDeleteMode()
+            }
+        )
+    }
 
     
     private func filteringButtonView() -> some View {
@@ -140,7 +172,6 @@ struct RootListUserView: View {
             viewModel.showSortPickerOrResetFiltering()
         } label: {
             Image(systemName: viewModel.isFiltering ? "arrowshape.turn.up.backward.fill" : "person.2.crop.square.stack")
-                .circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema4)
                 .fontM()
         }.sheet(isPresented: $viewModel.isShowRelationPicker) {
             VStack {
@@ -162,15 +193,14 @@ struct RootListUserView: View {
         } label: {
             Image(systemName: "plus")
                 .fontM()
-        }.circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema3)
-            .sheet(isPresented: $viewModel.isShowEntryModal) {
-                EntryUserView(updateUserId: nil, isSelfShowModal: $viewModel.isShowEntryModal)
-                    .environmentObject(rootEnvironment)
-            }.alert(
-                isPresented: $viewModel.isShowLimitAlert,
-                title: "Error...",
-                message: "保存容量が上限に達しました。\n設定から広告を視聴すると\n保存容量を増やすことができます。",
-                positiveButtonTitle: "OK"
-            )
+        }.sheet(isPresented: $viewModel.isShowEntryModal) {
+            EntryUserView(updateUserId: nil, isSelfShowModal: $viewModel.isShowEntryModal)
+                .environmentObject(rootEnvironment)
+        }.alert(
+            isPresented: $viewModel.isShowLimitAlert,
+            title: "Error...",
+            message: "保存容量が上限に達しました。\n設定から広告を視聴すると\n保存容量を増やすことができます。",
+            positiveButtonTitle: "OK"
+        )
     }
 }

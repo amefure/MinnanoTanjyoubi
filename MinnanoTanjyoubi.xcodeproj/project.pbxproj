@@ -80,7 +80,6 @@
 		1262361F2DF3C72700A5F1AE /* CarouselCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */; };
 		126236212DF3C78F00A5F1AE /* TheDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236202DF3C78E00A5F1AE /* TheDayView.swift */; };
 		126236232DF45DFF00A5F1AE /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236222DF45DEB00A5F1AE /* LayoutItem.swift */; };
-		12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12682BAE29A784E600D0498F /* RemoveButtonView.swift */; };
 		1268B3EC2D15742D00E1F8F7 /* CustomPopUpDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */; };
 		1276A7982DD8C8F50023067D /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
 		127788C12E9FC40C0048E9D0 /* RealmRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127788C02E9FC40B0048E9D0 /* RealmRepositoryProtocol.swift */; };
@@ -284,7 +283,6 @@
 		1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCalendarView.swift; sourceTree = "<group>"; };
 		126236202DF3C78E00A5F1AE /* TheDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDayView.swift; sourceTree = "<group>"; };
 		126236222DF45DEB00A5F1AE /* LayoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
-		12682BAE29A784E600D0498F /* RemoveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveButtonView.swift; sourceTree = "<group>"; };
 		1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopUpDialogView.swift; sourceTree = "<group>"; };
 		127788C02E9FC40B0048E9D0 /* RealmRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryProtocol.swift; sourceTree = "<group>"; };
 		127788C32E9FD2DB0048E9D0 /* RootListUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootListUserViewModel.swift; sourceTree = "<group>"; };
@@ -628,14 +626,6 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		12682BAD29A784C800D0498F /* ControlPanel */ = {
-			isa = PBXGroup;
-			children = (
-				12682BAE29A784E600D0498F /* RemoveButtonView.swift */,
-			);
-			path = ControlPanel;
-			sourceTree = "<group>";
-		};
 		127788BF2E9FC4030048E9D0 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,6 +639,7 @@
 			children = (
 				128BB96F2B614BF500B20172 /* SingleGridListView.swift */,
 				128BB9722B61500800B20172 /* SectionRowView.swift */,
+				123F485029A19A16001B91B3 /* CheckRowUserView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -825,8 +816,6 @@
 				12CB921228E6FD43002BD7B2 /* RowUserView.swift */,
 				128BB96D2B614B4200B20172 /* SectionGridListView.swift */,
 				128BB9712B614FD100B20172 /* Components */,
-				123F485029A19A16001B91B3 /* CheckRowUserView.swift */,
-				12682BAD29A784C800D0498F /* ControlPanel */,
 			);
 			path = ListUser;
 			sourceTree = "<group>";
@@ -1173,7 +1162,6 @@
 				121DEE0B2B1A218F00964902 /* AppLockInputView.swift in Sources */,
 				1204FB382E706ABA0092AE9E /* ExFontSize.swift in Sources */,
 				12E9C8902D0B23E500C0A20B /* ShareUserLinkView.swift in Sources */,
-				12682BAF29A784E600D0498F /* RemoveButtonView.swift in Sources */,
 				12E9C8972D0C258600C0A20B /* CryptoUtillity.swift in Sources */,
 				1246024A2B36B7BA00B6C32D /* SettingViewModel.swift in Sources */,
 				121DEE082B1A20BF00964902 /* ExCollection.swift in Sources */,
