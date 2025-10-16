@@ -85,6 +85,7 @@
 		127788C12E9FC40C0048E9D0 /* RealmRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127788C02E9FC40B0048E9D0 /* RealmRepositoryProtocol.swift */; };
 		127788C22E9FC6F10048E9D0 /* RealmRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127788C02E9FC40B0048E9D0 /* RealmRepositoryProtocol.swift */; };
 		127788C42E9FD2DD0048E9D0 /* RootListUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127788C32E9FD2DB0048E9D0 /* RootListUserViewModel.swift */; };
+		127788C62EA0CBE70048E9D0 /* SelectSortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127788C52EA0CBE40048E9D0 /* SelectSortViewModel.swift */; };
 		128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB96D2B614B4200B20172 /* SectionGridListView.swift */; };
 		128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB96F2B614BF500B20172 /* SingleGridListView.swift */; };
 		128BB9732B61500800B20172 /* SectionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128BB9722B61500800B20172 /* SectionRowView.swift */; };
@@ -285,6 +286,7 @@
 		1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopUpDialogView.swift; sourceTree = "<group>"; };
 		127788C02E9FC40B0048E9D0 /* RealmRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryProtocol.swift; sourceTree = "<group>"; };
 		127788C32E9FD2DB0048E9D0 /* RootListUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootListUserViewModel.swift; sourceTree = "<group>"; };
+		127788C52EA0CBE40048E9D0 /* SelectSortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSortViewModel.swift; sourceTree = "<group>"; };
 		128BB96D2B614B4200B20172 /* SectionGridListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionGridListView.swift; sourceTree = "<group>"; };
 		128BB96F2B614BF500B20172 /* SingleGridListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGridListView.swift; sourceTree = "<group>"; };
 		128BB9722B61500800B20172 /* SectionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRowView.swift; sourceTree = "<group>"; };
@@ -862,6 +864,7 @@
 				128FB7A02E9A9295000167C6 /* EditNotifyMessageViewModel.swift */,
 				128FB7A22E9A94F2000167C6 /* UpdateRelationNameViewModel.swift */,
 				128FB7A42E9A99A1000167C6 /* ShareUserLinkViewModel.swift */,
+				127788C52EA0CBE40048E9D0 /* SelectSortViewModel.swift */,
 				12CA5D922D19A7E600A4C1F6 /* InAppPurchaseViewModel.swift */,
 				12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */,
 			);
@@ -1168,6 +1171,7 @@
 				12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */,
 				124602482B36B62300B6C32D /* RootViewModel.swift in Sources */,
 				128FB79D2E9A2E6B000167C6 /* EntryNotifyListView.swift in Sources */,
+				127788C62EA0CBE70048E9D0 /* SelectSortViewModel.swift in Sources */,
 				12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */,
 				12CB921628E6FF26002BD7B2 /* EntryUserView.swift in Sources */,
 				12CFB0C92D0C7D8300407CEA /* RewardViewModel.swift in Sources */,

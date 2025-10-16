@@ -19,8 +19,8 @@ class RootEnvironment: ObservableObject {
     /// `Property`
     /// カラースキーム
     @Published private(set) var scheme: AppColorScheme = .original
-    /// 並び順
-    @Published private(set) var sort: AppSortItem = .daysLater
+//    /// 並び順
+//    @Published private(set) var sort: AppSortItem = .daysLater
     /// アプリロック
     @Published var appLocked: Bool = false
     /// 広告削除購入フラグ
@@ -77,7 +77,6 @@ class RootEnvironment: ObservableObject {
     private func setUpUserDefaultsFlag() {
         getAppLockFlag()
         getColorScheme()
-        getSortItem()
         getRelationName()
         getDisplaySectionLayout()
         getPurchasedFlag()
@@ -223,19 +222,6 @@ extension RootEnvironment {
         FBAnalyticsManager.loggingSelectColorEvent(color: scheme)
         AppManager.sharedUserDefaultManager.setColorScheme(scheme)
         getColorScheme()
-    }
-
-    /// 並び順
-    private func getSortItem() {
-        sort = AppManager.sharedUserDefaultManager.getSortItem()
-    }
-
-    /// 並び順登録
-    func registerSortItem(_ sort: AppSortItem) {
-        // カスタムイベント計測
-        FBAnalyticsManager.loggingSelectSortEvent(sort: sort)
-        AppManager.sharedUserDefaultManager.setSortItem(sort)
-        getSortItem()
     }
 
     /// レビューポップアップ表示フラグ取得
