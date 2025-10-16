@@ -34,6 +34,16 @@
 - 広告削除機能
 - 容量制限解放(無料でも広告を視聴いただくことで容量は増加させることが可能です。)
 
+### 機能一覧
+
+- 誕生日情報保存・取得機能
+- プッシュ通知
+- アプリ内課金
+- 生体認証
+- データ転送
+- 画像添付
+- リワード広告
+
 ## 開発環境
 
 - Xcode：26.0.1
@@ -45,15 +55,78 @@
 
 - MVVM + Repository + Manager
 
-### 機能一覧
+### ディレクトリ構造
+<details>
+<summary>ディレクトリ構成を表示</summary>
 
-- 誕生日情報保存・取得機能
-- プッシュ通知
-- アプリ内課金
-- 生体認証
-- データ転送
-- 画像添付
-- リワード広告
+```
+├── BirthDayWidget
+│   └── 誕生日情報のHome画面Widget
+│
+├── MinnanoTanjyoubi.xcodeproj
+│   └── Xcode プロジェクトファイル
+│
+├── MinnanoTanjyoubi/
+│   ├── Models/
+│   │   └── データモデル層。ユーザー情報、誕生日データなどの定義
+│   │
+│   ├── Views/
+│   │   └── SwiftUI ビュー層。画面構成やUIロジックを定義
+│   │
+│   ├── ViewModels/
+│   │   └── ViewModel層。モデルとビューの橋渡しを担当し、状態管理やビジネスロジックを定義
+│   │
+│   ├── Resources/
+│   │   └── アセットやローカライズ、定数などのリソースファイル群
+│   │
+│   ├── Utilities/
+│   │   └── 共通処理・ユーティリティ関数（例: JSON変換、日付フォーマット、暗号化など）
+│   │
+│   ├── Managers/
+│   │   └── データ管理や外部連携を担うマネージャークラス（例: 通知・データ永続化・設定管理など）
+│   │
+│   ├── Repository/
+│   │   └── データの根源。ローカルやリモートのデータソース（Realm・Firebaseなど）へのアクセスを一元管理
+│   │
+│   └── etc
+│       └── ルートビューやアプリエントリポイント、AppDelegateなどが含まれる
+│
+├── MinnanoTanjyoubiTests/
+│   └── ユニットテストおよびユーティリティテスト。`@Suite` を利用して機能単位で分割
+│
+├── fastlane/
+│   └── CI/CD や App Store Connect 自動化のための設定ファイル（ビルド、署名、スクリーンショットなど）
+│
+├── .gitignore
+│   └── Git で無視するファイル・ディレクトリを定義
+│
+├── .swiftformat
+│   └── コード整形ツール「SwiftFormat」の設定ファイル
+│
+├── .swiftlint.yml
+│   └── コード静的解析ツール「SwiftLint」の設定ファイル
+│
+├── Gemfile
+│   └── Ruby ライブラリ管理用。fastlane などの依存を定義
+│
+├── Gemfile.lock
+│   └── Gemfile に基づいて固定された依存関係のバージョン情報
+│
+├── README.md
+│   └── プロジェクト概要・セットアップ方法・仕様などのドキュメント
+│
+├── swiftgen.yml
+│   └── SwiftGen の設定ファイル。リソース（画像・文字列など）の自動生成を管理
+│
+├── swiftgen_custom_template.stencil
+│   └── SwiftGen 用のカスタムテンプレートファイル
+│
+└── swiftlint.result.json
+    └── SwiftLint 実行結果の出力ファイル（CI向けログなどに使用）
+```
+<br>
+
+</details>
 
 ### 自動化
 fastlaneを使用してビルドアップロードを自動化しています。
@@ -105,7 +178,7 @@ $ swiftgen config run
 ## ライブラリ
 
 ### ライブラリ管理ツール
-~~Cocoa Pods：1.16.2 (移行済み) ~~
+~~Cocoa Pods：1.16.2 (移行済み)~~
 
 Swift Package Manager
 
