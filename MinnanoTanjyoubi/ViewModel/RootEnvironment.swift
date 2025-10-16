@@ -141,8 +141,8 @@ extension RootEnvironment {
         // アプリを5回以上起動していない場合は表示しない
         guard getLaunchAppCount() >= popupShowLaunchCount else { return }
         // 登録されている誕生日情報が30以下なら表示しない
-        let count = repository.readAllUsers().count
-        guard count >= popupShowUserCount else { return }
+        let users: [User] = repository.readAllObjs()
+        guard users.count >= popupShowUserCount else { return }
         guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         // レビューリクエストポップアップを表示する
         SKStoreReviewController.requestReview(in: scene)

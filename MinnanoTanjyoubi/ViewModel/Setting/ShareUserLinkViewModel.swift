@@ -38,6 +38,6 @@ final class ShareUserLinkViewModel: ObservableObject {
     }
     
     private func readAllUsers() {
-        allUsers = Array(localRepository.readAllUsers())
+        allUsers = localRepository.readAllObjs()
     }
 }

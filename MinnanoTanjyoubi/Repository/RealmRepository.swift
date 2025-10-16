@@ -22,16 +22,6 @@ final class RealmRepository: Sendable {
 
     private let realm: Realm
 
-    // MARK: - Read
-
-    func readAllUsers() -> Results<User> {
-        try! realm.write {
-            let users = realm.objects(User.self)
-            // Deleteでクラッシュするため凍結させる
-            return users.freeze().sorted(byKeyPath: "id", ascending: true)
-        }
-    }
-
     func updateNotifyUser(id: ObjectId, notify: Bool) {
         try! realm.write {
             guard let result = realm.objects(User.self).where({ $0.id == id }).first else { return }
@@ -51,21 +41,6 @@ final class RealmRepository: Sendable {
             guard let result = realm.objects(User.self).where({ $0.id == id }).first else { return }
             guard let index = result.imagePaths.firstIndex(of: imagePath) else { return }
             result.imagePaths.remove(at: index)
-        }
-    }
-    
-
-    // MARK: - Remove
-
-    func removeUser(removeIdArray: [ObjectId]) {
-        try! realm.write {
-            var records: [User] = []
-            for targetId in removeIdArray {
-                records += realm.objects(User.self).where {
-                    $0.id == targetId
-                }
-            }
-            realm.delete(records)
         }
     }
 }

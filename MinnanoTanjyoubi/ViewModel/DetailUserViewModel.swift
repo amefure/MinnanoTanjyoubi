@@ -80,6 +80,7 @@ class DetailUserViewModel: ObservableObject {
         isNotifyFlag = targetUser.alert
         
         $isNotifyFlag
+            .removeDuplicates()
             .sink { [weak self] newValue in
                 guard let self else { return }
                 self.switchNotifyFlag(flag: newValue, user: targetUser)
@@ -181,7 +182,7 @@ extension DetailUserViewModel {
     private func switchNotifyFlag(flag: Bool, user: User) {
         Task {
             // 通知リクエスト申請
-            let granted = await AppManager.sharedNotificationRequestManager.requestAuthorization()
+            let granted: Bool = await AppManager.sharedNotificationRequestManager.requestAuthorization()
             if !granted {
                 // 通知許可アラート
                 AppManager.sharedNotificationRequestManager.showSettingsAlert()
@@ -193,7 +194,6 @@ extension DetailUserViewModel {
                 if flag {
                     // 通知を登録
                     AppManager.sharedNotificationRequestManager.sendNotificationRequest(user.id, user.name, user.date)
-
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: true)
                 } else {

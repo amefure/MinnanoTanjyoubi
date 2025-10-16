@@ -19,8 +19,8 @@ class TutorialPopUpViewModel: ObservableObject {
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         repository = repositoryDependency.realmRepository
-        let count = repository.readAllUsers().count
-        if count == 0 {
+        let users: [User] = repository.readAllObjs()
+        if users.count == 0 {
             // チュートリアルを表示したことがないならチュートリアルを表示
             if !getShowTutorialFlag() {
                 showPopUp()

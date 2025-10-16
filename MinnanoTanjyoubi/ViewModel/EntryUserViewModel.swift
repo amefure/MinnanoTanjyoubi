@@ -107,6 +107,9 @@ extension EntryUserViewModel {
             repository.createObject(newUser)
         }
         
+        // カレンダー更新
+        NotificationCenter.default.post(name: .updateCalendar, object: true)
+        
         // 登録 & 更新のタイミングでウィジェットも更新する
         WidgetCenter.shared.reloadAllTimelines()
         return true

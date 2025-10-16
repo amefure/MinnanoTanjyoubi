@@ -46,7 +46,7 @@ final class SettingViewModel: ObservableObject {
         setUpNotifyDate()
         setUpEntryInitRelation()
         setUpEntryInitYear()
-        allUsers = Array(repository.readAllUsers())
+        allUsers = repository.readAllObjs()
     }
 
     func onDisappear() {

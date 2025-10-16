@@ -102,7 +102,7 @@ class CalendarViewModel: ObservableObject {
                     // 週始まりを変更している可能性があるため再取得
                     getInitWeek()
                     // リフレッシュしたいため都度取得する
-                    let users = Array(realmRepository.readAllUsers())
+                    let users: [User] = realmRepository.readAllObjs()
                     scCalenderRepository.initialize(initWeek: initWeek, users: users)
                     // カレンダーを更新
                     NotificationCenter.default.post(name: .updateCalendar, object: false)
