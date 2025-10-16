@@ -19,9 +19,14 @@ enum DateFormatItem: String {
 
 final class DateFormatUtility: Sendable {
     private let df = DateFormatter()
-    private let c = Calendar(identifier: .gregorian)
+    private let c: Calendar
 
     init(format: DateFormatItem = .slash) {
+        if format == .jpEra {
+            c = Calendar(identifier: .japanese)
+        } else {
+            c = Calendar(identifier: .gregorian)
+        }
         df.dateFormat = format.rawValue
         df.locale = Locale(identifier: "ja_JP")
         df.calendar = c

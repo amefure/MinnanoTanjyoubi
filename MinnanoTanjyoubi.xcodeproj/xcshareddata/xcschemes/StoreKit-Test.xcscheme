@@ -64,7 +64,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <StoreKitConfigurationFileReference
-         identifier = "../MinnanoTanjyoubi/AsyncProducts.storekit">
+         identifier = "../../MinnanoTanjyoubi/AsyncProducts.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
