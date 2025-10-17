@@ -178,9 +178,15 @@ $ swiftgen config run
 ## ライブラリ
 
 ### ライブラリ管理ツール
-~~Cocoa Pods：1.16.2 (移行済み)~~
 
-Swift Package Manager
+- Swift Package Manager
+    - Realm以外
+- Cocoa Pods：1.16.2
+    - Realm(※)
+    
+※ BirthDayWidgetにRealmを同梱させたいためCocoa PodsでRealmは管理
+本来ならWidgetExtensionに.frameworkファイルは含ませることはできないがCocoa Podsで静的ファイルとしてリンクさせることで可能になる
+(SPMではアーカイブのバリデーションでエラーになる)
 
 ### Storage
 
