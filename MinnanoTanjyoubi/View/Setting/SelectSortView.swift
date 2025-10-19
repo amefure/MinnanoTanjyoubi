@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectSortView: View {
-    @ObservedObject private var viewModel = SelectSortViewModel()
+    @StateObject private var viewModel = SelectSortViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @Environment(\.dismiss) private var dismiss
 
@@ -74,4 +74,5 @@ struct SelectSortView: View {
 
 #Preview {
     SelectSortView()
+        .environmentObject(RootEnvironment.shared)
 }

@@ -129,7 +129,7 @@ extension RootListUserViewModel {
                 if $0.isYearsUnknown != $1.isYearsUnknown {
                     return !$0.isYearsUnknown && $1.isYearsUnknown
                 }
-                return UserCalcUtility.currentAge(from: $0.date) < UserCalcUtility.currentAge(from: $1.date)
+                return $0.date > $1.date
             })
         case .ageeDesc:
             // 年齢(降順)
@@ -137,7 +137,7 @@ extension RootListUserViewModel {
                 if $0.isYearsUnknown != $1.isYearsUnknown {
                     return !$0.isYearsUnknown && $1.isYearsUnknown
                 }
-                return UserCalcUtility.currentAge(from: $0.date) > UserCalcUtility.currentAge(from: $1.date)
+                return $0.date < $1.date
             })
         case .montheAsce:
             // 生まれ月(昇順)
