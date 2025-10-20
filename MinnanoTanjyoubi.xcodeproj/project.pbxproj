@@ -150,6 +150,7 @@
 		12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29C02C21958700A1293D /* EntryUserViewModel.swift */; };
 		12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */; };
 		12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */; };
+		12F811D02EA67540002B54E5 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 12F811CF2EA67540002B54E5 /* Swinject */; };
 		12F9A67A2E85819D0010B116 /* ExPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9A6792E85819C0010B116 /* ExPublisher.swift */; };
 		12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */; };
 		12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */; };
@@ -395,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				121733012E97F246009235E6 /* GoogleMobileAds in Frameworks */,
+				12F811D02EA67540002B54E5 /* Swinject in Frameworks */,
 				1217331F2E98D8E5009235E6 /* FirebasePerformance in Frameworks */,
 				121733192E98D8E5009235E6 /* FirebaseAnalytics in Frameworks */,
 				1217331B2E98D8E5009235E6 /* FirebaseCore in Frameworks */,
@@ -1010,6 +1012,7 @@
 				121732FA2E97F05B009235E6 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				121732FF2E97F246009235E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				12F811CE2EA67540002B54E5 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 12CB91FA28E5C6E0002BD7B2 /* Products */;
@@ -1714,6 +1717,14 @@
 				minimumVersion = 12.4.0;
 			};
 		};
+		12F811CE2EA67540002B54E5 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1756,6 +1767,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
+		};
+		12F811CF2EA67540002B54E5 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12F811CE2EA67540002B54E5 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
