@@ -44,15 +44,15 @@ struct RootView: View {
                 title: "Error...",
                 message: viewModel.error?.message ?? "共有された誕生日情報の登録に失敗しました。"
             ).tutorialPopupView(
-                isPresented: $popUpViewModel.show,
-                title: popUpViewModel.title,
-                message: popUpViewModel.message,
-                buttonTitle: popUpViewModel.buttonTitle,
-                buttonAction: popUpViewModel.popupButtonAction,
+                isPresented: $popUpViewModel.state.isPresented,
+                title: popUpViewModel.state.title,
+                message: popUpViewModel.state.message,
+                buttonTitle: popUpViewModel.state.buttonTitle,
+                buttonAction: popUpViewModel.state.buttonAction,
                 popupWidth: DeviceSizeUtility.deviceWidth,
                 headerHeight: DeviceSizeUtility.isSESize ? 10 : 50,
                 footerHeight: DeviceSizeUtility.isSESize ? 120 : 140,
-                position: popUpViewModel.position
+                position: popUpViewModel.state.position
             )
     }
 }

@@ -7,13 +7,19 @@
 
 import SwiftUI
 
-class TutorialPopUpViewModel: ObservableObject {
-    @Published var show: Bool = false
-    @Published private(set) var title: String = ""
-    @Published private(set) var message: String = ""
-    @Published private(set) var buttonTitle: String = ""
-    @Published private(set) var popupButtonAction: () -> Void = {}
-    @Published private(set) var position: PopUpPosition = .bottomRight
+struct TutorialPopUpState {
+    var isPresented: Bool = false
+    fileprivate(set) var title: String = ""
+    fileprivate(set) var message: String = ""
+    fileprivate(set) var buttonTitle: String = ""
+    fileprivate(set) var buttonAction: () -> Void = {}
+    fileprivate(set) var position: PopUpPosition = .bottomRight
+}
+
+@MainActor
+final class TutorialPopUpViewModel: ObservableObject {
+    
+    @Published var state = TutorialPopUpState()
 
     private let repository: RealmRepository
 
@@ -23,7 +29,7 @@ class TutorialPopUpViewModel: ObservableObject {
         if users.count == 0 {
             // チュートリアルを表示したことがないならチュートリアルを表示
             if !getShowTutorialFlag() {
-                showPopUp()
+                showPopUp(.bottomRight)
             }
         } else {
             // データが既にあるならチュートリアルは表示しない かつ　フラグを済みにする
@@ -36,47 +42,47 @@ class TutorialPopUpViewModel: ObservableObject {
         if getTutorialReShowFlag() {
             // 再表示フラグをOFFに
             setTutorialReShowFlag()
-            showPopUp()
+            showPopUp(.bottomRight)
         }
     }
 
-    private func showPopUp(_ position: PopUpPosition? = .bottomRight) {
+    private func showPopUp(_ position: PopUpPosition?) {
         guard let position else { return }
-        self.position = position
+        self.state.position = position
         setUpTitleMessage(position)
-        show = true
-        popupButtonAction = {
+        state.isPresented = true
+        state.buttonAction = { [weak self] in
+            guard let self else { return }
             // 再帰的に処理を実行する
-            self.showPopUp(position.next)
+            self.showPopUp(state.position.next)
             // 最後まで確認したらフラグをONにして再度表示されないようにする
-            if position.next == nil {
-                self.setShowTutorialFlag()
-            }
+            guard position.next == nil else { return }
+            self.setShowTutorialFlag()
         }
     }
 
     private func setUpTitleMessage(_ position: PopUpPosition) {
         switch position {
         case .topLeft:
-            title = L10n.tutorialTopLeftTitle
-            message = L10n.tutorialTopLeftMsg
-            buttonTitle = L10n.tutorialTopLeftButton
+            state.title = L10n.tutorialTopLeftTitle
+            state.message = L10n.tutorialTopLeftMsg
+            state.buttonTitle = L10n.tutorialTopLeftButton
         case .topRight:
-            title = L10n.tutorialTopRightTitle
-            message = L10n.tutorialTopRightMsg
-            buttonTitle = L10n.tutorialNextButton
+            state.title = L10n.tutorialTopRightTitle
+            state.message = L10n.tutorialTopRightMsg
+            state.buttonTitle = L10n.tutorialNextButton
         case .bottomLeft:
-            title = L10n.tutorialBottomLeftTitle
-            message = L10n.tutorialBottomLeftMsg
-            buttonTitle = L10n.tutorialNextButton
+            state.title = L10n.tutorialBottomLeftTitle
+            state.message = L10n.tutorialBottomLeftMsg
+            state.buttonTitle = L10n.tutorialNextButton
         case .bottomMiddle:
-            title = L10n.tutorialBottomMiddleTitle
-            message = L10n.tutorialBottomMiddleMsg
-            buttonTitle = L10n.tutorialNextButton
+            state.title = L10n.tutorialBottomMiddleTitle
+            state.message = L10n.tutorialBottomMiddleMsg
+            state.buttonTitle = L10n.tutorialNextButton
         case .bottomRight:
-            title = L10n.tutorialBottomRightTitle
-            message = L10n.tutorialBottomRightMsg
-            buttonTitle = L10n.tutorialNextButton
+            state.title = L10n.tutorialBottomRightTitle
+            state.message = L10n.tutorialBottomRightMsg
+            state.buttonTitle = L10n.tutorialNextButton
         }
     }
 }
@@ -98,7 +104,7 @@ extension TutorialPopUpViewModel {
     }
 
     /// チュートリアル再表示フラグセット
-    func setTutorialReShowFlag() {
+    private func setTutorialReShowFlag() {
         AppManager.sharedUserDefaultManager.setTutorialReShowFlag(false)
     }
 }

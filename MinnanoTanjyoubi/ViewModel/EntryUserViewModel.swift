@@ -10,20 +10,24 @@ import Combine
 import RealmSwift
 import WidgetKit
 
+struct EntryUserState {
+    var name: String = ""
+    var ruby: String = ""
+    var date: Date = Date()
+    var memo: String = ""
+    var selectedRelation: Relation = .other
+    var isAlert: Bool = true
+    var isYearsUnknown: Bool = false
+}
+
 @MainActor
 final class EntryUserViewModel: ObservableObject {
     
     /// 登録・更新画面で表示するUser情報
-    @Published var targetUser: User? = nil
+    private var targetUser: User? = nil
     
-    /// プロパティ
-    @Published var name: String = ""
-    @Published var ruby: String = ""
-    @Published var date: Date = Date()
-    @Published var memo: String = ""
-    @Published var selectedRelation: Relation = .other
-    @Published var isAlert: Bool = true
-    @Published var isYearsUnknown: Bool = false
+    /// `EntryUserState`
+    @Published var state = EntryUserState()
     
     /// カレンダーON/OFF
     @Published var showWheel: Bool = false
@@ -48,9 +52,9 @@ final class EntryUserViewModel: ObservableObject {
         } else {
             // 新規登録なら初期値年数を反映
             // カレンダーからの遷移なら日付まで指定する
-            date = getInitDate(month: isCalendarMonth, day: isCalendarDay)
+            state.date = getInitDate(month: isCalendarMonth, day: isCalendarDay)
             // 関係初期値を取得
-            selectedRelation = getInitRelation()
+            state.selectedRelation = getInitRelation()
         }
     }
 
@@ -64,17 +68,17 @@ extension EntryUserViewModel {
         guard let user: User = repository.getByPrimaryKey(id) else { return }
         targetUser = user
         // Update時なら初期値セット
-        name = user.name
-        ruby = user.ruby
-        date = user.date
-        selectedRelation = user.relation
-        memo = user.memo
-        isYearsUnknown = user.isYearsUnknown
+        state.name = user.name
+        state.ruby = user.ruby
+        state.date = user.date
+        state.selectedRelation = user.relation
+        state.memo = user.memo
+        state.isYearsUnknown = user.isYearsUnknown
     }
     
     
     func createOrUpdateUser() -> Bool {
-        guard !name.isEmpty else {
+        guard !state.name.isEmpty else {
             isShowValidationDialog = true
             return false
         }
@@ -83,26 +87,26 @@ extension EntryUserViewModel {
             // Update
             repository.updateObject(User.self, id: targetUser.id) { [weak self] obj in
                 guard let self else { return }
-                obj.name = self.name
-                obj.ruby = self.ruby
-                obj.date = self.date
-                obj.relation = self.selectedRelation
-                obj.memo = self.memo
-                obj.alert = self.isAlert
-                obj.isYearsUnknown = self.isYearsUnknown
+                obj.name = self.state.name
+                obj.ruby = self.state.ruby
+                obj.date = self.state.date
+                obj.relation = self.state.selectedRelation
+                obj.memo = self.state.memo
+                obj.alert = self.state.isAlert
+                obj.isYearsUnknown = self.state.isYearsUnknown
             }
         } else {
             let newUser = User()
-            newUser.name = name
-            newUser.ruby = ruby
-            newUser.date = date
-            newUser.relation = selectedRelation
-            newUser.memo = memo
-            newUser.alert = isAlert
-            newUser.isYearsUnknown = isYearsUnknown
+            newUser.name = state.name
+            newUser.ruby = state.ruby
+            newUser.date = state.date
+            newUser.relation = state.selectedRelation
+            newUser.memo = state.memo
+            newUser.alert = state.isAlert
+            newUser.isYearsUnknown = state.isYearsUnknown
             // Create
-            if isAlert {
-                AppManager.sharedNotificationRequestManager.sendNotificationRequest(newUser.id, name, date)
+            if state.isAlert {
+                AppManager.sharedNotificationRequestManager.sendNotificationRequest(newUser.id, state.name, state.date)
             }
             repository.createObject(newUser)
         }

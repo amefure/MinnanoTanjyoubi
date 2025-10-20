@@ -42,7 +42,7 @@ struct EntryUserView: View {
                 HStack {
                     Text("名　　前")
                         .frame(width: 80)
-                    TextField("名前", text: $viewModel.name)
+                    TextField("名前", text: $viewModel.state.name)
                         .textFieldStyle(.roundedBorder)
                         .foregroundColor(.primary)
                         .focused($isFocusActive)
@@ -52,7 +52,7 @@ struct EntryUserView: View {
                 HStack {
                     Text("ふりがな")
                         .frame(width: 80)
-                    TextField("ふりがな", text: $viewModel.ruby)
+                    TextField("ふりがな", text: $viewModel.state.ruby)
                         .textFieldStyle(.roundedBorder)
                         .foregroundColor(.primary)
                         .focused($isFocusActive)
@@ -64,9 +64,9 @@ struct EntryUserView: View {
                         .frame(width: 80)
                     Spacer()
                     DatePickerView(
-                        date: $viewModel.date,
+                        date: $viewModel.state.date,
                         showWheel: $viewModel.showWheel,
-                        isYearsUnknown: $viewModel.isYearsUnknown
+                        isYearsUnknown: $viewModel.state.isYearsUnknown
                     ).environmentObject(rootEnvironment)
                 }.padding(5)
 
@@ -83,16 +83,17 @@ struct EntryUserView: View {
 
                 // Input Relation
 
-                if viewModel.targetUser == nil {
+                // 新規登録時のみ通知フラグをONにする
+                if updateUserId == nil {
                     Toggle(
-                        isOn: $viewModel.isAlert,
+                        isOn: $viewModel.state.isAlert,
                         label: { Text("通知") }
                     ).toggleStyle(SwitchToggleStyle(tint: rootEnvironment.scheme.thema1))
                         .frame(width: DeviceSizeUtility.deviceWidth - 50)
                 }
 
                 Toggle(
-                    isOn: $viewModel.isYearsUnknown,
+                    isOn: $viewModel.state.isYearsUnknown,
                     label: { Text("年数の指定を未設定にする") }
                 ).toggleStyle(SwitchToggleStyle(tint: rootEnvironment.scheme.thema1))
                     .frame(width: DeviceSizeUtility.deviceWidth - 50)
@@ -103,7 +104,7 @@ struct EntryUserView: View {
                     .opacity(0.8)
 
                 NavigationStack {
-                    TextEditor(text: $viewModel.memo)
+                    TextEditor(text: $viewModel.state.memo)
                         .padding(5)
                         .background(rootEnvironment.scheme.foundationSub)
                         .focused($isFocusActive)
@@ -164,7 +165,7 @@ struct EntryUserView: View {
     private func relationPickerView() -> some View {
         
         Picker(
-            selection: $viewModel.selectedRelation,
+            selection: $viewModel.state.selectedRelation,
             label: Text("関係")
         ) {
             ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in

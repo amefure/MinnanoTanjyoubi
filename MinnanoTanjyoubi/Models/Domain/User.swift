@@ -14,6 +14,7 @@ class User: Object, ObjectKeyIdentifiable, Codable, Identifiable {
     @Persisted var date: Date = .init()
     @Persisted var relation: Relation
     @Persisted var memo: String = ""
+    /// 誕生日通知(`notification`とかのが良かったかも)
     @Persisted var alert: Bool = false
     @Persisted var imagePaths: RealmSwift.List<String>
     @Persisted var isYearsUnknown: Bool = false
