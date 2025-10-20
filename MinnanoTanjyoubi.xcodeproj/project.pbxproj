@@ -93,7 +93,6 @@
 		128FB7A52E9A99A3000167C6 /* ShareUserLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FB7A42E9A99A1000167C6 /* ShareUserLinkViewModel.swift */; };
 		128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */; };
 		128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */; };
-		128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */; };
 		128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */; };
 		129A0DEC2CAC260F006C6ED2 /* FaqListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */; };
 		12ACAD2529951A0E00273834 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12ACAD2429951A0E00273834 /* GoogleService-Info.plist */; };
@@ -296,7 +295,6 @@
 		128FB7A42E9A99A1000167C6 /* ShareUserLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareUserLinkViewModel.swift; sourceTree = "<group>"; };
 		128FC4C12B5FA557003E3B53 /* UpdateRelationNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRelationNameView.swift; sourceTree = "<group>"; };
 		128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
-		128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifyDialogView.swift; sourceTree = "<group>"; };
 		128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIApplication.swift; sourceTree = "<group>"; };
 		129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqListView.swift; sourceTree = "<group>"; };
 		12ACAD2429951A0E00273834 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -663,7 +661,6 @@
 		128FC4C62B5FF08D003E3B53 /* Dialog */ = {
 			isa = PBXGroup;
 			children = (
-				128FC4C72B5FF0F8003E3B53 /* CustomNotifyDialogView.swift */,
 				122B346B2D14603200204703 /* TutorialPopupView.swift */,
 				1268B3EB2D15742D00E1F8F7 /* CustomPopUpDialogView.swift */,
 				1224013D2B8720FA0099BE8D /* ImagePickerDialog.swift */,
@@ -1256,7 +1253,6 @@
 				126236212DF3C78F00A5F1AE /* TheDayView.swift in Sources */,
 				128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */,
 				128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */,
-				128FC4C82B5FF0F8003E3B53 /* CustomNotifyDialogView.swift in Sources */,
 				124BBC3A2DCB872000E78A71 /* FBRemoteConfigManager.swift in Sources */,
 				126236122DF3BEA500A5F1AE /* SCDate.swift in Sources */,
 				12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */,
