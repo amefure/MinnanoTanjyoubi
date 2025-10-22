@@ -78,5 +78,5 @@ struct DatePickerView: View {
 
 #Preview {
     DatePickerView(date: Binding.constant(Date()), showWheel: Binding.constant(true), isYearsUnknown: Binding.constant(true))
-        .environmentObject(RootEnvironment())
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

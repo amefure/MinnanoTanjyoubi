@@ -44,5 +44,5 @@ struct YearAndMonthSelectionView: View {
 
 #Preview {
     YearAndMonthSelectionView()
-        .environmentObject(RootEnvironment.shared)
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

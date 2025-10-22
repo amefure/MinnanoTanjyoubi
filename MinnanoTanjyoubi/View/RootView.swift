@@ -59,5 +59,5 @@ struct RootView: View {
 
 #Preview {
     RootView()
-        .environmentObject(RootEnvironment())
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

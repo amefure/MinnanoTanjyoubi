@@ -11,10 +11,7 @@ import StoreKit
 import UIKit
 
 /// アプリ内で共通で利用される状態や環境値を保持する
-@MainActor
-class RootEnvironment: ObservableObject {
-    /// `Singleton`
-    static let shared = RootEnvironment()
+final class RootEnvironment: ObservableObject {
 
     /// `Property`
     /// カラースキーム
@@ -48,27 +45,17 @@ class RootEnvironment: ObservableObject {
     private let userDefaultsRepository: UserDefaultsRepository
     private let inAppPurchaseRepository: InAppPurchaseRepository
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
+    private var purchaseTask: Task<Void, Never>?
+
+    init(
+        repositoryDependency: RepositoryDependency = RepositoryDependency(),
+        userDefaultsRepository: UserDefaultsRepository,
+        inAppPurchaseRepository: InAppPurchaseRepository
+    ) {
         repository = repositoryDependency.realmRepository
-        userDefaultsRepository = repositoryDependency.userDefaultsRepository
         keyChainRepository = repositoryDependency.keyChainRepository
-        inAppPurchaseRepository = repositoryDependency.inAppPurchaseRepository
-
-        // UserDefaultsに保存されているフラグを反映
-        setUpUserDefaultsFlag()
-
-        // 購入済み課金アイテム観測
-        inAppPurchaseRepository.purchasedProducts
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self else { return }
-                // 購入済みアイテム配列が変化した際に購入済みかどうか確認
-                let removeAds = inAppPurchaseRepository.isPurchased(ProductItem.removeAds.id)
-                let unlockStorage = inAppPurchaseRepository.isPurchased(ProductItem.unlockStorage.id)
-                // 両者trueなら更新
-                if removeAds { self.removeAds = true }
-                if unlockStorage { self.unlockStorage = true }
-            }.store(in: &cancellables)
+        self.userDefaultsRepository = userDefaultsRepository
+        self.inAppPurchaseRepository = inAppPurchaseRepository
     }
 
     /// `UserDefaults`に保存されている情報を取得してセットアップ
@@ -81,7 +68,27 @@ class RootEnvironment: ObservableObject {
     }
 
     /// アプリ起動時に1回だけ呼ばれる設計
+    @MainActor
     func onAppear() {
+        
+        // UserDefaultsに保存されているフラグを反映
+        setUpUserDefaultsFlag()
+      
+        // 購入済み課金アイテム観測
+        inAppPurchaseRepository.purchasedProducts
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                print("-----rootEnviroment")
+                // 購入済みアイテム配列が変化した際に購入済みかどうか確認
+                let removeAds = inAppPurchaseRepository.isPurchased(ProductItem.removeAds.id)
+                let unlockStorage = inAppPurchaseRepository.isPurchased(ProductItem.unlockStorage.id)
+                // 両者trueなら更新
+                if removeAds { self.removeAds = true }
+                if unlockStorage { self.unlockStorage = true }
+            }.store(in: &cancellables)
+        
+        
         // アプリ起動回数カウント
         setLaunchAppCount()
 
@@ -93,15 +100,23 @@ class RootEnvironment: ObservableObject {
             .sink { [weak self] version in
                 guard let self else { return }
                 // Versionが初期値(0)なら流さない
-                if version != 0 {
-                    // レビューポップアップ表示マイグレーション
-                    resetShowPopUp(version)
-                }
+                guard version != 0 else { return }
+                // レビューポップアップ表示マイグレーション
+                resetShowPopUp(version)
 
             }.store(in: &cancellables)
 
         // レビューポップアップ表示
         showReviewPopup()
+    }
+    
+    /// 課金アイテムの購入状況を確認
+    @MainActor
+    func listenInAppPurchase() {
+        Task {
+            // 課金アイテムの変化を観測
+            await inAppPurchaseRepository.startListen()
+        }
     }
 }
 
@@ -135,6 +150,7 @@ extension RootEnvironment {
     }
 
     /// レビューポップアップ表示
+    @MainActor
     func showReviewPopup() {
         // 1度表示していれば表示しない
         guard !getShowReviewPopupFlag() else { return }

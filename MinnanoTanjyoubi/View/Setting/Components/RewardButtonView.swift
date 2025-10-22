@@ -53,5 +53,5 @@ struct RewardButtonView: View {
 
 #Preview {
     RewardButtonView()
-        .environmentObject(RootEnvironment())
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

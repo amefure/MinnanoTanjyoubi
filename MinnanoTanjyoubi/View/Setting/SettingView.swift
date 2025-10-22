@@ -573,5 +573,5 @@ private struct CapacityParametersView: View {
 
 #Preview {
     SettingView()
-        .environmentObject(RootEnvironment())
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

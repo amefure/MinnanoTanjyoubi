@@ -74,5 +74,5 @@ struct SelectSortView: View {
 
 #Preview {
     SelectSortView()
-        .environmentObject(RootEnvironment.shared)
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

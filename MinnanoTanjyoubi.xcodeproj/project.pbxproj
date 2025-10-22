@@ -149,7 +149,10 @@
 		12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29C02C21958700A1293D /* EntryUserViewModel.swift */; };
 		12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */; };
 		12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */; };
+		12F811CD2EA67461002B54E5 /* WidgetCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F811CC2EA67452002B54E5 /* WidgetCenterManager.swift */; };
 		12F811D02EA67540002B54E5 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 12F811CF2EA67540002B54E5 /* Swinject */; };
+		12F811D32EA6763F002B54E5 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F811D22EA6763E002B54E5 /* DIContainer.swift */; };
+		12F811D52EA91C5B002B54E5 /* WrapperProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F811D42EA91C58002B54E5 /* WrapperProduct.swift */; };
 		12F9A67A2E85819D0010B116 /* ExPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9A6792E85819C0010B116 /* ExPublisher.swift */; };
 		12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */; };
 		12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */; };
@@ -353,6 +356,9 @@
 		12ED29C02C21958700A1293D /* EntryUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserViewModel.swift; sourceTree = "<group>"; };
 		12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
 		12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorScheme.swift; sourceTree = "<group>"; };
+		12F811CC2EA67452002B54E5 /* WidgetCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCenterManager.swift; sourceTree = "<group>"; };
+		12F811D22EA6763E002B54E5 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		12F811D42EA91C58002B54E5 /* WrapperProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperProduct.swift; sourceTree = "<group>"; };
 		12F9A6792E85819C0010B116 /* ExPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExPublisher.swift; sourceTree = "<group>"; };
 		12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExNotificationName.swift; sourceTree = "<group>"; };
 		12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInitWeekView.swift; sourceTree = "<group>"; };
@@ -711,6 +717,7 @@
 			isa = PBXGroup;
 			children = (
 				1246023E2B36A23E00B6C32D /* AppManager.swift */,
+				12F811CC2EA67452002B54E5 /* WidgetCenterManager.swift */,
 				12CA5D962D21887E00A4C1F6 /* UserDefaultManager.swift */,
 				122401432B87691E0099BE8D /* ImageFileManager.swift */,
 				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
@@ -732,6 +739,7 @@
 		12CA5D982D2281D900A4C1F6 /* InAppPurchase */ = {
 			isa = PBXGroup;
 			children = (
+				12F811D42EA91C58002B54E5 /* WrapperProduct.swift */,
 				12CA5D9B2D2281EE00A4C1F6 /* ProductItem.swift */,
 				12CA5D9F2D26D16600A4C1F6 /* SecretProductIdKey.swift */,
 			);
@@ -775,6 +783,7 @@
 				12CB920D28E5C886002BD7B2 /* Models */,
 				121DEE022B1A1EFB00964902 /* View */,
 				123F485229A1D967001B91B3 /* ViewModel */,
+				12F811D12EA67634002B54E5 /* DI */,
 				12BA5F162C6BA3E500E1DDF2 /* Managers */,
 				121DEE032B1A1FF500964902 /* Repository */,
 				12CB920228E5C6E1002BD7B2 /* Preview Content */,
@@ -875,6 +884,14 @@
 				12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		12F811D12EA67634002B54E5 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				12F811D22EA6763E002B54E5 /* DIContainer.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		569280D17AFD40E07506B1ED /* Pods */ = {
@@ -1207,6 +1224,7 @@
 			files = (
 				12ACAD2C299C36CB00273834 /* UpSideView.swift in Sources */,
 				12CFB0A92D0C53CA00407CEA /* ExView.swift in Sources */,
+				12F811CD2EA67461002B54E5 /* WidgetCenterManager.swift in Sources */,
 				122B346E2D14604600204703 /* PopUpPosition.swift in Sources */,
 				12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */,
 				12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */,
@@ -1214,6 +1232,7 @@
 				12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */,
 				128FB7A32E9A94F6000167C6 /* UpdateRelationNameViewModel.swift in Sources */,
 				12BA5F142C6BA0A600E1DDF2 /* Assets.swift in Sources */,
+				12F811D52EA91C5B002B54E5 /* WrapperProduct.swift in Sources */,
 				1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */,
 				12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */,
 				12CA5D932D19A7FB00A4C1F6 /* InAppPurchaseViewModel.swift in Sources */,
@@ -1226,6 +1245,7 @@
 				1246023F2B36A23E00B6C32D /* AppManager.swift in Sources */,
 				1224014A2B8819200099BE8D /* ImagePreviewDialog.swift in Sources */,
 				122B346C2D14603200204703 /* TutorialPopupView.swift in Sources */,
+				12F811D32EA6763F002B54E5 /* DIContainer.swift in Sources */,
 				12CB91FF28E5C6E1002BD7B2 /* RootView.swift in Sources */,
 				12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */,
 				12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */,

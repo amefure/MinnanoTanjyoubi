@@ -46,5 +46,5 @@ struct SectionGridListView: View {
 
 #Preview {
     SectionGridListView(users: User.demoUsers)
-        .environmentObject(RootEnvironment.shared)
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

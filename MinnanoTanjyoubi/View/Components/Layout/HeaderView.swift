@@ -56,5 +56,5 @@ struct HeaderView: View {
 
 #Preview {
     HeaderView()
-        .environmentObject(RootEnvironment.shared)
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

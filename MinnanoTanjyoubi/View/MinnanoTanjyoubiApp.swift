@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 struct MinnanoTanjyoubiApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    @ObservedObject private var rootEnvironment = RootEnvironment.shared
+    @ObservedObject private var rootEnvironment = DIContainer.shared.resolve(RootEnvironment.self)
 
     var body: some Scene {
         WindowGroup {

@@ -73,5 +73,5 @@ struct ShareUserLinkView: View {
 
 #Preview {
     ShareUserLinkView()
-        .environmentObject(RootEnvironment())
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

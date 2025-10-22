@@ -47,9 +47,7 @@ struct UpSideView: View {
     }
 }
 
-struct UpSideView_Previews: PreviewProvider {
-    static var previews: some View {
-        UpSideView()
-            .environmentObject(RootEnvironment())
-    }
+#Preview {
+    UpSideView()
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

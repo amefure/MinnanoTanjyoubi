@@ -43,5 +43,5 @@ struct CalendarRootView: View {
 
 #Preview {
     CalendarRootView()
-        .environmentObject(RootEnvironment.shared)
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

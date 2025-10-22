@@ -35,9 +35,14 @@ final class EntryUserViewModel: ObservableObject {
     @Published var isShowValidationDialog: Bool = false
     
     private let repository: RealmRepository
+    private let widgetCenter: WidgetCenterProtocol
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
+    init(
+        repositoryDependency: RepositoryDependency = RepositoryDependency(),
+        widgetCenter: WidgetCenterProtocol = WidgetCenterManager()
+    ) {
         repository = repositoryDependency.realmRepository
+        self.widgetCenter = widgetCenter
     }
     
     func onAppear(
@@ -115,7 +120,7 @@ extension EntryUserViewModel {
         NotificationCenter.default.post(name: .updateCalendar, object: true)
         
         // 登録 & 更新のタイミングでウィジェットも更新する
-        WidgetCenter.shared.reloadAllTimelines()
+        widgetCenter.reloadAllTimelines()
         return true
     }
 

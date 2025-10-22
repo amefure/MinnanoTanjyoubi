@@ -9,8 +9,7 @@ import Combine
 import StoreKit
 import SwiftUI
 
-@MainActor
-class InAppPurchaseViewModel: ObservableObject {
+final class InAppPurchaseViewModel: ObservableObject {
     /// 取得エラー
     @Published var fetchError: Bool = false
     /// 購入エラー
@@ -22,18 +21,28 @@ class InAppPurchaseViewModel: ObservableObject {
     /// 購入中アイテムID
     @Published private(set) var isPurchasingId: String = ""
     /// 課金アイテム
-    @Published private(set) var products: [Product] = []
+    @Published private(set) var products: [WrapperProduct] = []
+    
+    /// この画面を表示してから課金が行われたかどうか
+    /// `RootEnviroment`側でフラグを更新するため
+    @Published private(set) var didPurchase: Bool = false
 
     private var cancellables: Set<AnyCancellable> = []
 
+    private let userDefaultsRepository: UserDefaultsRepository
     private let inAppPurchaseRepository: InAppPurchaseRepository
 
     private var purchaseTask: Task<Void, Never>?
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        inAppPurchaseRepository = repositoryDependency.inAppPurchaseRepository
+    init(
+        userDefaultsRepository: UserDefaultsRepository,
+        inAppPurchaseRepository: InAppPurchaseRepository
+    ) {
+        self.userDefaultsRepository = userDefaultsRepository
+        self.inAppPurchaseRepository = inAppPurchaseRepository
     }
 
+    @MainActor
     func onAppear() {
         FBAnalyticsManager.loggingScreen(screen: .InAppPurchaseScreen)
 
@@ -42,44 +51,61 @@ class InAppPurchaseViewModel: ObservableObject {
         }
 
         // 課金アイテム取得
-        inAppPurchaseRepository.products.sink { [weak self] products in
-            guard let self else { return }
-            self.products = products
-        }.store(in: &cancellables)
+        inAppPurchaseRepository.products
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] products in
+                guard let self else { return }
+                self.products = products.map { WrapperProduct(product: $0)}
+            }.store(in: &cancellables)
 
         // 購入済み課金アイテム観測
         inAppPurchaseRepository.purchasedProducts
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] purchasedProducts in
                 guard let self else { return }
+                
+                products.forEach { product in
+                    guard purchasedProducts.contains(where: { $0.id == product.id}) else { return }
+                    guard let index = products.firstIndex(where: { $0.id == product.id }) else { return }
+                    products[index].isPurchased = true
+                    // プロパティだけを更新しても再描画は走らないので配列ごとリフレッシュする
+                    products = products
+                }
+                
                 // 購入済みアイテム配列が変化した際に購入済みかどうか確認
                 let removeAds = inAppPurchaseRepository.isPurchased(ProductItem.removeAds.id)
                 let unlockStorage = inAppPurchaseRepository.isPurchased(ProductItem.unlockStorage.id)
                 // ローカルフラグを更新(購入済み or 未購入)
-                AppManager.sharedUserDefaultManager.setPurchasedRemoveAds(removeAds)
-                AppManager.sharedUserDefaultManager.setPurchasedUnlockStorage(unlockStorage)
+                userDefaultsRepository.setPurchasedRemoveAds(removeAds)
+                userDefaultsRepository.setPurchasedUnlockStorage(unlockStorage)
             }.store(in: &cancellables)
 
         // 購入中
-        inAppPurchaseRepository.isPurchasing.sink { [weak self] flag in
-            guard let self else { return }
-            // 購入中ではなくなったらIDをリセット
-            if !flag {
-                self.isPurchasingId = ""
-            }
-        }.store(in: &cancellables)
+        inAppPurchaseRepository.isPurchasing
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] flag in
+                guard let self else { return }
+                // 購入中ではなくなったらIDをリセット
+                if !flag {
+                    self.isPurchasingId = ""
+                }
+            }.store(in: &cancellables)
 
         // 取得エラー
-        inAppPurchaseRepository.fetchError.sink { [weak self] flag in
-            guard let self else { return }
-            self.fetchError = flag
-        }.store(in: &cancellables)
+        inAppPurchaseRepository.fetchError
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] flag in
+                guard let self else { return }
+                self.fetchError = flag
+            }.store(in: &cancellables)
 
         // 購入エラー
-        inAppPurchaseRepository.purchaseError.sink { [weak self] flag in
-            guard let self else { return }
-            self.purchaseError = flag
-        }.store(in: &cancellables)
+        inAppPurchaseRepository.purchaseError
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] flag in
+                guard let self else { return }
+                self.purchaseError = flag
+            }.store(in: &cancellables)
     }
 
     func onDisappear() {
@@ -88,20 +114,19 @@ class InAppPurchaseViewModel: ObservableObject {
         purchaseTask?.cancel()
     }
 
-    /// 購入済みプロダクトかどうか
-    func isPurchased(_ productId: String) -> Bool {
-        inAppPurchaseRepository.isPurchased(productId)
-    }
-
     /// 購入開始
+    @MainActor
     func purchase(product: Product) {
         isPurchasingId = product.id
         purchaseTask = Task {
             await inAppPurchaseRepository.purchase(product: product)
+            // 課金に成功したらフラグを立てておく
+            didPurchase = true
         }
     }
 
     /// 復帰処理
+    @MainActor
     func restore() {
         Task {
             do {

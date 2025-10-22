@@ -126,5 +126,5 @@ struct EntryNotifyListView: View {
 
 #Preview {
     EntryNotifyListView()
-        .environmentObject(RootEnvironment())
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

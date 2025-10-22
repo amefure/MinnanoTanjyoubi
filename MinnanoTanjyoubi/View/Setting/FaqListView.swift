@@ -41,7 +41,7 @@ struct FaqListView: View {
 
 #Preview {
     FaqListView()
-        .environmentObject(RootEnvironment())
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }
 
 private struct AccordionBoxView: View {

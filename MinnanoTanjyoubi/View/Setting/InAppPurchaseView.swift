@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InAppPurchaseView: View {
-    @StateObject private var viewModel = InAppPurchaseViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(InAppPurchaseViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @Environment(\.dismiss) private var dismiss
 
@@ -53,19 +53,19 @@ struct InAppPurchaseView: View {
                     ForEach(viewModel.products) { product in
                         Section {
                             VStack(spacing: 8) {
-                                Text(product.displayName)
+                                Text(product.value.displayName)
                                     .fontM(bold: true)
                                     .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
 
-                                Text("・\(product.description)")
+                                Text("・\(product.value.description)")
                                     .fontS()
                                     .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
 
-                                Text(product.displayPrice)
+                                Text(product.value.displayPrice)
                                     .fontM(bold: true)
 
                                 Button {
-                                    viewModel.purchase(product: product)
+                                    viewModel.purchase(product: product.value)
                                 } label: {
                                     if viewModel.isPurchasingId == product.id {
                                         ProgressView()
@@ -76,16 +76,15 @@ struct InAppPurchaseView: View {
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
                                             .shadow(color: .gray, radius: 3, x: 4, y: 4)
                                     } else {
-                                        Text(viewModel.isPurchased(product.id) ? "購入済み" : "購入する")
+                                        Text(product.isPurchased ? "購入済み" : "購入する")
                                             .foregroundStyle(.white)
                                             .frame(width: DeviceSizeUtility.deviceWidth - 60, height: 50)
                                             .background(Asset.Colors.exThemaRed.swiftUIColor)
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
                                             .shadow(color: .gray, radius: 3, x: 4, y: 4)
                                     }
-
                                 }.buttonStyle(.plain)
-                                    .disabled(viewModel.isPurchased(product.id))
+                                    .disabled(product.isPurchased)
                                     .disabled(viewModel.isPurchasingId == product.id)
                             }
                         }
@@ -117,7 +116,15 @@ struct InAppPurchaseView: View {
             }
 
         }.onAppear { viewModel.onAppear() }
-            .onDisappear { viewModel.onDisappear() }
+            .onDisappear {
+                viewModel.onDisappear()
+                
+                if viewModel.didPurchase {
+                    // 課金購入が発生していればRootEnviroment側でもアイテムを再取得する
+                    rootEnvironment.listenInAppPurchase()
+                }
+
+            }
             .background(rootEnvironment.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .fontM()
@@ -167,5 +174,5 @@ struct InAppPurchaseView: View {
 
 #Preview {
     InAppPurchaseView()
-        .environmentObject(RootEnvironment())
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

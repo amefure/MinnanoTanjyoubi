@@ -148,7 +148,8 @@ struct DetailUserView: View {
                 positiveButtonTitle: "OK"
             ).dialogImagePreviewView(
                 isPresented: $viewModel.isImageShowAlert,
-                image: viewModel.selectedPreViewImage
+                image: viewModel.selectedPreViewImage,
+                environment: rootEnvironment
             ).popup(
                 isPresented: $viewModel.isShowPopUpMemo,
                 title: "MEMO",
