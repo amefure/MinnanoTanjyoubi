@@ -9,11 +9,6 @@ import RealmSwift
 import UIKit
 
 final class NotificationRequestManager: Sendable {
-    private let userDefaultsRepository: UserDefaultsRepository
-
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        userDefaultsRepository = repositoryDependency.userDefaultsRepository
-    }
 
     /// 通知許可申請リクエスト
     func requestAuthorization() async -> Bool {
@@ -51,19 +46,28 @@ final class NotificationRequestManager: Sendable {
         rootVC?.present(alertController, animated: true, completion: {})
     }
 
-    func sendNotificationRequest(_ id: ObjectId, _ userName: String, _ date: Date) {
+    
+    /// 通知登録処理
+    /// - Parameters:
+    ///   - id: 通知ID =`UserID`
+    ///   - userName: 誕生日の人名
+    ///   - date: 誕生日
+    ///   - msg: 通知メッセージ
+    ///   - timeStr: ユーザーが選択している通知設定時間
+    ///   - dateFlag: ユーザーが選択している通知日付(`n日前`)
+    func sendNotificationRequest(
+        id: ObjectId,
+        userName: String,
+        date: Date,
+        msg: String,
+        timeStr: String,
+        dateFlag: String
+    ) {
         let content = UNMutableNotificationContent()
         content.title = "みんなの誕生日"
 
-        let msg = userDefaultsRepository.getStringData(key: UserDefaultsKey.NOTICE_MSG, initialValue: NotifyConfig.INITIAL_MSG)
-
         let replaceMsg = msg.replacingOccurrences(of: NotifyConfig.VARIABLE_USER_NAME, with: userName)
         content.body = replaceMsg
-
-        // Setting > TimePickerView.swift
-        let timeStr = userDefaultsRepository.getStringData(key: UserDefaultsKey.NOTICE_TIME, initialValue: NotifyConfig.INITIAL_TIME)
-        // Setting > NotiveDateFlagView.swift
-        let dateFlag = userDefaultsRepository.getStringData(key: UserDefaultsKey.NOTICE_DATE_FLAG, initialValue: NotifyConfig.INITIAL_DATE_FLAG)
 
         var dateStr = ""
 
@@ -73,8 +77,8 @@ final class NotificationRequestManager: Sendable {
             // 0 なら当日
             dateStr = dfm.getString(date: date)
         } else {
-            let dayNum = Int(dateFlag) ?? 1
             // 0以外なら日数前にする
+            let dayNum: Int = Int(dateFlag) ?? 1
             let calendar = Calendar.current
             let modifiedDate: Date = calendar.date(byAdding: .day, value: -dayNum, to: date) ?? Date()
             dateStr = dfm.getString(date: modifiedDate)
@@ -101,11 +105,13 @@ final class NotificationRequestManager: Sendable {
             minute: minute
         )
 
+        // 通知登録
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
         let request = UNNotificationRequest(identifier: id.stringValue, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
 
+    /// 登録済み通知の削除
     func removeNotificationRequest(_ id: ObjectId) {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [id.stringValue])

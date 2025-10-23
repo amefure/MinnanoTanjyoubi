@@ -8,7 +8,6 @@
 import SwiftUI
 import RealmSwift
 
-@MainActor
 final class EntryNotifyListViewModel: ObservableObject {
     
     @Published var notifyList: [NotificationRequestWrapper] = []
@@ -22,20 +21,27 @@ final class EntryNotifyListViewModel: ObservableObject {
     
     private let df = DateFormatUtility()
     
+    private let notificationRequestManager: NotificationRequestManager
     private let repository: RealmRepository
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        repository = repositoryDependency.realmRepository
+    init(
+        repository: RealmRepository,
+        notificationRequestManager: NotificationRequestManager
+    ) {
+        self.repository = repository
+        self.notificationRequestManager = notificationRequestManager
     }
     
+    @MainActor
     func onAppear() {
         fecthNotifyList()
     }
     
+    @MainActor
     private func fecthNotifyList() {
         Task {
             isFetching = true
-            notifyList = await AppManager.sharedNotificationRequestManager.confirmNotificationRequest()
+            notifyList = await notificationRequestManager.confirmNotificationRequest()
                 .sorted {
                     let preMonth: Int = $0.date.month ?? 0
                     let lateMonth: Int = $1.date.month ?? 0
@@ -66,6 +72,7 @@ final class EntryNotifyListViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func deleteTargetNotify() {
         guard let targetNotify else {
             isShowFailedDeleteAlert = true
@@ -75,16 +82,17 @@ final class EntryNotifyListViewModel: ObservableObject {
             return
         }
         repository.updateNotifyUser(id: objectId, notify: false)
-        AppManager.sharedNotificationRequestManager.removeNotificationRequest(objectId)
+        notificationRequestManager.removeNotificationRequest(objectId)
         isShowSuccessDeleteAlert = true
         fecthNotifyList()
     }
     
+    @MainActor
     func deleteAllNotify() {
         notifyList.forEach { notify in
             guard let objectId = try? ObjectId(string: notify.id) else { return }
             repository.updateNotifyUser(id: objectId, notify: false)
-            AppManager.sharedNotificationRequestManager.removeNotificationRequest(objectId)
+            notificationRequestManager.removeNotificationRequest(objectId)
         }
         isShowSuccessDeleteAlert = true
         fecthNotifyList()

@@ -97,6 +97,15 @@ final class UserDefaultsRepository: @unchecked Sendable {
 }
 
 extension UserDefaultsRepository {
+    
+    /// 通知関連のユーサー設定情報を全て取得
+    func getNotifyUserSetting() -> (msg: String, timeStr: String, dateFlag: String) {
+        let msg = getStringData(key: UserDefaultsKey.NOTICE_MSG, initialValue: NotifyConfig.INITIAL_MSG)
+        let timeStr = getStringData(key: UserDefaultsKey.NOTICE_TIME, initialValue: NotifyConfig.INITIAL_TIME)
+        let dateFlag = getStringData(key: UserDefaultsKey.NOTICE_DATE_FLAG, initialValue: NotifyConfig.INITIAL_DATE_FLAG)
+        return (msg, timeStr, dateFlag)
+    }
+    
     /// `LAST_ACQUISITION_DATE`
     /// 取得：最終視聴日
     /// `yyyy/MM/dd`形式で日付を保持

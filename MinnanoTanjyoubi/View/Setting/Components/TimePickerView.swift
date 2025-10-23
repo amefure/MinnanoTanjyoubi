@@ -32,8 +32,6 @@ struct TimePickerView: View {
     }
 }
 
-struct TimePickerView_Previews: PreviewProvider {
-    static var previews: some View {
-        TimePickerView(viewModel: SettingViewModel())
-    }
+#Preview {
+    TimePickerView(viewModel: DIContainer.shared.resolve(SettingViewModel.self))
 }

@@ -32,9 +32,12 @@ final class SettingViewModel: ObservableObject {
     private let repository: RealmRepository
     private let keyChainRepository: KeyChainRepository
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        repository = repositoryDependency.realmRepository
-        keyChainRepository = repositoryDependency.keyChainRepository
+    init(
+        repository: RealmRepository,
+        keyChainRepository: KeyChainRepository
+    ) {
+        self.repository = repository
+        self.keyChainRepository = keyChainRepository
 
         setUpYears()
     }

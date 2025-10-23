@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RewardButtonView: View {
-    @StateObject private var viewModel = RewardViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(RewardViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     var body: some View {

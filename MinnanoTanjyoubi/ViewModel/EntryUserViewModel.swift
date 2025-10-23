@@ -20,7 +20,6 @@ struct EntryUserState {
     var isYearsUnknown: Bool = false
 }
 
-@MainActor
 final class EntryUserViewModel: ObservableObject {
     
     /// 登録・更新画面で表示するUser情報
@@ -35,13 +34,19 @@ final class EntryUserViewModel: ObservableObject {
     @Published var isShowValidationDialog: Bool = false
     
     private let repository: RealmRepository
+    private let userDefaultsRepository: UserDefaultsRepository
+    private let notificationRequestManager: NotificationRequestManager
     private let widgetCenter: WidgetCenterProtocol
 
     init(
-        repositoryDependency: RepositoryDependency = RepositoryDependency(),
-        widgetCenter: WidgetCenterProtocol = WidgetCenterManager()
+        repository: RealmRepository,
+        userDefaultsRepository: UserDefaultsRepository,
+        notificationRequestManager: NotificationRequestManager,
+        widgetCenter: WidgetCenterProtocol
     ) {
-        repository = repositoryDependency.realmRepository
+        self.repository = repository
+        self.userDefaultsRepository = userDefaultsRepository
+        self.notificationRequestManager = notificationRequestManager
         self.widgetCenter = widgetCenter
     }
     
@@ -52,7 +57,6 @@ final class EntryUserViewModel: ObservableObject {
     ) {
         
         if let updateUserId {
-            //
             fetchTargetUser(id: updateUserId)
         } else {
             // 新規登録なら初期値年数を反映
@@ -63,8 +67,7 @@ final class EntryUserViewModel: ObservableObject {
         }
     }
 
-    func onDisappear() {
-    }
+    func onDisappear() { }
 }
 
 extension EntryUserViewModel {
@@ -111,7 +114,17 @@ extension EntryUserViewModel {
             newUser.isYearsUnknown = state.isYearsUnknown
             // Create
             if state.isAlert {
-                AppManager.sharedNotificationRequestManager.sendNotificationRequest(newUser.id, state.name, state.date)
+                let setting = userDefaultsRepository.getNotifyUserSetting()
+                // 通知を登録
+                notificationRequestManager
+                    .sendNotificationRequest(
+                        id: newUser.id,
+                        userName: state.name,
+                        date: state.date,
+                        msg: setting.msg,
+                        timeStr: setting.timeStr,
+                        dateFlag: setting.dateFlag
+                    )
             }
             repository.createObject(newUser)
         }
@@ -127,13 +140,13 @@ extension EntryUserViewModel {
     /// 保存された年数&カレンダーから渡された日付があればそのDateオブジェクトを取得
     private func getInitDate(month: Int?, day: Int?) -> Date {
         let dfm = DateFormatUtility()
-        let year = AppManager.sharedUserDefaultManager.getEntryInitYear()
+        let year = userDefaultsRepository.getEntryInitYear()
         let yearDate = dfm.setDate(year: year, month: month, day: day)
         return yearDate
     }
 
     /// 関係初期値
     private func getInitRelation() -> Relation {
-        return AppManager.sharedUserDefaultManager.getEntryInitRelation()
+        return userDefaultsRepository.getEntryInitRelation()
     }
 }

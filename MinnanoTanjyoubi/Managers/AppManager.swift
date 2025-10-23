@@ -8,8 +8,8 @@
 import UIKit
 
 class AppManager: NSObject {
-    @MainActor
-    static let sharedNotificationRequestManager = NotificationRequestManager()
+    
+    //static let sharedNotificationRequestManager = NotificationRequestManager()
     static let sharedUserDefaultManager = UserDefaultManager()
     static let sharedRemoteConfigManager = RemoteConfigManager()
 }

@@ -8,18 +8,23 @@
 import SwiftUI
 import GoogleMobileAds
 
-@MainActor
 final class RewardViewModel: ObservableObject {
     @Published var rewardLoaded = false
     @Published var isShowAlert = false
     private var rewardedAd: RewardedAd?
     
+    private let userDefaultsRepository: UserDefaultsRepository
     private let rewardService: RewardServiceProtocol
     
-    init(rewardService: RewardServiceProtocol = RewardService()) {
+    init(
+        userDefaultsRepository: UserDefaultsRepository,
+        rewardService: RewardServiceProtocol
+    ) {
+        self.userDefaultsRepository = userDefaultsRepository
         self.rewardService = rewardService
     }
     
+    @MainActor
     func loadReward() async {
         do {
             let ad = try await rewardService.loadAds()
@@ -31,6 +36,7 @@ final class RewardViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func showReward() async {
         
         // 1日1回までしか視聴できないようにする
@@ -64,22 +70,22 @@ extension RewardViewModel {
   
     // 容量追加
     private func addCapacity() {
-        AppManager.sharedUserDefaultManager.addCapacity()
+        userDefaultsRepository.addCapacity()
     }
 
     // 容量取得
     func getCapacity() -> Int {
-        AppManager.sharedUserDefaultManager.getCapacity()
+        userDefaultsRepository.getCapacity()
     }
 
     /// 最終視聴日登録
     private func registerAcquisitionDate() {
-        AppManager.sharedUserDefaultManager.setAcquisitionDate(nowTime())
+        userDefaultsRepository.setAcquisitionDate(nowTime())
     }
 
     /// 最終視聴日取得
     func getAcquisitionDate() -> String {
-        AppManager.sharedUserDefaultManager.getAcquisitionDate()
+        userDefaultsRepository.getAcquisitionDate()
     }
 
     /// 最終視聴日チェック

@@ -12,9 +12,13 @@ import SwiftUI
 struct DetailUserView: View {
     var userId: ObjectId
 
-    @StateObject private var viewModel = DetailUserViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(DetailUserViewModel.self)
 
     @EnvironmentObject private var rootEnvironment: RootEnvironment
+    
+    private var roundWidth: CGFloat {
+        return DeviceSizeUtility.deviceWidth < 400 ? 50 : 65
+    }
     
     private let dfmJp = DateFormatUtility(format: .jp)
     private let dfmJpOnlyDate = DateFormatUtility(format: .jpOnlyDate)
@@ -53,8 +57,8 @@ struct DetailUserView: View {
                         .truncationMode(.tail) // 文字溢れを「....」にする
                         .padding()
                         .frame(
-                            width: viewModel.deviceWidth - 40,
-                            height: viewModel.isSESize ? 130 : 200,
+                            width: DeviceSizeUtility.deviceWidth - 40,
+                            height: DeviceSizeUtility.isSESize ? 130 : 200,
                             alignment: .topLeading
                         )
                         .background(rootEnvironment.scheme.foundationSub)
@@ -73,7 +77,7 @@ struct DetailUserView: View {
                         .padding(.top, 5)
                 }
                 
-            }.padding(viewModel.isSESize ? 5 : 10)
+            }.padding(DeviceSizeUtility.isSESize ? 5 : 10)
             
             // 通知トグルビュー
             Toggle("通知", isOn: $viewModel.isNotifyFlag)
@@ -97,7 +101,7 @@ struct DetailUserView: View {
                 EntryUserView(updateUserId: viewModel.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
             }.environmentObject(rootEnvironment)
 
-            if !viewModel.isSESize && !rootEnvironment.removeAds {
+            if !DeviceSizeUtility.isSESize && !rootEnvironment.removeAds {
                 AdMobBannerView()
                     .frame(height: 50)
             }
@@ -164,12 +168,12 @@ struct DetailUserView: View {
                 Text(rootEnvironment.relationNameList[safe: viewModel.targetUser.relation.relationIndex] ?? "その他")
                     .padding(8)
                     .multilineTextAlignment(.center)
-                    .frame(minWidth: viewModel.roundWidth, alignment: .center)
-                    .frame(maxWidth: viewModel.roundWidth * 1.5)
+                    .frame(minWidth: roundWidth, alignment: .center)
+                    .frame(maxWidth: roundWidth * 1.5)
                     .lineLimit(1)
                     .background(rootEnvironment.scheme.foundationPrimary)
                     .cornerRadius(5)
-                    .font(viewModel.isSESize ? .system(size: 12) : .system(size: 17))
+                    .font(DeviceSizeUtility.isSESize ? .system(size: 12) : .system(size: 17))
 
                 Spacer()
 
@@ -189,16 +193,16 @@ struct DetailUserView: View {
 
                 }.padding(8)
                     .multilineTextAlignment(.center)
-                    .frame(minWidth: viewModel.roundWidth, alignment: .center)
+                    .frame(minWidth: roundWidth, alignment: .center)
                     .background(rootEnvironment.scheme.foundationPrimary)
                     .cornerRadius(5)
-                    .font(viewModel.isSESize ? .system(size: 12) : .system(size: 17))
+                    .font(DeviceSizeUtility.isSESize ? .system(size: 12) : .system(size: 17))
             }
 
             Text(viewModel.targetUser.ruby)
-                .font(viewModel.isSESize ? .system(size: 12) : .system(size: 14))
+                .font(DeviceSizeUtility.isSESize ? .system(size: 12) : .system(size: 14))
             Text(viewModel.targetUser.name)
-                .font(viewModel.isSESize ? .system(size: 17) : .system(size: 20))
+                .font(DeviceSizeUtility.isSESize ? .system(size: 17) : .system(size: 20))
             HStack {
                 if viewModel.targetUser.isYearsUnknown {
                     Text(dfmJpOnlyDate.getString(date: viewModel.targetUser.date))
@@ -226,35 +230,35 @@ struct DetailUserView: View {
                     }
                 }
             }.circleBorderView(
-                width: viewModel.roundWidth,
-                height: viewModel.roundWidth,
+                width: roundWidth,
+                height: roundWidth,
                 color: rootEnvironment.scheme.thema2
             )
 
             Text(UserCalcUtility.signOfZodiac(from: viewModel.targetUser.date))
                 .circleBorderView(
-                    width: viewModel.roundWidth,
-                    height: viewModel.roundWidth,
+                    width: roundWidth,
+                    height: roundWidth,
                     color: rootEnvironment.scheme.thema4
                 )
 
             if viewModel.targetUser.isYearsUnknown {
                 Text("- 年")
                     .circleBorderView(
-                        width: viewModel.roundWidth,
-                        height: viewModel.roundWidth,
+                        width: roundWidth,
+                        height: roundWidth,
                         color: rootEnvironment.scheme.thema3
                     )
             } else {
                 Text(UserCalcUtility.zodiac(from: viewModel.targetUser.date))
                     .circleBorderView(
-                        width: viewModel.roundWidth,
-                        height: viewModel.roundWidth,
+                        width: roundWidth,
+                        height: roundWidth,
                         color: rootEnvironment.scheme.thema3
                     )
             }
 
-        }.font(viewModel.isSESize ? .system(size: 12) : .system(size: 17))
+        }.font(DeviceSizeUtility.isSESize ? .system(size: 12) : .system(size: 17))
             .foregroundStyle(.white)
     }
     

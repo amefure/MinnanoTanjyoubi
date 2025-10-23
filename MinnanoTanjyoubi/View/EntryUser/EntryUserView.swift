@@ -12,7 +12,7 @@ import SwiftUI
 /// データ更新時も呼び出される
 struct EntryUserView: View {
     
-    @StateObject private var viewModel = EntryUserViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(EntryUserViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     /// Updateデータ受け取り用

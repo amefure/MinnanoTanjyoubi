@@ -10,7 +10,7 @@ import UIKit
 
 /// 設定画面
 struct SettingView: View {
-    @StateObject private var viewModel = SettingViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(SettingViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     // dismissで実装するとCPUがオーバーフローする

@@ -10,7 +10,6 @@ import SwiftUI
 import UIKit
 import RealmSwift
 
-@MainActor
 class DetailUserViewModel: ObservableObject {
     
     /// 詳細画面で表示するUser情報
@@ -50,27 +49,27 @@ class DetailUserViewModel: ObservableObject {
     @Published var selectedPickerImage: UIImage?
     /// 有効なパスに変換された画像パス
     @Published private(set) var displayImages: [String] = []
-    
-    let deviceWidth = DeviceSizeUtility.deviceWidth
-    let isSESize = DeviceSizeUtility.isSESize
-    
-    var roundWidth: CGFloat {
-        if deviceWidth < 400 {
-            return 50
-        } else {
-            return 65
-        }
-    }
+
 
     private let imageFileManager = ImageFileManager()
-    private let repository: RealmRepository
 
     private var cancellables: Set<AnyCancellable> = []
+    
+    private let repository: RealmRepository
+    private let userDefaultsRepository: UserDefaultsRepository
+    private let notificationRequestManager: NotificationRequestManager
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        repository = repositoryDependency.realmRepository
+    init(
+        repository: RealmRepository,
+        userDefaultsRepository: UserDefaultsRepository,
+        notificationRequestManager: NotificationRequestManager,
+    ) {
+        self.repository = repository
+        self.userDefaultsRepository = userDefaultsRepository
+        self.notificationRequestManager = notificationRequestManager
     }
 
+    @MainActor
     func onAppear(id: ObjectId) {
         
         refreshTargetUser(id: id)
@@ -81,12 +80,14 @@ class DetailUserViewModel: ObservableObject {
         
         $isNotifyFlag
             .removeDuplicates()
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] newValue in
                 guard let self else { return }
                 self.switchNotifyFlag(flag: newValue, user: targetUser)
             }.store(in: &cancellables)
         
         $selectedPickerImage
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] image in
                 guard let self else { return }
                 self.saveImage(image: image)
@@ -94,6 +95,7 @@ class DetailUserViewModel: ObservableObject {
         
         // 更新モーダルから戻った(falseになった)際にはリフレッシュ
         $isShowUpdateModalView
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] flag in
                 guard let self else { return }
                 guard !flag else { return }
@@ -109,7 +111,7 @@ class DetailUserViewModel: ObservableObject {
 // MARK: UserDefaults
 extension DetailUserViewModel {
     private func getDisplayAgeMonth() -> Bool {
-        AppManager.sharedUserDefaultManager.getDisplayAgeMonth()
+        userDefaultsRepository.getDisplayAgeMonth()
     }
     
     private func refreshTargetUser(id: ObjectId) {
@@ -179,26 +181,37 @@ extension DetailUserViewModel {
     }
 
     /// 通知フラグ切り替え & 通知登録 / 削除 / 許可リクエスト
+    @MainActor
     private func switchNotifyFlag(flag: Bool, user: User) {
         Task {
             // 通知リクエスト申請
-            let granted: Bool = await AppManager.sharedNotificationRequestManager.requestAuthorization()
+            let granted: Bool = await notificationRequestManager.requestAuthorization()
             if !granted {
                 // 通知許可アラート
-                AppManager.sharedNotificationRequestManager.showSettingsAlert()
+                notificationRequestManager.showSettingsAlert()
 
                 isNotifyFlag = false
                 // データベース更新
                 repository.updateNotifyUser(id: user.id, notify: false)
             } else {
                 if flag {
+                    
+                    let setting = userDefaultsRepository.getNotifyUserSetting()
                     // 通知を登録
-                    AppManager.sharedNotificationRequestManager.sendNotificationRequest(user.id, user.name, user.date)
+                    notificationRequestManager
+                        .sendNotificationRequest(
+                            id: user.id,
+                            userName: user.name,
+                            date: user.date,
+                            msg: setting.msg,
+                            timeStr: setting.timeStr,
+                            dateFlag: setting.dateFlag
+                        )
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: true)
                 } else {
                     // 通知を削除
-                    AppManager.sharedNotificationRequestManager.removeNotificationRequest(user.id)
+                    notificationRequestManager.removeNotificationRequest(user.id)
                     // データベース更新
                     repository.updateNotifyUser(id: user.id, notify: false)
                 }
