@@ -10,7 +10,7 @@ import UIKit
 
 final class NotificationRequestManager: Sendable {
     /// 通知許可申請リクエスト
-    static func requestAuthorization() async -> Bool {
+    func requestAuthorization() async -> Bool {
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         do {
             let result: Bool = try await UNUserNotificationCenter

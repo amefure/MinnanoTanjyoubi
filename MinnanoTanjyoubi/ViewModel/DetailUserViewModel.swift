@@ -184,7 +184,7 @@ extension DetailUserViewModel {
     private func switchNotifyFlag(flag: Bool, user: User) {
         Task {
             // 通知リクエスト申請
-            let granted: Bool = await NotificationRequestManager.requestAuthorization()
+            let granted: Bool = await notificationRequestManager.requestAuthorization()
             if !granted {
                 // 通知許可アラート
                 notificationRequestManager.showSettingsAlert()

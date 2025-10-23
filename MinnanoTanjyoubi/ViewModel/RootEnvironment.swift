@@ -43,18 +43,20 @@ final class RootEnvironment: ObservableObject {
     private let keyChainRepository: KeyChainRepository
     private let userDefaultsRepository: UserDefaultsRepository
     private let inAppPurchaseRepository: InAppPurchaseRepository
-
-    private var purchaseTask: Task<Void, Never>?
+    private let notificationRequestManager: NotificationRequestManager
 
     init(
-        repositoryDependency: RepositoryDependency = RepositoryDependency(),
+        repository: RealmRepository,
         userDefaultsRepository: UserDefaultsRepository,
-        inAppPurchaseRepository: InAppPurchaseRepository
+        keyChainRepository: KeyChainRepository,
+        inAppPurchaseRepository: InAppPurchaseRepository,
+        notificationRequestManager: NotificationRequestManager
     ) {
-        repository = repositoryDependency.realmRepository
-        keyChainRepository = repositoryDependency.keyChainRepository
+        self.repository = repository
         self.userDefaultsRepository = userDefaultsRepository
+        self.keyChainRepository = keyChainRepository
         self.inAppPurchaseRepository = inAppPurchaseRepository
+        self.notificationRequestManager = notificationRequestManager
     }
 
     /// `UserDefaults`に保存されている情報を取得してセットアップ
@@ -72,12 +74,16 @@ final class RootEnvironment: ObservableObject {
         // UserDefaultsに保存されているフラグを反映
         setUpUserDefaultsFlag()
 
+        Task {
+            // 通知の許可申請
+            await notificationRequestManager.requestAuthorization()
+        }
+
         // 購入済み課金アイテム観測
         inAppPurchaseRepository.purchasedProducts
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self else { return }
-                print("-----rootEnviroment")
                 // 購入済みアイテム配列が変化した際に購入済みかどうか確認
                 let removeAds = inAppPurchaseRepository.isPurchased(ProductItem.removeAds.id)
                 let unlockStorage = inAppPurchaseRepository.isPurchased(ProductItem.unlockStorage.id)
@@ -171,11 +177,11 @@ extension RootEnvironment {
         // アプリ内 0 : Remoto Config 0 => 更新
         // アプリ内 0 : Remoto Config 1 => 更新
         // アプリ内 2 : Remoto Config 1 => 更新しない
-        guard AppManager.sharedUserDefaultManager.getShowReviewPopupMigrateVersion() <= configVersion else {
+        guard userDefaultsRepository.getShowReviewPopupMigrateVersion() <= configVersion else {
             return
         }
         // バージョン+1で更新する
-        AppManager.sharedUserDefaultManager.setShowReviewPopupMigrateVersion(configVersion + 1)
+        userDefaultsRepository.setShowReviewPopupMigrateVersion(configVersion + 1)
         // 表示フラグをリセット
         registerShowReviewPopupFlag(false)
         // アプリ起動回数もリセット
@@ -204,60 +210,60 @@ extension RootEnvironment {
     }
 
     func getDisplayDaysLater() -> Bool {
-        AppManager.sharedUserDefaultManager.getDisplayDaysLater()
+        userDefaultsRepository.getDisplayDaysLater()
     }
 
     func getDisplayAgeMonth() -> Bool {
-        AppManager.sharedUserDefaultManager.getDisplayAgeMonth()
+        userDefaultsRepository.getDisplayAgeMonth()
     }
 
     private func getDisplaySectionLayout() {
-        sectionLayoutFlag = AppManager.sharedUserDefaultManager.getDisplaySectionLayout()
+        sectionLayoutFlag = userDefaultsRepository.getDisplaySectionLayout()
     }
 
     /// セクショングリッドレイアウト変更フラグ登録
     func switchDisplaySectionLayout() {
-        AppManager.sharedUserDefaultManager.setDisplaySectionLayout(sectionLayoutFlag.next)
+        userDefaultsRepository.setDisplaySectionLayout(sectionLayoutFlag.next)
         getDisplaySectionLayout()
     }
 
     /// アプリカラースキーム取得
     private func getColorScheme() {
-        scheme = AppManager.sharedUserDefaultManager.getColorScheme()
+        scheme = userDefaultsRepository.getColorScheme()
     }
 
     /// アプリカラースキーム登録
     func registerColorScheme(_ scheme: AppColorScheme) {
         // カスタムイベント計測
         FBAnalyticsManager.loggingSelectColorEvent(color: scheme)
-        AppManager.sharedUserDefaultManager.setColorScheme(scheme)
+        userDefaultsRepository.setColorScheme(scheme)
         getColorScheme()
     }
 
     /// レビューポップアップ表示フラグ取得
     private func getShowReviewPopupFlag() -> Bool {
-        AppManager.sharedUserDefaultManager.getShowReviewPopupFlag()
+        userDefaultsRepository.getShowReviewPopupFlag()
     }
 
     /// レビューポップアップ表示フラグ登録
     private func registerShowReviewPopupFlag(_ flag: Bool) {
-        AppManager.sharedUserDefaultManager.setShowReviewPopupFlag(flag)
+        userDefaultsRepository.setShowReviewPopupFlag(flag)
     }
 
     /// アプリ起動回数取得
     private func getLaunchAppCount() -> Int {
-        AppManager.sharedUserDefaultManager.getLaunchAppCount()
+        userDefaultsRepository.getLaunchAppCount()
     }
 
     /// アプリ起動回数登録
     private func setLaunchAppCount(reset: Bool = false) {
-        AppManager.sharedUserDefaultManager.setLaunchAppCount(reset: reset)
+        userDefaultsRepository.setLaunchAppCount(reset: reset)
     }
 
     /// アプリ内課金購入状況取得
     private func getPurchasedFlag() {
-        removeAds = AppManager.sharedUserDefaultManager.getPurchasedRemoveAds()
-        unlockStorage = AppManager.sharedUserDefaultManager.getPurchasedUnlockStorage()
+        removeAds = userDefaultsRepository.getPurchasedRemoveAds()
+        unlockStorage = userDefaultsRepository.getPurchasedUnlockStorage()
     }
 
     /// アプリにロックがかけてあるかをチェック

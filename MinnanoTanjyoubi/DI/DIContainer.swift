@@ -29,8 +29,11 @@ final class DIContainer: @unchecked Sendable {
 
         c.register(RootEnvironment.self) { r in
             RootEnvironment(
+                repository: r.resolve(RealmRepository.self)!,
                 userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
-                inAppPurchaseRepository: r.resolve(InAppPurchaseRepository.self)!
+                keyChainRepository: r.resolve(KeyChainRepository.self)!,
+                inAppPurchaseRepository: r.resolve(InAppPurchaseRepository.self)!,
+                notificationRequestManager: r.resolve(NotificationRequestManager.self)!
             )
         }
 

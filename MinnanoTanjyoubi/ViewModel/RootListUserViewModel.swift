@@ -51,11 +51,11 @@ final class RootListUserViewModel: ObservableObject {
     @MainActor
     func onAppear() {
         $isScrollingDown
-            .sink(receiveValue: { [weak self] _ in
+            .sink { [weak self] _ in
                 guard let self else { return }
                 // 下方向にスクロール中のみ半透明にする
                 self.opacity = self.isScrollingDown ? 0.5 : 1
-            }).store(in: &cancellables)
+            }.store(in: &cancellables)
 
         // 登録モーダルから戻った(falseになった)際にはリフレッシュ
         $isShowEntryModal
