@@ -7,7 +7,7 @@
 
 import Testing
 
-// FIXME:  as [Any] だと認識されていないおらずここから実行できないかも
+// FIXME: as [Any] だと認識されていないおらずここから実行できないかも
 // ⌘ + Uでテスト実行できるのでそちらで動かす
 @Suite
 struct MinnanoTanjyoubiTests {
@@ -18,4 +18,3 @@ struct MinnanoTanjyoubiTests {
         JsonConvertUtilityTests.self,
     ] as [Any]
 }
-

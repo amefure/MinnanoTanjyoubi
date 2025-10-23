@@ -9,24 +9,23 @@ import SwiftUI
 
 @MainActor
 final class UpdateRelationNameViewModel: ObservableObject {
-    
     @Published var isShowSuccessAlert = false
     @Published var isShowValidationAlert = false
-    
+
     @Published var friend: String = ""
     @Published var family: String = ""
     @Published var school: String = ""
     @Published var work: String = ""
     @Published var other: String = ""
     @Published var sns: String = ""
-    
+
     /// `Repository`
     private let userDefaultsRepository: UserDefaultsRepository
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         userDefaultsRepository = repositoryDependency.userDefaultsRepository
     }
-    
+
     func onAppear(relationList: [String]) {
         friend = relationList[safe: 0] ?? RelationConfig.FRIEND_NAME
         family = relationList[safe: 1] ?? RelationConfig.FAMILY_NAME
@@ -35,7 +34,7 @@ final class UpdateRelationNameViewModel: ObservableObject {
         other = relationList[safe: 4] ?? RelationConfig.OTHER_NAME
         sns = relationList[safe: 5] ?? RelationConfig.SNS_NAME
     }
-    
+
     private func validationInput() -> Bool {
         let targetList = [friend, family, school, work, other, sns]
         return !targetList.contains(where: { $0.isEmpty })

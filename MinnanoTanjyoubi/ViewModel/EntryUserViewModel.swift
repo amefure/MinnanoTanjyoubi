@@ -5,15 +5,15 @@
 //  Created by t&a on 2024/06/18.
 //
 
-import UIKit
 import Combine
 import RealmSwift
+import UIKit
 import WidgetKit
 
 struct EntryUserState {
     var name: String = ""
     var ruby: String = ""
-    var date: Date = Date()
+    var date: Date = .init()
     var memo: String = ""
     var selectedRelation: Relation = .other
     var isAlert: Bool = true
@@ -21,18 +21,17 @@ struct EntryUserState {
 }
 
 final class EntryUserViewModel: ObservableObject {
-    
     /// 登録・更新画面で表示するUser情報
-    private var targetUser: User? = nil
-    
+    private var targetUser: User?
+
     /// `EntryUserState`
     @Published var state = EntryUserState()
-    
+
     /// カレンダーON/OFF
     @Published var showWheel: Bool = false
     /// バリデーションダイアログ
     @Published var isShowValidationDialog: Bool = false
-    
+
     private let repository: RealmRepository
     private let userDefaultsRepository: UserDefaultsRepository
     private let notificationRequestManager: NotificationRequestManager
@@ -49,13 +48,12 @@ final class EntryUserViewModel: ObservableObject {
         self.notificationRequestManager = notificationRequestManager
         self.widgetCenter = widgetCenter
     }
-    
+
     func onAppear(
         updateUserId: ObjectId?,
         isCalendarMonth: Int?,
         isCalendarDay: Int?
     ) {
-        
         if let updateUserId {
             fetchTargetUser(id: updateUserId)
         } else {
@@ -67,11 +65,10 @@ final class EntryUserViewModel: ObservableObject {
         }
     }
 
-    func onDisappear() { }
+    func onDisappear() {}
 }
 
 extension EntryUserViewModel {
-    
     private func fetchTargetUser(id: ObjectId) {
         guard let user: User = repository.getByPrimaryKey(id) else { return }
         targetUser = user
@@ -83,14 +80,13 @@ extension EntryUserViewModel {
         state.memo = user.memo
         state.isYearsUnknown = user.isYearsUnknown
     }
-    
-    
+
     func createOrUpdateUser() -> Bool {
         guard !state.name.isEmpty else {
             isShowValidationDialog = true
             return false
         }
-        
+
         if let targetUser {
             // Update
             repository.updateObject(User.self, id: targetUser.id) { [weak self] obj in
@@ -128,10 +124,10 @@ extension EntryUserViewModel {
             }
             repository.createObject(newUser)
         }
-        
+
         // カレンダー更新
         NotificationCenter.default.post(name: .updateCalendar, object: true)
-        
+
         // 登録 & 更新のタイミングでウィジェットも更新する
         widgetCenter.reloadAllTimelines()
         return true

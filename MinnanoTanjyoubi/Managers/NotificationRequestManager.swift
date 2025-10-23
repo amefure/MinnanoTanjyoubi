@@ -9,9 +9,8 @@ import RealmSwift
 import UIKit
 
 final class NotificationRequestManager: Sendable {
-
     /// 通知許可申請リクエスト
-    func requestAuthorization() async -> Bool {
+    static func requestAuthorization() async -> Bool {
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         do {
             let result: Bool = try await UNUserNotificationCenter
@@ -46,7 +45,6 @@ final class NotificationRequestManager: Sendable {
         rootVC?.present(alertController, animated: true, completion: {})
     }
 
-    
     /// 通知登録処理
     /// - Parameters:
     ///   - id: 通知ID =`UserID`
@@ -78,7 +76,7 @@ final class NotificationRequestManager: Sendable {
             dateStr = dfm.getString(date: date)
         } else {
             // 0以外なら日数前にする
-            let dayNum: Int = Int(dateFlag) ?? 1
+            let dayNum = Int(dateFlag) ?? 1
             let calendar = Calendar.current
             let modifiedDate: Date = calendar.date(byAdding: .day, value: -dayNum, to: date) ?? Date()
             dateStr = dfm.getString(date: modifiedDate)
@@ -89,10 +87,10 @@ final class NotificationRequestManager: Sendable {
         // "H-m"形式で取得した文字列を配列に変換
         let timeArray = timeStr.split(separator: "-")
 
-        let month: Int = Int(dateArray[safe: 1] ?? "1") ?? 1
-        let day: Int = Int(dateArray[safe: 2] ?? "1") ?? 1
-        let hour: Int = Int(timeArray[safe: 0] ?? "6") ?? 6
-        let minute: Int = Int(timeArray[safe: 1] ?? "0") ?? 0
+        let month = Int(dateArray[safe: 1] ?? "1") ?? 1
+        let day = Int(dateArray[safe: 2] ?? "1") ?? 1
+        let hour = Int(timeArray[safe: 0] ?? "6") ?? 6
+        let minute = Int(timeArray[safe: 1] ?? "0") ?? 0
 
         // 毎年通知を送るため年は不要
         //        let nowDate = Calendar.current.dateComponents([.year], from: Date())
@@ -121,11 +119,11 @@ final class NotificationRequestManager: Sendable {
     func confirmNotificationRequest() async -> [NotificationRequestWrapper] {
         let center = UNUserNotificationCenter.current()
         return await withCheckedContinuation { continuation in
-           center.getPendingNotificationRequests { array in
-               let list = array.compactMap { NotificationRequestWrapper.createFromUNNotificationRequest($0) }
-               AppLogger.logger.debug("設定済み通知一覧：\(list)")
-               continuation.resume(returning: list)
-           }
-       }
+            center.getPendingNotificationRequests { array in
+                let list = array.compactMap { NotificationRequestWrapper.createFromUNNotificationRequest($0) }
+                AppLogger.logger.debug("設定済み通知一覧：\(list)")
+                continuation.resume(returning: list)
+            }
+        }
     }
 }

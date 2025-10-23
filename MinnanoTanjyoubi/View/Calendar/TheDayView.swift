@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct TheDayView: View {
-    
     @EnvironmentObject private var viewModel: CalendarViewModel
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-
 
     let theDay: SCDate
 

@@ -23,28 +23,28 @@ struct DateFormatUtilityTests {
     }()
 
     @Test
-    func testGetSlashString() {
+    func getSlashString() {
         let formatter = DateFormatUtility(format: .slash)
         let result = formatter.getString(date: testDate)
         #expect(result == "2024/06/05")
     }
 
     @Test
-    func testGetJpString() {
+    func getJpString() {
         let formatter = DateFormatUtility(format: .jp)
         let result = formatter.getString(date: testDate)
         #expect(result == "2024年6月5日")
     }
 
     @Test
-    func testGetJpStringOnlyDate() {
+    func getJpStringOnlyDate() {
         let formatter = DateFormatUtility(format: .jpOnlyDate)
         let result = formatter.getString(date: testDate)
         #expect(result == "6月5日")
     }
 
     @Test
-    func testGetJpEraString() {
+    func getJpEraString() {
         let formatter = DateFormatUtility(format: .jpEra)
         let result = formatter.getString(date: testDate)
         #expect(result.contains("令和") || result.contains("平成"))
@@ -60,7 +60,7 @@ struct DateFormatUtilityTests {
     }
 
     @Test
-    func testGetSlashDate() {
+    func getSlashDate() {
         let dfm = DateFormatUtility(format: .slash)
         let dateString = "2024/06/05"
         let date = dfm.getDate(from: dateString)
@@ -69,7 +69,7 @@ struct DateFormatUtilityTests {
     }
 
     @Test
-    func testGetJpDate() {
+    func getJpDate() {
         let dfm = DateFormatUtility(format: .jp)
         let dateString = "2024年6月5日"
         let result = dfm.getDateNotNull(from: dateString)
@@ -77,7 +77,7 @@ struct DateFormatUtilityTests {
     }
 
     @Test
-    func testGetTimeString() {
+    func getTimeString() {
         let dfm = DateFormatUtility(format: .time)
         let result = dfm.getString(date: testDate)
         #expect(result == "14-30")

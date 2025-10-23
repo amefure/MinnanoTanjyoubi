@@ -49,9 +49,8 @@ struct SelectSortView: View {
             Spacer()
 
             DownSideView(parentFunction: {
-               
                 viewModel.registerSortItem()
-              
+
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)
 

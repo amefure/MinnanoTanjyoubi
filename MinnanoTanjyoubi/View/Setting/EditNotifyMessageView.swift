@@ -62,7 +62,7 @@ struct EditNotifyMessageView: View {
 
             DownSideView(
                 parentFunction: {
-                   viewModel.registerNotifyMsg()
+                    viewModel.registerNotifyMsg()
                 }, imageString: "checkmark"
             ).environmentObject(rootEnvironment)
 

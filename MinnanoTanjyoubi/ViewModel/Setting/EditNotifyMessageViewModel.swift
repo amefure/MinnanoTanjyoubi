@@ -9,11 +9,10 @@ import SwiftUI
 
 @MainActor
 final class EditNotifyMessageViewModel: ObservableObject {
-    
     @Published var notifyMsg: String = ""
     @Published var isShowSuccessAlert: Bool = false
     @Published var isShowValidateAlert: Bool = false
-    
+
     func onAppear() {
         notifyMsg = getNotifyMsg()
         FBAnalyticsManager.loggingScreen(screen: .EditNotifyMessageScreen)

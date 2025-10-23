@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct UpdateRelationNameView: View {
-
     @StateObject private var viewModel = UpdateRelationNameViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @Environment(\.dismiss) private var dismiss
@@ -72,7 +71,7 @@ struct UpdateRelationNameView: View {
                 isPresented: $viewModel.isShowValidationAlert,
                 title: "お知らせ",
                 message: "関係名を全て入力してください。",
-                positiveButtonTitle: "OK",
+                positiveButtonTitle: "OK"
             )
     }
 }

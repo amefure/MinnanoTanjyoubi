@@ -12,7 +12,6 @@ import UIKit
 
 /// アプリ内で共通で利用される状態や環境値を保持する
 final class RootEnvironment: ObservableObject {
-
     /// `Property`
     /// カラースキーム
     @Published private(set) var scheme: AppColorScheme = .original
@@ -70,10 +69,9 @@ final class RootEnvironment: ObservableObject {
     /// アプリ起動時に1回だけ呼ばれる設計
     @MainActor
     func onAppear() {
-        
         // UserDefaultsに保存されているフラグを反映
         setUpUserDefaultsFlag()
-      
+
         // 購入済み課金アイテム観測
         inAppPurchaseRepository.purchasedProducts
             .receive(on: DispatchQueue.main)
@@ -87,8 +85,7 @@ final class RootEnvironment: ObservableObject {
                 if removeAds { self.removeAds = true }
                 if unlockStorage { self.unlockStorage = true }
             }.store(in: &cancellables)
-        
-        
+
         // アプリ起動回数カウント
         setLaunchAppCount()
 
@@ -109,7 +106,7 @@ final class RootEnvironment: ObservableObject {
         // レビューポップアップ表示
         showReviewPopup()
     }
-    
+
     /// 課金アイテムの購入状況を確認
     @MainActor
     func listenInAppPurchase() {
@@ -188,7 +185,6 @@ extension RootEnvironment {
 }
 
 extension RootEnvironment {
-
     func getRelationName() {
         var results: [String] = []
         let friend = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, initialValue: RelationConfig.FRIEND_NAME)

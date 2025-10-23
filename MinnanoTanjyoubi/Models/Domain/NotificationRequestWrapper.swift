@@ -14,14 +14,14 @@ final class NotificationRequestWrapper: Identifiable, Sendable {
     let date: DateComponents
     let title: String
     let message: String
-    
+
     init(id: String, date: DateComponents, title: String, message: String) {
         self.id = id
         self.date = date
         self.title = title
         self.message = message
     }
-    
+
     static func createFromUNNotificationRequest(
         _ request: UNNotificationRequest
     ) -> NotificationRequestWrapper? {

@@ -5,22 +5,21 @@
 //  Created by t&a on 2025/10/11.
 //
 
-import SwiftUI
 import RealmSwift
+import SwiftUI
 
 final class EntryNotifyListViewModel: ObservableObject {
-    
     @Published var notifyList: [NotificationRequestWrapper] = []
     @Published var isShowConfirmAllDeleteAlert: Bool = false
     @Published var isShowConfirmDeleteAlert: Bool = false
     @Published var isShowSuccessDeleteAlert: Bool = false
     @Published var isShowFailedDeleteAlert: Bool = false
-    
+
     @Published var isFetching: Bool = false
     private var targetNotify: NotificationRequestWrapper?
-    
+
     private let df = DateFormatUtility()
-    
+
     private let notificationRequestManager: NotificationRequestManager
     private let repository: RealmRepository
 
@@ -31,12 +30,12 @@ final class EntryNotifyListViewModel: ObservableObject {
         self.repository = repository
         self.notificationRequestManager = notificationRequestManager
     }
-    
+
     @MainActor
     func onAppear() {
         fecthNotifyList()
     }
-    
+
     @MainActor
     private func fecthNotifyList() {
         Task {
@@ -50,11 +49,11 @@ final class EntryNotifyListViewModel: ObservableObject {
                     } else {
                         return preMonth < lateMonth
                     }
-                 }
+                }
             isFetching = false
         }
     }
-    
+
     func convertDateTime(_ dateComponents: DateComponents) -> String {
         let month: Int = dateComponents.month ?? 1
         let day: Int = dateComponents.day ?? 1
@@ -64,19 +63,20 @@ final class EntryNotifyListViewModel: ObservableObject {
         // yyyy-MM-dd-H-m
         return "毎年：\(month)月\(day)日 \(hour):\(minute)"
     }
-    
+
     func setTargetNotify(_ notify: NotificationRequestWrapper?) {
         targetNotify = notify
         if targetNotify != nil {
             isShowConfirmDeleteAlert = true
         }
     }
-    
+
     @MainActor
     func deleteTargetNotify() {
         guard let targetNotify else {
             isShowFailedDeleteAlert = true
-            return }
+            return
+        }
         guard let objectId = try? ObjectId(string: targetNotify.id) else {
             isShowFailedDeleteAlert = true
             return
@@ -86,17 +86,15 @@ final class EntryNotifyListViewModel: ObservableObject {
         isShowSuccessDeleteAlert = true
         fecthNotifyList()
     }
-    
+
     @MainActor
     func deleteAllNotify() {
-        notifyList.forEach { notify in
-            guard let objectId = try? ObjectId(string: notify.id) else { return }
+        for notify in notifyList {
+            guard let objectId = try? ObjectId(string: notify.id) else { continue }
             repository.updateNotifyUser(id: objectId, notify: false)
             notificationRequestManager.removeNotificationRequest(objectId)
         }
         isShowSuccessDeleteAlert = true
         fecthNotifyList()
     }
-    
-    
 }

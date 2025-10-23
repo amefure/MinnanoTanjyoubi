@@ -15,13 +15,13 @@ class RootViewModel: ObservableObject {
 
     @Published private(set) var error: ShareCreateError?
     @Published var createUsers: [User] = []
-    
+
     private let repository: RealmRepository
 
     init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
         repository = repositoryDependency.realmRepository
     }
-    
+
     /// Custom URL Schemeでアプリを起動した場合のハンドリング
     func copyUserFromUrlScheme(url: URL) {
         guard let query = url.query() else { return }
@@ -62,14 +62,14 @@ class RootViewModel: ObservableObject {
         self.error = error
         showCreateShareUserError = true
     }
-    
+
     private func shareCreateUsers(shareUsers: [User], unlockStorage: Bool) -> ShareCreateError? {
         let users: [User] = repository.readAllObjs()
-        
+
         let isOverCapacity = !isOverCapacity(baseSize: users.count, addSize: shareUsers.count)
         // 容量チェック && 容量解放されていないか
         guard isOverCapacity || unlockStorage else { return ShareCreateError.overCapacity }
-       
+
         for user in shareUsers {
             // エラーが発生したら登録シーケンスを終了
             guard !(users.contains { $0.name == user.name }) else { return ShareCreateError.existUser }

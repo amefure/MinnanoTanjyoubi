@@ -118,12 +118,11 @@ struct InAppPurchaseView: View {
         }.onAppear { viewModel.onAppear() }
             .onDisappear {
                 viewModel.onDisappear()
-                
+
                 if viewModel.didPurchase {
                     // 課金購入が発生していればRootEnviroment側でもアイテムを再取得する
                     rootEnvironment.listenInAppPurchase()
                 }
-
             }
             .background(rootEnvironment.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)

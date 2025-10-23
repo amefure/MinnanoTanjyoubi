@@ -11,7 +11,6 @@ import SwiftUI
 /// モーダル表示されるデータ登録ビュー
 /// データ更新時も呼び出される
 struct EntryUserView: View {
-    
     @StateObject private var viewModel = DIContainer.shared.resolve(EntryUserViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
@@ -21,7 +20,7 @@ struct EntryUserView: View {
     /// 新規登録時にカレンダーから遷移した場合に月と日だけ該当のものにする
     var isCalendarMonth: Int?
     var isCalendarDay: Int?
-    
+
     /// 自身の表示モーダルフラグ
     @Binding var isSelfShowModal: Bool
     /// TextField/TextEditor ActiveFlag
@@ -29,7 +28,6 @@ struct EntryUserView: View {
 
     var body: some View {
         VStack(alignment: .center) {
-
             UpSideView()
                 .environmentObject(rootEnvironment)
 
@@ -75,9 +73,9 @@ struct EntryUserView: View {
                     Text("関　　係")
                         .frame(width: 80)
                     Spacer()
-                    
+
                     relationPickerView()
-                    
+
                     Spacer()
                 }.padding(5)
 
@@ -157,13 +155,12 @@ struct EntryUserView: View {
                 isPresented: $viewModel.isShowValidationDialog,
                 title: "エラー",
                 message: "名前を入力してください。",
-                positiveButtonTitle: "OK",
+                positiveButtonTitle: "OK"
             )
     }
-    
+
     /// 関係性ピッカー
     private func relationPickerView() -> some View {
-        
         Picker(
             selection: $viewModel.state.selectedRelation,
             label: Text("関係")

@@ -44,7 +44,7 @@ class UserCalcUtility {
         // 年数は指定日の年数を取得→範囲を識別するため
         let thisYear = dfm.getString(date: from).prefix(4)
         let nowYear = "\(thisYear)/" // "2023/" 形式
-        guard let intYear = Int(thisYear) else { return "..."}
+        guard let intYear = Int(thisYear) else { return "..." }
         let lateYear = "\(intYear + 1)/" // "2024/" 翌年形式
 
         switch from {

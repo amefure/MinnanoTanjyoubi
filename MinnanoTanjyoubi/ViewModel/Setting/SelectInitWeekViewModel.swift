@@ -11,18 +11,19 @@ import SwiftUI
 final class SelectInitWeekViewModel: ObservableObject {
     @Published private(set) var selectWeek: SCWeek = .sunday
     @Published var isShowSuccessAlert: Bool = false
-    
+
     func onAppear() {
         getInitWeek()
     }
-    
+
     func setWeek(week: SCWeek) {
         selectWeek = week
     }
-    
+
     private func getInitWeek() {
         selectWeek = AppManager.sharedUserDefaultManager.getInitWeek()
     }
+
     /// 週始まりを登録
     func registerInitWeek() {
         AppManager.sharedUserDefaultManager.setInitWeek(selectWeek)

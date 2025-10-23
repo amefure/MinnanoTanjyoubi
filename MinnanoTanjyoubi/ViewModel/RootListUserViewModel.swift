@@ -5,14 +5,11 @@
 //  Created by t&a on 2025/10/15.
 //
 
-import UIKit
 import Combine
 import RealmSwift
-import WidgetKit
+import UIKit
 
-@MainActor
 final class RootListUserViewModel: ObservableObject {
-    
     @Published private(set) var allUsers: [User] = []
     /// 上限に達した場合のアラート
     @Published var isShowLimitAlert: Bool = false
@@ -24,29 +21,42 @@ final class RootListUserViewModel: ObservableObject {
     @Published var isScrollingDown: Bool = false
     /// コントロールパネルopacity
     @Published var opacity: Double = 1
-    
+
     /// 関係ピッカー表示中かどうか
     @Published var isShowRelationPicker = false
     /// フィルタリング中かどうか
     @Published var isFiltering = false
     /// 選択されたフィルタリング関係
     @Published var selectedFilteringRelation: Relation = .other
-    
-    private let repository: RealmRepository
+
     private var cancellables: Set<AnyCancellable> = []
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        repository = repositoryDependency.realmRepository
+    private let repository: RealmRepository
+    private let userDefaultsRepository: UserDefaultsRepository
+    private let notificationRequestManager: NotificationRequestManager
+    private let widgetCenter: WidgetCenterProtocol
+
+    init(
+        repository: RealmRepository,
+        userDefaultsRepository: UserDefaultsRepository,
+        notificationRequestManager: NotificationRequestManager,
+        widgetCenter: WidgetCenterProtocol
+    ) {
+        self.repository = repository
+        self.userDefaultsRepository = userDefaultsRepository
+        self.notificationRequestManager = notificationRequestManager
+        self.widgetCenter = widgetCenter
     }
 
+    @MainActor
     func onAppear() {
         $isScrollingDown
-            .sink(receiveValue: { [weak self] flag in
+            .sink(receiveValue: { [weak self] _ in
                 guard let self else { return }
                 // 下方向にスクロール中のみ半透明にする
                 self.opacity = self.isScrollingDown ? 0.5 : 1
             }).store(in: &cancellables)
-        
+
         // 登録モーダルから戻った(falseになった)際にはリフレッシュ
         $isShowEntryModal
             .sink { [weak self] flag in
@@ -54,14 +64,14 @@ final class RootListUserViewModel: ObservableObject {
                 guard !flag else { return }
                 self.readAllUsers()
             }.store(in: &cancellables)
-        
+
         $selectedFilteringRelation
             .sink { [weak self] newValue in
                 guard let self else { return }
                 // 変更になったらフィルタリング
                 filteringUser(selectedRelation: newValue)
             }.store(in: &cancellables)
-        
+
         // 更新用Notificationを観測
         NotificationCenter.default.publisher(for: .readAllUsers)
             .sink { [weak self] notification in
@@ -72,14 +82,14 @@ final class RootListUserViewModel: ObservableObject {
                 readAllUsers()
                 NotificationCenter.default.post(name: .readAllUsers, object: false)
             }.store(in: &cancellables)
-        
+
         readAllUsers()
     }
-    
+
     func onDisappear() {
         cancellables.forEach { $0.cancel() }
     }
-    
+
     /// iOS18以降かどうか
     var isIos18Later: Bool {
         if #available(iOS 18, *) {
@@ -88,17 +98,15 @@ final class RootListUserViewModel: ObservableObject {
             return false
         }
     }
-    
 }
 
 extension RootListUserViewModel {
-    
     /// データを一度リフレッシュしてからフィルタリング
     private func filteringUser(selectedRelation: Relation) {
         readAllUsers()
         allUsers = allUsers.filter { $0.relation == selectedRelation }
     }
-    
+
     /// 全てのデータをソート順を反映させて取得
     private func readAllUsers(sort: AppSortItem? = nil) {
         var sort: AppSortItem? = sort
@@ -108,9 +116,9 @@ extension RootListUserViewModel {
         if sort == nil {
             sort = getSortItem()
         }
-        
+
         let dfmMonthOnly = DateFormatUtility(format: .monthOnly)
-        
+
         switch sort {
         case .daysLater:
             // 誕生日までの日付が近い順にソート
@@ -166,22 +174,22 @@ extension RootListUserViewModel {
 
     /// 並び順
     private func getSortItem() -> AppSortItem {
-        AppManager.sharedUserDefaultManager.getSortItem()
+        userDefaultsRepository.getSortItem()
     }
-    
+
     func removeUsers(users: [User]) {
         for user in users {
             let userId: ObjectId = user.id
             // 通知を削除
-            AppManager.sharedNotificationRequestManager.removeNotificationRequest(userId)
+            notificationRequestManager.removeNotificationRequest(userId)
             // 画像を削除
             deleteImage(user: user)
         }
         repository.removeObjs(list: users)
         readAllUsers()
-        
+
         // 削除タイミングでウィジェットも更新する
-        WidgetCenter.shared.reloadAllTimelines()
+        widgetCenter.reloadAllTimelines()
     }
 
     /// 画像削除
@@ -195,10 +203,7 @@ extension RootListUserViewModel {
     }
 }
 
-
-
 extension RootListUserViewModel {
-    
     func showSortPickerOrResetFiltering() {
         if isFiltering {
             isFiltering = false
@@ -208,9 +213,9 @@ extension RootListUserViewModel {
             isFiltering = true
         }
     }
-    
+
     func checkEntryEnabled() {
-        let isUnlockStorage = AppManager.sharedUserDefaultManager.getPurchasedUnlockStorage()
+        let isUnlockStorage = userDefaultsRepository.getPurchasedUnlockStorage()
         // 容量がオーバーしていないか または 容量解放されている
         if !isOverCapacity(1) || isUnlockStorage {
             // 登録モーダル表示
@@ -224,6 +229,6 @@ extension RootListUserViewModel {
     /// 容量超過確認
     private func isOverCapacity(_ size: Int) -> Bool {
         let size = allUsers.count + size
-        return size > AppManager.sharedUserDefaultManager.getCapacity()
+        return size > userDefaultsRepository.getCapacity()
     }
 }

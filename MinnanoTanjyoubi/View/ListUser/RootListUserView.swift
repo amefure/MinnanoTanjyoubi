@@ -11,8 +11,7 @@ import UIKit
 
 /// データをグリッドレイアウト・セクションレイアウト・カレンダー表示を切り替え
 struct RootListUserView: View {
-    
-    @StateObject private var viewModel = RootListUserViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(RootListUserViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @GestureState private var dragOffset = CGSize.zero
 
@@ -101,9 +100,7 @@ struct RootListUserView: View {
         }.background(rootEnvironment.scheme.foundationSub)
             .onAppear { viewModel.onAppear() }
             .onDisappear { viewModel.onDisappear() }
-           
     }
-    
 
     /// フッターコントロールパネル
     private func controlPanelView() -> some View {
@@ -134,7 +131,7 @@ struct RootListUserView: View {
             .foregroundStyle(rootEnvironment.scheme.controlText)
             .background(rootEnvironment.scheme.foundationPrimary)
     }
-    
+
     private func removeButtonView() -> some View {
         Button {
             if !rootEnvironment.deleteArray.isEmpty {
@@ -166,7 +163,6 @@ struct RootListUserView: View {
         )
     }
 
-    
     private func filteringButtonView() -> some View {
         Button {
             viewModel.showSortPickerOrResetFiltering()
@@ -186,7 +182,6 @@ struct RootListUserView: View {
         }
     }
 
-    
     private func entryButtonView() -> some View {
         Button {
             viewModel.checkEntryEnabled()

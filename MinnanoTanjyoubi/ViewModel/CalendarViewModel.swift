@@ -5,13 +5,11 @@
 //  Created by t&a on 2025/06/07.
 //
 
-
 @preconcurrency import Combine
 import UIKit
 
 @MainActor
 class CalendarViewModel: ObservableObject {
-
     private let dateFormatUtility = DateFormatUtility()
 
     // MARK: Calendar ロジック
@@ -199,7 +197,7 @@ extension CalendarViewModel {
         let week = userDefaultsRepository.getIntData(key: UserDefaultsKey.INIT_WEEK)
         initWeek = SCWeek(rawValue: week) ?? SCWeek.sunday
     }
-    
+
     /// 容量超過確認
     func isOverCapacity(_ size: Int) -> Bool {
         let users: [User] = realmRepository.readAllObjs()

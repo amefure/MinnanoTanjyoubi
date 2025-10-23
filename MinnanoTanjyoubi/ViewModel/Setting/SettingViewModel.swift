@@ -58,11 +58,10 @@ final class SettingViewModel: ObservableObject {
 }
 
 extension SettingViewModel {
-    
     var allUserCount: Int {
         allUsers.count
     }
-    
+
     /// アプリロック
     private func setUpIsLock() {
         isLock = keyChainRepository.getData().count == 4

@@ -27,7 +27,7 @@ struct EntryNotifyListView: View {
                     .foregroundStyle(rootEnvironment.scheme.text)
                     .padding(.vertical)
                 Spacer()
-                
+
                 if viewModel.notifyList.isEmpty {
                     Spacer()
                         .frame(width: 80)
@@ -45,7 +45,7 @@ struct EntryNotifyListView: View {
                         .shadow(color: .gray, radius: 3, x: 3, y: 3)
                 }
             }.padding(.horizontal)
-           
+
             if viewModel.isFetching {
                 ProgressView()
             } else if viewModel.notifyList.isEmpty {
@@ -107,9 +107,8 @@ struct EntryNotifyListView: View {
                     viewModel.deleteAllNotify()
                 }
             )
-           
     }
-    
+
     private func noDataView() -> some View {
         VStack {
             Spacer()
@@ -122,7 +121,6 @@ struct EntryNotifyListView: View {
         }
     }
 }
-
 
 #Preview {
     EntryNotifyListView()

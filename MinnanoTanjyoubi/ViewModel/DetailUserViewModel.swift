@@ -6,14 +6,13 @@
 //
 
 import Combine
+import RealmSwift
 import SwiftUI
 import UIKit
-import RealmSwift
 
 class DetailUserViewModel: ObservableObject {
-    
     /// 詳細画面で表示するUser情報
-    @Published var targetUser: User = User()
+    @Published var targetUser: User = .init()
     /// 更新画面モーダル
     @Published var isShowUpdateModalView: Bool = false
     // 画像ピッカー表示
@@ -50,11 +49,10 @@ class DetailUserViewModel: ObservableObject {
     /// 有効なパスに変換された画像パス
     @Published private(set) var displayImages: [String] = []
 
-
     private let imageFileManager = ImageFileManager()
 
     private var cancellables: Set<AnyCancellable> = []
-    
+
     private let repository: RealmRepository
     private let userDefaultsRepository: UserDefaultsRepository
     private let notificationRequestManager: NotificationRequestManager
@@ -62,7 +60,7 @@ class DetailUserViewModel: ObservableObject {
     init(
         repository: RealmRepository,
         userDefaultsRepository: UserDefaultsRepository,
-        notificationRequestManager: NotificationRequestManager,
+        notificationRequestManager: NotificationRequestManager
     ) {
         self.repository = repository
         self.userDefaultsRepository = userDefaultsRepository
@@ -71,13 +69,12 @@ class DetailUserViewModel: ObservableObject {
 
     @MainActor
     func onAppear(id: ObjectId) {
-        
         refreshTargetUser(id: id)
-        
+
         isDisplayAgeMonth = getDisplayAgeMonth()
         // 通知初期値セット
         isNotifyFlag = targetUser.alert
-        
+
         $isNotifyFlag
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
@@ -85,14 +82,14 @@ class DetailUserViewModel: ObservableObject {
                 guard let self else { return }
                 self.switchNotifyFlag(flag: newValue, user: targetUser)
             }.store(in: &cancellables)
-        
+
         $selectedPickerImage
             .receive(on: DispatchQueue.main)
             .sink { [weak self] image in
                 guard let self else { return }
                 self.saveImage(image: image)
             }.store(in: &cancellables)
-        
+
         // 更新モーダルから戻った(falseになった)際にはリフレッシュ
         $isShowUpdateModalView
             .receive(on: DispatchQueue.main)
@@ -109,11 +106,12 @@ class DetailUserViewModel: ObservableObject {
 }
 
 // MARK: UserDefaults
+
 extension DetailUserViewModel {
     private func getDisplayAgeMonth() -> Bool {
         userDefaultsRepository.getDisplayAgeMonth()
     }
-    
+
     private func refreshTargetUser(id: ObjectId) {
         guard let user: User = repository.getByPrimaryKey(id) else { return }
         targetUser = user
@@ -123,6 +121,7 @@ extension DetailUserViewModel {
 }
 
 // MARK: UserDefaults
+
 extension DetailUserViewModel {
     /// ImageContainerViewの描画更新フラグ
     func updateImageContainerView() {
@@ -185,7 +184,7 @@ extension DetailUserViewModel {
     private func switchNotifyFlag(flag: Bool, user: User) {
         Task {
             // 通知リクエスト申請
-            let granted: Bool = await notificationRequestManager.requestAuthorization()
+            let granted: Bool = await NotificationRequestManager.requestAuthorization()
             if !granted {
                 // 通知許可アラート
                 notificationRequestManager.showSettingsAlert()
@@ -195,7 +194,6 @@ extension DetailUserViewModel {
                 repository.updateNotifyUser(id: user.id, notify: false)
             } else {
                 if flag {
-                    
                     let setting = userDefaultsRepository.getNotifyUserSetting()
                     // 通知を登録
                     notificationRequestManager

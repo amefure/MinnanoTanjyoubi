@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         Task {
             // 通知の許可申請
-            await AppManager.sharedNotificationRequestManager.requestAuthorization()
+            await NotificationRequestManager.requestAuthorization()
         }
 
         // Remote Config 初期設定

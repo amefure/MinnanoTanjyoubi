@@ -77,7 +77,7 @@ struct SettingView: View {
                             Text(L10n.settingSectionNotifyEditMsgTitle)
                         }
                     }.listRowHeight()
-                    
+
                     // 登録済み通知一覧
                     NavigationLink {
                         EntryNotifyListView()
@@ -276,7 +276,8 @@ struct SettingView: View {
                                         .settingIcon(rootEnvironment.scheme)
                                     Text(L10n.settingSectionLinkReview)
                                 }
-                        }).listRowHeight()
+                            }
+                        ).listRowHeight()
                     }
 
                     // 2:シェアボタン

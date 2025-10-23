@@ -32,22 +32,22 @@ final class DateFormatUtility: Sendable {
         df.calendar = c
         df.timeZone = TimeZone(identifier: "Asia/Tokyo")
     }
-    
+
     /// 日付を文字列で取得する
     func getString(date: Date) -> String {
         return df.string(from: date)
     }
-    
+
     /// 日付をDate型で取得する
     func getDate(from: String) -> Date? {
         return df.date(from: from)
     }
-    
+
     /// 日付をDate型で取得する
     func getDateNotNull(from: String) -> Date {
         return df.date(from: from) ?? Date()
     }
-    
+
     /// 月をInt型で取得する
     func getMonthInt(date: Date) -> Int {
         let month = df.string(from: date)

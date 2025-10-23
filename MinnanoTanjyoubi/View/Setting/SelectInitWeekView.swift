@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct SelectInitWeekView: View {
-    
     @StateObject private var viewModel = SelectInitWeekViewModel()
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @Environment(\.dismiss) var dismiss
-    
+
     var body: some View {
         VStack {
             UpSideView()
@@ -56,7 +55,7 @@ struct SelectInitWeekView: View {
                 },
                 imageString: "checkmark"
             ).environmentObject(rootEnvironment)
-            
+
         }.background(rootEnvironment.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()

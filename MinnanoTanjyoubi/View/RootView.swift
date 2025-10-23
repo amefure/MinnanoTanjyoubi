@@ -9,7 +9,6 @@ import RealmSwift
 import SwiftUI
 
 struct RootView: View {
-    
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @ObservedObject private var popUpViewModel = TutorialPopUpViewModel()
     @ObservedObject private var viewModel = RootViewModel()

@@ -18,7 +18,6 @@ struct TutorialPopUpState {
 
 @MainActor
 final class TutorialPopUpViewModel: ObservableObject {
-    
     @Published var state = TutorialPopUpState()
 
     private let repository: RealmRepository
@@ -48,7 +47,7 @@ final class TutorialPopUpViewModel: ObservableObject {
 
     private func showPopUp(_ position: PopUpPosition?) {
         guard let position else { return }
-        self.state.position = position
+        state.position = position
         setUpTitleMessage(position)
         state.isPresented = true
         state.buttonAction = { [weak self] in

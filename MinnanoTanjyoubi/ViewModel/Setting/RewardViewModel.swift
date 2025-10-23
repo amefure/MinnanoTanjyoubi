@@ -5,17 +5,17 @@
 //  Created by t&a on 2024/12/13.
 //
 
-import SwiftUI
 import GoogleMobileAds
+import SwiftUI
 
 final class RewardViewModel: ObservableObject {
     @Published var rewardLoaded = false
     @Published var isShowAlert = false
     private var rewardedAd: RewardedAd?
-    
+
     private let userDefaultsRepository: UserDefaultsRepository
     private let rewardService: RewardServiceProtocol
-    
+
     init(
         userDefaultsRepository: UserDefaultsRepository,
         rewardService: RewardServiceProtocol
@@ -23,7 +23,7 @@ final class RewardViewModel: ObservableObject {
         self.userDefaultsRepository = userDefaultsRepository
         self.rewardService = rewardService
     }
-    
+
     @MainActor
     func loadReward() async {
         do {
@@ -35,16 +35,15 @@ final class RewardViewModel: ObservableObject {
             rewardLoaded = false
         }
     }
-    
+
     @MainActor
     func showReward() async {
-        
         // 1日1回までしか視聴できないようにする
         guard isPlayFromAcquisitionDate() else {
             isShowAlert = true
             return
         }
-        
+
         // 広告が未読み込みであれば読み込んでから再度表示を試みる
         guard let ad = rewardedAd else {
             await loadReward()
@@ -67,7 +66,6 @@ final class RewardViewModel: ObservableObject {
 }
 
 extension RewardViewModel {
-  
     // 容量追加
     private func addCapacity() {
         userDefaultsRepository.addCapacity()

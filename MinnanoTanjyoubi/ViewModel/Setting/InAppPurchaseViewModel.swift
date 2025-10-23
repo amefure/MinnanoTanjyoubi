@@ -22,7 +22,7 @@ final class InAppPurchaseViewModel: ObservableObject {
     @Published private(set) var isPurchasingId: String = ""
     /// 課金アイテム
     @Published private(set) var products: [WrapperProduct] = []
-    
+
     /// この画面を表示してから課金が行われたかどうか
     /// `RootEnviroment`側でフラグを更新するため
     @Published private(set) var didPurchase: Bool = false
@@ -55,7 +55,7 @@ final class InAppPurchaseViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] products in
                 guard let self else { return }
-                self.products = products.map { WrapperProduct(product: $0)}
+                self.products = products.map { WrapperProduct(product: $0) }
             }.store(in: &cancellables)
 
         // 購入済み課金アイテム観測
@@ -63,15 +63,15 @@ final class InAppPurchaseViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] purchasedProducts in
                 guard let self else { return }
-                
-                products.forEach { product in
-                    guard purchasedProducts.contains(where: { $0.id == product.id}) else { return }
-                    guard let index = products.firstIndex(where: { $0.id == product.id }) else { return }
+
+                for product in products {
+                    guard purchasedProducts.contains(where: { $0.id == product.id }) else { continue }
+                    guard let index = products.firstIndex(where: { $0.id == product.id }) else { continue }
                     products[index].isPurchased = true
                     // プロパティだけを更新しても再描画は走らないので配列ごとリフレッシュする
                     products = products
                 }
-                
+
                 // 購入済みアイテム配列が変化した際に購入済みかどうか確認
                 let removeAds = inAppPurchaseRepository.isPurchased(ProductItem.removeAds.id)
                 let unlockStorage = inAppPurchaseRepository.isPurchased(ProductItem.unlockStorage.id)

@@ -269,7 +269,7 @@ final class UserDefaultManager: Sendable {
     func setPurchasedUnlockStorage(_ flag: Bool) {
         userDefaultsRepository.setBoolData(key: UserDefaultsKey.PURCHASED_UNLOCK_STORAGE, isOn: flag)
     }
-    
+
     /// `INIT_WEEK`
     /// 取得：カレンダー週始まり
     func getInitWeek() -> SCWeek {

@@ -15,32 +15,32 @@ struct DetailUserView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(DetailUserViewModel.self)
 
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-    
+
     private var roundWidth: CGFloat {
         return DeviceSizeUtility.deviceWidth < 400 ? 50 : 65
     }
-    
+
     private let dfmJp = DateFormatUtility(format: .jp)
     private let dfmJpOnlyDate = DateFormatUtility(format: .jpOnlyDate)
     private let dfmJpEra = DateFormatUtility(format: .jpEra)
-    
+
     var body: some View {
         VStack {
             UpSideView()
                 .environmentObject(rootEnvironment)
-            
+
             Group {
                 // Relation/あと何日../名前/ふりがな/生年月日/和暦
                 upSideUserInfoView()
-                
+
                 ZStack(alignment: .bottom) {
                     // 年齢/星座/干支
                     middleUserInfoView()
-                    
+
                     // 共有ボタン
                     HStack {
                         Spacer()
-                        
+
                         Button {
                             ShareInfoUtillity.shareBirthday([viewModel.targetUser])
                         } label: {
@@ -49,7 +49,7 @@ struct DetailUserView: View {
                         }.padding(.trailing)
                     }
                 }
-                
+
                 ZStack(alignment: .topTrailing) {
                     // Memo
                     Text(viewModel.targetUser.memo)
@@ -70,15 +70,15 @@ struct DetailUserView: View {
                             opacity: 0.4,
                             lineWidth: 2
                         )
-                    
+
                     Image(systemName: "hand.rays")
                         .fontL()
                         .padding(.trailing)
                         .padding(.top, 5)
                 }
-                
+
             }.padding(DeviceSizeUtility.isSESize ? 5 : 10)
-            
+
             // 通知トグルビュー
             Toggle("通知", isOn: $viewModel.isNotifyFlag)
                 .toggleStyle(
@@ -86,16 +86,16 @@ struct DetailUserView: View {
                 ).fontM()
                 .frame(width: DeviceSizeUtility.deviceWidth - 60)
                 .padding(DeviceSizeUtility.isSESize ? 5 : 10)
-            
+
             // 追加しても更新されないので明示的にidを指定する
             imageContainerView()
-              
+
             Spacer()
-            
+
             DownSideView(
                 parentFunction: {
                     viewModel.isShowUpdateModalView = true
-                }, 
+                },
                 imageString: "square.and.pencil"
             ).sheet(isPresented: $viewModel.isShowUpdateModalView) {
                 EntryUserView(updateUserId: viewModel.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
@@ -160,7 +160,7 @@ struct DetailUserView: View {
                 message: viewModel.targetUser.memo
             )
     }
-    
+
     /// Relation/あと何日../名前/ふりがな/生年月日/和暦
     private func upSideUserInfoView() -> some View {
         VStack(spacing: 0) {
@@ -215,7 +215,7 @@ struct DetailUserView: View {
                 .fontM()
         }
     }
-    
+
     /// 年齢/星座/干支
     private func middleUserInfoView() -> some View {
         HStack(spacing: 20) {
@@ -261,7 +261,7 @@ struct DetailUserView: View {
         }.font(DeviceSizeUtility.isSESize ? .system(size: 12) : .system(size: 17))
             .foregroundStyle(.white)
     }
-    
+
     private func imageContainerView() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
