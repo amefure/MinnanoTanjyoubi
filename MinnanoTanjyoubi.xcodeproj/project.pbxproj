@@ -134,7 +134,6 @@
 		12CB921628E6FF26002BD7B2 /* EntryUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921528E6FF26002BD7B2 /* EntryUserView.swift */; };
 		12CB921828E858DF002BD7B2 /* DetailUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921728E858DF002BD7B2 /* DetailUserView.swift */; };
 		12CB921A28E85952002BD7B2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921928E85952002BD7B2 /* SettingView.swift */; };
-		12CB922028E92293002BD7B2 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB921F28E92293002BD7B2 /* DatePickerView.swift */; };
 		12CB922828EB1529002BD7B2 /* NotificationRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */; };
 		12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB925328EEC754002BD7B2 /* TimePickerView.swift */; };
 		12CFB0A92D0C53CA00407CEA /* ExView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0A82D0C53C500407CEA /* ExView.swift */; };
@@ -341,7 +340,6 @@
 		12CB921528E6FF26002BD7B2 /* EntryUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserView.swift; sourceTree = "<group>"; };
 		12CB921728E858DF002BD7B2 /* DetailUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserView.swift; sourceTree = "<group>"; };
 		12CB921928E85952002BD7B2 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		12CB921F28E92293002BD7B2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequestManager.swift; sourceTree = "<group>"; };
 		12CB925328EEC754002BD7B2 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		12CFB0A82D0C53C500407CEA /* ExView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExView.swift; sourceTree = "<group>"; };
@@ -450,8 +448,8 @@
 				12CB91FC28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift */,
 				12CB91FE28E5C6E1002BD7B2 /* RootView.swift */,
 				12CB921C28E8661F002BD7B2 /* ListUser */,
-				12CB922428E9A8F5002BD7B2 /* EntryUser */,
-				123F485929A2CC98001B91B3 /* DetailUser */,
+				12CB921528E6FF26002BD7B2 /* EntryUserView.swift */,
+				12CB921728E858DF002BD7B2 /* DetailUserView.swift */,
 				126236172DF3BF3400A5F1AE /* Calendar */,
 				121DEE092B1A218100964902 /* Setting */,
 				124602502B3848C500B6C32D /* AppLock */,
@@ -540,25 +538,17 @@
 		123F485229A1D967001B91B3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
 				124602472B36B62300B6C32D /* RootViewModel.swift */,
 				127788C32E9FD2DB0048E9D0 /* RootListUserViewModel.swift */,
-				1262361C2DF3BFCA00A5F1AE /* CalendarViewModel.swift */,
-				12FE3A2B2B2DCC7100FA700E /* RootEnvironment.swift */,
 				12ED29C02C21958700A1293D /* EntryUserViewModel.swift */,
 				122401472B87738D0099BE8D /* DetailUserViewModel.swift */,
+				1262361C2DF3BFCA00A5F1AE /* CalendarViewModel.swift */,
 				122B34692D145FFE00204703 /* TutorialPopUpViewModel.swift */,
 				12CFB0C72D0C7D6200407CEA /* Setting */,
 				124602512B3848F200B6C32D /* AppLock */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		123F485929A2CC98001B91B3 /* DetailUser */ = {
-			isa = PBXGroup;
-			children = (
-				12CB921728E858DF002BD7B2 /* DetailUserView.swift */,
-			);
-			path = DetailUser;
 			sourceTree = "<group>";
 		};
 		124602442B36B45300B6C32D /* DI */ = {
@@ -647,7 +637,7 @@
 		128BB9712B614FD100B20172 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				128BB96F2B614BF500B20172 /* SingleGridListView.swift */,
+				12CB921228E6FD43002BD7B2 /* RowUserView.swift */,
 				128BB9722B61500800B20172 /* SectionRowView.swift */,
 				123F485029A19A16001B91B3 /* CheckRowUserView.swift */,
 			);
@@ -800,12 +790,12 @@
 		12CB920D28E5C886002BD7B2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				126236102DF3BE9B00A5F1AE /* SCCalendar */,
 				122B346F2D14607000204703 /* Domain */,
-				122B34702D14608000204703 /* Error */,
-				12CA5D982D2281D900A4C1F6 /* InAppPurchase */,
 				122B34712D14609C00204703 /* Common */,
 				1246024D2B381ED600B6C32D /* Config */,
+				122B34702D14608000204703 /* Error */,
+				126236102DF3BE9B00A5F1AE /* SCCalendar */,
+				12CA5D982D2281D900A4C1F6 /* InAppPurchase */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -824,20 +814,11 @@
 			isa = PBXGroup;
 			children = (
 				12CB921028E64ABC002BD7B2 /* RootListUserView.swift */,
-				12CB921228E6FD43002BD7B2 /* RowUserView.swift */,
+				128BB96F2B614BF500B20172 /* SingleGridListView.swift */,
 				128BB96D2B614B4200B20172 /* SectionGridListView.swift */,
 				128BB9712B614FD100B20172 /* Components */,
 			);
 			path = ListUser;
-			sourceTree = "<group>";
-		};
-		12CB922428E9A8F5002BD7B2 /* EntryUser */ = {
-			isa = PBXGroup;
-			children = (
-				12CB921528E6FF26002BD7B2 /* EntryUserView.swift */,
-				12CB921F28E92293002BD7B2 /* DatePickerView.swift */,
-			);
-			path = EntryUser;
 			sourceTree = "<group>";
 		};
 		12CFB0A42D0C53A700407CEA /* Extenstion */ = {
@@ -1324,7 +1305,6 @@
 				12CFB0C52D0C7BEE00407CEA /* ExModifier.swift in Sources */,
 				128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */,
 				128FB79A2E9A2AFA000167C6 /* NotificationRequestWrapper.swift in Sources */,
-				12CB922028E92293002BD7B2 /* DatePickerView.swift in Sources */,
 				1262361B2DF3BFA500A5F1AE /* YearAndMonthSelectionView.swift in Sources */,
 				127788C42E9FD2DD0048E9D0 /* RootListUserViewModel.swift in Sources */,
 				12DCD53C2E06E514007E59A7 /* Logger.swift in Sources */,
