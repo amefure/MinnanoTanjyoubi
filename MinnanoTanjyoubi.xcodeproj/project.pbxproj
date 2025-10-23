@@ -777,12 +777,11 @@
 				122FF36D2B97561300EF4680 /* PrivacyInfo.xcprivacy */,
 				12CA5D942D20308300A4C1F6 /* AsyncProducts.storekit */,
 				12ACAD2429951A0E00273834 /* GoogleService-Info.plist */,
+				12F811D72EAA68F4002B54E5 /* Presentation */,
 				12BA5F0D2C6BA01A00E1DDF2 /* Generated */,
 				12BA5F0C2C6BA01300E1DDF2 /* Resources */,
 				121DEE062B1A20AC00964902 /* Extension&Utility */,
 				12CB920D28E5C886002BD7B2 /* Models */,
-				121DEE022B1A1EFB00964902 /* View */,
-				123F485229A1D967001B91B3 /* ViewModel */,
 				12F811D12EA67634002B54E5 /* DI */,
 				12BA5F162C6BA3E500E1DDF2 /* Managers */,
 				121DEE032B1A1FF500964902 /* Repository */,
@@ -892,6 +891,15 @@
 				12F811D22EA6763E002B54E5 /* DIContainer.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		12F811D72EAA68F4002B54E5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				121DEE022B1A1EFB00964902 /* View */,
+				123F485229A1D967001B91B3 /* ViewModel */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		569280D17AFD40E07506B1ED /* Pods */ = {
