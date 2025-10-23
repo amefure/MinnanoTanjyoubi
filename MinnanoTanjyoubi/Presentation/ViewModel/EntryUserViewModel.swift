@@ -5,10 +5,8 @@
 //  Created by t&a on 2024/06/18.
 //
 
-import Combine
 import RealmSwift
 import UIKit
-import WidgetKit
 
 struct EntryUserState {
     var name: String = ""
@@ -32,21 +30,10 @@ final class EntryUserViewModel: ObservableObject {
     /// バリデーションダイアログ
     @Published var isShowValidationDialog: Bool = false
 
-    private let repository: RealmRepository
-    private let userDefaultsRepository: UserDefaultsRepository
-    private let notificationRequestManager: NotificationRequestManager
-    private let widgetCenter: WidgetCenterProtocol
+    private let service: EntryUserServiceProtocol
 
-    init(
-        repository: RealmRepository,
-        userDefaultsRepository: UserDefaultsRepository,
-        notificationRequestManager: NotificationRequestManager,
-        widgetCenter: WidgetCenterProtocol
-    ) {
-        self.repository = repository
-        self.userDefaultsRepository = userDefaultsRepository
-        self.notificationRequestManager = notificationRequestManager
-        self.widgetCenter = widgetCenter
+    init(service: EntryUserServiceProtocol) {
+        self.service = service
     }
 
     func onAppear(
@@ -59,9 +46,9 @@ final class EntryUserViewModel: ObservableObject {
         } else {
             // 新規登録なら初期値年数を反映
             // カレンダーからの遷移なら日付まで指定する
-            state.date = getInitDate(month: isCalendarMonth, day: isCalendarDay)
+            state.date = service.getInitDate(month: isCalendarMonth, day: isCalendarDay)
             // 関係初期値を取得
-            state.selectedRelation = getInitRelation()
+            state.selectedRelation = service.getInitRelation()
         }
     }
 
@@ -70,7 +57,7 @@ final class EntryUserViewModel: ObservableObject {
 
 extension EntryUserViewModel {
     private func fetchTargetUser(id: ObjectId) {
-        guard let user: User = repository.getByPrimaryKey(id) else { return }
+        guard let user: User = service.fetchUser(id: id) else { return }
         targetUser = user
         // Update時なら初期値セット
         state.name = user.name
@@ -88,61 +75,13 @@ extension EntryUserViewModel {
         }
 
         if let targetUser {
-            // Update
-            repository.updateObject(User.self, id: targetUser.id) { [weak self] obj in
-                guard let self else { return }
-                obj.name = self.state.name
-                obj.ruby = self.state.ruby
-                obj.date = self.state.date
-                obj.relation = self.state.selectedRelation
-                obj.memo = self.state.memo
-                obj.alert = self.state.isAlert
-                obj.isYearsUnknown = self.state.isYearsUnknown
-            }
+            service.updateUser(targetUser, from: state)
         } else {
-            let newUser = User()
-            newUser.name = state.name
-            newUser.ruby = state.ruby
-            newUser.date = state.date
-            newUser.relation = state.selectedRelation
-            newUser.memo = state.memo
-            newUser.alert = state.isAlert
-            newUser.isYearsUnknown = state.isYearsUnknown
-            // Create
-            if state.isAlert {
-                let setting = userDefaultsRepository.getNotifyUserSetting()
-                // 通知を登録
-                notificationRequestManager
-                    .sendNotificationRequest(
-                        id: newUser.id,
-                        userName: state.name,
-                        date: state.date,
-                        msg: setting.msg,
-                        timeStr: setting.timeStr,
-                        dateFlag: setting.dateFlag
-                    )
-            }
-            repository.createObject(newUser)
+            service.createUser(from: state)
         }
-
         // カレンダー更新
         NotificationCenter.default.post(name: .updateCalendar, object: true)
 
-        // 登録 & 更新のタイミングでウィジェットも更新する
-        widgetCenter.reloadAllTimelines()
         return true
-    }
-
-    /// 保存された年数&カレンダーから渡された日付があればそのDateオブジェクトを取得
-    private func getInitDate(month: Int?, day: Int?) -> Date {
-        let dfm = DateFormatUtility()
-        let year = userDefaultsRepository.getEntryInitYear()
-        let yearDate = dfm.setDate(year: year, month: month, day: day)
-        return yearDate
-    }
-
-    /// 関係初期値
-    private func getInitRelation() -> Relation {
-        return userDefaultsRepository.getEntryInitRelation()
     }
 }

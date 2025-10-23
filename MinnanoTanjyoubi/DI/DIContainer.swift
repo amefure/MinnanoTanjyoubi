@@ -14,19 +14,59 @@ final class DIContainer: @unchecked Sendable {
     // FIXME: モック切り替えフラグ
     private static let isTest: Bool = false
 
-    private let container = Container { c in
+    private let container: Container
+
+    private init() {
+        container = Container { c in
+            Self.registerRepositories(c)
+            Self.registerServices(c)
+            Self.registerViewModels(c)
+        }
+    }
+
+    func resolve<T>(_ type: T.Type) -> T {
+        guard let resolved = container.resolve(type) else {
+            fatalError("依存解決に失敗しました: \(type)")
+        }
+        return resolved
+    }
+}
+
+// MARK: - Repository Registration
+
+private extension DIContainer {
+    static func registerRepositories(_ c: Container) {
         c.register(RealmRepository.self) { _ in RealmRepository() }
         c.register(UserDefaultsRepository.self) { _ in UserDefaultsRepository() }
         c.register(KeyChainRepository.self) { _ in KeyChainRepository() }
         c.register(BiometricAuthRepository.self) { _ in BiometricAuthRepository() }
         c.register(InAppPurchaseRepository.self) { _ in InAppPurchaseRepository() }
-        c.register(RewardServiceProtocol.self) { _ in RewardService() }
-
         c.register(NotificationRequestManager.self) { _ in NotificationRequestManager() }
         c.register(WidgetCenterProtocol.self) { _ in WidgetCenterManager() }
+        c.register(RewardServiceProtocol.self) { _ in RewardService() }
+    }
+}
 
-        // Add ViewModel
+// MARK: - Service Registration
 
+private extension DIContainer {
+    static func registerServices(_ c: Container) {
+        c.register(EntryUserServiceProtocol.self) { r in
+            EntryUserService(
+                repository: r.resolve(RealmRepository.self)!,
+                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
+                notificationRequestManager: r.resolve(NotificationRequestManager.self)!,
+                widgetCenter: r.resolve(WidgetCenterProtocol.self)!
+            )
+        }
+    }
+}
+
+// MARK: - ViewModel Registration
+
+private extension DIContainer {
+    static func registerViewModels(_ c: Container) {
+        // RootEnvironment
         c.register(RootEnvironment.self) { r in
             RootEnvironment(
                 repository: r.resolve(RealmRepository.self)!,
@@ -46,15 +86,12 @@ final class DIContainer: @unchecked Sendable {
             )
         }
 
+        // Entry
         c.register(EntryUserViewModel.self) { r in
-            EntryUserViewModel(
-                repository: r.resolve(RealmRepository.self)!,
-                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
-                notificationRequestManager: r.resolve(NotificationRequestManager.self)!,
-                widgetCenter: r.resolve(WidgetCenterProtocol.self)!
-            )
+            EntryUserViewModel(service: r.resolve(EntryUserServiceProtocol.self)!)
         }
 
+        // Detail
         c.register(DetailUserViewModel.self) { r in
             DetailUserViewModel(
                 repository: r.resolve(RealmRepository.self)!,
@@ -63,7 +100,7 @@ final class DIContainer: @unchecked Sendable {
             )
         }
 
-        // Setting領域
+        // Setting
         c.register(SettingViewModel.self) { r in
             SettingViewModel(
                 repository: r.resolve(RealmRepository.self)!,
@@ -71,6 +108,7 @@ final class DIContainer: @unchecked Sendable {
             )
         }
 
+        // Notify
         c.register(EntryNotifyListViewModel.self) { r in
             EntryNotifyListViewModel(
                 repository: r.resolve(RealmRepository.self)!,
@@ -78,6 +116,7 @@ final class DIContainer: @unchecked Sendable {
             )
         }
 
+        // Purchase
         c.register(InAppPurchaseViewModel.self) { r in
             InAppPurchaseViewModel(
                 userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
@@ -85,18 +124,12 @@ final class DIContainer: @unchecked Sendable {
             )
         }
 
+        // Reward
         c.register(RewardViewModel.self) { r in
             RewardViewModel(
                 userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
                 rewardService: r.resolve(RewardServiceProtocol.self)!
             )
         }
-    }
-
-    func resolve<T>(_ type: T.Type) -> T {
-        guard let resolved = container.resolve(type) else {
-            fatalError("依存解決に失敗しました: \(type)")
-        }
-        return resolved
     }
 }

@@ -152,6 +152,7 @@
 		12F811D02EA67540002B54E5 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 12F811CF2EA67540002B54E5 /* Swinject */; };
 		12F811D32EA6763F002B54E5 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F811D22EA6763E002B54E5 /* DIContainer.swift */; };
 		12F811D52EA91C5B002B54E5 /* WrapperProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F811D42EA91C58002B54E5 /* WrapperProduct.swift */; };
+		12F811DC2EAA6AE6002B54E5 /* EntryUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F811DB2EAA6AE4002B54E5 /* EntryUserService.swift */; };
 		12F9A67A2E85819D0010B116 /* ExPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9A6792E85819C0010B116 /* ExPublisher.swift */; };
 		12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */; };
 		12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */; };
@@ -357,6 +358,7 @@
 		12F811CC2EA67452002B54E5 /* WidgetCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCenterManager.swift; sourceTree = "<group>"; };
 		12F811D22EA6763E002B54E5 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		12F811D42EA91C58002B54E5 /* WrapperProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperProduct.swift; sourceTree = "<group>"; };
+		12F811DB2EAA6AE4002B54E5 /* EntryUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserService.swift; sourceTree = "<group>"; };
 		12F9A6792E85819C0010B116 /* ExPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExPublisher.swift; sourceTree = "<group>"; };
 		12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExNotificationName.swift; sourceTree = "<group>"; };
 		12F9F1712DF9B72100B7A46C /* SelectInitWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInitWeekView.swift; sourceTree = "<group>"; };
@@ -886,6 +888,7 @@
 			isa = PBXGroup;
 			children = (
 				12CB920D28E5C886002BD7B2 /* Models */,
+				12F811DA2EAA6ADC002B54E5 /* Service */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -897,6 +900,14 @@
 				12BA5F162C6BA3E500E1DDF2 /* Managers */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		12F811DA2EAA6ADC002B54E5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				12F811DB2EAA6AE4002B54E5 /* EntryUserService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		569280D17AFD40E07506B1ED /* Pods */ = {
@@ -1283,6 +1294,7 @@
 				12CB920C28E5C884002BD7B2 /* User.swift in Sources */,
 				12FE3A282B2DC1C600FA700E /* RealmRepository.swift in Sources */,
 				12BA5F152C6BA0A600E1DDF2 /* Strings.swift in Sources */,
+				12F811DC2EAA6AE6002B54E5 /* EntryUserService.swift in Sources */,
 				124602432B36A92C00B6C32D /* AppLockViewModel.swift in Sources */,
 				128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */,
 				12B76E832D0D90600021A018 /* SecretCryptoKey.swift in Sources */,
