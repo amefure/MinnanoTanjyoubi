@@ -10,44 +10,47 @@ import RealmSwift
 import SwiftUI
 import UIKit
 
-class DetailUserViewModel: ObservableObject {
+struct DetailUserState {
     /// 詳細画面で表示するUser情報
-    @Published var targetUser: User = .init()
-    /// 更新画面モーダル
-    @Published var isShowUpdateModalView: Bool = false
-    // 画像ピッカー表示
-    @Published var isShowImagePicker: Bool = false
+    var targetUser: User = .init()
+    /// 画像ピッカー表示
+    var isShowImagePicker: Bool = false
     /// メモ表示ポップアップ
-    @Published var isShowPopUpMemo: Bool = false
+    var isShowPopUpMemo: Bool = false
     /// 年齢月数表示フラグ
-    @Published private(set) var isDisplayAgeMonth: Bool = false
+    var isDisplayAgeMonth: Bool = false
     /// 保存成功ダイアログ
-    @Published var isSaveSuccessAlert: Bool = false
+    var isSaveSuccessAlert: Bool = false
     /// 削除確認ダイアログ
-    @Published var isDeleteConfirmAlert: Bool = false
+    var isDeleteConfirmAlert: Bool = false
     /// 削除成功ダイアログ
-    @Published var isDeleteSuccessAlert: Bool = false
+    var isDeleteSuccessAlert: Bool = false
     /// 画像表示ダイアログ
-    @Published var isImageShowAlert: Bool = false
+    var isImageShowAlert: Bool = false
     /// 画像エラーダイアログ
-    @Published var isImageErrorAlert: Bool = false
+    var isImageErrorAlert: Bool = false
 
-    /// 画像表示コンテナビューをリフレッシュ
-    @Published private(set) var isUpdateImageContainerView: Int = 0
+    /// 有効なパスに変換された画像パス
+    var displayImages: [String] = []
     /// 画像エラー
-    @Published private(set) var imageError: ImageError?
+    var imageError: ImageError?
 
-    /// 通知トグルフラグ
-    @Published var isNotifyFlag: Bool = false
-
-    /// 画像削除対象のパス
-    var selectedDeleteImagePath: String = ""
     /// プレビュー表示対象の`Image`
     var selectedPreViewImage: Image?
+    /// 画像削除対象のパス
+    var selectedDeleteImagePath: String = ""
+}
+
+class DetailUserViewModel: ObservableObject {
+    @Published var state = DetailUserState()
+
+    // 以下パブリッシャーとして観測するプロパティはstateに含めない
+    /// 更新画面モーダル
+    @Published var isShowUpdateModalView: Bool = false
+    /// 通知トグルフラグ
+    @Published var isNotifyFlag: Bool = false
     /// 画像ピッカー選択の`UIImage`
     @Published var selectedPickerImage: UIImage?
-    /// 有効なパスに変換された画像パス
-    @Published private(set) var displayImages: [String] = []
 
     private let imageFileManager = ImageFileManager()
 
@@ -71,16 +74,16 @@ class DetailUserViewModel: ObservableObject {
     func onAppear(id: ObjectId) {
         refreshTargetUser(id: id)
 
-        isDisplayAgeMonth = getDisplayAgeMonth()
+        state.isDisplayAgeMonth = getDisplayAgeMonth()
         // 通知初期値セット
-        isNotifyFlag = targetUser.alert
+        isNotifyFlag = state.targetUser.alert
 
         $isNotifyFlag
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newValue in
                 guard let self else { return }
-                self.switchNotifyFlag(flag: newValue, user: targetUser)
+                self.switchNotifyFlag(flag: newValue, user: state.targetUser)
             }.store(in: &cancellables)
 
         $selectedPickerImage
@@ -96,7 +99,7 @@ class DetailUserViewModel: ObservableObject {
             .sink { [weak self] flag in
                 guard let self else { return }
                 guard !flag else { return }
-                refreshTargetUser(id: targetUser.id)
+                refreshTargetUser(id: state.targetUser.id)
             }.store(in: &cancellables)
     }
 
@@ -114,36 +117,31 @@ extension DetailUserViewModel {
 
     private func refreshTargetUser(id: ObjectId) {
         guard let user: User = repository.getByPrimaryKey(id) else { return }
-        targetUser = user
+        state.targetUser = user
         // 有効な画像保存パスに変換してUI更新
-        displayImages = targetUser.imagePaths.compactMap { loadImagePath(name: $0) }
+        state.displayImages = state.targetUser.imagePaths.compactMap { loadImagePath(name: $0) }
     }
 }
 
 // MARK: UserDefaults
 
 extension DetailUserViewModel {
-    /// ImageContainerViewの描画更新フラグ
-    func updateImageContainerView() {
-        isUpdateImageContainerView += 1
-    }
-
     /// エラーハンドラー
     func showImageErrorHandle(error: ImageError) {
-        imageError = error
-        isImageErrorAlert = true
+        state.imageError = error
+        state.isImageErrorAlert = true
     }
 
     /// 画像プレビューポップアップ表示
     func showPreViewImagePopup(image: Image) {
-        selectedPreViewImage = image
-        isImageShowAlert = true
+        state.selectedPreViewImage = image
+        state.isImageShowAlert = true
     }
 
     /// 画像削除確認ダイアログ表示
     func showDeleteConfirmAlert(user: User, index: Int) {
-        selectedDeleteImagePath = user.imagePaths[safe: index] ?? ""
-        isDeleteConfirmAlert = true
+        state.selectedDeleteImagePath = user.imagePaths[safe: index] ?? ""
+        state.isDeleteConfirmAlert = true
     }
 
     /// 画像がちゃんと保存されているパスをチェック & 取得
@@ -157,10 +155,10 @@ extension DetailUserViewModel {
         let imgName = UUID().uuidString
         do {
             _ = try imageFileManager.saveImage(name: imgName, image: image)
-            repository.appendImagePathUser(id: targetUser.id, imagePath: imgName)
+            repository.appendImagePathUser(id: state.targetUser.id, imagePath: imgName)
             // User情報リフレッシュ
-            refreshTargetUser(id: targetUser.id)
-            isSaveSuccessAlert = true
+            refreshTargetUser(id: state.targetUser.id)
+            state.isSaveSuccessAlert = true
         } catch {
             guard error is ImageError else { return }
             showImageErrorHandle(error: error as! ImageError)
@@ -169,14 +167,14 @@ extension DetailUserViewModel {
 
     /// 画像削除
     func deleteImage() {
-        var imagePaths = Array(targetUser.imagePaths)
-        imagePaths.removeAll(where: { $0 == selectedDeleteImagePath })
+        var imagePaths = Array(state.targetUser.imagePaths)
+        imagePaths.removeAll(where: { $0 == state.selectedDeleteImagePath })
         // ここのエラーは握り潰す
-        _ = try? imageFileManager.deleteImage(name: selectedDeleteImagePath)
-        repository.removeImagePathUser(id: targetUser.id, imagePath: selectedDeleteImagePath)
+        _ = try? imageFileManager.deleteImage(name: state.selectedDeleteImagePath)
+        repository.removeImagePathUser(id: state.targetUser.id, imagePath: state.selectedDeleteImagePath)
         // User情報リフレッシュ
-        refreshTargetUser(id: targetUser.id)
-        isDeleteSuccessAlert = true
+        refreshTargetUser(id: state.targetUser.id)
+        state.isDeleteSuccessAlert = true
     }
 
     /// 通知フラグ切り替え & 通知登録 / 削除 / 許可リクエスト

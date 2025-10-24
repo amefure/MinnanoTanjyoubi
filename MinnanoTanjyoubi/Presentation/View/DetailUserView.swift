@@ -42,7 +42,7 @@ struct DetailUserView: View {
                         Spacer()
 
                         Button {
-                            ShareInfoUtillity.shareBirthday([viewModel.targetUser])
+                            ShareInfoUtillity.shareBirthday([viewModel.state.targetUser])
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                                 .fontM()
@@ -52,7 +52,7 @@ struct DetailUserView: View {
 
                 ZStack(alignment: .topTrailing) {
                     // Memo
-                    Text(viewModel.targetUser.memo)
+                    Text(viewModel.state.targetUser.memo)
                         .fontM()
                         .truncationMode(.tail) // 文字溢れを「....」にする
                         .padding()
@@ -63,7 +63,7 @@ struct DetailUserView: View {
                         )
                         .background(rootEnvironment.scheme.foundationSub)
                         .onTapGesture {
-                            viewModel.isShowPopUpMemo = true
+                            viewModel.state.isShowPopUpMemo = true
                         }.overBorder(
                             radius: 5,
                             color: rootEnvironment.scheme.foundationPrimary,
@@ -98,7 +98,7 @@ struct DetailUserView: View {
                 },
                 imageString: "square.and.pencil"
             ).sheet(isPresented: $viewModel.isShowUpdateModalView) {
-                EntryUserView(updateUserId: viewModel.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
+                EntryUserView(updateUserId: viewModel.state.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
             }.environmentObject(rootEnvironment)
 
             if !DeviceSizeUtility.isSESize && !rootEnvironment.removeAds {
@@ -113,7 +113,7 @@ struct DetailUserView: View {
             .onAppear { viewModel.onAppear(id: userId) }
             .onDisappear { viewModel.onDisappear() }
             .alert(
-                isPresented: $viewModel.isDeleteConfirmAlert,
+                isPresented: $viewModel.state.isDeleteConfirmAlert,
                 title: "お知らせ",
                 message: "この画像を削除しますか？",
                 positiveButtonTitle: "削除",
@@ -123,41 +123,37 @@ struct DetailUserView: View {
                     // 画像削除
                     viewModel.deleteImage()
                 }, negativeAction: {
-                    viewModel.selectedDeleteImagePath = ""
+                    viewModel.state.selectedDeleteImagePath = ""
                 }
             )
             .alert(
-                isPresented: $viewModel.isSaveSuccessAlert,
+                isPresented: $viewModel.state.isSaveSuccessAlert,
                 title: "お知らせ",
                 message: "画像を追加しました。",
-                positiveButtonTitle: "OK",
-                positiveAction: {
-                    viewModel.updateImageContainerView()
-                }
+                positiveButtonTitle: "OK"
             )
             .alert(
-                isPresented: $viewModel.isDeleteSuccessAlert,
+                isPresented: $viewModel.state.isDeleteSuccessAlert,
                 title: "お知らせ",
                 message: "画像を削除しました。",
                 positiveButtonTitle: "OK",
                 positiveAction: {
-                    viewModel.selectedDeleteImagePath = ""
-                    viewModel.updateImageContainerView()
+                    viewModel.state.selectedDeleteImagePath = ""
                 }
             )
             .alert(
-                isPresented: $viewModel.isImageErrorAlert,
-                title: viewModel.imageError?.title ?? "エラー",
-                message: viewModel.imageError?.message ?? "予期せぬエラーが発生し、画像の保存に失敗しました。\n時間をあけてから再度お試してください。",
+                isPresented: $viewModel.state.isImageErrorAlert,
+                title: viewModel.state.imageError?.title ?? "エラー",
+                message: viewModel.state.imageError?.message ?? "予期せぬエラーが発生し、画像の保存に失敗しました。\n時間をあけてから再度お試してください。",
                 positiveButtonTitle: "OK"
             ).dialogImagePreviewView(
-                isPresented: $viewModel.isImageShowAlert,
-                image: viewModel.selectedPreViewImage,
+                isPresented: $viewModel.state.isImageShowAlert,
+                image: viewModel.state.selectedPreViewImage,
                 environment: rootEnvironment
             ).popup(
-                isPresented: $viewModel.isShowPopUpMemo,
+                isPresented: $viewModel.state.isShowPopUpMemo,
                 title: "MEMO",
-                message: viewModel.targetUser.memo
+                message: viewModel.state.targetUser.memo
             )
     }
 
@@ -165,7 +161,7 @@ struct DetailUserView: View {
     private func upSideUserInfoView() -> some View {
         VStack(spacing: 0) {
             HStack {
-                Text(rootEnvironment.relationNameList[safe: viewModel.targetUser.relation.relationIndex] ?? "その他")
+                Text(rootEnvironment.relationNameList[safe: viewModel.state.targetUser.relation.relationIndex] ?? "その他")
                     .padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: roundWidth, alignment: .center)
@@ -178,7 +174,7 @@ struct DetailUserView: View {
                 Spacer()
 
                 HStack(alignment: .bottom) {
-                    let daysLater = UserCalcUtility.daysLater(from: viewModel.targetUser.date)
+                    let daysLater = UserCalcUtility.daysLater(from: viewModel.state.targetUser.date)
                     if daysLater == 0 {
                         Text("HAPPY BIRTHDAY")
                             .foregroundStyle(rootEnvironment.scheme.thema1)
@@ -199,17 +195,17 @@ struct DetailUserView: View {
                     .font(DeviceSizeUtility.isSESize ? .system(size: 12) : .system(size: 17))
             }
 
-            Text(viewModel.targetUser.ruby)
+            Text(viewModel.state.targetUser.ruby)
                 .font(DeviceSizeUtility.isSESize ? .system(size: 12) : .system(size: 14))
-            Text(viewModel.targetUser.name)
+            Text(viewModel.state.targetUser.name)
                 .font(DeviceSizeUtility.isSESize ? .system(size: 17) : .system(size: 20))
             HStack {
-                if viewModel.targetUser.isYearsUnknown {
-                    Text(dfmJpOnlyDate.getString(date: viewModel.targetUser.date))
+                if viewModel.state.targetUser.isYearsUnknown {
+                    Text(dfmJpOnlyDate.getString(date: viewModel.state.targetUser.date))
                     Text("（年数未設定）")
                 } else {
-                    Text(dfmJp.getString(date: viewModel.targetUser.date))
-                    Text("（\(dfmJpEra.getString(date: viewModel.targetUser.date))）")
+                    Text(dfmJp.getString(date: viewModel.state.targetUser.date))
+                    Text("（\(dfmJpEra.getString(date: viewModel.state.targetUser.date))）")
                 }
             }.padding(.top, 8)
                 .fontM()
@@ -220,13 +216,13 @@ struct DetailUserView: View {
     private func middleUserInfoView() -> some View {
         HStack(spacing: 20) {
             VStack {
-                if viewModel.targetUser.isYearsUnknown {
+                if viewModel.state.targetUser.isYearsUnknown {
                     Text("- 歳")
                 } else {
-                    Text("\(UserCalcUtility.currentAge(from: viewModel.targetUser.date))歳")
+                    Text("\(UserCalcUtility.currentAge(from: viewModel.state.targetUser.date))歳")
                     // 月数まで表示するか否か
-                    if viewModel.isDisplayAgeMonth {
-                        Text("\(UserCalcUtility.currentAgeMonth(from: viewModel.targetUser.date))ヶ月")
+                    if viewModel.state.isDisplayAgeMonth {
+                        Text("\(UserCalcUtility.currentAgeMonth(from: viewModel.state.targetUser.date))ヶ月")
                     }
                 }
             }.circleBorderView(
@@ -235,14 +231,14 @@ struct DetailUserView: View {
                 color: rootEnvironment.scheme.thema2
             )
 
-            Text(UserCalcUtility.signOfZodiac(from: viewModel.targetUser.date))
+            Text(UserCalcUtility.signOfZodiac(from: viewModel.state.targetUser.date))
                 .circleBorderView(
                     width: roundWidth,
                     height: roundWidth,
                     color: rootEnvironment.scheme.thema4
                 )
 
-            if viewModel.targetUser.isYearsUnknown {
+            if viewModel.state.targetUser.isYearsUnknown {
                 Text("- 年")
                     .circleBorderView(
                         width: roundWidth,
@@ -250,7 +246,7 @@ struct DetailUserView: View {
                         color: rootEnvironment.scheme.thema3
                     )
             } else {
-                Text(UserCalcUtility.zodiac(from: viewModel.targetUser.date))
+                Text(UserCalcUtility.zodiac(from: viewModel.state.targetUser.date))
                     .circleBorderView(
                         width: roundWidth,
                         height: roundWidth,
@@ -265,7 +261,7 @@ struct DetailUserView: View {
     private func imageContainerView() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
-                ForEach(Array(viewModel.displayImages.enumerated()), id: \.element) { index, path in
+                ForEach(Array(viewModel.state.displayImages.enumerated()), id: \.element) { index, path in
                     AsyncImage(url: URL(fileURLWithPath: path)) { image in
                         ZStack {
                             image
@@ -276,10 +272,10 @@ struct DetailUserView: View {
                                     viewModel.showPreViewImagePopup(image: image)
                                 }.onLongPressGesture {
                                     // 削除確認ダイアログの表示
-                                    viewModel.showDeleteConfirmAlert(user: viewModel.targetUser, index: index)
+                                    viewModel.showDeleteConfirmAlert(user: viewModel.state.targetUser, index: index)
                                 }
                             // 選択中UI表示
-                            if viewModel.selectedDeleteImagePath == viewModel.targetUser.imagePaths[safe: index] {
+                            if viewModel.state.selectedDeleteImagePath == viewModel.state.targetUser.imagePaths[safe: index] {
                                 Rectangle()
                                     .frame(width: 80, height: 80)
                                     .background(.black)
@@ -294,7 +290,7 @@ struct DetailUserView: View {
                 }
 
                 Button {
-                    viewModel.isShowImagePicker = true
+                    viewModel.state.isShowImagePicker = true
                 } label: {
                     Image(systemName: "plus")
                         .fontM()
@@ -308,7 +304,7 @@ struct DetailUserView: View {
                 }
             }.padding(.horizontal)
         }
-        .sheet(isPresented: $viewModel.isShowImagePicker) {
+        .sheet(isPresented: $viewModel.state.isShowImagePicker) {
             ImagePickerDialog(image: $viewModel.selectedPickerImage)
         }
     }
