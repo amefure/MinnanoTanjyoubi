@@ -16,6 +16,8 @@ struct EntryUserState {
     var selectedRelation: Relation = .other
     var isAlert: Bool = true
     var isYearsUnknown: Bool = false
+    var showWheel: Bool = false
+    var isShowValidationDialog: Bool = false
 }
 
 final class EntryUserViewModel: ObservableObject {
@@ -24,11 +26,6 @@ final class EntryUserViewModel: ObservableObject {
 
     /// `EntryUserState`
     @Published var state = EntryUserState()
-
-    /// カレンダーON/OFF
-    @Published var showWheel: Bool = false
-    /// バリデーションダイアログ
-    @Published var isShowValidationDialog: Bool = false
 
     private let service: EntryUserServiceProtocol
 
@@ -70,7 +67,7 @@ extension EntryUserViewModel {
 
     func createOrUpdateUser() -> Bool {
         guard !state.name.isEmpty else {
-            isShowValidationDialog = true
+            state.isShowValidationDialog = true
             return false
         }
 

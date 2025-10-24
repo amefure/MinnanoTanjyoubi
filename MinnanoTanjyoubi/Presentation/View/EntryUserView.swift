@@ -63,7 +63,7 @@ struct EntryUserView: View {
                     Spacer()
                     DatePickerView(
                         date: $viewModel.state.date,
-                        showWheel: $viewModel.showWheel,
+                        showWheel: $viewModel.state.showWheel,
                         isYearsUnknown: $viewModel.state.isYearsUnknown
                     ).environmentObject(rootEnvironment)
                 }.padding(5)
@@ -147,12 +147,12 @@ struct EntryUserView: View {
             }
             .onChange(of: isFocusActive, perform: { _ in
                 if isFocusActive {
-                    viewModel.showWheel = false
+                    viewModel.state.showWheel = false
                 }
             })
             .navigationBarBackButtonHidden(true)
             .alert(
-                isPresented: $viewModel.isShowValidationDialog,
+                isPresented: $viewModel.state.isShowValidationDialog,
                 title: "エラー",
                 message: "名前を入力してください。",
                 positiveButtonTitle: "OK"

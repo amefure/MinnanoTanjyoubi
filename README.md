@@ -205,7 +205,7 @@ $ swiftgen config run
 - CryptoSwift・・・暗号化・複合化 データ送信機能
 
 ### Debug
-- ~~SwiftFormat/CLI・・・フォーマット~~
+- SwiftFormat/CLI・・・フォーマット
 
 ## ドキュメント
 
