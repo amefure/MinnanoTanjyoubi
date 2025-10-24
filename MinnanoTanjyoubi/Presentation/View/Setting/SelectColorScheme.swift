@@ -111,4 +111,5 @@ private struct ColorSchemePreView: View {
 
 #Preview {
     SelectColorScheme()
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

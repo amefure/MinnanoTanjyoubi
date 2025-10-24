@@ -8,8 +8,7 @@
 @preconcurrency import Combine
 import UIKit
 
-@MainActor
-class CalendarViewModel: ObservableObject {
+final class CalendarViewModel: ObservableObject {
     private let dateFormatUtility = DateFormatUtility()
 
     // MARK: Calendar ロジック
@@ -26,21 +25,22 @@ class CalendarViewModel: ObservableObject {
     /// カレンダーをイニシャライズしたかどうか
     private var isInitializeFlag: Bool = false
 
-    private let realmRepository: RealmRepository
-    private let userDefaultsRepository: UserDefaultsRepository
-    private let scCalenderRepository: SCCalenderRepository
-
     private var cancellables: Set<AnyCancellable> = []
     private var updateCancellable: AnyCancellable?
 
-    deinit {
-        updateCancellable?.cancel()
-    }
+    /// `Repository`
+    private let localRepository: RealmRepository
+    private let userDefaultsRepository: UserDefaultsRepository
+    private let scCalenderRepository: SCCalenderRepository
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        realmRepository = repositoryDependency.realmRepository
-        userDefaultsRepository = repositoryDependency.userDefaultsRepository
-        scCalenderRepository = repositoryDependency.scCalenderRepository
+    init(
+        localRepository: RealmRepository,
+        userDefaultsRepository: UserDefaultsRepository,
+        scCalenderRepository: SCCalenderRepository
+    ) {
+        self.localRepository = localRepository
+        self.userDefaultsRepository = userDefaultsRepository
+        self.scCalenderRepository = scCalenderRepository
 
         getInitWeek()
 
@@ -54,10 +54,14 @@ class CalendarViewModel: ObservableObject {
         currentYearAndMonth = [yearAndMonth]
     }
 
+    deinit {
+        updateCancellable?.cancel()
+    }
+
     func onAppear() {
         if !isInitializeFlag {
             // リフレッシュしたいため都度取得する
-            let users: [User] = realmRepository.readAllObjs()
+            let users: [User] = localRepository.readAllObjs()
             scCalenderRepository.initialize(initWeek: initWeek, users: users)
             isInitializeFlag = true
         }
@@ -100,7 +104,7 @@ class CalendarViewModel: ObservableObject {
                     // 週始まりを変更している可能性があるため再取得
                     getInitWeek()
                     // リフレッシュしたいため都度取得する
-                    let users: [User] = realmRepository.readAllObjs()
+                    let users: [User] = localRepository.readAllObjs()
                     scCalenderRepository.initialize(initWeek: initWeek, users: users)
                     // カレンダーを更新
                     NotificationCenter.default.post(name: .updateCalendar, object: false)
@@ -173,7 +177,7 @@ extension CalendarViewModel {
         displayCalendarIndex = CGFloat(todayIndex)
     }
 
-    // 更新対象のインデックス番号を取得する
+    /// 更新対象のインデックス番号を取得する
     private func getUpdateCurrentDateIndex(createdAt: Date) -> (Int, Int) {
         // 月でフィルタリング
         guard let index = currentYearAndMonth.firstIndex(where: { $0.month == dateFormatUtility.getDateYearAndMonth(date: createdAt).month }) else { return (-1, -1) }
@@ -200,8 +204,8 @@ extension CalendarViewModel {
 
     /// 容量超過確認
     func isOverCapacity(_ size: Int) -> Bool {
-        let users: [User] = realmRepository.readAllObjs()
+        let users: [User] = localRepository.readAllObjs()
         let size = users.count + size
-        return size > AppManager.sharedUserDefaultManager.getCapacity()
+        return size > userDefaultsRepository.getCapacity()
     }
 }

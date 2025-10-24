@@ -78,4 +78,5 @@ struct UpdateRelationNameView: View {
 
 #Preview {
     UpdateRelationNameView()
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

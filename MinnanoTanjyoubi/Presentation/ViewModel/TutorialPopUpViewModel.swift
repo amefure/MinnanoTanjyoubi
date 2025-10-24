@@ -16,15 +16,21 @@ struct TutorialPopUpState {
     fileprivate(set) var position: PopUpPosition = .bottomRight
 }
 
-@MainActor
 final class TutorialPopUpViewModel: ObservableObject {
     @Published var state = TutorialPopUpState()
 
-    private let repository: RealmRepository
+    /// `Repository`
+    private let localRepository: RealmRepository
+    private let userDefaultsRepository: UserDefaultsRepository
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        repository = repositoryDependency.realmRepository
-        let users: [User] = repository.readAllObjs()
+    init(
+        localRepository: RealmRepository,
+        userDefaultsRepository: UserDefaultsRepository
+    ) {
+        self.localRepository = localRepository
+        self.userDefaultsRepository = userDefaultsRepository
+
+        let users: [User] = localRepository.readAllObjs()
         if users.count == 0 {
             // チュートリアルを表示したことがないならチュートリアルを表示
             if !getShowTutorialFlag() {
@@ -89,21 +95,21 @@ final class TutorialPopUpViewModel: ObservableObject {
 extension TutorialPopUpViewModel {
     /// チュートリアル初回表示フラグ取得
     private func getShowTutorialFlag() -> Bool {
-        AppManager.sharedUserDefaultManager.getShowTutorialFlag()
+        userDefaultsRepository.getShowTutorialFlag()
     }
 
     /// チュートリアル初回表示フラグセット
     private func setShowTutorialFlag() {
-        AppManager.sharedUserDefaultManager.setShowTutorialFlag(true)
+        userDefaultsRepository.setShowTutorialFlag(true)
     }
 
     /// チュートリアル再表示フラグ取得
     private func getTutorialReShowFlag() -> Bool {
-        AppManager.sharedUserDefaultManager.getTutorialReShowFlag()
+        userDefaultsRepository.getTutorialReShowFlag()
     }
 
     /// チュートリアル再表示フラグセット
     private func setTutorialReShowFlag() {
-        AppManager.sharedUserDefaultManager.setTutorialReShowFlag(false)
+        userDefaultsRepository.setTutorialReShowFlag(false)
     }
 }

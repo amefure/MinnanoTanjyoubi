@@ -10,8 +10,8 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-    @ObservedObject private var popUpViewModel = TutorialPopUpViewModel()
-    @ObservedObject private var viewModel = RootViewModel()
+    @ObservedObject private var popUpViewModel = DIContainer.shared.resolve(TutorialPopUpViewModel.self)
+    @ObservedObject private var viewModel = DIContainer.shared.resolve(RootViewModel.self)
 
     var body: some View {
         VStack(spacing: 0) {

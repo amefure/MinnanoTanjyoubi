@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct AppLockView: View {
-    @StateObject private var viewModel = AppLockViewModel()
-
+    @StateObject private var viewModel = DIContainer.shared.resolve(AppLockViewModel.self)
     @State private var password: [String] = []
 
     @EnvironmentObject private var rootEnvironment: RootEnvironment
@@ -62,14 +61,16 @@ struct AppLockView: View {
 
             NumberKeyboardView(password: $password)
                 .ignoresSafeArea(.all)
-        }.alert("パスワードが違います。", isPresented: $viewModel.isShowFailureAlert) {
-            Button("OK") {}
-        }
-        .navigationDestination(isPresented: $viewModel.isShowApp) {
+        }.alert(
+            isPresented: $viewModel.isShowFailureAlert,
+            title: "Erroe",
+            message: "パスワードが違います。"
+        ).navigationDestination(isPresented: $viewModel.isShowApp) {
             RootView()
                 .environmentObject(rootEnvironment)
         }
         .onAppear { viewModel.onAppear() }
+        .onDisappear { viewModel.onDisappear() }
         .background(rootEnvironment.scheme.foundationSub)
     }
 }
@@ -214,4 +215,5 @@ struct NumberButton: View {
 
 #Preview {
     AppLockView()
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

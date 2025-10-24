@@ -150,4 +150,5 @@ struct DemoNotifyView: View {
 
 #Preview {
     EditNotifyMessageView()
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

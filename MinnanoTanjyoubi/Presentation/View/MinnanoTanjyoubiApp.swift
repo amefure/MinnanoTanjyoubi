@@ -21,9 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Firebase
         FirebaseApp.configure()
 
-        // Remote Config 初期設定
-        AppManager.sharedRemoteConfigManager.initialize()
-
         // 通知デリゲートの登録
         UNUserNotificationCenter.current().delegate = self
 

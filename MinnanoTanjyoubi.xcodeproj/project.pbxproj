@@ -52,7 +52,6 @@
 		123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485029A19A16001B91B3 /* CheckRowUserView.swift */; };
 		123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
 		1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */; };
-		1246023F2B36A23E00B6C32D /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246023E2B36A23E00B6C32D /* AppManager.swift */; };
 		124602432B36A92C00B6C32D /* AppLockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602422B36A92C00B6C32D /* AppLockViewModel.swift */; };
 		124602462B36B46300B6C32D /* RepositoryDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602452B36B46300B6C32D /* RepositoryDependency.swift */; };
 		124602482B36B62300B6C32D /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602472B36B62300B6C32D /* RootViewModel.swift */; };
@@ -119,7 +118,6 @@
 		12CA5D902D19A62A00A4C1F6 /* InAppPurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D8F2D19A62A00A4C1F6 /* InAppPurchaseView.swift */; };
 		12CA5D932D19A7FB00A4C1F6 /* InAppPurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D922D19A7E600A4C1F6 /* InAppPurchaseViewModel.swift */; };
 		12CA5D952D20308300A4C1F6 /* AsyncProducts.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 12CA5D942D20308300A4C1F6 /* AsyncProducts.storekit */; };
-		12CA5D972D21888300A4C1F6 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D962D21887E00A4C1F6 /* UserDefaultManager.swift */; };
 		12CA5D9C2D22820A00A4C1F6 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D9B2D2281EE00A4C1F6 /* ProductItem.swift */; };
 		12CA5D9E2D266E8B00A4C1F6 /* InAppPurchaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D9D2D266E8900A4C1F6 /* InAppPurchaseRepository.swift */; };
 		12CA5DA02D26D16A00A4C1F6 /* SecretProductIdKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA5D9F2D26D16600A4C1F6 /* SecretProductIdKey.swift */; };
@@ -260,7 +258,6 @@
 		123F485029A19A16001B91B3 /* CheckRowUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRowUserView.swift; sourceTree = "<group>"; };
 		123F485729A256DB001B91B3 /* RelationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationEnum.swift; sourceTree = "<group>"; };
 		1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthRepository.swift; sourceTree = "<group>"; };
-		1246023E2B36A23E00B6C32D /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		124602422B36A92C00B6C32D /* AppLockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockViewModel.swift; sourceTree = "<group>"; };
 		124602452B36B46300B6C32D /* RepositoryDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDependency.swift; sourceTree = "<group>"; };
 		124602472B36B62300B6C32D /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
@@ -324,7 +321,6 @@
 		12CA5D8F2D19A62A00A4C1F6 /* InAppPurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseView.swift; sourceTree = "<group>"; };
 		12CA5D922D19A7E600A4C1F6 /* InAppPurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseViewModel.swift; sourceTree = "<group>"; };
 		12CA5D942D20308300A4C1F6 /* AsyncProducts.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = AsyncProducts.storekit; sourceTree = "<group>"; };
-		12CA5D962D21887E00A4C1F6 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		12CA5D9B2D2281EE00A4C1F6 /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
 		12CA5D9D2D266E8900A4C1F6 /* InAppPurchaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseRepository.swift; sourceTree = "<group>"; };
 		12CA5D9F2D26D16600A4C1F6 /* SecretProductIdKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretProductIdKey.swift; sourceTree = "<group>"; };
@@ -708,9 +704,7 @@
 		12BA5F162C6BA3E500E1DDF2 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				1246023E2B36A23E00B6C32D /* AppManager.swift */,
 				12F811CC2EA67452002B54E5 /* WidgetCenterManager.swift */,
-				12CA5D962D21887E00A4C1F6 /* UserDefaultManager.swift */,
 				122401432B87691E0099BE8D /* ImageFileManager.swift */,
 				12CB922728EB1529002BD7B2 /* NotificationRequestManager.swift */,
 				12B5A7B62DC649A300B1D809 /* FBAnalyticsManager.swift */,
@@ -1278,7 +1272,6 @@
 				12ACAD2729984D5400273834 /* DateFormatUtility.swift in Sources */,
 				1262360F2DF3BE3200A5F1AE /* SCCalenderRepository.swift in Sources */,
 				12CA5D902D19A62A00A4C1F6 /* InAppPurchaseView.swift in Sources */,
-				1246023F2B36A23E00B6C32D /* AppManager.swift in Sources */,
 				1224014A2B8819200099BE8D /* ImagePreviewDialog.swift in Sources */,
 				122B346C2D14603200204703 /* TutorialPopupView.swift in Sources */,
 				12F811D32EA6763F002B54E5 /* DIContainer.swift in Sources */,
@@ -1304,7 +1297,6 @@
 				122401442B87691E0099BE8D /* ImageFileManager.swift in Sources */,
 				127788C12E9FC40C0048E9D0 /* RealmRepositoryProtocol.swift in Sources */,
 				12CA5DA02D26D16A00A4C1F6 /* SecretProductIdKey.swift in Sources */,
-				12CA5D972D21888300A4C1F6 /* UserDefaultManager.swift in Sources */,
 				126236192DF3BF6600A5F1AE /* CalendarRootView.swift in Sources */,
 				1262361D2DF3BFCE00A5F1AE /* CalendarViewModel.swift in Sources */,
 				126236212DF3C78F00A5F1AE /* TheDayView.swift in Sources */,

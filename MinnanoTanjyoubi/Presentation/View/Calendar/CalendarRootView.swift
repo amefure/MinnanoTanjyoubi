@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarRootView: View {
-    @StateObject private var viewModel = CalendarViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(CalendarViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     private let columns = Array(repeating: GridItem(spacing: 0), count: 7)

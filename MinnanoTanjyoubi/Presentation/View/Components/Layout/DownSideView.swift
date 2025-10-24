@@ -20,11 +20,7 @@ struct DownSideView: View {
     var imageString: String
 
     private var viewSize: CGFloat {
-        if isSESize {
-            return 35
-        } else {
-            return 50
-        }
+        isSESize ? 35 : 50
     }
 
     var body: some View {

@@ -8,7 +8,7 @@
 import UIKit
 
 /// アプリルートViewModel
-class RootViewModel: ObservableObject {
+final class RootViewModel: ObservableObject {
     @Published private(set) var showCreateFailedError: Bool = false
     @Published var showCreateShareUserError: Bool = false
     @Published var showSuccessCreateUser: Bool = false
@@ -16,17 +16,22 @@ class RootViewModel: ObservableObject {
     @Published private(set) var error: ShareCreateError?
     @Published var createUsers: [User] = []
 
-    private let repository: RealmRepository
+    private let localRepository: RealmRepository
+    private let userDefaultsRepository: UserDefaultsRepository
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        repository = repositoryDependency.realmRepository
+    init(
+        localRepository: RealmRepository,
+        userDefaultsRepository: UserDefaultsRepository
+    ) {
+        self.localRepository = localRepository
+        self.userDefaultsRepository = userDefaultsRepository
     }
 
     /// Custom URL Schemeでアプリを起動した場合のハンドリング
     func copyUserFromUrlScheme(url: URL) {
         guard let query = url.query() else { return }
         guard let users = decryptAndInitializeUsers(query) else { return }
-        let unlockStorage = AppManager.sharedUserDefaultManager.getPurchasedUnlockStorage()
+        let unlockStorage = userDefaultsRepository.getPurchasedUnlockStorage()
         if let error = shareCreateUsers(shareUsers: users, unlockStorage: unlockStorage) {
             showErrorAlert(error)
         } else {
@@ -64,7 +69,7 @@ class RootViewModel: ObservableObject {
     }
 
     private func shareCreateUsers(shareUsers: [User], unlockStorage: Bool) -> ShareCreateError? {
-        let users: [User] = repository.readAllObjs()
+        let users: [User] = localRepository.readAllObjs()
 
         let isOverCapacity = !isOverCapacity(baseSize: users.count, addSize: shareUsers.count)
         // 容量チェック && 容量解放されていないか
@@ -74,14 +79,14 @@ class RootViewModel: ObservableObject {
             // エラーが発生したら登録シーケンスを終了
             guard !(users.contains { $0.name == user.name }) else { return ShareCreateError.existUser }
             let copy = copyUser(user)
-            repository.createObject(copy)
+            localRepository.createObject(copy)
         }
         return nil
     }
 
     private func isOverCapacity(baseSize: Int, addSize: Int) -> Bool {
         let size = baseSize + addSize
-        return size > AppManager.sharedUserDefaultManager.getCapacity()
+        return size > userDefaultsRepository.getCapacity()
     }
 
     private func copyUser(_ user: User) -> User {

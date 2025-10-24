@@ -36,13 +36,18 @@ final class DIContainer: @unchecked Sendable {
 
 private extension DIContainer {
     static func registerRepositories(_ c: Container) {
+        // Repository
         c.register(RealmRepository.self) { _ in RealmRepository() }
         c.register(UserDefaultsRepository.self) { _ in UserDefaultsRepository() }
         c.register(KeyChainRepository.self) { _ in KeyChainRepository() }
         c.register(BiometricAuthRepository.self) { _ in BiometricAuthRepository() }
         c.register(InAppPurchaseRepository.self) { _ in InAppPurchaseRepository() }
+        c.register(SCCalenderRepository.self) { _ in SCCalenderRepository() }
+
+        // Manager
         c.register(NotificationRequestManager.self) { _ in NotificationRequestManager() }
         c.register(WidgetCenterProtocol.self) { _ in WidgetCenterManager() }
+        c.register(RemoteConfigManager.self) { _ in RemoteConfigManager() }
         c.register(RewardServiceProtocol.self) { _ in RewardService() }
     }
 }
@@ -73,7 +78,15 @@ private extension DIContainer {
                 userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
                 keyChainRepository: r.resolve(KeyChainRepository.self)!,
                 inAppPurchaseRepository: r.resolve(InAppPurchaseRepository.self)!,
-                notificationRequestManager: r.resolve(NotificationRequestManager.self)!
+                notificationRequestManager: r.resolve(NotificationRequestManager.self)!,
+                remoteConfigManager: r.resolve(RemoteConfigManager.self)!
+            )
+        }
+
+        c.register(RootViewModel.self) { r in
+            RootViewModel(
+                localRepository: r.resolve(RealmRepository.self)!,
+                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!
             )
         }
 
@@ -97,6 +110,23 @@ private extension DIContainer {
                 repository: r.resolve(RealmRepository.self)!,
                 userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
                 notificationRequestManager: r.resolve(NotificationRequestManager.self)!
+            )
+        }
+
+        // Calendar
+        c.register(CalendarViewModel.self) { r in
+            CalendarViewModel(
+                localRepository: r.resolve(RealmRepository.self)!,
+                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
+                scCalenderRepository: r.resolve(SCCalenderRepository.self)!
+            )
+        }
+
+        // TutorialPopUp
+        c.register(TutorialPopUpViewModel.self) { r in
+            TutorialPopUpViewModel(
+                localRepository: r.resolve(RealmRepository.self)!,
+                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!
             )
         }
 
@@ -152,7 +182,7 @@ private extension DIContainer {
             )
         }
 
-        // Purchase
+        // Setting > Purchase
         c.register(InAppPurchaseViewModel.self) { r in
             InAppPurchaseViewModel(
                 userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
@@ -160,11 +190,27 @@ private extension DIContainer {
             )
         }
 
-        // Reward
+        // Setting > Reward
         c.register(RewardViewModel.self) { r in
             RewardViewModel(
                 userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
                 rewardService: r.resolve(RewardServiceProtocol.self)!
+            )
+        }
+
+        // Setting > AppLock
+        c.register(AppLockViewModel.self) { r in
+            AppLockViewModel(
+                repository: r.resolve(RealmRepository.self)!,
+                keyChainRepository: r.resolve(KeyChainRepository.self)!,
+                biometricAuthRepository: r.resolve(BiometricAuthRepository.self)!
+            )
+        }
+
+        // Setting > AppLockInput
+        c.register(AppLockInputViewModel.self) { r in
+            AppLockInputViewModel(
+                keyChainRepository: r.resolve(KeyChainRepository.self)!
             )
         }
     }

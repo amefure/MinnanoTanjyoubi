@@ -30,4 +30,5 @@ struct CustomInputView: View {
 
 #Preview {
     CustomInputView(title: "タイトル", placeholder: "placeholder", text: Binding.constant(""))
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

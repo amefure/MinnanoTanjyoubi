@@ -75,4 +75,5 @@ struct SelectInitWeekView: View {
 
 #Preview {
     SelectInitWeekView()
+        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
 }

@@ -7,13 +7,14 @@
 
 import UIKit
 
-class AppLockInputViewModel: ObservableObject {
+final class AppLockInputViewModel: ObservableObject {
     @Published var entryFlag: Bool = false
 
+    /// `Repository`
     private let keyChainRepository: KeyChainRepository
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        keyChainRepository = repositoryDependency.keyChainRepository
+    init(keyChainRepository: KeyChainRepository) {
+        self.keyChainRepository = keyChainRepository
     }
 
     func onAppear() {

@@ -23,8 +23,10 @@ final class RemoteConfigManager: Sendable {
         // RemoteConfigインスタンスを取得
         remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()
-        // 最小フェッチ間隔 開発環境では0(制限なし)を指定
-        settings.minimumFetchInterval = 0
+        #if DEBUG
+            // 最小フェッチ間隔 開発環境では0(制限なし)を指定
+            settings.minimumFetchInterval = 0
+        #endif
         // 設定を反映
         remoteConfig.configSettings = settings
     }

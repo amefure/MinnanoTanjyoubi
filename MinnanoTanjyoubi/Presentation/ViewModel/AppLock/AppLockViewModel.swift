@@ -9,24 +9,34 @@ import Combine
 import LocalAuthentication
 import UIKit
 
-@MainActor
-class AppLockViewModel: ObservableObject {
-    @Published var isShowApp = false // アプリメイン画面遷移
-    @Published var isShowFailureAlert = false // パスワード失敗アラート
-    @Published private(set) var isShowProgress = false // プログレス表示
+final class AppLockViewModel: ObservableObject {
+    /// アプリメイン画面遷移
+    @Published var isShowApp = false
+    /// パスワード失敗アラート
+    @Published var isShowFailureAlert = false
+    /// プログレス表示
+    @Published private(set) var isShowProgress = false
     @Published private(set) var type: LABiometryType = .none
     @Published private(set) var isLogin = false
 
+    private var cancellables: Set<AnyCancellable> = []
+
+    /// `Repository`
+    private let repository: RealmRepository
     private let biometricAuthRepository: BiometricAuthRepository
     private let keyChainRepository: KeyChainRepository
 
-    private var cancellables: Set<AnyCancellable> = []
-
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        biometricAuthRepository = repositoryDependency.biometricAuthRepository
-        keyChainRepository = repositoryDependency.keyChainRepository
+    init(
+        repository: RealmRepository,
+        keyChainRepository: KeyChainRepository,
+        biometricAuthRepository: BiometricAuthRepository
+    ) {
+        self.repository = repository
+        self.biometricAuthRepository = biometricAuthRepository
+        self.keyChainRepository = keyChainRepository
     }
 
+    @MainActor
     func onAppear() {
         biometricAuthRepository.biometryType.sink { [weak self] type in
             guard let self = self else { return }
@@ -41,7 +51,12 @@ class AppLockViewModel: ObservableObject {
         }
     }
 
+    func onDisappear() {
+        cancellables.forEach { $0.cancel() }
+    }
+
     /// 生体認証リクエスト
+    @MainActor
     func requestBiometricsLogin() async {
         let result: Bool = await biometricAuthRepository.requestBiometrics()
         if result {
@@ -54,6 +69,7 @@ class AppLockViewModel: ObservableObject {
     }
 
     /// パスワードログイン(keyChain)
+    @MainActor
     func passwordLogin(password: [String], completion: @escaping (Bool) -> Void) {
         if password.count == 4 {
             showProgress()

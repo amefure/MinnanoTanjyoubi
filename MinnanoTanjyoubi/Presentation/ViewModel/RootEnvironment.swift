@@ -44,19 +44,22 @@ final class RootEnvironment: ObservableObject {
     private let userDefaultsRepository: UserDefaultsRepository
     private let inAppPurchaseRepository: InAppPurchaseRepository
     private let notificationRequestManager: NotificationRequestManager
+    private let remoteConfigManager: RemoteConfigManager
 
     init(
         repository: RealmRepository,
         userDefaultsRepository: UserDefaultsRepository,
         keyChainRepository: KeyChainRepository,
         inAppPurchaseRepository: InAppPurchaseRepository,
-        notificationRequestManager: NotificationRequestManager
+        notificationRequestManager: NotificationRequestManager,
+        remoteConfigManager: RemoteConfigManager
     ) {
         self.repository = repository
         self.userDefaultsRepository = userDefaultsRepository
         self.keyChainRepository = keyChainRepository
         self.inAppPurchaseRepository = inAppPurchaseRepository
         self.notificationRequestManager = notificationRequestManager
+        self.remoteConfigManager = remoteConfigManager
     }
 
     /// `UserDefaults`に保存されている情報を取得してセットアップ
@@ -71,6 +74,9 @@ final class RootEnvironment: ObservableObject {
     /// アプリ起動時に1回だけ呼ばれる設計
     @MainActor
     func onAppear() {
+        // Remote Confidの初期取得開始
+        remoteConfigManager.initialize()
+
         // UserDefaultsに保存されているフラグを反映
         setUpUserDefaultsFlag()
 
@@ -98,7 +104,7 @@ final class RootEnvironment: ObservableObject {
         // Remoto Config　レビューポップアップ表示バージョン
         // initで呼ぶとdidFinishLaunchingWithOptionsより先に実行されてしまい
         // FirebaseApp.configure()前の呼び出しエラーになってしまうため
-        AppManager.sharedRemoteConfigManager.showReviewPopupVersion
+        remoteConfigManager.showReviewPopupVersion
             .receive(on: DispatchQueue.main)
             .sink { [weak self] version in
                 guard let self else { return }
