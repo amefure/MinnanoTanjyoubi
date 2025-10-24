@@ -7,10 +7,16 @@
 
 import SwiftUI
 
-@MainActor
 final class SelectInitWeekViewModel: ObservableObject {
     @Published private(set) var selectWeek: SCWeek = .sunday
     @Published var isShowSuccessAlert: Bool = false
+
+    /// `Repository`
+    private let userDefaultsRepository: UserDefaultsRepository
+
+    init(userDefaultsRepository: UserDefaultsRepository) {
+        self.userDefaultsRepository = userDefaultsRepository
+    }
 
     func onAppear() {
         getInitWeek()
@@ -21,12 +27,12 @@ final class SelectInitWeekViewModel: ObservableObject {
     }
 
     private func getInitWeek() {
-        selectWeek = AppManager.sharedUserDefaultManager.getInitWeek()
+        selectWeek = userDefaultsRepository.getInitWeek()
     }
 
     /// 週始まりを登録
     func registerInitWeek() {
-        AppManager.sharedUserDefaultManager.setInitWeek(selectWeek)
+        userDefaultsRepository.setInitWeek(selectWeek)
         // カレンダーを更新
         NotificationCenter.default.post(name: .updateCalendar, object: true)
         isShowSuccessAlert = true

@@ -20,8 +20,8 @@ final class EntryNotifyListViewModel: ObservableObject {
 
     private let df = DateFormatUtility()
 
-    private let notificationRequestManager: NotificationRequestManager
     private let repository: RealmRepository
+    private let notificationRequestManager: NotificationRequestManager
 
     init(
         repository: RealmRepository,

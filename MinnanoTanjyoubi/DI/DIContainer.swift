@@ -104,15 +104,51 @@ private extension DIContainer {
         c.register(SettingViewModel.self) { r in
             SettingViewModel(
                 repository: r.resolve(RealmRepository.self)!,
+                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
                 keyChainRepository: r.resolve(KeyChainRepository.self)!
             )
         }
 
-        // Notify
+        // Setting > NotifyList
         c.register(EntryNotifyListViewModel.self) { r in
             EntryNotifyListViewModel(
                 repository: r.resolve(RealmRepository.self)!,
                 notificationRequestManager: r.resolve(NotificationRequestManager.self)!
+            )
+        }
+
+        // Setting > NotifyMessage
+        c.register(EditNotifyMessageViewModel.self) { r in
+            EditNotifyMessageViewModel(
+                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!
+            )
+        }
+
+        // Setting > UpdateRelationName
+        c.register(UpdateRelationNameViewModel.self) { r in
+            UpdateRelationNameViewModel(
+                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!
+            )
+        }
+
+        // Setting > SelectSort
+        c.register(SelectSortViewModel.self) { r in
+            SelectSortViewModel(
+                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!
+            )
+        }
+
+        // Setting > SelectInitWeek
+        c.register(SelectInitWeekViewModel.self) { r in
+            SelectInitWeekViewModel(
+                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!
+            )
+        }
+
+        // Setting > ShareUserLink
+        c.register(ShareUserLinkViewModel.self) { r in
+            ShareUserLinkViewModel(
+                localRepository: r.resolve(RealmRepository.self)!
             )
         }
 

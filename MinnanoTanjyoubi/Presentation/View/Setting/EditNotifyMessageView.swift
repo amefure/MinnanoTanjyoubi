@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditNotifyMessageView: View {
-    @StateObject var viewModel = EditNotifyMessageViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(EditNotifyMessageViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @FocusState private var isFocus: Bool

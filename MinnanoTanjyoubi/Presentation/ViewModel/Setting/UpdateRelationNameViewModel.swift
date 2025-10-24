@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 final class UpdateRelationNameViewModel: ObservableObject {
     @Published var isShowSuccessAlert = false
     @Published var isShowValidationAlert = false
@@ -22,8 +21,8 @@ final class UpdateRelationNameViewModel: ObservableObject {
     /// `Repository`
     private let userDefaultsRepository: UserDefaultsRepository
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        userDefaultsRepository = repositoryDependency.userDefaultsRepository
+    init(userDefaultsRepository: UserDefaultsRepository) {
+        self.userDefaultsRepository = userDefaultsRepository
     }
 
     func onAppear(relationList: [String]) {
@@ -40,6 +39,7 @@ final class UpdateRelationNameViewModel: ObservableObject {
         return !targetList.contains(where: { $0.isEmpty })
     }
 
+    @MainActor
     func saveRelationName() {
         UIApplication.shared.closeKeyboard()
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UpdateRelationNameView: View {
-    @StateObject private var viewModel = UpdateRelationNameViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(UpdateRelationNameViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @Environment(\.dismiss) private var dismiss
 

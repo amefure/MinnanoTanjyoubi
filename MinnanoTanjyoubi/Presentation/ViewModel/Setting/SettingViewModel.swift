@@ -30,13 +30,16 @@ final class SettingViewModel: ObservableObject {
 
     /// `Repository`
     private let repository: RealmRepository
+    private let userDefaultsRepository: UserDefaultsRepository
     private let keyChainRepository: KeyChainRepository
 
     init(
         repository: RealmRepository,
+        userDefaultsRepository: UserDefaultsRepository,
         keyChainRepository: KeyChainRepository
     ) {
         self.repository = repository
+        self.userDefaultsRepository = userDefaultsRepository
         self.keyChainRepository = keyChainRepository
 
         setUpYears()
@@ -155,74 +158,74 @@ extension SettingViewModel {
 
     // 最大容量取得
     func getCapacity() -> Int {
-        AppManager.sharedUserDefaultManager.getCapacity()
+        userDefaultsRepository.getCapacity()
     }
 
     // MARK: - Notify Logic
 
     /// 通知時間取得
     func getNotifyTimeDate() -> Date {
-        AppManager.sharedUserDefaultManager.getNotifyTimeDate()
+        userDefaultsRepository.getNotifyTimeDate()
     }
 
     /// 通知時間登録
     func registerNotifyTime(date: Date) {
-        AppManager.sharedUserDefaultManager.setNotifyTimeDate(date)
+        userDefaultsRepository.setNotifyTimeDate(date)
     }
 
     /// 年数初期値取得
     private func getEntryInitYear() -> Int {
-        AppManager.sharedUserDefaultManager.getEntryInitYear()
+        userDefaultsRepository.getEntryInitYear()
     }
 
     /// 年数初期値登録
     private func registerEntryInitYear(year: Int) {
-        AppManager.sharedUserDefaultManager.setEntryInitYear(year)
+        userDefaultsRepository.setEntryInitYear(year)
     }
 
     /// 年数初期値取得
     private func getEntryInitRelation() -> Relation {
-        AppManager.sharedUserDefaultManager.getEntryInitRelation()
+        userDefaultsRepository.getEntryInitRelation()
     }
 
     /// 年数初期値登録
     private func registerEntryInitRelation(relation: Relation) {
-        AppManager.sharedUserDefaultManager.setEntryInitRelation(relation)
+        userDefaultsRepository.setEntryInitRelation(relation)
     }
 
     ///  通知日付フラグ取得
     private func getNotifyDate() -> String {
-        AppManager.sharedUserDefaultManager.getNotifyDate()
+        userDefaultsRepository.getNotifyDate()
     }
 
     /// 通知日付フラグ登録
     private func registerNotifyDate(flag: String) {
-        AppManager.sharedUserDefaultManager.setNotifyDate(flag)
+        userDefaultsRepository.setNotifyDate(flag)
     }
 
     ///  誕生日までの単位フラグ登録
     private func registerDisplayDaysLater(flag: Bool) {
-        AppManager.sharedUserDefaultManager.setDisplayDaysLater(flag)
+        userDefaultsRepository.setDisplayDaysLater(flag)
     }
 
     /// 誕生日までの単位フラグ取得
     private func getDisplayDaysLater() -> Bool {
-        return AppManager.sharedUserDefaultManager.getDisplayDaysLater()
+        return userDefaultsRepository.getDisplayDaysLater()
     }
 
     /// 年齢に月を含めるかフラグ登録
     private func registerDisplayAgeMonth(flag: Bool) {
-        AppManager.sharedUserDefaultManager.setDisplayAgeMonth(flag)
+        userDefaultsRepository.setDisplayAgeMonth(flag)
     }
 
     /// 年齢に月を含めるかフラグ取得
     private func getDisplayAgeMonth() -> Bool {
-        return AppManager.sharedUserDefaultManager.getDisplayAgeMonth()
+        return userDefaultsRepository.getDisplayAgeMonth()
     }
 
     /// チュートリアル再表示フラグセット
     func setTutorialReShowFlag() {
-        AppManager.sharedUserDefaultManager.setTutorialReShowFlag(true)
+        userDefaultsRepository.setTutorialReShowFlag(true)
     }
 
     /// アプリシェアロジック

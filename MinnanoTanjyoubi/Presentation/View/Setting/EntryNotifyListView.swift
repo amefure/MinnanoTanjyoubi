@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EntryNotifyListView: View {
-    @StateObject var viewModel = DIContainer.shared.resolve(EntryNotifyListViewModel.self)
+    @StateObject private var viewModel = DIContainer.shared.resolve(EntryNotifyListViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     @Environment(\.dismiss) private var dismiss

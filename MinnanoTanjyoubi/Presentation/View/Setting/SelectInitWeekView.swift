@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SelectInitWeekView: View {
-    @StateObject private var viewModel = SelectInitWeekViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(SelectInitWeekViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {

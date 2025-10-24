@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectSortView: View {
-    @StateObject private var viewModel = SelectSortViewModel()
+    @StateObject private var viewModel = DIContainer.shared.resolve(SelectSortViewModel.self)
     @EnvironmentObject private var rootEnvironment: RootEnvironment
     @Environment(\.dismiss) private var dismiss
 

@@ -7,11 +7,17 @@
 
 import SwiftUI
 
-@MainActor
 final class EditNotifyMessageViewModel: ObservableObject {
     @Published var notifyMsg: String = ""
     @Published var isShowSuccessAlert: Bool = false
     @Published var isShowValidateAlert: Bool = false
+
+    /// `Repository`
+    private let userDefaultsRepository: UserDefaultsRepository
+
+    init(userDefaultsRepository: UserDefaultsRepository) {
+        self.userDefaultsRepository = userDefaultsRepository
+    }
 
     func onAppear() {
         notifyMsg = getNotifyMsg()
@@ -20,17 +26,18 @@ final class EditNotifyMessageViewModel: ObservableObject {
 
     /// 通知Msg取得
     private func getNotifyMsg() -> String {
-        AppManager.sharedUserDefaultManager.getNotifyMsg()
+        userDefaultsRepository.getNotifyMsg()
     }
 
     /// 通知Msg登録
+    @MainActor
     func registerNotifyMsg() {
         UIApplication.shared.closeKeyboard()
         guard !notifyMsg.isEmpty else {
             isShowValidateAlert = true
             return
         }
-        AppManager.sharedUserDefaultManager.setNotifyMsg(notifyMsg)
+        userDefaultsRepository.setNotifyMsg(notifyMsg)
         isShowSuccessAlert = true
     }
 }

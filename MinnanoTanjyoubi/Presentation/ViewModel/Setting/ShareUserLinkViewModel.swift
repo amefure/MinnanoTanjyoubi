@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 final class ShareUserLinkViewModel: ObservableObject {
     @Published private(set) var allUsers: [User] = []
     @Published private(set) var shareUsers: [User] = []
@@ -15,8 +14,8 @@ final class ShareUserLinkViewModel: ObservableObject {
     /// `Repository`
     private let localRepository: RealmRepository
 
-    init(repositoryDependency: RepositoryDependency = RepositoryDependency()) {
-        localRepository = repositoryDependency.realmRepository
+    init(localRepository: RealmRepository) {
+        self.localRepository = localRepository
     }
 
     func onAppear() {
@@ -32,6 +31,7 @@ final class ShareUserLinkViewModel: ObservableObject {
         }
     }
 
+    @MainActor
     func shareUser() {
         ShareInfoUtillity.shareBirthday(shareUsers)
     }

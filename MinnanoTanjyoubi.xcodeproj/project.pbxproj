@@ -858,9 +858,9 @@
 				128FB79E2E9A2ECD000167C6 /* EntryNotifyListViewModel.swift */,
 				128FB7A02E9A9295000167C6 /* EditNotifyMessageViewModel.swift */,
 				128FB7A22E9A94F2000167C6 /* UpdateRelationNameViewModel.swift */,
-				128FB7A42E9A99A1000167C6 /* ShareUserLinkViewModel.swift */,
-				127788DD2EA105350048E9D0 /* SelectInitWeekViewModel.swift */,
 				127788C52EA0CBE40048E9D0 /* SelectSortViewModel.swift */,
+				127788DD2EA105350048E9D0 /* SelectInitWeekViewModel.swift */,
+				128FB7A42E9A99A1000167C6 /* ShareUserLinkViewModel.swift */,
 				12CA5D922D19A7E600A4C1F6 /* InAppPurchaseViewModel.swift */,
 				12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */,
 			);
