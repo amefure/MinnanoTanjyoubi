@@ -9,7 +9,6 @@ import WidgetKit
 
 protocol WidgetCenterProtocol {
     func reloadAllTimelines()
-    func reloadTimelines(ofKind kind: String)
 }
 
 final class WidgetCenterManager: WidgetCenterProtocol {
@@ -21,9 +20,5 @@ final class WidgetCenterManager: WidgetCenterProtocol {
 
     func reloadAllTimelines() {
         center.reloadAllTimelines()
-    }
-
-    func reloadTimelines(ofKind kind: String) {
-        center.reloadTimelines(ofKind: kind)
     }
 }

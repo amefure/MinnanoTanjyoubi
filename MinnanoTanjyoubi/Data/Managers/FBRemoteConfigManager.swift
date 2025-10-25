@@ -6,6 +6,7 @@
 //
 
 import Combine
+import FirebaseCore
 @preconcurrency import FirebaseRemoteConfig
 
 final class RemoteConfigManager: Sendable {
@@ -20,6 +21,8 @@ final class RemoteConfigManager: Sendable {
     private var _showReviewPopupVersion = CurrentValueSubject<Int, Never>(0)
 
     init() {
+        // Firebaseの初期化(AppDelegateでのタイミングでは間に合わない)
+        FirebaseApp.configure()
         // RemoteConfigインスタンスを取得
         remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()

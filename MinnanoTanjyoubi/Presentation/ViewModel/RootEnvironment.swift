@@ -60,6 +60,10 @@ final class RootEnvironment: ObservableObject {
         self.inAppPurchaseRepository = inAppPurchaseRepository
         self.notificationRequestManager = notificationRequestManager
         self.remoteConfigManager = remoteConfigManager
+
+        // UserDefaultsに保存されているフラグを反映
+        // イニシャライザ内で取得しておかないとViewの更新後に変化することになる
+        setUpUserDefaultsFlag()
     }
 
     /// `UserDefaults`に保存されている情報を取得してセットアップ
@@ -74,12 +78,6 @@ final class RootEnvironment: ObservableObject {
     /// アプリ起動時に1回だけ呼ばれる設計
     @MainActor
     func onAppear() {
-        // Remote Confidの初期取得開始
-        remoteConfigManager.initialize()
-
-        // UserDefaultsに保存されているフラグを反映
-        setUpUserDefaultsFlag()
-
         Task {
             // 通知の許可申請
             await notificationRequestManager.requestAuthorization()

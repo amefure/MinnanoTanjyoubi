@@ -5,11 +5,9 @@
 //  Created by t&a on 2022/09/29.
 //
 
-import FirebaseCore
 import Foundation
 import GoogleMobileAds
 import SwiftUI
-import UIKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     func application(_: UIApplication,
@@ -18,8 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // AdMob
         MobileAds.shared.start(completionHandler: nil)
 
-        // Firebase
-        FirebaseApp.configure()
+        // Firebaseの初期化はdidFinishLaunchingWithOptionsだと
+        // DIContainerのインスタンス化までに間に合わないので
+        // RemoteConfigManagerのイニシャライザで行う
+        // FirebaseApp.configure()
 
         // 通知デリゲートの登録
         UNUserNotificationCenter.current().delegate = self
