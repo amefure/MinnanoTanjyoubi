@@ -18,9 +18,11 @@ final class DIContainer: @unchecked Sendable {
 
     private init() {
         container = Container { c in
-            Self.registerRepositories(c)
-            Self.registerServices(c)
-            Self.registerViewModels(c)
+            DispatchQueue.global(qos: .background).sync {
+                Self.registerRepositories(c)
+                Self.registerServices(c)
+                Self.registerViewModels(c)
+            }
         }
     }
 

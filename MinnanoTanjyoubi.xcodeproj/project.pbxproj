@@ -53,7 +53,6 @@
 		123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
 		1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */; };
 		124602432B36A92C00B6C32D /* AppLockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602422B36A92C00B6C32D /* AppLockViewModel.swift */; };
-		124602462B36B46300B6C32D /* RepositoryDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602452B36B46300B6C32D /* RepositoryDependency.swift */; };
 		124602482B36B62300B6C32D /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602472B36B62300B6C32D /* RootViewModel.swift */; };
 		1246024A2B36B7BA00B6C32D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602492B36B7BA00B6C32D /* SettingViewModel.swift */; };
 		1246024C2B36BCE500B6C32D /* AdsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246024B2B36BCE500B6C32D /* AdsConfig.swift */; };
@@ -259,7 +258,6 @@
 		123F485729A256DB001B91B3 /* RelationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationEnum.swift; sourceTree = "<group>"; };
 		1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthRepository.swift; sourceTree = "<group>"; };
 		124602422B36A92C00B6C32D /* AppLockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockViewModel.swift; sourceTree = "<group>"; };
-		124602452B36B46300B6C32D /* RepositoryDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDependency.swift; sourceTree = "<group>"; };
 		124602472B36B62300B6C32D /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		124602492B36B7BA00B6C32D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		1246024B2B36BCE500B6C32D /* AdsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsConfig.swift; sourceTree = "<group>"; };
@@ -461,7 +459,6 @@
 		121DEE032B1A1FF500964902 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				124602442B36B45300B6C32D /* DI */,
 				1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */,
 				127788BF2E9FC4030048E9D0 /* Protocol */,
 				1262360D2DF3BE2A00A5F1AE /* SCCalender */,
@@ -547,14 +544,6 @@
 				124602512B3848F200B6C32D /* AppLock */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		124602442B36B45300B6C32D /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				124602452B36B46300B6C32D /* RepositoryDependency.swift */,
-			);
-			path = DI;
 			sourceTree = "<group>";
 		};
 		1246024D2B381ED600B6C32D /* Config */ = {
@@ -1332,7 +1321,6 @@
 				1224013E2B8720FA0099BE8D /* ImagePickerDialog.swift in Sources */,
 				1246024C2B36BCE500B6C32D /* AdsConfig.swift in Sources */,
 				12B76E862D0D93D40021A018 /* UICustomWebView.swift in Sources */,
-				124602462B36B46300B6C32D /* RepositoryDependency.swift in Sources */,
 				12B76E882D0D940B0021A018 /* ControlWebView.swift in Sources */,
 				1262361F2DF3C72700A5F1AE /* CarouselCalendarView.swift in Sources */,
 				12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */,
