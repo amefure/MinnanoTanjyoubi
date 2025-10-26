@@ -23,7 +23,7 @@ struct AppLockInputView: View {
 
             Text("パスワード登録")
                 .fontWeight(.bold)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
 
             Spacer()
 
@@ -41,14 +41,14 @@ struct AppLockInputView: View {
                     .fontWeight(.bold)
                     .padding(10)
                     .frame(width: 100)
-                    .background(password.count != 4 ? rootEnvironment.scheme.foundationSub : rootEnvironment.scheme.thema3)
-                    .foregroundStyle(password.count != 4 ? .gray : rootEnvironment.scheme.text)
+                    .background(password.count != 4 ? rootEnvironment.state.scheme.foundationSub : rootEnvironment.state.scheme.thema3)
+                    .foregroundStyle(password.count != 4 ? .gray : rootEnvironment.state.scheme.text)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(style: StrokeStyle(lineWidth: 2))
                             .frame(width: 100)
-                            .foregroundStyle(password.count != 4 ? .gray : rootEnvironment.scheme.thema3)
+                            .foregroundStyle(password.count != 4 ? .gray : rootEnvironment.state.scheme.thema3)
                     }.padding(.vertical, 20)
                     .shadow(color: password.count != 4 ? .clear : .gray, radius: 3, x: 4, y: 4)
 
@@ -66,7 +66,7 @@ struct AppLockInputView: View {
             } else {
                 isLock = false
             }
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
     }
 }
 

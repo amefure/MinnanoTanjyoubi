@@ -19,12 +19,12 @@ struct InAppPurchaseView: View {
 
             Text("広告削除 & 容量解放")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             Text("購入後のキャンセルは致しかねますのでご了承ください。")
                 .fontS()
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.horizontal)
 
             if viewModel.fetchError {
@@ -37,14 +37,14 @@ struct InAppPurchaseView: View {
                     Image(systemName: "xmark.circle")
                         .resizable()
                         .frame(width: 50, height: 50)
-                        .foregroundStyle(rootEnvironment.scheme.text)
+                        .foregroundStyle(rootEnvironment.state.scheme.text)
                         .padding(.vertical)
 
                     Text("課金アイテムの取得に失敗しました。\nネットワークの接続を確認してください。")
                         .fontM(bold: true)
 
                 }.frame(width: DeviceSizeUtility.deviceWidth)
-                    .foregroundStyle(rootEnvironment.scheme.text)
+                    .foregroundStyle(rootEnvironment.state.scheme.text)
                     .padding(.bottom, 30)
 
                 Spacer()
@@ -111,7 +111,7 @@ struct InAppPurchaseView: View {
                         }.buttonStyle(.plain)
                     }
                 }.scrollContentBackground(.hidden)
-                    .background(rootEnvironment.scheme.foundationSub)
+                    .background(rootEnvironment.state.scheme.foundationSub)
                     .foregroundStyle(Asset.Colors.exText.swiftUIColor)
             }
 
@@ -124,7 +124,7 @@ struct InAppPurchaseView: View {
                     rootEnvironment.listenInAppPurchase()
                 }
             }
-            .background(rootEnvironment.scheme.foundationSub)
+            .background(rootEnvironment.state.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .fontM()
             .navigationBarBackButtonHidden()

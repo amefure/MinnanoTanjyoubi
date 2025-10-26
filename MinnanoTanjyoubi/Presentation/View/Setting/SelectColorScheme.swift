@@ -21,7 +21,7 @@ struct SelectColorScheme: View {
 
             Text("テーマカラー変更")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             List {
@@ -45,7 +45,7 @@ struct SelectColorScheme: View {
 
                             if self.scheme == scheme {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(rootEnvironment.scheme.foundationPrimary)
+                                    .foregroundStyle(rootEnvironment.state.scheme.foundationPrimary)
                             }
                         }
                     }
@@ -56,7 +56,7 @@ struct SelectColorScheme: View {
                     .fontM()
 
             }.scrollContentBackground(.hidden)
-                .background(rootEnvironment.scheme.foundationSub)
+                .background(rootEnvironment.state.scheme.foundationSub)
 
             Spacer()
 
@@ -68,11 +68,11 @@ struct SelectColorScheme: View {
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)
 
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {
-                scheme = rootEnvironment.scheme
+                scheme = rootEnvironment.state.scheme
             }.alert(
                 isPresented: $isAlert,
                 title: "お知らせ",

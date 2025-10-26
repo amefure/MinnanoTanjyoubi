@@ -29,16 +29,16 @@ struct UpSideView: View {
                 dismiss()
             } label: {
                 Image(systemName: "arrow.uturn.left")
-                    .foregroundColor(rootEnvironment.scheme.text)
+                    .foregroundColor(rootEnvironment.state.scheme.text)
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
 
             }.frame(width: viewSize, height: viewSize)
-                .background(rootEnvironment.scheme.foundationPrimary)
+                .background(rootEnvironment.state.scheme.foundationPrimary)
                 .cornerRadius(viewSize)
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
 
             Rectangle()
-                .foregroundColor(rootEnvironment.scheme.foundationPrimary)
+                .foregroundColor(rootEnvironment.state.scheme.foundationPrimary)
                 .frame(width: isiPadSize ? deviceWidth * 0.6 : deviceWidth * 0.8, height: viewSize)
                 .cornerRadius(50)
                 .offset(x: isiPadSize ? 110 : 30)

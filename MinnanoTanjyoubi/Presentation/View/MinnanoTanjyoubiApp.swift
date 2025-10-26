@@ -46,7 +46,7 @@ struct MinnanoTanjyoubiApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if rootEnvironment.appLocked {
+                if rootEnvironment.state.appLocked {
                     AppLockView()
                         .environmentObject(rootEnvironment)
                 } else {

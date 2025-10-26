@@ -19,7 +19,7 @@ struct SelectSortView: View {
 
             Text("並び順変更")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             List {
@@ -37,14 +37,14 @@ struct SelectSortView: View {
 
                             if viewModel.sort == sort {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(rootEnvironment.scheme.foundationPrimary)
+                                    .foregroundStyle(rootEnvironment.state.scheme.foundationPrimary)
                             }
                         }
                     }
                 }
 
             }.scrollContentBackground(.hidden)
-                .background(rootEnvironment.scheme.foundationSub)
+                .background(rootEnvironment.state.scheme.foundationSub)
 
             Spacer()
 
@@ -54,7 +54,7 @@ struct SelectSortView: View {
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)
 
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {

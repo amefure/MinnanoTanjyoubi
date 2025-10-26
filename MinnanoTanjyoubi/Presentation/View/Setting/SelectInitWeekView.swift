@@ -19,11 +19,11 @@ struct SelectInitWeekView: View {
 
             Text("週始まり変更")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             Text("カレンダーの週の始まりの曜日を変更することができます。")
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.top, 10)
                 .font(.caption)
 
@@ -39,13 +39,13 @@ struct SelectInitWeekView: View {
 
                             if viewModel.selectWeek == week {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(rootEnvironment.scheme.foundationPrimary)
+                                    .foregroundStyle(rootEnvironment.state.scheme.foundationPrimary)
                             }
                         }
                     }
                 }
             }.scrollContentBackground(.hidden)
-                .background(rootEnvironment.scheme.foundationSub)
+                .background(rootEnvironment.state.scheme.foundationSub)
 
             Spacer()
 
@@ -56,7 +56,7 @@ struct SelectInitWeekView: View {
                 imageString: "checkmark"
             ).environmentObject(rootEnvironment)
 
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
             .alert(

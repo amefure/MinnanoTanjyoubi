@@ -68,8 +68,8 @@ struct ControlWebView: View {
             }.padding(10)
                 .padding(.horizontal)
 
-        }.background(rootEnvironment.scheme.foundationPrimary)
-            .foregroundStyle(rootEnvironment.scheme.text)
+        }.background(rootEnvironment.state.scheme.foundationPrimary)
+            .foregroundStyle(rootEnvironment.state.scheme.text)
             .navigationBarBackButtonHidden()
     }
 }

@@ -19,7 +19,7 @@ struct UpdateRelationNameView: View {
 
             Text("関係カテゴリ名編集")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             CustomInputView(title: "カテゴリ1", placeholder: RelationConfig.FRIEND_NAME, text: $viewModel.friend)
@@ -47,12 +47,12 @@ struct UpdateRelationNameView: View {
             }, imageString: "checkmark")
                 .environmentObject(rootEnvironment)
 
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .onAppear { FBAnalyticsManager.loggingScreen(screen: .UpdateRelationScreen) }
             .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {
-                let list = rootEnvironment.relationNameList
+                let list = rootEnvironment.state.relationNameList
                 viewModel.onAppear(relationList: list)
             }.onDisappear {
                 // 画面を離脱する際に最新の値を取得しておく

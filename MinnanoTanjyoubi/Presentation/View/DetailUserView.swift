@@ -61,12 +61,12 @@ struct DetailUserView: View {
                             height: DeviceSizeUtility.isSESize ? 130 : 200,
                             alignment: .topLeading
                         )
-                        .background(rootEnvironment.scheme.foundationSub)
+                        .background(rootEnvironment.state.scheme.foundationSub)
                         .onTapGesture {
                             viewModel.state.isShowPopUpMemo = true
                         }.overBorder(
                             radius: 5,
-                            color: rootEnvironment.scheme.foundationPrimary,
+                            color: rootEnvironment.state.scheme.foundationPrimary,
                             opacity: 0.4,
                             lineWidth: 2
                         )
@@ -82,7 +82,7 @@ struct DetailUserView: View {
             // 通知トグルビュー
             Toggle("通知", isOn: $viewModel.isNotifyFlag)
                 .toggleStyle(
-                    SwitchToggleStyle(tint: rootEnvironment.scheme.thema1)
+                    SwitchToggleStyle(tint: rootEnvironment.state.scheme.thema1)
                 ).fontM()
                 .frame(width: DeviceSizeUtility.deviceWidth - 60)
                 .padding(DeviceSizeUtility.isSESize ? 5 : 10)
@@ -101,13 +101,13 @@ struct DetailUserView: View {
                 EntryUserView(updateUserId: viewModel.state.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
             }.environmentObject(rootEnvironment)
 
-            if !DeviceSizeUtility.isSESize, !rootEnvironment.removeAds {
+            if !DeviceSizeUtility.isSESize, !rootEnvironment.state.removeAds {
                 AdMobBannerView()
                     .frame(height: 50)
             }
 
-        }.background(rootEnvironment.scheme.foundationSub)
-            .foregroundStyle(rootEnvironment.scheme.text)
+        }.background(rootEnvironment.state.scheme.foundationSub)
+            .foregroundStyle(rootEnvironment.state.scheme.text)
             .fontWeight(.bold)
             .toolbar(.hidden, for: .navigationBar)
             .onAppear { viewModel.onAppear(id: userId) }
@@ -161,13 +161,13 @@ struct DetailUserView: View {
     private func upSideUserInfoView() -> some View {
         VStack(spacing: 0) {
             HStack {
-                Text(rootEnvironment.relationNameList[safe: viewModel.state.targetUser.relation.relationIndex] ?? "その他")
+                Text(rootEnvironment.state.relationNameList[safe: viewModel.state.targetUser.relation.relationIndex] ?? "その他")
                     .padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: roundWidth, alignment: .center)
                     .frame(maxWidth: roundWidth * 1.5)
                     .lineLimit(1)
-                    .background(rootEnvironment.scheme.foundationPrimary)
+                    .background(rootEnvironment.state.scheme.foundationPrimary)
                     .cornerRadius(5)
                     .font(DeviceSizeUtility.isSESize ? .system(size: 12) : .system(size: 17))
 
@@ -177,20 +177,20 @@ struct DetailUserView: View {
                     let daysLater = UserCalcUtility.daysLater(from: viewModel.state.targetUser.date)
                     if daysLater == 0 {
                         Text("HAPPY BIRTHDAY")
-                            .foregroundStyle(rootEnvironment.scheme.thema1)
+                            .foregroundStyle(rootEnvironment.state.scheme.thema1)
                             .fontWeight(.bold)
 
                     } else {
                         Text("あと")
                         Text("\(daysLater)")
-                            .foregroundColor(rootEnvironment.scheme.thema1)
+                            .foregroundColor(rootEnvironment.state.scheme.thema1)
                         Text("日")
                     }
 
                 }.padding(8)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: roundWidth, alignment: .center)
-                    .background(rootEnvironment.scheme.foundationPrimary)
+                    .background(rootEnvironment.state.scheme.foundationPrimary)
                     .cornerRadius(5)
                     .font(DeviceSizeUtility.isSESize ? .system(size: 12) : .system(size: 17))
             }
@@ -228,14 +228,14 @@ struct DetailUserView: View {
             }.circleBorderView(
                 width: roundWidth,
                 height: roundWidth,
-                color: rootEnvironment.scheme.thema2
+                color: rootEnvironment.state.scheme.thema2
             )
 
             Text(UserCalcUtility.signOfZodiac(from: viewModel.state.targetUser.date))
                 .circleBorderView(
                     width: roundWidth,
                     height: roundWidth,
-                    color: rootEnvironment.scheme.thema4
+                    color: rootEnvironment.state.scheme.thema4
                 )
 
             if viewModel.state.targetUser.isYearsUnknown {
@@ -243,14 +243,14 @@ struct DetailUserView: View {
                     .circleBorderView(
                         width: roundWidth,
                         height: roundWidth,
-                        color: rootEnvironment.scheme.thema3
+                        color: rootEnvironment.state.scheme.thema3
                     )
             } else {
                 Text(UserCalcUtility.zodiac(from: viewModel.state.targetUser.date))
                     .circleBorderView(
                         width: roundWidth,
                         height: roundWidth,
-                        color: rootEnvironment.scheme.thema3
+                        color: rootEnvironment.state.scheme.thema3
                     )
             }
 
@@ -297,7 +297,7 @@ struct DetailUserView: View {
                         .frame(width: 80, height: 80)
                         .overBorder(
                             radius: 5,
-                            color: rootEnvironment.scheme.foundationPrimary,
+                            color: rootEnvironment.state.scheme.foundationPrimary,
                             opacity: 0.4,
                             lineWidth: 2
                         )

@@ -22,12 +22,12 @@ struct EditNotifyMessageView: View {
 
             Text("通知メッセージ編集")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             Text("通知プレビュー")
                 .fontS(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             DemoNotifyView(msg: viewModel.notifyMsg)
@@ -40,7 +40,7 @@ struct EditNotifyMessageView: View {
 
             Text("通知メッセージ入力")
                 .fontS(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             TextField("ここに通知メッセージを入力してね。", text: $viewModel.notifyMsg)
@@ -54,7 +54,7 @@ struct EditNotifyMessageView: View {
 
             Text("・通知メッセージは" + NotifyConfig.VARIABLE_USER_NAME + "部分が名前に自動で置き換わります。")
                 .fontS(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
@@ -68,7 +68,7 @@ struct EditNotifyMessageView: View {
 
         }.onAppear {
             viewModel.onAppear()
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .fontM()
             .navigationBarBackButtonHidden()
@@ -108,7 +108,7 @@ struct DemoNotifyView: View {
         // 置換した文字列「お名前」の範囲を取得
         if let range = attributedString.range(of: "「お名前」") {
             // その部分の文字色を変更
-            attributedString[range].foregroundColor = rootEnvironment.scheme.thema3
+            attributedString[range].foregroundColor = rootEnvironment.state.scheme.thema3
             attributedString[range].font = .boldSystemFont(ofSize: 13) // サイズは任意で調整
         }
 

@@ -38,7 +38,7 @@ struct YearAndMonthSelectionView: View {
 
             Spacer()
 
-        }.foregroundStyle(rootEnvironment.scheme.text)
+        }.foregroundStyle(rootEnvironment.state.scheme.text)
     }
 }
 

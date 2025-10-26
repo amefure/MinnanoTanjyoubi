@@ -10,25 +10,42 @@ import RealmSwift
 import StoreKit
 import UIKit
 
+@Observable
+final class RootEnvironmentState {
+    private(set) var scheme: AppColorScheme = .original
+    /// アプリロック
+    var appLocked: Bool = false
+    /// 広告削除購入フラグ
+    var removeAds: Bool = false
+    /// 容量解放購入フラグ
+    var unlockStorage: Bool = false
+    /// 削除対象のUser
+    var deleteArray: [User] = []
+    /// Deleteモード
+    private(set) var isDeleteMode: Bool = false
+    /// 関係の名称
+    private(set) var relationNameList: [String] = []
+    /// レイアウトフラグ表示
+    private(set) var sectionLayoutFlag: LayoutItem = .grid
+
+    /// カラースキーム更新
+    func updateColorScheme(_ scheme: AppColorScheme) { self.scheme = scheme }
+
+    /// Deleteモード有効
+    func enableDeleteMode() { isDeleteMode = true }
+    /// Deleteモード無効
+    func disableDeleteMode() { isDeleteMode = false }
+
+    /// 関係名称リスト更新
+    func updateRelationNameList(_ list: [String]) { relationNameList = list }
+
+    /// レイアウトフラグ更新
+    func updateSectionLayoutFlag(_ item: LayoutItem) { sectionLayoutFlag = item }
+}
+
 /// アプリ内で共通で利用される状態や環境値を保持する
 final class RootEnvironment: ObservableObject {
-    /// `Property`
-    /// カラースキーム
-    @Published private(set) var scheme: AppColorScheme = .original
-    /// アプリロック
-    @Published var appLocked: Bool = false
-    /// 広告削除購入フラグ
-    @Published var removeAds: Bool = false
-    /// 容量解放購入フラグ
-    @Published var unlockStorage: Bool = false
-    /// 削除対象のUser
-    @Published var deleteArray: [User] = []
-    /// Deleteモード
-    @Published private(set) var isDeleteMode: Bool = false
-    /// 関係の名称
-    @Published private(set) var relationNameList: [String] = []
-    /// レイアウトフラグ表示
-    @Published private(set) var sectionLayoutFlag: LayoutItem = .grid
+    var state = RootEnvironmentState()
 
     /// ポップアップ表示起動回数定数
     private let popupShowLaunchCount: Int = 5
@@ -92,8 +109,8 @@ final class RootEnvironment: ObservableObject {
                 let removeAds = inAppPurchaseRepository.isPurchased(ProductItem.removeAds.id)
                 let unlockStorage = inAppPurchaseRepository.isPurchased(ProductItem.unlockStorage.id)
                 // 両者trueなら更新
-                if removeAds { self.removeAds = true }
-                if unlockStorage { self.unlockStorage = true }
+                if removeAds { state.removeAds = true }
+                if unlockStorage { state.unlockStorage = true }
             }.store(in: &cancellables)
 
         // アプリ起動回数カウント
@@ -131,29 +148,29 @@ final class RootEnvironment: ObservableObject {
 extension RootEnvironment {
     /// Deleteモード有効
     func enableDeleteMode() {
-        isDeleteMode = true
+        state.enableDeleteMode()
     }
 
     /// Deleteモード無効
     func disableDeleteMode() {
-        isDeleteMode = false
+        state.disableDeleteMode()
     }
 
     /// 対象のUserを追加
     func appendDeleteArray(_ user: User) {
-        deleteArray.append(user)
+        state.deleteArray.append(user)
     }
 
     /// 対象のUserを削除
     func removeDeleteArray(_ user: User) {
-        guard let index = deleteArray.firstIndex(where: { $0.id == user.id }) else { return }
-        deleteArray.remove(at: index)
+        guard let index = state.deleteArray.firstIndex(where: { $0.id == user.id }) else { return }
+        state.deleteArray.remove(at: index)
     }
 
     /// Deleteモードリセット
     func resetDeleteMode() {
-        isDeleteMode = false
-        deleteArray.removeAll()
+        state.disableDeleteMode()
+        state.deleteArray.removeAll()
     }
 
     /// レビューポップアップ表示
@@ -210,7 +227,7 @@ extension RootEnvironment {
         let sns = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_SNS, initialValue: RelationConfig.SNS_NAME)
         results.append(sns)
 
-        relationNameList = results
+        state.updateRelationNameList(results)
     }
 
     func getDisplayDaysLater() -> Bool {
@@ -222,18 +239,18 @@ extension RootEnvironment {
     }
 
     private func getDisplaySectionLayout() {
-        sectionLayoutFlag = userDefaultsRepository.getDisplaySectionLayout()
+        state.updateSectionLayoutFlag(userDefaultsRepository.getDisplaySectionLayout())
     }
 
     /// セクショングリッドレイアウト変更フラグ登録
     func switchDisplaySectionLayout() {
-        userDefaultsRepository.setDisplaySectionLayout(sectionLayoutFlag.next)
+        userDefaultsRepository.setDisplaySectionLayout(state.sectionLayoutFlag.next)
         getDisplaySectionLayout()
     }
 
     /// アプリカラースキーム取得
     private func getColorScheme() {
-        scheme = userDefaultsRepository.getColorScheme()
+        state.updateColorScheme(userDefaultsRepository.getColorScheme())
     }
 
     /// アプリカラースキーム登録
@@ -266,12 +283,12 @@ extension RootEnvironment {
 
     /// アプリ内課金購入状況取得
     private func getPurchasedFlag() {
-        removeAds = userDefaultsRepository.getPurchasedRemoveAds()
-        unlockStorage = userDefaultsRepository.getPurchasedUnlockStorage()
+        state.removeAds = userDefaultsRepository.getPurchasedRemoveAds()
+        state.unlockStorage = userDefaultsRepository.getPurchasedUnlockStorage()
     }
 
     /// アプリにロックがかけてあるかをチェック
     private func getAppLockFlag() {
-        appLocked = keyChainRepository.getData().count == 4
+        state.appLocked = keyChainRepository.getData().count == 4
     }
 }

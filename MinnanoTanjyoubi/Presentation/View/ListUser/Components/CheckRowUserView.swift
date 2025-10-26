@@ -54,12 +54,13 @@ struct CheckRowUserView: View {
             // チェックボタン
             Toggle(isOn: $isOn) {
                 EmptyView()
-            }.toggleStyle(CheckBoxToggleStyle(user: user, deleteArray: $rootEnvironment.deleteArray))
-                .tint(rootEnvironment.scheme.thema1)
+            }.toggleStyle(
+                CheckBoxToggleStyle(user: user, deleteArray: $rootEnvironment.state.deleteArray)
+            ).tint(rootEnvironment.state.scheme.thema1)
                 .frame(width: itemWidth)
                 .zIndex(2)
                 .position(x: 15, y: 15)
-                .font(.system(size: 17))
+                .fontM()
 
             Button {
                 if isOn {

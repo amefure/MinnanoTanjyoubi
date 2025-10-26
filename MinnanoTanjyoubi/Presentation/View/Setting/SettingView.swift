@@ -23,7 +23,7 @@ struct SettingView: View {
 
             // List ここから
             List {
-                if rootEnvironment.unlockStorage {
+                if rootEnvironment.state.unlockStorage {
                     // 容量解放済み
                     unlockStorageSection()
                 } else {
@@ -43,10 +43,10 @@ struct SettingView: View {
                     // 通知時間
                     HStack {
                         Image(systemName: "clock")
-                            .settingIcon(rootEnvironment.scheme)
+                            .settingIcon(rootEnvironment.state.scheme)
 
                         Text(L10n.settingSectionNotifyTimeTitle)
-                            .foregroundStyle(rootEnvironment.scheme.text)
+                            .foregroundStyle(rootEnvironment.state.scheme.text)
                             .font(.system(size: 17))
 
                         Spacer()
@@ -57,12 +57,12 @@ struct SettingView: View {
                     // 通知日時
                     HStack {
                         Image(systemName: "calendar")
-                            .settingIcon(rootEnvironment.scheme)
+                            .settingIcon(rootEnvironment.state.scheme)
                         Picker(L10n.settingSectionNotifyTimeCaption, selection: $viewModel.selectedNotifyDate) {
                             ForEach(NotifyDate.allCases, id: \.self) { notifyDate in
                                 Text(notifyDate.title)
                             }
-                        }.tint(rootEnvironment.scheme.text)
+                        }.tint(rootEnvironment.state.scheme.text)
                             .fontM()
                     }.listRowHeight()
 
@@ -73,7 +73,7 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "text.bubble")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionNotifyEditMsgTitle)
                         }
                     }.listRowHeight()
@@ -85,12 +85,12 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "text.bubble")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionNotifyListTitle)
                         }
                     }.listRowHeight()
 
-                }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
+                }.listRowBackground(rootEnvironment.state.scheme.foundationPrimary)
 
                 Section(
                     header: Text(L10n.settingSectionBirthdayHeader)
@@ -98,7 +98,7 @@ struct SettingView: View {
                     // 誕生日までの単位
                     HStack {
                         Image(systemName: "switch.2")
-                            .settingIcon(rootEnvironment.scheme)
+                            .settingIcon(rootEnvironment.state.scheme)
                         Text(L10n.settingSectionBirthdayUnitTitle)
                         Spacer()
                         Toggle(isOn: $viewModel.isDaysLaterFlag) {
@@ -107,42 +107,42 @@ struct SettingView: View {
                                 .foregroundStyle(.white)
                         }.toggleStyle(.button)
                             .opacity(0.9)
-                            .background(viewModel.isDaysLaterFlag ? rootEnvironment.scheme.thema3 : rootEnvironment.scheme.thema2)
+                            .background(viewModel.isDaysLaterFlag ? rootEnvironment.state.scheme.thema3 : rootEnvironment.state.scheme.thema2)
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                     }.listRowHeight()
 
                     // 年齢の⚪︎ヶ月を表示するかどうか
                     HStack {
                         Image(systemName: "switch.2")
-                            .settingIcon(rootEnvironment.scheme)
+                            .settingIcon(rootEnvironment.state.scheme)
                         Toggle(isOn: $viewModel.isAgeMonthFlag) {
                             Text(L10n.settingSectionBirthdayMonthTitle)
-                        }.tint(rootEnvironment.scheme.thema1)
+                        }.tint(rootEnvironment.state.scheme.thema1)
                     }.listRowHeight()
 
                     // 登録初期年数
                     HStack {
                         Image(systemName: "clock")
-                            .settingIcon(rootEnvironment.scheme)
+                            .settingIcon(rootEnvironment.state.scheme)
                         Picker(L10n.settingSectionBirthdayMonthCaption, selection: $viewModel.selectedYear) {
                             ForEach(viewModel.yearArray, id: \.self) { year in
                                 Text("\(String(year))年")
                                     .fontM()
                             }
-                        }.tint(rootEnvironment.scheme.text)
+                        }.tint(rootEnvironment.state.scheme.text)
                             .fontM()
                     }.listRowHeight()
 
                     // 登録関係初期値
                     HStack {
                         Image(systemName: "person.crop.rectangle.stack")
-                            .settingIcon(rootEnvironment.scheme)
+                            .settingIcon(rootEnvironment.state.scheme)
                         Picker(L10n.settingSectionBirthdayRelationName, selection: $viewModel.selectedRelation) {
-                            ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
+                            ForEach(Array(rootEnvironment.state.relationNameList.enumerated()), id: \.element) { index, item in
                                 Text(item)
                                     .tag(Relation.getIndexbyRelation(index))
                             }
-                        }.tint(rootEnvironment.scheme.text)
+                        }.tint(rootEnvironment.state.scheme.text)
                             .fontM()
 
                     }.listRowHeight()
@@ -154,7 +154,7 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "arrow.up.arrow.down")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionBirthdaySort)
                         }
                     }.listRowHeight()
@@ -166,12 +166,12 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "person.line.dotted.person")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionBirthdayShare)
                         }
                     }.listRowHeight()
 
-                }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
+                }.listRowBackground(rootEnvironment.state.scheme.foundationPrimary)
 
                 Section(
                     header: Text(L10n.settingSectionAppHeader),
@@ -184,7 +184,7 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "paintpalette")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionAppColor)
                         }
                     }.listRowHeight()
@@ -196,7 +196,7 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "pencil.line")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionAppRelation)
                         }
                     }.listRowHeight()
@@ -208,23 +208,23 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "calendar")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionAppInitWeek)
                         }
                     }.listRowHeight()
 
                     HStack {
                         Image(systemName: "lock.iphone")
-                            .settingIcon(rootEnvironment.scheme)
+                            .settingIcon(rootEnvironment.state.scheme)
                         Toggle(isOn: $viewModel.isLock) {
                             Text(L10n.settingSectionAppLock)
-                        }.tint(rootEnvironment.scheme.thema1)
+                        }.tint(rootEnvironment.state.scheme.thema1)
                     }.listRowHeight()
                         .sheet(isPresented: $viewModel.isShowPassInput) {
                             AppLockInputView(isLock: $viewModel.isLock)
                                 .environmentObject(rootEnvironment)
                         }
-                }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
+                }.listRowBackground(rootEnvironment.state.scheme.foundationPrimary)
 
                 Section(
                     header: Text(L10n.settingSectionLinkHeader),
@@ -237,7 +237,7 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "questionmark.app")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionLinkFaq)
                         }
                     }.listRowHeight()
@@ -249,7 +249,7 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "rectangle.and.hand.point.up.left")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionLinkTutorial)
                         }
                     }.listRowHeight()
@@ -261,7 +261,7 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "app.gift.fill")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionLinkInAppPurchase)
                         }
                     }.listRowHeight()
@@ -273,7 +273,7 @@ struct SettingView: View {
                             label: {
                                 HStack {
                                     Image(systemName: "hand.thumbsup")
-                                        .settingIcon(rootEnvironment.scheme)
+                                        .settingIcon(rootEnvironment.state.scheme)
                                     Text(L10n.settingSectionLinkReview)
                                 }
                             }
@@ -289,7 +289,7 @@ struct SettingView: View {
                     } label: {
                         HStack {
                             Image(systemName: "star.bubble")
-                                .settingIcon(rootEnvironment.scheme)
+                                .settingIcon(rootEnvironment.state.scheme)
                             Text(L10n.settingSectionLinkRecommend)
                         }
                     }.listRowHeight()
@@ -302,7 +302,7 @@ struct SettingView: View {
                         } label: {
                             HStack {
                                 Image(systemName: "paperplane")
-                                    .settingIcon(rootEnvironment.scheme)
+                                    .settingIcon(rootEnvironment.state.scheme)
                                 Text(L10n.settingSectionLinkContact)
                             }
                         }.listRowHeight()
@@ -316,19 +316,19 @@ struct SettingView: View {
                         } label: {
                             HStack {
                                 Image(systemName: "note.text")
-                                    .settingIcon(rootEnvironment.scheme)
+                                    .settingIcon(rootEnvironment.state.scheme)
                                 Text(L10n.settingSectionLinkTermsOfService)
                             }
                         }.listRowHeight()
                     }
-                }.listRowBackground(rootEnvironment.scheme.foundationPrimary)
+                }.listRowBackground(rootEnvironment.state.scheme.foundationPrimary)
 
                 // クレジット
                 creditSection()
 
             }.scrollContentBackground(.hidden)
-                .background(rootEnvironment.scheme.foundationSub)
-                .foregroundColor(rootEnvironment.scheme.text)
+                .background(rootEnvironment.state.scheme.foundationSub)
+                .foregroundColor(rootEnvironment.state.scheme.text)
             // List ここまで
 
             Spacer()
@@ -341,7 +341,7 @@ struct SettingView: View {
             .onDisappear { viewModel.onDisappear() }
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-            .background(rootEnvironment.scheme.foundationSub)
+            .background(rootEnvironment.state.scheme.foundationSub)
             .navigationDestination(isPresented: $viewModel.isShowInAppPurchaseView) {
                 InAppPurchaseView()
                     .environmentObject(rootEnvironment)
@@ -409,7 +409,7 @@ struct SettingView: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                     .padding(5)
-                    .background(rootEnvironment.scheme.foundationPrimary)
+                    .background(rootEnvironment.state.scheme.foundationPrimary)
                     .clipShape(RoundedRectangle(cornerRadius: 50))
                     .padding(.bottom, 8)
 
@@ -425,7 +425,7 @@ struct SettingView: View {
     private func adsSection() -> some View {
         VStack {
             // 広告削除済みなら何も表示しない
-            if !rootEnvironment.removeAds {
+            if !rootEnvironment.state.removeAds {
                 if let url = URL(string: StaticUrls.APP_OIWAI_URL) {
                     Link(destination: url) {
                         HStack {

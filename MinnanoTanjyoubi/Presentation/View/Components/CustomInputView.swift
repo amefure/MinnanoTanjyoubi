@@ -18,7 +18,7 @@ struct CustomInputView: View {
         HStack {
             Text(title)
                 .frame(width: 80)
-                .foregroundColor(rootEnvironment.scheme.text)
+                .foregroundColor(rootEnvironment.state.scheme.text)
                 .fontWeight(.bold)
             TextField(placeholder, text: $text)
                 .textFieldStyle(.roundedBorder)

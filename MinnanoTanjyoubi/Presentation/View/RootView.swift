@@ -21,12 +21,12 @@ struct RootView: View {
             RootListUserView()
                 .environmentObject(rootEnvironment)
 
-            if !rootEnvironment.removeAds {
+            if !rootEnvironment.state.removeAds {
                 AdMobBannerView()
                     .frame(height: 50)
             }
 
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .navigationBarBackButtonHidden()
             .navigationBarHidden(true)

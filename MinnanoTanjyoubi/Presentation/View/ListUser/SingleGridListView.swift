@@ -24,7 +24,7 @@ struct SingleGridListView: View {
     var body: some View {
         LazyVGrid(columns: gridColumns) {
             ForEach(users) { user in
-                if rootEnvironment.isDeleteMode {
+                if rootEnvironment.state.isDeleteMode {
                     // DeleteMode
                     CheckRowUserView(user: user)
                         .environmentObject(rootEnvironment)

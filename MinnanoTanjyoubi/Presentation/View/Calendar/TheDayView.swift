@@ -27,7 +27,7 @@ struct TheDayView: View {
     var body: some View {
         VStack {
             if theDay.day == -1 {
-                rootEnvironment.scheme.foundationPrimary
+                rootEnvironment.state.scheme.foundationPrimary
             } else {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("\(theDay.day)")
@@ -35,7 +35,7 @@ struct TheDayView: View {
                         .background(theDay.isToday ? Asset.Colors.exThemaRed.swiftUIColor : Color.clear)
                         .fontSS(bold: true)
                         .clipShape(RoundedRectangle(cornerRadius: 18))
-                        .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor(defaultColor: rootEnvironment.scheme.text))
+                        .foregroundStyle(theDay.isToday ? Color.white : theDay.dayColor(defaultColor: rootEnvironment.state.scheme.text))
 
                     if DeviceSizeUtility.isSESize {
                         // SEサイズなら最大2人まで表示
@@ -64,7 +64,7 @@ struct TheDayView: View {
                     }
 
                     // スペーサー用(スワイプタップ判定領域確保のため)
-                    rootEnvironment.scheme.foundationSub
+                    rootEnvironment.state.scheme.foundationSub
                 }
                 .padding(.vertical, 6)
                 .padding(.horizontal, 3)
@@ -74,7 +74,7 @@ struct TheDayView: View {
                             if theDay.users.isEmpty {
                                 // 0なら新規登録
                                 // 容量がオーバーしていないか または 容量解放されている
-                                if !viewModel.isOverCapacity(1) || rootEnvironment.unlockStorage {
+                                if !viewModel.isOverCapacity(1) || rootEnvironment.state.unlockStorage {
                                     // 登録モーダル表示
                                     isShowEntryModal.toggle()
                                 } else {
@@ -96,7 +96,7 @@ struct TheDayView: View {
         .frame(height: DeviceSizeUtility.isSESize ? 74 : 80)
         .overlay {
             Rectangle()
-                .stroke(rootEnvironment.scheme.text, lineWidth: 2)
+                .stroke(rootEnvironment.state.scheme.text, lineWidth: 2)
         }.if(theDay.users.isEmpty) { view in
             view
                 .sheet(isPresented: $isShowEntryModal) {
@@ -140,7 +140,7 @@ struct TheDayView: View {
         VStack(spacing: 0) {
             Text(theDay.getDate())
                 .fontM(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
@@ -160,7 +160,7 @@ struct TheDayView: View {
         }.presentationDetents([.height(200)])
             .padding()
             .ignoresSafeArea(.all)
-            .background(rootEnvironment.scheme.foundationSub)
+            .background(rootEnvironment.state.scheme.foundationSub)
     }
 }
 

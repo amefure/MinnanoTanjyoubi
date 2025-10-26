@@ -69,7 +69,7 @@ struct RowUserView: View {
                 HStack(alignment: .bottom) {
                     if daysLater == 0 {
                         Text(DeviceSizeUtility.isSESize ? "HAPPY\nBIRTHDAY" : "HAPPY BIRTHDAY")
-                            .foregroundStyle(rootEnvironment.scheme.thema1)
+                            .foregroundStyle(rootEnvironment.state.scheme.thema1)
                             .fontWeight(.bold)
                             .frame(height: 25)
                             .font(DeviceSizeUtility.isSESize ? .system(size: 10) : .system(size: 12))
@@ -81,13 +81,13 @@ struct RowUserView: View {
                             Text("あと")
                             Text("\(month)")
                                 .fontM()
-                                .foregroundColor(rootEnvironment.scheme.thema1)
+                                .foregroundColor(rootEnvironment.state.scheme.thema1)
                             Text("ヶ月")
                         } else {
                             Text("あと")
                             Text("\(daysLater)")
                                 .fontM()
-                                .foregroundColor(rootEnvironment.scheme.thema1)
+                                .foregroundColor(rootEnvironment.state.scheme.thema1)
                             Text("日")
                         }
                     }
@@ -101,8 +101,8 @@ struct RowUserView: View {
             }.padding(5)
                 .frame(height: 130)
                 .frame(maxWidth: DeviceSizeUtility.deviceWidth / 3)
-                .background(rootEnvironment.scheme.foundationPrimary)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .background(rootEnvironment.state.scheme.foundationPrimary)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
 

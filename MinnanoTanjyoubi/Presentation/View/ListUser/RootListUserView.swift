@@ -42,7 +42,7 @@ struct RootListUserView: View {
 
             Text("登録されている誕生日情報がありません。")
                 .fontM(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
 
             Spacer()
         }
@@ -50,7 +50,7 @@ struct RootListUserView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            switch rootEnvironment.sectionLayoutFlag {
+            switch rootEnvironment.state.sectionLayoutFlag {
             case .calendar:
                 // 単体のグリッドレイアウト
                 CalendarRootView()
@@ -64,7 +64,7 @@ struct RootListUserView: View {
                     } else {
                         ScrollView {
                             Group {
-                                switch rootEnvironment.sectionLayoutFlag {
+                                switch rootEnvironment.state.sectionLayoutFlag {
                                 case .grid:
                                     // 単体のグリッドレイアウト
                                     SingleGridListView(users: viewModel.allUsers)
@@ -97,7 +97,7 @@ struct RootListUserView: View {
                 }
             }
 
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .onAppear { viewModel.onAppear() }
             .onDisappear { viewModel.onDisappear() }
     }
@@ -110,41 +110,41 @@ struct RootListUserView: View {
             Spacer()
 
             removeButtonView()
-                .circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema2)
+                .circleBorderView(width: 50, height: 50, color: rootEnvironment.state.scheme.thema2)
                 .simultaneousGesture(tapGesture)
 
             Spacer()
 
             filteringButtonView()
-                .circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema4)
+                .circleBorderView(width: 50, height: 50, color: rootEnvironment.state.scheme.thema4)
                 .simultaneousGesture(tapGesture)
 
             Spacer()
 
             entryButtonView()
-                .circleBorderView(width: 50, height: 50, color: rootEnvironment.scheme.thema3)
+                .circleBorderView(width: 50, height: 50, color: rootEnvironment.state.scheme.thema3)
                 .simultaneousGesture(tapGesture)
 
             Spacer()
 
         }.frame(width: DeviceSizeUtility.deviceWidth, height: 70)
-            .foregroundStyle(rootEnvironment.scheme.controlText)
-            .background(rootEnvironment.scheme.foundationPrimary)
+            .foregroundStyle(rootEnvironment.state.scheme.controlText)
+            .background(rootEnvironment.state.scheme.foundationPrimary)
     }
 
     private func removeButtonView() -> some View {
         Button {
-            if !rootEnvironment.deleteArray.isEmpty {
+            if !rootEnvironment.state.deleteArray.isEmpty {
                 viewModel.isDeleteConfirmAlert = true
             } else {
-                if rootEnvironment.isDeleteMode {
+                if rootEnvironment.state.isDeleteMode {
                     rootEnvironment.disableDeleteMode()
                 } else {
                     rootEnvironment.enableDeleteMode()
                 }
             }
         } label: {
-            Image(systemName: rootEnvironment.isDeleteMode ? "trash" : "app.badge.checkmark")
+            Image(systemName: rootEnvironment.state.isDeleteMode ? "trash" : "app.badge.checkmark")
                 .fontM()
         }.alert(
             isPresented: $viewModel.isDeleteConfirmAlert,
@@ -154,7 +154,7 @@ struct RootListUserView: View {
             negativeButtonTitle: "キャンセル",
             positiveButtonRole: .destructive,
             positiveAction: {
-                viewModel.removeUsers(users: rootEnvironment.deleteArray)
+                viewModel.removeUsers(users: rootEnvironment.state.deleteArray)
                 rootEnvironment.resetDeleteMode()
             },
             negativeAction: {
@@ -172,7 +172,7 @@ struct RootListUserView: View {
         }.sheet(isPresented: $viewModel.isShowRelationPicker) {
             VStack {
                 Picker(selection: $viewModel.selectedFilteringRelation) {
-                    ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
+                    ForEach(Array(rootEnvironment.state.relationNameList.enumerated()), id: \.element) { index, item in
                         Text(item).tag(Relation.getIndexbyRelation(index))
                     }
                 } label: {}
