@@ -18,11 +18,9 @@ final class DIContainer: @unchecked Sendable {
 
     private init() {
         container = Container { c in
-            DispatchQueue.global(qos: .background).sync {
-                Self.registerRepositories(c)
-                Self.registerServices(c)
-                Self.registerViewModels(c)
-            }
+            Self.registerRepositories(c)
+            Self.registerServices(c)
+            Self.registerViewModels(c)
         }
     }
 
@@ -39,7 +37,7 @@ final class DIContainer: @unchecked Sendable {
 private extension DIContainer {
     static func registerRepositories(_ c: Container) {
         // Repository
-        c.register(RealmRepository.self) { _ in RealmRepository() }
+        c.register(RealmRepository.self) { _ in RealmRepository.shared }
         c.register(UserDefaultsRepository.self) { _ in UserDefaultsRepository() }
         c.register(KeyChainRepository.self) { _ in KeyChainRepository() }
         c.register(BiometricAuthRepository.self) { _ in BiometricAuthRepository() }
