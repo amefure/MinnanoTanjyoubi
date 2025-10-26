@@ -43,7 +43,7 @@ final class RemoteConfigManager: Sendable {
         remoteConfig.fetch { [weak self] status, error in
             guard let self else { return }
             if status == .success {
-                self.remoteConfig.activate(completion: nil)
+                remoteConfig.activate(completion: nil)
                 Task {
                     await applyShowReviewPopupVersion()
                 }

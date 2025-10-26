@@ -19,38 +19,38 @@ enum SCWeek: Int, CaseIterable {
 
     var fullSymbols: String {
         switch self {
-        case .sunday: return "日曜日"
-        case .monday: return "月曜日"
-        case .tuesday: return "火曜日"
-        case .wednesday: return "水曜日"
-        case .thursday: return "木曜日"
-        case .friday: return "金曜日"
-        case .saturday: return "土曜日"
+        case .sunday: "日曜日"
+        case .monday: "月曜日"
+        case .tuesday: "火曜日"
+        case .wednesday: "水曜日"
+        case .thursday: "木曜日"
+        case .friday: "金曜日"
+        case .saturday: "土曜日"
         }
     }
 
     var shortSymbols: String {
         switch self {
-        case .sunday: return "日"
-        case .monday: return "月"
-        case .tuesday: return "火"
-        case .wednesday: return "水"
-        case .thursday: return "木"
-        case .friday: return "金"
-        case .saturday: return "土"
+        case .sunday: "日"
+        case .monday: "月"
+        case .tuesday: "火"
+        case .wednesday: "水"
+        case .thursday: "木"
+        case .friday: "金"
+        case .saturday: "土"
         }
     }
 
     var color: Color? {
         switch self {
-        case .sunday: return .red
-        case .saturday: return .blue
-        default: return nil
+        case .sunday: .red
+        case .saturday: .blue
+        default: nil
         }
     }
 }
 
-extension Array where Element == SCWeek {
+extension [SCWeek] {
     mutating func moveWeekToFront(_ week: SCWeek) {
         guard let index = firstIndex(of: week) else { return }
         self = Array(self[index...] + self[..<index])

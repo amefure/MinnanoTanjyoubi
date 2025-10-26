@@ -17,9 +17,9 @@ struct UpSideView: View {
 
     private var viewSize: CGFloat {
         if isSESize {
-            return 35
+            35
         } else {
-            return 50
+            50
         }
     }
 

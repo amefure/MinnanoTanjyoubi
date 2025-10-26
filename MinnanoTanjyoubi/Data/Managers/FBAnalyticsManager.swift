@@ -88,7 +88,7 @@ enum AppSreenClassName: String {
     case ShareUserLinkScreen
 
     func name() -> String {
-        return switch self {
+        switch self {
         case .AppLockScreen:
             "アプリロック画面"
         case .InAppPurchaseScreen:

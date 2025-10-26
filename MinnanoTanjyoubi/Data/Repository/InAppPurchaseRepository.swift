@@ -145,7 +145,7 @@ actor InAppPurchaseRepository {
 
     /// 課金アイテムの更新を観測
     private func listenForTransactions() -> Task<Void, Error> {
-        return Task.detached {
+        Task.detached {
             for await result in Transaction.updates {
                 do {
                     let transaction = try await self.checkVerified(result)

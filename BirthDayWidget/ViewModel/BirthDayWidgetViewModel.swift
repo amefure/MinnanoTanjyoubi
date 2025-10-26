@@ -19,6 +19,6 @@ final class BirthDayWidgetViewModel {
     }
 
     func getAllUser() -> [User] {
-        return realmRepository.readAllObjs()
+        realmRepository.readAllObjs()
     }
 }

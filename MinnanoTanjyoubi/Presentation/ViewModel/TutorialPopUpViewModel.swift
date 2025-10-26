@@ -59,10 +59,10 @@ final class TutorialPopUpViewModel: ObservableObject {
         state.buttonAction = { [weak self] in
             guard let self else { return }
             // 再帰的に処理を実行する
-            self.showPopUp(state.position.next)
+            showPopUp(state.position.next)
             // 最後まで確認したらフラグをONにして再度表示されないようにする
             guard position.next == nil else { return }
-            self.setShowTutorialFlag()
+            setShowTutorialFlag()
         }
     }
 

@@ -15,7 +15,7 @@ class JsonConvertUtility {
     /// `T: Codable`をJSON文字列に変換する
     /// - Parameter data: `Codable`に適合した型
     /// - Returns: JSON文字列
-    func convertJson<T: Codable>(_ data: T) -> String? {
+    func convertJson(_ data: some Codable) -> String? {
         // encoder.outputFormatting = .prettyPrinted // インデントで読みやすくする
         guard let jsonData = try? encoder.encode(data) else { return nil }
         guard let json = String(data: jsonData, encoding: .utf8) else { return nil }

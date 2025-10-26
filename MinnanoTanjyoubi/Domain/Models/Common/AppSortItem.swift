@@ -15,7 +15,7 @@ enum AppSortItem: String, CaseIterable {
     case montheDesc
 
     var name: String {
-        return switch self {
+        switch self {
         case .daysLater:
             "誕生日近い順"
         case .nameAsce:

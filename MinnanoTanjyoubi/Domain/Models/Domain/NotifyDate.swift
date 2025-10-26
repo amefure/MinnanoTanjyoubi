@@ -17,12 +17,12 @@ enum NotifyDate: String, CaseIterable {
 
     /// 日付に変換
     private var dayNum: Int {
-        return Int(rawValue) ?? 1
+        Int(rawValue) ?? 1
     }
 
     /// タイトル
     var title: String {
-        return switch self {
+        switch self {
         case .onTheDay:
             "当日"
         default:

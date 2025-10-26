@@ -13,22 +13,22 @@ enum LayoutItem: Int {
     var next: LayoutItem {
         switch self {
         case .grid:
-            return .group
+            .group
         case .group:
-            return .calendar
+            .calendar
         case .calendar:
-            return .grid
+            .grid
         }
     }
 
     var imageName: String {
         switch self {
         case .grid:
-            return "square.grid.3x3.fill"
+            "square.grid.3x3.fill"
         case .group:
-            return "square.grid.3x1.below.line.grid.1x2.fill"
+            "square.grid.3x1.below.line.grid.1x2.fill"
         case .calendar:
-            return "calendar"
+            "calendar"
         }
     }
 }

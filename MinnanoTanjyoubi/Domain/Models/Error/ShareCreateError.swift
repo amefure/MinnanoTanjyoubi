@@ -15,7 +15,7 @@ enum ShareCreateError: Error {
     var title: String { "転送登録エラー" }
 
     var message: String {
-        return switch self {
+        switch self {
         case .existUser:
             "すでに同姓同名の誕生日情報が存在するため登録を中断しました。"
         case .overCapacity:

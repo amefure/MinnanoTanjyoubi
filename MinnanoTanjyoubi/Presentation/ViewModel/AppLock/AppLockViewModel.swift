@@ -39,7 +39,7 @@ final class AppLockViewModel: ObservableObject {
     @MainActor
     func onAppear() {
         biometricAuthRepository.biometryType.sink { [weak self] type in
-            guard let self = self else { return }
+            guard let self else { return }
             self.type = type
         }.store(in: &cancellables)
 
@@ -62,8 +62,8 @@ final class AppLockViewModel: ObservableObject {
         if result {
             showProgress()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) { [weak self] in
-                guard let self = self else { return }
-                self.showApp()
+                guard let self else { return }
+                showApp()
             }
         }
     }
@@ -77,14 +77,14 @@ final class AppLockViewModel: ObservableObject {
             if pass == keyChainRepository.getData() {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) { [weak self] in
                     guard let self else { return }
-                    self.showApp()
+                    showApp()
                 }
 
             } else {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) { [weak self] in
                     guard let self else { return }
-                    self.hiddenProgress()
-                    self.showFailureAlert()
+                    hiddenProgress()
+                    showFailureAlert()
                     completion(false)
                 }
             }

@@ -83,14 +83,14 @@ class DetailUserViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newValue in
                 guard let self else { return }
-                self.switchNotifyFlag(flag: newValue, user: state.targetUser)
+                switchNotifyFlag(flag: newValue, user: state.targetUser)
             }.store(in: &cancellables)
 
         $selectedPickerImage
             .receive(on: DispatchQueue.main)
             .sink { [weak self] image in
                 guard let self else { return }
-                self.saveImage(image: image)
+                saveImage(image: image)
             }.store(in: &cancellables)
 
         // 更新モーダルから戻った(falseになった)際にはリフレッシュ
@@ -151,7 +151,7 @@ extension DetailUserViewModel {
 
     /// 画像保存
     private func saveImage(image: UIImage?) {
-        guard let image = image else { return }
+        guard let image else { return }
         let imgName = UUID().uuidString
         do {
             _ = try imageFileManager.saveImage(name: imgName, image: image)

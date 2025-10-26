@@ -14,7 +14,7 @@ struct SingleGridListView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     private var gridItemWidth: CGFloat {
-        return CGFloat(DeviceSizeUtility.deviceWidth / 3) - 10
+        CGFloat(DeviceSizeUtility.deviceWidth / 3) - 10
     }
 
     private var gridColumns: [GridItem] {

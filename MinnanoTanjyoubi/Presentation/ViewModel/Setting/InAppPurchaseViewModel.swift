@@ -87,7 +87,7 @@ final class InAppPurchaseViewModel: ObservableObject {
                 guard let self else { return }
                 // 購入中ではなくなったらIDをリセット
                 if !flag {
-                    self.isPurchasingId = ""
+                    isPurchasingId = ""
                 }
             }.store(in: &cancellables)
 
@@ -96,7 +96,7 @@ final class InAppPurchaseViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] flag in
                 guard let self else { return }
-                self.fetchError = flag
+                fetchError = flag
             }.store(in: &cancellables)
 
         // 購入エラー
@@ -104,7 +104,7 @@ final class InAppPurchaseViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] flag in
                 guard let self else { return }
-                self.purchaseError = flag
+                purchaseError = flag
             }.store(in: &cancellables)
     }
 

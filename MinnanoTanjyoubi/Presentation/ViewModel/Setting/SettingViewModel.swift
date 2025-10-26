@@ -76,10 +76,10 @@ extension SettingViewModel {
                 guard let self else { return }
                 if flag {
                     // パスワード入力画面を表示
-                    self.isShowPassInput = true
+                    isShowPassInput = true
                 } else {
                     // アプリパスワードをリセット
-                    self.keyChainRepository.delete()
+                    keyChainRepository.delete()
                 }
             }.store(in: &cancellables)
     }
@@ -210,7 +210,7 @@ extension SettingViewModel {
 
     /// 誕生日までの単位フラグ取得
     private func getDisplayDaysLater() -> Bool {
-        return userDefaultsRepository.getDisplayDaysLater()
+        userDefaultsRepository.getDisplayDaysLater()
     }
 
     /// 年齢に月を含めるかフラグ登録
@@ -220,7 +220,7 @@ extension SettingViewModel {
 
     /// 年齢に月を含めるかフラグ取得
     private func getDisplayAgeMonth() -> Bool {
-        return userDefaultsRepository.getDisplayAgeMonth()
+        userDefaultsRepository.getDisplayAgeMonth()
     }
 
     /// チュートリアル再表示フラグセット
@@ -236,6 +236,6 @@ extension SettingViewModel {
 
     /// バージョン番号取得
     func getVersion() -> String {
-        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.0"
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.0"
     }
 }

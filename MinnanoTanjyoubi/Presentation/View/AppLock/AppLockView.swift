@@ -22,7 +22,7 @@ struct AppLockView: View {
 
             ZStack {
                 DisplayPasswordView(password: password)
-                    .onChange(of: password) { newValue in
+                    .onChange(of: password) { _, newValue in
                         viewModel.passwordLogin(password: newValue) { result in
                             if result == false {
                                 password.removeAll()
@@ -202,7 +202,7 @@ struct NumberButton: View {
 
     var body: some View {
         Button {
-            if password.count != 4 && number != "-" {
+            if password.count != 4, number != "-" {
                 password.append(number)
             }
         } label: {

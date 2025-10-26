@@ -35,17 +35,17 @@ final class DateFormatUtility: Sendable {
 
     /// 日付を文字列で取得する
     func getString(date: Date) -> String {
-        return df.string(from: date)
+        df.string(from: date)
     }
 
     /// 日付をDate型で取得する
     func getDate(from: String) -> Date? {
-        return df.date(from: from)
+        df.date(from: from)
     }
 
     /// 日付をDate型で取得する
     func getDateNotNull(from: String) -> Date {
-        return df.date(from: from) ?? Date()
+        df.date(from: from) ?? Date()
     }
 
     /// 月をInt型で取得する

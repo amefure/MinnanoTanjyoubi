@@ -127,7 +127,7 @@ struct TheDayView: View {
                 .sheet(isPresented: $isShowMulchModal) {
                     mulchUserSelectListView()
                 }.navigationDestination(isPresented: $isShowDetailView) {
-                    if let user = user {
+                    if let user {
                         DetailUserView(userId: user.id)
                             .environmentObject(rootEnvironment)
                     }

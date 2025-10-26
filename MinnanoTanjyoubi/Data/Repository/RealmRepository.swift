@@ -30,7 +30,7 @@ final class RealmRepository: @unchecked Sendable {
 
     private var cacheRealm: Realm?
 
-    func realm() -> Realm {
+    private func realm() -> Realm {
         guard let cacheRealm else {
             // Realm全体で変化するようにdefaultConfigurationを更新する
             Realm.Configuration.defaultConfiguration = appRealmConfig
@@ -71,6 +71,7 @@ final class RealmRepository: @unchecked Sendable {
 extension RealmRepository {
     /// 既存のRealmDB保存先からApp Groupsへmigrationする
     private func migrateRealmIfNeeded(oldURL: URL) {
+        // 非同期で行っているため移行直後はデータが空に見えてしまう
         DispatchQueue.global(qos: .background).async {
             print("oldURL", oldURL)
             AppLogger.logger.debug("==========================================")
@@ -149,7 +150,7 @@ extension RealmRepository {
     /// アプリ全体で使用する`Realm.Configuration`
     /// `fileURL`には`App Groups`用のURL指定する
     private var appRealmConfig: Realm.Configuration {
-        return Realm.Configuration(
+        Realm.Configuration(
             fileURL: appGroupsURL,
             schemaVersion: RealmConfig.MIGRATION_VERSION
         )
@@ -157,7 +158,7 @@ extension RealmRepository {
 
     /// テスト用のスキーマのみ変更している`Realm.Configuration`
     private var appRealmConfigOLD: Realm.Configuration {
-        return Realm.Configuration(
+        Realm.Configuration(
             schemaVersion: RealmConfig.MIGRATION_VERSION
         )
     }
@@ -165,7 +166,7 @@ extension RealmRepository {
 
 extension RealmRepository: RealmRepositoryProtocol {
     /// Create
-    func createObject<T: Object>(_ obj: T) {
+    func createObject(_ obj: some Object) {
         let realm = realm()
         try? realm.write {
             realm.add(obj, update: .modified)
@@ -236,7 +237,7 @@ extension RealmRepository: RealmRepositoryProtocol {
 
 extension RealmRepository {
     /// Create background
-    func createObjectBG<T: Object>(_ obj: T) {
+    func createObjectBG(_ obj: some Object) {
         guard let realmBG = try? Realm() else { return }
         try? realmBG.write {
             realmBG.add(obj, update: .modified)

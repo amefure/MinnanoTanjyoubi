@@ -145,11 +145,10 @@ struct EntryUserView: View {
                     isCalendarDay: isCalendarDay
                 )
             }
-            .onChange(of: isFocusActive, perform: { _ in
-                if isFocusActive {
-                    viewModel.state.showWheel = false
-                }
-            })
+            .onChange(of: isFocusActive) { _, newValue in
+                guard newValue else { return }
+                viewModel.state.showWheel = false
+            }
             .navigationBarBackButtonHidden(true)
             .alert(
                 isPresented: $viewModel.state.isShowValidationDialog,
@@ -198,7 +197,7 @@ private struct DatePickerView: View {
                     label: { Text("誕生日") }
                 ).environment(\.locale, Locale(identifier: "ja_JP"))
                     .environment(\.calendar, Calendar(identifier: .gregorian))
-                    .onChange(of: date) { newValue in
+                    .onChange(of: date) { _, newValue in
                         if isYearsUnknown {
                             dateStr = dfmJpOnlyDate.getString(date: newValue)
                         } else {
@@ -228,8 +227,8 @@ private struct DatePickerView: View {
                     .frame(width: DeviceSizeUtility.deviceWidth - 120)
                     .onTapGesture {
                         showWheel = true
-                    }.onChange(of: isYearsUnknown) { _ in
-                        if isYearsUnknown {
+                    }.onChange(of: isYearsUnknown) { _, newValue in
+                        if newValue {
                             dateStr = dfmJpOnlyDate.getString(date: date)
                         } else {
                             dateStr = dfmJp.getString(date: date)

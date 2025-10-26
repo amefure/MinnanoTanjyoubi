@@ -72,7 +72,7 @@ final class UserDefaultsRepository: @unchecked Sendable {
 
     /// Bool：取得
     func getBoolData(key: String) -> Bool {
-        return userDefaults.bool(forKey: key)
+        userDefaults.bool(forKey: key)
     }
 
     /// Int：保存
@@ -82,7 +82,7 @@ final class UserDefaultsRepository: @unchecked Sendable {
 
     /// Int：取得
     func getIntData(key: String) -> Int {
-        return userDefaults.integer(forKey: key)
+        userDefaults.integer(forKey: key)
     }
 
     /// String：保存
@@ -92,7 +92,7 @@ final class UserDefaultsRepository: @unchecked Sendable {
 
     /// String：取得
     func getStringData(key: String, initialValue: String = "") -> String {
-        return userDefaults.string(forKey: key) ?? initialValue
+        userDefaults.string(forKey: key) ?? initialValue
     }
 }
 

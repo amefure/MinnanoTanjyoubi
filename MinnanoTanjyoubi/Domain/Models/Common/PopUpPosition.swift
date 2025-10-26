@@ -18,15 +18,15 @@ enum PopUpPosition {
     var next: PopUpPosition? {
         switch self {
         case .topLeft:
-            return nil
+            nil
         case .topRight:
-            return .topLeft
+            .topLeft
         case .bottomLeft:
-            return .topRight
+            .topRight
         case .bottomMiddle:
-            return .bottomLeft
+            .bottomLeft
         case .bottomRight:
-            return .bottomMiddle
+            .bottomMiddle
         }
     }
 }

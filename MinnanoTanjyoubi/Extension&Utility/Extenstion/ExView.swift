@@ -21,7 +21,7 @@ extension View {
         negativeAction: @escaping () -> Void = {}
     ) -> some View {
         alert(title, isPresented: isPresented) {
-            if !negativeButtonTitle.isEmpty && !positiveButtonTitle.isEmpty {
+            if !negativeButtonTitle.isEmpty, !positiveButtonTitle.isEmpty {
                 Button(role: negativeButtonRole) {
                     negativeAction()
                 } label: {

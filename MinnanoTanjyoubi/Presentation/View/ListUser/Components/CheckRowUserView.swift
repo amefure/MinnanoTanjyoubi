@@ -46,7 +46,7 @@ struct CheckRowUserView: View {
     @State private var isOn = false
 
     private var itemWidth: CGFloat {
-        return CGFloat(DeviceSizeUtility.deviceWidth / 3)
+        CGFloat(DeviceSizeUtility.deviceWidth / 3)
     }
 
     var body: some View {

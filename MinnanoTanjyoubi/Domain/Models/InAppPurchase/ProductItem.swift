@@ -33,11 +33,11 @@ enum ProductItem {
     static func get(id: String) -> ProductItem? {
         switch id {
         case ProductItem.removeAds.id:
-            return .removeAds
+            .removeAds
         case ProductItem.unlockStorage.id:
-            return .unlockStorage
+            .unlockStorage
         default:
-            return nil
+            nil
         }
     }
 }

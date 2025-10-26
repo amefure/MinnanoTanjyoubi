@@ -13,6 +13,6 @@ struct SCYearAndMonth: Identifiable {
     var month: Int
 
     var yearAndMonth: String {
-        return "\(year)年\(month)月"
+        "\(year)年\(month)月"
     }
 }

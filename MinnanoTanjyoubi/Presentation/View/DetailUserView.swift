@@ -17,7 +17,7 @@ struct DetailUserView: View {
     @EnvironmentObject private var rootEnvironment: RootEnvironment
 
     private var roundWidth: CGFloat {
-        return DeviceSizeUtility.deviceWidth < 400 ? 50 : 65
+        DeviceSizeUtility.deviceWidth < 400 ? 50 : 65
     }
 
     private let dfmJp = DateFormatUtility(format: .jp)
@@ -101,7 +101,7 @@ struct DetailUserView: View {
                 EntryUserView(updateUserId: viewModel.state.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
             }.environmentObject(rootEnvironment)
 
-            if !DeviceSizeUtility.isSESize && !rootEnvironment.removeAds {
+            if !DeviceSizeUtility.isSESize, !rootEnvironment.removeAds {
                 AdMobBannerView()
                     .frame(height: 50)
             }

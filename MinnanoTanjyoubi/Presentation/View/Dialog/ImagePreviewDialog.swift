@@ -22,7 +22,7 @@ struct ImagePreviewDialog: View {
                     .opacity(0.3)
 
                 // ダイアログコンテンツ部分
-                if let image = image {
+                if let image {
                     image
                         .resizable()
                         .scaledToFit()

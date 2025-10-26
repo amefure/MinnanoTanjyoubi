@@ -18,7 +18,7 @@ enum Relation: String, PersistableEnum, Identifiable, CaseIterable, Codable {
     case sns = "SNS"
 
     var relationIndex: Int {
-        return switch self {
+        switch self {
         case .friend:
             0
         case .family:
@@ -35,7 +35,7 @@ enum Relation: String, PersistableEnum, Identifiable, CaseIterable, Codable {
     }
 
     static func getIndexbyRelation(_ index: Int) -> Relation {
-        return switch index {
+        switch index {
         case 0:
             Relation.friend
         case 1:

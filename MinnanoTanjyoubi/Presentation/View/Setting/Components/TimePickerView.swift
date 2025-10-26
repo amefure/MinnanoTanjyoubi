@@ -24,7 +24,7 @@ struct TimePickerView: View {
             .fontM()
             .colorInvert()
             .colorMultiply(rootEnvironment.scheme.text)
-            .onChange(of: time) { newValue in
+            .onChange(of: time) { _, newValue in
                 viewModel.registerNotifyTime(date: newValue)
             }.onAppear {
                 time = viewModel.getNotifyTimeDate()

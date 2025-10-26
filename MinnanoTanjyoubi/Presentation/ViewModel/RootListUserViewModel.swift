@@ -54,7 +54,7 @@ final class RootListUserViewModel: ObservableObject {
             .sink { [weak self] _ in
                 guard let self else { return }
                 // 下方向にスクロール中のみ半透明にする
-                self.opacity = self.isScrollingDown ? 0.5 : 1
+                opacity = isScrollingDown ? 0.5 : 1
             }.store(in: &cancellables)
 
         // 登録モーダルから戻った(falseになった)際にはリフレッシュ
@@ -62,7 +62,7 @@ final class RootListUserViewModel: ObservableObject {
             .sink { [weak self] flag in
                 guard let self else { return }
                 guard !flag else { return }
-                self.readAllUsers()
+                readAllUsers()
             }.store(in: &cancellables)
 
         $selectedFilteringRelation
@@ -93,9 +93,9 @@ final class RootListUserViewModel: ObservableObject {
     /// iOS18以降かどうか
     var isIos18Later: Bool {
         if #available(iOS 18, *) {
-            return true
+            true
         } else {
-            return false
+            false
         }
     }
 }

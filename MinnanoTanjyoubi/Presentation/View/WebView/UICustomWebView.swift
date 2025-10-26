@@ -20,7 +20,7 @@ struct UICustomWebView: UIViewRepresentable {
     }
 
     func makeUIView(context _: Context) -> WKWebView {
-        return webView
+        webView
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {

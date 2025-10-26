@@ -20,7 +20,7 @@ enum ImageError: Error {
     var title: String { "画像操作エラー" }
 
     var message: String {
-        return switch self {
+        switch self {
         case .saveFailed:
             "画像の保存に失敗しました。何度も繰り返される場合はアプリを起動し直して再度実行してみてください。"
         case .deleteFailed:

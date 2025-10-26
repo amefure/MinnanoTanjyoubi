@@ -20,21 +20,21 @@ enum AppColorScheme: String, CaseIterable {
     var name: String {
         switch self {
         case .original:
-            return "オリジナル"
+            "オリジナル"
         case .dark:
-            return "ダーク"
+            "ダーク"
         case .light:
-            return "ライト"
+            "ライト"
         case .pretty:
-            return "パステルピンク"
+            "パステルピンク"
         case .lemon:
-            return "レモンイエロー"
+            "レモンイエロー"
         case .blue:
-            return "ディープブルー"
+            "ディープブルー"
         case .modern:
-            return "モダンブラック"
+            "モダンブラック"
         case .pastelBlue:
-            return "パステルブルー"
+            "パステルブルー"
         }
     }
 
@@ -42,9 +42,9 @@ enum AppColorScheme: String, CaseIterable {
     var controlText: Color {
         switch self {
         case .pretty, .lemon, .pastelBlue:
-            return Asset.Colors.exText.swiftUIColor
+            Asset.Colors.exText.swiftUIColor
         default:
-            return .white
+            .white
         }
     }
 
@@ -52,21 +52,21 @@ enum AppColorScheme: String, CaseIterable {
     var foundationPrimary: Color {
         switch self {
         case .original:
-            return Asset.Colors.scheme1FoundationPrimary.swiftUIColor
+            Asset.Colors.scheme1FoundationPrimary.swiftUIColor
         case .dark:
-            return Asset.Colors.scheme2FoundationPrimary.swiftUIColor
+            Asset.Colors.scheme2FoundationPrimary.swiftUIColor
         case .light:
-            return Asset.Colors.scheme3FoundationPrimary.swiftUIColor
+            Asset.Colors.scheme3FoundationPrimary.swiftUIColor
         case .pretty:
-            return Asset.Colors.scheme4FoundationPrimary.swiftUIColor
+            Asset.Colors.scheme4FoundationPrimary.swiftUIColor
         case .lemon:
-            return Asset.Colors.scheme5FoundationPrimary.swiftUIColor
+            Asset.Colors.scheme5FoundationPrimary.swiftUIColor
         case .blue:
-            return Asset.Colors.scheme6FoundationPrimary.swiftUIColor
+            Asset.Colors.scheme6FoundationPrimary.swiftUIColor
         case .modern:
-            return Asset.Colors.scheme7FoundationPrimary.swiftUIColor
+            Asset.Colors.scheme7FoundationPrimary.swiftUIColor
         case .pastelBlue:
-            return Asset.Colors.scheme8FoundationPrimary.swiftUIColor
+            Asset.Colors.scheme8FoundationPrimary.swiftUIColor
         }
     }
 
@@ -74,21 +74,21 @@ enum AppColorScheme: String, CaseIterable {
     var foundationSub: Color {
         switch self {
         case .original:
-            return Asset.Colors.scheme1FoundationSub.swiftUIColor
+            Asset.Colors.scheme1FoundationSub.swiftUIColor
         case .dark:
-            return Asset.Colors.scheme2FoundationSub.swiftUIColor
+            Asset.Colors.scheme2FoundationSub.swiftUIColor
         case .light:
-            return Asset.Colors.scheme3FoundationSub.swiftUIColor
+            Asset.Colors.scheme3FoundationSub.swiftUIColor
         case .pretty:
-            return Asset.Colors.scheme4FoundationSub.swiftUIColor
+            Asset.Colors.scheme4FoundationSub.swiftUIColor
         case .lemon:
-            return Asset.Colors.scheme5FoundationSub.swiftUIColor
+            Asset.Colors.scheme5FoundationSub.swiftUIColor
         case .blue:
-            return Asset.Colors.scheme6FoundationSub.swiftUIColor
+            Asset.Colors.scheme6FoundationSub.swiftUIColor
         case .modern:
-            return Asset.Colors.scheme7FoundationSub.swiftUIColor
+            Asset.Colors.scheme7FoundationSub.swiftUIColor
         case .pastelBlue:
-            return Asset.Colors.scheme8FoundationSub.swiftUIColor
+            Asset.Colors.scheme8FoundationSub.swiftUIColor
         }
     }
 
@@ -96,21 +96,21 @@ enum AppColorScheme: String, CaseIterable {
     var thema1: Color {
         switch self {
         case .original:
-            return Asset.Colors.scheme1Thema1.swiftUIColor
+            Asset.Colors.scheme1Thema1.swiftUIColor
         case .dark:
-            return Asset.Colors.scheme2Thema1.swiftUIColor
+            Asset.Colors.scheme2Thema1.swiftUIColor
         case .light:
-            return Asset.Colors.scheme3Thema1.swiftUIColor
+            Asset.Colors.scheme3Thema1.swiftUIColor
         case .pretty:
-            return Asset.Colors.scheme4Thema1.swiftUIColor
+            Asset.Colors.scheme4Thema1.swiftUIColor
         case .lemon:
-            return Asset.Colors.scheme5Thema1.swiftUIColor
+            Asset.Colors.scheme5Thema1.swiftUIColor
         case .blue:
-            return Asset.Colors.scheme6Thema1.swiftUIColor
+            Asset.Colors.scheme6Thema1.swiftUIColor
         case .modern:
-            return Asset.Colors.scheme7Thema1.swiftUIColor
+            Asset.Colors.scheme7Thema1.swiftUIColor
         case .pastelBlue:
-            return Asset.Colors.scheme8Thema1.swiftUIColor
+            Asset.Colors.scheme8Thema1.swiftUIColor
         }
     }
 
@@ -118,21 +118,21 @@ enum AppColorScheme: String, CaseIterable {
     var thema2: Color {
         switch self {
         case .original:
-            return Asset.Colors.scheme1Thema2.swiftUIColor
+            Asset.Colors.scheme1Thema2.swiftUIColor
         case .dark:
-            return Asset.Colors.scheme2Thema2.swiftUIColor
+            Asset.Colors.scheme2Thema2.swiftUIColor
         case .light:
-            return Asset.Colors.scheme3Thema2.swiftUIColor
+            Asset.Colors.scheme3Thema2.swiftUIColor
         case .pretty:
-            return Asset.Colors.scheme4Thema2.swiftUIColor
+            Asset.Colors.scheme4Thema2.swiftUIColor
         case .lemon:
-            return Asset.Colors.scheme5Thema2.swiftUIColor
+            Asset.Colors.scheme5Thema2.swiftUIColor
         case .blue:
-            return Asset.Colors.scheme6Thema2.swiftUIColor
+            Asset.Colors.scheme6Thema2.swiftUIColor
         case .modern:
-            return Asset.Colors.scheme7Thema2.swiftUIColor
+            Asset.Colors.scheme7Thema2.swiftUIColor
         case .pastelBlue:
-            return Asset.Colors.scheme8Thema2.swiftUIColor
+            Asset.Colors.scheme8Thema2.swiftUIColor
         }
     }
 
@@ -140,21 +140,21 @@ enum AppColorScheme: String, CaseIterable {
     var thema3: Color {
         switch self {
         case .original:
-            return Asset.Colors.scheme1Thema3.swiftUIColor
+            Asset.Colors.scheme1Thema3.swiftUIColor
         case .dark:
-            return Asset.Colors.scheme2Thema3.swiftUIColor
+            Asset.Colors.scheme2Thema3.swiftUIColor
         case .light:
-            return Asset.Colors.scheme3Thema3.swiftUIColor
+            Asset.Colors.scheme3Thema3.swiftUIColor
         case .pretty:
-            return Asset.Colors.scheme4Thema3.swiftUIColor
+            Asset.Colors.scheme4Thema3.swiftUIColor
         case .lemon:
-            return Asset.Colors.scheme5Thema3.swiftUIColor
+            Asset.Colors.scheme5Thema3.swiftUIColor
         case .blue:
-            return Asset.Colors.scheme6Thema3.swiftUIColor
+            Asset.Colors.scheme6Thema3.swiftUIColor
         case .modern:
-            return Asset.Colors.scheme7Thema3.swiftUIColor
+            Asset.Colors.scheme7Thema3.swiftUIColor
         case .pastelBlue:
-            return Asset.Colors.scheme8Thema3.swiftUIColor
+            Asset.Colors.scheme8Thema3.swiftUIColor
         }
     }
 
@@ -162,21 +162,21 @@ enum AppColorScheme: String, CaseIterable {
     var thema4: Color {
         switch self {
         case .original:
-            return Asset.Colors.scheme1Thema4.swiftUIColor
+            Asset.Colors.scheme1Thema4.swiftUIColor
         case .dark:
-            return Asset.Colors.scheme2Thema4.swiftUIColor
+            Asset.Colors.scheme2Thema4.swiftUIColor
         case .light:
-            return Asset.Colors.scheme3Thema4.swiftUIColor
+            Asset.Colors.scheme3Thema4.swiftUIColor
         case .pretty:
-            return Asset.Colors.scheme4Thema4.swiftUIColor
+            Asset.Colors.scheme4Thema4.swiftUIColor
         case .lemon:
-            return Asset.Colors.scheme5Thema4.swiftUIColor
+            Asset.Colors.scheme5Thema4.swiftUIColor
         case .blue:
-            return Asset.Colors.scheme6Thema4.swiftUIColor
+            Asset.Colors.scheme6Thema4.swiftUIColor
         case .modern:
-            return Asset.Colors.scheme7Thema4.swiftUIColor
+            Asset.Colors.scheme7Thema4.swiftUIColor
         case .pastelBlue:
-            return Asset.Colors.scheme8Thema4.swiftUIColor
+            Asset.Colors.scheme8Thema4.swiftUIColor
         }
     }
 
@@ -184,21 +184,21 @@ enum AppColorScheme: String, CaseIterable {
     var text: Color {
         switch self {
         case .original:
-            return Asset.Colors.scheme1Text.swiftUIColor
+            Asset.Colors.scheme1Text.swiftUIColor
         case .dark:
-            return Asset.Colors.scheme2Text.swiftUIColor
+            Asset.Colors.scheme2Text.swiftUIColor
         case .light:
-            return Asset.Colors.scheme3Text.swiftUIColor
+            Asset.Colors.scheme3Text.swiftUIColor
         case .pretty:
-            return Asset.Colors.scheme4Text.swiftUIColor
+            Asset.Colors.scheme4Text.swiftUIColor
         case .lemon:
-            return Asset.Colors.scheme5Text.swiftUIColor
+            Asset.Colors.scheme5Text.swiftUIColor
         case .blue:
-            return Asset.Colors.scheme6Text.swiftUIColor
+            Asset.Colors.scheme6Text.swiftUIColor
         case .modern:
-            return Asset.Colors.scheme7Text.swiftUIColor
+            Asset.Colors.scheme7Text.swiftUIColor
         case .pastelBlue:
-            return Asset.Colors.scheme8Text.swiftUIColor
+            Asset.Colors.scheme8Text.swiftUIColor
         }
     }
 }

@@ -27,7 +27,7 @@ struct SCDate: Identifiable, @unchecked Sendable {
     }
 
     func dayColor(defaultColor: Color = .gray) -> Color {
-        guard let week = week else { return defaultColor }
+        guard let week else { return defaultColor }
         if !holidayName.isEmpty { return .red }
         if week == .saturday {
             return .blue

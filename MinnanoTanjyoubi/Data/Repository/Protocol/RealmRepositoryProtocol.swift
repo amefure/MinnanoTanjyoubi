@@ -9,8 +9,8 @@ import RealmSwift
 
 protocol RealmRepositoryProtocol {
     // Create
-    func createObject<T: Object>(_ obj: T)
-    func createObjectBG<T: Object>(_ obj: T)
+    func createObject(_ obj: some Object)
+    func createObjectBG(_ obj: some Object)
 
     // Read
     func readAllObjs<T: Object>() -> [T]
@@ -24,7 +24,7 @@ protocol RealmRepositoryProtocol {
     func updateObjectBG<T: Object>(_ objectType: T.Type, id: ObjectId, updateBlock: @escaping (T) -> Void)
 
     // Delete
-    func removeObjs<T: Object & Identifiable>(list: [T])
-    func removeAllObjs<T: Object & Identifiable>(_ objectType: T.Type)
-    func removeAllObjsBG<T: Object & Identifiable>(_ objectType: T.Type)
+    func removeObjs(list: [some Object & Identifiable])
+    func removeAllObjs(_ objectType: (some Object & Identifiable).Type)
+    func removeAllObjsBG(_ objectType: (some Object & Identifiable).Type)
 }

@@ -36,7 +36,7 @@ final class UpdateRelationNameViewModel: ObservableObject {
 
     private func validationInput() -> Bool {
         let targetList = [friend, family, school, work, other, sns]
-        return !targetList.contains(where: { $0.isEmpty })
+        return !targetList.contains(where: \.isEmpty)
     }
 
     @MainActor

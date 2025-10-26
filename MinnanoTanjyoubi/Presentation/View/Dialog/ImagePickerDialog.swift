@@ -43,7 +43,7 @@ struct ImagePickerDialog: UIViewControllerRepresentable {
 
             if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
-                    guard let self = self else { return }
+                    guard let self else { return }
                     guard let image = image as? UIImage else { return }
                     DispatchQueue.main.sync {
                         self.parent.image = image

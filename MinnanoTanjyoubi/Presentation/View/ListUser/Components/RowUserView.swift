@@ -24,9 +24,9 @@ struct RowUserView: View {
     /// 文字数でフォントサイズを調整
     private func changeFontSizeByLength(_ name: String) -> CGFloat {
         if name.count > 8 {
-            return 10
+            10
         } else {
-            return 13
+            13
         }
     }
 
@@ -58,7 +58,7 @@ struct RowUserView: View {
                     Text("歳")
                         .fontSS()
 
-                    if isDisplayAgeMonth && !user.isYearsUnknown {
+                    if isDisplayAgeMonth, !user.isYearsUnknown {
                         Text("\(UserCalcUtility.currentAgeMonth(from: user.date))")
                             .fontM()
                         Text("ヶ月")

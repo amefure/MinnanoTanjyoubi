@@ -70,14 +70,14 @@ final class CalendarViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] index in
                 guard let self else { return }
-                self.displayCalendarIndex = CGFloat(index)
+                displayCalendarIndex = CGFloat(index)
             }.store(in: &cancellables)
 
         scCalenderRepository.currentDates
             .receive(on: DispatchQueue.main)
             .sink { [weak self] dates in
                 guard let self else { return }
-                self.currentDates = dates
+                currentDates = dates
             }.store(in: &cancellables)
 
         scCalenderRepository.currentYearAndMonth
@@ -91,7 +91,7 @@ final class CalendarViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] list in
                 guard let self else { return }
-                self.dayOfWeekList = list
+                dayOfWeekList = list
             }.store(in: &cancellables)
 
         // カレンダー更新用Notificationを観測
@@ -147,7 +147,7 @@ extension CalendarViewModel {
 
     /// 現在表示中の年月を取得する
     func getCurrentYearAndMonth() -> SCYearAndMonth {
-        return currentYearAndMonth[safe: Int(displayCalendarIndex)] ?? SCYearAndMonth(year: 2025, month: 1)
+        currentYearAndMonth[safe: Int(displayCalendarIndex)] ?? SCYearAndMonth(year: 2025, month: 1)
     }
 
     /// 格納済みの最新月の翌月を追加する
@@ -184,9 +184,9 @@ extension CalendarViewModel {
         // 更新対象のSCDateを取得
         guard let index2 = currentDates[index].firstIndex(where: {
             if let date = $0.date {
-                return dateFormatUtility.checkInSameDayAs(date: date, sameDay: createdAt)
+                dateFormatUtility.checkInSameDayAs(date: date, sameDay: createdAt)
             } else {
-                return false
+                false
             }
         }) else { return (-1, -1) }
         return (index, index2)
