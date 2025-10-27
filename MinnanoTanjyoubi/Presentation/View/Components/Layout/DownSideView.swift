@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DownSideView: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isiPadSize = DeviceSizeUtility.isiPadSize

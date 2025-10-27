@@ -9,13 +9,13 @@ import SwiftUI
 
 struct SelectSortView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(SelectSortViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("並び順変更")
                 .fontL(bold: true)
@@ -48,11 +48,12 @@ struct SelectSortView: View {
 
             Spacer()
 
-            DownSideView(parentFunction: {
-                viewModel.registerSortItem()
-
-            }, imageString: "checkmark")
-                .environmentObject(rootEnvironment)
+            DownSideView(
+                parentFunction: {
+                    viewModel.registerSortItem()
+                },
+                imageString: "checkmark"
+            ).environment(\.rootEnvironment, rootEnvironment)
 
         }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
@@ -73,5 +74,5 @@ struct SelectSortView: View {
 
 #Preview {
     SelectSortView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

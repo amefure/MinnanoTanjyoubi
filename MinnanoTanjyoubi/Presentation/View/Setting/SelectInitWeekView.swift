@@ -9,13 +9,13 @@ import SwiftUI
 
 struct SelectInitWeekView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(SelectInitWeekViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("週始まり変更")
                 .fontL(bold: true)
@@ -54,7 +54,7 @@ struct SelectInitWeekView: View {
                     viewModel.registerInitWeek()
                 },
                 imageString: "checkmark"
-            ).environmentObject(rootEnvironment)
+            ).environment(\.rootEnvironment, rootEnvironment)
 
         }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
@@ -75,5 +75,5 @@ struct SelectInitWeekView: View {
 
 #Preview {
     SelectInitWeekView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

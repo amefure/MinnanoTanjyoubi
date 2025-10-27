@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomInputView: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var title: String
     var placeholder: String
@@ -30,5 +30,5 @@ struct CustomInputView: View {
 
 #Preview {
     CustomInputView(title: "タイトル", placeholder: "placeholder", text: Binding.constant(""))
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

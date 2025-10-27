@@ -10,18 +10,13 @@ import SwiftUI
 struct UpSideView: View {
     @Environment(\.dismiss) private var dismiss
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
+
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isiPadSize = DeviceSizeUtility.isiPadSize
     private let isSESize = DeviceSizeUtility.isiPadSize
 
-    private var viewSize: CGFloat {
-        if isSESize {
-            35
-        } else {
-            50
-        }
-    }
+    private var viewSize: CGFloat { isSESize ? 35 : 50 }
 
     var body: some View {
         HStack {
@@ -49,5 +44,5 @@ struct UpSideView: View {
 
 #Preview {
     UpSideView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

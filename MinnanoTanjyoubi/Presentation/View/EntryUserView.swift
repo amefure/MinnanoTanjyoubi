@@ -11,8 +11,8 @@ import SwiftUI
 /// モーダル表示されるデータ登録ビュー
 /// データ更新時も呼び出される
 struct EntryUserView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(EntryUserViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @State private var viewModel = DIContainer.shared.resolve(EntryUserViewModel.self)
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     /// Updateデータ受け取り用
     var updateUserId: ObjectId?
@@ -29,7 +29,7 @@ struct EntryUserView: View {
     var body: some View {
         VStack(alignment: .center) {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             if !DeviceSizeUtility.isSESize {
                 Spacer()
@@ -65,7 +65,7 @@ struct EntryUserView: View {
                         date: $viewModel.state.date,
                         showWheel: $viewModel.state.showWheel,
                         isYearsUnknown: $viewModel.state.isYearsUnknown
-                    ).environmentObject(rootEnvironment)
+                    ).environment(\.rootEnvironment, rootEnvironment)
                 }.padding(5)
 
                 // Input Relation
@@ -132,7 +132,7 @@ struct EntryUserView: View {
                     isSelfShowModal = false
                 },
                 imageString: "checkmark"
-            ).environmentObject(rootEnvironment)
+            ).environment(\.rootEnvironment, rootEnvironment)
 
         }.padding()
             .fontM()
@@ -185,8 +185,7 @@ private struct DatePickerView: View {
     @Binding var showWheel: Bool
     @Binding var isYearsUnknown: Bool
     private let isSESize: Bool = DeviceSizeUtility.isSESize
-
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some View {
         HStack {

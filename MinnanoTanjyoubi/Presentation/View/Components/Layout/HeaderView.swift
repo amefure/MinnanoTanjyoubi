@@ -16,7 +16,7 @@ struct HeaderView: View {
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isSESize = DeviceSizeUtility.isSESize
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some View {
         HStack(alignment: .center) {
@@ -49,12 +49,12 @@ struct HeaderView: View {
             .background(rootEnvironment.state.scheme.foundationPrimary)
             .navigationDestination(isPresented: $isSettingActive) {
                 SettingView()
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
             }
     }
 }
 
 #Preview {
     HeaderView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

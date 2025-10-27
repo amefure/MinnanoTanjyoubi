@@ -39,9 +39,7 @@ private struct CheckBoxToggleStyle: ToggleStyle {
 /// 削除時のリスト選択ボタン
 struct CheckRowUserView: View {
     var user: User
-
-    // Environment
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     @State private var isOn = false
 
@@ -55,7 +53,7 @@ struct CheckRowUserView: View {
             Toggle(isOn: $isOn) {
                 EmptyView()
             }.toggleStyle(
-                CheckBoxToggleStyle(user: user, deleteArray: $rootEnvironment.state.deleteArray)
+                CheckBoxToggleStyle(user: user, deleteArray: Binding.constant(rootEnvironment.state.deleteArray))
             ).tint(rootEnvironment.state.scheme.thema1)
                 .frame(width: itemWidth)
                 .zIndex(2)
@@ -73,7 +71,7 @@ struct CheckRowUserView: View {
                 RowUserView(user: user)
                     .opacity(isOn ? 1 : 0.7)
                     .zIndex(1)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
             }
         }
     }

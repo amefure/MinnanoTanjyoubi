@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TheDayView: View {
     @EnvironmentObject private var viewModel: CalendarViewModel
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     let theDay: SCDate
 
@@ -106,7 +106,7 @@ struct TheDayView: View {
                         isCalendarDay: theDay.day,
                         isSelfShowModal: $isShowEntryModal
                     )
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
                 }.alert(
                     isPresented: $isLimitAlert,
                     title: "Error...",
@@ -120,7 +120,7 @@ struct TheDayView: View {
             view
                 .navigationDestination(isPresented: $isShowDetailView) {
                     DetailUserView(userId: theDay.users.first!.id)
-                        .environmentObject(rootEnvironment)
+                        .environment(\.rootEnvironment, rootEnvironment)
                 }
         }.if(theDay.users.count >= 2) { view in
             view
@@ -129,7 +129,7 @@ struct TheDayView: View {
                 }.navigationDestination(isPresented: $isShowDetailView) {
                     if let user {
                         DetailUserView(userId: user.id)
-                            .environmentObject(rootEnvironment)
+                            .environment(\.rootEnvironment, rootEnvironment)
                     }
                 }
         }
@@ -152,7 +152,7 @@ struct TheDayView: View {
                         } label: {
                             RowUserView(user: user)
                                 .frame(width: CGFloat(DeviceSizeUtility.deviceWidth / 3) - 10)
-                                .environmentObject(rootEnvironment)
+                                .environment(\.rootEnvironment, rootEnvironment)
                         }.buttonStyle(.plain)
                     }
                 }

@@ -14,7 +14,7 @@ struct DetailUserView: View {
 
     @StateObject private var viewModel = DIContainer.shared.resolve(DetailUserViewModel.self)
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     private var roundWidth: CGFloat {
         DeviceSizeUtility.deviceWidth < 400 ? 50 : 65
@@ -27,7 +27,7 @@ struct DetailUserView: View {
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Group {
                 // Relation/あと何日../名前/ふりがな/生年月日/和暦
@@ -99,7 +99,7 @@ struct DetailUserView: View {
                 imageString: "square.and.pencil"
             ).sheet(isPresented: $viewModel.isShowUpdateModalView) {
                 EntryUserView(updateUserId: viewModel.state.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
-            }.environmentObject(rootEnvironment)
+            }.environment(\.rootEnvironment, rootEnvironment)
 
             if !DeviceSizeUtility.isSESize, !rootEnvironment.state.removeAds {
                 AdMobBannerView()

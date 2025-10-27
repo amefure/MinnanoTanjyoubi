@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarRootView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(CalendarViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     private let columns = Array(repeating: GridItem(spacing: 0), count: 7)
 
@@ -17,7 +17,7 @@ struct CalendarRootView: View {
         VStack(spacing: 0) {
             YearAndMonthSelectionView()
                 .environmentObject(viewModel)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             LazyVGrid(columns: columns, spacing: 0) {
                 ForEach(viewModel.dayOfWeekList, id: \.self) { week in
@@ -29,7 +29,7 @@ struct CalendarRootView: View {
 
             CarouselCalendarView()
                 .environmentObject(viewModel)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Spacer()
 
@@ -43,5 +43,5 @@ struct CalendarRootView: View {
 
 #Preview {
     CalendarRootView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

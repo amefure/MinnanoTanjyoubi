@@ -14,7 +14,7 @@ struct AppLockInputView: View {
     @State private var password: [String] = []
 
     @StateObject private var viewModel = DIContainer.shared.resolve(AppLockInputViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -72,5 +72,5 @@ struct AppLockInputView: View {
 
 #Preview {
     AppLockInputView(isLock: Binding.constant(true))
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

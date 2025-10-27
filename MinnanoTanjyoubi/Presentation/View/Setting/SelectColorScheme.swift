@@ -11,13 +11,13 @@ struct SelectColorScheme: View {
     @State private var scheme: AppColorScheme = .original
     @State private var isAlert = false
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("テーマカラー変更")
                 .fontL(bold: true)
@@ -60,13 +60,17 @@ struct SelectColorScheme: View {
 
             Spacer()
 
-            DownSideView(parentFunction: {
-                UIApplication.shared.closeKeyboard()
+            DownSideView(
+                parentFunction: {
+                    UIApplication.shared.closeKeyboard()
 
-                rootEnvironment.registerColorScheme(scheme)
-                isAlert = true
-            }, imageString: "checkmark")
-                .environmentObject(rootEnvironment)
+                    rootEnvironment.registerColorScheme(scheme)
+
+                    isAlert = true
+
+                },
+                imageString: "checkmark"
+            ).environment(\.rootEnvironment, rootEnvironment)
 
         }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
@@ -111,5 +115,5 @@ private struct ColorSchemePreView: View {
 
 #Preview {
     SelectColorScheme()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

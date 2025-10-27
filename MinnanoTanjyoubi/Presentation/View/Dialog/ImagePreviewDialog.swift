@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ImagePreviewDialog: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     @Binding var isPresented: Bool
 
@@ -49,12 +49,12 @@ extension View {
     ) -> some View {
         overlay(
             ImagePreviewDialog(isPresented: isPresented, image: image)
-                .environmentObject(environment)
+                .environment(\.rootEnvironment, environment)
         )
     }
 }
 
 #Preview {
     ImagePreviewDialog(isPresented: Binding.constant(true), image: Image(systemName: "iphone"))
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditNotifyMessageView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(EditNotifyMessageViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     @FocusState private var isFocus: Bool
 
@@ -18,7 +18,7 @@ struct EditNotifyMessageView: View {
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("通知メッセージ編集")
                 .fontL(bold: true)
@@ -31,7 +31,7 @@ struct EditNotifyMessageView: View {
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             DemoNotifyView(msg: viewModel.notifyMsg)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Rectangle()
                 .fill(.white)
@@ -63,8 +63,9 @@ struct EditNotifyMessageView: View {
             DownSideView(
                 parentFunction: {
                     viewModel.registerNotifyMsg()
-                }, imageString: "checkmark"
-            ).environmentObject(rootEnvironment)
+                },
+                imageString: "checkmark"
+            ).environment(\.rootEnvironment, rootEnvironment)
 
         }.onAppear {
             viewModel.onAppear()
@@ -91,7 +92,7 @@ struct EditNotifyMessageView: View {
 }
 
 struct DemoNotifyView: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     let title: String = "みんなの誕生日"
     let msg: String
@@ -150,5 +151,5 @@ struct DemoNotifyView: View {
 
 #Preview {
     EditNotifyMessageView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

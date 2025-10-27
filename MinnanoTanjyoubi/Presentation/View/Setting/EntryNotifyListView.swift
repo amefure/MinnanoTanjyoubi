@@ -9,14 +9,14 @@ import SwiftUI
 
 struct EntryNotifyListView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(EntryNotifyListViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             HStack {
                 Spacer()
@@ -124,5 +124,5 @@ struct EntryNotifyListView: View {
 
 #Preview {
     EntryNotifyListView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

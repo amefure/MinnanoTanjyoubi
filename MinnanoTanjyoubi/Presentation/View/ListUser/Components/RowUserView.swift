@@ -15,8 +15,7 @@ struct RowUserView: View {
     @State private var isDisplayDateLater = false
     @State private var isDisplayAgeMonth = false
 
-    // Environment
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     private let dfmJp = DateFormatUtility(format: .jp)
     private let dfmJpOnlyDate = DateFormatUtility(format: .jpOnlyDate)
@@ -108,17 +107,15 @@ struct RowUserView: View {
 
             if daysLater == 0 {
                 GarlandView()
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
             }
         }
     }
 }
 
-// MARK: - ガーランド三角形
-
+/// ガーランド三角形
 struct GarlandView: View {
-    // Environment
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     var body: some View {
         HStack {
             HStack(spacing: 0) {

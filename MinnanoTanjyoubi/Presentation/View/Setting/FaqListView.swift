@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct FaqListView: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("よくある質問")
                 .fontL(bold: true)
@@ -41,7 +41,7 @@ struct FaqListView: View {
 
 #Preview {
     FaqListView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }
 
 private struct AccordionBoxView: View {

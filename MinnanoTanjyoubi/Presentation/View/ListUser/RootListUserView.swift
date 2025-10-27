@@ -12,7 +12,7 @@ import UIKit
 /// データをグリッドレイアウト・セクションレイアウト・カレンダー表示を切り替え
 struct RootListUserView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(RootListUserViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @GestureState private var dragOffset = CGSize.zero
 
     private var drag: some Gesture {
@@ -54,7 +54,7 @@ struct RootListUserView: View {
             case .calendar:
                 // 単体のグリッドレイアウト
                 CalendarRootView()
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
 
             default:
                 ZStack {
@@ -68,11 +68,11 @@ struct RootListUserView: View {
                                 case .grid:
                                     // 単体のグリッドレイアウト
                                     SingleGridListView(users: viewModel.allUsers)
-                                        .environmentObject(rootEnvironment)
+                                        .environment(\.rootEnvironment, rootEnvironment)
                                 case .group:
                                     // カテゴリセクショングリッドレイアウト
                                     SectionGridListView(users: viewModel.allUsers)
-                                        .environmentObject(rootEnvironment)
+                                        .environment(\.rootEnvironment, rootEnvironment)
                                 case .calendar:
                                     // ここは呼ばれない
                                     EmptyView()
@@ -190,7 +190,7 @@ struct RootListUserView: View {
                 .fontM()
         }.sheet(isPresented: $viewModel.isShowEntryModal) {
             EntryUserView(updateUserId: nil, isSelfShowModal: $viewModel.isShowEntryModal)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
         }.alert(
             isPresented: $viewModel.isShowLimitAlert,
             title: "Error...",

@@ -11,7 +11,7 @@ import SwiftUI
 struct ControlWebView: View {
     var url: URL
     private let uICustomWebView: UICustomWebView!
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     init(url: URL) {
         self.url = url

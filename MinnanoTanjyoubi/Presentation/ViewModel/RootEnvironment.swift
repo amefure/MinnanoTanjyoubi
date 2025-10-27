@@ -8,7 +8,21 @@
 import Combine
 import RealmSwift
 import StoreKit
+import SwiftUI
 import UIKit
+
+private struct RootEnvironmentKey: @MainActor EnvironmentKey {
+    @MainActor
+    static let defaultValue = DIContainer.shared.resolve(RootEnvironment.self)
+}
+
+extension EnvironmentValues {
+    @MainActor
+    var rootEnvironment: RootEnvironment {
+        get { self[RootEnvironmentKey.self] }
+        set { self[RootEnvironmentKey.self] = newValue }
+    }
+}
 
 @Observable
 final class RootEnvironmentState {
@@ -44,7 +58,7 @@ final class RootEnvironmentState {
 }
 
 /// アプリ内で共通で利用される状態や環境値を保持する
-final class RootEnvironment: ObservableObject {
+final class RootEnvironment {
     var state = RootEnvironmentState()
 
     /// ポップアップ表示起動回数定数

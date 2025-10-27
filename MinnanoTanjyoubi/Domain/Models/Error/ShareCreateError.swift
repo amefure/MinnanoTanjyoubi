@@ -12,6 +12,9 @@ enum ShareCreateError: Error {
     /// ES002：容量超過エラー
     case overCapacity
 
+    /// ES003：その他エラー
+    case other
+
     var title: String { "転送登録エラー" }
 
     var message: String {
@@ -19,7 +22,9 @@ enum ShareCreateError: Error {
         case .existUser:
             "すでに同姓同名の誕生日情報が存在するため登録を中断しました。"
         case .overCapacity:
-            "転送情報を全て登録すると保存容量が上限に達っしてしまうため登録を中断しました。\n容量を増加するか残量の範囲内で転送情報を受け取ってください。"
+            "転送情報を全て登録すると保存容量が上限に達っするため登録を中断しました。\n容量を増加するか残量の範囲内で転送情報を受け取ってください。"
+        case .other:
+            "共有された誕生日情報の登録に失敗しました。"
         }
     }
 }

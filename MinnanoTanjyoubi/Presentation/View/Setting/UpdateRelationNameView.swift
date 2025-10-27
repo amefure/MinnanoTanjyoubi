@@ -9,13 +9,13 @@ import SwiftUI
 
 struct UpdateRelationNameView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(UpdateRelationNameViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("関係カテゴリ名編集")
                 .fontL(bold: true)
@@ -23,29 +23,32 @@ struct UpdateRelationNameView: View {
                 .padding(.vertical)
 
             CustomInputView(title: "カテゴリ1", placeholder: RelationConfig.FRIEND_NAME, text: $viewModel.friend)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             CustomInputView(title: "カテゴリ2", placeholder: RelationConfig.FAMILY_NAME, text: $viewModel.family)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             CustomInputView(title: "カテゴリ3", placeholder: RelationConfig.SCHOOL_NAME, text: $viewModel.school)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             CustomInputView(title: "カテゴリ4", placeholder: RelationConfig.WORK_NAME, text: $viewModel.work)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             CustomInputView(title: "カテゴリ5", placeholder: RelationConfig.OTHER_NAME, text: $viewModel.other)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             CustomInputView(title: "カテゴリ6", placeholder: RelationConfig.SNS_NAME, text: $viewModel.sns)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Spacer()
 
-            DownSideView(parentFunction: {
-                viewModel.saveRelationName()
-            }, imageString: "checkmark")
-                .environmentObject(rootEnvironment)
+            DownSideView(
+                parentFunction: {
+                    viewModel.saveRelationName()
+
+                },
+                imageString: "checkmark"
+            ).environment(\.rootEnvironment, rootEnvironment)
 
         }.background(rootEnvironment.state.scheme.foundationSub)
             .onAppear { FBAnalyticsManager.loggingScreen(screen: .UpdateRelationScreen) }
@@ -78,5 +81,5 @@ struct UpdateRelationNameView: View {
 
 #Preview {
     UpdateRelationNameView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

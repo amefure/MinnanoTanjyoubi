@@ -9,13 +9,13 @@ import SwiftUI
 
 struct InAppPurchaseView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(InAppPurchaseViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("広告削除 & 容量解放")
                 .fontL(bold: true)
@@ -173,5 +173,5 @@ struct InAppPurchaseView: View {
 
 #Preview {
     InAppPurchaseView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

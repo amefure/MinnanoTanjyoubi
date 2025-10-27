@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ShareUserLinkView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(ShareUserLinkViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("誕生日情報共有")
                 .fontL()
@@ -72,5 +72,5 @@ struct ShareUserLinkView: View {
 
 #Preview {
     ShareUserLinkView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }
