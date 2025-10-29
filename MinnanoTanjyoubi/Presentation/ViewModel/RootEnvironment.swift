@@ -28,11 +28,11 @@ extension EnvironmentValues {
 final class RootEnvironmentState {
     private(set) var scheme: AppColorScheme = .original
     /// アプリロック
-    var appLocked: Bool = false
+    fileprivate(set) var appLocked: Bool = false
     /// 広告削除購入フラグ
-    var removeAds: Bool = false
+    fileprivate(set) var removeAds: Bool = false
     /// 容量解放購入フラグ
-    var unlockStorage: Bool = false
+    fileprivate(set) var unlockStorage: Bool = false
     /// 削除対象のUser
     var deleteArray: [User] = []
     /// Deleteモード

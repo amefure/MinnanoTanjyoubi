@@ -25,7 +25,7 @@ final class EntryUserState {
     /// バリデーションダイアログ
     var isShowValidationDialog: Bool = false
 
-    func setUser(_ user: User) {
+    fileprivate func setUser(_ user: User) {
         targetUser = user
         // Update時なら初期値セット
         name = user.name

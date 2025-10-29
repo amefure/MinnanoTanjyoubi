@@ -13,7 +13,7 @@ final class RootViewState {
     var isShowShareCreateSuccessAlert: Bool = false
 
     private(set) var shareCreateError: ShareCreateError = .other
-    var createUsers: [User] = []
+    fileprivate(set) var createUsers: [User] = []
 
     fileprivate func showShareCreateFailedAlert(_ error: ShareCreateError) {
         shareCreateError = error

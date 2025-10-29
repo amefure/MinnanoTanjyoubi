@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectInitWeekView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(SelectInitWeekViewModel.self)
+    @State private var viewModel = DIContainer.shared.resolve(SelectInitWeekViewModel.self)
     @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
@@ -37,7 +37,7 @@ struct SelectInitWeekView: View {
                                 .foregroundStyle(Asset.Colors.exText.swiftUIColor)
                             Spacer()
 
-                            if viewModel.selectWeek == week {
+                            if viewModel.state.selectWeek == week {
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(rootEnvironment.state.scheme.foundationPrimary)
                             }
@@ -60,7 +60,7 @@ struct SelectInitWeekView: View {
             .fontM()
             .navigationBarBackButtonHidden()
             .alert(
-                isPresented: $viewModel.isShowSuccessAlert,
+                isPresented: $viewModel.state.isShowSuccessAlert,
                 title: "お知らせ",
                 message: "週始まりを変更しました。",
                 positiveButtonTitle: "OK",

@@ -19,7 +19,7 @@ final class UpdateRelationNameState {
     var other: String = ""
     var sns: String = ""
 
-    func setRelationName(relationList: [String]) {
+    fileprivate func setRelationName(relationList: [String]) {
         friend = relationList[safe: 0] ?? RelationConfig.FRIEND_NAME
         family = relationList[safe: 1] ?? RelationConfig.FAMILY_NAME
         school = relationList[safe: 2] ?? RelationConfig.SCHOOL_NAME

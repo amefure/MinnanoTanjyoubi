@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectSortView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(SelectSortViewModel.self)
+    @State private var viewModel = DIContainer.shared.resolve(SelectSortViewModel.self)
     @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
@@ -30,12 +30,11 @@ struct SelectSortView: View {
                         HStack {
                             Text(sort.name)
                                 .foregroundStyle(Asset.Colors.exText.swiftUIColor)
-                                .fontWeight(.bold)
-                                .font(.system(size: 17))
+                                .fontM(bold: true)
 
                             Spacer()
 
-                            if viewModel.sort == sort {
+                            if viewModel.state.sort == sort {
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(rootEnvironment.state.scheme.foundationPrimary)
                             }
@@ -61,7 +60,7 @@ struct SelectSortView: View {
             .onAppear {
                 viewModel.onAppear()
             }.alert(
-                isPresented: $viewModel.isShowSuccessAlert,
+                isPresented: $viewModel.state.isShowSuccessAlert,
                 title: "お知らせ",
                 message: "並び順を変更しました。",
                 positiveButtonTitle: "OK",

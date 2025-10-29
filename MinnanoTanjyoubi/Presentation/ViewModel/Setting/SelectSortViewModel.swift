@@ -7,9 +7,17 @@
 
 import SwiftUI
 
-final class SelectSortViewModel: ObservableObject {
-    @Published private(set) var sort: AppSortItem = .daysLater
-    @Published var isShowSuccessAlert: Bool = false
+@Observable
+final class SelectSortState {
+    private(set) var sort: AppSortItem = .daysLater
+    var isShowSuccessAlert: Bool = false
+    fileprivate func setSortItem(sort: AppSortItem) {
+        self.sort = sort
+    }
+}
+
+final class SelectSortViewModel {
+    var state = SelectSortState()
 
     /// `Repository`
     private let userDefaultsRepository: UserDefaultsRepository
@@ -23,11 +31,11 @@ final class SelectSortViewModel: ObservableObject {
     }
 
     func setSortItem(sort: AppSortItem) {
-        self.sort = sort
+        state.setSortItem(sort: sort)
     }
 
     private func getSortItem() {
-        sort = userDefaultsRepository.getSortItem()
+        state.setSortItem(sort: userDefaultsRepository.getSortItem())
     }
 
     /// 並び順登録
@@ -35,9 +43,9 @@ final class SelectSortViewModel: ObservableObject {
     func registerSortItem() {
         UIApplication.shared.closeKeyboard()
         // カスタムイベント計測
-        FBAnalyticsManager.loggingSelectSortEvent(sort: sort)
-        userDefaultsRepository.setSortItem(sort)
+        FBAnalyticsManager.loggingSelectSortEvent(sort: state.sort)
+        userDefaultsRepository.setSortItem(state.sort)
         getSortItem()
-        isShowSuccessAlert = true
+        state.isShowSuccessAlert = true
     }
 }

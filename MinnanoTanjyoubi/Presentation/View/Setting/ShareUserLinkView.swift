@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShareUserLinkView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(ShareUserLinkViewModel.self)
+    private let viewModel = DIContainer.shared.resolve(ShareUserLinkViewModel.self)
     @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
@@ -29,7 +29,7 @@ struct ShareUserLinkView: View {
                 .padding(.horizontal)
 
             List {
-                ForEach(viewModel.allUsers.sorted { $0.name < $1.name }, id: \.self) { user in
+                ForEach(viewModel.state.allUsers, id: \.self) { user in
                     Button {
                         viewModel.addOrDeleteShareUser(user)
                     } label: {
@@ -39,7 +39,7 @@ struct ShareUserLinkView: View {
 
                             Spacer()
 
-                            if viewModel.shareUsers.contains(user) {
+                            if viewModel.state.shareUsers.contains(user) {
                                 Image(systemName: "checkmark")
                             }
 
@@ -56,11 +56,11 @@ struct ShareUserLinkView: View {
                 Text("共有する")
                     .fontM()
             }.frame(width: DeviceSizeUtility.deviceWidth - 80, height: 50)
-                .background(!viewModel.shareUsers.isEmpty ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
+                .background(!viewModel.state.shareUsers.isEmpty ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
-                .disabled(viewModel.shareUsers.isEmpty)
+                .disabled(viewModel.state.shareUsers.isEmpty)
 
             Spacer()
 

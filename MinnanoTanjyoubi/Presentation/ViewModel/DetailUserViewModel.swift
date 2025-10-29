@@ -12,7 +12,7 @@ import UIKit
 
 struct DetailUserState {
     /// 詳細画面で表示するUser情報
-    var targetUser: User = .init()
+    fileprivate(set) var targetUser: User = .init()
     /// 画像ピッカー表示
     var isShowImagePicker: Bool = false
     /// メモ表示ポップアップ
@@ -31,14 +31,14 @@ struct DetailUserState {
     var isImageErrorAlert: Bool = false
 
     /// 有効なパスに変換された画像パス
-    var displayImages: [String] = []
+    fileprivate(set) var displayImages: [String] = []
     /// 画像エラー
-    var imageError: ImageError?
+    fileprivate(set) var imageError: ImageError?
 
     /// プレビュー表示対象の`Image`
-    var selectedPreViewImage: Image?
+    fileprivate(set) var selectedPreViewImage: Image?
     /// 画像削除対象のパス
-    var selectedDeleteImagePath: String = ""
+    fileprivate(set) var selectedDeleteImagePath: String = ""
 }
 
 class DetailUserViewModel: ObservableObject {
@@ -174,7 +174,14 @@ extension DetailUserViewModel {
         repository.removeImagePathUser(id: state.targetUser.id, imagePath: state.selectedDeleteImagePath)
         // User情報リフレッシュ
         refreshTargetUser(id: state.targetUser.id)
+        // パスをリセット
+        resetSelectedDeleteImagePath()
         state.isDeleteSuccessAlert = true
+    }
+
+    /// 削除対象画像パスをリセット
+    func resetSelectedDeleteImagePath() {
+        state.selectedDeleteImagePath = ""
     }
 
     /// 通知フラグ切り替え & 通知登録 / 削除 / 許可リクエスト

@@ -123,7 +123,7 @@ struct DetailUserView: View {
                     // 画像削除
                     viewModel.deleteImage()
                 }, negativeAction: {
-                    viewModel.state.selectedDeleteImagePath = ""
+                    viewModel.resetSelectedDeleteImagePath()
                 }
             )
             .alert(
@@ -136,10 +136,7 @@ struct DetailUserView: View {
                 isPresented: $viewModel.state.isDeleteSuccessAlert,
                 title: "お知らせ",
                 message: "画像を削除しました。",
-                positiveButtonTitle: "OK",
-                positiveAction: {
-                    viewModel.state.selectedDeleteImagePath = ""
-                }
+                positiveButtonTitle: "OK"
             )
             .alert(
                 isPresented: $viewModel.state.isImageErrorAlert,

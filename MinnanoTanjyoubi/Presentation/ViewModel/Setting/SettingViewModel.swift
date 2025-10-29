@@ -8,22 +8,27 @@
 import Combine
 import UIKit
 
+@Observable
+final class SettingState {
+    var isShowPassInput: Bool = false
+    var isShowInAppPurchaseView: Bool = false
+    fileprivate(set) var yearArray: [Int] = []
+    fileprivate var allUsers: [User] = []
+}
+
 /// SettingView画面全域を管理するViewModel
 /// 配下のViewも含めて管理
 final class SettingViewModel: ObservableObject {
-    @Published var isShowPassInput: Bool = false
-    @Published var isShowInAppPurchaseView: Bool = false
+    var state = SettingState()
 
-    @Published private(set) var yearArray: [Int] = []
-
+    /// `publisher`として観測している以下は`@Observable`への置き換えが難しそう
+    /// `withObservationTracking`検討中
     @Published var isDaysLaterFlag: Bool = false
     @Published var isAgeMonthFlag: Bool = false
     @Published var isLock: Bool = false
     @Published var selectedNotifyDate: NotifyDate = .onTheDay
     @Published var selectedRelation: Relation = .other
     @Published var selectedYear: Int = 2025
-
-    private var allUsers: [User] = []
 
     private let dfm = DateFormatUtility()
     private var cancellables: Set<AnyCancellable> = []
@@ -52,7 +57,7 @@ final class SettingViewModel: ObservableObject {
         setUpNotifyDate()
         setUpEntryInitRelation()
         setUpEntryInitYear()
-        allUsers = repository.readAllObjs()
+        state.allUsers = repository.readAllObjs()
     }
 
     func onDisappear() {
@@ -62,7 +67,7 @@ final class SettingViewModel: ObservableObject {
 
 extension SettingViewModel {
     var allUserCount: Int {
-        allUsers.count
+        state.allUsers.count
     }
 
     /// アプリロック
@@ -76,7 +81,7 @@ extension SettingViewModel {
                 guard let self else { return }
                 if flag {
                     // パスワード入力画面を表示
-                    isShowPassInput = true
+                    state.isShowPassInput = true
                 } else {
                     // アプリパスワードをリセット
                     keyChainRepository.delete()
@@ -146,12 +151,12 @@ extension SettingViewModel {
 
     /// 登録可能年数ピッカー用値セット
     private func setUpYears() {
-        yearArray = []
+        state.yearArray = []
         guard let year = dfm.convertDateComponents(date: Date()).year else { return }
         for value in 1900 ... year {
-            yearArray.append(value)
+            state.yearArray.append(value)
         }
-        yearArray.sort(by: { $0 > $1 })
+        state.yearArray.sort(by: { $0 > $1 })
     }
 
     // MARK: - Reward Logic

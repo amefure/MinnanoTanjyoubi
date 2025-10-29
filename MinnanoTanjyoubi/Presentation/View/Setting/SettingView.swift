@@ -128,7 +128,7 @@ struct SettingView: View {
                         Image(systemName: "clock")
                             .settingIcon(rootEnvironment.state.scheme)
                         Picker(L10n.settingSectionBirthdayMonthCaption, selection: $viewModel.selectedYear) {
-                            ForEach(viewModel.yearArray, id: \.self) { year in
+                            ForEach(viewModel.state.yearArray, id: \.self) { year in
                                 Text("\(String(year))年")
                                     .fontM()
                             }
@@ -223,7 +223,7 @@ struct SettingView: View {
                             Text(L10n.settingSectionAppLock)
                         }.tint(rootEnvironment.state.scheme.thema1)
                     }.listRowHeight()
-                        .sheet(isPresented: $viewModel.isShowPassInput) {
+                        .sheet(isPresented: $viewModel.state.isShowPassInput) {
                             AppLockInputView(isLock: $viewModel.isLock)
                                 .environment(\.rootEnvironment, rootEnvironment)
                         }
@@ -345,7 +345,7 @@ struct SettingView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
             .background(rootEnvironment.state.scheme.foundationSub)
-            .navigationDestination(isPresented: $viewModel.isShowInAppPurchaseView) {
+            .navigationDestination(isPresented: $viewModel.state.isShowInAppPurchaseView) {
                 InAppPurchaseView()
                     .environment(\.rootEnvironment, rootEnvironment)
             }
@@ -501,7 +501,7 @@ private struct CapacityParametersView: View {
                 Spacer()
 
                 Button {
-                    viewModel.isShowInAppPurchaseView = true
+                    viewModel.state.isShowInAppPurchaseView = true
                 } label: {
                     Image(systemName: "lock.open")
                         .fontL()

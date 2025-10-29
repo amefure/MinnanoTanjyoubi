@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct InAppPurchaseView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(InAppPurchaseViewModel.self)
+    @State private var viewModel = DIContainer.shared.resolve(InAppPurchaseViewModel.self)
     @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
+
+    private let width = DeviceSizeUtility.deviceWidth - 60
 
     var body: some View {
         VStack {
@@ -27,7 +29,7 @@ struct InAppPurchaseView: View {
                 .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.horizontal)
 
-            if viewModel.fetchError {
+            if viewModel.state.fetchError {
                 Spacer()
 
                 VStack {
@@ -50,16 +52,16 @@ struct InAppPurchaseView: View {
                 Spacer()
             } else {
                 List {
-                    ForEach(viewModel.products) { product in
+                    ForEach(viewModel.state.products) { product in
                         Section {
                             VStack(spacing: 8) {
                                 Text(product.value.displayName)
                                     .fontM(bold: true)
-                                    .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
+                                    .frame(width: width, alignment: .leading)
 
                                 Text("・\(product.value.description)")
                                     .fontS()
-                                    .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
+                                    .frame(width: width, alignment: .leading)
 
                                 Text(product.value.displayPrice)
                                     .fontM(bold: true)
@@ -67,25 +69,25 @@ struct InAppPurchaseView: View {
                                 Button {
                                     viewModel.purchase(product: product.value)
                                 } label: {
-                                    if viewModel.isPurchasingId == product.id {
+                                    if viewModel.state.isPurchasingId == product.id {
                                         ProgressView()
                                             .tint(.white)
                                             .foregroundStyle(.white)
-                                            .frame(width: DeviceSizeUtility.deviceWidth - 60, height: 50)
+                                            .frame(width: width, height: 50)
                                             .background(Asset.Colors.exThemaRed.swiftUIColor)
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
                                             .shadow(color: .gray, radius: 3, x: 4, y: 4)
                                     } else {
                                         Text(product.isPurchased ? "購入済み" : "購入する")
                                             .foregroundStyle(.white)
-                                            .frame(width: DeviceSizeUtility.deviceWidth - 60, height: 50)
+                                            .frame(width: width, height: 50)
                                             .background(Asset.Colors.exThemaRed.swiftUIColor)
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
                                             .shadow(color: .gray, radius: 3, x: 4, y: 4)
                                     }
                                 }.buttonStyle(.plain)
                                     .disabled(product.isPurchased)
-                                    .disabled(viewModel.isPurchasingId == product.id)
+                                    .disabled(viewModel.state.isPurchasingId == product.id)
                             }
                         }
                     }
@@ -93,18 +95,18 @@ struct InAppPurchaseView: View {
                     VStack(spacing: 8) {
                         Text("購入アイテムを復元する")
                             .fontM(bold: true)
-                            .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
+                            .frame(width: width, alignment: .leading)
 
                         Text("・一度ご購入いただけますと、\nアプリ再インストール時に「復元する」ボタンから\n復元が可能となっています。")
                             .fontS()
-                            .frame(width: DeviceSizeUtility.deviceWidth - 60, alignment: .leading)
+                            .frame(width: width, alignment: .leading)
 
                         Button {
                             viewModel.restore()
                         } label: {
                             Text("復元する")
                                 .foregroundStyle(.white)
-                                .frame(width: DeviceSizeUtility.deviceWidth - 60, height: 50)
+                                .frame(width: width, height: 50)
                                 .background(Asset.Colors.exThemaRed.swiftUIColor)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
@@ -119,7 +121,7 @@ struct InAppPurchaseView: View {
             .onDisappear {
                 viewModel.onDisappear()
 
-                if viewModel.didPurchase {
+                if viewModel.state.didPurchase {
                     // 課金購入が発生していればRootEnviroment側でもアイテムを再取得する
                     rootEnvironment.listenInAppPurchase()
                 }
@@ -129,23 +131,21 @@ struct InAppPurchaseView: View {
             .fontM()
             .navigationBarBackButtonHidden()
             .alert(
-                isPresented: $viewModel.purchaseError,
+                isPresented: $viewModel.state.isShowPurchaseError,
                 title: "Error",
                 message: "アイテムの購入に失敗しました。\nこの取引では料金は徴収されません。\nしばらく時間をおいてから再度お試しください。",
                 positiveButtonTitle: "OK",
-                negativeButtonTitle: "",
                 positiveAction: {
-                    viewModel.purchaseError = false
-                },
-                negativeAction: {}
+                    viewModel.state.isShowPurchaseError = false
+                }
             ).alert(
-                isPresented: $viewModel.successRestoreAlert,
+                isPresented: $viewModel.state.isShowSuccessRestoreAlert,
                 title: "成功",
                 message: "購入アイテムの復元に成功しました。\n購入アイテムがそれでも復元されない場合はお手数ですがお問合せください。",
                 positiveButtonTitle: "OK"
             )
             .alert(
-                isPresented: $viewModel.failedRestoreAlert,
+                isPresented: $viewModel.state.isShowFailedRestoreAlert,
                 title: "Error",
                 message: "購入アイテムの復元に失敗しました。\n時間を開けてから再度お試しください。",
                 positiveButtonTitle: "OK"
