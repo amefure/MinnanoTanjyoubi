@@ -43,23 +43,23 @@ final class RootEnvironmentState {
     private(set) var sectionLayoutFlag: LayoutItem = .grid
 
     /// カラースキーム更新
-    func updateColorScheme(_ scheme: AppColorScheme) { self.scheme = scheme }
+    fileprivate func updateColorScheme(_ scheme: AppColorScheme) { self.scheme = scheme }
 
     /// Deleteモード有効
-    func enableDeleteMode() { isDeleteMode = true }
+    fileprivate func enableDeleteMode() { isDeleteMode = true }
     /// Deleteモード無効
-    func disableDeleteMode() { isDeleteMode = false }
+    fileprivate func disableDeleteMode() { isDeleteMode = false }
 
     /// 関係名称リスト更新
-    func updateRelationNameList(_ list: [String]) { relationNameList = list }
+    fileprivate func updateRelationNameList(_ list: [String]) { relationNameList = list }
 
     /// レイアウトフラグ更新
-    func updateSectionLayoutFlag(_ item: LayoutItem) { sectionLayoutFlag = item }
+    fileprivate func updateSectionLayoutFlag(_ item: LayoutItem) { sectionLayoutFlag = item }
 }
 
 /// アプリ内で共通で利用される状態や環境値を保持する
 final class RootEnvironment {
-    var state = RootEnvironmentState()
+    private(set) var state = RootEnvironmentState()
 
     /// ポップアップ表示起動回数定数
     private let popupShowLaunchCount: Int = 5
@@ -227,20 +227,7 @@ extension RootEnvironment {
 
 extension RootEnvironment {
     func getRelationName() {
-        var results: [String] = []
-        let friend = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, initialValue: RelationConfig.FRIEND_NAME)
-        results.append(friend)
-        let famiry = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FAMILY, initialValue: RelationConfig.FAMILY_NAME)
-        results.append(famiry)
-        let school = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_SCHOOL, initialValue: RelationConfig.SCHOOL_NAME)
-        results.append(school)
-        let work = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_WORK, initialValue: RelationConfig.WORK_NAME)
-        results.append(work)
-        let other = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_OTHER, initialValue: RelationConfig.OTHER_NAME)
-        results.append(other)
-        let sns = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_SNS, initialValue: RelationConfig.SNS_NAME)
-        results.append(sns)
-
+        let results = userDefaultsRepository.getRelationNameList()
         state.updateRelationNameList(results)
     }
 

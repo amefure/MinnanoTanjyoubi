@@ -34,6 +34,23 @@ enum Relation: String, PersistableEnum, Identifiable, CaseIterable, Codable {
         }
     }
 
+    var key: String {
+        switch self {
+        case .friend:
+            UserDefaultsKey.DISPLAY_RELATION_FRIEND
+        case .family:
+            UserDefaultsKey.DISPLAY_RELATION_FAMILY
+        case .school:
+            UserDefaultsKey.DISPLAY_RELATION_SCHOOL
+        case .work:
+            UserDefaultsKey.DISPLAY_RELATION_WORK
+        case .other:
+            UserDefaultsKey.DISPLAY_RELATION_OTHER
+        case .sns:
+            UserDefaultsKey.DISPLAY_RELATION_SNS
+        }
+    }
+
     static func getIndexbyRelation(_ index: Int) -> Relation {
         switch index {
         case 0:

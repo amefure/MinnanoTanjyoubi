@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UpdateRelationNameView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(UpdateRelationNameViewModel.self)
+    @State private var viewModel = DIContainer.shared.resolve(UpdateRelationNameViewModel.self)
     @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
@@ -22,22 +22,22 @@ struct UpdateRelationNameView: View {
                 .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
-            CustomInputView(title: "カテゴリ1", placeholder: RelationConfig.FRIEND_NAME, text: $viewModel.friend)
+            CustomInputView(title: "カテゴリ1", placeholder: RelationConfig.FRIEND_NAME, text: $viewModel.state.friend)
                 .environment(\.rootEnvironment, rootEnvironment)
 
-            CustomInputView(title: "カテゴリ2", placeholder: RelationConfig.FAMILY_NAME, text: $viewModel.family)
+            CustomInputView(title: "カテゴリ2", placeholder: RelationConfig.FAMILY_NAME, text: $viewModel.state.family)
                 .environment(\.rootEnvironment, rootEnvironment)
 
-            CustomInputView(title: "カテゴリ3", placeholder: RelationConfig.SCHOOL_NAME, text: $viewModel.school)
+            CustomInputView(title: "カテゴリ3", placeholder: RelationConfig.SCHOOL_NAME, text: $viewModel.state.school)
                 .environment(\.rootEnvironment, rootEnvironment)
 
-            CustomInputView(title: "カテゴリ4", placeholder: RelationConfig.WORK_NAME, text: $viewModel.work)
+            CustomInputView(title: "カテゴリ4", placeholder: RelationConfig.WORK_NAME, text: $viewModel.state.work)
                 .environment(\.rootEnvironment, rootEnvironment)
 
-            CustomInputView(title: "カテゴリ5", placeholder: RelationConfig.OTHER_NAME, text: $viewModel.other)
+            CustomInputView(title: "カテゴリ5", placeholder: RelationConfig.OTHER_NAME, text: $viewModel.state.other)
                 .environment(\.rootEnvironment, rootEnvironment)
 
-            CustomInputView(title: "カテゴリ6", placeholder: RelationConfig.SNS_NAME, text: $viewModel.sns)
+            CustomInputView(title: "カテゴリ6", placeholder: RelationConfig.SNS_NAME, text: $viewModel.state.sns)
                 .environment(\.rootEnvironment, rootEnvironment)
 
             Spacer()
@@ -45,7 +45,6 @@ struct UpdateRelationNameView: View {
             DownSideView(
                 parentFunction: {
                     viewModel.saveRelationName()
-
                 },
                 imageString: "checkmark"
             ).environment(\.rootEnvironment, rootEnvironment)
@@ -55,14 +54,13 @@ struct UpdateRelationNameView: View {
             .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {
-                let list = rootEnvironment.state.relationNameList
-                viewModel.onAppear(relationList: list)
+                viewModel.onAppear()
             }.onDisappear {
                 // 画面を離脱する際に最新の値を取得しておく
                 rootEnvironment.getRelationName()
             }
             .alert(
-                isPresented: $viewModel.isShowSuccessAlert,
+                isPresented: $viewModel.state.isShowSuccessAlert,
                 title: "お知らせ",
                 message: "関係名を更新しました。",
                 positiveButtonTitle: "OK",
@@ -71,7 +69,7 @@ struct UpdateRelationNameView: View {
                 }
             )
             .alert(
-                isPresented: $viewModel.isShowValidationAlert,
+                isPresented: $viewModel.state.isShowValidationAlert,
                 title: "お知らせ",
                 message: "関係名を全て入力してください。",
                 positiveButtonTitle: "OK"

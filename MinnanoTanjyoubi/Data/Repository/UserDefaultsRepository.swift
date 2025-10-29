@@ -7,57 +7,6 @@
 
 import UIKit
 
-class UserDefaultsKey {
-    /// 容量制限
-    static let LIMIT_CAPACITY = "LimitCapacity"
-    /// 最終視聴日
-    static let LAST_ACQUISITION_DATE = "LastAcquisitionDate"
-    /// 通知時間「H-mm」形式
-    static let NOTICE_TIME = "NoticeTime"
-    /// 通知日付フラグ  String型  "0"(当日) or "1"(前日)
-    static let NOTICE_DATE_FLAG = "NoticeDate"
-    /// 通知MSG
-    static let NOTICE_MSG = "NoticeMsg"
-    /// 後何日かフラグ
-    static let DISPLAY_DAYS_LATER = "DISPLAY_DAYS_LATER"
-    /// 年齢に何ヶ月を表示するかどうか
-    static let DISPLAY_AGE_MONTH = "DISPLAY_AGE_MONTH"
-    /// セクションレイアウト表示フラグ
-    static let DISPLAY_SECTION_LAYOUT = "DISPLAY_SECTION_LAYOUT"
-    /// 登録年数初期値(INITのTypo)
-    static let ENTRY_INTI_YEAR = "ENTRY_INTI_YEAR"
-    /// 登録関係初期値
-    static let ENTRY_INIT_RELATION = "ENTRY_INIT_RELATION"
-    /// アプリカラースキーム
-    static let APP_COLOR_SCHEME = "APP_COLOR_SCHEME"
-    /// 並び順
-    static let APP_SORT_ITEM = "APP_SORT_ITEM"
-    /// チュートリアル表示フラグ
-    static let TUTORIAL_SHOW_FLAG = "TUTORIAL_SHOW_FLAG"
-    /// チュートリアル再表示フラグ
-    static let TUTORIAL_RE_SHOW_FLAG = "TUTORIAL_RE_SHOW_FLAG"
-    /// レビューポップアップフラグ表示
-    static let SHOW_REVIEW_POPUP = "SHOW_REVIEW_POPUP"
-    /// レビューポップアップマイグレーションフラグ表示
-    static let SHOW_REVIEW_POPUP_MIGRATE_VERSION = "SHOW_REVIEW_POPUP_MIGRATE_VERSION"
-    /// アプリ起動回数
-    static let LAUNCH_APP_COUNT = "LAUNCH_APP_COUNT"
-    /// アプリ内課金：広告削除
-    static let PURCHASED_REMOVE_ADS = "PURCHASE_REMOVE_ADS"
-    /// アプリ内課金：容量解放
-    static let PURCHASED_UNLOCK_STORAGE = "PURCHASED_UNLOCK_STORAGE"
-    /// 曜日始まり
-    static let INIT_WEEK = "INIT_WEEK"
-
-    /// 関係名をカスタム登録
-    static let DISPLAY_RELATION_FRIEND = "DISPLAY_RELATION_FRIEND"
-    static let DISPLAY_RELATION_FAMILY = "DISPLAY_RELATION_FAMILY"
-    static let DISPLAY_RELATION_SCHOOL = "DISPLAY_RELATION_SCHOOL"
-    static let DISPLAY_RELATION_WORK = "DISPLAY_RELATION_WORK"
-    static let DISPLAY_RELATION_OTHER = "DISPLAY_RELATION_OTHER"
-    static let DISPLAY_RELATION_SNS = "DISPLAY_RELATION_SNS"
-}
-
 /// `UserDefaults`の基底クラス
 /// スレッドセーフにするため `final class` + `Sendable`準拠
 /// `UserDefaults`が`Sendable`ではないがスレッドセーフのため`@unchecked`で無視しておく
@@ -66,45 +15,37 @@ final class UserDefaultsRepository: @unchecked Sendable {
     private let userDefaults = UserDefaults.standard
 
     /// Bool：保存
-    func setBoolData(key: String, isOn: Bool) {
+    private func setBoolData(key: String, isOn: Bool) {
         userDefaults.set(isOn, forKey: key)
     }
 
     /// Bool：取得
-    func getBoolData(key: String) -> Bool {
+    private func getBoolData(key: String) -> Bool {
         userDefaults.bool(forKey: key)
     }
 
     /// Int：保存
-    func setIntData(key: String, value: Int) {
+    private func setIntData(key: String, value: Int) {
         userDefaults.set(value, forKey: key)
     }
 
     /// Int：取得
-    func getIntData(key: String) -> Int {
+    private func getIntData(key: String) -> Int {
         userDefaults.integer(forKey: key)
     }
 
     /// String：保存
-    func setStringData(key: String, value: String) {
+    private func setStringData(key: String, value: String) {
         userDefaults.set(value, forKey: key)
     }
 
     /// String：取得
-    func getStringData(key: String, initialValue: String = "") -> String {
+    private func getStringData(key: String, initialValue: String = "") -> String {
         userDefaults.string(forKey: key) ?? initialValue
     }
 }
 
 extension UserDefaultsRepository {
-    /// 通知関連のユーサー設定情報を全て取得
-    func getNotifyUserSetting() -> (msg: String, timeStr: String, dateFlag: String) {
-        let msg = getStringData(key: UserDefaultsKey.NOTICE_MSG, initialValue: NotifyConfig.INITIAL_MSG)
-        let timeStr = getStringData(key: UserDefaultsKey.NOTICE_TIME, initialValue: NotifyConfig.INITIAL_TIME)
-        let dateFlag = getStringData(key: UserDefaultsKey.NOTICE_DATE_FLAG, initialValue: NotifyConfig.INITIAL_DATE_FLAG)
-        return (msg, timeStr, dateFlag)
-    }
-
     /// `LAST_ACQUISITION_DATE`
     /// 取得：最終視聴日
     /// `yyyy/MM/dd`形式で日付を保持
@@ -371,5 +312,38 @@ extension UserDefaultsRepository {
     /// 登録：カレンダー週始まり
     func setInitWeek(_ week: SCWeek) {
         setIntData(key: UserDefaultsKey.INIT_WEEK, value: week.rawValue)
+    }
+
+    /// 登録：`DISPLAY_RELATION_FRIEND` 〜 `DISPLAY_RELATION_SNS`
+    func setRelationName(key relation: Relation, value: String) {
+        setStringData(key: relation.key, value: value)
+    }
+}
+
+extension UserDefaultsRepository {
+    /// 通知関連のユーサー設定情報を全て取得
+    func getNotifyUserSetting() -> (msg: String, timeStr: String, dateFlag: String) {
+        let msg = getStringData(key: UserDefaultsKey.NOTICE_MSG, initialValue: NotifyConfig.INITIAL_MSG)
+        let timeStr = getStringData(key: UserDefaultsKey.NOTICE_TIME, initialValue: NotifyConfig.INITIAL_TIME)
+        let dateFlag = getStringData(key: UserDefaultsKey.NOTICE_DATE_FLAG, initialValue: NotifyConfig.INITIAL_DATE_FLAG)
+        return (msg, timeStr, dateFlag)
+    }
+
+    /// 関係性名リストを取得
+    func getRelationNameList() -> [String] {
+        var results: [String] = []
+        let friend = getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, initialValue: RelationConfig.FRIEND_NAME)
+        results.append(friend)
+        let famiry = getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FAMILY, initialValue: RelationConfig.FAMILY_NAME)
+        results.append(famiry)
+        let school = getStringData(key: UserDefaultsKey.DISPLAY_RELATION_SCHOOL, initialValue: RelationConfig.SCHOOL_NAME)
+        results.append(school)
+        let work = getStringData(key: UserDefaultsKey.DISPLAY_RELATION_WORK, initialValue: RelationConfig.WORK_NAME)
+        results.append(work)
+        let other = getStringData(key: UserDefaultsKey.DISPLAY_RELATION_OTHER, initialValue: RelationConfig.OTHER_NAME)
+        results.append(other)
+        let sns = getStringData(key: UserDefaultsKey.DISPLAY_RELATION_SNS, initialValue: RelationConfig.SNS_NAME)
+        results.append(sns)
+        return results
     }
 }
