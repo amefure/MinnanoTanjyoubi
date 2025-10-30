@@ -13,7 +13,7 @@ final class ShareUserLinkState {
     fileprivate(set) var shareUsers: [User] = []
 }
 
-final class ShareUserLinkViewModel: ObservableObject {
+final class ShareUserLinkViewModel {
     private(set) var state = ShareUserLinkState()
 
     /// `Repository`

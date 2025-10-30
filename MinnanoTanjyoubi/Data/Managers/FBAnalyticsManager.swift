@@ -11,71 +11,83 @@ final class FBAnalyticsManager: Sendable {
     /// `screen_view`イベント計測
     /// デフォルトイベント：`AnalyticsEventScreenView`
     static func loggingScreen(screen: AppSreenClassName) {
-        Analytics.logEvent(
-            AnalyticsEventScreenView,
-            parameters: [
-                AnalyticsParameterScreenName: screen.name(),
-                AnalyticsParameterScreenClass: screen.rawValue,
-            ]
-        )
+        #if !DEBUG
+            Analytics.logEvent(
+                AnalyticsEventScreenView,
+                parameters: [
+                    AnalyticsParameterScreenName: screen.name(),
+                    AnalyticsParameterScreenClass: screen.rawValue,
+                ]
+            )
+        #endif
     }
 
     /// みんなの出産祝い広告タップイベント
     /// デフォルトイベント：`AnalyticsEventSelectContent`
     static func loggingTapOiwaiAdsEvent() {
-        Analytics.logEvent(
-            AnalyticsEventSelectContent,
-            parameters: [
-                AnalyticsParameterItemID: AppEvent.tapOiwaiAds.rawValue,
-                AnalyticsParameterItemName: "みんなの出産祝い広告タップ",
-            ]
-        )
+        #if !DEBUG
+            Analytics.logEvent(
+                AnalyticsEventSelectContent,
+                parameters: [
+                    AnalyticsParameterItemID: AppEvent.tapOiwaiAds.rawValue,
+                    AnalyticsParameterItemName: "みんなの出産祝い広告タップ",
+                ]
+            )
+        #endif
     }
 
     /// レビューポップアップ表示イベント
     /// デフォルトイベント：`AnalyticsEventSelectContent`
     static func loggingShowReviewPopupEvent() {
-        Analytics.logEvent(
-            AnalyticsEventSelectContent,
-            parameters: [
-                AnalyticsParameterItemID: AppEvent.showReviewPopup.rawValue,
-                AnalyticsParameterItemName: "レビューポップアップ表示",
-            ]
-        )
+        #if !DEBUG
+            Analytics.logEvent(
+                AnalyticsEventSelectContent,
+                parameters: [
+                    AnalyticsParameterItemID: AppEvent.showReviewPopup.rawValue,
+                    AnalyticsParameterItemName: "レビューポップアップ表示",
+                ]
+            )
+        #endif
     }
 
     /// 広告視聴容量追加イベント
     /// デフォルトイベント：`AnalyticsEventSelectContent`
     static func loggingAddCapacityEvent() {
-        Analytics.logEvent(
-            AnalyticsEventSelectContent,
-            parameters: [
-                AnalyticsParameterItemID: AppEvent.addCapacity.rawValue,
-                AnalyticsParameterItemName: "容量追加",
-            ]
-        )
+        #if !DEBUG
+            Analytics.logEvent(
+                AnalyticsEventSelectContent,
+                parameters: [
+                    AnalyticsParameterItemID: AppEvent.addCapacity.rawValue,
+                    AnalyticsParameterItemName: "容量追加",
+                ]
+            )
+        #endif
     }
 
     /// アプリ内テーマーカラー選択イベント(カスタムイベント)
     /// カスタムディメンションから登録 -> 探索などでレポートしないと表示されない
     static func loggingSelectColorEvent(color: AppColorScheme) {
-        Analytics.logEvent(
-            AppEvent.selectThemaColor.rawValue,
-            parameters: [
-                "color_scheme": color.name,
-            ]
-        )
+        #if !DEBUG
+            Analytics.logEvent(
+                AppEvent.selectThemaColor.rawValue,
+                parameters: [
+                    "color_scheme": color.name,
+                ]
+            )
+        #endif
     }
 
     /// アプリ内ソート機能選択イベント(カスタムイベント)
     /// カスタムディメンションから登録 -> 探索などでレポートしないと表示されない
     static func loggingSelectSortEvent(sort: AppSortItem) {
-        Analytics.logEvent(
-            AnalyticsEventSelectContent,
-            parameters: [
-                "sort_type": sort.name,
-            ]
-        )
+        #if !DEBUG
+            Analytics.logEvent(
+                AnalyticsEventSelectContent,
+                parameters: [
+                    "sort_type": sort.name,
+                ]
+            )
+        #endif
     }
 }
 

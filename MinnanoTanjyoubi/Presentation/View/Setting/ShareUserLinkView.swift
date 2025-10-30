@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShareUserLinkView: View {
-    private let viewModel = DIContainer.shared.resolve(ShareUserLinkViewModel.self)
+    @State private var viewModel = DIContainer.shared.resolve(ShareUserLinkViewModel.self)
     @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
