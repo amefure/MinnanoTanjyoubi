@@ -10,7 +10,7 @@ import SwiftUI
 // 通知時間設定タイムピッカービュー
 struct TimePickerView: View {
     @StateObject var viewModel: SettingViewModel
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     @State private var time: Date = .init()
 
@@ -23,7 +23,7 @@ struct TimePickerView: View {
             .environment(\.locale, Locale(identifier: "ja_JP"))
             .fontM()
             .colorInvert()
-            .colorMultiply(rootEnvironment.scheme.text)
+            .colorMultiply(rootEnvironment.state.scheme.text)
             .onChange(of: time) { _, newValue in
                 viewModel.registerNotifyTime(date: newValue)
             }.onAppear {

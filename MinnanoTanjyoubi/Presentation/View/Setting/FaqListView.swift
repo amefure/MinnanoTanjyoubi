@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct FaqListView: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("よくある質問")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             List {
@@ -32,8 +32,8 @@ struct FaqListView: View {
                     AccordionBoxView(question: L10n.howToUseQ7Title, answer: L10n.howToUseQ7Text)
                 }
             }.scrollContentBackground(.hidden)
-                .background(rootEnvironment.scheme.foundationSub)
-        }.background(rootEnvironment.scheme.foundationSub)
+                .background(rootEnvironment.state.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
     }
@@ -41,7 +41,7 @@ struct FaqListView: View {
 
 #Preview {
     FaqListView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }
 
 private struct AccordionBoxView: View {

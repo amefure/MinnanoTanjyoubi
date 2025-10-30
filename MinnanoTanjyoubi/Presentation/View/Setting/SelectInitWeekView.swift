@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct SelectInitWeekView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(SelectInitWeekViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @State private var viewModel = DIContainer.shared.resolve(SelectInitWeekViewModel.self)
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("週始まり変更")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             Text("カレンダーの週の始まりの曜日を変更することができます。")
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.top, 10)
                 .font(.caption)
 
@@ -37,15 +37,15 @@ struct SelectInitWeekView: View {
                                 .foregroundStyle(Asset.Colors.exText.swiftUIColor)
                             Spacer()
 
-                            if viewModel.selectWeek == week {
+                            if viewModel.state.selectWeek == week {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(rootEnvironment.scheme.foundationPrimary)
+                                    .foregroundStyle(rootEnvironment.state.scheme.foundationPrimary)
                             }
                         }
                     }
                 }
             }.scrollContentBackground(.hidden)
-                .background(rootEnvironment.scheme.foundationSub)
+                .background(rootEnvironment.state.scheme.foundationSub)
 
             Spacer()
 
@@ -54,13 +54,13 @@ struct SelectInitWeekView: View {
                     viewModel.registerInitWeek()
                 },
                 imageString: "checkmark"
-            ).environmentObject(rootEnvironment)
+            ).environment(\.rootEnvironment, rootEnvironment)
 
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
             .alert(
-                isPresented: $viewModel.isShowSuccessAlert,
+                isPresented: $viewModel.state.isShowSuccessAlert,
                 title: "お知らせ",
                 message: "週始まりを変更しました。",
                 positiveButtonTitle: "OK",
@@ -75,5 +75,5 @@ struct SelectInitWeekView: View {
 
 #Preview {
     SelectInitWeekView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

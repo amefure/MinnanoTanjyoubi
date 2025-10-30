@@ -7,14 +7,24 @@
 
 import UIKit
 
-/// アプリルートViewModel
-final class RootViewModel: ObservableObject {
-    @Published private(set) var showCreateFailedError: Bool = false
-    @Published var showCreateShareUserError: Bool = false
-    @Published var showSuccessCreateUser: Bool = false
+@Observable
+final class RootViewState {
+    var isShowShareCreateFailedAlert: Bool = false
+    var isShowShareCreateSuccessAlert: Bool = false
 
-    @Published private(set) var error: ShareCreateError?
-    @Published var createUsers: [User] = []
+    private(set) var shareCreateError: ShareCreateError = .other
+    fileprivate(set) var createUsers: [User] = []
+
+    fileprivate func showShareCreateFailedAlert(_ error: ShareCreateError) {
+        shareCreateError = error
+        isShowShareCreateSuccessAlert = true
+    }
+}
+
+/// アプリルートViewModel
+
+final class RootViewModel {
+    var state = RootViewState()
 
     private let localRepository: RealmRepository
     private let userDefaultsRepository: UserDefaultsRepository
@@ -32,13 +42,15 @@ final class RootViewModel: ObservableObject {
         guard let query = url.query() else { return }
         guard let users = decryptAndInitializeUsers(query) else { return }
         let unlockStorage = userDefaultsRepository.getPurchasedUnlockStorage()
-        if let error = shareCreateUsers(shareUsers: users, unlockStorage: unlockStorage) {
-            showErrorAlert(error)
-        } else {
-            createUsers = users
-            showSuccessCreateUser = true
+        let result = shareCreateUsers(shareUsers: users, unlockStorage: unlockStorage)
+        switch result {
+        case .success:
+            state.createUsers = users
+            state.isShowShareCreateSuccessAlert = true
             // 再取得
             NotificationCenter.default.post(name: .readAllUsers, object: true)
+        case let .failure(error):
+            showErrorAlert(error)
         }
     }
 
@@ -52,36 +64,38 @@ final class RootViewModel: ObservableObject {
         let cipherText = cipherText.replacingOccurrences(of: StaticUrls.QUERY_CREATE_USER, with: "")
         // 複合化
         guard let json = cryptoUtility.decryption(cipherText) else {
-            showCreateFailedError = true
+            state.showShareCreateFailedAlert(.other)
             return nil
         }
         // jsonをデコードしてUserオブジェクトに変換
         guard let users: [User] = jsonUtility.decode(json) else {
-            showCreateFailedError = true
+            state.showShareCreateFailedAlert(.other)
             return nil
         }
         return users
     }
 
     private func showErrorAlert(_ error: ShareCreateError) {
-        self.error = error
-        showCreateShareUserError = true
+        state.showShareCreateFailedAlert(error)
     }
 
-    private func shareCreateUsers(shareUsers: [User], unlockStorage: Bool) -> ShareCreateError? {
+    private func shareCreateUsers(
+        shareUsers: [User],
+        unlockStorage: Bool
+    ) -> Result<Void, ShareCreateError> {
         let users: [User] = localRepository.readAllObjs()
 
         let isOverCapacity = !isOverCapacity(baseSize: users.count, addSize: shareUsers.count)
         // 容量チェック && 容量解放されていないか
-        guard isOverCapacity || unlockStorage else { return ShareCreateError.overCapacity }
+        guard isOverCapacity || unlockStorage else { return .failure(ShareCreateError.overCapacity) }
 
         for user in shareUsers {
             // エラーが発生したら登録シーケンスを終了
-            guard !(users.contains { $0.name == user.name }) else { return ShareCreateError.existUser }
+            guard !(users.contains { $0.name == user.name }) else { return .failure(ShareCreateError.existUser) }
             let copy = copyUser(user)
             localRepository.createObject(copy)
         }
-        return nil
+        return .success(())
     }
 
     private func isOverCapacity(baseSize: Int, addSize: Int) -> Bool {

@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct SectionRowView: View {
-    // Environment
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     var users: [User]
     var title: String
 
@@ -17,7 +16,7 @@ struct SectionRowView: View {
         if !users.isEmpty {
             VStack(alignment: .leading) {
                 Text(title)
-                    .foregroundStyle(rootEnvironment.scheme.text)
+                    .foregroundStyle(rootEnvironment.state.scheme.text)
                     .padding(.horizontal)
                     .fontM(bold: true)
 
@@ -28,9 +27,10 @@ struct SectionRowView: View {
                         .frame(width: DeviceSizeUtility.deviceWidth - 40, height: 2)
 
                     Spacer()
-                }.foregroundColor(rootEnvironment.scheme.text)
+                }.foregroundColor(rootEnvironment.state.scheme.text)
 
                 SingleGridListView(users: users)
+                    .environment(\.rootEnvironment, rootEnvironment)
             }.padding()
         }
     }

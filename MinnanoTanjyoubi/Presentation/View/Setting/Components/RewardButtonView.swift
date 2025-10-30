@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RewardButtonView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(RewardViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some View {
         Button {
@@ -53,5 +53,5 @@ struct RewardButtonView: View {
 
 #Preview {
     RewardButtonView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

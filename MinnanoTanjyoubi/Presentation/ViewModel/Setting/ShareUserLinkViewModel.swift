@@ -7,9 +7,14 @@
 
 import SwiftUI
 
-final class ShareUserLinkViewModel: ObservableObject {
-    @Published private(set) var allUsers: [User] = []
-    @Published private(set) var shareUsers: [User] = []
+@Observable
+final class ShareUserLinkState {
+    fileprivate(set) var allUsers: [User] = []
+    fileprivate(set) var shareUsers: [User] = []
+}
+
+final class ShareUserLinkViewModel {
+    private(set) var state = ShareUserLinkState()
 
     /// `Repository`
     private let localRepository: RealmRepository
@@ -24,19 +29,19 @@ final class ShareUserLinkViewModel: ObservableObject {
     }
 
     func addOrDeleteShareUser(_ user: User) {
-        if shareUsers.contains(user) {
-            shareUsers.removeAll(where: { $0.id == user.id })
+        if state.shareUsers.contains(user) {
+            state.shareUsers.removeAll(where: { $0.id == user.id })
         } else {
-            shareUsers.append(user)
+            state.shareUsers.append(user)
         }
     }
 
     @MainActor
     func shareUser() {
-        ShareInfoUtillity.shareBirthday(shareUsers)
+        ShareInfoUtillity.shareBirthday(state.shareUsers)
     }
 
     private func readAllUsers() {
-        allUsers = localRepository.readAllObjs()
+        state.allUsers = localRepository.readAllObjs().sorted { $0.name < $1.name }
     }
 }

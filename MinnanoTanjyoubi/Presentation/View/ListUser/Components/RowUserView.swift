@@ -15,8 +15,7 @@ struct RowUserView: View {
     @State private var isDisplayDateLater = false
     @State private var isDisplayAgeMonth = false
 
-    // Environment
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     private let dfmJp = DateFormatUtility(format: .jp)
     private let dfmJpOnlyDate = DateFormatUtility(format: .jpOnlyDate)
@@ -69,7 +68,7 @@ struct RowUserView: View {
                 HStack(alignment: .bottom) {
                     if daysLater == 0 {
                         Text(DeviceSizeUtility.isSESize ? "HAPPY\nBIRTHDAY" : "HAPPY BIRTHDAY")
-                            .foregroundStyle(rootEnvironment.scheme.thema1)
+                            .foregroundStyle(rootEnvironment.state.scheme.thema1)
                             .fontWeight(.bold)
                             .frame(height: 25)
                             .font(DeviceSizeUtility.isSESize ? .system(size: 10) : .system(size: 12))
@@ -81,13 +80,13 @@ struct RowUserView: View {
                             Text("あと")
                             Text("\(month)")
                                 .fontM()
-                                .foregroundColor(rootEnvironment.scheme.thema1)
+                                .foregroundColor(rootEnvironment.state.scheme.thema1)
                             Text("ヶ月")
                         } else {
                             Text("あと")
                             Text("\(daysLater)")
                                 .fontM()
-                                .foregroundColor(rootEnvironment.scheme.thema1)
+                                .foregroundColor(rootEnvironment.state.scheme.thema1)
                             Text("日")
                         }
                     }
@@ -101,24 +100,22 @@ struct RowUserView: View {
             }.padding(5)
                 .frame(height: 130)
                 .frame(maxWidth: DeviceSizeUtility.deviceWidth / 3)
-                .background(rootEnvironment.scheme.foundationPrimary)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .background(rootEnvironment.state.scheme.foundationPrimary)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
 
             if daysLater == 0 {
                 GarlandView()
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
             }
         }
     }
 }
 
-// MARK: - ガーランド三角形
-
+/// ガーランド三角形
 struct GarlandView: View {
-    // Environment
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     var body: some View {
         HStack {
             HStack(spacing: 0) {

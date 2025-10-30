@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct SelectSortView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(SelectSortViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @State private var viewModel = DIContainer.shared.resolve(SelectSortViewModel.self)
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("並び順変更")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             List {
@@ -30,37 +30,37 @@ struct SelectSortView: View {
                         HStack {
                             Text(sort.name)
                                 .foregroundStyle(Asset.Colors.exText.swiftUIColor)
-                                .fontWeight(.bold)
-                                .font(.system(size: 17))
+                                .fontM(bold: true)
 
                             Spacer()
 
-                            if viewModel.sort == sort {
+                            if viewModel.state.sort == sort {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(rootEnvironment.scheme.foundationPrimary)
+                                    .foregroundStyle(rootEnvironment.state.scheme.foundationPrimary)
                             }
                         }
                     }
                 }
 
             }.scrollContentBackground(.hidden)
-                .background(rootEnvironment.scheme.foundationSub)
+                .background(rootEnvironment.state.scheme.foundationSub)
 
             Spacer()
 
-            DownSideView(parentFunction: {
-                viewModel.registerSortItem()
+            DownSideView(
+                parentFunction: {
+                    viewModel.registerSortItem()
+                },
+                imageString: "checkmark"
+            ).environment(\.rootEnvironment, rootEnvironment)
 
-            }, imageString: "checkmark")
-                .environmentObject(rootEnvironment)
-
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {
                 viewModel.onAppear()
             }.alert(
-                isPresented: $viewModel.isShowSuccessAlert,
+                isPresented: $viewModel.state.isShowSuccessAlert,
                 title: "お知らせ",
                 message: "並び順を変更しました。",
                 positiveButtonTitle: "OK",
@@ -73,5 +73,5 @@ struct SelectSortView: View {
 
 #Preview {
     SelectSortView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

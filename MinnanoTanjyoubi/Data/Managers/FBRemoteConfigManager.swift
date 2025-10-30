@@ -10,6 +10,9 @@ import FirebaseCore
 @preconcurrency import FirebaseRemoteConfig
 
 final class RemoteConfigManager: Sendable {
+    // DIコンテナでは複数回インスタンス化されるためシングルトン設計にする
+    static let shared = RemoteConfigManager()
+
     private let remoteConfig: RemoteConfig
 
     @MainActor

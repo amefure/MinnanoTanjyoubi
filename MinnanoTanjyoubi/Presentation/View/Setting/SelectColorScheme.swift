@@ -11,17 +11,17 @@ struct SelectColorScheme: View {
     @State private var scheme: AppColorScheme = .original
     @State private var isAlert = false
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("テーマカラー変更")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             List {
@@ -45,7 +45,7 @@ struct SelectColorScheme: View {
 
                             if self.scheme == scheme {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(rootEnvironment.scheme.foundationPrimary)
+                                    .foregroundStyle(rootEnvironment.state.scheme.foundationPrimary)
                             }
                         }
                     }
@@ -56,23 +56,27 @@ struct SelectColorScheme: View {
                     .fontM()
 
             }.scrollContentBackground(.hidden)
-                .background(rootEnvironment.scheme.foundationSub)
+                .background(rootEnvironment.state.scheme.foundationSub)
 
             Spacer()
 
-            DownSideView(parentFunction: {
-                UIApplication.shared.closeKeyboard()
+            DownSideView(
+                parentFunction: {
+                    UIApplication.shared.closeKeyboard()
 
-                rootEnvironment.registerColorScheme(scheme)
-                isAlert = true
-            }, imageString: "checkmark")
-                .environmentObject(rootEnvironment)
+                    rootEnvironment.registerColorScheme(scheme)
 
-        }.background(rootEnvironment.scheme.foundationSub)
+                    isAlert = true
+
+                },
+                imageString: "checkmark"
+            ).environment(\.rootEnvironment, rootEnvironment)
+
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
             .navigationBarBackButtonHidden()
             .onAppear {
-                scheme = rootEnvironment.scheme
+                scheme = rootEnvironment.state.scheme
             }.alert(
                 isPresented: $isAlert,
                 title: "お知らせ",
@@ -111,5 +115,5 @@ private struct ColorSchemePreView: View {
 
 #Preview {
     SelectColorScheme()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

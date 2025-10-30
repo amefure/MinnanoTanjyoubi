@@ -9,23 +9,28 @@ import Combine
 import StoreKit
 import SwiftUI
 
-final class InAppPurchaseViewModel: ObservableObject {
+@Observable
+final class InAppPurchaseState {
     /// 取得エラー
-    @Published var fetchError: Bool = false
+    fileprivate(set) var fetchError: Bool = false
     /// 購入エラー
-    @Published var purchaseError: Bool = false
+    var isShowPurchaseError: Bool = false
     /// 復元成功
-    @Published var successRestoreAlert: Bool = false
+    var isShowSuccessRestoreAlert: Bool = false
     /// 復元エラー
-    @Published var failedRestoreAlert: Bool = false
+    var isShowFailedRestoreAlert: Bool = false
     /// 購入中アイテムID
-    @Published private(set) var isPurchasingId: String = ""
+    fileprivate(set) var isPurchasingId: String = ""
     /// 課金アイテム
-    @Published private(set) var products: [WrapperProduct] = []
+    fileprivate(set) var products: [WrapperProduct] = []
 
     /// この画面を表示してから課金が行われたかどうか
     /// `RootEnviroment`側でフラグを更新するため
-    @Published private(set) var didPurchase: Bool = false
+    fileprivate(set) var didPurchase: Bool = false
+}
+
+final class InAppPurchaseViewModel {
+    var state = InAppPurchaseState()
 
     private var cancellables: Set<AnyCancellable> = []
 
@@ -55,7 +60,7 @@ final class InAppPurchaseViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] products in
                 guard let self else { return }
-                self.products = products.map { WrapperProduct(product: $0) }
+                state.products = products.map { WrapperProduct(product: $0) }
             }.store(in: &cancellables)
 
         // 購入済み課金アイテム観測
@@ -64,12 +69,10 @@ final class InAppPurchaseViewModel: ObservableObject {
             .sink { [weak self] purchasedProducts in
                 guard let self else { return }
 
-                for product in products {
+                for product in state.products {
                     guard purchasedProducts.contains(where: { $0.id == product.id }) else { continue }
-                    guard let index = products.firstIndex(where: { $0.id == product.id }) else { continue }
-                    products[index].isPurchased = true
-                    // プロパティだけを更新しても再描画は走らないので配列ごとリフレッシュする
-                    products = products
+                    guard let index = state.products.firstIndex(where: { $0.id == product.id }) else { continue }
+                    state.products[index].isPurchased = true
                 }
 
                 // 購入済みアイテム配列が変化した際に購入済みかどうか確認
@@ -87,7 +90,7 @@ final class InAppPurchaseViewModel: ObservableObject {
                 guard let self else { return }
                 // 購入中ではなくなったらIDをリセット
                 if !flag {
-                    isPurchasingId = ""
+                    state.isPurchasingId = ""
                 }
             }.store(in: &cancellables)
 
@@ -96,7 +99,7 @@ final class InAppPurchaseViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] flag in
                 guard let self else { return }
-                fetchError = flag
+                state.fetchError = flag
             }.store(in: &cancellables)
 
         // 購入エラー
@@ -104,7 +107,7 @@ final class InAppPurchaseViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] flag in
                 guard let self else { return }
-                purchaseError = flag
+                state.isShowPurchaseError = flag
             }.store(in: &cancellables)
     }
 
@@ -117,11 +120,11 @@ final class InAppPurchaseViewModel: ObservableObject {
     /// 購入開始
     @MainActor
     func purchase(product: Product) {
-        isPurchasingId = product.id
+        state.isPurchasingId = product.id
         purchaseTask = Task {
             await inAppPurchaseRepository.purchase(product: product)
             // 課金に成功したらフラグを立てておく
-            didPurchase = true
+            state.didPurchase = true
         }
     }
 
@@ -131,9 +134,9 @@ final class InAppPurchaseViewModel: ObservableObject {
         Task {
             do {
                 try await inAppPurchaseRepository.restore()
-                successRestoreAlert = true
+                state.isShowSuccessRestoreAlert = true
             } catch {
-                failedRestoreAlert = true
+                state.isShowFailedRestoreAlert = true
             }
         }
     }

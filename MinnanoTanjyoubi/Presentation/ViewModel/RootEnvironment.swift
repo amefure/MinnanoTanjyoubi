@@ -8,27 +8,58 @@
 import Combine
 import RealmSwift
 import StoreKit
+import SwiftUI
 import UIKit
 
-/// アプリ内で共通で利用される状態や環境値を保持する
-final class RootEnvironment: ObservableObject {
-    /// `Property`
-    /// カラースキーム
-    @Published private(set) var scheme: AppColorScheme = .original
+private struct RootEnvironmentKey: @MainActor EnvironmentKey {
+    @MainActor
+    static let defaultValue = DIContainer.shared.resolve(RootEnvironment.self)
+}
+
+extension EnvironmentValues {
+    @MainActor
+    var rootEnvironment: RootEnvironment {
+        get { self[RootEnvironmentKey.self] }
+        set { self[RootEnvironmentKey.self] = newValue }
+    }
+}
+
+@Observable
+final class RootEnvironmentState {
+    private(set) var scheme: AppColorScheme = .original
     /// アプリロック
-    @Published var appLocked: Bool = false
+    fileprivate(set) var appLocked: Bool = false
     /// 広告削除購入フラグ
-    @Published var removeAds: Bool = false
+    fileprivate(set) var removeAds: Bool = false
     /// 容量解放購入フラグ
-    @Published var unlockStorage: Bool = false
+    fileprivate(set) var unlockStorage: Bool = false
     /// 削除対象のUser
-    @Published var deleteArray: [User] = []
+    var deleteArray: [User] = []
     /// Deleteモード
-    @Published private(set) var isDeleteMode: Bool = false
+    private(set) var isDeleteMode: Bool = false
     /// 関係の名称
-    @Published private(set) var relationNameList: [String] = []
+    private(set) var relationNameList: [String] = []
     /// レイアウトフラグ表示
-    @Published private(set) var sectionLayoutFlag: LayoutItem = .grid
+    private(set) var sectionLayoutFlag: LayoutItem = .grid
+
+    /// カラースキーム更新
+    fileprivate func updateColorScheme(_ scheme: AppColorScheme) { self.scheme = scheme }
+
+    /// Deleteモード有効
+    fileprivate func enableDeleteMode() { isDeleteMode = true }
+    /// Deleteモード無効
+    fileprivate func disableDeleteMode() { isDeleteMode = false }
+
+    /// 関係名称リスト更新
+    fileprivate func updateRelationNameList(_ list: [String]) { relationNameList = list }
+
+    /// レイアウトフラグ更新
+    fileprivate func updateSectionLayoutFlag(_ item: LayoutItem) { sectionLayoutFlag = item }
+}
+
+/// アプリ内で共通で利用される状態や環境値を保持する
+final class RootEnvironment {
+    private(set) var state = RootEnvironmentState()
 
     /// ポップアップ表示起動回数定数
     private let popupShowLaunchCount: Int = 5
@@ -92,8 +123,8 @@ final class RootEnvironment: ObservableObject {
                 let removeAds = inAppPurchaseRepository.isPurchased(ProductItem.removeAds.id)
                 let unlockStorage = inAppPurchaseRepository.isPurchased(ProductItem.unlockStorage.id)
                 // 両者trueなら更新
-                if removeAds { self.removeAds = true }
-                if unlockStorage { self.unlockStorage = true }
+                if removeAds { state.removeAds = true }
+                if unlockStorage { state.unlockStorage = true }
             }.store(in: &cancellables)
 
         // アプリ起動回数カウント
@@ -131,29 +162,29 @@ final class RootEnvironment: ObservableObject {
 extension RootEnvironment {
     /// Deleteモード有効
     func enableDeleteMode() {
-        isDeleteMode = true
+        state.enableDeleteMode()
     }
 
     /// Deleteモード無効
     func disableDeleteMode() {
-        isDeleteMode = false
+        state.disableDeleteMode()
     }
 
     /// 対象のUserを追加
     func appendDeleteArray(_ user: User) {
-        deleteArray.append(user)
+        state.deleteArray.append(user)
     }
 
     /// 対象のUserを削除
     func removeDeleteArray(_ user: User) {
-        guard let index = deleteArray.firstIndex(where: { $0.id == user.id }) else { return }
-        deleteArray.remove(at: index)
+        guard let index = state.deleteArray.firstIndex(where: { $0.id == user.id }) else { return }
+        state.deleteArray.remove(at: index)
     }
 
     /// Deleteモードリセット
     func resetDeleteMode() {
-        isDeleteMode = false
-        deleteArray.removeAll()
+        state.disableDeleteMode()
+        state.deleteArray.removeAll()
     }
 
     /// レビューポップアップ表示
@@ -196,21 +227,8 @@ extension RootEnvironment {
 
 extension RootEnvironment {
     func getRelationName() {
-        var results: [String] = []
-        let friend = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, initialValue: RelationConfig.FRIEND_NAME)
-        results.append(friend)
-        let famiry = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_FAMILY, initialValue: RelationConfig.FAMILY_NAME)
-        results.append(famiry)
-        let school = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_SCHOOL, initialValue: RelationConfig.SCHOOL_NAME)
-        results.append(school)
-        let work = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_WORK, initialValue: RelationConfig.WORK_NAME)
-        results.append(work)
-        let other = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_OTHER, initialValue: RelationConfig.OTHER_NAME)
-        results.append(other)
-        let sns = userDefaultsRepository.getStringData(key: UserDefaultsKey.DISPLAY_RELATION_SNS, initialValue: RelationConfig.SNS_NAME)
-        results.append(sns)
-
-        relationNameList = results
+        let results = userDefaultsRepository.getRelationNameList()
+        state.updateRelationNameList(results)
     }
 
     func getDisplayDaysLater() -> Bool {
@@ -222,18 +240,18 @@ extension RootEnvironment {
     }
 
     private func getDisplaySectionLayout() {
-        sectionLayoutFlag = userDefaultsRepository.getDisplaySectionLayout()
+        state.updateSectionLayoutFlag(userDefaultsRepository.getDisplaySectionLayout())
     }
 
     /// セクショングリッドレイアウト変更フラグ登録
     func switchDisplaySectionLayout() {
-        userDefaultsRepository.setDisplaySectionLayout(sectionLayoutFlag.next)
+        userDefaultsRepository.setDisplaySectionLayout(state.sectionLayoutFlag.next)
         getDisplaySectionLayout()
     }
 
     /// アプリカラースキーム取得
     private func getColorScheme() {
-        scheme = userDefaultsRepository.getColorScheme()
+        state.updateColorScheme(userDefaultsRepository.getColorScheme())
     }
 
     /// アプリカラースキーム登録
@@ -266,12 +284,12 @@ extension RootEnvironment {
 
     /// アプリ内課金購入状況取得
     private func getPurchasedFlag() {
-        removeAds = userDefaultsRepository.getPurchasedRemoveAds()
-        unlockStorage = userDefaultsRepository.getPurchasedUnlockStorage()
+        state.removeAds = userDefaultsRepository.getPurchasedRemoveAds()
+        state.unlockStorage = userDefaultsRepository.getPurchasedUnlockStorage()
     }
 
     /// アプリにロックがかけてあるかをチェック
     private func getAppLockFlag() {
-        appLocked = keyChainRepository.getData().count == 4
+        state.appLocked = keyChainRepository.getData().count == 4
     }
 }

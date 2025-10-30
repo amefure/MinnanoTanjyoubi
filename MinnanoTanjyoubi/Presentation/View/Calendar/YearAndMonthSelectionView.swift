@@ -9,7 +9,7 @@ import SwiftUI
 
 struct YearAndMonthSelectionView: View {
     @EnvironmentObject private var viewModel: CalendarViewModel
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some View {
         HStack {
@@ -38,11 +38,11 @@ struct YearAndMonthSelectionView: View {
 
             Spacer()
 
-        }.foregroundStyle(rootEnvironment.scheme.text)
+        }.foregroundStyle(rootEnvironment.state.scheme.text)
     }
 }
 
 #Preview {
     YearAndMonthSelectionView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

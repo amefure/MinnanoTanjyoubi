@@ -143,6 +143,8 @@
 		12E9C8972D0C258600C0A20B /* CryptoUtillity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */; };
 		12ED29BB2C21695800A1293D /* StaticUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29BA2C21695800A1293D /* StaticUrls.swift */; };
 		12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED29C02C21958700A1293D /* EntryUserViewModel.swift */; };
+		12F61C9F2EB19C2B001326A7 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F61C9E2EB19C2A001326A7 /* UserDefaultsKey.swift */; };
+		12F61CA02EB19C47001326A7 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F61C9E2EB19C2A001326A7 /* UserDefaultsKey.swift */; };
 		12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */; };
 		12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */; };
 		12F811CD2EA67461002B54E5 /* WidgetCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F811CC2EA67452002B54E5 /* WidgetCenterManager.swift */; };
@@ -347,6 +349,7 @@
 		12E9C8962D0C257B00C0A20B /* CryptoUtillity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUtillity.swift; sourceTree = "<group>"; };
 		12ED29BA2C21695800A1293D /* StaticUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticUrls.swift; sourceTree = "<group>"; };
 		12ED29C02C21958700A1293D /* EntryUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserViewModel.swift; sourceTree = "<group>"; };
+		12F61C9E2EB19C2A001326A7 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		12F64F312C9EFA2700730FC5 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
 		12F64F352C9FBFA000730FC5 /* SelectColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorScheme.swift; sourceTree = "<group>"; };
 		12F811CC2EA67452002B54E5 /* WidgetCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCenterManager.swift; sourceTree = "<group>"; };
@@ -552,6 +555,7 @@
 				12FE3A292B2DC29500FA700E /* RealmConfig.swift */,
 				1246024E2B381EEF00B6C32D /* NotifyConfig.swift */,
 				1246024B2B36BCE500B6C32D /* AdsConfig.swift */,
+				12F61C9E2EB19C2A001326A7 /* UserDefaultsKey.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1216,6 +1220,7 @@
 				1204FB3A2E706D270092AE9E /* UserCalcUtility.swift in Sources */,
 				127788C22E9FC6F10048E9D0 /* RealmRepositoryProtocol.swift in Sources */,
 				1204FB362E70664B0092AE9E /* BirthDayWidgetViewModel.swift in Sources */,
+				12F61CA02EB19C47001326A7 /* UserDefaultsKey.swift in Sources */,
 				1204FB302E70660D0092AE9E /* BirthDayWidgetBundle.swift in Sources */,
 				1204FB262E7058390092AE9E /* RelationEnum.swift in Sources */,
 				1204FB232E7058220092AE9E /* RealmRepository.swift in Sources */,
@@ -1268,6 +1273,7 @@
 				12F9F1722DF9B72200B7A46C /* SelectInitWeekView.swift in Sources */,
 				12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */,
 				123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */,
+				12F61C9F2EB19C2B001326A7 /* UserDefaultsKey.swift in Sources */,
 				1246024F2B381EEF00B6C32D /* NotifyConfig.swift in Sources */,
 				12B5A7B72DC649B500B1D809 /* FBAnalyticsManager.swift in Sources */,
 				12B76E8B2D0E62A70021A018 /* ShareCreateError.swift in Sources */,

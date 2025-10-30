@@ -198,8 +198,7 @@ extension CalendarViewModel {
 extension CalendarViewModel {
     /// 週始まりを取得
     private func getInitWeek() {
-        let week = userDefaultsRepository.getIntData(key: UserDefaultsKey.INIT_WEEK)
-        initWeek = SCWeek(rawValue: week) ?? SCWeek.sunday
+        initWeek = userDefaultsRepository.getInitWeek()
     }
 
     /// 容量超過確認

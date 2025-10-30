@@ -9,24 +9,24 @@ import RealmSwift
 import SwiftUI
 
 struct RootView: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
-    @ObservedObject private var popUpViewModel = DIContainer.shared.resolve(TutorialPopUpViewModel.self)
-    @ObservedObject private var viewModel = DIContainer.shared.resolve(RootViewModel.self)
+    @Environment(\.rootEnvironment) private var rootEnvironment
+    @State private var popUpViewModel = DIContainer.shared.resolve(TutorialPopUpViewModel.self)
+    @State private var viewModel = DIContainer.shared.resolve(RootViewModel.self)
 
     var body: some View {
         VStack(spacing: 0) {
             HeaderView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             RootListUserView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
-            if !rootEnvironment.removeAds {
+            if !rootEnvironment.state.removeAds {
                 AdMobBannerView()
                     .frame(height: 50)
             }
 
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .navigationBarBackButtonHidden()
             .navigationBarHidden(true)
@@ -35,13 +35,13 @@ struct RootView: View {
                 // Custom URL Schemeでアプリを起動した場合のハンドリング
                 viewModel.copyUserFromUrlScheme(url: url)
             }.alert(
-                isPresented: $viewModel.showSuccessCreateUser,
+                isPresented: $viewModel.state.isShowShareCreateSuccessAlert,
                 title: "登録成功",
-                message: viewModel.createUsers.count == 1 ? "「\(viewModel.createUsers.first!.name)」さんの誕生日情報を登録しました。" : "共有された誕生日情報を登録しました。"
+                message: viewModel.state.createUsers.count == 1 ? "「\(viewModel.state.createUsers.first!.name)」さんの誕生日情報を登録しました。" : "共有された誕生日情報を登録しました。"
             ).alert(
-                isPresented: $viewModel.showCreateShareUserError,
+                isPresented: $viewModel.state.isShowShareCreateFailedAlert,
                 title: "Error...",
-                message: viewModel.error?.message ?? "共有された誕生日情報の登録に失敗しました。"
+                message: viewModel.state.shareCreateError.message
             ).tutorialPopupView(
                 isPresented: $popUpViewModel.state.isPresented,
                 title: popUpViewModel.state.title,
@@ -58,5 +58,5 @@ struct RootView: View {
 
 #Preview {
     RootView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

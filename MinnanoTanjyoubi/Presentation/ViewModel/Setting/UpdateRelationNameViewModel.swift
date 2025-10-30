@@ -7,25 +7,19 @@
 
 import SwiftUI
 
-final class UpdateRelationNameViewModel: ObservableObject {
-    @Published var isShowSuccessAlert = false
-    @Published var isShowValidationAlert = false
+@Observable
+final class UpdateRelationNameState {
+    var isShowSuccessAlert = false
+    var isShowValidationAlert = false
 
-    @Published var friend: String = ""
-    @Published var family: String = ""
-    @Published var school: String = ""
-    @Published var work: String = ""
-    @Published var other: String = ""
-    @Published var sns: String = ""
+    var friend: String = ""
+    var family: String = ""
+    var school: String = ""
+    var work: String = ""
+    var other: String = ""
+    var sns: String = ""
 
-    /// `Repository`
-    private let userDefaultsRepository: UserDefaultsRepository
-
-    init(userDefaultsRepository: UserDefaultsRepository) {
-        self.userDefaultsRepository = userDefaultsRepository
-    }
-
-    func onAppear(relationList: [String]) {
+    fileprivate func setRelationName(relationList: [String]) {
         friend = relationList[safe: 0] ?? RelationConfig.FRIEND_NAME
         family = relationList[safe: 1] ?? RelationConfig.FAMILY_NAME
         school = relationList[safe: 2] ?? RelationConfig.SCHOOL_NAME
@@ -34,29 +28,41 @@ final class UpdateRelationNameViewModel: ObservableObject {
         sns = relationList[safe: 5] ?? RelationConfig.SNS_NAME
     }
 
-    private func validationInput() -> Bool {
+    fileprivate func validationInput() -> Bool {
         let targetList = [friend, family, school, work, other, sns]
         return !targetList.contains(where: \.isEmpty)
+    }
+}
+
+final class UpdateRelationNameViewModel {
+    var state = UpdateRelationNameState()
+
+    /// `Repository`
+    private let userDefaultsRepository: UserDefaultsRepository
+
+    init(userDefaultsRepository: UserDefaultsRepository) {
+        self.userDefaultsRepository = userDefaultsRepository
+    }
+
+    func onAppear() {
+        let relationList = userDefaultsRepository.getRelationNameList()
+        state.setRelationName(relationList: relationList)
     }
 
     @MainActor
     func saveRelationName() {
         UIApplication.shared.closeKeyboard()
 
-        guard validationInput() else {
-            isShowValidationAlert = true
+        guard state.validationInput() else {
+            state.isShowValidationAlert = true
             return
         }
-        setRelationName(key: UserDefaultsKey.DISPLAY_RELATION_FRIEND, value: friend)
-        setRelationName(key: UserDefaultsKey.DISPLAY_RELATION_FAMILY, value: family)
-        setRelationName(key: UserDefaultsKey.DISPLAY_RELATION_SCHOOL, value: school)
-        setRelationName(key: UserDefaultsKey.DISPLAY_RELATION_WORK, value: work)
-        setRelationName(key: UserDefaultsKey.DISPLAY_RELATION_OTHER, value: other)
-        setRelationName(key: UserDefaultsKey.DISPLAY_RELATION_SNS, value: sns)
-        isShowSuccessAlert = true
-    }
-
-    private func setRelationName(key: String, value: String) {
-        userDefaultsRepository.setStringData(key: key, value: value)
+        userDefaultsRepository.setRelationName(key: .friend, value: state.friend)
+        userDefaultsRepository.setRelationName(key: .family, value: state.family)
+        userDefaultsRepository.setRelationName(key: .school, value: state.school)
+        userDefaultsRepository.setRelationName(key: .work, value: state.work)
+        userDefaultsRepository.setRelationName(key: .other, value: state.other)
+        userDefaultsRepository.setRelationName(key: .sns, value: state.sns)
+        state.isShowSuccessAlert = true
     }
 }

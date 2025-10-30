@@ -11,8 +11,8 @@ import SwiftUI
 /// モーダル表示されるデータ登録ビュー
 /// データ更新時も呼び出される
 struct EntryUserView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(EntryUserViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @State private var viewModel = DIContainer.shared.resolve(EntryUserViewModel.self)
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     /// Updateデータ受け取り用
     var updateUserId: ObjectId?
@@ -29,7 +29,7 @@ struct EntryUserView: View {
     var body: some View {
         VStack(alignment: .center) {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             if !DeviceSizeUtility.isSESize {
                 Spacer()
@@ -65,7 +65,7 @@ struct EntryUserView: View {
                         date: $viewModel.state.date,
                         showWheel: $viewModel.state.showWheel,
                         isYearsUnknown: $viewModel.state.isYearsUnknown
-                    ).environmentObject(rootEnvironment)
+                    ).environment(\.rootEnvironment, rootEnvironment)
                 }.padding(5)
 
                 // Input Relation
@@ -86,25 +86,25 @@ struct EntryUserView: View {
                     Toggle(
                         isOn: $viewModel.state.isAlert,
                         label: { Text("通知") }
-                    ).toggleStyle(SwitchToggleStyle(tint: rootEnvironment.scheme.thema1))
+                    ).toggleStyle(SwitchToggleStyle(tint: rootEnvironment.state.scheme.thema1))
                         .frame(width: DeviceSizeUtility.deviceWidth - 50)
                 }
 
                 Toggle(
                     isOn: $viewModel.state.isYearsUnknown,
                     label: { Text("年数の指定を未設定にする") }
-                ).toggleStyle(SwitchToggleStyle(tint: rootEnvironment.scheme.thema1))
+                ).toggleStyle(SwitchToggleStyle(tint: rootEnvironment.state.scheme.thema1))
                     .frame(width: DeviceSizeUtility.deviceWidth - 50)
 
                 Text("MEMO")
-                    .foregroundStyle(rootEnvironment.scheme.text)
+                    .foregroundStyle(rootEnvironment.state.scheme.text)
                     .fontWeight(.bold)
                     .opacity(0.8)
 
                 NavigationStack {
                     TextEditor(text: $viewModel.state.memo)
                         .padding(5)
-                        .background(rootEnvironment.scheme.foundationSub)
+                        .background(rootEnvironment.state.scheme.foundationSub)
                         .focused($isFocusActive)
                         .scrollContentBackground(.hidden)
                         .toolbar {
@@ -118,9 +118,9 @@ struct EntryUserView: View {
                                 }
                             }
                         }
-                }.background(rootEnvironment.scheme.foundationSub)
+                }.background(rootEnvironment.state.scheme.foundationSub)
                     .frame(minHeight: DeviceSizeUtility.isSESize ? 60 : 90)
-                    .overBorder(radius: 5, color: rootEnvironment.scheme.foundationPrimary, opacity: 0.4, lineWidth: 3)
+                    .overBorder(radius: 5, color: rootEnvironment.state.scheme.foundationPrimary, opacity: 0.4, lineWidth: 3)
             }
 
             Spacer()
@@ -132,12 +132,12 @@ struct EntryUserView: View {
                     isSelfShowModal = false
                 },
                 imageString: "checkmark"
-            ).environmentObject(rootEnvironment)
+            ).environment(\.rootEnvironment, rootEnvironment)
 
         }.padding()
             .fontM()
-            .background(rootEnvironment.scheme.foundationSub)
-            .foregroundColor(rootEnvironment.scheme.text)
+            .background(rootEnvironment.state.scheme.foundationSub)
+            .foregroundColor(rootEnvironment.state.scheme.text)
             .onAppear {
                 viewModel.onAppear(
                     updateUserId: updateUserId,
@@ -164,15 +164,15 @@ struct EntryUserView: View {
             selection: $viewModel.state.selectedRelation,
             label: Text("関係")
         ) {
-            ForEach(Array(rootEnvironment.relationNameList.enumerated()), id: \.element) { index, item in
+            ForEach(Array(rootEnvironment.state.relationNameList.enumerated()), id: \.element) { index, item in
                 Text(item)
                     .tag(Relation.getIndexbyRelation(index))
             }
         }.pickerStyle(.menu)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(rootEnvironment.scheme.text.opacity(0.4), lineWidth: 2)
-            ).tint(rootEnvironment.scheme.text)
+                    .stroke(rootEnvironment.state.scheme.text.opacity(0.4), lineWidth: 2)
+            ).tint(rootEnvironment.state.scheme.text)
     }
 }
 
@@ -185,8 +185,7 @@ private struct DatePickerView: View {
     @Binding var showWheel: Bool
     @Binding var isYearsUnknown: Bool
     private let isSESize: Bool = DeviceSizeUtility.isSESize
-
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some View {
         HStack {
@@ -205,7 +204,7 @@ private struct DatePickerView: View {
                         }
                     }
                     .colorInvert()
-                    .colorMultiply(rootEnvironment.scheme.text)
+                    .colorMultiply(rootEnvironment.state.scheme.text)
                     .frame(width: DeviceSizeUtility.deviceWidth - 180)
                     .datePickerStyle(.wheel)
                     .labelsHidden()
@@ -217,7 +216,7 @@ private struct DatePickerView: View {
                     Image(systemName: "checkmark")
                         .foregroundStyle(.white)
                         .padding(3)
-                        .background(rootEnvironment.scheme.thema2)
+                        .background(rootEnvironment.state.scheme.thema2)
                         .opacity(0.8)
                         .cornerRadius(5)
                 }.padding([.leading, .top, .bottom])

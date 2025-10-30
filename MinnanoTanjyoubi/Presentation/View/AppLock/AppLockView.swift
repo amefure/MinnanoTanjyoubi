@@ -10,13 +10,12 @@ import SwiftUI
 struct AppLockView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(AppLockViewModel.self)
     @State private var password: [String] = []
-
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some View {
         VStack(spacing: 0) {
             HeaderView(isShowIcon: false)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Spacer()
 
@@ -53,7 +52,7 @@ struct AppLockView: View {
                             }
                         }
                     }.offset(y: 80)
-                        .foregroundStyle(rootEnvironment.scheme.text)
+                        .foregroundStyle(rootEnvironment.state.scheme.text)
                 }
             }
 
@@ -67,16 +66,16 @@ struct AppLockView: View {
             message: "パスワードが違います。"
         ).navigationDestination(isPresented: $viewModel.isShowApp) {
             RootView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
         }
         .onAppear { viewModel.onAppear() }
         .onDisappear { viewModel.onDisappear() }
-        .background(rootEnvironment.scheme.foundationSub)
+        .background(rootEnvironment.state.scheme.foundationSub)
     }
 }
 
 struct NumberKeyboardView: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     @Binding var password: [String]
 
@@ -88,19 +87,19 @@ struct NumberKeyboardView: View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 NumberButton(number: "1", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "2", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "3", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
             }
 
             Rectangle()
@@ -108,19 +107,19 @@ struct NumberKeyboardView: View {
 
             HStack(spacing: 0) {
                 NumberButton(number: "4", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "5", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "6", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
             }
 
             Rectangle()
@@ -128,19 +127,19 @@ struct NumberKeyboardView: View {
 
             HStack(spacing: 0) {
                 NumberButton(number: "7", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "8", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "9", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
             }
 
             Rectangle()
@@ -148,13 +147,13 @@ struct NumberKeyboardView: View {
 
             HStack(spacing: 0) {
                 NumberButton(number: "-", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "0", password: $password)
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
@@ -164,17 +163,17 @@ struct NumberKeyboardView: View {
                 } label: {
                     Image(systemName: "delete.backward")
                         .frame(width: DeviceSizeUtility.deviceWidth / 3, height: height)
-                        .background(rootEnvironment.scheme.foundationPrimary)
+                        .background(rootEnvironment.state.scheme.foundationPrimary)
                 }
             }
-        }.foregroundStyle(rootEnvironment.scheme.text)
+        }.foregroundStyle(rootEnvironment.state.scheme.text)
             .fontWeight(.bold)
     }
 }
 
 /// 4桁のブラインドパスワードビュー
 struct DisplayPasswordView: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     let password: [String]
 
@@ -184,14 +183,14 @@ struct DisplayPasswordView: View {
             Text(password[safe: 1] == nil ? "ー" : "⚫︎")
             Text(password[safe: 2] == nil ? "ー" : "⚫︎")
             Text(password[safe: 3] == nil ? "ー" : "⚫︎")
-        }.foregroundStyle(rootEnvironment.scheme.text)
+        }.foregroundStyle(rootEnvironment.state.scheme.text)
             .fontWeight(.bold)
     }
 }
 
 /// 数値入力カスタムキーボード
 struct NumberButton: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     let number: String
     @Binding var password: [String]
@@ -208,12 +207,12 @@ struct NumberButton: View {
         } label: {
             Text(number)
                 .frame(width: DeviceSizeUtility.deviceWidth / 3, height: height)
-                .background(rootEnvironment.scheme.foundationPrimary)
+                .background(rootEnvironment.state.scheme.foundationPrimary)
         }
     }
 }
 
 #Preview {
     AppLockView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

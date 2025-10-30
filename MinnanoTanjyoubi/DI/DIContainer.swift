@@ -47,7 +47,7 @@ private extension DIContainer {
         // Manager
         c.register(NotificationRequestManager.self) { _ in NotificationRequestManager() }
         c.register(WidgetCenterProtocol.self) { _ in WidgetCenterManager() }
-        c.register(RemoteConfigManager.self) { _ in RemoteConfigManager() }
+        c.register(RemoteConfigManager.self) { _ in RemoteConfigManager.shared }
         c.register(RewardServiceProtocol.self) { _ in RewardService() }
     }
 }

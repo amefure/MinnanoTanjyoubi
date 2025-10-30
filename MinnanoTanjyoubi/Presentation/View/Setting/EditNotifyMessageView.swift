@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditNotifyMessageView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(EditNotifyMessageViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     @FocusState private var isFocus: Bool
 
@@ -18,20 +18,20 @@ struct EditNotifyMessageView: View {
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("通知メッセージ編集")
                 .fontL(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
 
             Text("通知プレビュー")
                 .fontS(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             DemoNotifyView(msg: viewModel.notifyMsg)
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             Rectangle()
                 .fill(.white)
@@ -40,7 +40,7 @@ struct EditNotifyMessageView: View {
 
             Text("通知メッセージ入力")
                 .fontS(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             TextField("ここに通知メッセージを入力してね。", text: $viewModel.notifyMsg)
@@ -54,7 +54,7 @@ struct EditNotifyMessageView: View {
 
             Text("・通知メッセージは" + NotifyConfig.VARIABLE_USER_NAME + "部分が名前に自動で置き換わります。")
                 .fontS(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
                 .padding(.vertical)
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
@@ -63,12 +63,13 @@ struct EditNotifyMessageView: View {
             DownSideView(
                 parentFunction: {
                     viewModel.registerNotifyMsg()
-                }, imageString: "checkmark"
-            ).environmentObject(rootEnvironment)
+                },
+                imageString: "checkmark"
+            ).environment(\.rootEnvironment, rootEnvironment)
 
         }.onAppear {
             viewModel.onAppear()
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .fontM()
             .navigationBarBackButtonHidden()
@@ -91,7 +92,7 @@ struct EditNotifyMessageView: View {
 }
 
 struct DemoNotifyView: View {
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     let title: String = "みんなの誕生日"
     let msg: String
@@ -108,7 +109,7 @@ struct DemoNotifyView: View {
         // 置換した文字列「お名前」の範囲を取得
         if let range = attributedString.range(of: "「お名前」") {
             // その部分の文字色を変更
-            attributedString[range].foregroundColor = rootEnvironment.scheme.thema3
+            attributedString[range].foregroundColor = rootEnvironment.state.scheme.thema3
             attributedString[range].font = .boldSystemFont(ofSize: 13) // サイズは任意で調整
         }
 
@@ -150,5 +151,5 @@ struct DemoNotifyView: View {
 
 #Preview {
     EditNotifyMessageView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct TutorialPopUpState {
+@Observable
+final class TutorialPopUpState {
     var isPresented: Bool = false
     fileprivate(set) var title: String = ""
     fileprivate(set) var message: String = ""
@@ -17,7 +18,7 @@ struct TutorialPopUpState {
 }
 
 final class TutorialPopUpViewModel: ObservableObject {
-    @Published var state = TutorialPopUpState()
+    var state = TutorialPopUpState()
 
     /// `Repository`
     private let localRepository: RealmRepository

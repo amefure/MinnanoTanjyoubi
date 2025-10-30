@@ -8,7 +8,11 @@
 import RealmSwift
 import UIKit
 
-struct EntryUserState {
+@Observable
+final class EntryUserState {
+    /// 登録・更新画面で表示するUser情報
+    fileprivate var targetUser: User?
+    /// ユーザープロパティ
     var name: String = ""
     var ruby: String = ""
     var date: Date = .init()
@@ -16,16 +20,26 @@ struct EntryUserState {
     var selectedRelation: Relation = .other
     var isAlert: Bool = true
     var isYearsUnknown: Bool = false
+    /// 日付ホイールピッカー表示フラグ
     var showWheel: Bool = false
+    /// バリデーションダイアログ
     var isShowValidationDialog: Bool = false
+
+    fileprivate func setUser(_ user: User) {
+        targetUser = user
+        // Update時なら初期値セット
+        name = user.name
+        ruby = user.ruby
+        date = user.date
+        selectedRelation = user.relation
+        memo = user.memo
+        isYearsUnknown = user.isYearsUnknown
+    }
 }
 
-final class EntryUserViewModel: ObservableObject {
-    /// 登録・更新画面で表示するUser情報
-    private var targetUser: User?
-
+final class EntryUserViewModel {
     /// `EntryUserState`
-    @Published var state = EntryUserState()
+    var state = EntryUserState()
 
     private let service: EntryUserServiceProtocol
 
@@ -55,14 +69,7 @@ final class EntryUserViewModel: ObservableObject {
 extension EntryUserViewModel {
     private func fetchTargetUser(id: ObjectId) {
         guard let user: User = service.fetchUser(id: id) else { return }
-        targetUser = user
-        // Update時なら初期値セット
-        state.name = user.name
-        state.ruby = user.ruby
-        state.date = user.date
-        state.selectedRelation = user.relation
-        state.memo = user.memo
-        state.isYearsUnknown = user.isYearsUnknown
+        state.setUser(user)
     }
 
     func createOrUpdateUser() -> Bool {
@@ -71,7 +78,7 @@ extension EntryUserViewModel {
             return false
         }
 
-        if let targetUser {
+        if let targetUser = state.targetUser {
             service.updateUser(targetUser, from: state)
         } else {
             service.createUser(from: state)

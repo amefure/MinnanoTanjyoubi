@@ -9,14 +9,14 @@ import SwiftUI
 
 struct EntryNotifyListView: View {
     @StateObject private var viewModel = DIContainer.shared.resolve(EntryNotifyListViewModel.self)
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             UpSideView()
-                .environmentObject(rootEnvironment)
+                .environment(\.rootEnvironment, rootEnvironment)
 
             HStack {
                 Spacer()
@@ -24,7 +24,7 @@ struct EntryNotifyListView: View {
                 Spacer()
                 Text("登録済み通知一覧")
                     .fontL(bold: true)
-                    .foregroundStyle(rootEnvironment.scheme.text)
+                    .foregroundStyle(rootEnvironment.state.scheme.text)
                     .padding(.vertical)
                 Spacer()
 
@@ -55,19 +55,19 @@ struct EntryNotifyListView: View {
                     DemoNotifyView(
                         msg: notify.message,
                         time: viewModel.convertDateTime(notify.date)
-                    ).listRowBackground(rootEnvironment.scheme.foundationSub)
+                    ).listRowBackground(rootEnvironment.state.scheme.foundationSub)
                         .onTapGesture {
                             viewModel.setTargetNotify(notify)
                         }
                 }.scrollContentBackground(.hidden)
-                    .background(rootEnvironment.scheme.foundationSub)
+                    .background(rootEnvironment.state.scheme.foundationSub)
             }
 
             Spacer()
 
         }.onAppear {
             viewModel.onAppear()
-        }.background(rootEnvironment.scheme.foundationSub)
+        }.background(rootEnvironment.state.scheme.foundationSub)
             .ignoresSafeArea(.keyboard)
             .fontM()
             .navigationBarBackButtonHidden()
@@ -115,7 +115,7 @@ struct EntryNotifyListView: View {
 
             Text("登録されている通知はありません。")
                 .fontM(bold: true)
-                .foregroundStyle(rootEnvironment.scheme.text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
 
             Spacer()
         }
@@ -124,5 +124,5 @@ struct EntryNotifyListView: View {
 
 #Preview {
     EntryNotifyListView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

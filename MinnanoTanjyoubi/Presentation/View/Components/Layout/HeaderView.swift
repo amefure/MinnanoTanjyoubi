@@ -16,7 +16,7 @@ struct HeaderView: View {
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isSESize = DeviceSizeUtility.isSESize
 
-    @EnvironmentObject private var rootEnvironment: RootEnvironment
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some View {
         HStack(alignment: .center) {
@@ -31,7 +31,7 @@ struct HeaderView: View {
                     } label: {
                         Image(systemName: "gearshape.fill")
                             .fontM()
-                    }.foregroundColor(rootEnvironment.scheme.text)
+                    }.foregroundColor(rootEnvironment.state.scheme.text)
                         .position(x: deviceWidth - 30, y: 30)
                 }
 
@@ -39,22 +39,22 @@ struct HeaderView: View {
                     Button {
                         rootEnvironment.switchDisplaySectionLayout()
                     } label: {
-                        Image(systemName: rootEnvironment.sectionLayoutFlag.next.imageName)
+                        Image(systemName: rootEnvironment.state.sectionLayoutFlag.next.imageName)
                             .fontM()
-                    }.foregroundStyle(rootEnvironment.scheme.text)
+                    }.foregroundStyle(rootEnvironment.state.scheme.text)
                         .position(x: 0 + 30, y: 30)
                 }
             }
         }.frame(width: deviceWidth, height: isSESize ? 60 : 70)
-            .background(rootEnvironment.scheme.foundationPrimary)
+            .background(rootEnvironment.state.scheme.foundationPrimary)
             .navigationDestination(isPresented: $isSettingActive) {
                 SettingView()
-                    .environmentObject(rootEnvironment)
+                    .environment(\.rootEnvironment, rootEnvironment)
             }
     }
 }
 
 #Preview {
     HeaderView()
-        .environmentObject(DIContainer.shared.resolve(RootEnvironment.self))
+        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }
