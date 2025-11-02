@@ -48,6 +48,8 @@ enum SCWeek: Int, CaseIterable {
         default: nil
         }
     }
+
+    static let INITAL_LIST: [SCWeek] = [.sunday, .monday, .tuesday, .wednesday, .thursday, .friday, .saturday]
 }
 
 extension [SCWeek] {

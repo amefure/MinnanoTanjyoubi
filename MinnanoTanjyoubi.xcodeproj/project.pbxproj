@@ -67,7 +67,6 @@
 		126236142DF3BEB200A5F1AE /* SCYearAndMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236132DF3BEB100A5F1AE /* SCYearAndMonth.swift */; };
 		126236162DF3BEBF00A5F1AE /* SCWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236152DF3BEBE00A5F1AE /* SCWeek.swift */; };
 		126236192DF3BF6600A5F1AE /* CalendarRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236182DF3BF6600A5F1AE /* CalendarRootView.swift */; };
-		1262361B2DF3BFA500A5F1AE /* YearAndMonthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262361A2DF3BFA400A5F1AE /* YearAndMonthSelectionView.swift */; };
 		1262361D2DF3BFCE00A5F1AE /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262361C2DF3BFCA00A5F1AE /* CalendarViewModel.swift */; };
 		1262361F2DF3C72700A5F1AE /* CarouselCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */; };
 		126236212DF3C78F00A5F1AE /* TheDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236202DF3C78E00A5F1AE /* TheDayView.swift */; };
@@ -274,7 +273,6 @@
 		126236132DF3BEB100A5F1AE /* SCYearAndMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCYearAndMonth.swift; sourceTree = "<group>"; };
 		126236152DF3BEBE00A5F1AE /* SCWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCWeek.swift; sourceTree = "<group>"; };
 		126236182DF3BF6600A5F1AE /* CalendarRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRootView.swift; sourceTree = "<group>"; };
-		1262361A2DF3BFA400A5F1AE /* YearAndMonthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearAndMonthSelectionView.swift; sourceTree = "<group>"; };
 		1262361C2DF3BFCA00A5F1AE /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCalendarView.swift; sourceTree = "<group>"; };
 		126236202DF3C78E00A5F1AE /* TheDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDayView.swift; sourceTree = "<group>"; };
@@ -610,7 +608,6 @@
 			isa = PBXGroup;
 			children = (
 				126236182DF3BF6600A5F1AE /* CalendarRootView.swift */,
-				1262361A2DF3BFA400A5F1AE /* YearAndMonthSelectionView.swift */,
 				1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */,
 				126236202DF3C78E00A5F1AE /* TheDayView.swift */,
 			);
@@ -1304,7 +1301,6 @@
 				12CFB0C52D0C7BEE00407CEA /* ExModifier.swift in Sources */,
 				128FC4C22B5FA558003E3B53 /* UpdateRelationNameView.swift in Sources */,
 				128FB79A2E9A2AFA000167C6 /* NotificationRequestWrapper.swift in Sources */,
-				1262361B2DF3BFA500A5F1AE /* YearAndMonthSelectionView.swift in Sources */,
 				127788C42E9FD2DD0048E9D0 /* RootListUserViewModel.swift in Sources */,
 				12DCD53C2E06E514007E59A7 /* Logger.swift in Sources */,
 				12CB921328E6FD43002BD7B2 /* RowUserView.swift in Sources */,

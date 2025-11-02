@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CarouselCalendarView: View {
-    @EnvironmentObject private var viewModel: CalendarViewModel
+    let viewModel: CalendarViewModel
     @Environment(\.rootEnvironment) private var rootEnvironment
 
     /// スワイプジェスチャー用オフセット
@@ -21,23 +21,22 @@ struct CarouselCalendarView: View {
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 0) {
-                ForEach(Array(viewModel.currentYearAndMonth.enumerated()), id: \.element.id) { index, _ in
+                ForEach(viewModel.state.yearAndMonths, id: \.id) { yearAndMonth in
                     VStack(spacing: 0) {
-                        if let dates = viewModel.currentDates[safe: index] {
-                            // LazyVGridだとスワイプ時の描画が重くなる
-                            ForEach(0 ..< dates.count / 7, id: \.self) { rowIndex in
-                                HStack(spacing: 0) {
-                                    ForEach(0 ..< 7) { columnIndex in
-                                        let dataIndex: Int = rowIndex * 7 + columnIndex
-                                        if dataIndex < dates.count {
-                                            let theDay = dates[dataIndex]
-                                            TheDayView(theDay: theDay)
-                                                .environmentObject(viewModel)
-                                        }
+                        let dates = yearAndMonth.dates
+                        // LazyVGridだとスワイプ時の描画が重くなる
+                        ForEach(0 ..< dates.count / 7, id: \.self) { rowIndex in
+                            HStack(spacing: 0) {
+                                ForEach(0 ..< 7) { columnIndex in
+                                    let dataIndex: Int = rowIndex * 7 + columnIndex
+                                    if dataIndex < dates.count {
+                                        let theDay = dates[dataIndex]
+                                        TheDayView(viewModel: viewModel, theDay: theDay)
                                     }
                                 }
                             }
                         }
+
                         Spacer()
                     }.frame(width: geometry.size.width, height: geometry.size.height)
                 }
@@ -48,11 +47,11 @@ struct CarouselCalendarView: View {
         // iOS18以降からかスワイプ終了あとに0にならなくなったのでスワイプ中のみオフセットするように変更
         .offset(x: isSwipe ? dragOffset : 0)
         // スワイプ完了後にバナーコンテナ自体を移動した後に固定するためのオフセット
-        .offset(x: -(viewModel.displayCalendarIndex * deviceWidth))
+        .offset(x: -(viewModel.state.displayCalendarIndex * deviceWidth))
         // スワイプ完了後の動作をなめらかにするためのアニメーション
         .animation(
             .linear(duration: 0.5),
-            value: viewModel.displayCalendarIndex * deviceWidth
+            value: viewModel.state.displayCalendarIndex * deviceWidth
         )
         .animation(
             .linear(duration: 0.5),
@@ -89,5 +88,5 @@ struct CarouselCalendarView: View {
 }
 
 #Preview {
-    CarouselCalendarView()
+    CarouselCalendarView(viewModel: DIContainer.shared.resolve(CalendarViewModel.self))
 }

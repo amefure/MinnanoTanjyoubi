@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TheDayView: View {
-    @EnvironmentObject private var viewModel: CalendarViewModel
+    let viewModel: CalendarViewModel
     @Environment(\.rootEnvironment) private var rootEnvironment
 
     let theDay: SCDate
@@ -161,5 +161,8 @@ struct TheDayView: View {
 }
 
 #Preview {
-    TheDayView(theDay: SCDate.demo)
+    TheDayView(
+        viewModel: DIContainer.shared.resolve(CalendarViewModel.self),
+        theDay: SCDate.demo
+    )
 }

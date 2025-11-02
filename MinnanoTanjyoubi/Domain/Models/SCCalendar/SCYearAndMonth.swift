@@ -7,10 +7,11 @@
 
 import UIKit
 
-struct SCYearAndMonth: Identifiable {
-    var id: UUID = .init()
-    var year: Int
-    var month: Int
+struct SCYearAndMonth: Identifiable, Sendable {
+    let id: UUID = .init()
+    let year: Int
+    let month: Int
+    var dates: [SCDate] = []
 
     var yearAndMonth: String {
         "\(year)年\(month)月"
