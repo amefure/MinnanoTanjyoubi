@@ -26,15 +26,13 @@ struct SingleGridListView: View {
                 if rootEnvironment.state.isDeleteMode {
                     // DeleteMode
                     CheckRowUserView(user: user)
-                        .environment(\.rootEnvironment, rootEnvironment)
+
                 } else {
                     // NormalMode
                     NavigationLink {
                         DetailUserView(userId: user.id)
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         RowUserView(user: user)
-                            .environment(\.rootEnvironment, rootEnvironment)
                     }.buttonStyle(.plain)
                 }
             }

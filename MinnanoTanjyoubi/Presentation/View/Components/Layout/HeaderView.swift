@@ -49,12 +49,10 @@ struct HeaderView: View {
             .background(rootEnvironment.state.scheme.foundationPrimary)
             .navigationDestination(isPresented: $isSettingActive) {
                 SettingView()
-                    .environment(\.rootEnvironment, rootEnvironment)
             }
     }
 }
 
 #Preview {
     HeaderView()
-        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

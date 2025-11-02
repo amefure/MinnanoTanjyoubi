@@ -41,17 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 struct MinnanoTanjyoubiApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    private let rootEnvironment = DIContainer.shared.resolve(RootEnvironment.self)
+    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 if rootEnvironment.state.appLocked {
                     AppLockView()
-                        .environment(\.rootEnvironment, rootEnvironment)
                 } else {
                     RootView()
-                        .environment(\.rootEnvironment, rootEnvironment)
                 }
             }.onAppear { rootEnvironment.onAppear() }
         }

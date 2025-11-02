@@ -27,7 +27,6 @@ struct DetailUserView: View {
     var body: some View {
         VStack {
             UpSideView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             Group {
                 // Relation/あと何日../名前/ふりがな/生年月日/和暦
@@ -99,7 +98,7 @@ struct DetailUserView: View {
                 imageString: "square.and.pencil"
             ).sheet(isPresented: $viewModel.isShowUpdateModalView) {
                 EntryUserView(updateUserId: viewModel.state.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
-            }.environment(\.rootEnvironment, rootEnvironment)
+            }
 
             if !DeviceSizeUtility.isSESize, !rootEnvironment.state.removeAds {
                 AdMobBannerView()

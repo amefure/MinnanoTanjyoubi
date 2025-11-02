@@ -9,15 +9,20 @@ import Combine
 import LocalAuthentication
 import UIKit
 
-final class AppLockViewModel: ObservableObject {
+@Observable
+final class AppLockState {
     /// アプリメイン画面遷移
-    @Published var isShowApp = false
+    var isShowApp: Bool = false
     /// パスワード失敗アラート
-    @Published var isShowFailureAlert = false
+    var isShowFailureAlert: Bool = false
     /// プログレス表示
-    @Published private(set) var isShowProgress = false
-    @Published private(set) var type: LABiometryType = .none
-    @Published private(set) var isLogin = false
+    fileprivate(set) var isShowProgress: Bool = false
+    fileprivate(set) var type: LABiometryType = .none
+    private(set) var isLogin: Bool = false
+}
+
+final class AppLockViewModel {
+    var state = AppLockState()
 
     private var cancellables: Set<AnyCancellable> = []
 
@@ -40,7 +45,7 @@ final class AppLockViewModel: ObservableObject {
     func onAppear() {
         biometricAuthRepository.biometryType.sink { [weak self] type in
             guard let self else { return }
-            self.type = type
+            state.type = type
         }.store(in: &cancellables)
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) { [weak self] in
@@ -93,21 +98,21 @@ final class AppLockViewModel: ObservableObject {
 
     /// アプリトップへ遷移
     func showApp() {
-        isShowApp = true
+        state.isShowApp = true
     }
 
     /// プログレス表示
     func showProgress() {
-        isShowProgress = true
+        state.isShowProgress = true
     }
 
     /// プログレス非表示
     func hiddenProgress() {
-        isShowProgress = false
+        state.isShowProgress = false
     }
 
     /// 失敗アラート表示
     func showFailureAlert() {
-        isShowFailureAlert = true
+        state.isShowFailureAlert = true
     }
 }

@@ -15,7 +15,6 @@ struct ShareUserLinkView: View {
     var body: some View {
         VStack {
             UpSideView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("誕生日情報共有")
                 .fontL()
@@ -72,5 +71,4 @@ struct ShareUserLinkView: View {
 
 #Preview {
     ShareUserLinkView()
-        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

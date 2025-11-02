@@ -16,10 +16,8 @@ struct RootView: View {
     var body: some View {
         VStack(spacing: 0) {
             HeaderView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             RootListUserView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             if !rootEnvironment.state.removeAds {
                 AdMobBannerView()

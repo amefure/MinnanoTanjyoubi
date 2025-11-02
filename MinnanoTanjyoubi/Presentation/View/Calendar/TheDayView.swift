@@ -106,7 +106,6 @@ struct TheDayView: View {
                         isCalendarDay: theDay.day,
                         isSelfShowModal: $isShowEntryModal
                     )
-                    .environment(\.rootEnvironment, rootEnvironment)
                 }.alert(
                     isPresented: $isLimitAlert,
                     title: "Error...",
@@ -120,7 +119,6 @@ struct TheDayView: View {
             view
                 .navigationDestination(isPresented: $isShowDetailView) {
                     DetailUserView(userId: theDay.users.first!.id)
-                        .environment(\.rootEnvironment, rootEnvironment)
                 }
         }.if(theDay.users.count >= 2) { view in
             view
@@ -129,7 +127,6 @@ struct TheDayView: View {
                 }.navigationDestination(isPresented: $isShowDetailView) {
                     if let user {
                         DetailUserView(userId: user.id)
-                            .environment(\.rootEnvironment, rootEnvironment)
                     }
                 }
         }
@@ -152,7 +149,6 @@ struct TheDayView: View {
                         } label: {
                             RowUserView(user: user)
                                 .frame(width: CGFloat(DeviceSizeUtility.deviceWidth / 3) - 10)
-                                .environment(\.rootEnvironment, rootEnvironment)
                         }.buttonStyle(.plain)
                     }
                 }

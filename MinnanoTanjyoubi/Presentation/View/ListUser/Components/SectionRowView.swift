@@ -30,7 +30,6 @@ struct SectionRowView: View {
                 }.foregroundColor(rootEnvironment.state.scheme.text)
 
                 SingleGridListView(users: users)
-                    .environment(\.rootEnvironment, rootEnvironment)
             }.padding()
         }
     }

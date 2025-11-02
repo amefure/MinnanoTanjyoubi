@@ -19,7 +19,6 @@ struct SettingView: View {
     var body: some View {
         VStack(spacing: 0) {
             UpSideView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             // List ここから
             List {
@@ -33,7 +32,6 @@ struct SettingView: View {
                         now: Double(viewModel.allUserCount),
                         max: Double(viewModel.getCapacity())
                     ).foregroundStyle(Asset.Colors.exText.swiftUIColor)
-                        .environment(\.rootEnvironment, rootEnvironment)
                 }
 
                 Section(
@@ -50,7 +48,6 @@ struct SettingView: View {
                         Spacer()
 
                         TimePickerView(viewModel: viewModel)
-                            .environment(\.rootEnvironment, rootEnvironment)
                     }.listRowHeight()
                     // 通知日時
                     HStack {
@@ -67,7 +64,6 @@ struct SettingView: View {
                     // 通知メッセージを変更する
                     NavigationLink {
                         EditNotifyMessageView()
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "text.bubble")
@@ -79,7 +75,6 @@ struct SettingView: View {
                     // 登録済み通知一覧
                     NavigationLink {
                         EntryNotifyListView()
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "text.bubble")
@@ -153,7 +148,6 @@ struct SettingView: View {
                     // 並び順を変更する
                     NavigationLink {
                         SelectSortView()
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "arrow.up.arrow.down")
@@ -165,7 +159,6 @@ struct SettingView: View {
                     // 誕生日情報を共有する
                     NavigationLink {
                         ShareUserLinkView()
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "person.line.dotted.person")
@@ -183,7 +176,6 @@ struct SettingView: View {
                     // テーマカラーを変更する
                     NavigationLink {
                         SelectColorScheme()
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "paintpalette")
@@ -195,7 +187,6 @@ struct SettingView: View {
                     // 関係をカスタマイズ
                     NavigationLink {
                         UpdateRelationNameView()
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "pencil.line")
@@ -207,7 +198,6 @@ struct SettingView: View {
                     // 週始まりを変更する
                     NavigationLink {
                         SelectInitWeekView()
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "calendar")
@@ -225,7 +215,6 @@ struct SettingView: View {
                     }.listRowHeight()
                         .sheet(isPresented: $viewModel.state.isShowPassInput) {
                             AppLockInputView(isLock: $viewModel.isLock)
-                                .environment(\.rootEnvironment, rootEnvironment)
                         }
                 }.listRowBackground(rootEnvironment.state.scheme.foundationPrimary)
 
@@ -236,7 +225,6 @@ struct SettingView: View {
                     // よくある質問
                     NavigationLink {
                         FaqListView()
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "questionmark.app")
@@ -260,7 +248,6 @@ struct SettingView: View {
                     // アプリ内課金
                     NavigationLink {
                         InAppPurchaseView()
-                            .environment(\.rootEnvironment, rootEnvironment)
                     } label: {
                         HStack {
                             Image(systemName: "app.gift.fill")
@@ -301,7 +288,6 @@ struct SettingView: View {
                         // 3:お問い合わせフォーム
                         NavigationLink {
                             ControlWebView(url: url)
-                                .environment(\.rootEnvironment, rootEnvironment)
                         } label: {
                             HStack {
                                 Image(systemName: "paperplane")
@@ -315,7 +301,6 @@ struct SettingView: View {
                         // 4:利用規約とプライバシーポリシー
                         NavigationLink {
                             ControlWebView(url: url)
-                                .environment(\.rootEnvironment, rootEnvironment)
                         } label: {
                             HStack {
                                 Image(systemName: "note.text")
@@ -347,7 +332,6 @@ struct SettingView: View {
             .background(rootEnvironment.state.scheme.foundationSub)
             .navigationDestination(isPresented: $viewModel.state.isShowInAppPurchaseView) {
                 InAppPurchaseView()
-                    .environment(\.rootEnvironment, rootEnvironment)
             }
     }
 
@@ -565,7 +549,6 @@ private struct CapacityParametersView: View {
             }.frame(width: width + 20, alignment: .leading)
 
             RewardButtonView()
-                .environment(\.rootEnvironment, rootEnvironment)
         }.onAppear {
             withAnimation(Animation.linear(duration: 2)) {
                 target = now
@@ -577,5 +560,4 @@ private struct CapacityParametersView: View {
 
 #Preview {
     SettingView()
-        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

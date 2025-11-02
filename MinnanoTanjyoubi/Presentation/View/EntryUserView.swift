@@ -29,7 +29,6 @@ struct EntryUserView: View {
     var body: some View {
         VStack(alignment: .center) {
             UpSideView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             if !DeviceSizeUtility.isSESize {
                 Spacer()
@@ -65,7 +64,7 @@ struct EntryUserView: View {
                         date: $viewModel.state.date,
                         showWheel: $viewModel.state.showWheel,
                         isYearsUnknown: $viewModel.state.isYearsUnknown
-                    ).environment(\.rootEnvironment, rootEnvironment)
+                    )
                 }.padding(5)
 
                 // Input Relation
@@ -132,7 +131,7 @@ struct EntryUserView: View {
                     isSelfShowModal = false
                 },
                 imageString: "checkmark"
-            ).environment(\.rootEnvironment, rootEnvironment)
+            )
 
         }.padding()
             .fontM()

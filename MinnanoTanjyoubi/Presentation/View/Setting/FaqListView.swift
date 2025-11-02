@@ -14,7 +14,6 @@ struct FaqListView: View {
     var body: some View {
         VStack {
             UpSideView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("よくある質問")
                 .fontL(bold: true)
@@ -41,7 +40,6 @@ struct FaqListView: View {
 
 #Preview {
     FaqListView()
-        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }
 
 private struct AccordionBoxView: View {

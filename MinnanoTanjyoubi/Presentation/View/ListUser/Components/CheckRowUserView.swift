@@ -71,7 +71,6 @@ struct CheckRowUserView: View {
                 RowUserView(user: user)
                     .opacity(isOn ? 1 : 0.7)
                     .zIndex(1)
-                    .environment(\.rootEnvironment, rootEnvironment)
             }
         }
     }

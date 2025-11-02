@@ -18,7 +18,6 @@ struct EditNotifyMessageView: View {
     var body: some View {
         VStack {
             UpSideView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("通知メッセージ編集")
                 .fontL(bold: true)
@@ -31,7 +30,6 @@ struct EditNotifyMessageView: View {
                 .frame(width: DeviceSizeUtility.deviceWidth - 40, alignment: .leading)
 
             DemoNotifyView(msg: viewModel.notifyMsg)
-                .environment(\.rootEnvironment, rootEnvironment)
 
             Rectangle()
                 .fill(.white)
@@ -65,7 +63,7 @@ struct EditNotifyMessageView: View {
                     viewModel.registerNotifyMsg()
                 },
                 imageString: "checkmark"
-            ).environment(\.rootEnvironment, rootEnvironment)
+            )
 
         }.onAppear {
             viewModel.onAppear()

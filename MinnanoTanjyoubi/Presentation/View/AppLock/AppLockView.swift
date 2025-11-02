@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct AppLockView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(AppLockViewModel.self)
+    @State private var viewModel = DIContainer.shared.resolve(AppLockViewModel.self)
     @State private var password: [String] = []
     @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some View {
         VStack(spacing: 0) {
             HeaderView(isShowIcon: false)
-                .environment(\.rootEnvironment, rootEnvironment)
 
             Spacer()
 
@@ -29,7 +28,7 @@ struct AppLockView: View {
                         }
                     }
 
-                if viewModel.isShowProgress {
+                if viewModel.state.isShowProgress {
                     ProgressView()
                         .offset(y: 60)
                 } else {
@@ -39,12 +38,12 @@ struct AppLockView: View {
                         }
                     } label: {
                         VStack {
-                            if viewModel.type == .faceID {
+                            if viewModel.state.type == .faceID {
                                 Image(systemName: "faceid")
                                     .resizable()
                                     .frame(width: 20, height: 20)
                                 Text("Face IDでログインする")
-                            } else if viewModel.type == .touchID {
+                            } else if viewModel.state.type == .touchID {
                                 Image(systemName: "touchid")
                                     .resizable()
                                     .frame(width: 20, height: 20)
@@ -61,12 +60,11 @@ struct AppLockView: View {
             NumberKeyboardView(password: $password)
                 .ignoresSafeArea(.all)
         }.alert(
-            isPresented: $viewModel.isShowFailureAlert,
+            isPresented: $viewModel.state.isShowFailureAlert,
             title: "Erroe",
             message: "パスワードが違います。"
-        ).navigationDestination(isPresented: $viewModel.isShowApp) {
+        ).navigationDestination(isPresented: $viewModel.state.isShowApp) {
             RootView()
-                .environment(\.rootEnvironment, rootEnvironment)
         }
         .onAppear { viewModel.onAppear() }
         .onDisappear { viewModel.onDisappear() }
@@ -87,19 +85,16 @@ struct NumberKeyboardView: View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 NumberButton(number: "1", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "2", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "3", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
             }
 
             Rectangle()
@@ -107,19 +102,16 @@ struct NumberKeyboardView: View {
 
             HStack(spacing: 0) {
                 NumberButton(number: "4", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "5", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "6", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
             }
 
             Rectangle()
@@ -127,19 +119,16 @@ struct NumberKeyboardView: View {
 
             HStack(spacing: 0) {
                 NumberButton(number: "7", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "8", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "9", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
             }
 
             Rectangle()
@@ -147,13 +136,11 @@ struct NumberKeyboardView: View {
 
             HStack(spacing: 0) {
                 NumberButton(number: "-", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
                 NumberButton(number: "0", password: $password)
-                    .environment(\.rootEnvironment, rootEnvironment)
 
                 Rectangle()
                     .frame(width: 1, height: height)
@@ -214,5 +201,4 @@ struct NumberButton: View {
 
 #Preview {
     AppLockView()
-        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

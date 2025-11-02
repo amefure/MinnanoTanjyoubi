@@ -33,7 +33,6 @@ struct CarouselCalendarView: View {
                                             let theDay = dates[dataIndex]
                                             TheDayView(theDay: theDay)
                                                 .environmentObject(viewModel)
-                                                .environment(\.rootEnvironment, rootEnvironment)
                                         }
                                     }
                                 }

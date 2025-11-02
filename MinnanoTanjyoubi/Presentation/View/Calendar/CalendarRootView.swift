@@ -17,7 +17,6 @@ struct CalendarRootView: View {
         VStack(spacing: 0) {
             YearAndMonthSelectionView()
                 .environmentObject(viewModel)
-                .environment(\.rootEnvironment, rootEnvironment)
 
             LazyVGrid(columns: columns, spacing: 0) {
                 ForEach(viewModel.dayOfWeekList, id: \.self) { week in
@@ -29,7 +28,6 @@ struct CalendarRootView: View {
 
             CarouselCalendarView()
                 .environmentObject(viewModel)
-                .environment(\.rootEnvironment, rootEnvironment)
 
             Spacer()
 

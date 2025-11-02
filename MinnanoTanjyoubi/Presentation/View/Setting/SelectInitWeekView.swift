@@ -15,7 +15,6 @@ struct SelectInitWeekView: View {
     var body: some View {
         VStack {
             UpSideView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("週始まり変更")
                 .fontL(bold: true)
@@ -54,7 +53,7 @@ struct SelectInitWeekView: View {
                     viewModel.registerInitWeek()
                 },
                 imageString: "checkmark"
-            ).environment(\.rootEnvironment, rootEnvironment)
+            )
 
         }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
@@ -75,5 +74,4 @@ struct SelectInitWeekView: View {
 
 #Preview {
     SelectInitWeekView()
-        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }

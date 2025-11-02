@@ -107,7 +107,6 @@ struct RowUserView: View {
 
             if daysLater == 0 {
                 GarlandView()
-                    .environment(\.rootEnvironment, rootEnvironment)
             }
         }
     }

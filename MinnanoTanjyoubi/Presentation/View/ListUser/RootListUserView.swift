@@ -54,7 +54,6 @@ struct RootListUserView: View {
             case .calendar:
                 // 単体のグリッドレイアウト
                 CalendarRootView()
-                    .environment(\.rootEnvironment, rootEnvironment)
 
             default:
                 ZStack {
@@ -68,11 +67,9 @@ struct RootListUserView: View {
                                 case .grid:
                                     // 単体のグリッドレイアウト
                                     SingleGridListView(users: viewModel.allUsers)
-                                        .environment(\.rootEnvironment, rootEnvironment)
                                 case .group:
                                     // カテゴリセクショングリッドレイアウト
                                     SectionGridListView(users: viewModel.allUsers)
-                                        .environment(\.rootEnvironment, rootEnvironment)
                                 case .calendar:
                                     // ここは呼ばれない
                                     EmptyView()
@@ -190,7 +187,6 @@ struct RootListUserView: View {
                 .fontM()
         }.sheet(isPresented: $viewModel.isShowEntryModal) {
             EntryUserView(updateUserId: nil, isSelfShowModal: $viewModel.isShowEntryModal)
-                .environment(\.rootEnvironment, rootEnvironment)
         }.alert(
             isPresented: $viewModel.isShowLimitAlert,
             title: "Error...",

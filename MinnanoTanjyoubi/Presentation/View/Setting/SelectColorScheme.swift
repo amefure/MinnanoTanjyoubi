@@ -17,7 +17,6 @@ struct SelectColorScheme: View {
     var body: some View {
         VStack {
             UpSideView()
-                .environment(\.rootEnvironment, rootEnvironment)
 
             Text("テーマカラー変更")
                 .fontL(bold: true)
@@ -70,7 +69,7 @@ struct SelectColorScheme: View {
 
                 },
                 imageString: "checkmark"
-            ).environment(\.rootEnvironment, rootEnvironment)
+            )
 
         }.background(rootEnvironment.state.scheme.foundationSub)
             .fontM()
@@ -115,5 +114,4 @@ private struct ColorSchemePreView: View {
 
 #Preview {
     SelectColorScheme()
-        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
 }
