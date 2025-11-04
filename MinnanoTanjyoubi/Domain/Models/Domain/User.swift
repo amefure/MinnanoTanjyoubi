@@ -7,7 +7,7 @@
 import Foundation
 import RealmSwift
 
-class User: Object, ObjectKeyIdentifiable, Codable, Identifiable {
+class User: Object, ObjectKeyIdentifiable, Codable, Identifiable, SCDateEntity {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String = ""
     @Persisted var ruby: String = ""

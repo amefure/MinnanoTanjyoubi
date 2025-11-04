@@ -61,7 +61,7 @@ final class CalendarViewModel {
         if !isInitializeFlag {
             // リフレッシュしたいため都度取得する
             let users: [User] = localRepository.readAllObjs()
-            scCalenderRepository.initialize(initWeek: state.initWeek, users: users)
+            scCalenderRepository.initialize(initWeek: state.initWeek, entities: users)
             isInitializeFlag = true
         }
 
@@ -97,7 +97,7 @@ final class CalendarViewModel {
                     getInitWeek()
                     // リフレッシュしたいため都度取得する
                     let users: [User] = localRepository.readAllObjs()
-                    scCalenderRepository.initialize(initWeek: state.initWeek, users: users)
+                    scCalenderRepository.initialize(initWeek: state.initWeek, entities: users)
                     // カレンダーを更新
                     NotificationCenter.default.post(name: .updateCalendar, object: false)
                 }

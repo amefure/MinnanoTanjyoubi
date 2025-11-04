@@ -47,8 +47,8 @@ final class SCCalenderRepository: @unchecked Sendable {
     /// カレンダー
     private let calendar = Calendar(identifier: .gregorian)
 
-    /// 当日の日付情報
-    private var users: [User] = []
+    /// 日付に紐付ける情報
+    private var allEntities: [SCDateEntity] = []
 
     init() {
         today = calendar.dateComponents([.year, .month, .day], from: Date())
@@ -67,10 +67,10 @@ final class SCCalenderRepository: @unchecked Sendable {
         startYear: Int = START_YEAR,
         startMonth: Int = START_MONTH,
         initWeek: SCWeek = .sunday,
-        users: [User]
+        entities: [SCDateEntity]
     ) {
         self.initWeek = initWeek
-        self.users = users
+        allEntities = entities
 
         let nowYear: Int = today.year ?? startYear
         let nowMonth: Int = today.month ?? startMonth
@@ -157,10 +157,10 @@ extension SCCalenderRepository {
             let dayOfWeek = calendar.component(.weekday, from: date)
             let week = SCWeek(rawValue: dayOfWeek - 1) ?? SCWeek.sunday
             let isToday: Bool = df.checkInSameDayAs(date: date, sameDay: Date())
-            // 対象の日付に紐づく誕生日情報だけを格納する
-            let theDayUsers: [User] = users.filter {
-                let userComponents = calendar.dateComponents([.month, .day], from: $0.date)
-                return day == userComponents.day && month == userComponents.month
+            // 対象の日付に紐づくエンティティ情報だけを格納する
+            let entities: [SCDateEntity] = allEntities.filter {
+                let components = calendar.dateComponents([.month, .day], from: $0.date)
+                return day == components.day && month == components.month
             }
             let scDate = SCDate(
                 year: year,
@@ -168,7 +168,7 @@ extension SCCalenderRepository {
                 day: day,
                 date: date,
                 week: week,
-                users: theDayUsers,
+                entities: entities,
                 isToday: isToday
             )
             dates.append(scDate)

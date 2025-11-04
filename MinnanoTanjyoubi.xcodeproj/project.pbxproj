@@ -92,6 +92,8 @@
 		128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */; };
 		128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */; };
 		129A0DEC2CAC260F006C6ED2 /* FaqListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */; };
+		129FA0C82EBA26C4009712F1 /* SCDateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129FA0C72EBA26C3009712F1 /* SCDateEntity.swift */; };
+		129FA0C92EBA26ED009712F1 /* SCDateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129FA0C72EBA26C3009712F1 /* SCDateEntity.swift */; };
 		12ACAD2529951A0E00273834 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12ACAD2429951A0E00273834 /* GoogleService-Info.plist */; };
 		12ACAD2729984D5400273834 /* DateFormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateFormatUtility.swift */; };
 		12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD292998C1E100273834 /* HeaderView.swift */; };
@@ -295,6 +297,7 @@
 		128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIApplication.swift; sourceTree = "<group>"; };
 		129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqListView.swift; sourceTree = "<group>"; };
+		129FA0C72EBA26C3009712F1 /* SCDateEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCDateEntity.swift; sourceTree = "<group>"; };
 		12ACAD2429951A0E00273834 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		12ACAD2629984D5400273834 /* DateFormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatUtility.swift; sourceTree = "<group>"; };
 		12ACAD292998C1E100273834 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -600,6 +603,7 @@
 				126236112DF3BEA500A5F1AE /* SCDate.swift */,
 				126236132DF3BEB100A5F1AE /* SCYearAndMonth.swift */,
 				126236152DF3BEBE00A5F1AE /* SCWeek.swift */,
+				129FA0C72EBA26C3009712F1 /* SCDateEntity.swift */,
 			);
 			path = SCCalendar;
 			sourceTree = "<group>";
@@ -1223,6 +1227,7 @@
 				1204FB232E7058220092AE9E /* RealmRepository.swift in Sources */,
 				128FB79B2E9A2AFA000167C6 /* NotificationRequestWrapper.swift in Sources */,
 				1204FB272E7058560092AE9E /* DateFormatUtility.swift in Sources */,
+				129FA0C92EBA26ED009712F1 /* SCDateEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1346,6 +1351,7 @@
 				12ACAD32299EDD6200273834 /* DeviceSizeUtility.swift in Sources */,
 				12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */,
 				124602482B36B62300B6C32D /* RootViewModel.swift in Sources */,
+				129FA0C82EBA26C4009712F1 /* SCDateEntity.swift in Sources */,
 				128FB79D2E9A2E6B000167C6 /* EntryNotifyListView.swift in Sources */,
 				127788C62EA0CBE70048E9D0 /* SelectSortViewModel.swift in Sources */,
 				12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */,

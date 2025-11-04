@@ -15,8 +15,8 @@ struct SCDate: Identifiable, @unchecked Sendable {
     var date: Date?
     var week: SCWeek?
     var holidayName: String = ""
-    // 登録されている誕生日情報
-    var users: [User] = []
+    /// 日付に持たせたいエンティティ
+    var entities: [SCDateEntity] = []
     var isToday: Bool = false
 
     /// 年月日取得
@@ -36,6 +36,12 @@ struct SCDate: Identifiable, @unchecked Sendable {
         } else {
             return defaultColor
         }
+    }
+}
+
+extension SCDate {
+    var users: [User] {
+        entities.compactMap { $0.self as? User }
     }
 }
 
