@@ -5,6 +5,7 @@
 //  Created by t&a on 2025/06/07.
 //
 
+import SCCalendar
 import SwiftUI
 
 struct TheDayView: View {

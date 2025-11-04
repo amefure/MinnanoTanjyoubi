@@ -5,6 +5,7 @@
 //  Created by t&a on 2025/10/16.
 //
 
+import SCCalendar
 import SwiftUI
 
 @Observable

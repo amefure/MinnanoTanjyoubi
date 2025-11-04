@@ -24,6 +24,7 @@
 		1204FB382E706ABA0092AE9E /* ExFontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204FB372E706AB50092AE9E /* ExFontSize.swift */; };
 		1204FB392E706ACD0092AE9E /* ExFontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1204FB372E706AB50092AE9E /* ExFontSize.swift */; };
 		1204FB3A2E706D270092AE9E /* UserCalcUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236082DF30D2800A5F1AE /* UserCalcUtility.swift */; };
+		120C65562EBA36600001312B /* SCCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 120C65552EBA36600001312B /* SCCalendar */; };
 		121732FC2E97F05B009235E6 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 121732FB2E97F05B009235E6 /* CryptoSwift */; };
 		121732FE2E97F0BD009235E6 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 121732FD2E97F0BD009235E6 /* CryptoSwift */; };
 		121733012E97F246009235E6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 121733002E97F246009235E6 /* GoogleMobileAds */; };
@@ -62,10 +63,7 @@
 		1258FD722C97D0480065A081 /* EditNotifyMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */; };
 		126236092DF30D2F00A5F1AE /* UserCalcUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236082DF30D2800A5F1AE /* UserCalcUtility.swift */; };
 		1262360C2DF3B86A00A5F1AE /* DateFormatUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262360B2DF3B86900A5F1AE /* DateFormatUtilityTests.swift */; };
-		1262360F2DF3BE3200A5F1AE /* SCCalenderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262360E2DF3BE3200A5F1AE /* SCCalenderRepository.swift */; };
-		126236122DF3BEA500A5F1AE /* SCDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236112DF3BEA500A5F1AE /* SCDate.swift */; };
-		126236142DF3BEB200A5F1AE /* SCYearAndMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236132DF3BEB100A5F1AE /* SCYearAndMonth.swift */; };
-		126236162DF3BEBF00A5F1AE /* SCWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236152DF3BEBE00A5F1AE /* SCWeek.swift */; };
+		126236122DF3BEA500A5F1AE /* ExSCDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236112DF3BEA500A5F1AE /* ExSCDate.swift */; };
 		126236192DF3BF6600A5F1AE /* CalendarRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126236182DF3BF6600A5F1AE /* CalendarRootView.swift */; };
 		1262361D2DF3BFCE00A5F1AE /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262361C2DF3BFCA00A5F1AE /* CalendarViewModel.swift */; };
 		1262361F2DF3C72700A5F1AE /* CarouselCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */; };
@@ -92,8 +90,7 @@
 		128FC4C52B5FC07E003E3B53 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */; };
 		128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */; };
 		129A0DEC2CAC260F006C6ED2 /* FaqListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */; };
-		129FA0C82EBA26C4009712F1 /* SCDateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129FA0C72EBA26C3009712F1 /* SCDateEntity.swift */; };
-		129FA0C92EBA26ED009712F1 /* SCDateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129FA0C72EBA26C3009712F1 /* SCDateEntity.swift */; };
+		129FA0CC2EBA2F97009712F1 /* SCCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 129FA0CB2EBA2F97009712F1 /* SCCalendar */; };
 		12ACAD2529951A0E00273834 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12ACAD2429951A0E00273834 /* GoogleService-Info.plist */; };
 		12ACAD2729984D5400273834 /* DateFormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2629984D5400273834 /* DateFormatUtility.swift */; };
 		12ACAD2A2998C1E100273834 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD292998C1E100273834 /* HeaderView.swift */; };
@@ -270,10 +267,7 @@
 		1258FD712C97D0480065A081 /* EditNotifyMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotifyMessageView.swift; sourceTree = "<group>"; };
 		126236082DF30D2800A5F1AE /* UserCalcUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCalcUtility.swift; sourceTree = "<group>"; };
 		1262360B2DF3B86900A5F1AE /* DateFormatUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatUtilityTests.swift; sourceTree = "<group>"; };
-		1262360E2DF3BE3200A5F1AE /* SCCalenderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCalenderRepository.swift; sourceTree = "<group>"; };
-		126236112DF3BEA500A5F1AE /* SCDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCDate.swift; sourceTree = "<group>"; };
-		126236132DF3BEB100A5F1AE /* SCYearAndMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCYearAndMonth.swift; sourceTree = "<group>"; };
-		126236152DF3BEBE00A5F1AE /* SCWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCWeek.swift; sourceTree = "<group>"; };
+		126236112DF3BEA500A5F1AE /* ExSCDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExSCDate.swift; sourceTree = "<group>"; };
 		126236182DF3BF6600A5F1AE /* CalendarRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRootView.swift; sourceTree = "<group>"; };
 		1262361C2DF3BFCA00A5F1AE /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		1262361E2DF3C72700A5F1AE /* CarouselCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCalendarView.swift; sourceTree = "<group>"; };
@@ -297,7 +291,6 @@
 		128FC4C42B5FC07E003E3B53 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
 		128FC4C92B60AA07003E3B53 /* ExUIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIApplication.swift; sourceTree = "<group>"; };
 		129A0DEB2CAC260E006C6ED2 /* FaqListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqListView.swift; sourceTree = "<group>"; };
-		129FA0C72EBA26C3009712F1 /* SCDateEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCDateEntity.swift; sourceTree = "<group>"; };
 		12ACAD2429951A0E00273834 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		12ACAD2629984D5400273834 /* DateFormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatUtility.swift; sourceTree = "<group>"; };
 		12ACAD292998C1E100273834 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -380,6 +373,7 @@
 			files = (
 				1204FB082E704DF30092AE9E /* SwiftUI.framework in Frameworks */,
 				1204FB062E704DF30092AE9E /* WidgetKit.framework in Frameworks */,
+				120C65562EBA36600001312B /* SCCalendar in Frameworks */,
 				888E795A527175D1A1E702AA /* Pods_BirthDayWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +400,7 @@
 				12CA5D8E2D19A59F00A4C1F6 /* StoreKit.framework in Frameworks */,
 				121732FC2E97F05B009235E6 /* CryptoSwift in Frameworks */,
 				121733212E98D8E5009235E6 /* FirebaseRemoteConfig in Frameworks */,
+				129FA0CC2EBA2F97009712F1 /* SCCalendar in Frameworks */,
 				444EEC307310A8B7B35FD347 /* Pods_MinnanoTanjyoubi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,7 +460,6 @@
 			children = (
 				1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */,
 				127788BF2E9FC4030048E9D0 /* Protocol */,
-				1262360D2DF3BE2A00A5F1AE /* SCCalender */,
 				12CA5D9D2D266E8900A4C1F6 /* InAppPurchaseRepository.swift */,
 				121DEE042B1A200600964902 /* KeyChainRepository.swift */,
 				12FE3A272B2DC1C600FA700E /* RealmRepository.swift */,
@@ -587,25 +581,6 @@
 				122C8A562E04451B003AAD30 /* JsonConvertUtilityTests.swift */,
 			);
 			path = Utility;
-			sourceTree = "<group>";
-		};
-		1262360D2DF3BE2A00A5F1AE /* SCCalender */ = {
-			isa = PBXGroup;
-			children = (
-				1262360E2DF3BE3200A5F1AE /* SCCalenderRepository.swift */,
-			);
-			path = SCCalender;
-			sourceTree = "<group>";
-		};
-		126236102DF3BE9B00A5F1AE /* SCCalendar */ = {
-			isa = PBXGroup;
-			children = (
-				126236112DF3BEA500A5F1AE /* SCDate.swift */,
-				126236132DF3BEB100A5F1AE /* SCYearAndMonth.swift */,
-				126236152DF3BEBE00A5F1AE /* SCWeek.swift */,
-				129FA0C72EBA26C3009712F1 /* SCDateEntity.swift */,
-			);
-			path = SCCalendar;
 			sourceTree = "<group>";
 		};
 		126236172DF3BF3400A5F1AE /* Calendar */ = {
@@ -784,7 +759,6 @@
 				122B34712D14609C00204703 /* Common */,
 				1246024D2B381ED600B6C32D /* Config */,
 				122B34702D14608000204703 /* Error */,
-				126236102DF3BE9B00A5F1AE /* SCCalendar */,
 				12CA5D982D2281D900A4C1F6 /* InAppPurchase */,
 			);
 			path = Models;
@@ -821,6 +795,7 @@
 				12CFB0A82D0C53C500407CEA /* ExView.swift */,
 				121DEE072B1A20BF00964902 /* ExCollection.swift */,
 				12F9F16F2DF9B2BC00B7A46C /* ExNotificationName.swift */,
+				126236112DF3BEA500A5F1AE /* ExSCDate.swift */,
 			);
 			path = Extenstion;
 			sourceTree = "<group>";
@@ -1032,6 +1007,7 @@
 				121732FF2E97F246009235E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				12F811CE2EA67540002B54E5 /* XCRemoteSwiftPackageReference "Swinject" */,
+				129FA0CA2EBA2F97009712F1 /* XCRemoteSwiftPackageReference "SCCalender" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 12CB91FA28E5C6E0002BD7B2 /* Products */;
@@ -1227,7 +1203,6 @@
 				1204FB232E7058220092AE9E /* RealmRepository.swift in Sources */,
 				128FB79B2E9A2AFA000167C6 /* NotificationRequestWrapper.swift in Sources */,
 				1204FB272E7058560092AE9E /* DateFormatUtility.swift in Sources */,
-				129FA0C92EBA26ED009712F1 /* SCDateEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,10 +1238,8 @@
 				12ED29C12C21958700A1293D /* EntryUserViewModel.swift in Sources */,
 				12CA5D932D19A7FB00A4C1F6 /* InAppPurchaseViewModel.swift in Sources */,
 				12CA5D9C2D22820A00A4C1F6 /* ProductItem.swift in Sources */,
-				126236162DF3BEBF00A5F1AE /* SCWeek.swift in Sources */,
 				128BB9732B61500800B20172 /* SectionRowView.swift in Sources */,
 				12ACAD2729984D5400273834 /* DateFormatUtility.swift in Sources */,
-				1262360F2DF3BE3200A5F1AE /* SCCalenderRepository.swift in Sources */,
 				12CA5D902D19A62A00A4C1F6 /* InAppPurchaseView.swift in Sources */,
 				1224014A2B8819200099BE8D /* ImagePreviewDialog.swift in Sources */,
 				122B346C2D14603200204703 /* TutorialPopupView.swift in Sources */,
@@ -1300,7 +1273,7 @@
 				128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */,
 				128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */,
 				124BBC3A2DCB872000E78A71 /* FBRemoteConfigManager.swift in Sources */,
-				126236122DF3BEA500A5F1AE /* SCDate.swift in Sources */,
+				126236122DF3BEA500A5F1AE /* ExSCDate.swift in Sources */,
 				12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */,
 				128FC4CA2B60AA07003E3B53 /* ExUIApplication.swift in Sources */,
 				12CFB0C52D0C7BEE00407CEA /* ExModifier.swift in Sources */,
@@ -1332,7 +1305,6 @@
 				1262361F2DF3C72700A5F1AE /* CarouselCalendarView.swift in Sources */,
 				12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */,
 				121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */,
-				126236142DF3BEB200A5F1AE /* SCYearAndMonth.swift in Sources */,
 				124602532B38490A00B6C32D /* AppLockInputViewModel.swift in Sources */,
 				12CB91FD28E5C6E1002BD7B2 /* MinnanoTanjyoubiApp.swift in Sources */,
 				12F64F322C9EFA3600730FC5 /* AppColorScheme.swift in Sources */,
@@ -1351,7 +1323,6 @@
 				12ACAD32299EDD6200273834 /* DeviceSizeUtility.swift in Sources */,
 				12CB925428EEC755002BD7B2 /* TimePickerView.swift in Sources */,
 				124602482B36B62300B6C32D /* RootViewModel.swift in Sources */,
-				129FA0C82EBA26C4009712F1 /* SCDateEntity.swift in Sources */,
 				128FB79D2E9A2E6B000167C6 /* EntryNotifyListView.swift in Sources */,
 				127788C62EA0CBE70048E9D0 /* SelectSortViewModel.swift in Sources */,
 				12F64F362C9FBFA000730FC5 /* SelectColorScheme.swift in Sources */,
@@ -1757,6 +1728,14 @@
 				minimumVersion = 12.4.0;
 			};
 		};
+		129FA0CA2EBA2F97009712F1 /* XCRemoteSwiftPackageReference "SCCalender" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amefure/SCCalender.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		12F811CE2EA67540002B54E5 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
@@ -1768,6 +1747,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		120C65552EBA36600001312B /* SCCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 129FA0CA2EBA2F97009712F1 /* XCRemoteSwiftPackageReference "SCCalender" */;
+			productName = SCCalendar;
+		};
 		121732FB2E97F05B009235E6 /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 121732FA2E97F05B009235E6 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
@@ -1807,6 +1791,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 121733172E98D8E5009235E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
+		};
+		129FA0CB2EBA2F97009712F1 /* SCCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 129FA0CA2EBA2F97009712F1 /* XCRemoteSwiftPackageReference "SCCalender" */;
+			productName = SCCalendar;
 		};
 		12F811CF2EA67540002B54E5 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

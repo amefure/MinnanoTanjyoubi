@@ -6,6 +6,7 @@
 //
 import Foundation
 import RealmSwift
+import SCCalendar
 
 class User: Object, ObjectKeyIdentifiable, Codable, Identifiable, SCDateEntity {
     @Persisted(primaryKey: true) var id: ObjectId

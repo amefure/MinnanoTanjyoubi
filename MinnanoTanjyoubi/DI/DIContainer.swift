@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SCCalendar
 import Swinject
 
 final class DIContainer: @unchecked Sendable {

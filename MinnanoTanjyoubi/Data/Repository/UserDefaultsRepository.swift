@@ -5,6 +5,7 @@
 //  Created by t&a on 2023/12/01.
 //
 
+import SCCalendar
 import UIKit
 
 /// `UserDefaults`の基底クラス

@@ -6,6 +6,7 @@
 //
 
 @preconcurrency import Combine
+import SCCalendar
 import UIKit
 
 @Observable
@@ -124,7 +125,7 @@ extension CalendarViewModel {
 
     /// 現在表示中の年月を取得する
     func getCurrentYearAndMonth() -> SCYearAndMonth {
-        state.yearAndMonths[safe: Int(state.displayCalendarIndex)] ?? SCYearAndMonth(year: 2025, month: 1)
+        state.yearAndMonths[safe: Int(state.displayCalendarIndex)] ?? SCYearAndMonth(year: 2025, month: 1, dates: [])
     }
 
     /// 週始まりを設定
