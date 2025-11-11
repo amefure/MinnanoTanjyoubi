@@ -19,7 +19,7 @@ struct AppLockView: View {
             Spacer()
 
             ZStack {
-                DisplayPasswordView(password: password)
+                DisplayPasswordView(password: password, scheme: rootEnvironment.state.scheme)
                     .onChange(of: password) { _, newValue in
                         viewModel.passwordLogin(password: newValue) { result in
                             if result == false {
@@ -57,11 +57,11 @@ struct AppLockView: View {
 
             Spacer()
 
-            NumberKeyboardView(password: $password)
+            NumberKeyboardView(password: $password, scheme: rootEnvironment.state.scheme)
                 .ignoresSafeArea(.all)
         }.alert(
             isPresented: $viewModel.state.isShowFailureAlert,
-            title: "Erroe",
+            title: "Error",
             message: "パスワードが違います。"
         ).navigationDestination(isPresented: $viewModel.state.isShowApp) {
             RootView()
@@ -73,74 +73,73 @@ struct AppLockView: View {
 }
 
 struct NumberKeyboardView: View {
-    @Environment(\.rootEnvironment) private var rootEnvironment
 
     @Binding var password: [String]
+    /// Color Scheme
+    let scheme: AppColorScheme
 
-    private var height: CGFloat {
-        DeviceSizeUtility.isSESize ? 60 : 80
-    }
+    private var height: CGFloat { DeviceSizeUtility.isSESize ? 60 : 80 }
 
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                NumberButton(number: "1", password: $password)
+                NumberButton(number: "1", password: $password, scheme: scheme)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
-                NumberButton(number: "2", password: $password)
+                NumberButton(number: "2", password: $password, scheme: scheme)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
-                NumberButton(number: "3", password: $password)
+                NumberButton(number: "3", password: $password, scheme: scheme)
             }
 
             Rectangle()
                 .frame(width: DeviceSizeUtility.deviceWidth, height: 1)
 
             HStack(spacing: 0) {
-                NumberButton(number: "4", password: $password)
+                NumberButton(number: "4", password: $password, scheme: scheme)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
-                NumberButton(number: "5", password: $password)
+                NumberButton(number: "5", password: $password, scheme: scheme)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
-                NumberButton(number: "6", password: $password)
+                NumberButton(number: "6", password: $password, scheme: scheme)
             }
 
             Rectangle()
                 .frame(width: DeviceSizeUtility.deviceWidth, height: 1)
 
             HStack(spacing: 0) {
-                NumberButton(number: "7", password: $password)
+                NumberButton(number: "7", password: $password, scheme: scheme)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
-                NumberButton(number: "8", password: $password)
+                NumberButton(number: "8", password: $password, scheme: scheme)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
-                NumberButton(number: "9", password: $password)
+                NumberButton(number: "9", password: $password, scheme: scheme)
             }
 
             Rectangle()
                 .frame(width: DeviceSizeUtility.deviceWidth, height: 1)
 
             HStack(spacing: 0) {
-                NumberButton(number: "-", password: $password)
+                NumberButton(number: "-", password: $password, scheme: scheme)
 
                 Rectangle()
                     .frame(width: 1, height: height)
 
-                NumberButton(number: "0", password: $password)
+                NumberButton(number: "0", password: $password, scheme: scheme)
 
                 Rectangle()
                     .frame(width: 1, height: height)
@@ -150,19 +149,20 @@ struct NumberKeyboardView: View {
                 } label: {
                     Image(systemName: "delete.backward")
                         .frame(width: DeviceSizeUtility.deviceWidth / 3, height: height)
-                        .background(rootEnvironment.state.scheme.foundationPrimary)
+                        .background(scheme.foundationPrimary)
                 }
             }
-        }.foregroundStyle(rootEnvironment.state.scheme.text)
+        }.foregroundStyle(scheme.text)
             .fontWeight(.bold)
     }
 }
 
 /// 4桁のブラインドパスワードビュー
 struct DisplayPasswordView: View {
-    @Environment(\.rootEnvironment) private var rootEnvironment
 
     let password: [String]
+    /// Color Scheme
+    let scheme: AppColorScheme
 
     var body: some View {
         HStack(spacing: 30) {
@@ -170,21 +170,20 @@ struct DisplayPasswordView: View {
             Text(password[safe: 1] == nil ? "ー" : "⚫︎")
             Text(password[safe: 2] == nil ? "ー" : "⚫︎")
             Text(password[safe: 3] == nil ? "ー" : "⚫︎")
-        }.foregroundStyle(rootEnvironment.state.scheme.text)
+        }.foregroundStyle(scheme.text)
             .fontWeight(.bold)
     }
 }
 
 /// 数値入力カスタムキーボード
 struct NumberButton: View {
-    @Environment(\.rootEnvironment) private var rootEnvironment
 
     let number: String
     @Binding var password: [String]
+    /// Color Scheme
+    let scheme: AppColorScheme
 
-    private var height: CGFloat {
-        DeviceSizeUtility.isSESize ? 60 : 80
-    }
+    private var height: CGFloat { DeviceSizeUtility.isSESize ? 60 : 80 }
 
     var body: some View {
         Button {
@@ -194,7 +193,7 @@ struct NumberButton: View {
         } label: {
             Text(number)
                 .frame(width: DeviceSizeUtility.deviceWidth / 3, height: height)
-                .background(rootEnvironment.state.scheme.foundationPrimary)
+                .background(scheme.foundationPrimary)
         }
     }
 }

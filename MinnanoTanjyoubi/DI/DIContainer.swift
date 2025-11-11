@@ -202,7 +202,6 @@ private extension DIContainer {
         // Setting > AppLock
         c.register(AppLockViewModel.self) { r in
             AppLockViewModel(
-                repository: r.resolve(RealmRepository.self)!,
                 keyChainRepository: r.resolve(KeyChainRepository.self)!,
                 biometricAuthRepository: r.resolve(BiometricAuthRepository.self)!
             )

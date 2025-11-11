@@ -27,12 +27,10 @@ final class AppLockViewModel {
     private var cancellables: Set<AnyCancellable> = []
 
     /// `Repository`
-    private let repository: RealmRepository
     private let biometricAuthRepository: BiometricAuthRepository
     private let keyChainRepository: KeyChainRepository
 
     init(
-        repository: RealmRepository,
         keyChainRepository: KeyChainRepository,
         biometricAuthRepository: BiometricAuthRepository
     ) {

@@ -27,7 +27,7 @@ struct AppLockInputView: View {
 
             Spacer()
 
-            DisplayPasswordView(password: password)
+            DisplayPasswordView(password: password, scheme: rootEnvironment.state.scheme)
 
             Spacer()
 
@@ -56,7 +56,7 @@ struct AppLockInputView: View {
 
             Spacer()
 
-            NumberKeyboardView(password: $password)
+            NumberKeyboardView(password: $password, scheme: rootEnvironment.state.scheme)
                 .ignoresSafeArea(.all)
         }.onAppear {
             viewModel.onAppear()
