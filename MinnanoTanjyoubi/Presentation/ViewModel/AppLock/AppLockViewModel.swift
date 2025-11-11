@@ -43,10 +43,11 @@ final class AppLockViewModel {
 
     @MainActor
     func onAppear() {
-        biometricAuthRepository.biometryType.sink { [weak self] type in
-            guard let self else { return }
-            state.type = type
-        }.store(in: &cancellables)
+        biometricAuthRepository.biometryType
+            .sink { [weak self] type in
+                guard let self else { return }
+                state.type = type
+            }.store(in: &cancellables)
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) { [weak self] in
             guard let self else { return }

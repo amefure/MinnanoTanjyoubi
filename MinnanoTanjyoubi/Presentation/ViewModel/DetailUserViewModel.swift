@@ -10,7 +10,8 @@ import RealmSwift
 import SwiftUI
 import UIKit
 
-struct DetailUserState {
+@Observable
+final class DetailUserState {
     /// 詳細画面で表示するUser情報
     fileprivate(set) var targetUser: User = .init()
     /// 画像ピッカー表示
@@ -42,7 +43,7 @@ struct DetailUserState {
 }
 
 class DetailUserViewModel: ObservableObject {
-    @Published var state = DetailUserState()
+    var state = DetailUserState()
 
     // 以下パブリッシャーとして観測するプロパティはstateに含めない
     /// 更新画面モーダル

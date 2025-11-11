@@ -13,7 +13,7 @@ struct AppLockInputView: View {
 
     @State private var password: [String] = []
 
-    @StateObject private var viewModel = DIContainer.shared.resolve(AppLockInputViewModel.self)
+    @State private var viewModel = DIContainer.shared.resolve(AppLockInputViewModel.self)
     @Environment(\.rootEnvironment) private var rootEnvironment
     @Environment(\.dismiss) private var dismiss
 
@@ -61,7 +61,7 @@ struct AppLockInputView: View {
         }.onAppear {
             viewModel.onAppear()
         }.onDisappear {
-            if viewModel.entryFlag {
+            if viewModel.state.entryFlag {
                 isLock = true
             } else {
                 isLock = false
