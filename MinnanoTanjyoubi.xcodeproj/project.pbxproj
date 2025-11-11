@@ -1732,8 +1732,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/amefure/SCCalender.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		12F811CE2EA67540002B54E5 /* XCRemoteSwiftPackageReference "Swinject" */ = {

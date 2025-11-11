@@ -5,11 +5,16 @@
 //  Created by t&a on 2025/06/07.
 //
 
+import SCCalendar
 import SwiftUI
 
 struct CarouselCalendarView: View {
-    let viewModel: CalendarViewModel
-    @Environment(\.rootEnvironment) private var rootEnvironment
+    let yearAndMonths: [SCYearAndMonth]
+    let displayCalendarIndex: CGFloat
+    let backMonthPage: () -> Void
+    let forwardMonthPage: () -> Void
+    let scheme: AppColorScheme
+    let onTapDay: (SCDate) -> Void
 
     /// スワイプジェスチャー用オフセット
     @GestureState private var dragOffset: CGFloat = 0
@@ -21,24 +26,12 @@ struct CarouselCalendarView: View {
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 0) {
-                ForEach(viewModel.state.yearAndMonths, id: \.id) { yearAndMonth in
-                    VStack(spacing: 0) {
-                        let dates = yearAndMonth.dates
-                        // LazyVGridだとスワイプ時の描画が重くなる
-                        ForEach(0 ..< dates.count / 7, id: \.self) { rowIndex in
-                            HStack(spacing: 0) {
-                                ForEach(0 ..< 7) { columnIndex in
-                                    let dataIndex: Int = rowIndex * 7 + columnIndex
-                                    if dataIndex < dates.count {
-                                        let theDay = dates[dataIndex]
-                                        TheDayView(viewModel: viewModel, theDay: theDay)
-                                    }
-                                }
-                            }
-                        }
-
-                        Spacer()
-                    }.frame(width: geometry.size.width, height: geometry.size.height)
+                ForEach(yearAndMonths, id: \.id) { yearAndMonth in
+                    CalendarMonthView(
+                        yearAndMonth: yearAndMonth,
+                        onTapDay: onTapDay,
+                        scheme: scheme
+                    ).frame(width: geometry.size.width, height: geometry.size.height)
                 }
             }
         }
@@ -47,11 +40,11 @@ struct CarouselCalendarView: View {
         // iOS18以降からかスワイプ終了あとに0にならなくなったのでスワイプ中のみオフセットするように変更
         .offset(x: isSwipe ? dragOffset : 0)
         // スワイプ完了後にバナーコンテナ自体を移動した後に固定するためのオフセット
-        .offset(x: -(viewModel.state.displayCalendarIndex * deviceWidth))
+        .offset(x: -(displayCalendarIndex * deviceWidth))
         // スワイプ完了後の動作をなめらかにするためのアニメーション
         .animation(
             .linear(duration: 0.5),
-            value: viewModel.state.displayCalendarIndex * deviceWidth
+            value: displayCalendarIndex * deviceWidth
         )
         .animation(
             .linear(duration: 0.5),
@@ -78,15 +71,39 @@ struct CarouselCalendarView: View {
 
                     // 以下でdisplayCalendarIndexの値を変化させる
                     if swipeFlag == 1 {
-                        viewModel.backMonthPage()
+                        backMonthPage()
                     } else {
-                        viewModel.forwardMonthPage()
+                        forwardMonthPage()
                     }
                 }
         )
     }
 }
 
-#Preview {
-    CarouselCalendarView(viewModel: DIContainer.shared.resolve(CalendarViewModel.self))
+private struct CalendarMonthView: View {
+    let yearAndMonth: SCYearAndMonth
+    let onTapDay: (SCDate) -> Void
+    let scheme: AppColorScheme
+
+    var body: some View {
+        VStack(spacing: 0) {
+            let dates = yearAndMonth.dates
+            // LazyVGridだとスワイプ時の描画が重くなる
+            ForEach(0 ..< dates.count / 7, id: \.self) { rowIndex in
+                HStack(spacing: 0) {
+                    ForEach(0 ..< 7) { columnIndex in
+                        let dataIndex: Int = rowIndex * 7 + columnIndex
+                        if dataIndex < dates.count {
+                            let theDay = dates[dataIndex]
+                            TheDayView(theDay: theDay, onTapDay: onTapDay, scheme: scheme)
+                        }
+                    }
+                }
+            }
+
+            Spacer()
+        }
+    }
 }
+
+#Preview {}

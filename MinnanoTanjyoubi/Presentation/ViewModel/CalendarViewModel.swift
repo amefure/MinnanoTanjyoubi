@@ -67,6 +67,7 @@ final class CalendarViewModel {
         }
 
         scCalenderRepository.displayCalendarIndex
+            .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main)
             .sink { [weak self] index in
                 guard let self else { return }
@@ -74,6 +75,7 @@ final class CalendarViewModel {
             }.store(in: &cancellables)
 
         scCalenderRepository.yearAndMonths
+            .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main)
             .sink { [weak self] yearAndMonths in
                 guard let self else { return }
@@ -81,6 +83,7 @@ final class CalendarViewModel {
             }.store(in: &cancellables)
 
         scCalenderRepository.dayOfWeekList
+            .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main)
             .sink { [weak self] list in
                 guard let self else { return }
@@ -89,6 +92,8 @@ final class CalendarViewModel {
 
         // カレンダー更新用Notificationを観測
         updateCancellable = NotificationCenter.default.publisher(for: .updateCalendar)
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] notification in
                 guard let self else { return }
                 guard let obj = notification.object as? Bool else { return }

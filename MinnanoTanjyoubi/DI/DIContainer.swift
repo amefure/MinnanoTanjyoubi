@@ -43,7 +43,7 @@ private extension DIContainer {
         c.register(KeyChainRepository.self) { _ in KeyChainRepository() }
         c.register(BiometricAuthRepository.self) { _ in BiometricAuthRepository() }
         c.register(InAppPurchaseRepository.self) { _ in InAppPurchaseRepository() }
-        c.register(SCCalenderRepository.self) { _ in SCCalenderRepository() }
+        c.register(SCCalenderRepository.self) { _ in SCCalenderRepository(isMatchDataDayYear: false) }
 
         // Manager
         c.register(NotificationRequestManager.self) { _ in NotificationRequestManager() }
