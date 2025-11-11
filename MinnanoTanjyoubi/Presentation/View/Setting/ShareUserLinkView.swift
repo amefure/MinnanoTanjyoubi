@@ -14,7 +14,7 @@ struct ShareUserLinkView: View {
 
     var body: some View {
         VStack {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             Text("誕生日情報共有")
                 .fontL()

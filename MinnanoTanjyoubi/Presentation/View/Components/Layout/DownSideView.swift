@@ -8,39 +8,35 @@
 import SwiftUI
 
 struct DownSideView: View {
-    @Environment(\.rootEnvironment) private var rootEnvironment
-
     private let deviceWidth = DeviceSizeUtility.deviceWidth
     private let isiPadSize = DeviceSizeUtility.isiPadSize
-    private let isSESize = DeviceSizeUtility.isiPadSize
+    private let isSESize = DeviceSizeUtility.isSESize
 
-    // EntryView
-    var parentFunction: () -> Void
-    // 表示させたい画像名を受け取る
-    var imageString: String
+    let parentFunction: () -> Void
+    /// System Image Name
+    let imageString: String
+    /// Color Scheme
+    let scheme: AppColorScheme
 
-    private var viewSize: CGFloat {
-        isSESize ? 35 : 50
-    }
+    private var viewSize: CGFloat { isSESize ? 35 : 50 }
 
     var body: some View {
         HStack {
             Rectangle()
-                .foregroundColor(rootEnvironment.state.scheme.foundationPrimary)
+                .foregroundColor(scheme.foundationPrimary)
                 .frame(width: isiPadSize ? deviceWidth * 0.6 : deviceWidth * 0.8, height: viewSize)
                 .cornerRadius(50)
                 .offset(x: isiPadSize ? -110 : -30)
 
-            Button(action: {
+            Button {
                 parentFunction()
-
-            }, label: {
+            } label: {
                 Image(systemName: imageString)
-                    .foregroundColor(rootEnvironment.state.scheme.text)
+                    .foregroundColor(scheme.text)
                     .font(isSESize ? .system(size: 12) : .system(size: 17))
 
-            }).frame(width: viewSize, height: viewSize)
-                .background(rootEnvironment.state.scheme.foundationPrimary)
+            }.frame(width: viewSize, height: viewSize)
+                .background(scheme.foundationPrimary)
                 .cornerRadius(50)
                 .shadow(color: .gray, radius: 3, x: 4, y: 4)
 

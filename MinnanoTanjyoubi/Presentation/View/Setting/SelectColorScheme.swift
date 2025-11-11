@@ -16,7 +16,7 @@ struct SelectColorScheme: View {
 
     var body: some View {
         VStack {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             Text("テーマカラー変更")
                 .fontL(bold: true)
@@ -68,7 +68,8 @@ struct SelectColorScheme: View {
                     isAlert = true
 
                 },
-                imageString: "checkmark"
+                imageString: "checkmark",
+                scheme: rootEnvironment.state.scheme
             )
 
         }.background(rootEnvironment.state.scheme.foundationSub)

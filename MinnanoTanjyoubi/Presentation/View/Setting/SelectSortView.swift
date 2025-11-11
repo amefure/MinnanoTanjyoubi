@@ -14,7 +14,7 @@ struct SelectSortView: View {
 
     var body: some View {
         VStack {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             Text("並び順変更")
                 .fontL(bold: true)
@@ -50,7 +50,8 @@ struct SelectSortView: View {
                 parentFunction: {
                     viewModel.registerSortItem()
                 },
-                imageString: "checkmark"
+                imageString: "checkmark",
+                scheme: rootEnvironment.state.scheme
             )
 
         }.background(rootEnvironment.state.scheme.foundationSub)

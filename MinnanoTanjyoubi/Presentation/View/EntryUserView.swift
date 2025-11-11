@@ -28,32 +28,26 @@ struct EntryUserView: View {
 
     var body: some View {
         VStack(alignment: .center) {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             if !DeviceSizeUtility.isSESize {
                 Spacer()
             }
 
             VStack(spacing: DeviceSizeUtility.isSESize ? 5 : 20) {
-                // Input Name
-                HStack {
-                    Text("名　　前")
-                        .frame(width: 80)
-                    TextField("名前", text: $viewModel.state.name)
-                        .textFieldStyle(.roundedBorder)
-                        .foregroundColor(.primary)
-                        .focused($isFocusActive)
-                }.padding(5)
+                CustomInputView(
+                    title: "名　　前",
+                    placeholder: "名前",
+                    text: $viewModel.state.name,
+                    scheme: rootEnvironment.state.scheme
+                ).focused($isFocusActive)
 
-                // Input Ruby
-                HStack {
-                    Text("ふりがな")
-                        .frame(width: 80)
-                    TextField("ふりがな", text: $viewModel.state.ruby)
-                        .textFieldStyle(.roundedBorder)
-                        .foregroundColor(.primary)
-                        .focused($isFocusActive)
-                }.padding(5)
+                CustomInputView(
+                    title: "ふりがな",
+                    placeholder: "ふりがな",
+                    text: $viewModel.state.ruby,
+                    scheme: rootEnvironment.state.scheme
+                ).focused($isFocusActive)
 
                 // Input Date
                 HStack {
@@ -63,7 +57,8 @@ struct EntryUserView: View {
                     DatePickerView(
                         date: $viewModel.state.date,
                         showWheel: $viewModel.state.showWheel,
-                        isYearsUnknown: $viewModel.state.isYearsUnknown
+                        isYearsUnknown: $viewModel.state.isYearsUnknown,
+                        scheme: rootEnvironment.state.scheme
                     )
                 }.padding(5)
 
@@ -130,7 +125,8 @@ struct EntryUserView: View {
                     guard result else { return }
                     isSelfShowModal = false
                 },
-                imageString: "checkmark"
+                imageString: "checkmark",
+                scheme: rootEnvironment.state.scheme
             )
 
         }.padding()
@@ -183,8 +179,9 @@ private struct DatePickerView: View {
     @State private var dateStr: String = ""
     @Binding var showWheel: Bool
     @Binding var isYearsUnknown: Bool
+    /// Color Scheme
+    let scheme: AppColorScheme
     private let isSESize: Bool = DeviceSizeUtility.isSESize
-    @Environment(\.rootEnvironment) private var rootEnvironment
 
     var body: some View {
         HStack {
@@ -203,7 +200,7 @@ private struct DatePickerView: View {
                         }
                     }
                     .colorInvert()
-                    .colorMultiply(rootEnvironment.state.scheme.text)
+                    .colorMultiply(scheme.text)
                     .frame(width: DeviceSizeUtility.deviceWidth - 180)
                     .datePickerStyle(.wheel)
                     .labelsHidden()
@@ -215,7 +212,7 @@ private struct DatePickerView: View {
                     Image(systemName: "checkmark")
                         .foregroundStyle(.white)
                         .padding(3)
-                        .background(rootEnvironment.state.scheme.thema2)
+                        .background(scheme.thema2)
                         .opacity(0.8)
                         .cornerRadius(5)
                 }.padding([.leading, .top, .bottom])

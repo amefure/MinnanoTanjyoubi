@@ -18,7 +18,7 @@ struct SettingView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             // List ここから
             List {

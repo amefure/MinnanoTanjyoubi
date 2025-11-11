@@ -17,7 +17,7 @@ struct EditNotifyMessageView: View {
 
     var body: some View {
         VStack {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             Text("通知メッセージ編集")
                 .fontL(bold: true)
@@ -62,7 +62,8 @@ struct EditNotifyMessageView: View {
                 parentFunction: {
                     viewModel.registerNotifyMsg()
                 },
-                imageString: "checkmark"
+                imageString: "checkmark",
+                scheme: rootEnvironment.state.scheme
             )
 
         }.onAppear {

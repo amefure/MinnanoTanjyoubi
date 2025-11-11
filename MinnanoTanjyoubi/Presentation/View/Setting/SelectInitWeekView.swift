@@ -15,7 +15,7 @@ struct SelectInitWeekView: View {
 
     var body: some View {
         VStack {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             Text("週始まり変更")
                 .fontL(bold: true)
@@ -53,7 +53,8 @@ struct SelectInitWeekView: View {
                 parentFunction: {
                     viewModel.registerInitWeek()
                 },
-                imageString: "checkmark"
+                imageString: "checkmark",
+                scheme: rootEnvironment.state.scheme
             )
 
         }.background(rootEnvironment.state.scheme.foundationSub)

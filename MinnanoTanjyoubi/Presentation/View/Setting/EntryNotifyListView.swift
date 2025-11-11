@@ -15,7 +15,7 @@ struct EntryNotifyListView: View {
 
     var body: some View {
         VStack {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             HStack {
                 Spacer()

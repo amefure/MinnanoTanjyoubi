@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct ImagePreviewDialog: View {
-    @Environment(\.rootEnvironment) private var rootEnvironment
-
     @Binding var isPresented: Bool
-
     let image: Image?
+    let scheme: AppColorScheme
 
     var body: some View {
         if isPresented {
@@ -28,7 +26,7 @@ struct ImagePreviewDialog: View {
                         .scaledToFit()
                         .padding(5)
                         .frame(maxWidth: 300)
-                        .background(rootEnvironment.state.scheme.foundationSub)
+                        .background(scheme.foundationSub)
                         .shadow(radius: 10)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                     // 画面一杯にViewを広げる
@@ -45,16 +43,14 @@ extension View {
     func dialogImagePreviewView(
         isPresented: Binding<Bool>,
         image: Image?,
-        environment: RootEnvironment
+        scheme: AppColorScheme
     ) -> some View {
         overlay(
-            ImagePreviewDialog(isPresented: isPresented, image: image)
-                .environment(\.rootEnvironment, environment)
+            ImagePreviewDialog(isPresented: isPresented, image: image, scheme: scheme)
         )
     }
 }
 
 #Preview {
-    ImagePreviewDialog(isPresented: Binding.constant(true), image: Image(systemName: "iphone"))
-        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
+    ImagePreviewDialog(isPresented: Binding.constant(true), image: Image(systemName: "iphone"), scheme: .original)
 }

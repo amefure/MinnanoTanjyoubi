@@ -8,27 +8,31 @@
 import SwiftUI
 
 struct CustomInputView: View {
-    @Environment(\.rootEnvironment) private var rootEnvironment
-
-    var title: String
-    var placeholder: String
+    let title: String
+    let placeholder: String
     @Binding var text: String
+    /// Color Scheme
+    let scheme: AppColorScheme
 
     var body: some View {
         HStack {
             Text(title)
                 .frame(width: 80)
-                .foregroundColor(rootEnvironment.state.scheme.text)
+                .foregroundColor(scheme.text)
                 .fontWeight(.bold)
             TextField(placeholder, text: $text)
                 .textFieldStyle(.roundedBorder)
                 .foregroundColor(.primary)
         }.padding(5)
-            .font(.system(size: 16))
+            .fontM()
     }
 }
 
 #Preview {
-    CustomInputView(title: "タイトル", placeholder: "placeholder", text: Binding.constant(""))
-        .environment(\.rootEnvironment, DIContainer.shared.resolve(RootEnvironment.self))
+    CustomInputView(
+        title: "タイトル",
+        placeholder: "placeholder",
+        text: Binding.constant(""),
+        scheme: .original
+    )
 }

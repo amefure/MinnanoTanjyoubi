@@ -26,7 +26,7 @@ struct DetailUserView: View {
 
     var body: some View {
         VStack {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             Group {
                 // Relation/あと何日../名前/ふりがな/生年月日/和暦
@@ -95,7 +95,8 @@ struct DetailUserView: View {
                 parentFunction: {
                     viewModel.isShowUpdateModalView = true
                 },
-                imageString: "square.and.pencil"
+                imageString: "square.and.pencil",
+                scheme: rootEnvironment.state.scheme
             ).sheet(isPresented: $viewModel.isShowUpdateModalView) {
                 EntryUserView(updateUserId: viewModel.state.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
             }
@@ -145,7 +146,7 @@ struct DetailUserView: View {
             ).dialogImagePreviewView(
                 isPresented: $viewModel.state.isImageShowAlert,
                 image: viewModel.state.selectedPreViewImage,
-                environment: rootEnvironment
+                scheme: rootEnvironment.state.scheme
             ).popup(
                 isPresented: $viewModel.state.isShowPopUpMemo,
                 title: "MEMO",

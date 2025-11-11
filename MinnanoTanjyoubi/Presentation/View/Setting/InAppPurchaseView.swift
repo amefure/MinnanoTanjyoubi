@@ -16,7 +16,7 @@ struct InAppPurchaseView: View {
 
     var body: some View {
         VStack {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             Text("広告削除 & 容量解放")
                 .fontL(bold: true)

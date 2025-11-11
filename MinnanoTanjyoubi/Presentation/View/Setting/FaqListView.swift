@@ -13,7 +13,7 @@ struct FaqListView: View {
 
     var body: some View {
         VStack {
-            UpSideView()
+            UpSideView(scheme: rootEnvironment.state.scheme)
 
             Text("よくある質問")
                 .fontL(bold: true)
