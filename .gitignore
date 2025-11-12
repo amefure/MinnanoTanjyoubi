@@ -43,9 +43,9 @@ Pods
 # Product
 MinnanoTanjyoubi/Info.plist
 GoogleService-Info.plist
-MinnanoTanjyoubi/View/Components/AdMobCommonView.swift
-MinnanoTanjyoubi/Models/InAppPurchase/SecretProductIdKey.swift
-MinnanoTanjyoubi/Models/Common/SecretCryptoKey.swift
+MinnanoTanjyoubi/Presentation/View/Components/AdMobCommonView.swift
+MinnanoTanjyoubi/Domain/Models/InAppPurchase/SecretProductIdKey.swift
+MinnanoTanjyoubi/Domain/Models/Common/SecretCryptoKey.swift
 
 
 # Carthage

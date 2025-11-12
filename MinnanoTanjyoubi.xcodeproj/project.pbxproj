@@ -134,6 +134,7 @@
 		12CFB0C52D0C7BEE00407CEA /* ExModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0C42D0C7BED00407CEA /* ExModifier.swift */; };
 		12CFB0C92D0C7D8300407CEA /* RewardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */; };
 		12CFB0CB2D0C7DB400407CEA /* ShareInfoUtillity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */; };
+		12D016C52EC4C6F30037448A /* SecretCryptoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D016C42EC4C6E30037448A /* SecretCryptoKey.swift */; };
 		12DCD53C2E06E514007E59A7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD53B2E06E511007E59A7 /* Logger.swift */; };
 		12E9C8902D0B23E500C0A20B /* ShareUserLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */; };
 		12E9C8952D0B2B7700C0A20B /* JsonConvertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */; };
@@ -335,6 +336,7 @@
 		12CFB0C42D0C7BED00407CEA /* ExModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExModifier.swift; sourceTree = "<group>"; };
 		12CFB0C82D0C7D6E00407CEA /* RewardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewModel.swift; sourceTree = "<group>"; };
 		12CFB0CA2D0C7D9C00407CEA /* ShareInfoUtillity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInfoUtillity.swift; sourceTree = "<group>"; };
+		12D016C42EC4C6E30037448A /* SecretCryptoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretCryptoKey.swift; sourceTree = "<group>"; };
 		12DCD53B2E06E511007E59A7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		12E9C88F2D0B23E500C0A20B /* ShareUserLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareUserLinkView.swift; sourceTree = "<group>"; };
 		12E9C8942D0B2B6C00C0A20B /* JsonConvertUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConvertUtility.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				12CA5D8B2D19949600A4C1F6 /* AppSortItem.swift */,
 				122B346D2D14604500204703 /* PopUpPosition.swift */,
 				126236222DF45DEB00A5F1AE /* LayoutItem.swift */,
+				12D016C42EC4C6E30037448A /* SecretCryptoKey.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1267,6 +1270,7 @@
 				1262361D2DF3BFCE00A5F1AE /* CalendarViewModel.swift in Sources */,
 				126236212DF3C78F00A5F1AE /* TheDayView.swift in Sources */,
 				128BB9702B614BF500B20172 /* SingleGridListView.swift in Sources */,
+				12D016C52EC4C6F30037448A /* SecretCryptoKey.swift in Sources */,
 				128BB96E2B614B4200B20172 /* SectionGridListView.swift in Sources */,
 				124BBC3A2DCB872000E78A71 /* FBRemoteConfigManager.swift in Sources */,
 				126236122DF3BEA500A5F1AE /* ExSCDate.swift in Sources */,
