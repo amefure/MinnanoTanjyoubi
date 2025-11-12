@@ -17,19 +17,19 @@ import UIKit
 
 // Test:ca-app-pub-3940256099942544~1458002511
 
-// App :ca-app-pub-4475684244743114~9816288411
+// App :
 
 // Test
 // private let bannerCode: String = "ca-app-pub-3940256099942544/2934735716"
 
 // App
-private let bannerCode: String = "ca-app-pub-4475684244743114/4955678122"
+private let bannerCode: String = ""
 
 // Test
 // private let rewardCode: String = "ca-app-pub-3940256099942544/1712485313"
 
 // App
-private let rewardCode: String = "ca-app-pub-4475684244743114/1431914825"
+private let rewardCode: String = ""
 
 struct AdMobBannerView: UIViewRepresentable {
     func makeUIView(context _: Context) -> BannerView {
