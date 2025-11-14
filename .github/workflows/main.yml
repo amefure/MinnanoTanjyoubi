@@ -1,22 +1,29 @@
+# ワークフロー名称
 name: CI
-
+# トリガー(条件)
 on:
   push:
     branches:
       # mainブランチへのプッシュ時のみに発火
       - main 
 
+# CI動作環境
 env:
+  # Xcodeの最新アプリケーションを指定
   DEVELOPER_DIR: /Applications/Xcode_26.0.1.app
   
-
+# ジョブを定義
 jobs:
-  test:
+  # ジョブ名を指定
+  ci_build:
+    # 実行環境を指定
     runs-on: macOS-latest
     env:
       MINT_PATH: mint/lib
       MINT_LINK_PATH: mint/bin
+    # ジョブ内の各ステップを定義
     steps:
+      # リポジトリのコードをチェックアウト（取得）
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -25,6 +32,9 @@ jobs:
         with:
           ruby-version: 3.2
 
+      - name: Setup GoogleService-Info.plist
+        run: |
+          echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
       - name: Install CocoaPods
         run: sudo gem install cocoapods
 
@@ -35,6 +45,7 @@ jobs:
         run: ls /Applications | grep "Xcode"
       - name: Show Xcode version
         run: xcodebuild -version
+        
 
       - name: Xcode build
         run: |
