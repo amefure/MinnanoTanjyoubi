@@ -24,6 +24,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 使用可能なXcodeアプリ一覧を出力する
+      - name: Show Xcode list
+        run: ls /Applications | grep "Xcode"
+      # 実行環境のXcodeバージョンを出力する
+      - name: Show Xcode version
+        run: xcodebuild -version 
+      - name: Show PATH
+        run: ls -R $GITHUB_WORKSPACE
+
       # Rubyのセットアップ
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1
@@ -63,13 +72,15 @@ jobs:
       - name: Install Pods
         run: bundle exec pod install
 
-      # 使用可能なXcodeアプリ一覧を出力する
-      - name: Show Xcode list
-        run: ls /Applications | grep "Xcode"
-      # 実行環境のXcodeバージョンを出力する
-      - name: Show Xcode version
-        run: xcodebuild -version
+      # SPMのライブラリのキャッシュ
+      - name: Cache Swift Packages
+        uses: actions/cache@v4
+        with:
+          path: SourcePackages
+          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
 
+      # Xcodeビルド
       - name: Xcode build
         run: |
           set -o pipefail
