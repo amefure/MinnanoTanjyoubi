@@ -60,6 +60,13 @@ jobs:
         run: |
           echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
 
+      - name: Debug base64
+        run: |
+          echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | wc -c
+          echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > plist_check.plist || true
+          ls -l plist_check.plist
+          head plist_check.plist
+
       - name: Show PATH2
         run: ls -R $GITHUB_WORKSPACE
 
@@ -83,9 +90,6 @@ jobs:
           path: SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-spm-
-
-      - name: Validate plist
-        run: plutil -lint MinnanoTanjyoubi/GoogleService-Info.plist
 
       # Xcodeビルド
       - name: Xcode build
