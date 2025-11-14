@@ -5,7 +5,7 @@ on:
   push:
     branches:
       # mainブランチへのプッシュ時のみに発火
-      - main 
+      - feature/test-actions
 
 # CI動作環境
 env:
@@ -30,6 +30,7 @@ jobs:
       # 実行環境のXcodeバージョンを出力する
       - name: Show Xcode version
         run: xcodebuild -version 
+
       - name: Show PATH
         run: ls -R $GITHUB_WORKSPACE
 
@@ -58,6 +59,9 @@ jobs:
       - name: Setup GoogleService-Info.plist
         run: |
           echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
+
+      - name: Show PATH2
+        run: ls -R $GITHUB_WORKSPACE
 
       # CocoaPodsで管理しているライブラリのキャッシュ
       - name: Cache Pods
