@@ -36,7 +36,7 @@ jobs:
       # GoogleService-Info.plistの動的構築
       - name: Setup GoogleService-Info.plist
         run: |
-          echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
+          echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > $GITHUB_WORKSPACE/MinnanoTanjyoubi/GoogleService-Info.plist
 
 
       # CocoaPodsで管理しているライブラリのキャッシュ
