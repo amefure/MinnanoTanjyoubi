@@ -21,3 +21,12 @@ jobs:
         run: ls /Applications | grep "Xcode"
       - name: Show Xcode version
         run: xcodebuild -version
+
+      - name: Xcode build
+        run: set -o pipefail &&
+          xcodebuild
+          -sdk iphonesimulator
+          -configuration Debug
+          -workspace MinnanoTanjyoubi.xcworkspace
+          -scheme MinnanoTanjyoubi
+          build| bundle exec xcpretty
