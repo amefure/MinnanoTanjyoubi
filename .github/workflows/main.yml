@@ -18,41 +18,54 @@ jobs:
   ci_build:
     # 実行環境を指定
     runs-on: macOS-latest
-    env:
-      MINT_PATH: mint/lib
-      MINT_LINK_PATH: mint/bin
     # ジョブ内の各ステップを定義
     steps:
       # リポジトリのコードをチェックアウト（取得）
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Rubyのセットアップ
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2
-
+      # GoogleService-Info.plistの動的構築
       - name: Setup GoogleService-Info.plist
         run: |
           echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
+
+
+      # CocoaPodsで管理しているライブラリのキャッシュ
+      - name: Cache Pods
+        uses: actions/cache@v2
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+      # Cocoa Podsのインストール
       - name: Install CocoaPods
         run: sudo gem install cocoapods
-
+      # Cocoa Podsのセットアップ
       - name: Install Pods
         run: pod install --repo-update
 
+      # 使用可能なXcodeアプリ一覧を出力する
       - name: Show Xcode list
         run: ls /Applications | grep "Xcode"
+      # 実行環境のXcodeバージョンを出力する
       - name: Show Xcode version
         run: xcodebuild -version
-        
 
       - name: Xcode build
         run: |
           set -o pipefail
           xcodebuild \
             -sdk iphonesimulator \
+            -destination "platform=iOS Simulator,name=iPhone 17" \
             -configuration Debug \
             -workspace MinnanoTanjyoubi.xcworkspace \
             -scheme MinnanoTanjyoubi \
-            build
+            build \
+            ENABLE_PREVIEWS=NO \
+            | bundle exec xcpretty
