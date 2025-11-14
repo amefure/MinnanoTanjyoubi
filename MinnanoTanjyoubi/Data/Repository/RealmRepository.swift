@@ -11,7 +11,7 @@ import UIKit
 
 final class RealmRepository: @unchecked Sendable {
     // DIコンテナでは複数回インスタンス化されるためシングルトン設計にする
-    static let shared = RealmRepository()
+    // static let shared = RealmRepository()
 
     init() {
         /// Realmデフォルトの保存先URL

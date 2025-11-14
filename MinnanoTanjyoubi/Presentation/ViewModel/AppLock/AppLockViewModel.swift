@@ -34,7 +34,6 @@ final class AppLockViewModel {
         keyChainRepository: KeyChainRepository,
         biometricAuthRepository: BiometricAuthRepository
     ) {
-        self.repository = repository
         self.biometricAuthRepository = biometricAuthRepository
         self.keyChainRepository = keyChainRepository
     }

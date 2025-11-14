@@ -73,7 +73,6 @@ struct AppLockView: View {
 }
 
 struct NumberKeyboardView: View {
-
     @Binding var password: [String]
     /// Color Scheme
     let scheme: AppColorScheme
@@ -159,7 +158,6 @@ struct NumberKeyboardView: View {
 
 /// 4桁のブラインドパスワードビュー
 struct DisplayPasswordView: View {
-
     let password: [String]
     /// Color Scheme
     let scheme: AppColorScheme
@@ -177,7 +175,6 @@ struct DisplayPasswordView: View {
 
 /// 数値入力カスタムキーボード
 struct NumberButton: View {
-
     let number: String
     @Binding var password: [String]
     /// Color Scheme

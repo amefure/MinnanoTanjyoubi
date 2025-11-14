@@ -10,8 +10,21 @@ import SwiftUI
 
 struct RootView: View {
     @Environment(\.rootEnvironment) private var rootEnvironment
-    @State private var popUpViewModel = DIContainer.shared.resolve(TutorialPopUpViewModel.self)
-    @State private var viewModel = DIContainer.shared.resolve(RootViewModel.self)
+    @State private var popUpViewModel: TutorialPopUpViewModel
+    @State private var viewModel: RootViewModel
+
+    init(container: DIContainer = .shared) {
+        let localRepository = container.resolve(RealmRepository.self)
+        let userDefaultsRepository = container.resolve(UserDefaultsRepository.self)
+        popUpViewModel = TutorialPopUpViewModel(
+            localRepository: localRepository,
+            userDefaultsRepository: userDefaultsRepository
+        )
+        viewModel = RootViewModel(
+            localRepository: localRepository,
+            userDefaultsRepository: userDefaultsRepository
+        )
+    }
 
     var body: some View {
         VStack(spacing: 0) {

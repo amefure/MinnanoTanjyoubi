@@ -38,7 +38,8 @@ final class DIContainer: @unchecked Sendable {
 private extension DIContainer {
     static func registerRepositories(_ c: Container) {
         // Repository
-        c.register(RealmRepository.self) { _ in RealmRepository.shared }
+        c.register(RealmRepository.self) { _ in RealmRepository() }
+            .inObjectScope(.container) // 実質のシングルトン設計
         c.register(UserDefaultsRepository.self) { _ in UserDefaultsRepository() }
         c.register(KeyChainRepository.self) { _ in KeyChainRepository() }
         c.register(BiometricAuthRepository.self) { _ in BiometricAuthRepository() }
@@ -48,7 +49,8 @@ private extension DIContainer {
         // Manager
         c.register(NotificationRequestManager.self) { _ in NotificationRequestManager() }
         c.register(WidgetCenterProtocol.self) { _ in WidgetCenterManager() }
-        c.register(RemoteConfigManager.self) { _ in RemoteConfigManager.shared }
+        c.register(RemoteConfigManager.self) { _ in RemoteConfigManager() }
+            .inObjectScope(.container) // 実質のシングルトン設計
         c.register(RewardServiceProtocol.self) { _ in RewardService() }
     }
 }
@@ -82,14 +84,7 @@ private extension DIContainer {
                 notificationRequestManager: r.resolve(NotificationRequestManager.self)!,
                 remoteConfigManager: r.resolve(RemoteConfigManager.self)!
             )
-        }
-
-        c.register(RootViewModel.self) { r in
-            RootViewModel(
-                localRepository: r.resolve(RealmRepository.self)!,
-                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!
-            )
-        }
+        }.inObjectScope(.container) // 実質のシングルトン設計
 
         c.register(RootListUserViewModel.self) { r in
             RootListUserViewModel(
@@ -120,14 +115,6 @@ private extension DIContainer {
                 localRepository: r.resolve(RealmRepository.self)!,
                 userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!,
                 scCalenderRepository: r.resolve(SCCalenderRepository.self)!
-            )
-        }
-
-        // TutorialPopUp
-        c.register(TutorialPopUpViewModel.self) { r in
-            TutorialPopUpViewModel(
-                localRepository: r.resolve(RealmRepository.self)!,
-                userDefaultsRepository: r.resolve(UserDefaultsRepository.self)!
             )
         }
 
