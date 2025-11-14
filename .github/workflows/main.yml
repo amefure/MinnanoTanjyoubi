@@ -30,6 +30,7 @@ jobs:
         with:
           ruby-version: 3.2
 
+      # Gemsのキャッシュ
       - name: Cache Gems
         uses: actions/cache@v4
         with:
@@ -38,7 +39,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      # xcprettyの導入(ログ最適化)
+      # GemFileに定義したライブラリ群のインストール
       - name: Install Bundled Gems
         run: |
           bundle config path vendor/bundle
@@ -47,7 +48,7 @@ jobs:
       # GoogleService-Info.plistの動的構築
       - name: Setup GoogleService-Info.plist
         run: |
-          echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > $GITHUB_WORKSPACE/MinnanoTanjyoubi/GoogleService-Info.plist
+          echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > /GoogleService-Info.plist
 
       # CocoaPodsで管理しているライブラリのキャッシュ
       - name: Cache Pods
@@ -57,12 +58,10 @@ jobs:
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pods-
-      # Cocoa Podsのインストール
-      - name: Install CocoaPods
-        run: sudo gem install cocoapods
+
       # Cocoa Podsのセットアップ
       - name: Install Pods
-        run: pod install --repo-update
+        run: bundle exec pod install
 
       # 使用可能なXcodeアプリ一覧を出力する
       - name: Show Xcode list

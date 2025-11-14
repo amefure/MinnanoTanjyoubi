@@ -6,6 +6,7 @@ source "https://rubygems.org"
 gem "fastlane"
 
 # ===== GitHub Actions CI用 ===== 
+# xcodebuild の出力ログを整形して見やすくするツール
 gem "xcpretty"
 gem "cocoapods"
 gem "slather"
