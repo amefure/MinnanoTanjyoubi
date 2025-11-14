@@ -7,7 +7,7 @@ on:
       - main 
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_16.0.app
+  DEVELOPER_DIR: /Applications/Xcode_26.0.1.app
   
 
 jobs:
@@ -23,10 +23,11 @@ jobs:
         run: xcodebuild -version
 
       - name: Xcode build
-        run: set -o pipefail &&
-          xcodebuild
-          -sdk iphonesimulator
-          -configuration Debug
-          -workspace MinnanoTanjyoubi.xcworkspace
-          -scheme MinnanoTanjyoubi
-          build| bundle exec xcpretty
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            -workspace MinnanoTanjyoubi.xcworkspace \
+            -scheme MinnanoTanjyoubi \
+            build | bundle exec xcpretty
