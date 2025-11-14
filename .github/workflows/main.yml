@@ -84,6 +84,9 @@ jobs:
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-spm-
 
+      - name: Validate plist
+        run: plutil -lint MinnanoTanjyoubi/GoogleService-Info.plist
+
       # Xcodeビルド
       - name: Xcode build
         run: |
