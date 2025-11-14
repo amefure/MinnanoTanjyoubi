@@ -24,6 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # xcprettyの導入(ログ最適化)
+      - name: Install xcpretty
+        run: sudo gem install xcpretty
+
       # Rubyのセットアップ
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1
