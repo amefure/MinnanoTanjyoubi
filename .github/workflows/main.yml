@@ -94,14 +94,14 @@ jobs:
             -workspace MinnanoTanjyoubi.xcworkspace \
             -scheme MinnanoTanjyoubi \
             -enableCodeCoverage YES \
-            test \
+            clean test \
             ENABLE_PREVIEWS=NO \
             | bundle exec xcpretty
 
       # カバレッジレポートの作成
       - name: Generate Coverage Report
         run: |
-          slather coverage \
+          bundle exec slather coverage \
             --html \
             --output-directory slather-report \
             --scheme MinnanoTanjyoubi \
