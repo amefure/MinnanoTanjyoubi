@@ -1,11 +1,11 @@
 # ワークフロー名称
-name: CI
+name: Run Test & Get Coverage
 # トリガー(条件)
 on:
   push:
     branches:
       # mainブランチへのプッシュ時のみに発火
-      - main 
+      - main
 
 # CI動作環境
 env:
@@ -30,8 +30,6 @@ jobs:
       # 実行環境のXcodeバージョンを出力する
       - name: Show Xcode version
         run: xcodebuild -version 
-      - name: Show PATH
-        run: ls -R $GITHUB_WORKSPACE
 
       # Rubyのセットアップ
       - name: Set Ruby version
@@ -57,7 +55,7 @@ jobs:
       # GoogleService-Info.plistの動的構築
       - name: Setup GoogleService-Info.plist
         run: |
-          echo "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
+          echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }} | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
 
       # CocoaPodsで管理しているライブラリのキャッシュ
       - name: Cache Pods
@@ -81,15 +79,28 @@ jobs:
           restore-keys: ${{ runner.os }}-spm-
 
       # Xcodeビルド
-      - name: Xcode build
+      - name: Run Xcode Test
         run: |
           set -o pipefail
           xcodebuild \
             -sdk iphonesimulator \
-            -destination "platform=iOS Simulator,name=iPhone 17" \
+            -destination "platform=iOS Simulator,name=iPhone 16 Pro Max,OS=18.6,arch=arm64" \
             -configuration Debug \
             -workspace MinnanoTanjyoubi.xcworkspace \
             -scheme MinnanoTanjyoubi \
-            build \
+            -enableCodeCoverage YES \
+            clean test \
             ENABLE_PREVIEWS=NO \
-            | bundle exec xcpretty
+            | bundle exec xcpretty --test --color || true
+
+      # カバレッジレポートの作成
+      - name: Generate Coverage Report
+        run: |
+          bundle exec slather coverage
+
+      # カバレッジレポートのアーティファクト化
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: slather-report
