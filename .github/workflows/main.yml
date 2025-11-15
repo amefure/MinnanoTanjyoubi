@@ -57,28 +57,29 @@ jobs:
         run: |
           echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }} | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
 
-      - name: Clear DerivedData
-        run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
-      # # CocoaPodsで管理しているライブラリのキャッシュ
-      # - name: Cache Pods
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: Pods
-      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-pods-
+      # - name: Clear DerivedData
+      #   run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
+
+      # CocoaPodsで管理しているライブラリのキャッシュ
+      - name: Cache Pods
+        uses: actions/cache@v4
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
 
       # Cocoa Podsのセットアップ
       - name: Install Pods
         run: bundle exec pod install
 
-      # # SPMのライブラリのキャッシュ
-      # - name: Cache Swift Packages
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: SourcePackages
-      #     key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
-      #     restore-keys: ${{ runner.os }}-spm-
+      # SPMのライブラリのキャッシュ
+      - name: Cache Swift Packages
+        uses: actions/cache@v4
+        with:
+          path: SourcePackages
+          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
 
       # Xcodeビルド
       - name: Run Xcode Test
@@ -86,7 +87,7 @@ jobs:
           set -o pipefail
           xcodebuild \
             -sdk iphonesimulator \
-            -destination "platform=iOS Simulator,name=iPhone 16 Pro Max,OS=18.6" \
+            -destination "platform=iOS Simulator,name=iPhone 16 Pro Max,OS=18.6,arch=arm64" \
             -configuration Debug \
             -workspace MinnanoTanjyoubi.xcworkspace \
             -scheme MinnanoTanjyoubi \
