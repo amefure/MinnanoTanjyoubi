@@ -5,7 +5,7 @@ on:
   push:
     branches:
       # mainブランチへのプッシュ時のみに発火
-      - feature/test-actions
+      - main
 
 # CI動作環境
 env:
