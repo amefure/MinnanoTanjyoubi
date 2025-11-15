@@ -76,12 +76,12 @@ struct DateFormatUtilityTests {
         #expect(dfm.getString(date: result) == dateString)
     }
 
-//    @Test
-//    func getTimeString() {
-//        let dfm = DateFormatUtility(format: .time)
-//        let result = dfm.getString(date: testDate)
-//        #expect(result == "14-30")
-//    }
+    @Test
+    func getTimeString() {
+        let dfm = DateFormatUtility(format: .time)
+        let result = dfm.getString(date: testDate)
+        #expect(result.contains("14") && result.contains("30"))
+    }
 
     @Test
     func testGetMonthInt() {
