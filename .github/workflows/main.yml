@@ -103,6 +103,7 @@ jobs:
             --html \
             --output-directory slather-report \
             --scheme MinnanoTanjyoubi \
+            --workspace MinnanoTanjyoubi.xcworkspace \
             MinnanoTanjyoubi.xcodeproj
 
       # カバレッジレポートのアーティファクト化
