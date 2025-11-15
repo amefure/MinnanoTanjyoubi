@@ -1,0 +1,14 @@
+coverage_service: cobertura_xml
+xcodeproj: MinnanoTanjyoubi.xcodeproj
+workspace: MinnanoTanjyoubi.xcworkspace
+scheme: MinnanoTanjyoubi
+source_directory: MinnanoTanjyoubi
+output_directory: slather-report
+ignore:
+  - Pods/*
+  - Carthage/*
+  - "**/AppDelegate.swift"
+  - "**/SceneDelegate.swift"
+  - "**/Generated/*"
+  - SourcePackages/*
+

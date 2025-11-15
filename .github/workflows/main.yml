@@ -57,9 +57,6 @@ jobs:
         run: |
           echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }} | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
 
-      # - name: Clear DerivedData
-      #   run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
-
       # CocoaPodsで管理しているライブラリのキャッシュ
       - name: Cache Pods
         uses: actions/cache@v4
@@ -99,12 +96,7 @@ jobs:
       # カバレッジレポートの作成
       - name: Generate Coverage Report
         run: |
-          bundle exec slather coverage \
-            --html \
-            --output-directory slather-report \
-            --scheme MinnanoTanjyoubi \
-            --workspace MinnanoTanjyoubi.xcworkspace \
-            MinnanoTanjyoubi.xcodeproj
+          bundle exec slather coverage
 
       # カバレッジレポートのアーティファクト化
       - name: Upload coverage report
