@@ -47,7 +47,7 @@ MinnanoTanjyoubi/Domain/Models/InAppPurchase/SecretProductIdKey.swift
 MinnanoTanjyoubi/Domain/Models/Common/SecretCryptoKey.swift
 
 # slather (カバレッジレポート生成ツール)
-html_report/*
+slather-report/*
 
 
 # Carthage
