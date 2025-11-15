@@ -57,26 +57,26 @@ jobs:
         run: |
           echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }} | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
 
-      # CocoaPodsで管理しているライブラリのキャッシュ
-      - name: Cache Pods
-        uses: actions/cache@v4
-        with:
-          path: Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
+      # # CocoaPodsで管理しているライブラリのキャッシュ
+      # - name: Cache Pods
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: Pods
+      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pods-
 
       # Cocoa Podsのセットアップ
       - name: Install Pods
         run: bundle exec pod install
 
-      # SPMのライブラリのキャッシュ
-      - name: Cache Swift Packages
-        uses: actions/cache@v4
-        with:
-          path: SourcePackages
-          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
-          restore-keys: ${{ runner.os }}-spm-
+      # # SPMのライブラリのキャッシュ
+      # - name: Cache Swift Packages
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: SourcePackages
+      #     key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
+      #     restore-keys: ${{ runner.os }}-spm-
 
       # Xcodeビルド
       - name: Run Xcode Test
