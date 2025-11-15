@@ -98,6 +98,7 @@
 		12ACAD2E299C36DB00273834 /* DownSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD2D299C36DB00273834 /* DownSideView.swift */; };
 		12ACAD32299EDD6200273834 /* DeviceSizeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD31299EDD6200273834 /* DeviceSizeUtility.swift */; };
 		12ACAD34299FAE8D00273834 /* RewardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ACAD33299FAE8D00273834 /* RewardButtonView.swift */; };
+		12AE15762EC8372000E52BE1 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F61C9E2EB19C2A001326A7 /* UserDefaultsKey.swift */; };
 		12B0DC592DE884F700BDA78C /* MinnanoTanjyoubiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0DC562DE884F700BDA78C /* MinnanoTanjyoubiTests.swift */; };
 		12B0DC5A2DE884F700BDA78C /* UserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0DC572DE884F700BDA78C /* UserTest.swift */; };
 		12B5A7B72DC649B500B1D809 /* FBAnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B5A7B62DC649A300B1D809 /* FBAnalyticsManager.swift */; };
@@ -1210,6 +1211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12AE15762EC8372000E52BE1 /* UserDefaultsKey.swift in Sources */,
 				1276A7982DD8C8F50023067D /* RelationEnum.swift in Sources */,
 				1262360C2DF3B86A00A5F1AE /* DateFormatUtilityTests.swift in Sources */,
 				12B0DC592DE884F700BDA78C /* MinnanoTanjyoubiTests.swift in Sources */,

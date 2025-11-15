@@ -1,5 +1,5 @@
 # ワークフロー名称
-name: CI
+name: Run Test & Get Coverage
 # トリガー(条件)
 on:
   push:
