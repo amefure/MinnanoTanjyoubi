@@ -31,9 +31,6 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version 
 
-      - name: Show PATH
-        run: ls -R $GITHUB_WORKSPACE
-
       # Rubyのセットアップ
       - name: Set Ruby version
         uses: ruby/setup-ruby@v1
@@ -60,16 +57,6 @@ jobs:
         run: |
           echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }} | base64 --decode > $GITHUB_WORKSPACE/GoogleService-Info.plist
 
-      - name: Debug base64
-        run: |
-          echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }} | wc -c
-          echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }} | base64 --decode > plist_check.plist || true
-          ls -l plist_check.plist
-          head plist_check.plist
-
-      - name: Show PATH2
-        run: ls -R $GITHUB_WORKSPACE
-
       # CocoaPodsで管理しているライブラリのキャッシュ
       - name: Cache Pods
         uses: actions/cache@v4
@@ -92,7 +79,7 @@ jobs:
           restore-keys: ${{ runner.os }}-spm-
 
       # Xcodeビルド
-      - name: Xcode build
+      - name: Run Xcode Test
         run: |
           set -o pipefail
           xcodebuild \
@@ -101,6 +88,23 @@ jobs:
             -configuration Debug \
             -workspace MinnanoTanjyoubi.xcworkspace \
             -scheme MinnanoTanjyoubi \
-            build \
+            -enableCodeCoverage YES \
+            test \
             ENABLE_PREVIEWS=NO \
             | bundle exec xcpretty
+
+      # カバレッジレポートの作成
+      - name: Generate Coverage Report
+        run: |
+          slather coverage \
+            --html \
+            --output-directory slather-report \
+            --scheme MinnanoTanjyoubi \
+            --workspace MinnanoTanjyoubi.xcworkspace \
+
+      # カバレッジレポートのアーティファクト化
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: slather-report
