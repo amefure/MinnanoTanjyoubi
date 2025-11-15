@@ -94,7 +94,7 @@ jobs:
             -enableCodeCoverage YES \
             clean test \
             ENABLE_PREVIEWS=NO \
-            | bundle exec xcpretty --test --color || true
+          
 
       # カバレッジレポートの作成
       - name: Generate Coverage Report
