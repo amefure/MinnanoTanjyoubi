@@ -8,6 +8,6 @@
 import UIKit
 
 class SecretCryptoKey {
-    static let KEY = ""
-    static let IV = ""
+    static let KEY = "1111111122222222"
+    static let IV = "1111111122222222"
 }

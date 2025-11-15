@@ -78,11 +78,6 @@ jobs:
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-spm-
 
-      - name: Show available simulators
-        run: xcrun simctl list devices
-      - name: Erase all simulators
-        run: xcrun simctl erase all
-
       # Xcodeビルド
       - name: Run Xcode Test
         run: |
