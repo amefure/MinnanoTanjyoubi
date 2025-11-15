@@ -19,7 +19,9 @@ struct DateFormatUtilityTests {
         components.hour = 14
         components.minute = 30
         components.second = 0
-        return Calendar(identifier: .gregorian).date(from: components)!
+        var c = Calendar(identifier: .gregorian)
+        c.timeZone = TimeZone(identifier: "Asia/Tokyo") ?? .autoupdatingCurrent
+        return c.date(from: components) ?? Date()
     }()
 
     @Test
