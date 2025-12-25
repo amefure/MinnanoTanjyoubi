@@ -1,5 +1,5 @@
 {
-  "originHash" : "4f9e91d6d39164d16d5c5020653b55e0d5462e94c19fadc7a5205c62511fe47b",
+  "originHash" : "d0e392aeed9044c9a9ec9050e66a7497221504abe3909c40e5b88deea49f2531",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -128,6 +128,15 @@
       }
     },
     {
+      "identity" : "sccalender",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amefure/SCCalender.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f550e5a27e54e6efa281a6f65356a0b645e34b00"
+      }
+    },
+    {
       "identity" : "swift-package-manager-google-mobile-ads",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleads/swift-package-manager-google-mobile-ads",
@@ -152,6 +161,15 @@
       "state" : {
         "revision" : "c6fe6442e6a64250495669325044052e113e990c",
         "version" : "1.32.0"
+      }
+    },
+    {
+      "identity" : "swinject",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Swinject/Swinject.git",
+      "state" : {
+        "revision" : "b685b549fe4d8ae265fc7a2f27d0789720425d69",
+        "version" : "2.10.0"
       }
     }
   ],
