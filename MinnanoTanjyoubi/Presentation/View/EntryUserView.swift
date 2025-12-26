@@ -20,11 +20,9 @@ struct EntryUserView: View {
     /// 新規登録時にカレンダーから遷移した場合に月と日だけ該当のものにする
     var isCalendarMonth: Int?
     var isCalendarDay: Int?
-
-    /// 自身の表示モーダルフラグ
-    @Binding var isSelfShowModal: Bool
     /// TextField/TextEditor ActiveFlag
     @FocusState private var isFocusActive: Bool
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack(alignment: .center) {
@@ -123,7 +121,7 @@ struct EntryUserView: View {
                 parentFunction: {
                     let result = viewModel.createOrUpdateUser()
                     guard result else { return }
-                    isSelfShowModal = false
+                    dismiss()
                 },
                 imageString: "checkmark",
                 scheme: rootEnvironment.state.scheme

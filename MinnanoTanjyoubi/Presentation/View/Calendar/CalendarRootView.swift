@@ -73,8 +73,7 @@ struct CalendarRootView: View {
                         EntryUserView(
                             updateUserId: nil,
                             isCalendarMonth: selectTheDay.month,
-                            isCalendarDay: selectTheDay.day,
-                            isSelfShowModal: $isShowEntryModal
+                            isCalendarDay: selectTheDay.day
                         )
                     }.alert(
                         isPresented: $isLimitAlert,

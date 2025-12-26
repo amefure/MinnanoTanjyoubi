@@ -15,6 +15,9 @@ struct RootListUserView: View {
     @Environment(\.rootEnvironment) private var rootEnvironment
     @GestureState private var dragOffset = CGSize.zero
 
+    /// 新規登録モーダル表示
+    @State private var isShowEntryModal: Bool = false
+
     private var drag: some Gesture {
         DragGesture(minimumDistance: 0.0)
             .updating($dragOffset, body: { value, state, _ in
@@ -52,7 +55,7 @@ struct RootListUserView: View {
         VStack(spacing: 0) {
             switch rootEnvironment.state.sectionLayoutFlag {
             case .calendar:
-                // 単体のグリッドレイアウト
+                // カレンダーレイアウト
                 CalendarRootView()
 
             default:
@@ -186,7 +189,7 @@ struct RootListUserView: View {
             Image(systemName: "plus")
                 .fontM()
         }.sheet(isPresented: $viewModel.isShowEntryModal) {
-            EntryUserView(updateUserId: nil, isSelfShowModal: $viewModel.isShowEntryModal)
+            EntryUserView(updateUserId: nil)
         }.alert(
             isPresented: $viewModel.isShowLimitAlert,
             title: "Error...",

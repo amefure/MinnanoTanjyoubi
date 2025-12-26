@@ -10,4 +10,5 @@ import Foundation
 extension Notification.Name {
     static let updateCalendar = Notification.Name("UPDATE_CALENDAR")
     static let readAllUsers = Notification.Name("READ_ALL_USERS")
+    static let refreshUser = Notification.Name("REFRESH_USER")
 }

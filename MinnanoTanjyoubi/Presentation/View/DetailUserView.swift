@@ -24,6 +24,9 @@ struct DetailUserView: View {
     private let dfmJpOnlyDate = DateFormatUtility(format: .jpOnlyDate)
     private let dfmJpEra = DateFormatUtility(format: .jpEra)
 
+    /// 更新画面モーダル
+    @State private var isShowUpdateModalView: Bool = false
+
     var body: some View {
         VStack {
             UpSideView(scheme: rootEnvironment.state.scheme)
@@ -93,12 +96,12 @@ struct DetailUserView: View {
 
             DownSideView(
                 parentFunction: {
-                    viewModel.isShowUpdateModalView = true
+                    isShowUpdateModalView = true
                 },
                 imageString: "square.and.pencil",
                 scheme: rootEnvironment.state.scheme
-            ).sheet(isPresented: $viewModel.isShowUpdateModalView) {
-                EntryUserView(updateUserId: viewModel.state.targetUser.id, isSelfShowModal: $viewModel.isShowUpdateModalView)
+            ).sheet(isPresented: $isShowUpdateModalView) {
+                EntryUserView(updateUserId: viewModel.state.targetUser.id)
             }
 
             if !DeviceSizeUtility.isSESize, !rootEnvironment.state.removeAds {

@@ -44,10 +44,6 @@ final class DetailUserState {
 
 class DetailUserViewModel: ObservableObject {
     var state = DetailUserState()
-
-    // 以下パブリッシャーとして観測するプロパティはstateに含めない
-    /// 更新画面モーダル
-    @Published var isShowUpdateModalView: Bool = false
     /// 通知トグルフラグ
     @Published var isNotifyFlag: Bool = false
     /// 画像ピッカー選択の`UIImage`
@@ -80,6 +76,7 @@ class DetailUserViewModel: ObservableObject {
         isNotifyFlag = state.targetUser.alert
 
         $isNotifyFlag
+            .dropFirst()
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newValue in
@@ -94,13 +91,16 @@ class DetailUserViewModel: ObservableObject {
                 saveImage(image: image)
             }.store(in: &cancellables)
 
-        // 更新モーダルから戻った(falseになった)際にはリフレッシュ
-        $isShowUpdateModalView
+        // 更新用Notificationを観測
+        NotificationCenter.default.publisher(for: .refreshUser)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] flag in
+            .sink { [weak self] notification in
                 guard let self else { return }
-                guard !flag else { return }
+                guard let obj = notification.object as? Bool else { return }
+                // trueなら更新
+                guard obj else { return }
                 refreshTargetUser(id: state.targetUser.id)
+                NotificationCenter.default.post(name: .refreshUser, object: false)
             }.store(in: &cancellables)
     }
 

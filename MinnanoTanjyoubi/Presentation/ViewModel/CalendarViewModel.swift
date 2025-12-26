@@ -30,6 +30,7 @@ final class CalendarViewModel {
     private var isInitializeFlag: Bool = false
 
     private var cancellables: Set<AnyCancellable> = []
+    /// カレンダー更新用は別途設けてキャンセルしない
     private var updateCancellable: AnyCancellable?
 
     /// `Repository`

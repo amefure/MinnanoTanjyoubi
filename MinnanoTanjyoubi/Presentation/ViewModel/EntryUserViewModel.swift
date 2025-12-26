@@ -80,9 +80,14 @@ extension EntryUserViewModel {
 
         if let targetUser = state.targetUser {
             service.updateUser(targetUser, from: state)
+            // 詳細画面更新
+            NotificationCenter.default.post(name: .refreshUser, object: true)
         } else {
             service.createUser(from: state)
         }
+        // グリッドレイアウト更新
+        NotificationCenter.default.post(name: .readAllUsers, object: true)
+
         // カレンダー更新
         NotificationCenter.default.post(name: .updateCalendar, object: true)
 

@@ -29,7 +29,10 @@ final class RootListUserViewModel: ObservableObject {
     /// 選択されたフィルタリング関係
     @Published var selectedFilteringRelation: Relation = .other
 
+    private var initialLoad: Bool = false
     private var cancellables: Set<AnyCancellable> = []
+    /// グリッドレイアウト更新用は別途設けてキャンセルしない
+    private var updateCancellable: AnyCancellable?
 
     private let repository: RealmRepository
     private let userDefaultsRepository: UserDefaultsRepository
@@ -48,24 +51,22 @@ final class RootListUserViewModel: ObservableObject {
         self.widgetCenter = widgetCenter
     }
 
+    deinit {
+        updateCancellable?.cancel()
+    }
+
     @MainActor
     func onAppear() {
         $isScrollingDown
+            .dropFirst()
             .sink { [weak self] _ in
                 guard let self else { return }
                 // 下方向にスクロール中のみ半透明にする
                 opacity = isScrollingDown ? 0.5 : 1
             }.store(in: &cancellables)
 
-        // 登録モーダルから戻った(falseになった)際にはリフレッシュ
-        $isShowEntryModal
-            .sink { [weak self] flag in
-                guard let self else { return }
-                guard !flag else { return }
-                readAllUsers()
-            }.store(in: &cancellables)
-
         $selectedFilteringRelation
+            .dropFirst()
             .sink { [weak self] newValue in
                 guard let self else { return }
                 // 変更になったらフィルタリング
@@ -73,7 +74,7 @@ final class RootListUserViewModel: ObservableObject {
             }.store(in: &cancellables)
 
         // 更新用Notificationを観測
-        NotificationCenter.default.publisher(for: .readAllUsers)
+        updateCancellable = NotificationCenter.default.publisher(for: .readAllUsers)
             .sink { [weak self] notification in
                 guard let self else { return }
                 guard let obj = notification.object as? Bool else { return }
@@ -81,9 +82,12 @@ final class RootListUserViewModel: ObservableObject {
                 guard obj else { return }
                 readAllUsers()
                 NotificationCenter.default.post(name: .readAllUsers, object: false)
-            }.store(in: &cancellables)
+            }
 
-        readAllUsers()
+        if !initialLoad {
+            readAllUsers()
+            initialLoad = true
+        }
     }
 
     func onDisappear() {
