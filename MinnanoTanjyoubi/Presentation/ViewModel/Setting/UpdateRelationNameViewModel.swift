@@ -64,5 +64,7 @@ final class UpdateRelationNameViewModel {
         userDefaultsRepository.setRelationName(key: .other, value: state.other)
         userDefaultsRepository.setRelationName(key: .sns, value: state.sns)
         state.isShowSuccessAlert = true
+        // 関係性を反映
+        NotificationCenter.default.post(name: .readAllUsers, object: true)
     }
 }

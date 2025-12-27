@@ -47,5 +47,7 @@ final class SelectSortViewModel {
         userDefaultsRepository.setSortItem(state.sort)
         getSortItem()
         state.isShowSuccessAlert = true
+        // 並び順を反映
+        NotificationCenter.default.post(name: .readAllUsers, object: true)
     }
 }
