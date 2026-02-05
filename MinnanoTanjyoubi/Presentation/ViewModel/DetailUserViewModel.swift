@@ -30,6 +30,8 @@ final class DetailUserState {
     var isImageShowAlert: Bool = false
     /// 画像エラーダイアログ
     var isImageErrorAlert: Bool = false
+    /// 通知登録最大個数超過アラート
+    var isNotifyMaxAlert: Bool = false
 
     /// 有効なパスに変換された画像パス
     fileprivate(set) var displayImages: [String] = []
@@ -200,19 +202,14 @@ extension DetailUserViewModel {
                 repository.updateNotifyUser(id: user.id, notify: false)
             } else {
                 if flag {
-                    let setting = userDefaultsRepository.getNotifyUserSetting()
-                    // 通知を登録
-                    notificationRequestManager
-                        .sendNotificationRequest(
-                            id: user.id,
-                            userName: user.name,
-                            date: user.date,
-                            msg: setting.msg,
-                            timeStr: setting.timeStr,
-                            dateFlag: setting.dateFlag
-                        )
-                    // データベース更新
-                    repository.updateNotifyUser(id: user.id, notify: true)
+                    let notifyList = await notificationRequestManager.confirmNotificationRequest()
+
+                    guard notifyList.count < NotifyConfig.MAX_NOTIFY_CAPACITY else {
+                        state.isNotifyMaxAlert = true
+                        return
+                    }
+                    // 通知登録
+                    registerNotify()
                 } else {
                     // 通知を削除
                     notificationRequestManager.removeNotificationRequest(user.id)
@@ -221,5 +218,27 @@ extension DetailUserViewModel {
                 }
             }
         }
+    }
+
+    /// 通知登録
+    func registerNotify() {
+        let user = state.targetUser
+        let setting = userDefaultsRepository.getNotifyUserSetting()
+        // 通知を登録
+        notificationRequestManager
+            .sendNotificationRequest(
+                id: user.id,
+                userName: user.name,
+                date: user.date,
+                msg: setting.msg,
+                timeStr: setting.timeStr,
+                dateFlag: setting.dateFlag
+            )
+        // データベース更新
+        repository.updateNotifyUser(id: user.id, notify: true)
+    }
+
+    func cancelRegisterNotify() {
+        isNotifyFlag = false
     }
 }

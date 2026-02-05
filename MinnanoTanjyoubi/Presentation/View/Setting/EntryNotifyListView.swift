@@ -18,8 +18,20 @@ struct EntryNotifyListView: View {
             UpSideView(scheme: rootEnvironment.state.scheme)
 
             HStack {
-                Spacer()
-                    .frame(width: 80)
+                if viewModel.notifyList.isEmpty {
+                    Spacer()
+                        .frame(width: 80)
+                } else {
+                    HStack {
+                        Text("\(viewModel.notifyList.count)個")
+                            .fontS(bold: true)
+                            .foregroundStyle(viewModel.notifyList.count >= NotifyConfig.MAX_NOTIFY_CAPACITY ? Asset.Colors.exThemaRed.swiftUIColor : Asset.Colors.exText.swiftUIColor)
+                        Text("/")
+                            .fontL(bold: true)
+                        Text("\(NotifyConfig.MAX_NOTIFY_CAPACITY)個")
+                            .fontS(bold: true)
+                    }.foregroundStyle(Asset.Colors.exText.swiftUIColor)
+                }
                 Spacer()
                 Text("登録済み通知一覧")
                     .fontL(bold: true)
@@ -44,6 +56,11 @@ struct EntryNotifyListView: View {
                         .shadow(color: .gray, radius: 3, x: 3, y: 3)
                 }
             }.padding(.horizontal)
+
+            Text(L10n.howToUseQ4Text)
+                .foregroundStyle(rootEnvironment.state.scheme.text)
+                .padding(.top, 10)
+                .font(.caption)
 
             if viewModel.isFetching {
                 ProgressView()
@@ -76,7 +93,7 @@ struct EntryNotifyListView: View {
                 message: "通知の予定をキャンセルしました。"
             ).alert(
                 isPresented: $viewModel.isShowFailedDeleteAlert,
-                title: "Erroe",
+                title: "Error",
                 message: "通知の予定のキャンセルに失敗しました。何度も繰り返される場合は「ALLRESET」で一度リセットしてください。"
             )
             .alert(

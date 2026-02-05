@@ -25,25 +25,31 @@ enum L10n {
     static let howToUseQ3Text = L10n.tr("Localizable", "how_to_use_q3_text", fallback: "登録できる人数は制限されています。\nですが広告を視聴していただくことで追加することも可能です。")
     /// 登録できる人数は何人ですか？
     static let howToUseQ3Title = L10n.tr("Localizable", "how_to_use_q3_title", fallback: "登録できる人数は何人ですか？")
+    /// 通知を設定(受信)できるのは最大64人までとなっております。
+    /// これはアプリの仕様というよりAppleが定めている制限数になるので変更できないことご了承ください。
+    /// 64個以上登録しようとすると自動的に一番古いものから消えてしまうのでご注意ください。
+    static let howToUseQ4Text = L10n.tr("Localizable", "how_to_use_q4_text", fallback: "通知を設定(受信)できるのは最大64人までとなっております。\nこれはアプリの仕様というよりAppleが定めている制限数になるので変更できないことご了承ください。\n64個以上登録しようとすると自動的に一番古いものから消えてしまうのでご注意ください。")
+    /// 通知が届かないことがあります。
+    static let howToUseQ4Title = L10n.tr("Localizable", "how_to_use_q4_title", fallback: "通知が届かないことがあります。")
     /// 共有されたリンクをクリックしてもアプリが起動しない場合はアプリが最新であることを確認した上で、リンクをコピー後、「Safari」を立ち上げて検索欄長押しして「ペーストして開く」を実行してみてください。
     ///
     /// また複数の誕生日情報を一度に送信した場合にうまく動作しない場合はお手数ですが1つずつ共有してください。
-    static let howToUseQ4Text = L10n.tr("Localizable", "how_to_use_q4_text", fallback: "共有されたリンクをクリックしてもアプリが起動しない場合はアプリが最新であることを確認した上で、リンクをコピー後、「Safari」を立ち上げて検索欄長押しして「ペーストして開く」を実行してみてください。\n\nまた複数の誕生日情報を一度に送信した場合にうまく動作しない場合はお手数ですが1つずつ共有してください。")
+    static let howToUseQ5Text = L10n.tr("Localizable", "how_to_use_q5_text", fallback: "共有されたリンクをクリックしてもアプリが起動しない場合はアプリが最新であることを確認した上で、リンクをコピー後、「Safari」を立ち上げて検索欄長押しして「ペーストして開く」を実行してみてください。\n\nまた複数の誕生日情報を一度に送信した場合にうまく動作しない場合はお手数ですが1つずつ共有してください。")
     /// 誕生日転送(共有)機能が使えない。
-    static let howToUseQ4Title = L10n.tr("Localizable", "how_to_use_q4_title", fallback: "誕生日転送(共有)機能が使えない。")
+    static let howToUseQ5Title = L10n.tr("Localizable", "how_to_use_q5_title", fallback: "誕生日転送(共有)機能が使えない。")
     /// 誕生日情報の共有機能では「通知のON/OFF」、「登録した画像」が転送できません。
-    static let howToUseQ5Text = L10n.tr("Localizable", "how_to_use_q5_text", fallback: "誕生日情報の共有機能では「通知のON/OFF」、「登録した画像」が転送できません。")
+    static let howToUseQ6Text = L10n.tr("Localizable", "how_to_use_q6_text", fallback: "誕生日情報の共有機能では「通知のON/OFF」、「登録した画像」が転送できません。")
     /// 誕生日転送(共有)機能で一部の情報が転送されません。
-    static let howToUseQ5Title = L10n.tr("Localizable", "how_to_use_q5_title", fallback: "誕生日転送(共有)機能で一部の情報が転送されません。")
+    static let howToUseQ6Title = L10n.tr("Localizable", "how_to_use_q6_title", fallback: "誕生日転送(共有)機能で一部の情報が転送されません。")
     /// 画像は長押ししていただくことで削除可能です。
-    static let howToUseQ6Text = L10n.tr("Localizable", "how_to_use_q6_text", fallback: "画像は長押ししていただくことで削除可能です。")
+    static let howToUseQ7Text = L10n.tr("Localizable", "how_to_use_q7_text", fallback: "画像は長押ししていただくことで削除可能です。")
     /// 画像の削除方法がわからない。
-    static let howToUseQ6Title = L10n.tr("Localizable", "how_to_use_q6_title", fallback: "画像の削除方法がわからない。")
+    static let howToUseQ7Title = L10n.tr("Localizable", "how_to_use_q7_title", fallback: "画像の削除方法がわからない。")
     /// アプリのレビューもしくは「利用規約」のWebサイトのお問い合わせフォームからフィードバックをいただけるとできる限り対処いたします。
     /// しかしご要望に添えない可能性があることをご了承ください。
-    static let howToUseQ7Text = L10n.tr("Localizable", "how_to_use_q7_text", fallback: "アプリのレビューもしくは「利用規約」のWebサイトのお問い合わせフォームからフィードバックをいただけるとできる限り対処いたします。\nしかしご要望に添えない可能性があることをご了承ください。")
+    static let howToUseQ8Text = L10n.tr("Localizable", "how_to_use_q8_text", fallback: "アプリのレビューもしくは「利用規約」のWebサイトのお問い合わせフォームからフィードバックをいただけるとできる限り対処いたします。\nしかしご要望に添えない可能性があることをご了承ください。")
     /// ○○な機能を追加してほしい
-    static let howToUseQ7Title = L10n.tr("Localizable", "how_to_use_q7_title", fallback: "○○な機能を追加してほしい")
+    static let howToUseQ8Title = L10n.tr("Localizable", "how_to_use_q8_title", fallback: "○○な機能を追加してほしい")
     /// テーマカラーを変更する
     static let settingSectionAppColor = L10n.tr("Localizable", "setting_section_app_color", fallback: "テーマカラーを変更する")
     /// ・アプリにパスワードを設定してロックをかけることができます。

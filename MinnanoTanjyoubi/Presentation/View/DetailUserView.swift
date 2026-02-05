@@ -154,6 +154,18 @@ struct DetailUserView: View {
                 isPresented: $viewModel.state.isShowPopUpMemo,
                 title: "MEMO",
                 message: viewModel.state.targetUser.memo
+            ).alert(
+                isPresented: $viewModel.state.isNotifyMaxAlert,
+                title: "お知らせ",
+                message: "通知の最大登録数\(NotifyConfig.MAX_NOTIFY_CAPACITY)件に達しています。通知をONにすると一番古い通知が自動的にキャンセルされてしまいます。それでも登録しますか？",
+                positiveButtonTitle: "登録する",
+                negativeButtonTitle: "キャンセル",
+                positiveAction: {
+                    viewModel.registerNotify()
+                },
+                negativeAction: {
+                    viewModel.cancelRegisterNotify()
+                }
             )
     }
 
