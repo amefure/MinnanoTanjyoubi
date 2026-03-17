@@ -121,7 +121,7 @@ extension RootListUserViewModel {
             sort = getSortItem()
         }
 
-        let dfmMonthOnly = DateFormatUtility(format: .monthOnly)
+        let df = DateFormatUtility()
 
         switch sort {
         case .daysLater:
@@ -152,18 +152,19 @@ extension RootListUserViewModel {
                 return $0.date < $1.date
             })
         case .montheAsce:
-            // 生まれ月(昇順)
+            // 生まれ月＋日 (昇順)
             allUsers = Array(result).sorted(by: {
-                let pre = dfmMonthOnly.getMonthInt(date: $0.date)
-                let late = dfmMonthOnly.getMonthInt(date: $1.date)
-                return pre < late
+                let left = df.getMonthAndDayInt(date: $0.date)
+                let right = df.getMonthAndDayInt(date: $1.date)
+                // タプル同士を直接比較（自動的に月 -> 日の優先順位で比較される）
+                return left < right
             })
         case .montheDesc:
-            // 生まれ月(降順)
+            // 生まれ月＋日 (降順)
             allUsers = Array(result).sorted(by: {
-                let pre = dfmMonthOnly.getMonthInt(date: $0.date)
-                let late = dfmMonthOnly.getMonthInt(date: $1.date)
-                return pre > late
+                let left = df.getMonthAndDayInt(date: $0.date)
+                let right = df.getMonthAndDayInt(date: $1.date)
+                return left > right
             })
         case .none:
             // 誕生日までの日付が近い順にソート

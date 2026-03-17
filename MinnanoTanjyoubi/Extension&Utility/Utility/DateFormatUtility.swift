@@ -14,7 +14,6 @@ enum DateFormatItem: String {
     case jpEra = "Gy年"
     case hyphen = "yyyy-MM-dd-H-m"
     case time = "H-mm"
-    case monthOnly = "M"
 }
 
 final class DateFormatUtility: Sendable {
@@ -48,10 +47,12 @@ final class DateFormatUtility: Sendable {
         df.date(from: from) ?? Date()
     }
 
-    /// 月をInt型で取得する
-    func getMonthInt(date: Date) -> Int {
-        let month = df.string(from: date)
-        return Int(month) ?? 0
+    /// 月と日をタプル(Int, Int)型で取得する
+    func getMonthAndDayInt(date: Date) -> (month: Int, day: Int) {
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        return (month, day)
     }
 }
 

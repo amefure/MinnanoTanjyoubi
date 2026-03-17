@@ -86,10 +86,10 @@ struct DateFormatUtilityTests {
     }
 
     @Test
-    func testGetMonthInt() {
-        let dfm = DateFormatUtility(format: .monthOnly)
-        let result: Int = dfm.getMonthInt(date: testDate)
-        #expect(result == 6)
+    func getMonthInt() {
+        let dfm = DateFormatUtility(format: .slash)
+        let result: (month: Int, day: Int) = dfm.getMonthAndDayInt(date: testDate)
+        #expect(result.month == 6 && result.day == 5)
     }
 
     @Test
