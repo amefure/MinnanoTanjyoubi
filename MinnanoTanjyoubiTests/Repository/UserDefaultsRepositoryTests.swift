@@ -109,9 +109,9 @@ struct UserDefaultsRepositoryTests {
         repository.setEntryInitYear(2030)
         #expect(repository.getEntryInitYear() == 2030)
 
-        // 0(未設定)の場合は現在年（2026など）が返る
+        let currentYear = Calendar.current.component(.year, from: Date())
         mock.set(0, forKey: UserDefaultsKey.ENTRY_INTI_YEAR)
-        #expect(repository.getEntryInitYear() >= 2024)
+        #expect(repository.getEntryInitYear() == currentYear)
     }
 
     @Test("関係性初期値の保存")
