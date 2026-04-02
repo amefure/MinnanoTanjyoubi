@@ -49,6 +49,8 @@
 		122B346E2D14604600204703 /* PopUpPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122B346D2D14604500204703 /* PopUpPosition.swift */; };
 		122C8A552E0444F3003AAD30 /* CryptoUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122C8A542E0444F1003AAD30 /* CryptoUtilityTests.swift */; };
 		122C8A572E04451C003AAD30 /* JsonConvertUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122C8A562E04451B003AAD30 /* JsonConvertUtilityTests.swift */; };
+		122CE8E82F7EA80900924F5E /* UserDefaultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122CE8E72F7EA80400924F5E /* UserDefaultsDataSource.swift */; };
+		122CE8EB2F7EA8F800924F5E /* UserDefaultsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122CE8EA2F7EA8F600924F5E /* UserDefaultsRepositoryTests.swift */; };
 		122FF36E2B97561300EF4680 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 122FF36D2B97561300EF4680 /* PrivacyInfo.xcprivacy */; };
 		123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485029A19A16001B91B3 /* CheckRowUserView.swift */; };
 		123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
@@ -254,6 +256,8 @@
 		122B346D2D14604500204703 /* PopUpPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPosition.swift; sourceTree = "<group>"; };
 		122C8A542E0444F1003AAD30 /* CryptoUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUtilityTests.swift; sourceTree = "<group>"; };
 		122C8A562E04451B003AAD30 /* JsonConvertUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConvertUtilityTests.swift; sourceTree = "<group>"; };
+		122CE8E72F7EA80400924F5E /* UserDefaultsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataSource.swift; sourceTree = "<group>"; };
+		122CE8EA2F7EA8F600924F5E /* UserDefaultsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepositoryTests.swift; sourceTree = "<group>"; };
 		122FF36D2B97561300EF4680 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		123F485029A19A16001B91B3 /* CheckRowUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRowUserView.swift; sourceTree = "<group>"; };
 		123F485729A256DB001B91B3 /* RelationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationEnum.swift; sourceTree = "<group>"; };
@@ -529,6 +533,22 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		122CE8E62F7EA7FA00924F5E /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				122CE8E72F7EA80400924F5E /* UserDefaultsDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		122CE8E92F7EA8E900924F5E /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				122CE8EA2F7EA8F600924F5E /* UserDefaultsRepositoryTests.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		123F485229A1D967001B91B3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,6 +658,7 @@
 			children = (
 				12B0DC562DE884F700BDA78C /* MinnanoTanjyoubiTests.swift */,
 				12B0DC572DE884F700BDA78C /* UserTest.swift */,
+				122CE8E92F7EA8E900924F5E /* Repository */,
 				1262360A2DF3B85F00A5F1AE /* Utility */,
 			);
 			path = MinnanoTanjyoubiTests;
@@ -860,6 +881,7 @@
 		12F811D92EAA6964002B54E5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				122CE8E62F7EA7FA00924F5E /* DataSource */,
 				121DEE032B1A1FF500964902 /* Repository */,
 				12BA5F162C6BA3E500E1DDF2 /* Managers */,
 			);
@@ -1213,6 +1235,7 @@
 			files = (
 				12AE15762EC8372000E52BE1 /* UserDefaultsKey.swift in Sources */,
 				1276A7982DD8C8F50023067D /* RelationEnum.swift in Sources */,
+				122CE8EB2F7EA8F800924F5E /* UserDefaultsRepositoryTests.swift in Sources */,
 				1262360C2DF3B86A00A5F1AE /* DateFormatUtilityTests.swift in Sources */,
 				12B0DC592DE884F700BDA78C /* MinnanoTanjyoubiTests.swift in Sources */,
 				12B0DC5A2DE884F700BDA78C /* UserTest.swift in Sources */,
@@ -1304,6 +1327,7 @@
 				1246024C2B36BCE500B6C32D /* AdsConfig.swift in Sources */,
 				12B76E862D0D93D40021A018 /* UICustomWebView.swift in Sources */,
 				12B76E882D0D940B0021A018 /* ControlWebView.swift in Sources */,
+				122CE8E82F7EA80900924F5E /* UserDefaultsDataSource.swift in Sources */,
 				1262361F2DF3C72700A5F1AE /* CarouselCalendarView.swift in Sources */,
 				12F9F1702DF9B2C900B7A46C /* ExNotificationName.swift in Sources */,
 				121DEE052B1A200600964902 /* KeyChainRepository.swift in Sources */,
