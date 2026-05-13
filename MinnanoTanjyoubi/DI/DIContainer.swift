@@ -67,6 +67,10 @@ private extension DIContainer {
                 widgetCenter: r.resolve(WidgetCenterProtocol.self)!
             )
         }
+
+        c.register(NotificationDispatcher.self) { _ in
+            NotificationCenter.default
+        }
     }
 }
 
@@ -97,7 +101,10 @@ private extension DIContainer {
 
         // Entry
         c.register(EntryUserViewModel.self) { r in
-            EntryUserViewModel(service: r.resolve(EntryUserServiceProtocol.self)!)
+            EntryUserViewModel(
+                service: r.resolve(EntryUserServiceProtocol.self)!,
+                notificationDispatcher: r.resolve(NotificationDispatcher.self)!
+            )
         }
 
         // Detail

@@ -12,3 +12,13 @@ extension Notification.Name {
     static let readAllUsers = Notification.Name("READ_ALL_USERS")
     static let refreshUser = Notification.Name("REFRESH_USER")
 }
+
+protocol NotificationDispatcher {
+    func post(name: Notification.Name, object: Any?)
+}
+
+extension NotificationCenter: NotificationDispatcher {
+    func post(name: Notification.Name, object: Any?) {
+        post(name: name, object: object, userInfo: nil)
+    }
+}

@@ -42,9 +42,14 @@ final class EntryUserViewModel {
     var state = EntryUserState()
 
     private let service: EntryUserServiceProtocol
+    private let notificationDispatcher: NotificationDispatcher
 
-    init(service: EntryUserServiceProtocol) {
+    init(
+        service: EntryUserServiceProtocol,
+        notificationDispatcher: NotificationDispatcher
+    ) {
         self.service = service
+        self.notificationDispatcher = notificationDispatcher
     }
 
     func onAppear(
@@ -62,8 +67,6 @@ final class EntryUserViewModel {
             state.selectedRelation = service.getInitRelation()
         }
     }
-
-    func onDisappear() {}
 }
 
 extension EntryUserViewModel {
@@ -81,15 +84,15 @@ extension EntryUserViewModel {
         if let targetUser = state.targetUser {
             service.updateUser(targetUser, from: state)
             // 詳細画面更新
-            NotificationCenter.default.post(name: .refreshUser, object: true)
+            notificationDispatcher.post(name: .refreshUser, object: true)
         } else {
             service.createUser(from: state)
         }
         // グリッドレイアウト更新
-        NotificationCenter.default.post(name: .readAllUsers, object: true)
+        notificationDispatcher.post(name: .readAllUsers, object: true)
 
         // カレンダー更新
-        NotificationCenter.default.post(name: .updateCalendar, object: true)
+        notificationDispatcher.post(name: .updateCalendar, object: true)
 
         return true
     }

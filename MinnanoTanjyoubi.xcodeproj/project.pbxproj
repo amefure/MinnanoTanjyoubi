@@ -54,6 +54,9 @@
 		122FF36E2B97561300EF4680 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 122FF36D2B97561300EF4680 /* PrivacyInfo.xcprivacy */; };
 		123F485129A19A16001B91B3 /* CheckRowUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485029A19A16001B91B3 /* CheckRowUserView.swift */; };
 		123F485829A256DB001B91B3 /* RelationEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F485729A256DB001B91B3 /* RelationEnum.swift */; };
+		123F55022FB4A7A4004BEBCB /* EntryUserViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F55012FB4A79F004BEBCB /* EntryUserViewModelTest.swift */; };
+		123F55052FB4AA9E004BEBCB /* MockEntryUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F55042FB4AA9C004BEBCB /* MockEntryUserService.swift */; };
+		123F55072FB4B19C004BEBCB /* MockNotificationDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123F55062FB4B19B004BEBCB /* MockNotificationDispatcher.swift */; };
 		1246023D2B369CC200B6C32D /* BiometricAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */; };
 		124602432B36A92C00B6C32D /* AppLockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602422B36A92C00B6C32D /* AppLockViewModel.swift */; };
 		124602482B36B62300B6C32D /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124602472B36B62300B6C32D /* RootViewModel.swift */; };
@@ -261,6 +264,9 @@
 		122FF36D2B97561300EF4680 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		123F485029A19A16001B91B3 /* CheckRowUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRowUserView.swift; sourceTree = "<group>"; };
 		123F485729A256DB001B91B3 /* RelationEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationEnum.swift; sourceTree = "<group>"; };
+		123F55012FB4A79F004BEBCB /* EntryUserViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryUserViewModelTest.swift; sourceTree = "<group>"; };
+		123F55042FB4AA9C004BEBCB /* MockEntryUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEntryUserService.swift; sourceTree = "<group>"; };
+		123F55062FB4B19B004BEBCB /* MockNotificationDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationDispatcher.swift; sourceTree = "<group>"; };
 		1246023C2B369CC200B6C32D /* BiometricAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthRepository.swift; sourceTree = "<group>"; };
 		124602422B36A92C00B6C32D /* AppLockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockViewModel.swift; sourceTree = "<group>"; };
 		124602472B36B62300B6C32D /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
@@ -565,6 +571,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		123F55002FB4A794004BEBCB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				123F55012FB4A79F004BEBCB /* EntryUserViewModelTest.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		123F55032FB4AA98004BEBCB /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				123F55042FB4AA9C004BEBCB /* MockEntryUserService.swift */,
+				123F55062FB4B19B004BEBCB /* MockNotificationDispatcher.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		1246024D2B381ED600B6C32D /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +681,8 @@
 			children = (
 				12B0DC562DE884F700BDA78C /* MinnanoTanjyoubiTests.swift */,
 				12B0DC572DE884F700BDA78C /* UserTest.swift */,
+				123F55032FB4AA98004BEBCB /* Mock */,
+				123F55002FB4A794004BEBCB /* ViewModel */,
 				122CE8E92F7EA8E900924F5E /* Repository */,
 				1262360A2DF3B85F00A5F1AE /* Utility */,
 			);
@@ -1234,10 +1259,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				12AE15762EC8372000E52BE1 /* UserDefaultsKey.swift in Sources */,
+				123F55072FB4B19C004BEBCB /* MockNotificationDispatcher.swift in Sources */,
 				1276A7982DD8C8F50023067D /* RelationEnum.swift in Sources */,
 				122CE8EB2F7EA8F800924F5E /* UserDefaultsRepositoryTests.swift in Sources */,
 				1262360C2DF3B86A00A5F1AE /* DateFormatUtilityTests.swift in Sources */,
 				12B0DC592DE884F700BDA78C /* MinnanoTanjyoubiTests.swift in Sources */,
+				123F55052FB4AA9E004BEBCB /* MockEntryUserService.swift in Sources */,
+				123F55022FB4A7A4004BEBCB /* EntryUserViewModelTest.swift in Sources */,
 				12B0DC5A2DE884F700BDA78C /* UserTest.swift in Sources */,
 				122C8A572E04451C003AAD30 /* JsonConvertUtilityTests.swift in Sources */,
 				122C8A552E0444F3003AAD30 /* CryptoUtilityTests.swift in Sources */,
